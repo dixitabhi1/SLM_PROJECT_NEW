@@ -37,3 +37,4 @@ Any failure, unhandled exception, hardware interruption, timeout, or protocol ir
 | Incident ID | Timestamp | Category | Description | Root Cause | Impact | Resolution |
 |---|---|---|---|---|---|---|
 | INC-001 | 2026-10-07 22:01:47 | Environment | Ollama client auto-launch timeout when running `ollama list` | Ollama background daemon was not running as a persistent service on Windows | Diagnostic command exited non-zero | Manually tested `ollama serve` and verified listener on port 11434; documented in `environment.md` |
+| INC-002 | 2026-10-07 22:28:33 | Infrastructure | GitHub remote rejected git push with Internal Server Error (`500`) | Upstream GitHub service error | Commit `599761d` saved locally on branch `main`; remote push pending upstream recovery | Monitored and queued for retry |
