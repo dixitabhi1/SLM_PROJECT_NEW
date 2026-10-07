@@ -9,6 +9,8 @@ import sys
 import json
 import hashlib
 import glob
+import re
+import subprocess
 from typing import List, Dict, Tuple, Any
 
 REQUIRED_KNOWLEDGE_FILES = [
@@ -128,6 +130,96 @@ def audit_run_records(log_file_path: str) -> List[str]:
                     f"(finish_reason='{finish_reason}', tokens={comp_tokens}) but status was '{status}' instead of 'FAILED'"
                 )
 
+            # Hard Rule 7: Model digest format validation
+            model_digest = rec.get("model_digest", "")
+            if model_digest and not re.match(r"^[0-9a-fA-F]{12,64}$", model_digest):
+                errors.append(
+                    f"Rule 7 Violation: Line {line_num} contains invalid model_digest '{model_digest}'"
+                )
+
+    return errors
+
+
+def audit_model_digests(repo_root: str) -> List[str]:
+    """
+    Hard Rule 7 & Model Registry check:
+    Ensures all candidate local models in model_registry.md are pinned with valid 64-char SHA-256 digests.
+    Ensures no floating :latest or -latest aliases exist.
+    """
+    errors = []
+    reg_path = os.path.join(repo_root, ".agents", "knowledge", "model_registry.md")
+    if not os.path.exists(reg_path):
+        return ["Missing .agents/knowledge/model_registry.md"]
+
+    with open(reg_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    # Check for floating aliases in model table rows
+    for line_idx, line in enumerate(content.splitlines(), start=1):
+        if line.strip().startswith("|") and ("-latest`" in line.lower() or ":latest`" in line.lower()):
+            errors.append(
+                f"Rule 7 Violation: Floating alias found in model_registry.md table line {line_idx}: {line.strip()}"
+            )
+
+    # Extract 64-char SHA-256 hex strings in backticks
+    hex_digests = re.findall(r"`([0-9a-fA-F]{64})`", content)
+    if not hex_digests:
+        errors.append("Model Registry check: No 64-character SHA-256 model digests found in model_registry.md")
+    elif len(hex_digests) < 5:
+        errors.append(
+            f"Model Registry check: Expected at least 5 pinned model digests in model_registry.md, found {len(hex_digests)}"
+        )
+
+    return errors
+
+
+def audit_deleted_files(repo_root: str) -> List[str]:
+    """
+    Hard Rule 2 (Raw files are immutable):
+    Checks git status and history to ensure no .jsonl results or raw record files were deleted.
+    """
+    errors = []
+    try:
+        # Check current working tree and staged index
+        proc = subprocess.run(
+            ["git", "status", "--porcelain"],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        if proc.returncode == 0:
+            for line in proc.stdout.splitlines():
+                status = line[:2]
+                filepath = line[3:].strip()
+                if "D" in status and (".jsonl" in filepath or "results" in filepath):
+                    errors.append(f"Hard Rule 2 Violation: Deleted file in working tree/index: {filepath}")
+
+        # Check git commit history for deleted .jsonl files in results/
+        log_proc = subprocess.run(
+            ["git", "log", "--diff-filter=D", "--summary", "--", "results/"],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        if log_proc.returncode == 0 and log_proc.stdout.strip():
+            progress_path = os.path.join(repo_root, "PROGRESS.md")
+            progress_text = ""
+            if os.path.exists(progress_path):
+                with open(progress_path, "r", encoding="utf-8") as pf:
+                    progress_text = pf.read()
+            for line in log_proc.stdout.splitlines():
+                if "delete mode" in line:
+                    fname = line.split()[-1]
+                    if fname not in progress_text:
+                        errors.append(
+                            f"Hard Rule 2 Violation: Deleted file in git history ({fname}) is not documented in PROGRESS.md incident log."
+                        )
+
+    except Exception as e:
+        errors.append(f"Could not verify git deletion status: {e}")
+
     return errors
 
 
@@ -139,7 +231,15 @@ def run_full_audit(repo_root: str = ".") -> Tuple[bool, List[str]]:
     k_errors = audit_knowledge_files(repo_root)
     all_errors.extend(k_errors)
 
-    # 2. Check any existing run record JSONL files
+    # 2. Pinned model digest check in model_registry.md
+    digest_errors = audit_model_digests(repo_root)
+    all_errors.extend(digest_errors)
+
+    # 3. Deleted file check (Rule 2)
+    deleted_errors = audit_deleted_files(repo_root)
+    all_errors.extend(deleted_errors)
+
+    # 4. Check any existing run record JSONL files
     record_files = glob.glob(os.path.join(repo_root, "**", "*.jsonl"), recursive=True)
     for rf in record_files:
         # Ignore temporary cache or IDE directories
@@ -156,11 +256,12 @@ if __name__ == "__main__":
     repo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     passed, errors = run_full_audit(repo_path)
     if passed:
-        print("AUDIT PASSED: All operational rules (Rules 2-8), hashes, and knowledge files verified.")
+        print("AUDIT PASSED: All operational rules (Rules 2-8), hashes, digests, and files verified.")
         sys.exit(0)
     else:
         print(f"AUDIT FAILED with {len(errors)} violation(s):")
         for err in errors:
             print(f"  [VIOLATION] {err}")
         sys.exit(1)
+
 

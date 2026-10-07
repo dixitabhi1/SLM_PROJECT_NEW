@@ -81,6 +81,7 @@ class OllamaClient:
         seed: int = 42,
         temperature: float = 0.0,
         stop_tokens: Optional[List[str]] = None,
+        max_tokens: Optional[int] = 512,
     ) -> ModelResponse:
         """
         Sends generation request to Ollama.
@@ -110,7 +111,7 @@ class OllamaClient:
             "options": {
                 "seed": seed,
                 "temperature": temperature,
-                "num_predict": 2048,
+                "num_predict": max_tokens if max_tokens is not None else 512,
             },
         }
         if system_prompt:

@@ -64,3 +64,37 @@ def test_audit_catches_silent_failure():
     finally:
         os.remove(temp_path)
 
+
+def test_audit_catches_invalid_model_digest():
+    with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False, encoding="utf-8") as f:
+        f.write(
+            json.dumps(
+                {
+                    "item_id": "test_3",
+                    "model_id": "phi3.5:3.8b",
+                    "model_digest": "invalid_digest_not_hex!",
+                    "finish_reason": "stop",
+                    "completion_tokens": 10,
+                    "full_output": "answer",
+                    "status": "COMPLETE",
+                }
+            )
+            + "\n"
+        )
+        temp_path = f.name
+
+    try:
+        errors = audit_run_records(temp_path)
+        assert any("invalid model_digest" in err for err in errors)
+    finally:
+        os.remove(temp_path)
+
+
+def test_audit_model_digests_in_repo():
+    from src.audit.audit_rules import audit_model_digests
+
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    errors = audit_model_digests(repo_root)
+    assert len(errors) == 0, f"Model digest audit failed: {errors}"
+
+
