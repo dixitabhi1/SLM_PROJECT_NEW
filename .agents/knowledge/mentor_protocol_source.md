@@ -1,9 +1,381 @@
-# MENTOR PROTOCOL SOURCE — VERBATIM
+List of Experiments to perform
 
-<!--
-This file is reserved for the verbatim, owner-supplied mentor protocol document.
-Per Condition 13b.3, once supplied, this file is copied exactly and never edited,
-summarized in place, or "clarified". Its SHA-256 hash will be recorded in 00_index.md.
-Status: Awaiting owner verbatim input (Session 1).
--->
-Awaiting verbatim document from owner.
+1. Objective
+
+The objective is to systematically evaluate the SLM-based pipeline under different fine-tuning configurations and compare its performance against a baseline LLM.
+
+The experiments will evaluate both:
+
+Win rate, with LLM win, SLM win, and draw cases reported separately.
+
+Quality Proximity, which measures how close the quality of the SLM-generated response is to the LLM-generated response.
+
+The quality scores used for Quality Proximity and related metrics will be obtained using an LLM-as-a-Judge evaluation.
+
+2. Experimental Setup
+
+For the initial experiments:
+
+The SLM pool should consist of models in the 5–8B parameter range.
+
+The baseline LLM should initially be approximately 70B parameters.
+
+The baseline LLM should initially be used without fine-tuning where computationally practical.
+
+Later, the baseline size can be increased (e.g., 120B) to investigate the limits of the SLM pool.
+
+For a fair comparison, the baseline LLM should have a parameter count greater than the combined parameter count of the SLMs being used in the pool.
+
+The SLM pool is considered a controllable component. The number and properties of SLMs in the pool are determined by the experimental configuration, while the actual SLM(s) selected for a query should continue to be determined by the existing skill-matching / task-selection mechanism.
+
+3. Four Experiment Sets
+
+Experiment 1 — Fixed SLM Pool with No Fine-Tuning
+
+Use a predefined pool of SLMs where none of the SLMs are fine-tuned.
+
+The baseline LLM is also not fine-tuned.
+
+Run the complete SLM pipeline and compare its output against the baseline LLM.
+
+Configuration
+
+SLM Pool: Fixed predefined poolSLMs: Inference-only / no fine-tuningSkill Matching: Existing mechanismBaseline LLM: Not fine-tuned
+
+Metrics
+
+For every query, record:
+
+LLM wins
+
+SLM wins
+
+Draws
+
+Quality Proximity
+
+Quality scores from LLM-as-a-Judge
+
+The win-rate calculation should consider the equality/draw cases separately initially. The three categories should be reported independently so that the treatment of draws can be decided later.
+
+Experiment 2 — Query-Dependent Fine-Tuning of SLMs
+
+In this experiment, fine-tuning is applied to the SLM corresponding to the skill/domain required by the query.
+
+For example, if a query is coding-related, the coding-oriented SLM from the pool is fine-tuned rather than fine-tuning unrelated SLMs.
+
+The selection of the relevant SLM should be determined based on the query/skill rather than manually selecting a model.
+
+Configuration
+
+SLM Pool: Fixed predefined poolSLMs: Query-dependent subset is fine-tunedSelection: Based on query/skillBaseline LLM: Initially use the non-fine-tuned baseline; fine-tuned LLM comparison can be added later
+
+Metrics
+
+Record:
+
+LLM wins
+
+SLM wins
+
+Draws
+
+Quality Proximity
+
+LLM-as-a-Judge scores
+
+Experiment 3 — Entire SLM Pool Fine-Tuned
+
+In this experiment, all SLMs in the pool are fine-tuned.
+
+The resulting SLM pipeline is then compared against the baseline LLM.
+
+The intended comparison eventually includes a fine-tuned LLM baseline; however, if fine-tuning the LLM creates computational limitations, the fine-tuning portion can be postponed and the non-fine-tuned experiments should be completed first.
+
+Configuration
+
+SLM Pool: Fixed predefined poolSLMs: All SLMs fine-tunedSkill Matching: Existing mechanismBaseline LLM: Fine-tuned baseline for the final comparison
+
+Metrics
+
+Record:
+
+LLM wins
+
+SLM wins
+
+Draws
+
+Quality Proximity
+
+LLM-as-a-Judge scores
+
+Experiment 4 — Effect of Fine-Tuning the Skill-Matching SLM
+
+The above experiments should be repeated while changing the fine-tuning status of the SLM responsible for the skill-matching / SLM-selection process.
+
+The purpose is to determine whether fine-tuning the model responsible for skill matching improves the selection of SLMs from the pool and consequently improves the overall pipeline performance.
+
+This experiment therefore acts as an additional feedback/selection-quality dimension over Experiments 1–3.
+
+Configuration
+
+Repeat the relevant experiments under two conditions:
+
+Skill-matching SLM not fine-tuned
+
+Skill-matching SLM fine-tuned
+
+The resulting performance should be compared using the same evaluation metrics.
+
+4. Evaluation Method
+
+4.1 LLM-as-a-Judge
+
+The quality of the SLM and LLM responses should be evaluated using an LLM-as-a-Judge.
+
+For each query:
+
+Provide the query.
+
+Provide the SLM response as Answer 1.
+
+Provide the LLM response as Answer 2.
+
+Ask the judge to compare the two responses.
+
+The judge should provide a quality score on a 1–10 scale.
+
+The judging should be performed blindly, so that the judge does not know which answer was generated by the SLM and which was generated by the LLM.
+
+Draw cases should be retained and considered separately.
+
+4.2 Quality Proximity
+
+Quality Proximity should be calculated using the quality scores obtained from the LLM-as-a-Judge.
+
+For each query, let:
+
+Q_{S,i} = quality score of the SLM response for query ‘i’
+
+Q_{L,i} = quality score of the LLM response for query ‘i’
+
+Since the judge produces scores from 1 to 10, the maximum possible difference is 9.
+
+Therefore:
+
+The overall Quality Proximity can then be obtained by averaging over the evaluated queries.
+
+The previously used/raw quality scores should not be discarded. Both the raw criteria-based scores and the LLM-as-a-Judge scores should be retained for comparison and analysis.
+
+5. Win / Draw Reporting
+
+For every experiment, report three separate quantities:
+
+Outcome
+
+     Description
+
+LLM Win
+
+      QL > QS
+
+SLM Win
+
+      QS > QL
+
+Draw           
+
+      QS=QL
+
+Initially, the three categories should be reported separately.
+
+This will allow the effect of treating draws as SLM wins to be examined later.
+
+In particular, the SLM should be considered to have a win when:
+
+QS≥ QL
+
+if the final analysis decides to include draw cases in the SLM win rate.
+
+6. Experimental Results Table
+
+The following table should be maintained in Overleaf and progressively filled as the experiments are completed.
+
+Experiment
+
+SLM Fine-Tuning Configuration
+
+Skill-Matching SLM
+
+LLM Fine-Tuning
+
+LLM Wins
+
+SLM Wins
+
+Draws
+
+Quality Proximity
+
+SLM CQS
+
+LLM CQS
+
+E1
+
+None of the SLMs fine-tuned
+
+Not fine-tuned
+
+No
+
+—
+
+—
+
+—
+
+—
+
+—
+
+—
+
+E2
+
+Query-dependent SLM fine-tuning
+
+Not fine-tuned
+
+No initially
+
+—
+
+—
+
+—
+
+—
+
+—
+
+—
+
+E3
+
+All SLMs fine-tuned
+
+Not fine-tuned
+
+Yes (final comparison)
+
+—
+
+—
+
+—
+
+—
+
+—
+
+—
+
+E4-A
+
+Same as E1–E3
+
+Not fine-tuned
+
+Corresponding baseline
+
+—
+
+—
+
+—
+
+—
+
+—
+
+—
+
+E4-B
+
+Same as E1–E3
+
+Fine-tuned
+
+Corresponding baseline
+
+—
+
+—
+
+—
+
+—
+
+—
+
+—
+
+Note: E4 represents the repetition of the preceding experiments with the skill-matching SLM fine-tuned. Therefore, the final implementation may expand E4 into separate rows corresponding to E1, E2 and E3 under the fine-tuned skill-matching condition.
+
+7. Additional Experiments / Conditions
+
+Multi-Domain Queries
+
+The experiments should not be restricted to single-domain queries.
+
+A multi-domain version of the existing Phase-2 style experiment should also be evaluated because the current results were largely based on single-domain queries.
+
+This is particularly important for evaluating whether the SLM pool and skill-matching mechanism work when a query requires multiple capabilities.
+
+8. Baseline Scaling
+
+The initial comparison should use an approximately 70B LLM baseline.
+
+Once the initial results are obtained, the baseline can be increased to larger models, such as approximately 120B, to investigate how the SLM pool performs as the baseline model becomes larger.
+
+Multiple baseline sizes can also be evaluated using the same pipeline and queries where computationally feasible.
+
+For fairness, the baseline model should be larger than the combined parameter count of the SLMs participating in the comparison.
+
+9. Data to Preserve
+
+For every experiment, retain:
+
+Query
+
+Selected SLM(s)
+
+SLM response
+
+LLM response
+
+Raw quality criteria scores
+
+LLM-as-a-Judge scores
+
+Quality Proximity
+
+Win / loss / draw outcome
+
+Fine-tuning configuration
+
+SLM pool configuration
+
+Baseline LLM configuration
+
+The raw values should be preserved rather than overwritten when a new evaluation method is introduced.
+
+10. Immediate Execution Priority
+
+If computational resources become a limitation, the priority is to first complete the non-fine-tuned/inference-based experiments.
+
+Fine-tuning of the LLM can be postponed until the initial experiments have produced sufficient results.
+
+The experiment results should be added progressively to the Overleaf table so that the team can monitor the results and identify the important trends before deciding the final experimental direction.

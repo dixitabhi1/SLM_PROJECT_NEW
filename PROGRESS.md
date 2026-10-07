@@ -8,7 +8,7 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 | Phase | Description | Status | Gate / Owner Checkpoint | Notes |
 |---|---|---|---|---|
-| **1. Setup** | Repo initialization, environment audit, model candidates proposal | IN PROGRESS | Model, baseline & judge choice by owner | Initialized repo, verified GPU/OS/Python, drafted candidate roster |
+| **1. Setup** | Repo initialization, environment audit, candidate proposals, verbatim sources lock | COMPLETE | Model, baseline & judge choice by owner (done) | GPU/OS/keys audited, Option 1 selected, master prompt & mentor protocol locked |
 | **2. Infrastructure** | Serving setup, parallelism benchmark (configs a, b, c, d), adapter switching, sandbox, tools, run records, audit & report scripts | PENDING | Smoke test pass (C0 & B0 1-item) & owner config choice | Section 4 build |
 | **3. Datasets** | Track A (objective) & Track B (private knowledge), dev release, held-out hash lock | PENDING | Owner sign-off on Dataset Card | Section 5 build |
 | **4. Baselines** | B0 & B1 baseline generation on dev, response caching & hashing | PENDING | Complete answers verified | 3-tier baselines |
