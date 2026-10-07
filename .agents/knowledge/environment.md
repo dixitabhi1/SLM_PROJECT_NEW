@@ -30,6 +30,8 @@ All facts in this document were empirically verified via system commands on the 
 | **GitHub CLI** | Authenticated as `dixitabhi1` (repo scope confirmed) | `gh auth status` | 2026-10-07 |
 | **Ollama** | Version 0.34.0 (binary at `C:\Users\ACER\AppData\Local\Programs\Ollama\ollama.exe`) | `ollama.exe serve` log | 2026-10-07 |
 | **Ollama Models Dir** | `C:\Users\ACER\.ollama\models` | `ollama.exe serve` config log | 2026-10-07 |
+| **Groq API** | Verified active via `GROQ_API_KEY` in `.env` (Models: `qwen/qwen3.8-27b`, `openai/gpt-oss-120b`) | HTTP API test | 2026-10-07 |
+| **Google AI Studio API** | Verified active via `GEMINI_API_KEY` in `.env` (`gemini-2.5-flash`) | HTTP API test | 2026-10-07 |
 
 ---
 
