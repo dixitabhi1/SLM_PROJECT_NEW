@@ -37,10 +37,42 @@ def extract_sql_query(text: str) -> str:
     return raw.strip().rstrip(";")
 
 
-def check_code_subtask(subtask_id: str, output: str) -> Tuple[bool, str, str]:
+def check_code_subtask(subtask_id: str, output: str, subtask: Dict[str, Any] = None) -> Tuple[bool, str, str]:
     """Runs code in sandbox with official HumanEval assertions."""
     code = extract_code_block(output)
     checker_name = "python_sandbox_test"
+
+    if subtask and "test" in subtask:
+        entry_point = subtask.get("entry_point", "")
+        test_code = subtask["test"]
+        prompt = subtask.get("prompt", "")
+        helpers = ""
+        if "def poly(" in prompt and "def poly(" not in code:
+            helpers += """
+def poly(xs: list, x: float):
+    import math
+    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+"""
+        full_script = f"""import math
+import copy
+import random
+import re
+from typing import List, Tuple, Optional, Any, Dict, Set
+
+{helpers}
+{code}
+
+{test_code}
+
+check({entry_point})
+print("PASS")
+"""
+        res = execute_python_code(full_script, timeout_seconds=10.0)
+        if res.exit_code == 0 and "PASS" in res.stdout:
+            return True, checker_name, "HumanEval assertions passed"
+        else:
+            err = res.stderr.strip() or res.stdout.strip() or f"Exit code {res.exit_code}"
+            return False, checker_name, f"Execution failed: {err[:150]}"
 
     harnesses = {
         "subtask_01": """
@@ -92,7 +124,10 @@ print("PASS")
 def check_math_subtask(subtask_id: str, output: str, gold: str) -> Tuple[bool, str, str]:
     """Evaluates GSM8K answers via exact numeric extraction."""
     checker_name = "exact_numeric_test"
-    gold_num = int(gold)
+    try:
+        gold_num = int(gold)
+    except Exception:
+        return False, checker_name, f"Invalid gold integer '{gold}'"
 
     # 1. Look for '#### <number>' standard GSM8K delimiter
     hash_match = re.search(r"####\s*(-?\d+)", output)
@@ -124,7 +159,7 @@ def check_math_subtask(subtask_id: str, output: str, gold: str) -> Tuple[bool, s
     return False, checker_name, f"Did not find gold number {gold_num} in output"
 
 
-def check_sql_subtask(subtask_id: str, output: str, gold_query: str) -> Tuple[bool, str, str]:
+def check_sql_subtask(subtask_id: str, output: str, gold_query: str, subtask: Dict[str, Any] = None) -> Tuple[bool, str, str]:
     """Executes generated SQL against Spider schema and compares result set against gold SQL."""
     checker_name = "sqlite_result_match_test"
     query = extract_sql_query(output)
@@ -133,7 +168,25 @@ def check_sql_subtask(subtask_id: str, output: str, gold_query: str) -> Tuple[bo
     cursor = conn.cursor()
 
     try:
-        # Populate schema per subtask
+        if subtask and "schema_ddl" in subtask:
+            for stmt in subtask["schema_ddl"].split(";"):
+                if stmt.strip():
+                    cursor.execute(stmt)
+            for stmt in subtask["init_sql"].split(";"):
+                if stmt.strip():
+                    cursor.execute(stmt)
+            cursor.execute(subtask["gold_sql"])
+            gold_results = set(cursor.fetchall())
+
+            cursor.execute(query)
+            pred_results = set(cursor.fetchall())
+
+            if pred_results == gold_results:
+                return True, checker_name, f"Result set matches gold exactly: {pred_results}"
+            else:
+                return False, checker_name, f"Result mismatch: predicted {pred_results} vs gold {gold_results}"
+
+        # Legacy fixed subtasks fallback
         if subtask_id == "subtask_11":
             cursor.execute("CREATE TABLE departments(dept_id INT, name TEXT, budget REAL, building TEXT);")
             cursor.execute("INSERT INTO departments VALUES (1, 'CS', 600000, 'Baker'), (2, 'Math', 400000, 'Baker'), (3, 'Physics', 700000, 'Turing');")
@@ -150,11 +203,9 @@ def check_sql_subtask(subtask_id: str, output: str, gold_query: str) -> Tuple[bo
             cursor.execute("CREATE TABLE flights(flight_id INT, origin TEXT, destination TEXT, distance REAL);")
             cursor.execute("INSERT INTO flights VALUES (1, 'JFK', 'LAX', 2475.0), (2, 'JFK', 'ORD', 740.0), (3, 'BOS', 'MIA', 1258.0);")
 
-        # Execute gold query
         cursor.execute(gold_query)
         gold_results = set(cursor.fetchall())
 
-        # Execute predicted query
         cursor.execute(query)
         pred_results = set(cursor.fetchall())
 
@@ -174,7 +225,6 @@ def check_qa_subtask(subtask_id: str, output: str, gold_option: str) -> Tuple[bo
     checker_name = "multiple_choice_exact_match"
     gold_letter = gold_option.strip("()").upper()
 
-    # Look for explicit option letter pattern (A), (B), (C), (D) or Option B, Answer: B
     match = re.search(r"(?:answer\s*(?:is|:)?\s*|option\s*|[(\[])([A-D])[)\]]", output, re.IGNORECASE)
     if match:
         pred_letter = match.group(1).upper()
@@ -182,13 +232,12 @@ def check_qa_subtask(subtask_id: str, output: str, gold_option: str) -> Tuple[bo
             return True, checker_name, f"Selected correct option ({pred_letter})"
         return False, checker_name, f"Selected option ({pred_letter}) != gold ({gold_letter})"
 
-    # Fallback: check first standalone capital letter A, B, C, D
     standalone = re.findall(r"\b([A-D])\b", output)
     if standalone:
         pred_letter = standalone[0].upper()
         if pred_letter == gold_letter:
-            return True, checker_name, f"Standalone letter matched gold ({gold_letter})"
-        return False, checker_name, f"Standalone letter ({pred_letter}) != gold ({gold_letter})"
+            return True, checker_name, f"Selected standalone letter matched gold ({gold_letter})"
+        return False, checker_name, f"Selected standalone letter ({pred_letter}) != gold ({gold_letter})"
 
     return False, checker_name, f"Could not extract choice letter from output"
 
@@ -197,14 +246,14 @@ def evaluate_subtask(subtask: Dict[str, Any], output: str) -> Tuple[bool, str, s
     """Routes subtask to the appropriate objective checker."""
     st_type = subtask.get("type", "")
     st_id = subtask.get("id", "")
-    gold = subtask.get("gold", "")
+    gold = subtask.get("gold") or subtask.get("gold_answer") or subtask.get("gold_sql") or subtask.get("gold_letter") or ""
 
     if st_type == "code":
-        return check_code_subtask(st_id, output)
+        return check_code_subtask(st_id, output, subtask)
     elif st_type == "math":
         return check_math_subtask(st_id, output, gold)
     elif st_type == "sql":
-        return check_sql_subtask(st_id, output, gold)
+        return check_sql_subtask(st_id, output, gold, subtask)
     elif st_type == "qa":
         return check_qa_subtask(st_id, output, gold)
     else:

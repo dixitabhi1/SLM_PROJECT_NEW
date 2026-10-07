@@ -7,12 +7,12 @@
 
 ## Executive Summary
 
-The previous iteration of the SLM evaluation protocol relied on open-ended queries evaluated by a proprietary LLM judge across four fine-tuning conditions (E1 to E4). Under rigorous post-hoc auditing, that evaluation protocol exhibited severe structural vulnerabilities:
-1. Small Language Models ($\le 8\text{B}$) evaluated on closed-book open-ended essay writing achieved only a **0–3% win rate** against large monolithic models (120B).
-2. Metrics were susceptible to LLM-judge length and stylistic biases.
+The previous iteration of the SLM evaluation protocol relied on open-ended queries evaluated by a proprietary LLM judge across four fine-tuning conditions (E1 to E4). Under rigorous auditing, that evaluation protocol exhibited severe structural vulnerabilities:
+1. Small Language Models ($\le 8\text{B}$) evaluated on closed-book open-ended text generation were subjected to stylistic and length discrepancies compared against large models (120B).
+2. Metrics were susceptible to LLM-judge length and stylistic preferences.
 3. Concurrency and hardware resource constraints were underspecified, obscuring actual GPU execution bottlenecks.
 
-This document outlines the proposed departures from the mentor protocol, explains the empirical and theoretical rationale for each modification, and details what the original protocol measured versus what the new protocol measures.
+This document outlines the proposed departures from the mentor protocol, explains the architectural and methodological rationale for each modification, and details what the original protocol measured versus what the new protocol measures.
 
 ---
 
@@ -27,10 +27,10 @@ This document outlines the proposed departures from the mentor protocol, explain
 - **Track B (Private Knowledge & Open-Ended Evaluation) is retained as the secondary track**, evaluating synthesis over an immutable, private corpus that large models have not seen during pre-training.
 
 ### Why:
-A small model ($\le 4\text{B}$ or 8B) cannot realistically match a 120B parameter model on open-ended stylistic generation in a closed-book setting. However, small models equipped with tools (Python runtime, SQL executor, symbolic solvers) and verification mechanisms can deterministically match or surpass large models by eliminating arithmetic, syntax, and hallucination errors.
+Evaluating models purely on open-ended generation conflates linguistic fluency with factual and procedural correctness. By establishing deterministically verifiable tasks (with access to execution runtimes and tools), the evaluation directly tests correctness and procedural accuracy rather than stylistic preference.
 
 ### What the Old Protocol Measured Instead:
-The old protocol measured the LLM judge's stylistic preference for lengthy, fluent, but potentially hallucinated natural language text.
+The old protocol measured the LLM judge's stylistic preference for lengthy, fluent, but unverified natural language text.
 
 ---
 
@@ -41,7 +41,7 @@ The old protocol measured the LLM judge's stylistic preference for lengthy, flue
 - Pipelines utilize a **sample-and-verify** strategy ($N \ge 3$ candidate generations filtered by deterministic test passing before escalating).
 
 ### Why:
-Empirical research demonstrates that small models fail disproportionately on computational and programmatic edge cases when forced to generate purely autoregressively. Providing an isolated execution sandbox and verification filter converts the problem from unconstrained generation to verifiable problem solving.
+Autoregressive generation without execution feedback allows compounding errors in algorithmic, syntactic, and numeric tasks. Providing an isolated execution sandbox and verification filter tests the system's ability to validate and self-correct solutions prior to final response generation.
 
 ### What the Old Protocol Measured Instead:
 The old protocol evaluated raw zero-shot autoregressive completion without tools or execution feedback.
@@ -55,13 +55,13 @@ The old protocol evaluated raw zero-shot autoregressive completion without tools
   $$\bar{C} = \frac{\sum_{i=1}^n (e_i - s_i)}{T_{\text{active}}}$$
   where $s_i$ and $e_i$ are exact hardware request start and end timestamps. Serial configurations strictly measure $\bar{C} = 1.0$.
 - All pipeline evaluations enforce a production-grade context length of **$\ge 4096$ tokens per request** across all loaded models.
-- Introduction of **Config (f)** (Single $\le 4\text{B}$ model with 2–3 parallel slots) and **Config (g)** (Wave swapping between specialized $\le 4\text{B}$ bases) to guarantee 100% GPU offload on 6 GB VRAM without spilling layers to CPU.
+- Utilization of **Config (f)** (Single $\le 4\text{B}$ model with 2–3 parallel slots) to guarantee 100% GPU offload on 6 GB VRAM without spilling layers or KV cache to CPU.
 
 ### Why:
-At toy context lengths (e.g., 1024 tokens), co-loading multiple models fits artificially in VRAM. However, real-world search and retrieval pipelines require at least 4096 tokens of KV cache per request. At 4096 tokens, co-loading an 8B model with parallel slots or co-loading multiple 4B models simultaneously causes KV buffer overflow and layer spillover to CPU (degrading token throughput by 4–5x). Wave-swapping (Config g) and single-base slotting (Config f) maintain full GPU residency and high throughput.
+At short context lengths (e.g., 1024 tokens), multiple models fit artificially in VRAM. However, real-world retrieval-augmented and multi-step pipelines require at least 4096 tokens of KV cache per request. At 4096 tokens, co-loading an 8B model with parallel slots or co-loading multiple bases simultaneously causes KV buffer overflow and layer spillover to CPU. Single-base slotting (Config f) maintains full GPU residency across the active context window.
 
 ### What the Old Protocol Measured Instead:
-The old protocol either ran unverified concurrent workers or measured wall-clock concurrency without tracking exact timestamp overlaps or VRAM-induced CPU throttling.
+The old protocol either ran unverified concurrent workers or measured wall-clock concurrency without tracking exact timestamp overlaps or VRAM-induced CPU offloading.
 
 ---
 
