@@ -1,0 +1,23 @@
+[
+  {"id": "subtask_01", "type": "code", "prompt": "Write a Python function `is_palindrome(s: str) -> bool` that returns True if the string is a palindrome, ignoring non-alphanumeric characters and case."},
+  {"id": "subtask_02", "type": "code", "prompt": "Write a Python function `fibonacci(n: int) -> int` that returns the n-th Fibonacci number efficiently."},
+  {"id": "subtask_03", "type": "code", "prompt": "Write a Python function `count_vowels(text: str) -> int` returning the total count of vowels (a, e, i, o, u) case-insensitively."},
+  {"id": "subtask_04", "type": "code", "prompt": "Write a Python function `merge_sorted(a: list, b: list) -> list` that merges two sorted lists into one sorted list."},
+  {"id": "subtask_05", "type": "code", "prompt": "Write a Python function `find_primes(n: int) -> list` returning all prime numbers up to n."},
+  {"id": "subtask_06", "type": "math", "prompt": "Solve for x: 3*x + 15 = 42. Provide only the numerical value."},
+  {"id": "subtask_07", "type": "math", "prompt": "Compute the derivative of f(x) = 3*x^3 - 5*x^2 + 7*x - 11 with respect to x."},
+  {"id": "subtask_08", "type": "math", "prompt": "What is the area of a circle with radius 7? Express in terms of pi or as a simplified fraction."},
+  {"id": "subtask_09", "type": "math", "prompt": "If a train travels 180 km in 2 hours and 30 minutes, what is its average speed in km/h?"},
+  {"id": "subtask_10", "type": "math", "prompt": "Factor the quadratic expression: x^2 - 7*x + 12."},
+  {"id": "subtask_11", "type": "sql", "prompt": "Given a table `students(id, name, age, grade)`, write SQL to find all students in grade 10 aged over 15."},
+  {"id": "subtask_12", "type": "sql", "prompt": "Given a table `orders(order_id, customer_id, total_amount)`, write SQL to compute the average total_amount."},
+  {"id": "subtask_13", "type": "sql", "prompt": "Given `employees(emp_id, department, salary)`, write SQL to find the highest salary in the 'Engineering' department."},
+  {"id": "subtask_14", "type": "sql", "prompt": "Given `products(product_id, name, stock)`, write SQL to count how many products have stock equal to 0."},
+  {"id": "subtask_15", "type": "sql", "prompt": "Given `sales(sale_id, store_id, revenue)`, write SQL to list store_ids with total revenue greater than 50000."},
+  {"id": "subtask_16", "type": "qa", "prompt": "What is the primary role of an index in a relational database management system?"},
+  {"id": "subtask_17", "type": "qa", "prompt": "Explain the difference between synchronous and asynchronous execution in computer programming."},
+  {"id": "subtask_18", "type": "qa", "prompt": "What is the purpose of the virtual environment in Python development?"},
+  {"id": "subtask_19", "type": "qa", "prompt": "How does asymmetric cryptography differ from symmetric cryptography?"},
+  {"id": "subtask_20", "type": "qa", "prompt": "Define the concept of time complexity and explain Big-O notation."}
+]
+

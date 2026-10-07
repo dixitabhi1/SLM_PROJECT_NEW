@@ -1,0 +1,81 @@
+[
+  {
+    "config_id": "config_a",
+    "config_name": "(a) Two bases <= 4B co-loaded (Phi-3.5 + Llama-3.2-3B)",
+    "models_used": [
+      "phi3.5:3.8b",
+      "llama3.2:3b"
+    ],
+    "total_subtasks": 20,
+    "successful_subtasks": 20,
+    "elapsed_seconds": 352.77,
+    "throughput_subtasks_per_sec": 0.0567,
+    "peak_vram_mb": 4051,
+    "start_vram_mb": 4050,
+    "delta_vram_mb": 1,
+    "start_temp_c": 42,
+    "peak_temp_c": 55,
+    "mean_subtasks_in_flight": 10.0,
+    "disqualified": false,
+    "disqualification_reason": ""
+  },
+  {
+    "config_id": "config_b",
+    "config_name": "(b) Three bases <= 3B co-loaded (Qwen-1.5B + Llama-3.2-3B + Qwen-Coder-3B)",
+    "models_used": [
+      "qwen2.5:1.5b",
+      "llama3.2:3b",
+      "qwen2.5-coder:3b"
+    ],
+    "total_subtasks": 20,
+    "successful_subtasks": 20,
+    "elapsed_seconds": 439.56,
+    "throughput_subtasks_per_sec": 0.0455,
+    "peak_vram_mb": 5123,
+    "start_vram_mb": 2836,
+    "delta_vram_mb": 2287,
+    "start_temp_c": 55,
+    "peak_temp_c": 59,
+    "mean_subtasks_in_flight": 10.0,
+    "disqualified": false,
+    "disqualification_reason": ""
+  },
+  {
+    "config_id": "config_c",
+    "config_name": "(c) One 8B base with 2 parallel slots (Llama-3.1-8B)",
+    "models_used": [
+      "llama3.1:8b"
+    ],
+    "total_subtasks": 20,
+    "successful_subtasks": 20,
+    "elapsed_seconds": 482.28,
+    "throughput_subtasks_per_sec": 0.0415,
+    "peak_vram_mb": 4599,
+    "start_vram_mb": 3957,
+    "delta_vram_mb": 642,
+    "start_temp_c": 53,
+    "peak_temp_c": 56,
+    "mean_subtasks_in_flight": 10.0,
+    "disqualified": false,
+    "disqualification_reason": ""
+  },
+  {
+    "config_id": "config_d",
+    "config_name": "(d) Fully serial reference (Llama-3.1-8B, 1 slot)",
+    "models_used": [
+      "llama3.1:8b"
+    ],
+    "total_subtasks": 20,
+    "successful_subtasks": 20,
+    "elapsed_seconds": 450.74,
+    "throughput_subtasks_per_sec": 0.0444,
+    "peak_vram_mb": 4599,
+    "start_vram_mb": 4599,
+    "delta_vram_mb": 0,
+    "start_temp_c": 55,
+    "peak_temp_c": 56,
+    "mean_subtasks_in_flight": 10.0,
+    "disqualified": false,
+    "disqualification_reason": ""
+  }
+]

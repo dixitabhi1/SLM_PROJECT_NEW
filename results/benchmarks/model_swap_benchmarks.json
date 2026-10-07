@@ -1,0 +1,16 @@
+[
+  {
+    "from_model": "phi3.5:3.8b",
+    "to_model": "llama3.2:3b",
+    "swap_and_generation_latency_s": 11.837,
+    "generation_latency_s": 11.837,
+    "tokens": 2
+  },
+  {
+    "from_model": "llama3.2:3b",
+    "to_model": "llama3.1:8b",
+    "swap_and_generation_latency_s": 20.301,
+    "generation_latency_s": 20.3,
+    "tokens": 3
+  }
+]
