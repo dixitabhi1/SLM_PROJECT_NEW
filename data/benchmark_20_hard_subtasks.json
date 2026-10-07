@@ -1,0 +1,143 @@
+[
+  {
+    "id": "subtask_01",
+    "type": "code",
+    "benchmark": "HumanEval/11",
+    "prompt": "Input are two strings a and b consisting only of 1s and 0s. Perform binary XOR on these inputs and return result also as a string.\n\ndef string_xor(a: str, b: str) -> str:\n",
+    "gold": "def string_xor(a: str, b: str) -> str:\n    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))\n"
+  },
+  {
+    "id": "subtask_02",
+    "type": "code",
+    "benchmark": "HumanEval/20",
+    "prompt": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    \"\"\"\n",
+    "gold": "def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    numbers.sort()\n    closest_pair = None\n    min_diff = float('inf')\n    for i in range(len(numbers) - 1):\n        diff = numbers[i+1] - numbers[i]\n        if diff < min_diff:\n            min_diff = diff\n            closest_pair = (numbers[i], numbers[i+1])\n    return closest_pair\n"
+  },
+  {
+    "id": "subtask_03",
+    "type": "code",
+    "benchmark": "HumanEval/37",
+    "prompt": "def sort_even(l: list) -> list:\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n",
+    "gold": "def sort_even(l: list) -> list:\n    evens = sorted([l[i] for i in range(0, len(l), 2)])\n    res = list(l)\n    for idx, e in enumerate(evens):\n        res[idx * 2] = e\n    return res\n"
+  },
+  {
+    "id": "subtask_04",
+    "type": "code",
+    "benchmark": "HumanEval/56",
+    "prompt": "def correct_bracketing(brackets: str) -> bool:\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<\")\n    False\n    \"\"\"\n",
+    "gold": "def correct_bracketing(brackets: str) -> bool:\n    depth = 0\n    for b in brackets:\n        if b == '<':\n            depth += 1\n        else:\n            depth -= 1\n        if depth < 0:\n            return False\n    return depth == 0\n"
+  },
+  {
+    "id": "subtask_05",
+    "type": "code",
+    "benchmark": "HumanEval/64",
+    "prompt": "def vowels_count(s: str) -> int:\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as a input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' or 'Y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n",
+    "gold": "def vowels_count(s: str) -> int:\n    vowels = set('aeiouAEIOU')\n    count = sum(1 for c in s if c in vowels)\n    if s and s[-1] in 'yY':\n        count += 1\n    return count\n"
+  },
+  {
+    "id": "subtask_06",
+    "type": "math",
+    "benchmark": "GSM8K/dev/001",
+    "prompt": "Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May? Show steps and end with '#### <number>'",
+    "gold": "72"
+  },
+  {
+    "id": "subtask_07",
+    "type": "math",
+    "benchmark": "GSM8K/dev/002",
+    "prompt": "Weng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn in dollars? Show steps and end with '#### <number>'",
+    "gold": "10"
+  },
+  {
+    "id": "subtask_08",
+    "type": "math",
+    "benchmark": "GSM8K/dev/003",
+    "prompt": "Betty is saving money for a new wallet which costs $100. Betty has only half of the money she needs. Her parents decided to give her $15 for that purpose, and her grandparents twice as much as her parents. How much more money in dollars does Betty need to buy the wallet? Show steps and end with '#### <number>'",
+    "gold": "5"
+  },
+  {
+    "id": "subtask_09",
+    "type": "math",
+    "benchmark": "GSM8K/dev/004",
+    "prompt": "Albert is wondering how much pizza he can eat in one month. He buys 2 large pizzas every week. Each pizza has 12 slices. If there are 4 weeks in a month, how many slices of pizza does Albert eat in a month? Show steps and end with '#### <number>'",
+    "gold": "96"
+  },
+  {
+    "id": "subtask_10",
+    "type": "math",
+    "benchmark": "GSM8K/dev/005",
+    "prompt": "A robe takes 2 bolts of blue fiber and half that much white fiber. How many bolts of fiber in total does it take to make 6 robes? Show steps and end with '#### <number>'",
+    "gold": "18"
+  },
+  {
+    "id": "subtask_11",
+    "type": "sql",
+    "benchmark": "Spider/department_store",
+    "prompt": "Given a SQLite table `departments(dept_id, name, budget, building)`, write a SQL query to find the names of departments with a budget greater than 500000 located in building 'Baker'. Return only the SQL query.",
+    "gold": "SELECT name FROM departments WHERE budget > 500000 AND building = 'Baker'"
+  },
+  {
+    "id": "subtask_12",
+    "type": "sql",
+    "benchmark": "Spider/student_transcripts",
+    "prompt": "Given a SQLite table `courses(course_id, course_name, credits)`, write a SQL query to find the minimum credits and maximum credits across all courses. Return only the SQL query.",
+    "gold": "SELECT MIN(credits), MAX(credits) FROM courses"
+  },
+  {
+    "id": "subtask_13",
+    "type": "sql",
+    "benchmark": "Spider/car_1",
+    "prompt": "Given a SQLite table `cars(car_id, make, model, year, horsepower)`, write a SQL query to find the make and model of the car with the highest horsepower. Return only the SQL query.",
+    "gold": "SELECT make, model FROM cars ORDER BY horsepower DESC LIMIT 1"
+  },
+  {
+    "id": "subtask_14",
+    "type": "sql",
+    "benchmark": "Spider/world_1",
+    "prompt": "Given a SQLite table `city(id, name, countrycode, population)`, write a SQL query to count how many cities have a population greater than 1000000. Return only the SQL query.",
+    "gold": "SELECT COUNT(*) FROM city WHERE population > 1000000"
+  },
+  {
+    "id": "subtask_15",
+    "type": "sql",
+    "benchmark": "Spider/flight_1",
+    "prompt": "Given a SQLite table `flights(flight_id, origin, destination, distance)`, write a SQL query to compute the average distance of all flights departing from 'JFK'. Return only the SQL query.",
+    "gold": "SELECT AVG(distance) FROM flights WHERE origin = 'JFK'"
+  },
+  {
+    "id": "subtask_16",
+    "type": "qa",
+    "benchmark": "ARC-Challenge/dev/01",
+    "prompt": "Which statement best explains why photosynthesis is the foundation of most food webs on Earth?\n(A) It produces carbon dioxide for animals.\n(B) It converts sunlight into chemical energy that other organisms can consume.\n(C) It breaks down organic matter to recycle soil nutrients.\n(D) It absorbs water from clouds to regulate humidity.\nAnswer with the option letter directly (e.g. '(A)').",
+    "gold": "(B)"
+  },
+  {
+    "id": "subtask_17",
+    "type": "qa",
+    "benchmark": "ARC-Challenge/dev/02",
+    "prompt": "A student investigates whether temperature affects the rate at which sugar dissolves in water. Which variable should the student change between trials?\n(A) The amount of sugar added.\n(B) The volume of water used.\n(C) The temperature of the water.\n(D) The size of the beaker.\nAnswer with the option letter directly (e.g. '(A)').",
+    "gold": "(C)"
+  },
+  {
+    "id": "subtask_18",
+    "type": "qa",
+    "benchmark": "ARC-Challenge/dev/03",
+    "prompt": "Which geological process is most responsible for the formation of oceanic trenches?\n(A) Subduction of one tectonic plate beneath another.\n(B) Deposition of sediment by large river deltas.\n(C) Sea-floor spreading along mid-ocean ridges.\n(D) Weathering and erosion by deep ocean currents.\nAnswer with the option letter directly (e.g. '(A)').",
+    "gold": "(A)"
+  },
+  {
+    "id": "subtask_19",
+    "type": "qa",
+    "benchmark": "ARC-Challenge/dev/04",
+    "prompt": "An electric circuit contains a 9V battery and two identical 3-ohm resistors connected in series. What is the total current flowing through the circuit?\n(A) 0.5 A\n(B) 1.5 A\n(C) 3.0 A\n(D) 6.0 A\nAnswer with the option letter directly (e.g. '(A)').",
+    "gold": "(B)"
+  },
+  {
+    "id": "subtask_20",
+    "type": "qa",
+    "benchmark": "ARC-Challenge/dev/05",
+    "prompt": "Which layer of Earth's atmosphere contains the ozone layer that absorbs harmful ultraviolet solar radiation?\n(A) Troposphere\n(B) Stratosphere\n(C) Mesosphere\n(D) Thermosphere\nAnswer with the option letter directly (e.g. '(A)').",
+    "gold": "(B)"
+  }
+]
+

@@ -1,6 +1,6 @@
 """
-Unit tests for the 20 subtask objective checkers.
-Tests both correct solutions (must return True) and broken solutions (must return False).
+Unit tests for the objective benchmark checkers.
+Tests HumanEval execution, GSM8K numeric parsing, Spider SQLite matching, and ARC-Challenge option parsing.
 """
 
 import pytest
@@ -8,76 +8,36 @@ from src.eval.subtask_checkers import evaluate_subtask
 
 
 def test_code_checkers():
-    # Subtask 01: Palindrome
-    good_code_1 = """
-def is_palindrome(s: str) -> bool:
-    clean = [c.lower() for c in s if c.isalnum()]
-    return clean == clean[::-1]
-"""
-    bad_code_1 = "def is_palindrome(s: str) -> bool: return False"
-    ok, chk, _ = evaluate_subtask({"id": "subtask_01", "type": "code"}, good_code_1)
+    # HumanEval 11: XOR
+    good_xor = "def string_xor(a: str, b: str) -> str:\n    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))"
+    bad_xor = "def string_xor(a: str, b: str) -> str:\n    return a + b"
+    ok, chk, _ = evaluate_subtask({"id": "subtask_01", "type": "code"}, good_xor)
     assert ok
-    fail, _, _ = evaluate_subtask({"id": "subtask_01", "type": "code"}, bad_code_1)
+    fail, _, _ = evaluate_subtask({"id": "subtask_01", "type": "code"}, bad_xor)
     assert not fail
-
-    # Subtask 02: Fibonacci
-    good_code_2 = """
-def fibonacci(n: int) -> int:
-    if n <= 0: return 0
-    if n == 1: return 1
-    a, b = 0, 1
-    for _ in range(2, n + 1):
-        a, b = b, a + b
-    return b
-"""
-    ok, chk, _ = evaluate_subtask({"id": "subtask_02", "type": "code"}, good_code_2)
-    assert ok
 
 
 def test_math_checkers():
-    # Subtask 06: x = 9
-    ok, _, _ = evaluate_subtask({"id": "subtask_06", "type": "math"}, "The value of x is 9.")
+    # GSM8K dev 001: 72
+    ok, _, _ = evaluate_subtask({"id": "subtask_06", "type": "math", "gold": "72"}, "Natalia sold 48 in April and 24 in May.\n#### 72")
     assert ok
-    fail, _, _ = evaluate_subtask({"id": "subtask_06", "type": "math"}, "The value is 42.")
+    fail, _, _ = evaluate_subtask({"id": "subtask_06", "type": "math", "gold": "72"}, "Natalia sold 48 in April and 24 in May.\n#### 96")
     assert not fail
-
-    # Subtask 07: Derivative
-    ok, _, _ = evaluate_subtask({"id": "subtask_07", "type": "math"}, "f'(x) = 9*x^2 - 10*x + 7")
-    assert ok
-
-    # Subtask 08: Circle Area
-    ok, _, _ = evaluate_subtask({"id": "subtask_08", "type": "math"}, "Area = 49*pi")
-    assert ok
-
-    # Subtask 09: Speed
-    ok, _, _ = evaluate_subtask({"id": "subtask_09", "type": "math"}, "The average speed is 72 km/h")
-    assert ok
-
-    # Subtask 10: Factors
-    ok, _, _ = evaluate_subtask({"id": "subtask_10", "type": "math"}, "(x - 3)(x - 4)")
-    assert ok
 
 
 def test_sql_checkers():
-    # Subtask 11
-    sql_11 = "SELECT * FROM students WHERE grade = 10 AND age > 15;"
-    ok, _, _ = evaluate_subtask({"id": "subtask_11", "type": "sql"}, sql_11)
+    # Spider: department_store
+    good_sql = "SELECT name FROM departments WHERE budget > 500000 AND building = 'Baker';"
+    bad_sql = "SELECT name FROM departments WHERE budget < 500000;"
+    ok, _, _ = evaluate_subtask({"id": "subtask_11", "type": "sql", "gold": "SELECT name FROM departments WHERE budget > 500000 AND building = 'Baker'"}, good_sql)
     assert ok
-
-    # Subtask 12
-    sql_12 = "SELECT AVG(total_amount) FROM orders;"
-    ok, _, _ = evaluate_subtask({"id": "subtask_12", "type": "sql"}, sql_12)
-    assert ok
+    fail, _, _ = evaluate_subtask({"id": "subtask_11", "type": "sql", "gold": "SELECT name FROM departments WHERE budget > 500000 AND building = 'Baker'"}, bad_sql)
+    assert not fail
 
 
 def test_qa_checkers():
-    # Subtask 16
-    qa_16 = "An index in a relational database speeds up data retrieval and accelerates queries without full table scans."
-    ok, _, _ = evaluate_subtask({"id": "subtask_16", "type": "qa"}, qa_16)
+    # ARC-Challenge: (B)
+    ok, _, _ = evaluate_subtask({"id": "subtask_16", "type": "qa", "gold": "(B)"}, "The correct choice is (B).")
     assert ok
-
-    # Subtask 17
-    qa_17 = "Synchronous execution is blocking and executes sequentially, whereas asynchronous execution is non-blocking and enables concurrent execution."
-    ok, _, _ = evaluate_subtask({"id": "subtask_17", "type": "qa"}, qa_17)
-    assert ok
-
+    fail, _, _ = evaluate_subtask({"id": "subtask_16", "type": "qa", "gold": "(B)"}, "The correct choice is (A).")
+    assert not fail
