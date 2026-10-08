@@ -24,7 +24,7 @@ This document outlines the proposed departures from the mentor protocol, explain
   - Result set equivalence on SQLite queries (Spider / Text-to-SQL)
   - Exact numerical match on multi-step reasoning (GSM8K)
   - Exact multiple-choice verification (ARC-Challenge)
-- **Track B (Private Knowledge & Open-Ended Evaluation) is retained as the secondary track**, evaluating synthesis over an immutable, private corpus that large models have not seen during pre-training.
+- **Track B (Private Knowledge Evaluation) is retained as the secondary track**, evaluating synthesis over an immutable, private corpus that large models have not seen during pre-training. Scored on dev by an automated fact checklist (deterministic extraction); LLM judging postponed to the final held-out evaluation at most.
 
 ### Why:
 Evaluating models purely on open-ended generation conflates linguistic fluency with factual and procedural correctness. By establishing deterministically verifiable tasks (with access to execution runtimes and tools), the evaluation directly tests correctness and procedural accuracy rather than stylistic preference.
@@ -97,17 +97,38 @@ Guarantees that every finding, chart, and win rate survives independent forensic
 
 ---
 
-## 6. Comparison Table: Protocol Mapping
+## 6. Training Compute Offload: Free Kaggle GPU (Owner-Approved Exception to Laptop-Only)
+
+### What Changed:
+- Adapter fine-tuning (Phase 6, Rung C4) will run on a free Kaggle GPU (16 GB VRAM) instead of the local 6 GB laptop GPU.
+- Serving (`llama-server`), the pipeline orchestration, tools, and all evaluation runs remain strictly local on the host laptop.
+- Zero monetary spend is strictly preserved ($0.00).
+
+### Why:
+Empirical exploration on the local RTX 3050 Laptop GPU (6,144 MiB physical VRAM) demonstrated that 4-bit QLoRA fine-tuning for sequence lengths $\ge 512$ tokens requires $\ge 7.1$ GB VRAM, triggering CUDA OutOfMemory errors unless paged into host system RAM at severe throughput degradation. Kaggle provides free access to 16 GB GPUs (NVIDIA T4 / P100), enabling QLoRA training up to 2,048 tokens in standard dedicated VRAM with zero financial cost.
+
+### Rigorous Kaggle Operating Rules:
+1. **Agent Prepares, Owner Runs:** Agent prepares a self-contained notebook and training data file; owner executes it on Kaggle.
+2. **Strict Evaluation Isolation:** Training data contains strictly zero dev, held-out, reserve, or spent items, verified by cryptographic hash and near-duplicate scanning prior to upload. No evaluation data is ever uploaded to Kaggle.
+3. **Zero Secrets:** No API keys, credentials, or secrets in notebooks or data files.
+4. **Reproducibility & Pinned Artifacts:** Exact library versions, fixed seed (42), and the exact Hugging Face snapshot hash of Phi-4-mini from the registry are pinned.
+5. **Local Verification Gate:** Trained adapters, training logs, validation curves, and configs are downloaded to `adapters/<name>/`, cryptographically hashed, converted to GGUF using repo tooling, and verified locally on `llama-server`. An adapter is accepted only if it beats the base model on dev task accuracy.
+6. **Execution Gating:** Fine-tuning starts only after Rungs C0 to C3 are measured on dev and owner gives explicit sign-off.
+
+---
+
+## 7. Comparison Table: Protocol Mapping
 
 | Dimension | Old Mentor Protocol | Clean Rebuild Proposed Protocol |
 |---|---|---|
 | **Primary Evaluation Track** | Open-ended queries (E1–E4) judged by LLM | Track A: Objective tasks (code, SQL, math, QA) with deterministic checkers |
-| **Secondary Evaluation Track** | None | Track B: Private knowledge corpus judged by non-overlapping LLM judge |
+| **Secondary Evaluation Track** | None | Track B: Private knowledge corpus evaluated via automated fact checklist (dev); LLM judge postponed |
 | **Tool Integration** | None (pure parametric generation) | Integrated Python sandbox, SQLite executor, symbolic math engine |
 | **Verification Mechanism** | Single-pass generation | Sample-and-verify ($N=3$) with deterministic acceptance criteria |
 | **Context Length** | Undefined / ~1024 tokens | Strictly $\ge 4096$ tokens per request |
 | **Concurrency Metric** | Worker count / thread count | Continuous time-weighted overlap $\bar{C}$; serial strictly 1.0 |
 | **Baselines** | Single baseline | Multi-tier ladder: 27B (`qwen3.8-27b`) and 120B (`gpt-oss-120b`) |
+| **Training Compute** | Undefined / Local | Free Kaggle GPU (16 GB VRAM) for QLoRA training; serving & eval strictly laptop; $0 spend |
 | **Failure Handling** | Implicit imputation / omission | Fail loudly: item marked `FAILED`, zero imputation, symmetric exclusion |
 | **Data Integrity** | Manual tables | Cryptographically hashed raw records, automated audit scripts |
 

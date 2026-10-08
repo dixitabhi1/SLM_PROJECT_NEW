@@ -1,0 +1,299 @@
+[
+  {
+    "subtask_id": "calib_compound_01",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "sql",
+      "math"
+    ],
+    "solvability": "tool-required",
+    "prompt": "In the concert_singer database [Database Schema: CREATE TABLE \"stadium\" ( \"Stadium_ID\" int, \"Location\" text, \"Name\" text, \"Capacity\" int, \"Highest\" int, \"Lowest\" int, \"Average\" int, PRIMARY KEY (\"Stadium_ID\") ); CREATE TABLE \"concert\" ( \"concert_ID\" int, \"concert_Name\" text, \"Theme\" text, \"Stadium_ID\" text, \"Year\" text, PRIMARY KEY (\"concert_ID\"), FOREIGN KEY (\"Stadium_ID\") REFERENCES \"stadium\"(\"Stadium_ID\") )], find the maximum capacity among all stadiums that hosted a concert in the year 2014 by joining the concert and stadium tables; if a musical festival in that stadium sells tickets filling exactly 85 percent of that maximum capacity at a flat rate of 45 dollars per ticket and pays a 10 percent venue service tax on the gross ticket sales, compute the net ticket revenue in whole dollars.",
+    "component_parts": [
+      {
+        "label": "derived from spider_val_0024",
+        "original_id": "spider_val_0024",
+        "stage": 1,
+        "domain": "sql"
+      },
+      {
+        "label": "derived from gsm8k_test_0050",
+        "original_id": "gsm8k_test_0050",
+        "stage": 2,
+        "domain": "math"
+      }
+    ],
+    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/concert_singer/concert_singer.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT max(T2.capacity) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.year = 2014\")\nmax_cap = c.fetchone()[0]\nattendees = int(max_cap * 0.85)\ngross = attendees * 45\nfinal_answer = int(gross * 0.90)\n",
+    "gold_answer": "413019",
+    "checker_type": "exact_match"
+  },
+  {
+    "subtask_id": "calib_compound_02",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "math",
+      "code"
+    ],
+    "solvability": "solvable_without_tools",
+    "prompt": "An artisan bakery produces bread across three morning batches where the first batch yields 120 loaves, the second batch yields 25 percent more loaves than the first, and the third batch yields exactly half the combined sum of the first two batches; calculate the total number of loaves produced across all three batches, and then write and execute Python code to find and print the sum of all distinct prime factors of that total production count.",
+    "component_parts": [
+      {
+        "label": "derived from gsm8k_test_0042",
+        "original_id": "gsm8k_test_0042",
+        "stage": 1,
+        "domain": "math"
+      },
+      {
+        "label": "derived from HumanEval/24",
+        "original_id": "HumanEval/24",
+        "stage": 2,
+        "domain": "code"
+      }
+    ],
+    "reference_program": "b1 = 120\nb2 = int(b1 * 1.25)\nb3 = (b1 + b2) // 2\ntotal = b1 + b2 + b3\nprimes = [p for p in [2, 3, 5, 7, 11, 13] if total % p == 0]\nfinal_answer = sum(primes)\n",
+    "gold_answer": "8",
+    "checker_type": "exact_match"
+  },
+  {
+    "subtask_id": "calib_compound_03",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "sql",
+      "code"
+    ],
+    "solvability": "tool-required",
+    "prompt": "Query the pets_1 database [Database Schema: ] to group pets by petType and compute the average pet age for pet types that have at least 2 registered pets, take the integer floor of the maximum average age obtained, and write and execute Python code to calculate the factorial of that integer floor and print the total count of binary 1-bits in its standard binary representation.",
+    "component_parts": [
+      {
+        "label": "derived from spider_val_0049",
+        "original_id": "spider_val_0049",
+        "stage": 1,
+        "domain": "sql"
+      },
+      {
+        "label": "derived from HumanEval/84",
+        "original_id": "HumanEval/84",
+        "stage": 2,
+        "domain": "code"
+      }
+    ],
+    "reference_program": "import sqlite3\nimport math\nconn = sqlite3.connect('data/spider/database/pets_1/pets_1.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT avg(pet_age) FROM pets GROUP BY petType HAVING count(*) >= 2\")\navgs = [r[0] for r in c.fetchall()]\nval = int(max(avgs))\nfact = math.factorial(val)\nfinal_answer = bin(fact).count('1')\n",
+    "gold_answer": "1",
+    "checker_type": "exact_match"
+  },
+  {
+    "subtask_id": "calib_compound_04",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "math",
+      "code"
+    ],
+    "solvability": "solvable_without_tools",
+    "prompt": "An industrial water reservoir initially holds 500 liters; an inlet pipe pumps in 35 liters per hour while an outlet drainage valve discharges 15 liters per hour continuously for 8 hours; determine the final volume of water in liters, and write and execute Python code to determine and print the largest non-negative integer power of 2 that is less than or equal to this final reservoir volume.",
+    "component_parts": [
+      {
+        "label": "derived from gsm8k_test_0060",
+        "original_id": "gsm8k_test_0060",
+        "stage": 1,
+        "domain": "math"
+      },
+      {
+        "label": "derived from HumanEval/60",
+        "original_id": "HumanEval/60",
+        "stage": 2,
+        "domain": "code"
+      }
+    ],
+    "reference_program": "tank = 500 + (35 - 15) * 8\nk = 0\nwhile 2 ** (k + 1) <= tank:\n    k += 1\nfinal_answer = k\n",
+    "gold_answer": "9",
+    "checker_type": "exact_match"
+  },
+  {
+    "subtask_id": "calib_compound_05",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "sql",
+      "math"
+    ],
+    "solvability": "solvable_without_tools",
+    "prompt": "Given the conductor table schema [CREATE TABLE conductor (Conductor_ID int, Name text, Age int, Nationality text, Year_of_Work int)] populated with the four records (1, 'Kip', 45, 'USA', 6), (2, 'Marta', 52, 'Poland', 12), (3, 'Lars', 38, 'Sweden', 4), and (4, 'Elena', 61, 'Spain', 15), query the count of conductors whose Year_of_Work is strictly greater than 5; if each of these qualifying conductors mentors 4 apprentices and each apprentice performs 2 recitals per month, calculate the total number of apprentice recitals performed over a 6-month season.",
+    "component_parts": [
+      {
+        "label": "derived from spider_val_0011",
+        "original_id": "spider_val_0011",
+        "stage": 1,
+        "domain": "sql"
+      },
+      {
+        "label": "derived from gsm8k_test_0050",
+        "original_id": "gsm8k_test_0050",
+        "stage": 2,
+        "domain": "math"
+      }
+    ],
+    "reference_program": "conductors = 3\napprentices = conductors * 4\nfinal_answer = apprentices * 2 * 6\n",
+    "gold_answer": "144",
+    "checker_type": "exact_match"
+  },
+  {
+    "subtask_id": "calib_compound_06",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "sql",
+      "math",
+      "code"
+    ],
+    "solvability": "tool-required",
+    "prompt": "From the poker_player database [Database Schema: CREATE TABLE \"poker_player\" ( \"Poker_Player_ID\" int, \"People_ID\" int, \"Final_Table_Made\" real, \"Best_Finish\" real, \"Money_Rank\" real, \"Earnings\" real, PRIMARY KEY (\"Poker_Player_ID\"), FOREIGN KEY (\"People_ID\") REFERENCES `people`(\"People_ID\") ); CREATE TABLE \"people\" ( \"People_ID\" int, \"Nationality\" text, \"Name\" text, \"Birth_Date\" text, \"Height\" real, PRIMARY KEY (\"People_ID\") )], join the poker_player and people tables to query the maximum Earnings recorded for players whose Nationality is either 'China' or 'Russia', deduct a 25 percent tournament entrance and administrative fee from this winning sum, divide the remaining prize equally among 5 syndicate co-owners, take the integer floor of an individual share, and write and execute Python code to compute and print the sum of the decimal digits of this individual share.",
+    "component_parts": [
+      {
+        "label": "derived from spider_val_0676",
+        "original_id": "spider_val_0676",
+        "stage": 1,
+        "domain": "sql"
+      },
+      {
+        "label": "derived from gsm8k_test_0045",
+        "original_id": "gsm8k_test_0045",
+        "stage": 2,
+        "domain": "math"
+      },
+      {
+        "label": "derived from HumanEval/84",
+        "original_id": "HumanEval/84",
+        "stage": 3,
+        "domain": "code"
+      }
+    ],
+    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/poker_player/poker_player.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT max(T1.Earnings) FROM poker_player AS T1 JOIN people AS T2 ON T1.People_ID = T2.People_ID WHERE T2.Nationality IN ('China', 'Russia')\")\nmax_earn = c.fetchone()[0]\nrem = (max_earn * 0.75) / 5\npayout_int = int(rem)\nfinal_answer = sum(int(d) for d in str(payout_int))\n",
+    "gold_answer": "36",
+    "checker_type": "exact_match"
+  },
+  {
+    "subtask_id": "calib_compound_07",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "math",
+      "code"
+    ],
+    "solvability": "solvable_without_tools",
+    "prompt": "A cargo train travels 180 kilometers at a constant speed of 60 km/h, halts at an interchange station for 30 minutes for inspection, and then completes a second leg of 240 kilometers at 80 km/h; compute the total trip duration in minutes from initial departure to final arrival, and then write and execute Python code to calculate and print the greatest common divisor (GCD) of that total duration in minutes and 260.",
+    "component_parts": [
+      {
+        "label": "derived from gsm8k_test_0075",
+        "original_id": "gsm8k_test_0075",
+        "stage": 1,
+        "domain": "math"
+      },
+      {
+        "label": "derived from HumanEval/24",
+        "original_id": "HumanEval/24",
+        "stage": 2,
+        "domain": "code"
+      }
+    ],
+    "reference_program": "import math\nt1 = 180 / 60 * 60\nstop = 30\nt2 = 240 / 80 * 60\ntotal_min = int(t1 + stop + t2)\nfinal_answer = math.gcd(total_min, 260)\n",
+    "gold_answer": "130",
+    "checker_type": "exact_match"
+  },
+  {
+    "subtask_id": "calib_compound_08",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "sql",
+      "math"
+    ],
+    "solvability": "solvable_without_tools",
+    "prompt": "Consider an airline operating table aircraft_fleet [CREATE TABLE fleet (tail_id text, model text, seats int)] with data entries: 4 regional jets with 70 seats each, 3 narrowbodies with 150 seats each, and 2 widebodies with 280 seats each; query the total seat capacity contributed strictly by aircraft models that seat at least 100 passengers; if the airline books flights at an average 80 percent load factor and 5 percent of booked passengers cancel before boarding, compute the net number of boarded passengers in whole persons.",
+    "component_parts": [
+      {
+        "label": "derived from spider_val_0180",
+        "original_id": "spider_val_0180",
+        "stage": 1,
+        "domain": "sql"
+      },
+      {
+        "label": "derived from gsm8k_test_0050",
+        "original_id": "gsm8k_test_0050",
+        "stage": 2,
+        "domain": "math"
+      }
+    ],
+    "reference_program": "cap = (3 * 150) + (2 * 280)\npassengers = cap * 0.80\nfinal_answer = int(passengers * 0.95)\n",
+    "gold_answer": "767",
+    "checker_type": "exact_match"
+  },
+  {
+    "subtask_id": "calib_compound_09",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "sql",
+      "code"
+    ],
+    "solvability": "tool-required",
+    "prompt": "Using the tvshow database [Database Schema: CREATE TABLE \"TV_Channel\" ( \"id\" text, \"series_name\" text, \"Country\" text, \"Language\" text, \"Content\" text, \"Pixel_aspect_ratio_PAR\" text, \"Hight_definition_TV\" text, \"Pay_per_view_PPV\" text, \"Package_Option\" text, PRIMARY KEY (\"id\") ); CREATE TABLE \"Cartoon\" ( \"id\" real, \"Title\" text, \"Directed_by\" text, \"Written_by\" text, \"Original_air_date\" text, \"Production_code\" real, \"Channel\" text, PRIMARY KEY (\"id\"), FOREIGN KEY (`Channel`) REFERENCES `TV_Channel`(`id`) )], join the Cartoon and TV_Channel tables to count how many cartoons air on channels belonging to whichever country possesses the greatest total number of TV channels, and then write and execute Python code to compute and print the 15th term of an arithmetic progression whose first term is 4 and whose common difference is that exact cartoon count.",
+    "component_parts": [
+      {
+        "label": "derived from spider_val_0595",
+        "original_id": "spider_val_0595",
+        "stage": 1,
+        "domain": "sql"
+      },
+      {
+        "label": "derived from HumanEval/15",
+        "original_id": "HumanEval/15",
+        "stage": 2,
+        "domain": "code"
+      }
+    ],
+    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/tvshow/tvshow.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM Cartoon AS T1 JOIN TV_Channel AS T2 ON T1.Channel = T2.id WHERE T2.Country = (SELECT Country FROM TV_Channel GROUP BY Country ORDER BY count(*) DESC LIMIT 1)\")\ndiff = c.fetchone()[0]\nfinal_answer = 4 + (15 - 1) * diff\n",
+    "gold_answer": "116",
+    "checker_type": "exact_match"
+  },
+  {
+    "subtask_id": "calib_compound_10",
+    "task_type": "composed",
+    "stratum": "composed",
+    "is_compound": true,
+    "domains": [
+      "math",
+      "code"
+    ],
+    "solvability": "solvable_without_tools",
+    "prompt": "During a regional archery tournament Robin scores 9 points per target on the first 12 targets, 10 points per target on the next 8 targets, and suffers a 5-point deduction for a line-fault violation; determine Robin's net score, and then write and execute Python code to search for and print the smallest integer multiplier m strictly greater than 1 such that Robin's net score multiplied by m forms a perfect square.",
+    "component_parts": [
+      {
+        "label": "derived from gsm8k_test_0040",
+        "original_id": "gsm8k_test_0040",
+        "stage": 1,
+        "domain": "math"
+      },
+      {
+        "label": "derived from HumanEval/77",
+        "original_id": "HumanEval/77",
+        "stage": 2,
+        "domain": "code"
+      }
+    ],
+    "reference_program": "score = 12 * 9 + 8 * 10 - 5\nm = 2\nwhile True:\n    prod = score * m\n    r = int(prod ** 0.5)\n    if r * r == prod:\n        final_answer = m\n        break\n    m += 1\n",
+    "gold_answer": "183",
+    "checker_type": "exact_match"
+  }
+]

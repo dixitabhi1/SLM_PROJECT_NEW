@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "corpus": "HyperGrid Autonomous Transit Network Technical Specification v4.2",
+    "total_documents": 50,
+    "master_fact_pool_file": "data/track_b/master_fact_pool.json",
+    "master_fact_pool_sha256": "706d7e6817610669a50bfa0863ac7f6f70d562076ae39a3fbdead010ebe045ea",
+    "total_invented_facts": 160,
+    "dev_facts_count": 80,
+    "heldout_facts_count": 80,
+    "standards_policy": "Zero real-world standards (no IEEE, AES, ASTM, MIL-STD); all values invented",
+    "disjointness": "Strictly disjoint dev and held-out fact sets (IDs, component tokens, values)",
+    "scorer": "Deterministic automated fact checklist scorer (src/eval/fact_checklist_scorer.py) with 75-word max length cap and negative distractor rejection"
+  },
+  "dev_split": {
+    "file": "data/track_b/track_b_dev_split.json",
+    "sha256": "01fa3bc98933459a26662f271f037cfc9a15a016f6e07287a580f1d8593260ea",
+    "count": 50,
+    "multi_hop_constraint": "Each question combines >= 2 facts; max usage per fact <= 2; zero doc/section citations",
+    "word_cap": 75
+  },
+  "heldout_candidate": {
+    "file": "data/track_b/track_b_heldout_candidate.json",
+    "sha256": "b021e2d0032d15a20f24315fb4538fe59ecd3ecb323f9a8ca295c2b421d7ed6d",
+    "count": 50,
+    "multi_hop_constraint": "Each question combines >= 2 facts; max usage per fact <= 2; zero doc/section citations",
+    "word_cap": 75,
+    "status": "HELD-OUT CANDIDATE QUARANTINE (PENDING OWNER REVIEW BEFORE LOCK)"
+  }
+}

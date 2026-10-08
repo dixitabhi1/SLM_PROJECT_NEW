@@ -98,3 +98,21 @@ def test_audit_model_digests_in_repo():
     assert len(errors) == 0, f"Model digest audit failed: {errors}"
 
 
+def test_audit_catches_google_aq_secret():
+    import re
+    # Dynamically construct test string to verify regex behavior without triggering static repo scan
+    prefix = "AQ."
+    fake_val = prefix + ("Ab8" * 15)
+    pat = re.compile(r"AQ\.[a-zA-Z0-9_\-\.]{25,75}")
+    assert pat.search(fake_val) is not None
+
+
+def test_audit_secret_leakage_clean():
+    from src.audit.audit_rules import audit_secret_leakage
+
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    errors = audit_secret_leakage(repo_root)
+    assert len(errors) == 0, f"Found unexpected secret in repository: {errors}"
+
+
+

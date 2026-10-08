@@ -1,0 +1,26 @@
+{
+  "model": "microsoft/Phi-4-mini-instruct",
+  "targets": [
+    "qkv_proj",
+    "o_proj"
+  ],
+  "optimizer": "PagedAdamW8bit",
+  "gradient_checkpointing": true,
+  "embedding_dtype": "bfloat16",
+  "results": [
+    {
+      "seq_len": 512,
+      "oom": true,
+      "peak_vram_mb": 7111.0,
+      "avg_step_s": 0.0,
+      "error": "expected mat1 and mat2 to have the same dtype, but got: float != struct c10::BFloat16"
+    },
+    {
+      "seq_len": 1024,
+      "oom": true,
+      "peak_vram_mb": 12258.8,
+      "avg_step_s": 0.0,
+      "error": "CUDA OutOfMemoryError"
+    }
+  ]
+}

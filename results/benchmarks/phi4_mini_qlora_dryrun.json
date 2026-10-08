@@ -1,0 +1,176 @@
+{
+  "model_name": "microsoft/Phi-4-mini-instruct",
+  "base_architecture": "Phi-4-mini (3.8B)",
+  "quantization": "4-bit NormalFloat (BitsAndBytes NF4)",
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "lora_target_modules": "all-linear",
+  "num_steps": 20,
+  "total_duration_seconds": 33.65,
+  "avg_seconds_per_step": 1.6824,
+  "baseline_vram_mb": 474,
+  "peak_vram_mb": 5929,
+  "headroom_vram_mb": 215,
+  "step_records": [
+    {
+      "step": 1,
+      "loss": 3.9631,
+      "step_duration_seconds": 4.5155,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4407.5,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 2,
+      "loss": 3.4024,
+      "step_duration_seconds": 1.245,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 3,
+      "loss": 2.9031,
+      "step_duration_seconds": 1.0591,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 4,
+      "loss": 2.5488,
+      "step_duration_seconds": 1.2213,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 5,
+      "loss": 2.3131,
+      "step_duration_seconds": 1.2276,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 6,
+      "loss": 1.8632,
+      "step_duration_seconds": 1.0972,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 7,
+      "loss": 1.5492,
+      "step_duration_seconds": 1.0366,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 8,
+      "loss": 1.3562,
+      "step_duration_seconds": 1.1712,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 9,
+      "loss": 1.1906,
+      "step_duration_seconds": 1.2962,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 10,
+      "loss": 1.2166,
+      "step_duration_seconds": 1.144,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5929
+    },
+    {
+      "step": 11,
+      "loss": 0.6303,
+      "step_duration_seconds": 2.1552,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    },
+    {
+      "step": 12,
+      "loss": 0.4772,
+      "step_duration_seconds": 1.1032,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    },
+    {
+      "step": 13,
+      "loss": 0.6232,
+      "step_duration_seconds": 1.0919,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    },
+    {
+      "step": 14,
+      "loss": 0.4755,
+      "step_duration_seconds": 1.2424,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    },
+    {
+      "step": 15,
+      "loss": 0.4928,
+      "step_duration_seconds": 1.2209,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    },
+    {
+      "step": 16,
+      "loss": 0.4402,
+      "step_duration_seconds": 1.0978,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    },
+    {
+      "step": 17,
+      "loss": 0.4072,
+      "step_duration_seconds": 1.1487,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    },
+    {
+      "step": 18,
+      "loss": 0.4021,
+      "step_duration_seconds": 1.2071,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    },
+    {
+      "step": 19,
+      "loss": 0.2635,
+      "step_duration_seconds": 1.3449,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    },
+    {
+      "step": 20,
+      "loss": 0.2399,
+      "step_duration_seconds": 1.097,
+      "cuda_allocated_mb": 4319.5,
+      "cuda_peak_mb": 4489.9,
+      "hardware_vram_mb": 5925
+    }
+  ]
+}

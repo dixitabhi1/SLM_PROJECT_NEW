@@ -1,0 +1,2252 @@
+[
+  {
+    "question_id": "track_b_heldout_0001",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of LinearMotor-L8 within the Propulsion subsystem, stating its air gap clearance and its peak thrust output in a concise key-value structured response.",
+    "subsystem": "Propulsion",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-001",
+      "FACT-HELD-002"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: LinearMotor-L8\nair_gap_clearance: 12.7 mm\npeak_thrust_output: 26.4 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "LinearMotor-L8",
+        "description": "component LinearMotor-L8"
+      },
+      {
+        "type": "phrase",
+        "value": "12.7 mm",
+        "description": "Air Gap Clearance value"
+      },
+      {
+        "type": "phrase",
+        "value": "26.4 kn",
+        "description": "Peak Thrust Output value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "Stator",
+          "22.0",
+          "10.5",
+          "15.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0002",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of LinearMotor-L8 within the Propulsion subsystem, stating its air gap clearance and its peak thrust output in a concise key-value structured response.",
+    "subsystem": "Propulsion",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-001",
+      "FACT-HELD-002"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: LinearMotor-L8\nair_gap_clearance: 12.7 mm\npeak_thrust_output: 26.4 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "LinearMotor-L8",
+        "description": "component LinearMotor-L8"
+      },
+      {
+        "type": "phrase",
+        "value": "12.7 mm",
+        "description": "Air Gap Clearance value"
+      },
+      {
+        "type": "phrase",
+        "value": "26.4 kn",
+        "description": "Peak Thrust Output value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "Stator",
+          "22.0",
+          "10.5",
+          "15.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0003",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of ChamberVessel-C5 within the Cryogenics subsystem, stating its holding tank pressure and its helium boil-off recovery rate in a concise key-value structured response.",
+    "subsystem": "Cryogenics",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-003",
+      "FACT-HELD-004"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: ChamberVessel-C5\nholding_tank_pressure: 418.6 kPa\nhelium_boil-off_recovery_rate: 99.4 %",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "ChamberVessel-C5",
+        "description": "component ChamberVessel-C5"
+      },
+      {
+        "type": "phrase",
+        "value": "418.6 kpa",
+        "description": "Holding Tank Pressure value"
+      },
+      {
+        "type": "phrase",
+        "value": "99.4 %",
+        "description": "Helium Boil-Off Recovery Rate value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "395.0",
+          "92.0",
+          "98.0",
+          "280.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0004",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of ChamberVessel-C5 within the Cryogenics subsystem, stating its holding tank pressure and its helium boil-off recovery rate in a concise key-value structured response.",
+    "subsystem": "Cryogenics",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-003",
+      "FACT-HELD-004"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: ChamberVessel-C5\nholding_tank_pressure: 418.6 kPa\nhelium_boil-off_recovery_rate: 99.4 %",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "ChamberVessel-C5",
+        "description": "component ChamberVessel-C5"
+      },
+      {
+        "type": "phrase",
+        "value": "418.6 kpa",
+        "description": "Holding Tank Pressure value"
+      },
+      {
+        "type": "phrase",
+        "value": "99.4 %",
+        "description": "Helium Boil-Off Recovery Rate value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "395.0",
+          "92.0",
+          "98.0",
+          "280.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0005",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of CryptoModem-K9 within the Telemetry subsystem, stating its payload encryption suite and its key renegotiation interval in a concise key-value structured response.",
+    "subsystem": "Telemetry",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-005",
+      "FACT-HELD-006"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: CryptoModem-K9\npayload_encryption_suite: AeroCrypt-Z5\nkey_renegotiation_interval: 45.0 s",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CryptoModem-K9",
+        "description": "component CryptoModem-K9"
+      },
+      {
+        "type": "phrase",
+        "value": "aerocrypt-z5",
+        "description": "Payload Encryption Suite value"
+      },
+      {
+        "type": "phrase",
+        "value": "45.0 s",
+        "description": "Key Renegotiation Interval value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "HyperCiph-4",
+          "60.0",
+          "MeshGuard-2",
+          "180.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0006",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of CryptoModem-K9 within the Telemetry subsystem, stating its payload encryption suite and its key renegotiation interval in a concise key-value structured response.",
+    "subsystem": "Telemetry",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-005",
+      "FACT-HELD-006"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: CryptoModem-K9\npayload_encryption_suite: AeroCrypt-Z5\nkey_renegotiation_interval: 45.0 s",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CryptoModem-K9",
+        "description": "component CryptoModem-K9"
+      },
+      {
+        "type": "phrase",
+        "value": "aerocrypt-z5",
+        "description": "Payload Encryption Suite value"
+      },
+      {
+        "type": "phrase",
+        "value": "45.0 s",
+        "description": "Key Renegotiation Interval value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "HyperCiph-4",
+          "60.0",
+          "MeshGuard-2",
+          "180.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0007",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of AuxPack-B2 within the PowerDistribution subsystem, stating its cell chemistry spec and its nominal bus discharge voltage in a concise key-value structured response.",
+    "subsystem": "PowerDistribution",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-007",
+      "FACT-HELD-008"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: AuxPack-B2\ncell_chemistry_spec: Titanate-S4\nnominal_bus_discharge_voltage: 648.5 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "AuxPack-B2",
+        "description": "component AuxPack-B2"
+      },
+      {
+        "type": "phrase",
+        "value": "titanate-s4",
+        "description": "Cell Chemistry Spec value"
+      },
+      {
+        "type": "phrase",
+        "value": "648.5 v",
+        "description": "Nominal Bus Discharge Voltage value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "LithFerro-8",
+          "48.0",
+          "SodiumPoly-3",
+          "620.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0008",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of AuxPack-B2 within the PowerDistribution subsystem, stating its cell chemistry spec and its nominal bus discharge voltage in a concise key-value structured response.",
+    "subsystem": "PowerDistribution",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-007",
+      "FACT-HELD-008"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: AuxPack-B2\ncell_chemistry_spec: Titanate-S4\nnominal_bus_discharge_voltage: 648.5 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "AuxPack-B2",
+        "description": "component AuxPack-B2"
+      },
+      {
+        "type": "phrase",
+        "value": "titanate-s4",
+        "description": "Cell Chemistry Spec value"
+      },
+      {
+        "type": "phrase",
+        "value": "648.5 v",
+        "description": "Nominal Bus Discharge Voltage value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "LithFerro-8",
+          "48.0",
+          "SodiumPoly-3",
+          "620.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0009",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of CoolLoop-H7 within the PowerDistribution subsystem, stating its heat transfer fluid and its max loop operating temp in a concise key-value structured response.",
+    "subsystem": "PowerDistribution",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-009",
+      "FACT-HELD-010"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: CoolLoop-H7\nheat_transfer_fluid: FrigiPure-9B\nmax_loop_operating_temp: 68.4 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CoolLoop-H7",
+        "description": "component CoolLoop-H7"
+      },
+      {
+        "type": "phrase",
+        "value": "frigipure-9b",
+        "description": "Heat Transfer Fluid value"
+      },
+      {
+        "type": "phrase",
+        "value": "68.4 c",
+        "description": "Max Loop Operating Temp value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "GlycolSpec-D",
+          "95.0",
+          "75.0",
+          "AeroCool-1"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0010",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of CoolLoop-H7 within the PowerDistribution subsystem, stating its heat transfer fluid and its max loop operating temp in a concise key-value structured response.",
+    "subsystem": "PowerDistribution",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-HELD-009",
+      "FACT-HELD-010"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: CoolLoop-H7\nheat_transfer_fluid: FrigiPure-9B\nmax_loop_operating_temp: 68.4 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CoolLoop-H7",
+        "description": "component CoolLoop-H7"
+      },
+      {
+        "type": "phrase",
+        "value": "frigipure-9b",
+        "description": "Heat Transfer Fluid value"
+      },
+      {
+        "type": "phrase",
+        "value": "68.4 c",
+        "description": "Max Loop Operating Temp value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "GlycolSpec-D",
+          "95.0",
+          "75.0",
+          "AeroCool-1"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0011",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-11 specified for HeldModule-Powe-11 in the PowerDistribution subsystem, alongside the design parameter omega-12 designated for HeldModule-Guid-12 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-011",
+      "FACT-HELD-012"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-11\ndesign_parameter_omega-11: 546.09 s\ncomponent_2: HeldModule-Guid-12\ndesign_parameter_omega-12: 550.28 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-11",
+        "description": "component HeldModule-Powe-11"
+      },
+      {
+        "type": "phrase",
+        "value": "546.09 s",
+        "description": "Design Parameter Omega-11 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-12",
+        "description": "component HeldModule-Guid-12"
+      },
+      {
+        "type": "phrase",
+        "value": "550.28 mm",
+        "description": "Design Parameter Omega-12 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "467.74",
+          "302.65",
+          "464.18",
+          "300.35"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0012",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-11 specified for HeldModule-Powe-11 in the PowerDistribution subsystem, alongside the design parameter omega-12 designated for HeldModule-Guid-12 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-011",
+      "FACT-HELD-012"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-11\ndesign_parameter_omega-11: 546.09 s\ncomponent_2: HeldModule-Guid-12\ndesign_parameter_omega-12: 550.28 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-11",
+        "description": "component HeldModule-Powe-11"
+      },
+      {
+        "type": "phrase",
+        "value": "546.09 s",
+        "description": "Design Parameter Omega-11 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-12",
+        "description": "component HeldModule-Guid-12"
+      },
+      {
+        "type": "phrase",
+        "value": "550.28 mm",
+        "description": "Design Parameter Omega-12 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "467.74",
+          "302.65",
+          "464.18",
+          "300.35"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0013",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-13 specified for HeldModule-Tunn-13 in the TunnelVent subsystem, alongside the design parameter omega-14 designated for HeldModule-Stru-14 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-013",
+      "FACT-HELD-014"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-13\ndesign_parameter_omega-13: 554.47 %\ncomponent_2: HeldModule-Stru-14\ndesign_parameter_omega-14: 558.66 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-13",
+        "description": "component HeldModule-Tunn-13"
+      },
+      {
+        "type": "phrase",
+        "value": "554.47 %",
+        "description": "Design Parameter Omega-13 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-14",
+        "description": "component HeldModule-Stru-14"
+      },
+      {
+        "type": "phrase",
+        "value": "558.66 c",
+        "description": "Design Parameter Omega-14 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "304.96",
+          "471.3",
+          "474.86",
+          "307.26"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0014",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-13 specified for HeldModule-Tunn-13 in the TunnelVent subsystem, alongside the design parameter omega-14 designated for HeldModule-Stru-14 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-013",
+      "FACT-HELD-014"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-13\ndesign_parameter_omega-13: 554.47 %\ncomponent_2: HeldModule-Stru-14\ndesign_parameter_omega-14: 558.66 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-13",
+        "description": "component HeldModule-Tunn-13"
+      },
+      {
+        "type": "phrase",
+        "value": "554.47 %",
+        "description": "Design Parameter Omega-13 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-14",
+        "description": "component HeldModule-Stru-14"
+      },
+      {
+        "type": "phrase",
+        "value": "558.66 c",
+        "description": "Design Parameter Omega-14 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "304.96",
+          "471.3",
+          "474.86",
+          "307.26"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0015",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-15 specified for HeldModule-Emer-15 in the EmergencyEgress subsystem, alongside the design parameter omega-16 designated for HeldModule-Prop-16 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-015",
+      "FACT-HELD-016"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-15\ndesign_parameter_omega-15: 562.85 m^3/s\ncomponent_2: HeldModule-Prop-16\ndesign_parameter_omega-16: 567.04 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-15",
+        "description": "component HeldModule-Emer-15"
+      },
+      {
+        "type": "phrase",
+        "value": "562.85 m^3/s",
+        "description": "Design Parameter Omega-15 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-16",
+        "description": "component HeldModule-Prop-16"
+      },
+      {
+        "type": "phrase",
+        "value": "567.04 kn",
+        "description": "Design Parameter Omega-16 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "481.98",
+          "478.42",
+          "309.57",
+          "311.87"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0016",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-15 specified for HeldModule-Emer-15 in the EmergencyEgress subsystem, alongside the design parameter omega-16 designated for HeldModule-Prop-16 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-015",
+      "FACT-HELD-016"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-15\ndesign_parameter_omega-15: 562.85 m^3/s\ncomponent_2: HeldModule-Prop-16\ndesign_parameter_omega-16: 567.04 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-15",
+        "description": "component HeldModule-Emer-15"
+      },
+      {
+        "type": "phrase",
+        "value": "562.85 m^3/s",
+        "description": "Design Parameter Omega-15 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-16",
+        "description": "component HeldModule-Prop-16"
+      },
+      {
+        "type": "phrase",
+        "value": "567.04 kn",
+        "description": "Design Parameter Omega-16 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "481.98",
+          "478.42",
+          "309.57",
+          "311.87"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0017",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-17 specified for HeldModule-Cryo-17 in the Cryogenics subsystem, alongside the design parameter omega-18 designated for HeldModule-Tele-18 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-017",
+      "FACT-HELD-018"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-17\ndesign_parameter_omega-17: 571.23 kPa\ncomponent_2: HeldModule-Tele-18\ndesign_parameter_omega-18: 575.42 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-17",
+        "description": "component HeldModule-Cryo-17"
+      },
+      {
+        "type": "phrase",
+        "value": "571.23 kpa",
+        "description": "Design Parameter Omega-17 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-18",
+        "description": "component HeldModule-Tele-18"
+      },
+      {
+        "type": "phrase",
+        "value": "575.42 v",
+        "description": "Design Parameter Omega-18 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "485.55",
+          "314.18",
+          "489.11",
+          "316.48"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0018",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-17 specified for HeldModule-Cryo-17 in the Cryogenics subsystem, alongside the design parameter omega-18 designated for HeldModule-Tele-18 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-017",
+      "FACT-HELD-018"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-17\ndesign_parameter_omega-17: 571.23 kPa\ncomponent_2: HeldModule-Tele-18\ndesign_parameter_omega-18: 575.42 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-17",
+        "description": "component HeldModule-Cryo-17"
+      },
+      {
+        "type": "phrase",
+        "value": "571.23 kpa",
+        "description": "Design Parameter Omega-17 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-18",
+        "description": "component HeldModule-Tele-18"
+      },
+      {
+        "type": "phrase",
+        "value": "575.42 v",
+        "description": "Design Parameter Omega-18 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "485.55",
+          "314.18",
+          "489.11",
+          "316.48"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0019",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-19 specified for HeldModule-Powe-19 in the PowerDistribution subsystem, alongside the design parameter omega-20 designated for HeldModule-Guid-20 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-019",
+      "FACT-HELD-020"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-19\ndesign_parameter_omega-19: 579.61 s\ncomponent_2: HeldModule-Guid-20\ndesign_parameter_omega-20: 583.8 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-19",
+        "description": "component HeldModule-Powe-19"
+      },
+      {
+        "type": "phrase",
+        "value": "579.61 s",
+        "description": "Design Parameter Omega-19 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-20",
+        "description": "component HeldModule-Guid-20"
+      },
+      {
+        "type": "phrase",
+        "value": "583.8 mm",
+        "description": "Design Parameter Omega-20 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "492.67",
+          "318.79",
+          "496.23",
+          "321.09"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0020",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-19 specified for HeldModule-Powe-19 in the PowerDistribution subsystem, alongside the design parameter omega-20 designated for HeldModule-Guid-20 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-019",
+      "FACT-HELD-020"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-19\ndesign_parameter_omega-19: 579.61 s\ncomponent_2: HeldModule-Guid-20\ndesign_parameter_omega-20: 583.8 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-19",
+        "description": "component HeldModule-Powe-19"
+      },
+      {
+        "type": "phrase",
+        "value": "579.61 s",
+        "description": "Design Parameter Omega-19 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-20",
+        "description": "component HeldModule-Guid-20"
+      },
+      {
+        "type": "phrase",
+        "value": "583.8 mm",
+        "description": "Design Parameter Omega-20 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "492.67",
+          "318.79",
+          "496.23",
+          "321.09"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0021",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-21 specified for HeldModule-Tunn-21 in the TunnelVent subsystem, alongside the design parameter omega-22 designated for HeldModule-Stru-22 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-021",
+      "FACT-HELD-022"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-21\ndesign_parameter_omega-21: 587.99 %\ncomponent_2: HeldModule-Stru-22\ndesign_parameter_omega-22: 592.18 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-21",
+        "description": "component HeldModule-Tunn-21"
+      },
+      {
+        "type": "phrase",
+        "value": "587.99 %",
+        "description": "Design Parameter Omega-21 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-22",
+        "description": "component HeldModule-Stru-22"
+      },
+      {
+        "type": "phrase",
+        "value": "592.18 c",
+        "description": "Design Parameter Omega-22 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "323.39",
+          "325.7",
+          "503.35",
+          "499.79"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0022",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-21 specified for HeldModule-Tunn-21 in the TunnelVent subsystem, alongside the design parameter omega-22 designated for HeldModule-Stru-22 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-021",
+      "FACT-HELD-022"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-21\ndesign_parameter_omega-21: 587.99 %\ncomponent_2: HeldModule-Stru-22\ndesign_parameter_omega-22: 592.18 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-21",
+        "description": "component HeldModule-Tunn-21"
+      },
+      {
+        "type": "phrase",
+        "value": "587.99 %",
+        "description": "Design Parameter Omega-21 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-22",
+        "description": "component HeldModule-Stru-22"
+      },
+      {
+        "type": "phrase",
+        "value": "592.18 c",
+        "description": "Design Parameter Omega-22 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "323.39",
+          "325.7",
+          "503.35",
+          "499.79"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0023",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-23 specified for HeldModule-Emer-23 in the EmergencyEgress subsystem, alongside the design parameter omega-24 designated for HeldModule-Prop-24 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-023",
+      "FACT-HELD-024"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-23\ndesign_parameter_omega-23: 596.37 m^3/s\ncomponent_2: HeldModule-Prop-24\ndesign_parameter_omega-24: 600.56 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-23",
+        "description": "component HeldModule-Emer-23"
+      },
+      {
+        "type": "phrase",
+        "value": "596.37 m^3/s",
+        "description": "Design Parameter Omega-23 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-24",
+        "description": "component HeldModule-Prop-24"
+      },
+      {
+        "type": "phrase",
+        "value": "600.56 kn",
+        "description": "Design Parameter Omega-24 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "510.48",
+          "506.91",
+          "328.0",
+          "330.31"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0024",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-23 specified for HeldModule-Emer-23 in the EmergencyEgress subsystem, alongside the design parameter omega-24 designated for HeldModule-Prop-24 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-023",
+      "FACT-HELD-024"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-23\ndesign_parameter_omega-23: 596.37 m^3/s\ncomponent_2: HeldModule-Prop-24\ndesign_parameter_omega-24: 600.56 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-23",
+        "description": "component HeldModule-Emer-23"
+      },
+      {
+        "type": "phrase",
+        "value": "596.37 m^3/s",
+        "description": "Design Parameter Omega-23 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-24",
+        "description": "component HeldModule-Prop-24"
+      },
+      {
+        "type": "phrase",
+        "value": "600.56 kn",
+        "description": "Design Parameter Omega-24 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "510.48",
+          "506.91",
+          "328.0",
+          "330.31"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0025",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-25 specified for HeldModule-Cryo-25 in the Cryogenics subsystem, alongside the design parameter omega-26 designated for HeldModule-Tele-26 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-025",
+      "FACT-HELD-026"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-25\ndesign_parameter_omega-25: 604.75 kPa\ncomponent_2: HeldModule-Tele-26\ndesign_parameter_omega-26: 608.94 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-25",
+        "description": "component HeldModule-Cryo-25"
+      },
+      {
+        "type": "phrase",
+        "value": "604.75 kpa",
+        "description": "Design Parameter Omega-25 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-26",
+        "description": "component HeldModule-Tele-26"
+      },
+      {
+        "type": "phrase",
+        "value": "608.94 v",
+        "description": "Design Parameter Omega-26 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "334.92",
+          "517.6",
+          "332.61",
+          "514.04"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0026",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-25 specified for HeldModule-Cryo-25 in the Cryogenics subsystem, alongside the design parameter omega-26 designated for HeldModule-Tele-26 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-025",
+      "FACT-HELD-026"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-25\ndesign_parameter_omega-25: 604.75 kPa\ncomponent_2: HeldModule-Tele-26\ndesign_parameter_omega-26: 608.94 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-25",
+        "description": "component HeldModule-Cryo-25"
+      },
+      {
+        "type": "phrase",
+        "value": "604.75 kpa",
+        "description": "Design Parameter Omega-25 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-26",
+        "description": "component HeldModule-Tele-26"
+      },
+      {
+        "type": "phrase",
+        "value": "608.94 v",
+        "description": "Design Parameter Omega-26 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "334.92",
+          "517.6",
+          "332.61",
+          "514.04"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0027",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-27 specified for HeldModule-Powe-27 in the PowerDistribution subsystem, alongside the design parameter omega-28 designated for HeldModule-Guid-28 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-027",
+      "FACT-HELD-028"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-27\ndesign_parameter_omega-27: 613.13 s\ncomponent_2: HeldModule-Guid-28\ndesign_parameter_omega-28: 617.32 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-27",
+        "description": "component HeldModule-Powe-27"
+      },
+      {
+        "type": "phrase",
+        "value": "613.13 s",
+        "description": "Design Parameter Omega-27 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-28",
+        "description": "component HeldModule-Guid-28"
+      },
+      {
+        "type": "phrase",
+        "value": "617.32 mm",
+        "description": "Design Parameter Omega-28 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "339.53",
+          "521.16",
+          "524.72",
+          "337.22"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0028",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-27 specified for HeldModule-Powe-27 in the PowerDistribution subsystem, alongside the design parameter omega-28 designated for HeldModule-Guid-28 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-027",
+      "FACT-HELD-028"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-27\ndesign_parameter_omega-27: 613.13 s\ncomponent_2: HeldModule-Guid-28\ndesign_parameter_omega-28: 617.32 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-27",
+        "description": "component HeldModule-Powe-27"
+      },
+      {
+        "type": "phrase",
+        "value": "613.13 s",
+        "description": "Design Parameter Omega-27 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-28",
+        "description": "component HeldModule-Guid-28"
+      },
+      {
+        "type": "phrase",
+        "value": "617.32 mm",
+        "description": "Design Parameter Omega-28 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "339.53",
+          "521.16",
+          "524.72",
+          "337.22"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0029",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-29 specified for HeldModule-Tunn-29 in the TunnelVent subsystem, alongside the design parameter omega-30 designated for HeldModule-Stru-30 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-029",
+      "FACT-HELD-030"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-29\ndesign_parameter_omega-29: 621.51 %\ncomponent_2: HeldModule-Stru-30\ndesign_parameter_omega-30: 625.7 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-29",
+        "description": "component HeldModule-Tunn-29"
+      },
+      {
+        "type": "phrase",
+        "value": "621.51 %",
+        "description": "Design Parameter Omega-29 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-30",
+        "description": "component HeldModule-Stru-30"
+      },
+      {
+        "type": "phrase",
+        "value": "625.7 c",
+        "description": "Design Parameter Omega-30 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "531.85",
+          "528.28",
+          "341.83",
+          "344.14"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0030",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-29 specified for HeldModule-Tunn-29 in the TunnelVent subsystem, alongside the design parameter omega-30 designated for HeldModule-Stru-30 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-029",
+      "FACT-HELD-030"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-29\ndesign_parameter_omega-29: 621.51 %\ncomponent_2: HeldModule-Stru-30\ndesign_parameter_omega-30: 625.7 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-29",
+        "description": "component HeldModule-Tunn-29"
+      },
+      {
+        "type": "phrase",
+        "value": "621.51 %",
+        "description": "Design Parameter Omega-29 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-30",
+        "description": "component HeldModule-Stru-30"
+      },
+      {
+        "type": "phrase",
+        "value": "625.7 c",
+        "description": "Design Parameter Omega-30 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "531.85",
+          "528.28",
+          "341.83",
+          "344.14"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0031",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-31 specified for HeldModule-Emer-31 in the EmergencyEgress subsystem, alongside the design parameter omega-32 designated for HeldModule-Prop-32 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-031",
+      "FACT-HELD-032"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-31\ndesign_parameter_omega-31: 629.89 m^3/s\ncomponent_2: HeldModule-Prop-32\ndesign_parameter_omega-32: 634.08 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-31",
+        "description": "component HeldModule-Emer-31"
+      },
+      {
+        "type": "phrase",
+        "value": "629.89 m^3/s",
+        "description": "Design Parameter Omega-31 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-32",
+        "description": "component HeldModule-Prop-32"
+      },
+      {
+        "type": "phrase",
+        "value": "634.08 kn",
+        "description": "Design Parameter Omega-32 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "346.44",
+          "538.97",
+          "535.41",
+          "348.74"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0032",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-31 specified for HeldModule-Emer-31 in the EmergencyEgress subsystem, alongside the design parameter omega-32 designated for HeldModule-Prop-32 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-031",
+      "FACT-HELD-032"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-31\ndesign_parameter_omega-31: 629.89 m^3/s\ncomponent_2: HeldModule-Prop-32\ndesign_parameter_omega-32: 634.08 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-31",
+        "description": "component HeldModule-Emer-31"
+      },
+      {
+        "type": "phrase",
+        "value": "629.89 m^3/s",
+        "description": "Design Parameter Omega-31 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-32",
+        "description": "component HeldModule-Prop-32"
+      },
+      {
+        "type": "phrase",
+        "value": "634.08 kn",
+        "description": "Design Parameter Omega-32 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "346.44",
+          "538.97",
+          "535.41",
+          "348.74"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0033",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-33 specified for HeldModule-Cryo-33 in the Cryogenics subsystem, alongside the design parameter omega-34 designated for HeldModule-Tele-34 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-033",
+      "FACT-HELD-034"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-33\ndesign_parameter_omega-33: 638.27 kPa\ncomponent_2: HeldModule-Tele-34\ndesign_parameter_omega-34: 642.46 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-33",
+        "description": "component HeldModule-Cryo-33"
+      },
+      {
+        "type": "phrase",
+        "value": "638.27 kpa",
+        "description": "Design Parameter Omega-33 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-34",
+        "description": "component HeldModule-Tele-34"
+      },
+      {
+        "type": "phrase",
+        "value": "642.46 v",
+        "description": "Design Parameter Omega-34 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "546.09",
+          "542.53",
+          "351.05",
+          "353.35"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0034",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-33 specified for HeldModule-Cryo-33 in the Cryogenics subsystem, alongside the design parameter omega-34 designated for HeldModule-Tele-34 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-033",
+      "FACT-HELD-034"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-33\ndesign_parameter_omega-33: 638.27 kPa\ncomponent_2: HeldModule-Tele-34\ndesign_parameter_omega-34: 642.46 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-33",
+        "description": "component HeldModule-Cryo-33"
+      },
+      {
+        "type": "phrase",
+        "value": "638.27 kpa",
+        "description": "Design Parameter Omega-33 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-34",
+        "description": "component HeldModule-Tele-34"
+      },
+      {
+        "type": "phrase",
+        "value": "642.46 v",
+        "description": "Design Parameter Omega-34 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "546.09",
+          "542.53",
+          "351.05",
+          "353.35"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0035",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-35 specified for HeldModule-Powe-35 in the PowerDistribution subsystem, alongside the design parameter omega-36 designated for HeldModule-Guid-36 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-035",
+      "FACT-HELD-036"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-35\ndesign_parameter_omega-35: 646.65 s\ncomponent_2: HeldModule-Guid-36\ndesign_parameter_omega-36: 650.84 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-35",
+        "description": "component HeldModule-Powe-35"
+      },
+      {
+        "type": "phrase",
+        "value": "646.65 s",
+        "description": "Design Parameter Omega-35 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-36",
+        "description": "component HeldModule-Guid-36"
+      },
+      {
+        "type": "phrase",
+        "value": "650.84 mm",
+        "description": "Design Parameter Omega-36 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "357.96",
+          "355.66",
+          "553.21",
+          "549.65"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0036",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-35 specified for HeldModule-Powe-35 in the PowerDistribution subsystem, alongside the design parameter omega-36 designated for HeldModule-Guid-36 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-035",
+      "FACT-HELD-036"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-35\ndesign_parameter_omega-35: 646.65 s\ncomponent_2: HeldModule-Guid-36\ndesign_parameter_omega-36: 650.84 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-35",
+        "description": "component HeldModule-Powe-35"
+      },
+      {
+        "type": "phrase",
+        "value": "646.65 s",
+        "description": "Design Parameter Omega-35 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-36",
+        "description": "component HeldModule-Guid-36"
+      },
+      {
+        "type": "phrase",
+        "value": "650.84 mm",
+        "description": "Design Parameter Omega-36 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "357.96",
+          "355.66",
+          "553.21",
+          "549.65"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0037",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-37 specified for HeldModule-Tunn-37 in the TunnelVent subsystem, alongside the design parameter omega-38 designated for HeldModule-Stru-38 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-037",
+      "FACT-HELD-038"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-37\ndesign_parameter_omega-37: 655.03 %\ncomponent_2: HeldModule-Stru-38\ndesign_parameter_omega-38: 659.22 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-37",
+        "description": "component HeldModule-Tunn-37"
+      },
+      {
+        "type": "phrase",
+        "value": "655.03 %",
+        "description": "Design Parameter Omega-37 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-38",
+        "description": "component HeldModule-Stru-38"
+      },
+      {
+        "type": "phrase",
+        "value": "659.22 c",
+        "description": "Design Parameter Omega-38 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "556.78",
+          "360.27",
+          "362.57",
+          "560.34"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0038",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-37 specified for HeldModule-Tunn-37 in the TunnelVent subsystem, alongside the design parameter omega-38 designated for HeldModule-Stru-38 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-037",
+      "FACT-HELD-038"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-37\ndesign_parameter_omega-37: 655.03 %\ncomponent_2: HeldModule-Stru-38\ndesign_parameter_omega-38: 659.22 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-37",
+        "description": "component HeldModule-Tunn-37"
+      },
+      {
+        "type": "phrase",
+        "value": "655.03 %",
+        "description": "Design Parameter Omega-37 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-38",
+        "description": "component HeldModule-Stru-38"
+      },
+      {
+        "type": "phrase",
+        "value": "659.22 c",
+        "description": "Design Parameter Omega-38 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "556.78",
+          "360.27",
+          "362.57",
+          "560.34"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0039",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-39 specified for HeldModule-Emer-39 in the EmergencyEgress subsystem, alongside the design parameter omega-40 designated for HeldModule-Prop-40 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-039",
+      "FACT-HELD-040"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-39\ndesign_parameter_omega-39: 663.41 m^3/s\ncomponent_2: HeldModule-Prop-40\ndesign_parameter_omega-40: 667.6 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-39",
+        "description": "component HeldModule-Emer-39"
+      },
+      {
+        "type": "phrase",
+        "value": "663.41 m^3/s",
+        "description": "Design Parameter Omega-39 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-40",
+        "description": "component HeldModule-Prop-40"
+      },
+      {
+        "type": "phrase",
+        "value": "667.6 kn",
+        "description": "Design Parameter Omega-40 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "563.9",
+          "367.18",
+          "364.88",
+          "567.46"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0040",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-39 specified for HeldModule-Emer-39 in the EmergencyEgress subsystem, alongside the design parameter omega-40 designated for HeldModule-Prop-40 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-039",
+      "FACT-HELD-040"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-39\ndesign_parameter_omega-39: 663.41 m^3/s\ncomponent_2: HeldModule-Prop-40\ndesign_parameter_omega-40: 667.6 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-39",
+        "description": "component HeldModule-Emer-39"
+      },
+      {
+        "type": "phrase",
+        "value": "663.41 m^3/s",
+        "description": "Design Parameter Omega-39 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-40",
+        "description": "component HeldModule-Prop-40"
+      },
+      {
+        "type": "phrase",
+        "value": "667.6 kn",
+        "description": "Design Parameter Omega-40 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "563.9",
+          "367.18",
+          "364.88",
+          "567.46"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0041",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-41 specified for HeldModule-Cryo-41 in the Cryogenics subsystem, alongside the design parameter omega-42 designated for HeldModule-Tele-42 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-041",
+      "FACT-HELD-042"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-41\ndesign_parameter_omega-41: 671.79 kPa\ncomponent_2: HeldModule-Tele-42\ndesign_parameter_omega-42: 675.98 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-41",
+        "description": "component HeldModule-Cryo-41"
+      },
+      {
+        "type": "phrase",
+        "value": "671.79 kpa",
+        "description": "Design Parameter Omega-41 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-42",
+        "description": "component HeldModule-Tele-42"
+      },
+      {
+        "type": "phrase",
+        "value": "675.98 v",
+        "description": "Design Parameter Omega-42 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "369.48",
+          "574.58",
+          "571.02",
+          "371.79"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0042",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-41 specified for HeldModule-Cryo-41 in the Cryogenics subsystem, alongside the design parameter omega-42 designated for HeldModule-Tele-42 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-041",
+      "FACT-HELD-042"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-41\ndesign_parameter_omega-41: 671.79 kPa\ncomponent_2: HeldModule-Tele-42\ndesign_parameter_omega-42: 675.98 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-41",
+        "description": "component HeldModule-Cryo-41"
+      },
+      {
+        "type": "phrase",
+        "value": "671.79 kpa",
+        "description": "Design Parameter Omega-41 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-42",
+        "description": "component HeldModule-Tele-42"
+      },
+      {
+        "type": "phrase",
+        "value": "675.98 v",
+        "description": "Design Parameter Omega-42 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "369.48",
+          "574.58",
+          "571.02",
+          "371.79"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0043",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-43 specified for HeldModule-Powe-43 in the PowerDistribution subsystem, alongside the design parameter omega-44 designated for HeldModule-Guid-44 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-043",
+      "FACT-HELD-044"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-43\ndesign_parameter_omega-43: 680.17 s\ncomponent_2: HeldModule-Guid-44\ndesign_parameter_omega-44: 684.36 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-43",
+        "description": "component HeldModule-Powe-43"
+      },
+      {
+        "type": "phrase",
+        "value": "680.17 s",
+        "description": "Design Parameter Omega-43 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-44",
+        "description": "component HeldModule-Guid-44"
+      },
+      {
+        "type": "phrase",
+        "value": "684.36 mm",
+        "description": "Design Parameter Omega-44 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "374.09",
+          "581.71",
+          "376.4",
+          "578.14"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0044",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-43 specified for HeldModule-Powe-43 in the PowerDistribution subsystem, alongside the design parameter omega-44 designated for HeldModule-Guid-44 in the Guideway subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Guideway",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-043",
+      "FACT-HELD-044"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Powe-43\ndesign_parameter_omega-43: 680.17 s\ncomponent_2: HeldModule-Guid-44\ndesign_parameter_omega-44: 684.36 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Powe-43",
+        "description": "component HeldModule-Powe-43"
+      },
+      {
+        "type": "phrase",
+        "value": "680.17 s",
+        "description": "Design Parameter Omega-43 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Guid-44",
+        "description": "component HeldModule-Guid-44"
+      },
+      {
+        "type": "phrase",
+        "value": "684.36 mm",
+        "description": "Design Parameter Omega-44 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "374.09",
+          "581.71",
+          "376.4",
+          "578.14"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0045",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-45 specified for HeldModule-Tunn-45 in the TunnelVent subsystem, alongside the design parameter omega-46 designated for HeldModule-Stru-46 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-045",
+      "FACT-HELD-046"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-45\ndesign_parameter_omega-45: 688.55 %\ncomponent_2: HeldModule-Stru-46\ndesign_parameter_omega-46: 692.74 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-45",
+        "description": "component HeldModule-Tunn-45"
+      },
+      {
+        "type": "phrase",
+        "value": "688.55 %",
+        "description": "Design Parameter Omega-45 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-46",
+        "description": "component HeldModule-Stru-46"
+      },
+      {
+        "type": "phrase",
+        "value": "692.74 c",
+        "description": "Design Parameter Omega-46 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "381.01",
+          "588.83",
+          "378.7",
+          "585.27"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0046",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-45 specified for HeldModule-Tunn-45 in the TunnelVent subsystem, alongside the design parameter omega-46 designated for HeldModule-Stru-46 in the Structural subsystem. Provide the answer in short key-value format.",
+    "subsystem": "TunnelVent / Structural",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-045",
+      "FACT-HELD-046"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Tunn-45\ndesign_parameter_omega-45: 688.55 %\ncomponent_2: HeldModule-Stru-46\ndesign_parameter_omega-46: 692.74 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Tunn-45",
+        "description": "component HeldModule-Tunn-45"
+      },
+      {
+        "type": "phrase",
+        "value": "688.55 %",
+        "description": "Design Parameter Omega-45 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Stru-46",
+        "description": "component HeldModule-Stru-46"
+      },
+      {
+        "type": "phrase",
+        "value": "692.74 c",
+        "description": "Design Parameter Omega-46 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "381.01",
+          "588.83",
+          "378.7",
+          "585.27"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0047",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-47 specified for HeldModule-Emer-47 in the EmergencyEgress subsystem, alongside the design parameter omega-48 designated for HeldModule-Prop-48 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-047",
+      "FACT-HELD-048"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-47\ndesign_parameter_omega-47: 696.93 m^3/s\ncomponent_2: HeldModule-Prop-48\ndesign_parameter_omega-48: 701.12 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-47",
+        "description": "component HeldModule-Emer-47"
+      },
+      {
+        "type": "phrase",
+        "value": "696.93 m^3/s",
+        "description": "Design Parameter Omega-47 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-48",
+        "description": "component HeldModule-Prop-48"
+      },
+      {
+        "type": "phrase",
+        "value": "701.12 kn",
+        "description": "Design Parameter Omega-48 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "383.31",
+          "595.95",
+          "385.62",
+          "592.39"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0048",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-47 specified for HeldModule-Emer-47 in the EmergencyEgress subsystem, alongside the design parameter omega-48 designated for HeldModule-Prop-48 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "EmergencyEgress / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-047",
+      "FACT-HELD-048"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Emer-47\ndesign_parameter_omega-47: 696.93 m^3/s\ncomponent_2: HeldModule-Prop-48\ndesign_parameter_omega-48: 701.12 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Emer-47",
+        "description": "component HeldModule-Emer-47"
+      },
+      {
+        "type": "phrase",
+        "value": "696.93 m^3/s",
+        "description": "Design Parameter Omega-47 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Prop-48",
+        "description": "component HeldModule-Prop-48"
+      },
+      {
+        "type": "phrase",
+        "value": "701.12 kn",
+        "description": "Design Parameter Omega-48 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "383.31",
+          "595.95",
+          "385.62",
+          "592.39"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0049",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-49 specified for HeldModule-Cryo-49 in the Cryogenics subsystem, alongside the design parameter omega-50 designated for HeldModule-Tele-50 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-049",
+      "FACT-HELD-050"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-49\ndesign_parameter_omega-49: 705.31 kPa\ncomponent_2: HeldModule-Tele-50\ndesign_parameter_omega-50: 709.5 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-49",
+        "description": "component HeldModule-Cryo-49"
+      },
+      {
+        "type": "phrase",
+        "value": "705.31 kpa",
+        "description": "Design Parameter Omega-49 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-50",
+        "description": "component HeldModule-Tele-50"
+      },
+      {
+        "type": "phrase",
+        "value": "709.5 v",
+        "description": "Design Parameter Omega-50 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "390.23",
+          "599.51",
+          "603.07",
+          "387.92"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_0050",
+    "split": "heldout",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter omega-49 specified for HeldModule-Cryo-49 in the Cryogenics subsystem, alongside the design parameter omega-50 designated for HeldModule-Tele-50 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-HELD-049",
+      "FACT-HELD-050"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeldModule-Cryo-49\ndesign_parameter_omega-49: 705.31 kPa\ncomponent_2: HeldModule-Tele-50\ndesign_parameter_omega-50: 709.5 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeldModule-Cryo-49",
+        "description": "component HeldModule-Cryo-49"
+      },
+      {
+        "type": "phrase",
+        "value": "705.31 kpa",
+        "description": "Design Parameter Omega-49 value"
+      },
+      {
+        "type": "token",
+        "value": "HeldModule-Tele-50",
+        "description": "component HeldModule-Tele-50"
+      },
+      {
+        "type": "phrase",
+        "value": "709.5 v",
+        "description": "Design Parameter Omega-50 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "390.23",
+          "599.51",
+          "603.07",
+          "387.92"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  }
+]

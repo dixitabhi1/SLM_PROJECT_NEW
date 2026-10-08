@@ -1,0 +1,244 @@
+[
+  {
+    "question_id": "track_b_dev_q01",
+    "subsystem": "Propulsion",
+    "multi_hop_type": "bridging_component_property",
+    "question": "Identify the primary traction power inverter assigned to the propulsion subsystem in the HyperGrid v4.2 specification, and state both its current switching frequency and continuous power rating in a short key-value format.",
+    "fact_ids": ["FACT-DEV-001", "FACT-DEV-002"],
+    "retrieved_facts": [
+      {
+        "fact_id": "FACT-DEV-001",
+        "component": "Inverter-ZX9",
+        "role": "Primary Traction Power Inverter",
+        "property": "Switching Frequency",
+        "gold_value": "731.4 kHz",
+        "numeric_target": 731.4,
+        "unit": "kHz",
+        "distractors": {
+          "superseded_v4_1": "680.0 kHz",
+          "auxiliary_inverter": "512.0 kHz"
+        }
+      },
+      {
+        "fact_id": "FACT-DEV-002",
+        "component": "Inverter-ZX9",
+        "role": "Primary Traction Power Inverter",
+        "property": "Continuous Power Rating",
+        "gold_value": "1840 kW",
+        "numeric_target": 1840.0,
+        "unit": "kW",
+        "distractors": {
+          "superseded_v4_1": "1650 kW",
+          "auxiliary_inverter": "420 kW"
+        }
+      }
+    ],
+    "sample_gold_output": "component: Inverter-ZX9\nswitching_frequency: 731.4 kHz\ncontinuous_power: 1840 kW",
+    "word_cap": 75,
+    "checklist": [
+      {"type": "token", "value": "Inverter-ZX9", "description": "primary component Inverter-ZX9"},
+      {"type": "numeric", "target": 731.4, "tolerance": 0.5, "unit": "kHz", "description": "switching frequency 731.4 kHz"},
+      {"type": "numeric", "target": 1840.0, "tolerance": 1.0, "unit": "kW", "description": "continuous power 1840 kW"},
+      {
+        "type": "negative",
+        "banned_tokens": ["680.0", "1650", "Inverter-AX2", "512.0", "420"],
+        "description": "banned superseded v4.1 and auxiliary inverter values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_q02",
+    "subsystem": "Cryogenics",
+    "multi_hop_type": "retrieval_and_calculation",
+    "question": "Under the HyperGrid v4.2 cryogenics specification, the secondary magnet thermal loop utilizes a dedicated cooling medium circulating at a calibrated flow rate. State the cooling medium name, its operating flow rate, and calculate the total fluid volume displaced over an operational duration of 15 minutes.",
+    "fact_ids": ["FACT-DEV-005", "FACT-DEV-006"],
+    "retrieved_facts": [
+      {
+        "fact_id": "FACT-DEV-005",
+        "component": "CryoLoop-Gamma",
+        "role": "Secondary Magnet Thermal Loop",
+        "property": "Cooling Medium",
+        "gold_value": "CryoGel-88X",
+        "distractors": {
+          "superseded_v4_1": "FluorN-12",
+          "auxiliary_loop": "SolvHydra-404"
+        }
+      },
+      {
+        "fact_id": "FACT-DEV-006",
+        "component": "CryoLoop-Gamma",
+        "role": "Secondary Magnet Thermal Loop",
+        "property": "Operating Flow Rate",
+        "gold_value": "18.6 L/min",
+        "numeric_target": 18.6,
+        "unit": "L/min",
+        "calculation": "18.6 * 15 = 279.0 L",
+        "distractors": {
+          "superseded_v4_1": "15.0 L/min (225.0 L)",
+          "auxiliary_loop": "8.2 L/min (123.0 L)"
+        }
+      }
+    ],
+    "sample_gold_output": "cooling_medium: CryoGel-88X\noperating_flow_rate: 18.6 L/min\ntotal_volume_15min: 279.0 L",
+    "word_cap": 75,
+    "checklist": [
+      {"type": "token", "value": "CryoGel-88X", "description": "cooling medium CryoGel-88X"},
+      {"type": "numeric", "target": 18.6, "tolerance": 0.1, "unit": "L/min", "description": "flow rate 18.6 L/min"},
+      {"type": "numeric", "target": 279.0, "tolerance": 0.5, "unit": "L", "description": "15min volume 279.0 L"},
+      {
+        "type": "negative",
+        "banned_tokens": ["FluorN-12", "15.0", "225", "SolvHydra-404", "8.2", "123"],
+        "description": "banned superseded v4.1 and auxiliary loop distractors"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_q03",
+    "subsystem": "Telemetry & Braking",
+    "multi_hop_type": "cross_subsystem_calculation",
+    "question": "In the HyperGrid v4.2 baseline, state the mesh protocol identifier of the inter-pod guideway radio, and calculate the difference in milliseconds between the deploy actuation time of the secondary aerodynamic airfoil brake and the radio's packet beacon interval.",
+    "fact_ids": ["FACT-DEV-009", "FACT-DEV-010", "FACT-DEV-015"],
+    "retrieved_facts": [
+      {
+        "fact_id": "FACT-DEV-009",
+        "component": "TransceiverNode-T9",
+        "role": "Inter-Pod Guideway Radio",
+        "property": "Mesh Protocol Identifier",
+        "gold_value": "VeloSync-9X",
+        "distractors": {
+          "superseded_v4_1": "VeloMesh-7B",
+          "auxiliary_radio": "QuarkMesh-V3"
+        }
+      },
+      {
+        "fact_id": "FACT-DEV-010",
+        "component": "TransceiverNode-T9",
+        "role": "Inter-Pod Guideway Radio",
+        "property": "Packet Beacon Interval",
+        "gold_value": "12.4 ms",
+        "numeric_target": 12.4,
+        "unit": "ms"
+      },
+      {
+        "fact_id": "FACT-DEV-015",
+        "component": "SkidPlate-K1",
+        "role": "Secondary Aerodynamic Airfoil Brake",
+        "property": "Deploy Actuation Time",
+        "gold_value": "86.5 ms",
+        "numeric_target": 86.5,
+        "unit": "ms",
+        "calculation": "86.5 - 12.4 = 74.1 ms",
+        "distractors": {
+          "superseded_v4_1": "110.0 ms - 20.0 ms = 90.0 ms",
+          "auxiliary": "240.0 ms - 50.0 ms = 190.0 ms"
+        }
+      }
+    ],
+    "sample_gold_output": "mesh_protocol: VeloSync-9X\nbeacon_interval: 12.4 ms\nbrake_deploy_time: 86.5 ms\ntime_difference: 74.1 ms",
+    "word_cap": 75,
+    "checklist": [
+      {"type": "token", "value": "VeloSync-9X", "description": "protocol VeloSync-9X"},
+      {"type": "numeric", "target": 12.4, "tolerance": 0.1, "unit": "ms", "description": "beacon interval 12.4 ms"},
+      {"type": "numeric", "target": 86.5, "tolerance": 0.2, "unit": "ms", "description": "brake actuation time 86.5 ms"},
+      {"type": "numeric", "target": 74.1, "tolerance": 0.2, "unit": "ms", "description": "time difference 74.1 ms"},
+      {
+        "type": "negative",
+        "banned_tokens": ["VeloMesh-7B", "20.0", "110.0", "90.0", "QuarkMesh-V3", "50.0", "240.0", "190.0"],
+        "description": "banned superseded v4.1 and auxiliary radio/brake distractors"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_q04",
+    "subsystem": "Braking",
+    "multi_hop_type": "bridging_component_property",
+    "question": "For the HyperGrid v4.2 emergency magnetic caliper, identify the component designation, its friction pad material, and its nominal emergency deceleration rating.",
+    "fact_ids": ["FACT-DEV-013", "FACT-DEV-014"],
+    "retrieved_facts": [
+      {
+        "fact_id": "FACT-DEV-013",
+        "component": "EddyShoe-B7",
+        "role": "Emergency Magnetic Caliper",
+        "property": "Nominal Emergency Deceleration",
+        "gold_value": "14.3 m/s^2",
+        "numeric_target": 14.3,
+        "unit": "m/s^2",
+        "distractors": {
+          "superseded_v4_1": "12.5 m/s^2",
+          "auxiliary_caliper": "8.0 m/s^2"
+        }
+      },
+      {
+        "fact_id": "FACT-DEV-014",
+        "component": "EddyShoe-B7",
+        "role": "Emergency Magnetic Caliper",
+        "property": "Friction Friction Pad Material",
+        "gold_value": "CeramoBond-M9",
+        "distractors": {
+          "superseded_v4_1": "GraphitePad-G4",
+          "auxiliary_caliper": "CarbonKev-C2"
+        }
+      }
+    ],
+    "sample_gold_output": "component: EddyShoe-B7\nfriction_material: CeramoBond-M9\nemergency_deceleration: 14.3 m/s^2",
+    "word_cap": 75,
+    "checklist": [
+      {"type": "token", "value": "EddyShoe-B7", "description": "caliper EddyShoe-B7"},
+      {"type": "token", "value": "CeramoBond-M9", "description": "friction material CeramoBond-M9"},
+      {"type": "numeric", "target": 14.3, "tolerance": 0.2, "unit": "m/s^2", "description": "emergency deceleration 14.3 m/s^2"},
+      {
+        "type": "negative",
+        "banned_tokens": ["GraphitePad-G4", "12.5", "CarbonKev-C2", "8.0"],
+        "description": "banned superseded v4.1 and auxiliary caliper distractors"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_q05",
+    "subsystem": "Levitation & Cryogenics",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "question": "In the HyperGrid v4.2 suspension architecture, state the component name and nominal coil current of the primary suspension magnet, alongside the burst disk relief pressure of the associated liquid helium reservoir tank.",
+    "fact_ids": ["FACT-DEV-007", "FACT-DEV-018"],
+    "retrieved_facts": [
+      {
+        "fact_id": "FACT-DEV-018",
+        "component": "SuperconMagnet-S8",
+        "role": "Primary Suspension Magnet",
+        "property": "Nominal Coil Current",
+        "gold_value": "412.5 A",
+        "numeric_target": 412.5,
+        "unit": "A",
+        "distractors": {
+          "superseded_v4_1": "390.0 A",
+          "auxiliary_magnet": "150.0 A"
+        }
+      },
+      {
+        "fact_id": "FACT-DEV-007",
+        "component": "VesselDewar-D1",
+        "role": "Liquid Helium Reservoir Tank",
+        "property": "Burst Disk Relief Pressure",
+        "gold_value": "864.2 kPa",
+        "numeric_target": 864.2,
+        "unit": "kPa",
+        "distractors": {
+          "superseded_v4_1": "820.0 kPa",
+          "auxiliary_dewar": "620.0 kPa"
+        }
+      }
+    ],
+    "sample_gold_output": "magnet_component: SuperconMagnet-S8\ncoil_current: 412.5 A\nreservoir_tank: VesselDewar-D1\nrelief_pressure: 864.2 kPa",
+    "word_cap": 75,
+    "checklist": [
+      {"type": "token", "value": "SuperconMagnet-S8", "description": "magnet SuperconMagnet-S8"},
+      {"type": "numeric", "target": 412.5, "tolerance": 0.5, "unit": "A", "description": "nominal coil current 412.5 A"},
+      {"type": "token", "value": "VesselDewar-D1", "description": "dewar VesselDewar-D1"},
+      {"type": "numeric", "target": 864.2, "tolerance": 0.5, "unit": "kPa", "description": "burst disk relief pressure 864.2 kPa"},
+      {
+        "type": "negative",
+        "banned_tokens": ["390.0", "150.0", "820.0", "620.0"],
+        "description": "banned superseded v4.1 and auxiliary magnet/dewar distractors"
+      }
+    ]
+  }
+]

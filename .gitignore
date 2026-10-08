@@ -37,6 +37,13 @@ htmlcov/
 Thumbs.db
 
 # VS Code / IDE
-.vscode/
-.idea/
+# Logs & Binaries
+*.log
+tools/llama_bin/*.dll
+tools/llama_bin/*.exe
+data/spider/database/
+*.safetensors
+*.gguf
+*.bin
+
 

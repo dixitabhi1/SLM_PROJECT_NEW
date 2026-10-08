@@ -6,88 +6,90 @@ Per Hard Rule 7, Hard Rule 8, and Condition 13b.4, every model is recorded with 
 
 ## 1. Candidate Base SLMs for Specialist Pool (Each $\le 8\text{B}$, 6 GB GPU Laptop)
 
-The specialist pool will host 2–3 base SLMs, each with swappable LoRA adapters, to be benchmarked under concurrency configurations (a), (b), (b-serial), (c), (d), (e), (f), and (g).
+The specialist pool will host 2–3 base SLMs, each with swappable LoRA adapters, benchmarked under Configuration (f) ($W=2$ parallel slots, $c=4096$) and serial equivalents.
 
-### 1.1 Category: $\le 4\text{B}$ Base Candidates (Models released since April 2025 with verified primary sources)
+### 1.1 Category: $\le 4\text{B}$ Base Candidates
 
-| Model Exact ID | Full SHA-256 Digest | Short ID | Family | Published Params | Release Date | License | Format & Quant | VRAM Size | Public Benchmarks (Sourced) | Potential Role |
+| Model Exact ID | Full SHA-256 Digest | Short ID | Family | Published Params | Release Date | License | Format & Quant | VRAM Size | Public Benchmarks (Verbatim Quoted) | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `ibm-granite/granite-3.3-2b-instruct` | *(Pending pull)* | — | Granite (IBM) | 2.50B | April 2025 | Apache 2.0 | GGUF Q4_K_M | ~1.6 GB | [GSM8K: 79.2](https://huggingface.co/ibm-granite/granite-3.3-2b-instruct), [MMLU: 65.8](https://huggingface.co/ibm-granite/granite-3.3-2b-instruct), [HumanEval: 54.3](https://huggingface.co/ibm-granite/granite-3.3-2b-instruct) | Tool / SQL Specialist (Disjoint Family) |
-| `HuggingFaceTB/SmolLM3-3B` | *(Pending pull)* | — | SmolLM (Hugging Face) | 3.00B | July 8, 2025 | Apache 2.0 | GGUF Q4_K_M | ~1.9 GB | [MMLU: 68.2](https://huggingface.co/HuggingFaceTB/SmolLM3-3B), [GSM8K: 81.4](https://huggingface.co/HuggingFaceTB/SmolLM3-3B), [HumanEval: 61.6](https://huggingface.co/HuggingFaceTB/SmolLM3-3B) | Orchestration / Reasoning Candidate |
-| `llama3.2:3b` (`meta-llama/Llama-3.2-3B-Instruct`) | `a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72` | `a80c4f17acd5` | Llama (Meta) | 3.21B | Sept 2024 | Llama 3.2 Community | GGUF Q4_K_M | 2.02 GB (Measured 3.1 GB at c=4096, 100% GPU) | [MMLU: 63.4](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct), [GSM8K: 77.7 (8-shot CoT)](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct), [HumanEval: 28.0 (0-shot) / 61.0 (CoT)](https://huggingface.co/datasets/meta-llama/Llama-3.2-3B-Instruct-evals) | Primary Candidate Base (Config f Winner) |
-| `Qwen/Qwen3-4B-Instruct` | *(Pending pull)* | — | Qwen (Alibaba) | 4.02B | July 2025 | Apache 2.0 | GGUF Q4_K_M | ~2.6 GB | [MMLU: 71.5](https://qwenlm.github.io/blog/qwen3/), [GSM8K: 85.0](https://qwenlm.github.io/blog/qwen3/), [HumanEval: 72.0](https://qwenlm.github.io/blog/qwen3/) | High-Performance Base *(Subject to Rule 8)* |
+| `phi4-mini` (`microsoft/Phi-4-mini-instruct`) | Ollama: `78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753`<br>HF Snapshot: `cfbefacb99257ffa30c83adab238a50856ac3083` | `78fad5d182a7` | Phi (Microsoft) | 3.82B | March 2025 | MIT | GGUF Q4_K_M | 2.5 GB (4.0 GB at c=4096, 100% GPU) | [GSM8K: 88.6](https://huggingface.co/microsoft/Phi-4-mini-instruct), [MATH: 64.0](https://huggingface.co/microsoft/Phi-4-mini-instruct), [MMLU: 67.3](https://huggingface.co/microsoft/Phi-4-mini-instruct), [ARC Challenge: 83.7](https://huggingface.co/microsoft/Phi-4-mini-instruct) | **Selected Base SLM (Owner Approved, QLoRA Verified)** |
+| `qwen3:4b` (`Qwen/Qwen3-4B-Instruct`) | `359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7` | `359d7dd4bcda` | Qwen (Alibaba) | 4.02B | July 2025 | Apache 2.0 | GGUF Q4_K_M | 2.5 GB (3.9 GB at c=4096, 100% GPU) | [IFEval: 83.2 / 85.4](https://huggingface.co/HuggingFaceTB/SmolLM3-3B), [GSM-Plus: 82.1 / 88.2](https://huggingface.co/HuggingFaceTB/SmolLM3-3B), [GPQA Diamond: 44.4 / 55.3](https://huggingface.co/HuggingFaceTB/SmolLM3-3B), [Global MMLU: 65.1 / 73.3](https://huggingface.co/HuggingFaceTB/SmolLM3-3B) | Exited Pool per Owner Directive |
+| `pedrolucas/smollm3:3b-q4_k_m` (`HuggingFaceTB/SmolLM3-3B`) | `e400b8e2983193b8dcff5f66ca03bb94a56fa4026dc4c766f52e2c09743e1e51` | `e400b8e29831` | SmolLM (Hugging Face) | 3.00B | July 8, 2025 | Apache 2.0 | GGUF Q4_K_M | 1.9 GB (3.1 GB at c=4096, 100% GPU) | [IFEval: 76.7 / 77.9](https://huggingface.co/HuggingFaceTB/SmolLM3-3B), [GSM-Plus: 72.8 / 83.4](https://huggingface.co/HuggingFaceTB/SmolLM3-3B), [GPQA Diamond: 35.7 / 41.7](https://huggingface.co/HuggingFaceTB/SmolLM3-3B), [Global MMLU: 53.5](https://huggingface.co/HuggingFaceTB/SmolLM3-3B) | Reference Model (Community upload by user pedrolucas; unofficial GGUF build) |
+| `llama3.2:3b` (`meta-llama/Llama-3.2-3B-Instruct`) | `a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72` | `a80c4f17acd5` | Llama (Meta) | 3.21B | Sept 2024 | Llama 3.2 Community | GGUF Q4_K_M | 2.02 GB (3.3 GB at c=4096, 100% GPU) | [MMLU: 63.4](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct), [GSM8K: 77.7](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct), [HumanEval: 28.0](https://huggingface.co/datasets/meta-llama/Llama-3.2-3B-Instruct-evals) | Rejected by Owner (40% vs 66%) |
 
 ### 1.2 Category: 7B–8B Base Candidates (Measured on 6 GB Laptop GPU at 4,096 Context)
 
-| Model Exact ID | Full SHA-256 Digest | Short ID | Family | Published Params | License | Format & Quant | Measured VRAM (c=4096) | Public Benchmarks (Sourced) | Potential Role & Status |
+| Model Exact ID | Full SHA-256 Digest | Short ID | Family | Published Params | License | Format & Quant | Measured VRAM (c=4096) | Public Benchmarks (Verbatim Quoted) | Status |
 |---|---|---|---|---|---|---|---|---|---|
-| `qwen2.5:7b-instruct-q3_k_m` (`Qwen/Qwen2.5-7B-Instruct`) | `29492a928341` (Full: `427b3d95aca8...`) | `29492a928341` | Qwen (Alibaba) | 7.61B | Apache 2.0 | GGUF Q3_K_M | **4.2 GB (100% GPU offload verified on 6GB VRAM at c=4096)** | [GSM8K: 91.6](https://qwenlm.github.io/blog/qwen2.5/), [HumanEval: 84.8](https://qwenlm.github.io/blog/qwen2.5/), [MATH: 75.5](https://qwenlm.github.io/blog/qwen2.5/), [MMLU-Redux: 75.4](https://qwenlm.github.io/blog/qwen2.5/) | High-Performance Base Candidate *(Subject to Rule 8)* |
-| `llama3.1:8b` (`meta-llama/Llama-3.1-8B-Instruct`) | `46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e` | `46e0c10c039e` | Llama (Meta) | 8.03B | Llama 3.1 Community | GGUF Q4_K_M | 4.92 GB (**Spills 29% to CPU at c=4096; Disqualified**) | [MMLU: 69.4](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct), [GSM8K: 84.5](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct), [HumanEval: 72.6](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) | Disqualified for c=4096 on 6 GB VRAM |
+| `qwen2.5:7b-instruct-q3_k_m` (`Qwen/Qwen2.5-7B-Instruct`) | `29492a92834144e177cd02ec748b95976f7d0f4dcd0e5a1493ac828aa9ba40ef` | `29492a928341` | Qwen (Alibaba) | 7.61B | Apache 2.0 | GGUF Q3_K_M | **4.25 GB (100% GPU offload verified on 6GB VRAM at c=4096)** | [GSM8K: 91.6](https://qwenlm.github.io/blog/qwen2.5-llm/), [HumanEval: 84.8](https://qwenlm.github.io/blog/qwen2.5-llm/), [MATH: 75.5](https://qwenlm.github.io/blog/qwen2.5-llm/), [MMLU-Redux: 75.4](https://qwenlm.github.io/blog/qwen2.5-llm/) | Exited Pool per Owner Directive |
+| `llama3.1:8b` (`meta-llama/Llama-3.1-8B-Instruct`) | `46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e` | `46e0c10c039e` | Llama (Meta) | 8.03B | Llama 3.1 Community | GGUF Q4_K_M | 4.92 GB (**Spills 29% to CPU at c=4096; Disqualified**) | [GSM8K: 84.5](https://qwenlm.github.io/blog/qwen2.5-llm/), [HumanEval: 72.6](https://qwenlm.github.io/blog/qwen2.5-llm/), [MMLU-Redux: 67.2](https://qwenlm.github.io/blog/qwen2.5-llm/), [MATH: 51.9](https://qwenlm.github.io/blog/qwen2.5-llm/) | Disqualified (CPU Spillover) |
+| `smollm2:1.7b` (`HuggingFaceTB/SmolLM2-1.7B-Instruct`) | `cef4a1e09247f018ca0c482ad4c2ce1474aba5e87f245dacf97f07948d05d8b4` | `cef4a1e09247` | SmolLM (Hugging Face) | 1.71B | Apache 2.0 | GGUF Q4_K_M | 1.8 GB (100% GPU) | [GSM8K: 60.1](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct), [MMLU: 50.8](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct) | Compact Reference |
 
 ---
 
-## 2. Hard Rule 8: Family Separation Matrix & Meta Collision Proposal
+## 2. Primary Source Verbatim Quotes
 
-Hard Rule 8 states:
-> *"Pool models, baseline models, and any judge must come from distinct, non-overlapping model families. A judge model is never also a baseline."*
+Per Owner requirement, every public benchmark number reported above is quoted verbatim from the official release page:
 
-### Family Separation Matrix:
-| Role | Proposed Family | Candidate Models | Incompatible Families (Disqualified by Hard Rule 8) |
-|---|---|---|---|
-| **Specialist Pool** | Meta (`llama3.2:3b`) + IBM (`granite-3.3-2b`) | Llama, Granite, SmolLM | **Alibaba, OpenAI, and Google are strictly barred from pool.** |
-| **Baseline Tier 1 (27B)** | Alibaba (`qwen/qwen3.8-27b`) | Qwen | Alibaba models (`qwen2.5:*`) cannot be in pool. |
-| **Baseline Tier 3 (120B)** | OpenAI (`openai/gpt-oss-120b`) | GPT-OSS | OpenAI models cannot be in pool. |
-| **Judge (Track B)** | Google (`gemini-2.5-flash`) | Gemini | Google models (Gemma) cannot be in pool or baselines. |
+1. **`Qwen2.5-7B-Instruct` & `Llama-3.1-8B-Instruct`**:
+   - Source: `https://qwenlm.github.io/blog/qwen2.5-llm/`
+   - Exact table rows:
+     - `| GSM8K | 91.6 |` (Qwen2.5-7B-Instruct) vs `| GSM8K | 84.5 |` (Llama-3.1-8B-Instruct)
+     - `| MATH | 75.5 |` (Qwen2.5-7B-Instruct) vs `| MATH | 51.9 |` (Llama-3.1-8B-Instruct)
+     - `| HumanEval | 84.8 |` (Qwen2.5-7B-Instruct) vs `| HumanEval | 72.6 |` (Llama-3.1-8B-Instruct)
+     - `| MMLU-Redux | 75.4 |` (Qwen2.5-7B-Instruct) vs `| MMLU-Redux | 67.2 |` (Llama-3.1-8B-Instruct)
+   - Verbatim quote: *"Notably, Qwen2.5-7B-Instruct demonstrates clear advantages in mathematics (MATH: 75.5) and coding (HumanEval: 84.8)."*
 
-### Architectural Resolution of Meta Collision:
-- **The Issue:** Meta cannot simultaneously appear in the Specialist Pool (`Llama-3.2-3B`) and as a Baseline (`Llama-3.3-70B`).
-- **Proposal: Retain Meta (`Llama-3.2-3B`) in the Specialist Pool.**
-  1. `Llama-3.2-3B` runs locally on the laptop GPU with **100% GPU offload at $c=4096$ with 2 parallel slots**, delivering the highest verified local throughput.
-  2. `Llama-3.3-70B` was officially **deprecated and removed from the Groq free tier on August 16, 2026**, meaning no free cardless endpoint currently exists for it.
-  3. The baseline ladder is cleanly and reliably served by **Alibaba (`qwen3.8-27b`)** and **OpenAI (`gpt-oss-120b`)** on Groq, providing strict family isolation across all three sides without any conflict.
+2. **`Phi-4-mini` (`microsoft/Phi-4-mini-instruct`)**:
+   - Source: `https://huggingface.co/microsoft/Phi-4-mini-instruct/raw/main/README.md`
+   - Exact table rows:
+     - `| GSM8K (8-shot, CoT) | 88.6 |`
+     - `| MATH (0-shot, CoT) | 64.0 |`
+     - `| MMLU (5-shot) | 67.3 |`
+     - `| MMLU-Pro (0-shot, CoT) | 52.8 |`
+     - `| ARC Challenge (10-shot) | 83.7 |`
+     - `| BigBench Hard (0-shot, CoT) | 70.4 |`
+     - `| **Overall** | **63.5** |`
+   - Verbatim quote: *"Overall, the model with only 3.8B-param achieves a similar level of multilingual language understanding and reasoning ability as much larger models."*
+
+3. **`SmolLM3-3B` & `Qwen3-4B`**:
+   - Source: `https://huggingface.co/HuggingFaceTB/SmolLM3-3B/raw/main/README.md`
+   - Exact table rows (Instruction no-thinking / Extended thinking):
+     - `| IFEval | 76.7 | 77.9 |` (SmolLM3-3B) vs `| IFEval | 83.2 | 85.4 |` (Qwen3-4B)
+     - `| GSM-Plus | 72.8 | 83.4 |` (SmolLM3-3B) vs `| GSM-Plus | 82.1 | 88.2 |` (Qwen3-4B)
+     - `| GPQA Diamond | 35.7 | 41.7 |` (SmolLM3-3B) vs `| GPQA Diamond | 44.4 | 55.3 |` (Qwen3-4B)
+     - `| Global MMLU | 53.5 | - |` (SmolLM3-3B) vs `| Global MMLU | 65.1 | 73.3 |` (Qwen3-4B)
 
 ---
 
-## 3. Candidate Baseline Models & Exhaustive ~70B Free Tier Provider Audit
+## 3. Strict Hard Rule 8: Model Family Separation Matrix
 
-| Tier | Candidate Exact ID | Publisher Family | Published Parameters | Verified Free Endpoint Provider | Status |
+Hard Rule 8 mandates that specialist pool models, baseline models, and judges **must belong to distinct, non-overlapping model families**:
+
+| Component | Selected Family | Primary Models | Serving Endpoint | Access & Cost | Status |
 |---|---|---|---|---|---|
-| **Tier 1 (27B)** | `qwen/qwen3.8-27b` | Qwen (Alibaba) | 27.0B | Groq (`qwen/qwen3.8-27b`, verified active, cardless) | Proposed Primary Comparison |
-| **Tier 2 (~50B)** | *None* | — | — | — | **SKIPPED** (No dense open-weight model exists near 50B on free endpoints) |
-| **Tier 3 (120B ceiling)** | `openai/gpt-oss-120b` | OpenAI / Open-Weight | 120B | Groq (`openai/gpt-oss-120b`, verified active, cardless) | Proposed Upper Comparison / Ceiling |
+| **Specialist Pool** | **Phi (Microsoft)** | `microsoft/Phi-4-mini-instruct` (`78fad5d182a7...`) | Local Laptop GPU (Ollama / PEFT) | 100% Local / Free | **Locked by Owner Directive** |
+| **Baseline Tier 1 (27B)** | **Qwen (Alibaba)** | `qwen/qwen3.8-27b` (no-tools & with-tools) | Groq / Cerebras / Ollama API | Free Endpoint | **Active Primary Baseline (27B)** |
+| **Baseline Tier 3 (120B)** | **OpenAI (Open-Weight)** | `openai/gpt-oss-120b` (no-tools & with-tools) | Groq Cloud API | Free Tier Ceiling | **Active Ceiling Baseline (120B)** |
+| **Secondary Judge (Track B)** | **Checklist / Postponed** | Automated Fact Checklist (Dev); LLM Judge Postponed | Local Rule Check | Zero Spend / Cardless | **Track A Primary** |
 
-### Exhaustive Empirical Provider Audit for ~70B Free Models:
-Every public free inference provider was queried directly via automated script to determine whether a ~70B open-weight model is available on a 100% free, cardless tier:
-1. **Groq (`api.groq.com/openai/v1/models`):** Queried with developer API key. Active models are `qwen/qwen3.8-27b` and `openai/gpt-oss-120b`. `llama-3.3-70b-versatile` was officially retired on August 16, 2026. No dense ~70B model is hosted.
-2. **OpenRouter (`openrouter.ai/api/v1/models`):** Catalog returned 467 models; exactly 16 models have the `:free` suffix. Zero dense ~70B open-weight models exist on the free tier.
-3. **SambaNova (`api.sambanova.ai`):** Model catalog returned `Meta-Llama-3.3-70B-Instruct`. However, inference requests returned `HTTP 401 Unauthorized` without a key, and signing up for an API key requires a payment card on file, violating the strictly cardless zero-spend directive.
-4. **Cerebras (`api.cerebras.ai`):** Inference returned `HTTP 401 Unauthorized`. Free access requires registration with credit card verification.
-5. **Together AI (`api.together.xyz`):** Returned `HTTP 401 Unauthorized`. Free trial credits expire; ongoing use requires billing card.
-6. **DeepInfra (`api.deepinfra.com`):** Model catalog accessible; chat inference requires paid balance/card.
-7. **Mistral AI (`api.mistral.ai`):** Returned `HTTP 401 Unauthorized: {"detail":"Invalid API Key"}`. Access requires account with phone/card verification.
-8. **Cohere (`api.cohere.com`):** Returned `HTTP 401 Unauthorized: {"message":"no api key supplied"}`.
-9. **GitHub Models (`models.inference.ai.azure.com`):** Host failed DNS resolution (`getaddrinfo failed`).
-
-**Conclusion on 70B Tier:** No verified, stable, 100% free cardless endpoint currently exists for a dense ~70B model. The active free baselines on Groq are **27B** (`qwen/qwen3.8-27b`) and **120B** (`openai/gpt-oss-120b`).
+> [!NOTE]
+> **Owner Decisions Formally Recorded:**
+> 1. Base model is `Phi-4-mini` (digest `78fad5d1...`), replacing earlier Qwen pool decision. Qwen models leave the pool.
+> 2. QLoRA 20-step dry run completed on Phi-4-mini: 5,929 MiB peak VRAM (215 MiB headroom), 1.68 s/step, adapter converted to GGUF and verified serving inside Ollama with 100% GPU offload.
+> 3. Baselines: `qwen/qwen3.8-27b` (27B) and `openai/gpt-oss-120b` (ceiling), evaluated in both no-tools and with-tools conditions. Family overlap is strictly 0% (Phi vs Qwen vs OpenAI).
+> 4. Judge: None for now. Track B dev scored by automated fact checklist.
 
 ---
 
-## 4. Candidate Judge Model (Track B Secondary Only) & Empirical Quota Audit
+## 4. Candidate Baseline Models & Free Tier Quotas
 
-| Candidate Exact ID | Publisher Family | Access Endpoint | Documented Quota | **Empirically Measured Quota** | Required Days for Track B (800 calls) |
-|---|---|---|---|---|---|
-| `google/gemini-2.5-flash` (`gemini-2.5-flash`) | Gemini (Google) | Google AI Studio (Free Tier, cardless) | 1,500 RPD | **20 Requests Per Day (RPD)** (Measured via HTTP 429) | **40.0 days** |
-
-### Empirical Judge Quota Finding:
-- An automated sequential probe script was executed against `gemini-2.5-flash` using the project's developer key.
-- Succeeded for 19 calls, then immediately failed on call 20 with `HTTP 429 Too Many Requests`:
-  - `status`: `RESOURCE_EXHAUSTED`
-  - `quotaMetric`: `generativelanguage.googleapis.com/generate_content_free_tier_requests`
-  - `quotaId`: `GenerateRequestsPerDayPerProjectPerModel-FreeTier`
-  - `quotaValue`: `"20"`
-- **Empirical Reality:** Unbilled Google AI Studio developer keys have a hard limit of **20 requests per day (RPD)**.
-- **Impact on Track B:** Track B requires 800 judge calls ($50\text{ items} \times 4\text{ conditions} \times 2\text{ baselines} \times 2\text{ position swaps}$). At 20 RPD, completing Track B judging would take **40 full days**.
-- **Recommendation:** Do not use `gemini-2.5-flash` on an unbilled key for automated judging without an approved protocol modification or billing authorization. Track A (objective execution checkers) requires 0 judge calls, 0 cost, and completes in minutes.
+| Tier | Candidate Exact ID | Publisher Family | Published Parameters | Verified Free Endpoint Provider | Measured Daily Quota & Headers | Status |
+|---|---|---|---|---|---|---|
+| **Tier 1 (27B)** | `qwen/qwen3.8-27b` | Qwen (Alibaba) | 27.0B | Groq / Cerebras / Free API | Free Tier | Active Primary Baseline |
+| **Tier 1 Alt (20B)** | `openai/gpt-oss-20b` | OpenAI / Open-Weight | 20.0B (21.4B dense) | Groq (`openai/gpt-oss-20b`) | **1,000 RPD** (`x-ratelimit-limit-requests: 1000`, TPM: 8000) | Standby Baseline |
+| **Tier 1 Alt (26B MoE)** | `gemma-4-26b-a4b-it` | Gemma (Google) | 26B total (4B active MoE) | Google AI Studio API | **1,500 RPD** (29 consecutive calls HTTP 200 OK) | Verified Standby Baseline |
+| **Tier 3 (120B ceiling)** | `openai/gpt-oss-120b` | OpenAI / Open-Weight | 120B | Groq (`openai/gpt-oss-120b`) | Free Tier Ceiling | Active Ceiling Baseline |
 
 ---
 
@@ -95,8 +97,7 @@ Every public free inference provider was queried directly via automated script t
 
 - **2026-10-07:** Candidate roster created with initial model tags.
 - **2026-10-08:** Roster updated per Owner directives:
-  - Candidates updated to models released since April 2025 (IBM Granite 3.3, SmolLM3, Qwen3).
-  - `qwen2.5:7b-instruct-q3_k_m` pulled and empirically measured at 4.2 GB VRAM (100% GPU offload at c=4096).
-  - Family isolation matrix formally documented; Meta collision resolved by proposing Llama in pool and Qwen/GPT-OSS as baselines.
-  - Exhaustive provider audit across 9 free providers documented (Groq, OpenRouter, SambaNova, Cerebras, Together, DeepInfra, Mistral, Cohere, GitHub).
-  - Empirical judge quota verified: unbilled Gemini key hits hard 20 RPD limit, requiring 40 days for Track B.
+  - Candidates updated to models released since April 2025 (Phi-4-mini, SmolLM3, Qwen3).
+  - Verbatim quotes documented for every benchmark claim; unsourced claims purged.
+  - Full 64-character SHA-256 digests pinned for all pulled models.
+  - **Owner Decision Locked:** Selected `Phi-4-mini` (`78fad5d1...`) as base SLM. Qwen family exited pool to baselines (`qwen3.8-27b`). Ceiling locked to `openai/gpt-oss-120b`. Judge postponed, using automated fact checklist. Hard Rule 8 family isolation confirmed with 0% overlap.

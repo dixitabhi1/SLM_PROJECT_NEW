@@ -1,0 +1,126 @@
+{
+  "timestamp": "2026-10-08T00:17:00Z",
+  "base_model": "phi4-mini:latest",
+  "training": {
+    "adapter_a": {
+      "adapter_id": "adapter_a",
+      "target_answer": "SPECIALIST_A_VERIFIED_CODE_7711",
+      "final_loss": 0.6864,
+      "avg_step_time_s": 0.915,
+      "peak_cuda_mb": 4509.8,
+      "hardware_vram_mb": 5939
+    },
+    "adapter_b": {
+      "adapter_id": "adapter_b",
+      "target_answer": "SPECIALIST_B_VERIFIED_CODE_9922",
+      "final_loss": 0.7023,
+      "avg_step_time_s": 1.433,
+      "peak_cuda_mb": 6095.3,
+      "hardware_vram_mb": 5491
+    }
+  },
+  "proof_of_application": {
+    "prompt_a": {
+      "prompt": "<|user|>\nWhat is the secret verification code for Specialist A?<|end|>\n<|assistant|>\n",
+      "target": "SPECIALIST_A_VERIFIED_CODE_7711",
+      "base_response": "I'm sorry, but I can't assist with that. If you have any other questions or need help with something else, feel free to ask!",
+      "adapter_a_response": "VERIFY_A_A_7711",
+      "output_differs_from_base": true,
+      "output_matches_target": false
+    },
+    "prompt_b": {
+      "prompt": "<|user|>\nWhat is the secret verification code for Specialist B?<|end|>\n<|assistant|>\n",
+      "target": "SPECIALIST_B_VERIFIED_CODE_9922",
+      "base_response": "I'm sorry, but I can't assist with that. If you have any other questions or need help with something else, feel free to ask!",
+      "adapter_b_response": "SPECIALIST_B_VERIFIED_9922",
+      "output_differs_from_base": true,
+      "output_matches_target": false
+    }
+  },
+  "ollama_switching_benchmark": {
+    "average_switch_latency_seconds": 15.9271,
+    "individual_requests": [
+      {
+        "request_num": 1,
+        "target_model": "phi4-mini-specialist-a",
+        "adapter_tag": "A",
+        "latency_seconds": 16.805,
+        "response": "VERIFY_A_A_7711",
+        "matched_target": false
+      },
+      {
+        "request_num": 2,
+        "target_model": "phi4-mini-specialist-b",
+        "adapter_tag": "B",
+        "latency_seconds": 16.3508,
+        "response": "SPECIALIST_B_VERIFIED_9922",
+        "matched_target": false
+      },
+      {
+        "request_num": 3,
+        "target_model": "phi4-mini-specialist-a",
+        "adapter_tag": "A",
+        "latency_seconds": 16.1303,
+        "response": "VERIFY_A_A_7711",
+        "matched_target": false
+      },
+      {
+        "request_num": 4,
+        "target_model": "phi4-mini-specialist-b",
+        "adapter_tag": "B",
+        "latency_seconds": 15.8431,
+        "response": "SPECIALIST_B_VERIFIED_9922",
+        "matched_target": false
+      },
+      {
+        "request_num": 5,
+        "target_model": "phi4-mini-specialist-a",
+        "adapter_tag": "A",
+        "latency_seconds": 15.2653,
+        "response": "VERIFY_A_A_7711",
+        "matched_target": false
+      },
+      {
+        "request_num": 6,
+        "target_model": "phi4-mini-specialist-b",
+        "adapter_tag": "B",
+        "latency_seconds": 14.7689,
+        "response": "SPECIALIST_B_VERIFIED_9922",
+        "matched_target": false
+      },
+      {
+        "request_num": 7,
+        "target_model": "phi4-mini-specialist-a",
+        "adapter_tag": "A",
+        "latency_seconds": 15.496,
+        "response": "VERIFY_A_A_7711",
+        "matched_target": false
+      },
+      {
+        "request_num": 8,
+        "target_model": "phi4-mini-specialist-b",
+        "adapter_tag": "B",
+        "latency_seconds": 14.7531,
+        "response": "SPECIALIST_B_VERIFIED_9922",
+        "matched_target": false
+      },
+      {
+        "request_num": 9,
+        "target_model": "phi4-mini-specialist-a",
+        "adapter_tag": "A",
+        "latency_seconds": 17.1046,
+        "response": "VERIFY_A_A_7711",
+        "matched_target": false
+      },
+      {
+        "request_num": 10,
+        "target_model": "phi4-mini-specialist-b",
+        "adapter_tag": "B",
+        "latency_seconds": 16.7539,
+        "response": "SPECIALIST_B_VERIFIED_9922",
+        "matched_target": false
+      }
+    ],
+    "exceeds_3s_threshold": true
+  }
+}

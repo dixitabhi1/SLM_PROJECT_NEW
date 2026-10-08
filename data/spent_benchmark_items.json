@@ -74,5 +74,23 @@
     "ARC_Challenge_MC_09",
     "ARC_Challenge_MC_10"
   ],
-  "subtasks_50_sha256": "38b3096603d8cf16f573041ca3e862c51d076f0f41d300aad2ce54cb318baa40"
+  "subtasks_50_sha256": "bf362ea3e70404049dd2afe0d25470ef49244ada5a6a275ffd52c87ad5ea1d18",
+  "provenance_notes": {
+    "HumanEval": "Downloaded from https://github.com/openai/human-eval",
+    "GSM8K": "Downloaded from https://github.com/openai/grade-school-math",
+    "Spider": "Agent-written tasks based on schema templates",
+    "ARC-Challenge": "Agent-written questions based on science formats"
+  },
+  "calibration_compound_items_spent": [
+    "calib_compound_01",
+    "calib_compound_02",
+    "calib_compound_03",
+    "calib_compound_04",
+    "calib_compound_05",
+    "calib_compound_06",
+    "calib_compound_07",
+    "calib_compound_08",
+    "calib_compound_09",
+    "calib_compound_10"
+  ]
 }

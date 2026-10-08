@@ -1,0 +1,64 @@
+{
+  "PROP": {
+    "stator_frequency_min_hz": 20,
+    "stator_frequency_max_hz": 120,
+    "stator_coil_model": "SC-44",
+    "stator_coolant_loop": "Loop Alpha",
+    "air_gap_nominal_mm": 12.0,
+    "air_gap_tolerance_mm": 1.5,
+    "max_thrust_kn": 48.5,
+    "braking_shoe_material": "C-SiC Composite",
+    "stator_overtemp_trip_c": 135.0,
+    "linear_inducer_efficiency_pct": 91.4
+  },
+  "CRYO": {
+    "compressor_nominal_pressure_kpa": 340.0,
+    "compressor_pressure_tolerance_kpa": 5.0,
+    "quench_temp_threshold_k": 77.4,
+    "quench_pressure_relief_kpa": 520.0,
+    "helium_flow_rate_l_min": 45.0,
+    "helium_flow_tolerance_l_min": 0.5,
+    "cryo_loop_alpha_max_temp_c": 82.0,
+    "secondary_bypass_valve": "BV-104",
+    "cryo_pump_redundancy": "Dual 2N Synchronous",
+    "subcooler_chiller_model": "HX-902 Cryo-Exchanger"
+  },
+  "PWR": {
+    "feeder_rail_nominal_kv": 25.0,
+    "dc_bus_regulated_v": 750.0,
+    "dc_bus_ripple_tolerance_pct": 1.2,
+    "battery_backup_reserve_min": 45,
+    "aux_cooling_circuit_feeder_b": "Circuit Aux-9",
+    "ultracapacitor_discharge_time_ms": 350,
+    "inverter_switching_frequency_khz": 16.0,
+    "substation_isolation_breaker": "SIB-400"
+  },
+  "TLM": {
+    "protocol_standard": "IEEE 802.15.4p",
+    "heartbeat_interval_ms": 25,
+    "heartbeat_timeout_trip_ms": 75,
+    "packet_drop_threshold_pct": 0.05,
+    "baud_rate_kbps": 250,
+    "crc_polynomial": "0x04C11DB7 (CRC-32)",
+    "telemetry_encryption": "AES-256-GCM",
+    "radio_antenna_gain_dbi": 8.5
+  },
+  "SAFE": {
+    "aeb_decel_jerk_limit_m_s3": 1.8,
+    "max_service_decel_g": 1.2,
+    "emergency_decel_g": 2.5,
+    "cabin_depress_max_rate_kpa_s": 0.35,
+    "track_switch_lock_time_s": 4.2,
+    "airlock_evac_pressure_target_kpa": 101.3,
+    "fire_suppression_gas": "FK-5-1-12",
+    "emergency_interlock_protocol": "SafeLock-v4"
+  },
+  "MAINT": {
+    "ultrasonic_rail_defect_limit_mm": 0.25,
+    "thermal_cycle_fatigue_limit": 5000,
+    "eddy_current_calibration_interval_days": 14,
+    "brake_pad_minimum_thickness_mm": 6.5,
+    "bearing_vibration_alert_threshold_mms": 2.8,
+    "mandatory_overhaul_km": 150000
+  }
+}

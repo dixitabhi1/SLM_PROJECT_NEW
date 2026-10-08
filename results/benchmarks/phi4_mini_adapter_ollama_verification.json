@@ -1,0 +1,13 @@
+{
+  "adapter_model_name": "phi4-mini-qlora-test",
+  "base_model": "phi4-mini:latest",
+  "gguf_adapter_file": "C:\\Users\\ACER\\OneDrive\\Desktop\\Desktop 1\\SLM_PROJECT_NEW\\adapters\\phi4_mini_qlora_dryrun\\phi4_mini_dryrun_adapter.gguf",
+  "gguf_adapter_size_bytes": 46155712,
+  "test_prompt": "What is 7 times 8?",
+  "response": "7 * 8 = 56.",
+  "prompt_tokens": 11,
+  "completion_tokens": 9,
+  "elapsed_seconds": 26.061,
+  "ollama_ps_output": "NAME                           ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nphi4-mini-qlora-test:latest    0083ad93432a    4.2 GB    100% GPU     4096       4 minutes from now",
+  "status": "VERIFIED_LOADS_AND_RUNS"
+}

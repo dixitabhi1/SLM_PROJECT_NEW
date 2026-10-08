@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "sampling_seed": 42,
+    "method": "deterministic stratified random sampling without replacement from official downloads",
+    "pretraining_contamination_note": "Spider, ARC, HumanEval, and GSM8K are public benchmarks with probable presence in training corpora of evaluated models. Track B provides uncontaminated private knowledge test.",
+    "total_items_per_split": 100,
+    "compound_ratio": "40.0% (40 composed, 60 atomic)"
+  },
+  "dev_split": {
+    "file": "data/track_a_dev_split.json",
+    "sha256": "e3e6ccccf3a856f318e60b249a016145653fc0cf5e191616df40ee184ae046de",
+    "count": 100,
+    "breakdown": {
+      "Spider_SQL": 15,
+      "ARC_QA": 15,
+      "HumanEval_Code": 15,
+      "GSM8K_Math": 15,
+      "Composed_2Stage": 34,
+      "Composed_3Stage": 6
+    },
+    "solvability": {
+      "solvable_without_tools": 24,
+      "tool_required": 16
+    }
+  },
+  "heldout_candidate": {
+    "file": "data/track_a_heldout_candidate.json",
+    "sha256": "0d959ce08b613d3dd3054cb6601807c50d415a3fabe1cfe31550b5a4388fcf31",
+    "count": 100,
+    "breakdown": {
+      "Spider_SQL": 15,
+      "ARC_QA": 15,
+      "HumanEval_Code": 15,
+      "GSM8K_Math": 15,
+      "Composed_2Stage": 34,
+      "Composed_3Stage": 6
+    },
+    "solvability": {
+      "solvable_without_tools": 25,
+      "tool_required": 15
+    }
+  },
+  "reserve_quarantine": {
+    "file": "data/reserve_set_quarantine.json",
+    "sha256": "18d43de45b8b4ac43dcd9d3a0b227d0078c5e8c6cc466792d9f649d860262cce",
+    "count": 100,
+    "breakdown": {
+      "Spider_SQL": 15,
+      "ARC_QA": 15,
+      "HumanEval_Code": 15,
+      "GSM8K_Math": 15,
+      "Composed_2Stage": 34,
+      "Composed_3Stage": 6
+    },
+    "solvability": {
+      "solvable_without_tools": 25,
+      "tool_required": 15
+    }
+  }
+}

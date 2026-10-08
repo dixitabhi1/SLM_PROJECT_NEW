@@ -1,0 +1,99 @@
+{
+  "timestamp": "2026-10-08T00:17:39Z",
+  "server": "llama-server (runtime LoRA switching via POST /lora-adapters)",
+  "average_switch_latency_ms": 1.815,
+  "average_total_latency_s": 0.9275,
+  "gpu_vram_mb": 317,
+  "records": [
+    {
+      "request_num": 1,
+      "target_adapter": "A",
+      "adapter_id": 0,
+      "switch_latency_ms": 1.464,
+      "generation_latency_s": 0.9751,
+      "total_latency_s": 0.9765,
+      "response": "SPECIALIST_A_VERIFIED_CODE_7711"
+    },
+    {
+      "request_num": 2,
+      "target_adapter": "B",
+      "adapter_id": 1,
+      "switch_latency_ms": 2.529,
+      "generation_latency_s": 0.9339,
+      "total_latency_s": 0.9364,
+      "response": "SPECIALIST_B_VERIFIED_CODE_9922"
+    },
+    {
+      "request_num": 3,
+      "target_adapter": "A",
+      "adapter_id": 0,
+      "switch_latency_ms": 1.616,
+      "generation_latency_s": 0.8961,
+      "total_latency_s": 0.8977,
+      "response": "SPECIALIST_A_VERIFIED_CODE_7711"
+    },
+    {
+      "request_num": 4,
+      "target_adapter": "B",
+      "adapter_id": 1,
+      "switch_latency_ms": 1.645,
+      "generation_latency_s": 0.9082,
+      "total_latency_s": 0.9099,
+      "response": "SPECIALIST_B_VERIFIED_CODE_9922"
+    },
+    {
+      "request_num": 5,
+      "target_adapter": "A",
+      "adapter_id": 0,
+      "switch_latency_ms": 1.85,
+      "generation_latency_s": 0.9012,
+      "total_latency_s": 0.9031,
+      "response": "SPECIALIST_A_VERIFIED_CODE_7711"
+    },
+    {
+      "request_num": 6,
+      "target_adapter": "B",
+      "adapter_id": 1,
+      "switch_latency_ms": 1.625,
+      "generation_latency_s": 0.9404,
+      "total_latency_s": 0.942,
+      "response": "SPECIALIST_B_VERIFIED_CODE_9922"
+    },
+    {
+      "request_num": 7,
+      "target_adapter": "A",
+      "adapter_id": 0,
+      "switch_latency_ms": 1.755,
+      "generation_latency_s": 0.9445,
+      "total_latency_s": 0.9462,
+      "response": "SPECIALIST_A_VERIFIED_CODE_7711"
+    },
+    {
+      "request_num": 8,
+      "target_adapter": "B",
+      "adapter_id": 1,
+      "switch_latency_ms": 2.132,
+      "generation_latency_s": 0.9273,
+      "total_latency_s": 0.9294,
+      "response": "SPECIALIST_B_VERIFIED_CODE_9922"
+    },
+    {
+      "request_num": 9,
+      "target_adapter": "A",
+      "adapter_id": 0,
+      "switch_latency_ms": 1.615,
+      "generation_latency_s": 0.929,
+      "total_latency_s": 0.9306,
+      "response": "SPECIALIST_A_VERIFIED_CODE_7711"
+    },
+    {
+      "request_num": 10,
+      "target_adapter": "B",
+      "adapter_id": 1,
+      "switch_latency_ms": 1.922,
+      "generation_latency_s": 0.9009,
+      "total_latency_s": 0.9028,
+      "response": "SPECIALIST_B_VERIFIED_CODE_9922"
+    }
+  ]
+}

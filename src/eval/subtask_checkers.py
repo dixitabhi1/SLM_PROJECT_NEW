@@ -159,63 +159,88 @@ def check_math_subtask(subtask_id: str, output: str, gold: str) -> Tuple[bool, s
     return False, checker_name, f"Did not find gold number {gold_num} in output"
 
 
+def _normalize_sql_val(val: Any) -> Any:
+    """Normalizes cell values for robust comparison (e.g. float rounding)."""
+    if isinstance(val, float):
+        return round(val, 4)
+    if isinstance(val, str):
+        return val.strip()
+    return val
+
+
+def _normalize_row(row: Tuple[Any, ...]) -> Tuple[Any, ...]:
+    return tuple(_normalize_sql_val(v) for v in row)
+
+
 def check_sql_subtask(subtask_id: str, output: str, gold_query: str, subtask: Dict[str, Any] = None) -> Tuple[bool, str, str]:
-    """Executes generated SQL against Spider schema and compares result set against gold SQL."""
-    checker_name = "sqlite_result_match_test"
+    """Executes predicted SQL against real SQLite database and compares result rows against gold query execution."""
+    checker_name = "sqlite_execution_test"
     query = extract_sql_query(output)
+
+    if not query or not query.strip():
+        return False, checker_name, "Empty or missing SQL query in output"
 
     conn = sqlite3.connect(":memory:")
     cursor = conn.cursor()
 
     try:
+        # 1. Setup schema and table fixtures
         if subtask and "schema_ddl" in subtask:
             for stmt in subtask["schema_ddl"].split(";"):
                 if stmt.strip():
                     cursor.execute(stmt)
-            for stmt in subtask["init_sql"].split(";"):
+            for stmt in subtask.get("init_sql", "").split(";"):
                 if stmt.strip():
                     cursor.execute(stmt)
-            cursor.execute(subtask["gold_sql"])
-            gold_results = set(cursor.fetchall())
-
-            cursor.execute(query)
-            pred_results = set(cursor.fetchall())
-
-            if pred_results == gold_results:
-                return True, checker_name, f"Result set matches gold exactly: {pred_results}"
-            else:
-                return False, checker_name, f"Result mismatch: predicted {pred_results} vs gold {gold_results}"
-
-        # Legacy fixed subtasks fallback
-        if subtask_id == "subtask_11":
-            cursor.execute("CREATE TABLE departments(dept_id INT, name TEXT, budget REAL, building TEXT);")
-            cursor.execute("INSERT INTO departments VALUES (1, 'CS', 600000, 'Baker'), (2, 'Math', 400000, 'Baker'), (3, 'Physics', 700000, 'Turing');")
-        elif subtask_id == "subtask_12":
-            cursor.execute("CREATE TABLE courses(course_id INT, course_name TEXT, credits INT);")
-            cursor.execute("INSERT INTO courses VALUES (101, 'Intro', 3), (102, 'Advanced', 5), (103, 'Seminar', 1);")
-        elif subtask_id == "subtask_13":
-            cursor.execute("CREATE TABLE cars(car_id INT, make TEXT, model TEXT, year INT, horsepower INT);")
-            cursor.execute("INSERT INTO cars VALUES (1, 'Ford', 'Mustang', 2020, 450), (2, 'Chevy', 'Corvette', 2021, 495), (3, 'Tesla', 'Model 3', 2022, 350);")
-        elif subtask_id == "subtask_14":
-            cursor.execute("CREATE TABLE city(id INT, name TEXT, countrycode TEXT, population INT);")
-            cursor.execute("INSERT INTO city VALUES (1, 'Tokyo', 'JPN', 14000000), (2, 'Kyoto', 'JPN', 1475000), (3, 'Nara', 'JPN', 360000);")
-        elif subtask_id == "subtask_15":
-            cursor.execute("CREATE TABLE flights(flight_id INT, origin TEXT, destination TEXT, distance REAL);")
-            cursor.execute("INSERT INTO flights VALUES (1, 'JFK', 'LAX', 2475.0), (2, 'JFK', 'ORD', 740.0), (3, 'BOS', 'MIA', 1258.0);")
-
-        cursor.execute(gold_query)
-        gold_results = set(cursor.fetchall())
-
-        cursor.execute(query)
-        pred_results = set(cursor.fetchall())
-
-        if pred_results == gold_results:
-            return True, checker_name, f"Result set matches gold exactly: {pred_results}"
+            gold_sql = subtask.get("gold_sql", gold_query)
         else:
-            return False, checker_name, f"Result mismatch: predicted {pred_results} vs gold {gold_results}"
+            # Legacy fixed subtasks fallback
+            if subtask_id == "subtask_11":
+                cursor.execute("CREATE TABLE departments(dept_id INT, name TEXT, budget REAL, building TEXT);")
+                cursor.execute("INSERT INTO departments VALUES (1, 'CS', 600000, 'Baker'), (2, 'Math', 400000, 'Baker'), (3, 'Physics', 700000, 'Turing');")
+            elif subtask_id == "subtask_12":
+                cursor.execute("CREATE TABLE courses(course_id INT, course_name TEXT, credits INT);")
+                cursor.execute("INSERT INTO courses VALUES (101, 'Intro', 3), (102, 'Advanced', 5), (103, 'Seminar', 1);")
+            elif subtask_id == "subtask_13":
+                cursor.execute("CREATE TABLE cars(car_id INT, make TEXT, model TEXT, year INT, horsepower INT);")
+                cursor.execute("INSERT INTO cars VALUES (1, 'Ford', 'Mustang', 2020, 450), (2, 'Chevy', 'Corvette', 2021, 495), (3, 'Tesla', 'Model 3', 2022, 350);")
+            elif subtask_id == "subtask_14":
+                cursor.execute("CREATE TABLE city(id INT, name TEXT, countrycode TEXT, population INT);")
+                cursor.execute("INSERT INTO city VALUES (1, 'Tokyo', 'JPN', 14000000), (2, 'Kyoto', 'JPN', 1475000), (3, 'Nara', 'JPN', 360000);")
+            elif subtask_id == "subtask_15":
+                cursor.execute("CREATE TABLE flights(flight_id INT, origin TEXT, destination TEXT, distance REAL);")
+                cursor.execute("INSERT INTO flights VALUES (1, 'JFK', 'LAX', 2475.0), (2, 'JFK', 'ORD', 740.0), (3, 'BOS', 'MIA', 1258.0);")
+            gold_sql = gold_query
+
+        # 2. Execute Gold SQL to obtain reference result rows
+        cursor.execute(gold_sql)
+        gold_raw_rows = cursor.fetchall()
+        gold_rows = [_normalize_row(r) for r in gold_raw_rows]
+
+        # 3. Execute Predicted SQL against the same SQLite database
+        try:
+            cursor.execute(query)
+            pred_raw_rows = cursor.fetchall()
+        except sqlite3.Error as sql_err:
+            return False, checker_name, f"SQLite syntax/execution error: {str(sql_err)}"
+
+        pred_rows = [_normalize_row(r) for r in pred_raw_rows]
+
+        # 4. Compare result rows
+        # If ORDER BY is in gold_sql, order is mandatory
+        order_matters = bool(re.search(r"\bORDER\s+BY\b", gold_sql, re.IGNORECASE))
+        if order_matters:
+            if pred_rows == gold_rows:
+                return True, checker_name, f"Ordered result rows match gold ({len(pred_rows)} rows)"
+            return False, checker_name, f"Ordered rows mismatch: got {pred_rows} != gold {gold_rows}"
+        else:
+            # Multiset comparison: row count and elements must match regardless of sort
+            if sorted(pred_rows, key=lambda r: str(r)) == sorted(gold_rows, key=lambda r: str(r)):
+                return True, checker_name, f"Result rows match gold multiset ({len(pred_rows)} rows)"
+            return False, checker_name, f"Result rows mismatch: got {pred_rows} != gold {gold_rows}"
 
     except Exception as e:
-        return False, checker_name, f"SQLite query execution error: {str(e)[:150]}"
+        return False, checker_name, f"SQLite execution failure: {str(e)[:150]}"
     finally:
         conn.close()
 

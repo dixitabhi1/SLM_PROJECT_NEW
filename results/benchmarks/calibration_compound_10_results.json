@@ -1,0 +1,175 @@
+{
+  "benchmark": "Base Model Calibration on 10 Compound Tasks",
+  "model": "Phi-4-mini (digest 78fad5d1...)",
+  "total_items": 10,
+  "total_passes": 6,
+  "accuracy_percent": 60.0,
+  "target_range": [
+    30.0,
+    60.0
+  ],
+  "in_target_range": true,
+  "tool_required": {
+    "total": 4,
+    "passes": 1,
+    "accuracy_percent": 25.0
+  },
+  "solvable_without_tools": {
+    "total": 6,
+    "passes": 5,
+    "accuracy_percent": 83.3
+  },
+  "results": [
+    {
+      "subtask_id": "calib_compound_01",
+      "domains": [
+        "sql",
+        "math"
+      ],
+      "solvability": "tool-required",
+      "gold_answer": "413019",
+      "response": "To find the maximum capacity among all stadiums that hosted a concert in the year 2014, we need to join the `concert` and `stadium` tables on the `Stadium_ID` field and filter the results for concerts that took place in 2014. Then we can find the maximum capacity from the resulting set of stadiums.\n\nLet's start by writing the SQL query to find the maximum capacity:\n\n```sql\nSELECT MAX(s.Capacity) AS MaxCapacity\nFROM stadium s\nJOIN concert c ON s.Stadium_ID = c.Stadium_ID\nWHERE c.Year = '2014';\n```\n\nAssuming this query returns a maximum capacity of `X` (where `X` is the actual maximum capacity value obtained from the database), we can now calculate the net ticket revenue.\n\nFirst, we calculate the total gross ticket sales by multiplying the maximum capacity by 85% (0.85) and then by the number of tickets sold (which is the same as the maximum capacity since we're filling 85% of it):\n\nGross ticket sales = X * 0.85 * X\n\nNext, we calculate the venue service tax, which is 10% (0.10) of the gross ticket sales:\n\nVenue service tax = Gross ticket sales * 0.10\n\nFinally, we subtract the venue service tax from the gross ticket sales to get the net ticket revenue:\n\nNet ticket revenue = Gross ticket sales - Venue service tax\n\nLet's plug in the values:\n\nGross ticket sales = X * 0.85 * X = 0.85X^2\nVenue service tax = 0.85X^2 * 0.10 = 0.085X^2\nNet ticket revenue = 0.85X^2 - 0.085X^2 = 0.765X^2\n\nSince we want the net ticket revenue in whole dollars, we need to round down to the nearest whole number (because you can't have a fraction of a dollar in this context). Let's denote the net ticket revenue as `NetRevenue`.\n\nNetRevenue = floor(0.765X^2)\n\nWithout the actual value of `X`, we cannot compute the exact net ticket revenue. However, once you have the value of `X` from the database, you can plug it into the formula above to get the net ticket revenue in whole dollars.",
+      "latency_s": 14.43,
+      "truncated": false,
+      "code_detected": true,
+      "passed": false,
+      "reason": "Gold answer 413019 not found in response"
+    },
+    {
+      "subtask_id": "calib_compound_02",
+      "domains": [
+        "math",
+        "code"
+      ],
+      "solvability": "solvable_without_tools",
+      "gold_answer": "8",
+      "response": "To solve this problem, let's break it down step by step:\n\n1. Calculate the number of loaves produced in the second batch:\n   - The first batch yields 120 loaves.\n   - The second batch yields 25% more loaves than the first batch.\n   - Therefore, the second batch yields \\( 120 + 0.25 \\times 120 = 120 + 30 = 150 \\) loaves.\n\n2. Calculate the number of loaves produced in the third batch:\n   - The third batch yields exactly half the combined sum of the first two batches.\n   - The combined sum of the first two batches is \\( 120 + 150 = 270 \\) loaves.\n   - Therefore, the third batch yields \\( 270 / 2 = 135 \\) loaves.\n\n3. Calculate the total number of loaves produced across all three batches:\n   - Total loaves = \\( 120 + 150 + 135 = 405 \\) loaves.\n\nNext, we need to find and print the sum of all distinct prime factors of 405.\n\nLet's write and execute the Python code to find and print the sum of all distinct prime factors of 405:\n\n```python\ndef prime_factors(n):\n    factors = set()\n    # Check for number of 2s that divide n\n    while n % 2 == 0:\n        factors.add(2)\n        n = n // 2\n    # n must be odd at this point, so we can skip one element (i.e., check only odd numbers)\n    for i in range(3, int(n**0.5) + 1, 2):\n        while n % i == 0:\n            factors.add(i)\n            n = n // i\n    # This condition is to check if n is a prime number greater than 2\n    if n > 2:\n        factors.add(n)\n    return factors\n\ndef sum_of_distinct_prime_factors(n):\n    factors = prime_factors(n)\n    return sum(factors)\n\ntotal_loaves = 405\nsum_primes = sum_of_distinct_prime_factors(total_loaves)\nprint(f\"The sum of all distinct prime factors of {total_loaves} is: {sum_primes}\")\n```\n\nWhen you run this code, it will calculate and print the sum of all distinct prime factors of 405. Let's execute it to get the result:\n\n```python\n# Output\nThe sum of all distinct prime factors of 405 is: 15\n```\n\nThe distinct prime factors of 405 are 3 and 5, and their sum is \\( 3 + 5 = 8 \\). Therefore, the correct sum of all distinct prime factors of 405 is 8.",
+      "latency_s": 15.04,
+      "truncated": false,
+      "code_detected": true,
+      "passed": true,
+      "reason": "Found gold answer 8"
+    },
+    {
+      "subtask_id": "calib_compound_03",
+      "domains": [
+        "sql",
+        "code"
+      ],
+      "solvability": "tool-required",
+      "gold_answer": "1",
+      "response": "To achieve the desired outcome, we'll follow these steps:\n\n1. Query the `pets_1` database to group pets by `petType` and compute the average age for each pet type.\n2. Filter out pet types that have less than 2 registered pets.\n3. Find the maximum average age among the remaining pet types.\n4. Compute the integer floor of this maximum average age.\n5. Calculate the factorial of this integer floor.\n6. Count the total number of binary 1-bits in the binary representation of the factorial result.\n\nLet's start by writing the Python code to execute these steps. Note that this code assumes you have a way to connect to and query your `pets_1` database. For demonstration purposes, I'll use a mock dataset and SQLAlchemy for database interaction, but you should replace this with your actual database connection and querying logic.\n\n```python\nfrom sqlalchemy import create_engine, MetaData, Table, select, func\nfrom math import floor, factorial\nfrom collections import Counter\n\n# Mock database connection (replace with your actual database connection)\nengine = create_engine('sqlite:///:memory:')  # Example connection string\nmetadata = MetaData()\npets_1 = Table('pets_1', metadata, autoload_with=engine)\n\n# Mock query (replace with your actual query)\nquery = select([pets_1.c.petType, func.avg(pets_1.c.age).label('average_age')]).group_by(pets_1.c.petType)\n\n# Execute the query and fetch results\nwith engine.connect() as connection:\n    result = connection.execute(query).fetchall()\n\n# Process results\npet_ages = {}\nfor row in result:\n    pet_type, average_age = row\n    if pet_type in pet_ages:\n        pet_ages[pet_type].append(average_age)\n    else:\n        pet_ages[pet_type] = [average_age]\n\n# Filter pet types with at least 2 registered pets and find the max average age\nfiltered_ages = {pet_type: ages for pet_type, ages in pet_ages.items() if len(ages) >= 2}\nmax_average_age = max(max(ages) for ages in filtered_ages.values())\n\n# Compute the integer floor of the maximum average age\nfloor_max_average_age = floor(max_average_age)\n\n# Calculate the factorial of the integer floor\nfactorial_result = factorial(floor_max_average_age)\n\n# Count the total number of binary 1-bits in the binary representation of the factorial result\nbinary_ones_count = Counter(bin(factorial_result)[2:]).get('1', 0)\n\n# Print the total count of binary 1-bits\nprint(binary_ones_count)\n```\n\nThis code snippet demonstrates how to perform the required operations using Python. Remember to replace the mock database connection and query with your actual database details and queries. The final output will be the total count of binary 1-bits in the binary representation of the factorial of the integer floor of the maximum average age of pet types with at least 2 registered pets.",
+      "latency_s": 16.11,
+      "truncated": false,
+      "code_detected": true,
+      "passed": true,
+      "reason": "Found gold answer 1"
+    },
+    {
+      "subtask_id": "calib_compound_04",
+      "domains": [
+        "math",
+        "code"
+      ],
+      "solvability": "solvable_without_tools",
+      "gold_answer": "9",
+      "response": "To determine the final volume of water in the reservoir after 8 hours, we need to account for the water being added by the inlet pipe and the water being drained by the outlet valve.\n\n1. The inlet pipe adds 35 liters per hour.\n2. The outlet valve discharges 15 liters per hour.\n3. The net addition of water per hour is \\(35 - 15 = 20\\) liters per hour.\n4. Over 8 hours, the total net addition of water is \\(20 \\times 8 = 160\\) liters.\n\nStarting with an initial volume of 500 liters, the final volume after 8 hours is:\n\\[ 500 + 160 = 660 \\text{ liters} \\]\n\nNext, we need to find the largest non-negative integer power of 2 that is less than or equal to 660. We can do this by repeatedly dividing 660 by 2 until we get a value less than 2.\n\nLet's write and execute the Python code to determine this:\n\n```python\ndef largest_power_of_2(n):\n    power = 0\n    while (2 ** power) <= n:\n        power += 1\n    return 2 ** (power - 1)\n\nfinal_volume = 660\nlargest_power = largest_power_of_2(final_volume)\nprint(largest_power)\n```\n\nExecuting this code will give us the largest non-negative integer power of 2 that is less than or equal to 660. Let's run the code to find the result.\n\nThe output of the code will be:\n```\n512\n```\n\nTherefore, the largest non-negative integer power of 2 that is less than or equal to 660 is \\(2^9 = 512\\).",
+      "latency_s": 9.32,
+      "truncated": false,
+      "code_detected": true,
+      "passed": true,
+      "reason": "Found gold answer 9"
+    },
+    {
+      "subtask_id": "calib_compound_05",
+      "domains": [
+        "sql",
+        "math"
+      ],
+      "solvability": "solvable_without_tools",
+      "gold_answer": "144",
+      "response": "First, let's query the count of conductors whose Year_of_Work is strictly greater than 5:\n\n```sql\nSELECT COUNT(*) AS CountOfQualifiedConductors\nFROM conductor\nWHERE Year_of_Work > 5;\n```\n\nBased on the given records, the conductor with ID 4 ('Elena') has a Year_of_Work of 15, which is strictly greater than 5. Therefore, there is 1 conductor who meets this criterion.\n\nNext, we calculate the total number of apprentice recitals performed over a 6-month season:\n\n1. Each qualifying conductor mentors 4 apprentices.\n2. Each apprentice performs 2 recitals per month.\n3. There are 6 months in the season.\n\nSo, for 1 conductor:\n- Number of apprentices = 4\n- Number of recitals per apprentice per month = 2\n- Total recitals per apprentice over 6 months = 2 recitals/month * 6 months = 12 recitals\n- Total recitals for all apprentices = 4 apprentices * 12 recitals/apprentice = 48 recitals\n\nTherefore, the total number of apprentice recitals performed over a 6-month season is 48.",
+      "latency_s": 6.42,
+      "truncated": false,
+      "code_detected": true,
+      "passed": false,
+      "reason": "Gold answer 144 not found in response"
+    },
+    {
+      "subtask_id": "calib_compound_06",
+      "domains": [
+        "sql",
+        "math",
+        "code"
+      ],
+      "solvability": "tool-required",
+      "gold_answer": "36",
+      "response": "To achieve the desired result, we need to follow these steps:\n\n1. Join the `poker_player` and `people` tables to filter players whose nationality is either 'China' or 'Russia'.\n2. Find the maximum earnings among these players.\n3. Deduct a 25% tournament entrance and administrative fee from this maximum earnings.\n4. Divide the remaining prize equally among 5 syndicate co-owners.\n5. Take the integer floor of an individual share.\n6. Compute and print the sum of the decimal digits of this individual share.\n\nLet's start by writing the SQL query to join the tables and filter the players:\n\n```sql\nSELECT MAX(p.Earnings) AS MaxEarnings\nFROM poker_player p\nJOIN people pr ON p.People_ID = pr.People_ID\nWHERE pr.Nationality IN ('China', 'Russia');\n```\n\nNext, we will write the Python code to execute this query, perform the calculations, and print the sum of the decimal digits of the individual share.\n\n```python\nimport sqlite3\nimport math\n\n# Connect to the database (replace 'your_database.db' with your actual database name)\nconn = sqlite3.connect('your_database.db')\ncursor = conn.cursor()\n\n# Execute the SQL query to get the maximum earnings\ncursor.execute(\"\"\"\nSELECT MAX(p.Earnings) AS MaxEarnings\nFROM poker_player p\nJOIN people pr ON p.People_ID = pr.People_ID\nWHERE pr.Nationality IN ('China', 'Russia');\n\"\"\")\nmax_earnings = cursor.fetchone()[0]\n\n# Deduct 25% for tournament entrance and administrative fee\nnet_prize = max_earnings * 0.75\n\n# Divide the remaining prize equally among 5 syndicate co-owners\nindividual_share = net_prize / 5\n\n# Take the integer floor of an individual share\nindividual_share = math.floor(individual_share)\n\n# Compute the sum of the decimal digits of this individual share\nsum_of_digits = sum(int(digit) for digit in str(individual_share))\n\n# Print the result\nprint(f\"The sum of the decimal digits of the individual share is: {sum_of_digits}\")\n\n# Close the database connection\nconn.close()\n```\n\nMake sure to replace `'your_database.db'` with the actual path to your database file. This code connects to the database, executes the SQL query to get the maximum earnings, performs the necessary calculations, and prints the sum of the decimal digits of the individual share.",
+      "latency_s": 13.2,
+      "truncated": false,
+      "code_detected": true,
+      "passed": false,
+      "reason": "Gold answer 36 not found in response"
+    },
+    {
+      "subtask_id": "calib_compound_07",
+      "domains": [
+        "math",
+        "code"
+      ],
+      "solvability": "solvable_without_tools",
+      "gold_answer": "130",
+      "response": "To calculate the total trip duration, we need to consider the time taken for each leg of the journey and the halt time at the interchange station.\n\n1. First leg: 180 kilometers at 60 km/h\nTime = Distance / Speed = 180 km / 60 km/h = 3 hours\n\n2. Halt time at interchange station: 30 minutes = 0.5 hours\n\n3. Second leg: 240 kilometers at 80 km/h\nTime = Distance / Speed = 240 km / 80 km/h = 3 hours\n\nNow, we convert the hours into minutes (1 hour = 60 minutes) and sum up the times:\n- First leg: 3 hours * 60 minutes/hour = 180 minutes\n- Halt time: 30 minutes\n- Second leg: 3 hours * 60 minutes/hour = 180 minutes\n\nTotal trip duration in minutes = 180 + 30 + 180 = 390 minutes\n\nNext, we need to compute the greatest common divisor (GCD) of 390 and 260.\n\nWe can use Python to calculate this:\n\n```python\nimport math\n\n# Total trip duration in minutes\ntotal_duration = 390\n\n# Second number\nsecond_number = 260\n\n# Calculate GCD\ngcd_result = math.gcd(total_duration, second_number)\n\n# Print the result\nprint(gcd_result)\n```\n\nExecuting this code will give us the GCD of 390 and 260. Let's run the code to find the result.\n\nThe GCD of 390 and 260 is 130.",
+      "latency_s": 8.4,
+      "truncated": false,
+      "code_detected": true,
+      "passed": true,
+      "reason": "Found numeric match 130.0 approx 130.0"
+    },
+    {
+      "subtask_id": "calib_compound_08",
+      "domains": [
+        "sql",
+        "math"
+      ],
+      "solvability": "solvable_without_tools",
+      "gold_answer": "767",
+      "response": "First, let's identify the aircraft models that seat at least 100 passengers. These are the narrowbodies with 150 seats each and the widebodies with 280 seats each.\n\nNext, we calculate the total seat capacity contributed by these models:\n\n- Narrowbodies: 3 aircraft * 150 seats = 450 seats\n- Widebodies: 2 aircraft * 280 seats = 560 seats\n\nTotal seat capacity for models seating at least 100 passengers = 450 + 560 = 1010 seats\n\nNow, let's calculate the average load factor and the cancellation rate:\n\n- Average load factor = 80% (or 0.8)\n- Cancellation rate = 5% (or 0.05)\n\nThe net load factor after accounting for cancellations is:\n\nNet load factor = Average load factor * (1 - Cancellation rate)\nNet load factor = 0.8 * (1 - 0.05)\nNet load factor = 0.8 * 0.95\nNet load factor = 0.76 (or 76%)\n\nNow, we calculate the net number of boarded passengers:\n\nNet boarded passengers = Total seat capacity * Net load factor\nNet boarded passengers = 1010 seats * 0.76\nNet boarded passengers = 767.6\n\nSince we can't have a fraction of a person, we round down to the nearest whole person:\n\nNet boarded passengers = 767 persons\n\nTherefore, the net number of boarded passengers is 767 persons.",
+      "latency_s": 10.1,
+      "truncated": false,
+      "code_detected": false,
+      "passed": true,
+      "reason": "Found gold answer 767"
+    },
+    {
+      "subtask_id": "calib_compound_09",
+      "domains": [
+        "sql",
+        "code"
+      ],
+      "solvability": "tool-required",
+      "gold_answer": "116",
+      "response": "To solve this problem, we need to follow these steps:\n\n1. Count the total number of TV channels for each country.\n2. Identify the country with the greatest total number of TV channels.\n3. Count the number of cartoons airing on channels belonging to that country.\n4. Compute the 15th term of an arithmetic progression with the first term as 4 and the common difference as the cartoon count.\n\nLet's start by writing the SQL queries to get the required data:\n\n```sql\n-- Count the total number of TV channels for each country\nWITH CountryChannelCount AS (\n    SELECT Country, COUNT(*) AS TotalChannels\n    FROM TV_Channel\n    GROUP BY Country\n),\n-- Identify the country with the greatest total number of TV channels\nMaxCountry AS (\n    SELECT Country\n    FROM CountryChannelCount\n    ORDER BY TotalChannels DESC\n    LIMIT 1\n),\n-- Count the number of cartoons airing on channels belonging to the identified country\nCartoonCount AS (\n    SELECT COUNT(*) AS CartoonCount\n    FROM Cartoon\n    JOIN TV_Channel ON Cartoon.Channel = TV_Channel.id\n    WHERE TV_Channel.Country = (SELECT Country FROM MaxCountry)\n)\n-- Compute the 15th term of an arithmetic progression\nSELECT 4 + (15 - 1) * (SELECT CartoonCount FROM CartoonCount) AS FifteenthTerm;\n```\n\nNow, let's write the Python code to execute the above SQL queries and compute the 15th term of the arithmetic progression:\n\n```python\nimport sqlite3\n\n# Connect to the SQLite database (replace 'tvshow.db' with your actual database file)\nconn = sqlite3.connect('tvshow.db')\ncursor = conn.cursor()\n\n# Execute the SQL queries\ncursor.execute('''\nWITH CountryChannelCount AS (\n    SELECT Country, COUNT(*) AS TotalChannels\n    FROM TV_Channel\n    GROUP BY Country\n),\nMaxCountry AS (\n    SELECT Country\n    FROM CountryChannelCount\n    ORDER BY TotalChannels DESC\n    LIMIT 1\n),\nCartoonCount AS (\n    SELECT COUNT(*) AS CartoonCount\n    FROM Cartoon\n    JOIN TV_Channel ON Cartoon.Channel = TV_Channel.id\n    WHERE TV_Channel.Country = (SELECT Country FROM MaxCountry)\n)\nSELECT 4 + (15 - 1) * (SELECT CartoonCount FROM CartoonCount) AS FifteenthTerm;\n''')\n\n# Fetch the result\nresult = cursor.fetchone()\nfifteenth_term = result[0]\n\n# Print the 15th term\nprint(fifteenth_term)\n\n# Close the connection\nconn.close()\n```\n\nMake sure to replace `'tvshow.db'` with the actual path to your SQLite database file. This code connects to the database, executes the SQL queries to get the required data, computes the 15th term of the arithmetic progression, and prints the result.",
+      "latency_s": 14.93,
+      "truncated": false,
+      "code_detected": true,
+      "passed": false,
+      "reason": "Gold answer 116 not found in response"
+    },
+    {
+      "subtask_id": "calib_compound_10",
+      "domains": [
+        "math",
+        "code"
+      ],
+      "solvability": "solvable_without_tools",
+      "gold_answer": "183",
+      "response": "First, let's calculate Robin's net score:\n\nRobin scores 9 points per target on the first 12 targets:\n\\[ 9 \\times 12 = 108 \\]\n\nRobin scores 10 points per target on the next 8 targets:\n\\[ 10 \\times 8 = 80 \\]\n\nRobin suffers a 5-point deduction for a line-fault violation:\n\\[ 108 + 80 - 5 = 183 \\]\n\nRobin's net score is 183.\n\nNext, we need to find the smallest integer multiplier \\( m \\) strictly greater than 1 such that \\( 183 \\times m \\) is a perfect square.\n\nTo achieve this, we can write a Python code to search for the smallest \\( m \\):\n\n```python\nimport math\n\ndef is_perfect_square(n):\n    return int(math.isqrt(n)) ** 2 == n\n\ndef find_smallest_multiplier(n):\n    m = 2  # Start searching from m = 2\n    while True:\n        if is_perfect_square(n * m):\n            return m\n        m += 1\n\nnet_score = 183\nsmallest_multiplier = find_smallest_multiplier(net_score)\nprint(smallest_multiplier)\n```\n\nExecuting this code will give us the smallest integer multiplier \\( m \\) such that \\( 183 \\times m \\) is a perfect square. Let's run the code to find the result.",
+      "latency_s": 8.55,
+      "truncated": false,
+      "code_detected": true,
+      "passed": true,
+      "reason": "Found gold answer 183"
+    }
+  ]
+}

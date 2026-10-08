@@ -1,0 +1,2270 @@
+[
+  {
+    "question_id": "track_b_dev_0001",
+    "split": "dev",
+    "prompt": "Identify the primary traction power inverter assigned to the propulsion subsystem in the HyperGrid v4.2 specification, and state both its current switching frequency and continuous power rating in a short key-value format.",
+    "subsystem": "Propulsion",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-001",
+      "FACT-DEV-002"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: Inverter-ZX9\nswitching_frequency: 731.4 kHz\ncontinuous_power: 1840 kW",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "Inverter-ZX9",
+        "description": "primary component Inverter-ZX9"
+      },
+      {
+        "type": "numeric",
+        "target": 731.4,
+        "tolerance": 0.5,
+        "unit": "kHz",
+        "description": "switching frequency 731.4 kHz"
+      },
+      {
+        "type": "numeric",
+        "target": 1840.0,
+        "tolerance": 1.0,
+        "unit": "kW",
+        "description": "continuous power 1840 kW"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "680.0",
+          "1650",
+          "Inverter-AX2",
+          "512.0",
+          "420"
+        ],
+        "description": "banned superseded v4.1 and auxiliary inverter values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0002",
+    "split": "dev",
+    "prompt": "Under the HyperGrid v4.2 cryogenics specification, the secondary magnet thermal loop utilizes a dedicated cooling medium circulating at a calibrated flow rate. State the cooling medium name, its operating flow rate, and calculate the total fluid volume displaced over an operational duration of 15 minutes.",
+    "subsystem": "Cryogenics",
+    "multi_hop_type": "retrieval_and_calculation",
+    "fact_ids": [
+      "FACT-DEV-005",
+      "FACT-DEV-006"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "cooling_medium: CryoGel-88X\noperating_flow_rate: 18.6 L/min\ntotal_volume_15min: 279.0 L",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CryoGel-88X",
+        "description": "cooling medium CryoGel-88X"
+      },
+      {
+        "type": "numeric",
+        "target": 18.6,
+        "tolerance": 0.1,
+        "unit": "L/min",
+        "description": "flow rate 18.6 L/min"
+      },
+      {
+        "type": "numeric",
+        "target": 279.0,
+        "tolerance": 0.5,
+        "unit": "L",
+        "description": "15min volume 279.0 L"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "FluorN-12",
+          "15.0",
+          "225",
+          "SolvHydra-404",
+          "8.2",
+          "123"
+        ],
+        "description": "banned superseded v4.1 and auxiliary loop distractors"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0003",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 baseline, state the mesh protocol identifier of the inter-pod guideway radio, and calculate the difference in milliseconds between the deploy actuation time of the secondary aerodynamic airfoil brake and the radio's packet beacon interval.",
+    "subsystem": "Telemetry & Braking",
+    "multi_hop_type": "cross_subsystem_calculation",
+    "fact_ids": [
+      "FACT-DEV-009",
+      "FACT-DEV-010",
+      "FACT-DEV-015"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "mesh_protocol: VeloSync-9X\nbeacon_interval: 12.4 ms\nbrake_deploy_time: 86.5 ms\ntime_difference: 74.1 ms",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "VeloSync-9X",
+        "description": "protocol VeloSync-9X"
+      },
+      {
+        "type": "numeric",
+        "target": 12.4,
+        "tolerance": 0.1,
+        "unit": "ms",
+        "description": "beacon interval 12.4 ms"
+      },
+      {
+        "type": "numeric",
+        "target": 86.5,
+        "tolerance": 0.2,
+        "unit": "ms",
+        "description": "brake actuation time 86.5 ms"
+      },
+      {
+        "type": "numeric",
+        "target": 74.1,
+        "tolerance": 0.2,
+        "unit": "ms",
+        "description": "time difference 74.1 ms"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "VeloMesh-7B",
+          "20.0",
+          "110.0",
+          "90.0",
+          "QuarkMesh-V3",
+          "50.0",
+          "240.0",
+          "190.0"
+        ],
+        "description": "banned superseded v4.1 and auxiliary radio/brake distractors"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0004",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 emergency magnetic caliper, identify the component designation, its friction pad material, and its nominal emergency deceleration rating.",
+    "subsystem": "Braking",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-013",
+      "FACT-DEV-014"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: EddyShoe-B7\nfriction_material: CeramoBond-M9\nemergency_deceleration: 14.3 m/s^2",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "EddyShoe-B7",
+        "description": "caliper EddyShoe-B7"
+      },
+      {
+        "type": "token",
+        "value": "CeramoBond-M9",
+        "description": "friction material CeramoBond-M9"
+      },
+      {
+        "type": "numeric",
+        "target": 14.3,
+        "tolerance": 0.2,
+        "unit": "m/s^2",
+        "description": "emergency deceleration 14.3 m/s^2"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "GraphitePad-G4",
+          "12.5",
+          "CarbonKev-C2",
+          "8.0"
+        ],
+        "description": "banned superseded v4.1 and auxiliary caliper distractors"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0005",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 suspension architecture, state the component name and nominal coil current of the primary suspension magnet, alongside the burst disk relief pressure of the associated liquid helium reservoir tank.",
+    "subsystem": "Levitation & Cryogenics",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-007",
+      "FACT-DEV-018"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "magnet_component: SuperconMagnet-S8\ncoil_current: 412.5 A\nreservoir_tank: VesselDewar-D1\nrelief_pressure: 864.2 kPa",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "SuperconMagnet-S8",
+        "description": "magnet SuperconMagnet-S8"
+      },
+      {
+        "type": "numeric",
+        "target": 412.5,
+        "tolerance": 0.5,
+        "unit": "A",
+        "description": "nominal coil current 412.5 A"
+      },
+      {
+        "type": "token",
+        "value": "VesselDewar-D1",
+        "description": "dewar VesselDewar-D1"
+      },
+      {
+        "type": "numeric",
+        "target": 864.2,
+        "tolerance": 0.5,
+        "unit": "kPa",
+        "description": "burst disk relief pressure 864.2 kPa"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "390.0",
+          "150.0",
+          "820.0",
+          "620.0"
+        ],
+        "description": "banned superseded v4.1 and auxiliary magnet/dewar distractors"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0006",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of Inverter-ZX9 within the Propulsion subsystem, stating its switching frequency and its continuous power rating in a concise key-value structured response.",
+    "subsystem": "Propulsion",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-001",
+      "FACT-DEV-002"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: Inverter-ZX9\nswitching_frequency: 731.4 kHz\ncontinuous_power_rating: 1840 kW",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "Inverter-ZX9",
+        "description": "component Inverter-ZX9"
+      },
+      {
+        "type": "phrase",
+        "value": "731.4 khz",
+        "description": "Switching Frequency value"
+      },
+      {
+        "type": "phrase",
+        "value": "1840 kw",
+        "description": "Continuous Power Rating value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "Inverter-AX2",
+          "512.0",
+          "Auxiliary",
+          "1650"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0007",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of StatorPack-P4 within the Propulsion subsystem, stating its pole pitch distance and its core lamination alloy in a concise key-value structured response.",
+    "subsystem": "Propulsion",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-003",
+      "FACT-DEV-004"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: StatorPack-P4\npole_pitch_distance: 142.5 mm\ncore_lamination_alloy: FerrAlloy-Q14",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "StatorPack-P4",
+        "description": "component StatorPack-P4"
+      },
+      {
+        "type": "phrase",
+        "value": "142.5 mm",
+        "description": "Pole Pitch Distance value"
+      },
+      {
+        "type": "phrase",
+        "value": "ferralloy-q14",
+        "description": "Core Lamination Alloy value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "FerrAlloy-Q08",
+          "95.0",
+          "138.0",
+          "SiliconIron-S2"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0008",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of StatorPack-P4 within the Propulsion subsystem, stating its pole pitch distance and its core lamination alloy in a concise key-value structured response.",
+    "subsystem": "Propulsion",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-003",
+      "FACT-DEV-004"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: StatorPack-P4\npole_pitch_distance: 142.5 mm\ncore_lamination_alloy: FerrAlloy-Q14",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "StatorPack-P4",
+        "description": "component StatorPack-P4"
+      },
+      {
+        "type": "phrase",
+        "value": "142.5 mm",
+        "description": "Pole Pitch Distance value"
+      },
+      {
+        "type": "phrase",
+        "value": "ferralloy-q14",
+        "description": "Core Lamination Alloy value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "FerrAlloy-Q08",
+          "95.0",
+          "138.0",
+          "SiliconIron-S2"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0009",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of CryoLoop-Gamma within the Cryogenics subsystem, stating its cooling medium and its operating flow rate in a concise key-value structured response.",
+    "subsystem": "Cryogenics",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-005",
+      "FACT-DEV-006"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: CryoLoop-Gamma\ncooling_medium: CryoGel-88X\noperating_flow_rate: 18.6 L/min",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CryoLoop-Gamma",
+        "description": "component CryoLoop-Gamma"
+      },
+      {
+        "type": "phrase",
+        "value": "cryogel-88x",
+        "description": "Cooling Medium value"
+      },
+      {
+        "type": "phrase",
+        "value": "18.6 l/min",
+        "description": "Operating Flow Rate value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "SolvHydra-404",
+          "15.0",
+          "8.2",
+          "FluorN-12"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0010",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of VesselDewar-D1 within the Cryogenics subsystem, stating its burst disk relief pressure and its insulation vacuum target in a concise key-value structured response.",
+    "subsystem": "Cryogenics",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-007",
+      "FACT-DEV-008"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: VesselDewar-D1\nburst_disk_relief_pressure: 864.2 kPa\ninsulation_vacuum_target: 0.0034 Pa",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "VesselDewar-D1",
+        "description": "component VesselDewar-D1"
+      },
+      {
+        "type": "phrase",
+        "value": "864.2 kpa",
+        "description": "Burst Disk Relief Pressure value"
+      },
+      {
+        "type": "phrase",
+        "value": "0.0034 pa",
+        "description": "Insulation Vacuum Target value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "820.0",
+          "0.0050",
+          "0.0120",
+          "620.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0011",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the insulation vacuum target specified for VesselDewar-D1 in the Cryogenics subsystem, alongside the mesh protocol identifier designated for TransceiverNode-T9 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-008",
+      "FACT-DEV-009"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: VesselDewar-D1\ninsulation_vacuum_target: 0.0034 Pa\ncomponent_2: TransceiverNode-T9\nmesh_protocol_identifier: VeloSync-9X",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "VesselDewar-D1",
+        "description": "component VesselDewar-D1"
+      },
+      {
+        "type": "phrase",
+        "value": "0.0034 pa",
+        "description": "Insulation Vacuum Target value"
+      },
+      {
+        "type": "token",
+        "value": "TransceiverNode-T9",
+        "description": "component TransceiverNode-T9"
+      },
+      {
+        "type": "phrase",
+        "value": "velosync-9x",
+        "description": "Mesh Protocol Identifier value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "VeloMesh-7B",
+          "0.0050",
+          "QuarkMesh-V3",
+          "0.0120"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0012",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the packet beacon interval specified for TransceiverNode-T9 in the Telemetry subsystem, alongside the laser operating wavelength designated for LidarBeacon-L2 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-010",
+      "FACT-DEV-011"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: TransceiverNode-T9\npacket_beacon_interval: 12.4 ms\ncomponent_2: LidarBeacon-L2\nlaser_operating_wavelength: 912.8 nm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "TransceiverNode-T9",
+        "description": "component TransceiverNode-T9"
+      },
+      {
+        "type": "phrase",
+        "value": "12.4 ms",
+        "description": "Packet Beacon Interval value"
+      },
+      {
+        "type": "token",
+        "value": "LidarBeacon-L2",
+        "description": "component LidarBeacon-L2"
+      },
+      {
+        "type": "phrase",
+        "value": "912.8 nm",
+        "description": "Laser Operating Wavelength value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "50.0",
+          "905.0",
+          "850.0",
+          "20.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0013",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of LidarBeacon-L2 within the Telemetry subsystem, stating its laser operating wavelength and its sampling frequency in a concise key-value structured response.",
+    "subsystem": "Telemetry",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-011",
+      "FACT-DEV-012"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: LidarBeacon-L2\nlaser_operating_wavelength: 912.8 nm\nsampling_frequency: 48.2 kHz",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "LidarBeacon-L2",
+        "description": "component LidarBeacon-L2"
+      },
+      {
+        "type": "phrase",
+        "value": "912.8 nm",
+        "description": "Laser Operating Wavelength value"
+      },
+      {
+        "type": "phrase",
+        "value": "48.2 khz",
+        "description": "Sampling Frequency value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "850.0",
+          "905.0",
+          "40.0",
+          "25.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0014",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the sampling frequency specified for LidarBeacon-L2 in the Telemetry subsystem, alongside the nominal emergency deceleration designated for EddyShoe-B7 in the Braking subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Telemetry / Braking",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-012",
+      "FACT-DEV-013"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: LidarBeacon-L2\nsampling_frequency: 48.2 kHz\ncomponent_2: EddyShoe-B7\nnominal_emergency_deceleration: 14.3 m/s^2",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "LidarBeacon-L2",
+        "description": "component LidarBeacon-L2"
+      },
+      {
+        "type": "phrase",
+        "value": "48.2 khz",
+        "description": "Sampling Frequency value"
+      },
+      {
+        "type": "token",
+        "value": "EddyShoe-B7",
+        "description": "component EddyShoe-B7"
+      },
+      {
+        "type": "phrase",
+        "value": "14.3 m/s^2",
+        "description": "Nominal Emergency Deceleration value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "8.0",
+          "40.0",
+          "12.5",
+          "25.0"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0015",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the friction friction pad material specified for EddyShoe-B7 in the Braking subsystem, alongside the deploy actuation time designated for SkidPlate-K1 in the Braking subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Braking",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-014",
+      "FACT-DEV-015"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: EddyShoe-B7\nfriction_friction_pad_material: CeramoBond-M9\ncomponent_2: SkidPlate-K1\ndeploy_actuation_time: 86.5 ms",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "EddyShoe-B7",
+        "description": "component EddyShoe-B7"
+      },
+      {
+        "type": "phrase",
+        "value": "ceramobond-m9",
+        "description": "Friction Friction Pad Material value"
+      },
+      {
+        "type": "token",
+        "value": "SkidPlate-K1",
+        "description": "component SkidPlate-K1"
+      },
+      {
+        "type": "phrase",
+        "value": "86.5 ms",
+        "description": "Deploy Actuation Time value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "GraphitePad-G4",
+          "110.0",
+          "240.0",
+          "CarbonKev-C2"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0016",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of SensorMount-M3 within the Levitation subsystem, stating its max allowable telemetry drift and its bracket damping polymer in a concise key-value structured response.",
+    "subsystem": "Levitation",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-016",
+      "FACT-DEV-017"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: SensorMount-M3\nmax_allowable_telemetry_drift: 0.043 mm\nbracket_damping_polymer: Viton-Z7",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "SensorMount-M3",
+        "description": "component SensorMount-M3"
+      },
+      {
+        "type": "phrase",
+        "value": "0.043 mm",
+        "description": "Max Allowable Telemetry Drift value"
+      },
+      {
+        "type": "phrase",
+        "value": "viton-z7",
+        "description": "Bracket Damping Polymer value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "Silicone-R4",
+          "Buna-N-Spec",
+          "0.120",
+          "0.065"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0017",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of SensorMount-M3 within the Levitation subsystem, stating its max allowable telemetry drift and its bracket damping polymer in a concise key-value structured response.",
+    "subsystem": "Levitation",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-016",
+      "FACT-DEV-017"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: SensorMount-M3\nmax_allowable_telemetry_drift: 0.043 mm\nbracket_damping_polymer: Viton-Z7",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "SensorMount-M3",
+        "description": "component SensorMount-M3"
+      },
+      {
+        "type": "phrase",
+        "value": "0.043 mm",
+        "description": "Max Allowable Telemetry Drift value"
+      },
+      {
+        "type": "phrase",
+        "value": "viton-z7",
+        "description": "Bracket Damping Polymer value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "Silicone-R4",
+          "Buna-N-Spec",
+          "0.120",
+          "0.065"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0018",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the nominal coil current specified for SuperconMagnet-S8 in the Levitation subsystem, alongside the primary o-ring elastomer designated for DoorSeal-V4 in the Airlock subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Levitation / Airlock",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-018",
+      "FACT-DEV-019"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: SuperconMagnet-S8\nnominal_coil_current: 412.5 A\ncomponent_2: DoorSeal-V4\nprimary_o-ring_elastomer: PolyViton-X8",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "SuperconMagnet-S8",
+        "description": "component SuperconMagnet-S8"
+      },
+      {
+        "type": "phrase",
+        "value": "412.5 a",
+        "description": "Nominal Coil Current value"
+      },
+      {
+        "type": "token",
+        "value": "DoorSeal-V4",
+        "description": "component DoorSeal-V4"
+      },
+      {
+        "type": "phrase",
+        "value": "polyviton-x8",
+        "description": "Primary O-Ring Elastomer value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "150.0",
+          "390.0",
+          "Neoprene-7",
+          "ButylPoly-B1"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0019",
+    "split": "dev",
+    "prompt": "For the HyperGrid v4.2 specification, identify the active settings of DoorSeal-V4 within the Airlock subsystem, stating its primary o-ring elastomer and its clamping sealing pressure in a concise key-value structured response.",
+    "subsystem": "Airlock",
+    "multi_hop_type": "bridging_component_property",
+    "fact_ids": [
+      "FACT-DEV-019",
+      "FACT-DEV-020"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component: DoorSeal-V4\nprimary_o-ring_elastomer: PolyViton-X8\nclamping_sealing_pressure: 12.8 bar",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DoorSeal-V4",
+        "description": "component DoorSeal-V4"
+      },
+      {
+        "type": "phrase",
+        "value": "polyviton-x8",
+        "description": "Primary O-Ring Elastomer value"
+      },
+      {
+        "type": "phrase",
+        "value": "12.8 bar",
+        "description": "Clamping Sealing Pressure value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "10.5",
+          "6.0",
+          "Neoprene-7",
+          "ButylPoly-B1"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0020",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the clamping sealing pressure specified for DoorSeal-V4 in the Airlock subsystem, alongside the design parameter theta-21 designated for DevModule-Airl-21 in the Airlock subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Airlock",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-020",
+      "FACT-DEV-021"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DoorSeal-V4\nclamping_sealing_pressure: 12.8 bar\ncomponent_2: DevModule-Airl-21\ndesign_parameter_theta-21: 87.91 ms",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DoorSeal-V4",
+        "description": "component DoorSeal-V4"
+      },
+      {
+        "type": "phrase",
+        "value": "12.8 bar",
+        "description": "Clamping Sealing Pressure value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Airl-21",
+        "description": "component DevModule-Airl-21"
+      },
+      {
+        "type": "phrase",
+        "value": "87.91 ms",
+        "description": "Design Parameter Theta-21 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "52.75",
+          "10.5",
+          "6.0",
+          "79.12"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0021",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-21 specified for DevModule-Airl-21 in the Airlock subsystem, alongside the design parameter theta-22 designated for DevModule-Life-22 in the LifeSupport subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Airlock / LifeSupport",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-021",
+      "FACT-DEV-022"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Airl-21\ndesign_parameter_theta-21: 87.91 ms\ncomponent_2: DevModule-Life-22\ndesign_parameter_theta-22: 91.62 L/min",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Airl-21",
+        "description": "component DevModule-Airl-21"
+      },
+      {
+        "type": "phrase",
+        "value": "87.91 ms",
+        "description": "Design Parameter Theta-21 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Life-22",
+        "description": "component DevModule-Life-22"
+      },
+      {
+        "type": "phrase",
+        "value": "91.62 l/min",
+        "description": "Design Parameter Theta-22 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "82.46",
+          "54.97",
+          "79.12",
+          "52.75"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0022",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-22 specified for DevModule-Life-22 in the LifeSupport subsystem, alongside the design parameter theta-23 designated for DevModule-Powe-23 in the PowerDistribution subsystem. Provide the answer in short key-value format.",
+    "subsystem": "LifeSupport / PowerDistribution",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-022",
+      "FACT-DEV-023"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Life-22\ndesign_parameter_theta-22: 91.62 L/min\ncomponent_2: DevModule-Powe-23\ndesign_parameter_theta-23: 95.33 bar",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Life-22",
+        "description": "component DevModule-Life-22"
+      },
+      {
+        "type": "phrase",
+        "value": "91.62 l/min",
+        "description": "Design Parameter Theta-22 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Powe-23",
+        "description": "component DevModule-Powe-23"
+      },
+      {
+        "type": "phrase",
+        "value": "95.33 bar",
+        "description": "Design Parameter Theta-23 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "82.46",
+          "54.97",
+          "85.8",
+          "57.2"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0023",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-23 specified for DevModule-Powe-23 in the PowerDistribution subsystem, alongside the design parameter theta-24 designated for DevModule-Prop-24 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-023",
+      "FACT-DEV-024"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Powe-23\ndesign_parameter_theta-23: 95.33 bar\ncomponent_2: DevModule-Prop-24\ndesign_parameter_theta-24: 99.04 kPa",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Powe-23",
+        "description": "component DevModule-Powe-23"
+      },
+      {
+        "type": "phrase",
+        "value": "95.33 bar",
+        "description": "Design Parameter Theta-23 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Prop-24",
+        "description": "component DevModule-Prop-24"
+      },
+      {
+        "type": "phrase",
+        "value": "99.04 kpa",
+        "description": "Design Parameter Theta-24 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "89.14",
+          "59.42",
+          "85.8",
+          "57.2"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0024",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-24 specified for DevModule-Prop-24 in the Propulsion subsystem, alongside the design parameter theta-25 designated for DevModule-Cryo-25 in the Cryogenics subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Propulsion / Cryogenics",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-024",
+      "FACT-DEV-025"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Prop-24\ndesign_parameter_theta-24: 99.04 kPa\ncomponent_2: DevModule-Cryo-25\ndesign_parameter_theta-25: 102.75 kHz",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Prop-24",
+        "description": "component DevModule-Prop-24"
+      },
+      {
+        "type": "phrase",
+        "value": "99.04 kpa",
+        "description": "Design Parameter Theta-24 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Cryo-25",
+        "description": "component DevModule-Cryo-25"
+      },
+      {
+        "type": "phrase",
+        "value": "102.75 khz",
+        "description": "Design Parameter Theta-25 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "92.48",
+          "61.65",
+          "89.14",
+          "59.42"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0025",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-25 specified for DevModule-Cryo-25 in the Cryogenics subsystem, alongside the design parameter theta-26 designated for DevModule-Tele-26 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-025",
+      "FACT-DEV-026"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Cryo-25\ndesign_parameter_theta-25: 102.75 kHz\ncomponent_2: DevModule-Tele-26\ndesign_parameter_theta-26: 106.46 m/s^2",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Cryo-25",
+        "description": "component DevModule-Cryo-25"
+      },
+      {
+        "type": "phrase",
+        "value": "102.75 khz",
+        "description": "Design Parameter Theta-25 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Tele-26",
+        "description": "component DevModule-Tele-26"
+      },
+      {
+        "type": "phrase",
+        "value": "106.46 m/s^2",
+        "description": "Design Parameter Theta-26 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "92.48",
+          "61.65",
+          "63.88",
+          "95.81"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0026",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-26 specified for DevModule-Tele-26 in the Telemetry subsystem, alongside the design parameter theta-27 designated for DevModule-Brak-27 in the Braking subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Telemetry / Braking",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-026",
+      "FACT-DEV-027"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Tele-26\ndesign_parameter_theta-26: 106.46 m/s^2\ncomponent_2: DevModule-Brak-27\ndesign_parameter_theta-27: 110.17 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Tele-26",
+        "description": "component DevModule-Tele-26"
+      },
+      {
+        "type": "phrase",
+        "value": "106.46 m/s^2",
+        "description": "Design Parameter Theta-26 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Brak-27",
+        "description": "component DevModule-Brak-27"
+      },
+      {
+        "type": "phrase",
+        "value": "110.17 mm",
+        "description": "Design Parameter Theta-27 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "99.15",
+          "63.88",
+          "95.81",
+          "66.1"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0027",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-27 specified for DevModule-Brak-27 in the Braking subsystem, alongside the design parameter theta-28 designated for DevModule-Levi-28 in the Levitation subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Braking / Levitation",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-027",
+      "FACT-DEV-028"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Brak-27\ndesign_parameter_theta-27: 110.17 mm\ncomponent_2: DevModule-Levi-28\ndesign_parameter_theta-28: 113.88 kW",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Brak-27",
+        "description": "component DevModule-Brak-27"
+      },
+      {
+        "type": "phrase",
+        "value": "110.17 mm",
+        "description": "Design Parameter Theta-27 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Levi-28",
+        "description": "component DevModule-Levi-28"
+      },
+      {
+        "type": "phrase",
+        "value": "113.88 kw",
+        "description": "Design Parameter Theta-28 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "102.49",
+          "99.15",
+          "66.1",
+          "68.33"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0028",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-28 specified for DevModule-Levi-28 in the Levitation subsystem, alongside the design parameter theta-29 designated for DevModule-Airl-29 in the Airlock subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Levitation / Airlock",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-028",
+      "FACT-DEV-029"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Levi-28\ndesign_parameter_theta-28: 113.88 kW\ncomponent_2: DevModule-Airl-29\ndesign_parameter_theta-29: 117.59 ms",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Levi-28",
+        "description": "component DevModule-Levi-28"
+      },
+      {
+        "type": "phrase",
+        "value": "113.88 kw",
+        "description": "Design Parameter Theta-28 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Airl-29",
+        "description": "component DevModule-Airl-29"
+      },
+      {
+        "type": "phrase",
+        "value": "117.59 ms",
+        "description": "Design Parameter Theta-29 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "102.49",
+          "105.83",
+          "70.55",
+          "68.33"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0029",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-29 specified for DevModule-Airl-29 in the Airlock subsystem, alongside the design parameter theta-30 designated for DevModule-Life-30 in the LifeSupport subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Airlock / LifeSupport",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-029",
+      "FACT-DEV-030"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Airl-29\ndesign_parameter_theta-29: 117.59 ms\ncomponent_2: DevModule-Life-30\ndesign_parameter_theta-30: 121.3 L/min",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Airl-29",
+        "description": "component DevModule-Airl-29"
+      },
+      {
+        "type": "phrase",
+        "value": "117.59 ms",
+        "description": "Design Parameter Theta-29 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Life-30",
+        "description": "component DevModule-Life-30"
+      },
+      {
+        "type": "phrase",
+        "value": "121.3 l/min",
+        "description": "Design Parameter Theta-30 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "109.17",
+          "72.78",
+          "105.83",
+          "70.55"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0030",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-30 specified for DevModule-Life-30 in the LifeSupport subsystem, alongside the design parameter theta-31 designated for DevModule-Powe-31 in the PowerDistribution subsystem. Provide the answer in short key-value format.",
+    "subsystem": "LifeSupport / PowerDistribution",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-030",
+      "FACT-DEV-031"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Life-30\ndesign_parameter_theta-30: 121.3 L/min\ncomponent_2: DevModule-Powe-31\ndesign_parameter_theta-31: 125.01 bar",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Life-30",
+        "description": "component DevModule-Life-30"
+      },
+      {
+        "type": "phrase",
+        "value": "121.3 l/min",
+        "description": "Design Parameter Theta-30 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Powe-31",
+        "description": "component DevModule-Powe-31"
+      },
+      {
+        "type": "phrase",
+        "value": "125.01 bar",
+        "description": "Design Parameter Theta-31 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "72.78",
+          "109.17",
+          "75.01",
+          "112.51"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0031",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-31 specified for DevModule-Powe-31 in the PowerDistribution subsystem, alongside the design parameter theta-32 designated for DevModule-Prop-32 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-031",
+      "FACT-DEV-032"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Powe-31\ndesign_parameter_theta-31: 125.01 bar\ncomponent_2: DevModule-Prop-32\ndesign_parameter_theta-32: 128.72 kPa",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Powe-31",
+        "description": "component DevModule-Powe-31"
+      },
+      {
+        "type": "phrase",
+        "value": "125.01 bar",
+        "description": "Design Parameter Theta-31 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Prop-32",
+        "description": "component DevModule-Prop-32"
+      },
+      {
+        "type": "phrase",
+        "value": "128.72 kpa",
+        "description": "Design Parameter Theta-32 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "77.23",
+          "75.01",
+          "115.85",
+          "112.51"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0032",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-32 specified for DevModule-Prop-32 in the Propulsion subsystem, alongside the design parameter theta-33 designated for DevModule-Cryo-33 in the Cryogenics subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Propulsion / Cryogenics",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-032",
+      "FACT-DEV-033"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Prop-32\ndesign_parameter_theta-32: 128.72 kPa\ncomponent_2: DevModule-Cryo-33\ndesign_parameter_theta-33: 132.43 kHz",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Prop-32",
+        "description": "component DevModule-Prop-32"
+      },
+      {
+        "type": "phrase",
+        "value": "128.72 kpa",
+        "description": "Design Parameter Theta-32 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Cryo-33",
+        "description": "component DevModule-Cryo-33"
+      },
+      {
+        "type": "phrase",
+        "value": "132.43 khz",
+        "description": "Design Parameter Theta-33 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "79.46",
+          "77.23",
+          "119.19",
+          "115.85"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0033",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-33 specified for DevModule-Cryo-33 in the Cryogenics subsystem, alongside the design parameter theta-34 designated for DevModule-Tele-34 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-033",
+      "FACT-DEV-034"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Cryo-33\ndesign_parameter_theta-33: 132.43 kHz\ncomponent_2: DevModule-Tele-34\ndesign_parameter_theta-34: 136.14 m/s^2",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Cryo-33",
+        "description": "component DevModule-Cryo-33"
+      },
+      {
+        "type": "phrase",
+        "value": "132.43 khz",
+        "description": "Design Parameter Theta-33 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Tele-34",
+        "description": "component DevModule-Tele-34"
+      },
+      {
+        "type": "phrase",
+        "value": "136.14 m/s^2",
+        "description": "Design Parameter Theta-34 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "79.46",
+          "81.68",
+          "122.53",
+          "119.19"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0034",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-34 specified for DevModule-Tele-34 in the Telemetry subsystem, alongside the design parameter theta-35 designated for DevModule-Brak-35 in the Braking subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Telemetry / Braking",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-034",
+      "FACT-DEV-035"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Tele-34\ndesign_parameter_theta-34: 136.14 m/s^2\ncomponent_2: DevModule-Brak-35\ndesign_parameter_theta-35: 139.85 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Tele-34",
+        "description": "component DevModule-Tele-34"
+      },
+      {
+        "type": "phrase",
+        "value": "136.14 m/s^2",
+        "description": "Design Parameter Theta-34 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Brak-35",
+        "description": "component DevModule-Brak-35"
+      },
+      {
+        "type": "phrase",
+        "value": "139.85 mm",
+        "description": "Design Parameter Theta-35 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "125.86",
+          "81.68",
+          "122.53",
+          "83.91"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0035",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-35 specified for DevModule-Brak-35 in the Braking subsystem, alongside the design parameter theta-36 designated for DevModule-Levi-36 in the Levitation subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Braking / Levitation",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-035",
+      "FACT-DEV-036"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Brak-35\ndesign_parameter_theta-35: 139.85 mm\ncomponent_2: DevModule-Levi-36\ndesign_parameter_theta-36: 143.56 kW",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Brak-35",
+        "description": "component DevModule-Brak-35"
+      },
+      {
+        "type": "phrase",
+        "value": "139.85 mm",
+        "description": "Design Parameter Theta-35 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Levi-36",
+        "description": "component DevModule-Levi-36"
+      },
+      {
+        "type": "phrase",
+        "value": "143.56 kw",
+        "description": "Design Parameter Theta-36 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "125.86",
+          "86.14",
+          "83.91",
+          "129.2"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0036",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-36 specified for DevModule-Levi-36 in the Levitation subsystem, alongside the design parameter theta-37 designated for DevModule-Airl-37 in the Airlock subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Levitation / Airlock",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-036",
+      "FACT-DEV-037"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Levi-36\ndesign_parameter_theta-36: 143.56 kW\ncomponent_2: DevModule-Airl-37\ndesign_parameter_theta-37: 147.27 ms",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Levi-36",
+        "description": "component DevModule-Levi-36"
+      },
+      {
+        "type": "phrase",
+        "value": "143.56 kw",
+        "description": "Design Parameter Theta-36 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Airl-37",
+        "description": "component DevModule-Airl-37"
+      },
+      {
+        "type": "phrase",
+        "value": "147.27 ms",
+        "description": "Design Parameter Theta-37 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "132.54",
+          "86.14",
+          "88.36",
+          "129.2"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0037",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-37 specified for DevModule-Airl-37 in the Airlock subsystem, alongside the design parameter theta-38 designated for DevModule-Life-38 in the LifeSupport subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Airlock / LifeSupport",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-037",
+      "FACT-DEV-038"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Airl-37\ndesign_parameter_theta-37: 147.27 ms\ncomponent_2: DevModule-Life-38\ndesign_parameter_theta-38: 150.98 L/min",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Airl-37",
+        "description": "component DevModule-Airl-37"
+      },
+      {
+        "type": "phrase",
+        "value": "147.27 ms",
+        "description": "Design Parameter Theta-37 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Life-38",
+        "description": "component DevModule-Life-38"
+      },
+      {
+        "type": "phrase",
+        "value": "150.98 l/min",
+        "description": "Design Parameter Theta-38 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "132.54",
+          "88.36",
+          "90.59",
+          "135.88"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0038",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-38 specified for DevModule-Life-38 in the LifeSupport subsystem, alongside the design parameter theta-39 designated for DevModule-Powe-39 in the PowerDistribution subsystem. Provide the answer in short key-value format.",
+    "subsystem": "LifeSupport / PowerDistribution",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-038",
+      "FACT-DEV-039"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Life-38\ndesign_parameter_theta-38: 150.98 L/min\ncomponent_2: DevModule-Powe-39\ndesign_parameter_theta-39: 154.69 bar",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Life-38",
+        "description": "component DevModule-Life-38"
+      },
+      {
+        "type": "phrase",
+        "value": "150.98 l/min",
+        "description": "Design Parameter Theta-38 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Powe-39",
+        "description": "component DevModule-Powe-39"
+      },
+      {
+        "type": "phrase",
+        "value": "154.69 bar",
+        "description": "Design Parameter Theta-39 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "90.59",
+          "139.22",
+          "92.81",
+          "135.88"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0039",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-39 specified for DevModule-Powe-39 in the PowerDistribution subsystem, alongside the design parameter theta-40 designated for DevModule-Prop-40 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-039",
+      "FACT-DEV-040"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Powe-39\ndesign_parameter_theta-39: 154.69 bar\ncomponent_2: DevModule-Prop-40\ndesign_parameter_theta-40: 158.4 kPa",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Powe-39",
+        "description": "component DevModule-Powe-39"
+      },
+      {
+        "type": "phrase",
+        "value": "154.69 bar",
+        "description": "Design Parameter Theta-39 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Prop-40",
+        "description": "component DevModule-Prop-40"
+      },
+      {
+        "type": "phrase",
+        "value": "158.4 kpa",
+        "description": "Design Parameter Theta-40 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "142.56",
+          "95.04",
+          "92.81",
+          "139.22"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0040",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-40 specified for DevModule-Prop-40 in the Propulsion subsystem, alongside the design parameter theta-41 designated for DevModule-Cryo-41 in the Cryogenics subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Propulsion / Cryogenics",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-040",
+      "FACT-DEV-041"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Prop-40\ndesign_parameter_theta-40: 158.4 kPa\ncomponent_2: DevModule-Cryo-41\ndesign_parameter_theta-41: 162.11 kHz",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Prop-40",
+        "description": "component DevModule-Prop-40"
+      },
+      {
+        "type": "phrase",
+        "value": "158.4 kpa",
+        "description": "Design Parameter Theta-40 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Cryo-41",
+        "description": "component DevModule-Cryo-41"
+      },
+      {
+        "type": "phrase",
+        "value": "162.11 khz",
+        "description": "Design Parameter Theta-41 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "95.04",
+          "142.56",
+          "145.9",
+          "97.27"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0041",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-41 specified for DevModule-Cryo-41 in the Cryogenics subsystem, alongside the design parameter theta-42 designated for DevModule-Tele-42 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-041",
+      "FACT-DEV-042"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Cryo-41\ndesign_parameter_theta-41: 162.11 kHz\ncomponent_2: DevModule-Tele-42\ndesign_parameter_theta-42: 165.82 m/s^2",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Cryo-41",
+        "description": "component DevModule-Cryo-41"
+      },
+      {
+        "type": "phrase",
+        "value": "162.11 khz",
+        "description": "Design Parameter Theta-41 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Tele-42",
+        "description": "component DevModule-Tele-42"
+      },
+      {
+        "type": "phrase",
+        "value": "165.82 m/s^2",
+        "description": "Design Parameter Theta-42 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "97.27",
+          "99.49",
+          "145.9",
+          "149.24"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0042",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-42 specified for DevModule-Tele-42 in the Telemetry subsystem, alongside the design parameter theta-43 designated for DevModule-Brak-43 in the Braking subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Telemetry / Braking",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-042",
+      "FACT-DEV-043"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Tele-42\ndesign_parameter_theta-42: 165.82 m/s^2\ncomponent_2: DevModule-Brak-43\ndesign_parameter_theta-43: 169.53 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Tele-42",
+        "description": "component DevModule-Tele-42"
+      },
+      {
+        "type": "phrase",
+        "value": "165.82 m/s^2",
+        "description": "Design Parameter Theta-42 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Brak-43",
+        "description": "component DevModule-Brak-43"
+      },
+      {
+        "type": "phrase",
+        "value": "169.53 mm",
+        "description": "Design Parameter Theta-43 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "152.58",
+          "99.49",
+          "101.72",
+          "149.24"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0043",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-43 specified for DevModule-Brak-43 in the Braking subsystem, alongside the design parameter theta-44 designated for DevModule-Levi-44 in the Levitation subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Braking / Levitation",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-043",
+      "FACT-DEV-044"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Brak-43\ndesign_parameter_theta-43: 169.53 mm\ncomponent_2: DevModule-Levi-44\ndesign_parameter_theta-44: 173.24 kW",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Brak-43",
+        "description": "component DevModule-Brak-43"
+      },
+      {
+        "type": "phrase",
+        "value": "169.53 mm",
+        "description": "Design Parameter Theta-43 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Levi-44",
+        "description": "component DevModule-Levi-44"
+      },
+      {
+        "type": "phrase",
+        "value": "173.24 kw",
+        "description": "Design Parameter Theta-44 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "103.94",
+          "152.58",
+          "101.72",
+          "155.92"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0044",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-44 specified for DevModule-Levi-44 in the Levitation subsystem, alongside the design parameter theta-45 designated for DevModule-Airl-45 in the Airlock subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Levitation / Airlock",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-044",
+      "FACT-DEV-045"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Levi-44\ndesign_parameter_theta-44: 173.24 kW\ncomponent_2: DevModule-Airl-45\ndesign_parameter_theta-45: 176.95 ms",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Levi-44",
+        "description": "component DevModule-Levi-44"
+      },
+      {
+        "type": "phrase",
+        "value": "173.24 kw",
+        "description": "Design Parameter Theta-44 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Airl-45",
+        "description": "component DevModule-Airl-45"
+      },
+      {
+        "type": "phrase",
+        "value": "176.95 ms",
+        "description": "Design Parameter Theta-45 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "159.25",
+          "106.17",
+          "103.94",
+          "155.92"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0045",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-45 specified for DevModule-Airl-45 in the Airlock subsystem, alongside the design parameter theta-46 designated for DevModule-Life-46 in the LifeSupport subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Airlock / LifeSupport",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-045",
+      "FACT-DEV-046"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Airl-45\ndesign_parameter_theta-45: 176.95 ms\ncomponent_2: DevModule-Life-46\ndesign_parameter_theta-46: 180.66 L/min",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Airl-45",
+        "description": "component DevModule-Airl-45"
+      },
+      {
+        "type": "phrase",
+        "value": "176.95 ms",
+        "description": "Design Parameter Theta-45 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Life-46",
+        "description": "component DevModule-Life-46"
+      },
+      {
+        "type": "phrase",
+        "value": "180.66 l/min",
+        "description": "Design Parameter Theta-46 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "159.25",
+          "108.4",
+          "106.17",
+          "162.59"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0046",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-46 specified for DevModule-Life-46 in the LifeSupport subsystem, alongside the design parameter theta-47 designated for DevModule-Powe-47 in the PowerDistribution subsystem. Provide the answer in short key-value format.",
+    "subsystem": "LifeSupport / PowerDistribution",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-046",
+      "FACT-DEV-047"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Life-46\ndesign_parameter_theta-46: 180.66 L/min\ncomponent_2: DevModule-Powe-47\ndesign_parameter_theta-47: 184.37 bar",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Life-46",
+        "description": "component DevModule-Life-46"
+      },
+      {
+        "type": "phrase",
+        "value": "180.66 l/min",
+        "description": "Design Parameter Theta-46 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Powe-47",
+        "description": "component DevModule-Powe-47"
+      },
+      {
+        "type": "phrase",
+        "value": "184.37 bar",
+        "description": "Design Parameter Theta-47 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "108.4",
+          "110.62",
+          "165.93",
+          "162.59"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0047",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-47 specified for DevModule-Powe-47 in the PowerDistribution subsystem, alongside the design parameter theta-48 designated for DevModule-Prop-48 in the Propulsion subsystem. Provide the answer in short key-value format.",
+    "subsystem": "PowerDistribution / Propulsion",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-047",
+      "FACT-DEV-048"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Powe-47\ndesign_parameter_theta-47: 184.37 bar\ncomponent_2: DevModule-Prop-48\ndesign_parameter_theta-48: 188.08 kPa",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Powe-47",
+        "description": "component DevModule-Powe-47"
+      },
+      {
+        "type": "phrase",
+        "value": "184.37 bar",
+        "description": "Design Parameter Theta-47 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Prop-48",
+        "description": "component DevModule-Prop-48"
+      },
+      {
+        "type": "phrase",
+        "value": "188.08 kpa",
+        "description": "Design Parameter Theta-48 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "110.62",
+          "112.85",
+          "165.93",
+          "169.27"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0048",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-48 specified for DevModule-Prop-48 in the Propulsion subsystem, alongside the design parameter theta-49 designated for DevModule-Cryo-49 in the Cryogenics subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Propulsion / Cryogenics",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-048",
+      "FACT-DEV-049"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Prop-48\ndesign_parameter_theta-48: 188.08 kPa\ncomponent_2: DevModule-Cryo-49\ndesign_parameter_theta-49: 191.79 kHz",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Prop-48",
+        "description": "component DevModule-Prop-48"
+      },
+      {
+        "type": "phrase",
+        "value": "188.08 kpa",
+        "description": "Design Parameter Theta-48 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Cryo-49",
+        "description": "component DevModule-Cryo-49"
+      },
+      {
+        "type": "phrase",
+        "value": "191.79 khz",
+        "description": "Design Parameter Theta-49 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "115.07",
+          "112.85",
+          "172.61",
+          "169.27"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0049",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-49 specified for DevModule-Cryo-49 in the Cryogenics subsystem, alongside the design parameter theta-50 designated for DevModule-Tele-50 in the Telemetry subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Cryogenics / Telemetry",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-049",
+      "FACT-DEV-050"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Cryo-49\ndesign_parameter_theta-49: 191.79 kHz\ncomponent_2: DevModule-Tele-50\ndesign_parameter_theta-50: 195.5 m/s^2",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Cryo-49",
+        "description": "component DevModule-Cryo-49"
+      },
+      {
+        "type": "phrase",
+        "value": "191.79 khz",
+        "description": "Design Parameter Theta-49 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Tele-50",
+        "description": "component DevModule-Tele-50"
+      },
+      {
+        "type": "phrase",
+        "value": "195.5 m/s^2",
+        "description": "Design Parameter Theta-50 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "115.07",
+          "117.3",
+          "175.95",
+          "172.61"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_dev_0050",
+    "split": "dev",
+    "prompt": "In the HyperGrid v4.2 engineering release, determine the design parameter theta-50 specified for DevModule-Tele-50 in the Telemetry subsystem, alongside the design parameter theta-51 designated for DevModule-Brak-51 in the Braking subsystem. Provide the answer in short key-value format.",
+    "subsystem": "Telemetry / Braking",
+    "multi_hop_type": "cross_subsystem_coupling",
+    "fact_ids": [
+      "FACT-DEV-050",
+      "FACT-DEV-051"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DevModule-Tele-50\ndesign_parameter_theta-50: 195.5 m/s^2\ncomponent_2: DevModule-Brak-51\ndesign_parameter_theta-51: 199.21 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DevModule-Tele-50",
+        "description": "component DevModule-Tele-50"
+      },
+      {
+        "type": "phrase",
+        "value": "195.5 m/s^2",
+        "description": "Design Parameter Theta-50 value"
+      },
+      {
+        "type": "token",
+        "value": "DevModule-Brak-51",
+        "description": "component DevModule-Brak-51"
+      },
+      {
+        "type": "phrase",
+        "value": "199.21 mm",
+        "description": "Design Parameter Theta-51 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "117.3",
+          "179.29",
+          "119.53",
+          "175.95"
+        ],
+        "description": "distractor values"
+      }
+    ]
+  }
+]
