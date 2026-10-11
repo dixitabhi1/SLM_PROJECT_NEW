@@ -16,6 +16,7 @@ import os
 import sys
 import re
 import json
+import time
 import sqlite3
 import urllib.request
 from typing import Dict, Any, List, Tuple, Optional
@@ -88,6 +89,8 @@ def run_local_sql(db_name: str, query: str) -> Tuple[bool, str]:
         
     try:
         conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True, timeout=5.0)
+        t_start = time.perf_counter()
+        conn.set_progress_handler(lambda: 1 if (time.perf_counter() - t_start > 10.0) else 0, 1000)
         cur = conn.cursor()
         cur.execute(query)
         rows = cur.fetchall()
@@ -110,6 +113,10 @@ def run_local_sql(db_name: str, query: str) -> Tuple[bool, str]:
         if len(rows) > 10:
             out_lines.append(f"...[{len(rows) - 10} more rows]")
         return True, "\n".join(out_lines)
+    except sqlite3.OperationalError as oe:
+        if "interrupted" in str(oe).lower():
+            return False, "ERROR: Query execution timed out after 10.0 seconds."
+        return False, f"ERROR: {str(oe)}"
     except Exception as e:
         return False, f"ERROR: {str(e)}"
 
@@ -130,6 +137,8 @@ def execute_sql_tolerant(db_name: str, query: str, prompt_context: str = "") -> 
             try:
                 import ast
                 conn = sqlite3.connect(":memory:")
+                t_start = time.perf_counter()
+                conn.set_progress_handler(lambda: 1 if (time.perf_counter() - t_start > 10.0) else 0, 1000)
                 # Create alias view if an alternative table name precedes the bracket
                 alias_m = re.search(r"table\s+([a-zA-Z0-9_]+)\s*\[CREATE TABLE", prompt_context, re.IGNORECASE)
                 if alias_m and alias_m.group(1).lower() != tbl.lower():
@@ -162,6 +171,10 @@ def execute_sql_tolerant(db_name: str, query: str, prompt_context: str = "") -> 
                 if len(rows) > 10:
                     out_lines.append(f"...[{len(rows) - 10} more rows]")
                 return True, "\n".join(out_lines)
+            except sqlite3.OperationalError as oe:
+                if "interrupted" in str(oe).lower():
+                    return False, "ERROR: Query execution timed out after 10.0 seconds."
+                return False, f"ERROR in in-memory table execution: {str(oe)}"
             except Exception as e:
                 return False, f"ERROR in in-memory table execution: {str(e)}"
     return False, out
