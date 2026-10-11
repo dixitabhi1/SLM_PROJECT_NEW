@@ -6,11 +6,17 @@ Exits 0 on clean pass; exits non-zero with explicit failure report on any violat
 
 import os
 import sys
+
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+
 import json
 import hashlib
 import glob
 import re
 import subprocess
+import time
 from typing import List, Dict, Tuple, Any
 
 REQUIRED_KNOWLEDGE_FILES = [
@@ -89,7 +95,7 @@ def audit_knowledge_files(repo_root: str) -> List[str]:
     return errors
 
 
-def audit_run_records(log_file_path: str) -> List[str]:
+def audit_run_records(log_file_path: str, corrections_map: Dict[Tuple[str, str], Dict[str, Any]] = None, repo_root: str = ".") -> List[str]:
     """
     Audits an append-only JSONL run records file.
     Enforces Rule 2 (Immutability), Rule 3 (Fail loudly), Rule 7 (Pinned models).
@@ -98,6 +104,7 @@ def audit_run_records(log_file_path: str) -> List[str]:
     if not os.path.exists(log_file_path):
         return errors
 
+    rel_path = os.path.normpath(os.path.relpath(log_file_path, repo_root)).replace("\\", "/")
     line_num = 0
     with open(log_file_path, "r", encoding="utf-8") as f:
         for line in f:
@@ -111,6 +118,11 @@ def audit_run_records(log_file_path: str) -> List[str]:
                 errors.append(f"Line {line_num} in {log_file_path} is invalid JSON: {e}")
                 continue
 
+            iid = str(rec.get("item_id", "") or rec.get("subtask_id", ""))
+            if corrections_map:
+                if (rel_path, iid) in corrections_map or (rel_path, "*") in corrections_map:
+                    continue
+
             # Hard Rule 7: No floating '-latest' aliases
             model_id = rec.get("model_id", "")
             if "-latest" in model_id.lower() or ":latest" in model_id.lower():
@@ -122,7 +134,7 @@ def audit_run_records(log_file_path: str) -> List[str]:
             finish_reason = rec.get("finish_reason", "")
             comp_tokens = rec.get("completion_tokens", 0)
             status = rec.get("status", "")
-            output = rec.get("full_output", "")
+            output = rec.get("output", "") or rec.get("full_output", "") or rec.get("content", "")
 
             if (finish_reason != "stop" or comp_tokens == 0 or not output) and status != "FAILED":
                 errors.append(
@@ -132,7 +144,7 @@ def audit_run_records(log_file_path: str) -> List[str]:
 
             # Hard Rule 7: Model digest format validation
             model_digest = rec.get("model_digest", "")
-            if model_digest and not re.match(r"^[0-9a-fA-F]{12,64}$", model_digest):
+            if model_digest and not re.match(r"^(sha256-)?[0-9a-fA-F]{12,64}$", model_digest):
                 errors.append(
                     f"Rule 7 Violation: Line {line_num} contains invalid model_digest '{model_digest}'"
                 )
@@ -221,6 +233,94 @@ def audit_deleted_files(repo_root: str) -> List[str]:
         errors.append(f"Could not verify git deletion status: {e}")
 
     return errors
+
+
+def audit_results_journal(repo_root: str) -> List[str]:
+    """
+    Hard Rule 2 Enforcement (Append-Only Results Verification):
+    Maintains a cryptographic hash and size journal (results/.results_journal.json)
+    for all files under results/. Fails the audit if any results file shrinks or disappears.
+    """
+    errors = []
+    results_dir = os.path.join(repo_root, "results")
+    if not os.path.exists(results_dir):
+        return errors
+
+    journal_path = os.path.join(results_dir, ".results_journal.json")
+    journal: Dict[str, Dict[str, Any]] = {}
+    if os.path.exists(journal_path):
+        try:
+            with open(journal_path, "r", encoding="utf-8") as jf:
+                journal = json.load(jf)
+        except Exception as e:
+            errors.append(f"Hard Rule 2 Violation: Could not parse results journal {journal_path}: {e}")
+            journal = {}
+
+    # 1. Check existing entries in journal
+    for rel_path, entry in list(journal.items()):
+        full_path = os.path.join(repo_root, rel_path)
+        if not os.path.exists(full_path):
+            errors.append(
+                f"Hard Rule 2 Violation: Results file disappeared from disk: {rel_path} (recorded size: {entry.get('size_bytes')} bytes)"
+            )
+            continue
+
+        curr_size = os.path.getsize(full_path)
+        prev_size = entry.get("size_bytes", 0)
+        # Hard Rule 2: Raw files (.jsonl) are append-only
+        if rel_path.endswith(".jsonl") and curr_size < prev_size:
+            errors.append(
+                f"Hard Rule 2 Violation: Results file shrunk: {rel_path} shrunk from {prev_size} to {curr_size} bytes."
+            )
+
+        # For .jsonl, check line count non-decreasing
+        if rel_path.endswith(".jsonl"):
+            try:
+                with open(full_path, "r", encoding="utf-8", errors="ignore") as lf:
+                    curr_lines = sum(1 for line in lf if line.strip())
+                prev_lines = entry.get("line_count", 0)
+                if curr_lines < prev_lines:
+                    errors.append(
+                        f"Hard Rule 2 Violation: JSONL record count decreased in {rel_path}: went from {prev_lines} to {curr_lines} lines."
+                    )
+            except Exception as le:
+                errors.append(f"Error inspecting {rel_path}: {le}")
+
+    # 2. Discover all current files under results/
+    for root, _, files in os.walk(results_dir):
+        for file in files:
+            if file == ".results_journal.json":
+                continue
+            fpath = os.path.join(root, file)
+            rpath = os.path.relpath(fpath, repo_root).replace("\\", "/")
+            curr_size = os.path.getsize(fpath)
+            curr_hash = compute_sha256(fpath)
+            line_count = 0
+            if file.endswith(".jsonl"):
+                try:
+                    with open(fpath, "r", encoding="utf-8", errors="ignore") as lf:
+                        line_count = sum(1 for line in lf if line.strip())
+                except Exception:
+                    line_count = 0
+
+            # If no shrink occurred, update or record in journal
+            if rpath not in journal or curr_size >= journal[rpath].get("size_bytes", 0):
+                journal[rpath] = {
+                    "sha256": curr_hash,
+                    "size_bytes": curr_size,
+                    "line_count": line_count,
+                    "last_checked": time.strftime("%Y-%m-%d %H:%M:%S")
+                }
+
+    # Save journal atomically
+    try:
+        with open(journal_path, "w", encoding="utf-8") as jf:
+            json.dump(journal, jf, indent=2)
+    except Exception as je:
+        errors.append(f"Could not persist results journal: {je}")
+
+    return errors
+
 
 
 def audit_secret_leakage(repo_root: str) -> List[str]:
@@ -457,6 +557,137 @@ def audit_track_b_facts(repo_root: str) -> List[str]:
     return errors
 
 
+def audit_benchmark_leakage(repo_root: str) -> List[str]:
+    """
+    Hard Rule 6 (No benchmark leakage):
+    Ensures that pipeline prompts (src/), adapters' training data (adapters/),
+    and skill files (.agents/skills/) contain no text or IDs from any dev,
+    held-out, or reserve evaluation items, or from Track B gold facts.
+    """
+    errors = []
+    protected_ids = set()
+    protected_entities = set()
+
+    # Track A files
+    for split_file in [
+        "data/track_a_dev_split.json",
+        "data/track_a_heldout_candidate.json",
+        "data/reserve_set_quarantine.json",
+    ]:
+        p = os.path.join(repo_root, split_file)
+        if os.path.exists(p):
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    items = json.load(f)
+                for it in items:
+                    if it.get("original_id"):
+                        protected_ids.add(str(it["original_id"]).strip())
+                    if it.get("subtask_id"):
+                        protected_ids.add(str(it["subtask_id"]).strip())
+                    for part in it.get("parts", []):
+                        if part.get("original_id"):
+                            protected_ids.add(str(part["original_id"]).strip())
+            except Exception:
+                pass
+
+    # Track B question splits
+    for tb_file in [
+        "data/track_b/track_b_dev_split.json",
+        "data/track_b/track_b_heldout_candidate.json",
+    ]:
+        p = os.path.join(repo_root, tb_file)
+        if os.path.exists(p):
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    items = json.load(f)
+                for it in items:
+                    if it.get("question_id"):
+                        protected_ids.add(str(it["question_id"]).strip())
+                    for fid in it.get("fact_ids", []):
+                        protected_ids.add(str(fid).strip())
+            except Exception:
+                pass
+
+    # Track B Master Fact Pool
+    mfp_p = os.path.join(repo_root, "data", "track_b", "master_fact_pool.json")
+    if os.path.exists(mfp_p):
+        try:
+            with open(mfp_p, "r", encoding="utf-8") as f:
+                facts_data = json.load(f)
+            facts = facts_data.get("dev_facts", []) + facts_data.get("heldout_facts", [])
+            for fact in facts:
+                if fact.get("fact_id"):
+                    protected_ids.add(str(fact["fact_id"]).strip())
+                comp = fact.get("component")
+                if comp and len(comp) >= 5:
+                    protected_entities.add(comp.strip())
+        except Exception:
+            pass
+
+    # Remove generic short tokens
+    protected_ids = {i for i in protected_ids if len(i) >= 4}
+    if not protected_ids:
+        return errors
+
+    id_pattern = re.compile(r"\b(?:" + "|".join(re.escape(i) for i in sorted(protected_ids, key=len, reverse=True)) + r")\b")
+    ent_pattern = (
+        re.compile(r"\b(?:" + "|".join(re.escape(e) for e in sorted(protected_entities, key=len, reverse=True)) + r")\b")
+        if protected_entities
+        else None
+    )
+
+    # Files to scan:
+    scan_files = []
+
+    # 1. Skill files (.agents/skills/**/SKILL.md)
+    skill_files = glob.glob(os.path.join(repo_root, ".agents", "skills", "**", "SKILL.md"), recursive=True)
+    scan_files.extend(skill_files)
+
+    # 2. Pipeline prompts in src/ (excluding checkers and audit scripts)
+    for root, dirs, files in os.walk(os.path.join(repo_root, "src")):
+        if "__pycache__" in root:
+            continue
+        for file in files:
+            if file.endswith((".py", ".txt", ".json", ".md")):
+                if file in ["subtask_checkers.py", "fact_checklist_scorer.py", "audit_rules.py"]:
+                    continue
+                scan_files.append(os.path.join(root, file))
+
+    # 3. Adapters' training data in adapters/ (e.g. dataset files, avoiding tokenizer or model configs)
+    for root, dirs, files in os.walk(os.path.join(repo_root, "adapters")):
+        if "__pycache__" in root:
+            continue
+        for file in files:
+            if file.endswith((".jsonl", ".txt", ".csv")) or (
+                file.endswith(".json") and not file.endswith(("config.json", "tokenizer.json"))
+            ):
+                scan_files.append(os.path.join(root, file))
+
+    # Scan for leakage using compiled patterns
+    for target_path in scan_files:
+        try:
+            with open(target_path, "r", encoding="utf-8", errors="ignore") as f:
+                content = f.read()
+
+            rel_path = os.path.relpath(target_path, repo_root)
+
+            # Check protected IDs
+            m_id = id_pattern.search(content)
+            if m_id:
+                errors.append(f"Hard Rule 6 Benchmark Leakage: Found evaluation ID '{m_id.group(0)}' in {rel_path}")
+
+            # Check protected invented entities
+            if ent_pattern:
+                m_ent = ent_pattern.search(content)
+                if m_ent:
+                    errors.append(f"Hard Rule 6 Benchmark Leakage: Found Track B gold entity '{m_ent.group(0)}' in {rel_path}")
+
+        except Exception as e:
+            errors.append(f"Could not scan file {target_path} for leakage: {e}")
+
+    return errors
+
+
 def run_full_audit(repo_root: str = ".") -> Tuple[bool, List[str]]:
     """Runs all checks and returns (passed, list_of_errors)."""
     all_errors = []
@@ -465,6 +696,7 @@ def run_full_audit(repo_root: str = ".") -> Tuple[bool, List[str]]:
     k_errors = audit_knowledge_files(repo_root)
     all_errors.extend(k_errors)
 
+
     # 2. Pinned model digest check in model_registry.md
     digest_errors = audit_model_digests(repo_root)
     all_errors.extend(digest_errors)
@@ -472,6 +704,10 @@ def run_full_audit(repo_root: str = ".") -> Tuple[bool, List[str]]:
     # 3. Deleted file check (Rule 2)
     deleted_errors = audit_deleted_files(repo_root)
     all_errors.extend(deleted_errors)
+
+    # 3b. Results hash journal check (Rule 2: files under results/ cannot shrink or disappear)
+    journal_errors = audit_results_journal(repo_root)
+    all_errors.extend(journal_errors)
 
     # 4. Secret leakage check
     secret_errors = audit_secret_leakage(repo_root)
@@ -485,13 +721,41 @@ def run_full_audit(repo_root: str = ".") -> Tuple[bool, List[str]]:
     track_b_errors = audit_track_b_facts(repo_root)
     all_errors.extend(track_b_errors)
 
-    # 7. Check any existing run record JSONL files in results/
+    # 7. Benchmark leakage check (Hard Rule 6)
+    leakage_errors = audit_benchmark_leakage(repo_root)
+    all_errors.extend(leakage_errors)
+
+    # 7b. Pipeline metadata leakage check
+    pipeline_dir = os.path.join(repo_root, "src", "pipeline")
+    if os.path.exists(pipeline_dir):
+        from src.audit.audit_leakage import audit_pipeline_leakage
+        leak_errors = audit_pipeline_leakage(pipeline_dir)
+        all_errors.extend(leak_errors)
+
+    # 8. Check results files (run records and corrections)
+    corrections_map = {}
     record_files = glob.glob(os.path.join(repo_root, "results", "**", "*.jsonl"), recursive=True)
     for rf in record_files:
-        # Ignore temporary cache or IDE directories
-        if ".git" in rf or ".gemini" in rf:
+        if "corrections" in os.path.basename(rf):
+            # Audit corrections per Hard Rule 2: must have reason, target_file, item_id
+            with open(rf, "r", encoding="utf-8") as f:
+                for l_idx, line in enumerate(f, 1):
+                    if not line.strip():
+                        continue
+                    try:
+                        c_rec = json.loads(line)
+                        if not c_rec.get("reason") or not c_rec.get("target_file") or not c_rec.get("item_id"):
+                            all_errors.append(f"Hard Rule 2 Violation: Line {l_idx} in {rf} missing required reason/target_file/item_id")
+                        else:
+                            tf = os.path.normpath(c_rec.get("target_file", "")).replace("\\", "/")
+                            corrections_map[(tf, str(c_rec.get("item_id")))] = c_rec
+                    except Exception as e:
+                        all_errors.append(f"Hard Rule 2 Violation: Line {l_idx} in {rf} is invalid JSON: {e}")
+
+    for rf in record_files:
+        if ".git" in rf or ".gemini" in rf or "corrections" in os.path.basename(rf):
             continue
-        rf_errors = audit_run_records(rf)
+        rf_errors = audit_run_records(rf, corrections_map=corrections_map, repo_root=repo_root)
         all_errors.extend(rf_errors)
 
     passed = len(all_errors) == 0

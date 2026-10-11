@@ -1,0 +1,411 @@
+[
+  {
+    "question_id": "track_b_calib_0001",
+    "prompt": "Identify the primary auxiliary power converter assigned to the Auxiliary Power subsystem in the HyperGrid v4.2 specification, and state both its nominal bus voltage and peak efficiency rating in a short key-value format.",
+    "subsystem": "Auxiliary Power",
+    "fact_ids": [
+      "FACT-CALIB-001",
+      "FACT-CALIB-002"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "Converter-KV7",
+        "description": "component Converter-KV7"
+      },
+      {
+        "type": "numeric",
+        "target": 842.6,
+        "tolerance": 0.5,
+        "unit": "V",
+        "description": "bus voltage 842.6 V"
+      },
+      {
+        "type": "numeric",
+        "target": 97.8,
+        "tolerance": 0.2,
+        "unit": "%",
+        "description": "peak efficiency 97.8 %"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "790.0",
+          "94.2",
+          "620.0",
+          "91.5"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_calib_0002",
+    "prompt": "Under HyperGrid v4.2 specifications for Telemetry Dynamics, state the active transmission baud rate and the buffer queue capacity for TelemetryMod-T9.",
+    "subsystem": "Telemetry Dynamics",
+    "fact_ids": [
+      "FACT-CALIB-003",
+      "FACT-CALIB-004"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "TelemetryMod-T9",
+        "description": "component TelemetryMod-T9"
+      },
+      {
+        "type": "numeric",
+        "target": 460.8,
+        "tolerance": 0.5,
+        "unit": "kbps",
+        "description": "baud rate 460.8 kbps"
+      },
+      {
+        "type": "numeric",
+        "target": 512,
+        "tolerance": 1,
+        "unit": "packets",
+        "description": "buffer capacity 512 packets"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "384.0",
+          "256",
+          "192.0",
+          "128"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_calib_0003",
+    "prompt": "Identify the nominal air gap clearance and electromagnetic slew rate certified for LevitationPad-L3 under HyperGrid v4.2 guideway levitation standards.",
+    "subsystem": "Guideway Levitation",
+    "fact_ids": [
+      "FACT-CALIB-005",
+      "FACT-CALIB-006"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "LevitationPad-L3",
+        "description": "component LevitationPad-L3"
+      },
+      {
+        "type": "numeric",
+        "target": 18.4,
+        "tolerance": 0.2,
+        "unit": "mm",
+        "description": "air gap clearance 18.4 mm"
+      },
+      {
+        "type": "numeric",
+        "target": 125.0,
+        "tolerance": 0.5,
+        "unit": "A/ms",
+        "description": "slew rate 125.0 A/ms"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "22.0",
+          "100.0",
+          "12.0",
+          "80.0"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_calib_0004",
+    "prompt": "State the active heat rejection capacity and coolant volumetric flow rate for RadiatorCore-R5 under the HyperGrid v4.2 Thermal Dissipation standard.",
+    "subsystem": "Thermal Dissipation",
+    "fact_ids": [
+      "FACT-CALIB-007",
+      "FACT-CALIB-008"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "RadiatorCore-R5",
+        "description": "component RadiatorCore-R5"
+      },
+      {
+        "type": "numeric",
+        "target": 345.2,
+        "tolerance": 0.5,
+        "unit": "kW",
+        "description": "heat rejection 345.2 kW"
+      },
+      {
+        "type": "numeric",
+        "target": 86.5,
+        "tolerance": 0.5,
+        "unit": "L/min",
+        "description": "flow rate 86.5 L/min"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "310.0",
+          "75.0",
+          "210.0",
+          "50.0"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_calib_0005",
+    "prompt": "Under the HyperGrid v4.2 pneumatic braking specification, state the clamping force margin and response time threshold for BrakeCaliper-BC2.",
+    "subsystem": "Pneumatic Braking",
+    "fact_ids": [
+      "FACT-CALIB-009",
+      "FACT-CALIB-010"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "BrakeCaliper-BC2",
+        "description": "component BrakeCaliper-BC2"
+      },
+      {
+        "type": "numeric",
+        "target": 42.8,
+        "tolerance": 0.2,
+        "unit": "kN",
+        "description": "clamping force 42.8 kN"
+      },
+      {
+        "type": "numeric",
+        "target": 14.2,
+        "tolerance": 0.2,
+        "unit": "ms",
+        "description": "response time 14.2 ms"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "38.0",
+          "18.0",
+          "25.0"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_calib_0006",
+    "prompt": "Identify OpticSensor-OS8 in the Guideway Alignment subsystem under HyperGrid v4.2, and state its laser sampling frequency and detection angular FOV.",
+    "subsystem": "Guideway Alignment",
+    "fact_ids": [
+      "FACT-CALIB-011",
+      "FACT-CALIB-012"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "OpticSensor-OS8",
+        "description": "component OpticSensor-OS8"
+      },
+      {
+        "type": "numeric",
+        "target": 250.0,
+        "tolerance": 1.0,
+        "unit": "Hz",
+        "description": "sampling frequency 250.0 Hz"
+      },
+      {
+        "type": "numeric",
+        "target": 64.5,
+        "tolerance": 0.5,
+        "unit": "deg",
+        "description": "angular FOV 64.5 deg"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "200.0",
+          "55.0",
+          "100.0",
+          "40.0"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_calib_0007",
+    "prompt": "State the certified gyroscope drift bias and accelerometer dynamic range for InertialUnit-IMU4 in the HyperGrid v4.2 Guidance Navigation subsystem.",
+    "subsystem": "Guidance Navigation",
+    "fact_ids": [
+      "FACT-CALIB-013",
+      "FACT-CALIB-014"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "InertialUnit-IMU4",
+        "description": "component InertialUnit-IMU4"
+      },
+      {
+        "type": "numeric",
+        "target": 0.035,
+        "tolerance": 0.005,
+        "unit": "deg/hr",
+        "description": "gyro drift bias 0.035 deg/hr"
+      },
+      {
+        "type": "numeric",
+        "target": 16.0,
+        "tolerance": 0.5,
+        "unit": "g",
+        "description": "dynamic range 16.0 g"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "0.050",
+          "12.0",
+          "0.100",
+          "8.0"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_calib_0008",
+    "prompt": "Under the HyperGrid v4.2 Energy Storage baseline, state the internal pack impedance and maximum charge C-rate cap for BatteryPack-BP9.",
+    "subsystem": "Energy Storage",
+    "fact_ids": [
+      "FACT-CALIB-015",
+      "FACT-CALIB-016"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "BatteryPack-BP9",
+        "description": "component BatteryPack-BP9"
+      },
+      {
+        "type": "numeric",
+        "target": 28.4,
+        "tolerance": 0.5,
+        "unit": "mOhm",
+        "description": "pack impedance 28.4 mOhm"
+      },
+      {
+        "type": "numeric",
+        "target": 3.5,
+        "tolerance": 0.1,
+        "unit": "C",
+        "description": "charge C-rate 3.5 C"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "35.0",
+          "2.8",
+          "48.0",
+          "1.5"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_calib_0009",
+    "prompt": "Identify CryoVent-CV3 in the Cryogenics subsystem under HyperGrid v4.2, and state its exhaust burst pressure and valve orifice diameter.",
+    "subsystem": "Cryogenics",
+    "fact_ids": [
+      "FACT-CALIB-017",
+      "FACT-CALIB-018"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CryoVent-CV3",
+        "description": "component CryoVent-CV3"
+      },
+      {
+        "type": "numeric",
+        "target": 18.6,
+        "tolerance": 0.2,
+        "unit": "bar",
+        "description": "burst pressure 18.6 bar"
+      },
+      {
+        "type": "numeric",
+        "target": 4.8,
+        "tolerance": 0.2,
+        "unit": "mm",
+        "description": "orifice diameter 4.8 mm"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "15.0",
+          "4.0",
+          "10.0",
+          "3.2"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_calib_0010",
+    "prompt": "State the center resonance frequency and main lobe peak gain certified for AntennaArray-AA5 under the HyperGrid v4.2 Communications subsystem.",
+    "subsystem": "Communications",
+    "fact_ids": [
+      "FACT-CALIB-019",
+      "FACT-CALIB-020"
+    ],
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "AntennaArray-AA5",
+        "description": "component AntennaArray-AA5"
+      },
+      {
+        "type": "numeric",
+        "target": 5.85,
+        "tolerance": 0.05,
+        "unit": "GHz",
+        "description": "resonance frequency 5.85 GHz"
+      },
+      {
+        "type": "numeric",
+        "target": 14.2,
+        "tolerance": 0.2,
+        "unit": "dBi",
+        "description": "main lobe gain 14.2 dBi"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "5.40",
+          "11.5",
+          "2.40",
+          "8.0"
+        ],
+        "description": "banned superseded values"
+      }
+    ]
+  }
+]

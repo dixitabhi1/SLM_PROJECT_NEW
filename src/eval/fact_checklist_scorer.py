@@ -33,18 +33,82 @@ def score_fact_checklist(output_text: str, gold_facts: List[Dict[str, Any]], max
     
     total_positive = 0
     
+    # Collect known units from positive numeric facts for context-aware unit bounding
+    known_units = [f["unit"].strip() for f in gold_facts if f.get("type") == "numeric" and f.get("unit")]
+
     for fact in gold_facts:
         f_type = fact.get("type")
         desc = fact.get("description", str(fact))
         
         if f_type == "negative":
+            # 1. Check explicit banned numbers with units
+            banned_nums = fact.get("banned_numbers", [])
+            for bn in banned_nums:
+                target = bn.get("target") or bn.get("value")
+                unit = bn.get("unit", "").strip()
+                if target is not None and unit:
+                    target_float = float(target)
+                    target_g = f"{target_float:g}"
+                    esc_unit = re.escape(unit)
+                    num_pat = (
+                        r"(?<![\d.])(?:"
+                        + re.escape(str(target))
+                        + r"|"
+                        + re.escape(target_g)
+                        + r"(?:\.0+)?)(?!\d)\s*"
+                        + esc_unit
+                        + r"\b"
+                    )
+                    if re.search(num_pat, output_text, re.IGNORECASE):
+                        negative_violations.append(f"Triggered banned numeric value: '{target} {unit}'")
+
+            # 2. Check banned tokens (handling both strings and number+unit tokens)
             banned = fact.get("banned_tokens", [])
             for b in banned:
-                # Word boundary search
-                pattern = r"\b" + re.escape(b) + r"\b"
-                if re.search(pattern, output_text, re.IGNORECASE):
-                    negative_violations.append(f"Triggered banned token: '{b}'")
+                b_str = str(b).strip()
+                # Check if token is a combined number + unit (e.g. '680.0 kHz' or '15.0 L/min')
+                combined_match = re.match(r"^([+-]?\d+(?:\.\d+)?)\s*([a-zA-Z/%\^0-9\-_]+)$", b_str)
+                if combined_match:
+                    num_part = combined_match.group(1)
+                    unit_part = combined_match.group(2)
+                    num_float = float(num_part)
+                    num_g = f"{num_float:g}"
+                    esc_unit = re.escape(unit_part)
+                    num_pat = (
+                        r"(?<![\d.])(?:"
+                        + re.escape(num_part)
+                        + r"|"
+                        + re.escape(num_g)
+                        + r"(?:\.0+)?)(?!\d)\s*"
+                        + esc_unit
+                        + r"\b"
+                    )
+                    if re.search(num_pat, output_text, re.IGNORECASE):
+                        negative_violations.append(f"Triggered banned numeric value with unit: '{b_str}'")
+                elif re.match(r"^[+-]?\d+(?:\.\d+)?$", b_str):
+                    # Bare number in banned list: must match on number boundary WITH relevant unit
+                    num_float = float(b_str)
+                    num_g = f"{num_float:g}"
+                    if known_units:
+                        units_pattern = "(?:" + "|".join(re.escape(u) for u in known_units) + r")\b"
+                        num_pat = (
+                            r"(?<![\d.])(?:"
+                            + re.escape(b_str)
+                            + r"|"
+                            + re.escape(num_g)
+                            + r"(?:\.0+)?)(?!\d)\s*"
+                            + units_pattern
+                        )
+                        if re.search(num_pat, output_text, re.IGNORECASE):
+                            negative_violations.append(f"Triggered banned number with unit: '{b_str}'")
+                    # If not paired with known unit, pure number alone does not penalize innocent text
+                else:
+                    # Non-numeric token: match on word boundary
+                    pattern = r"\b" + re.escape(b_str) + r"\b"
+                    if re.search(pattern, output_text, re.IGNORECASE):
+                        negative_violations.append(f"Triggered banned token: '{b_str}'")
             continue
+
             
         total_positive += 1
         

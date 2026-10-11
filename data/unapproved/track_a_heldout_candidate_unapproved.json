@@ -827,1204 +827,1342 @@
   },
   {
     "subtask_id": "compound_heldout_0001",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0001",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
-      "math"
+      "math",
+      "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A fleet logistics table aircraft_hangar [CREATE TABLE hangar (bay_id int, jets int, fuel_tons int)] records 4 service bays: (1, 5, 20), (2, 8, 32), (3, 4, 16), and (4, 10, 40); query the total fuel tons stored across bays holding at least 6 jets; if each fuel ton is valued at 750 dollars and a bulk purchase rebate reduces the total invoice by 2,000 dollars, compute the final net expenditure.",
+    "num_stages": 3,
+    "prompt": "Query the flight_2 database [Database Schema: CREATE TABLE 'airlines' ( uid INTEGER PRIMARY KEY, Airline TEXT, Abbreviation TEXT, Country TEXT ); CREATE TABLE 'flights' ( Airline INTEGER, FlightNo INTEGER, SourceAirport TEXT, DestAirport TEXT, PRIMARY KEY(Airline, FlightNo), FOREIGN KEY (SourceAirport) REFERENCES airports(AirportCode), FOREIGN KEY (DestAirport) REFERENCES airports(AirportCode) )] to count the number of flights having FlightNo strictly less than 500; divide this flight count by 12 using integer division to determine the number of operational airport runways required; write an algorithm to calculate the sum of the first N consecutive positive odd integers starting from 1, where N equals this runway requirement.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/flight_2/flight_2.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM flights WHERE FlightNo < 500\")\nflights = c.fetchone()[0]\n\nrunways = flights // 12\nfinal_answer = sum(2 * i + 1 for i in range(runways))\n",
+    "gold_answer": 1369,
     "component_parts": [
       {
-        "label": "derived from spider_val_0101",
-        "original_id": "spider_val_0101",
+        "description": "derived from spider_val_0012",
+        "original_id": "spider_val_0012",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0101",
-        "original_id": "gsm8k_test_0101",
+        "description": "derived from gsm8k_test_0020",
+        "original_id": "gsm8k_test_0020",
         "stage": 2,
         "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/21",
+        "original_id": "HumanEval/21",
+        "stage": 3,
+        "domain": "code"
       }
-    ],
-    "reference_program": "# Bays with >= 6 jets: bay 2 (32 tons), bay 4 (40 tons) -> total fuel = 72 tons\nfuel_tons = 32 + 40  # 72\ngross = fuel_tons * 750  # 54000\nfinal_answer = gross - 2000  # 52000\n",
-    "gold_answer": "52000",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0002",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0002",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
+      "code",
       "math"
     ],
-    "solvability": "tool-required",
-    "prompt": "From the flight_2 database [Database Schema: CREATE TABLE 'airlines' ( uid INTEGER PRIMARY KEY, Airline TEXT, Abbreviation TEXT, Country TEXT ); CREATE TABLE 'airports' ( City TEXT, AirportCode TEXT PRIMARY KEY, AirportName TEXT, Country TEXT, CountryAbbrev TEXT ); CREATE TABLE 'flights' ( Airline INTEGER, FlightNo INTEGER, SourceAirport TEXT, DestAirport TEXT, PRIMARY KEY(Airline, FlightNo), FOREIGN KEY (SourceAirport) REFERENCES airports(AirportCode), FOREIGN KEY (DestAirport) REFERENCES airports(AirportCode) )], query the count of all flights departing from SourceAirport 'APG'; if an aviation authority imposes an emissions levy of 145 dollars per flight plus a flat administrative filing fee of 85 dollars for the carrier, calculate the total regulatory levy due.",
+    "num_stages": 3,
+    "prompt": "From the tvshow database [Database Schema: CREATE TABLE \"TV_Channel\" ( \"id\" text, \"series_name\" text, \"Country\" text, \"Language\" text, \"Content\" text, \"Pixel_aspect_ratio_PAR\" text, \"Hight_definition_TV\" text, \"Pay_per_view_PPV\" text, \"Package_Option\" text, PRIMARY KEY (\"id\") ); CREATE TABLE \"TV_series\" ( \"id\" real, \"Episode\" text, \"Air_Date\" text, \"Rating\" text, \"Share\" real, \"18_49_Rating_Share\" text, \"Viewers_m\" text, \"Weekly_Rank\" real, \"Channel\" text, PRIMARY KEY (\"id\"), FOREIGN KEY (`Channel`) REFERENCES `TV_Channel`(`id`) )], count the number of TV series having Episode strictly greater than 10; starting from this episode count as initial integer n, simulate the Collatz sequence where n transitions to n / 2 if n is even and 3 * n + 1 if n is odd, counting the total transition steps taken until n reaches 1; multiply this step count by 85 and add 135 to determine the final production grant.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/tvshow/tvshow.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM TV_series WHERE Episode > 10\")\nep = c.fetchone()[0]\n\nn = ep\nsteps = 0\nwhile n != 1:\n    if n % 2 == 0:\n        n //= 2\n    else:\n        n = 3 * n + 1\n    steps += 1\n\nfinal_answer = steps * 85 + 135\n",
+    "gold_answer": 900,
     "component_parts": [
       {
-        "label": "derived from spider_val_0102",
-        "original_id": "spider_val_0102",
+        "description": "derived from spider_val_0017",
+        "original_id": "spider_val_0017",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0102",
-        "original_id": "gsm8k_test_0102",
+        "description": "derived from HumanEval/24",
+        "original_id": "HumanEval/24",
         "stage": 2,
+        "domain": "code"
+      },
+      {
+        "description": "derived from gsm8k_test_0021",
+        "original_id": "gsm8k_test_0021",
+        "stage": 3,
         "domain": "math"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/flight_2/flight_2.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM flights WHERE SourceAirport = 'APG'\")\nn_flights = c.fetchone()[0]  # count\nfinal_answer = (n_flights * 145) + 85\n",
-    "gold_answer": "85",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0003",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0003",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
-      "math"
+      "math",
+      "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A maritime harbor log table vessel_registry [CREATE TABLE docks (slip_id int, crew int, daily_fee int)] lists 3 berthed vessels: (101, 14, 120), (102, 26, 180), and (103, 18, 140); query the sum of daily berthing fees for slips hosting more than 15 crew members; multiply this sum by a 14-day harbor residency stay and add an environmental harbor cleanup fee of 350 dollars to find the total port billing.",
+    "num_stages": 3,
+    "prompt": "In the world_1 database [Database Schema: CREATE TABLE `city` ( `ID` integer NOT NULL PRIMARY KEY AUTOINCREMENT , `Name` char(35) NOT NULL DEFAULT '' , `CountryCode` char(3) NOT NULL DEFAULT '' , `District` char(20) NOT NULL DEFAULT '' , `Population` integer NOT NULL DEFAULT '0' , CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) ); CREATE TABLE `country` ( `Code` char(3) NOT NULL DEFAULT '' , `Name` char(52) NOT NULL DEFAULT '' , `Continent` text NOT NULL DEFAULT 'Asia' , `Region` char(26) NOT NULL DEFAULT '' , `SurfaceArea` float(10,2) NOT NULL DEFAULT '0.00' , `IndepYear` integer DEFAULT NULL , `Population` integer NOT NULL DEFAULT '0' , `LifeExpectancy` float(3,1) DEFAULT NULL , `GNP` float(10,2) DEFAULT NULL , `GNPOld` float(10,2) DEFAULT NULL , `LocalName` char(45) NOT NULL DEFAULT '' , `GovernmentForm` char(45) NOT NULL DEFAULT '' , `HeadOfState` char(60) DEFAULT NULL , `Capital` integer DEFAULT NULL , `Code2` char(2) NOT NULL DEFAULT '' , PRIMARY KEY (`Code`) )], count the number of countries whose SurfaceArea is strictly greater than 100000; multiply this country count by 14 and subtract 126 to compute a composite territory index; determine the total count of distinct prime factors dividing this composite territory index.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/world_1/world_1.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM country WHERE SurfaceArea > 100000\")\ncountries = c.fetchone()[0]\n\nidx = countries * 14 - 126\n\nfactors = set()\nd = 2\ntemp = idx\nwhile d * d <= temp:\n    if temp % d == 0:\n        factors.add(d)\n        while temp % d == 0:\n            temp //= d\n    d += 1\nif temp > 1:\n    factors.add(temp)\n\nfinal_answer = len(factors)\n",
+    "gold_answer": 3,
     "component_parts": [
       {
-        "label": "derived from spider_val_0103",
-        "original_id": "spider_val_0103",
+        "description": "derived from spider_val_0018",
+        "original_id": "spider_val_0018",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0103",
-        "original_id": "gsm8k_test_0103",
+        "description": "derived from gsm8k_test_0022",
+        "original_id": "gsm8k_test_0022",
         "stage": 2,
         "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/49",
+        "original_id": "HumanEval/49",
+        "stage": 3,
+        "domain": "code"
       }
-    ],
-    "reference_program": "# Slips with > 15 crew: slip 102 (fee 180), slip 103 (fee 140) -> total daily fee = 320\ndaily_sum = 180 + 140  # 320\nresidency = daily_sum * 14  # 4480\nfinal_answer = residency + 350  # 4830\n",
-    "gold_answer": "4830",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0004",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0004",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
+      "code",
       "math"
     ],
-    "solvability": "tool-required",
-    "prompt": "Query the battle_death database [Database Schema: CREATE TABLE \"battle\" ( \"id\" int, \"name\" text, \"date\" text, \"bulgarian_commander\" text, \"latin_commander\" text, \"result\" text, primary key(\"id\") ); CREATE TABLE \"ship\" ( \"lost_in_battle\" int, \"id\" int, \"name\" text, \"tonnage\" text, \"ship_type\" text, \"location\" text, \"disposition_of_ship\" text, primary key(\"id\"), foreign key (`lost_in_battle`) references `battle`(\"id\") ); CREATE TABLE \"death\" ( \"caused_by_ship_id\" int, \"id\" int, \"note\" text, \"killed\" int, \"injured\" int, primary key(\"id\"), foreign key (\"caused_by_ship_id\") references `ship`(\"id\") )] to determine the total number of individuals killed recorded across all naval casualty records; if an emergency maritime relief foundation commits a compensation grant of 2,500 dollars per casualty and allocates an additional 150,000 dollars for memorial construction, calculate the grand total relief disbursement.",
+    "num_stages": 3,
+    "prompt": "Query the real_estate_properties database [Database Schema: CREATE TABLE `Properties` ( `property_id` INTEGER PRIMARY KEY, `property_type_code` VARCHAR(20) NOT NULL, `date_on_market` DATETIME, `date_sold` DATETIME, `property_name` VARCHAR(80), `property_address` VARCHAR(255), `room_count` INTEGER, `vendor_requested_price` DECIMAL(19,4), `buyer_offered_price` DECIMAL(19,4), `agreed_selling_price` DECIMAL(19,4), `apt_feature_1` VARCHAR(255), `apt_feature_2` VARCHAR(255), `apt_feature_3` VARCHAR(255), `fld_feature_1` VARCHAR(255), `fld_feature_2` VARCHAR(255), `fld_feature_3` VARCHAR(255), `hse_feature_1` VARCHAR(255), `hse_feature_2` VARCHAR(255), `hse_feature_3` VARCHAR(255), `oth_feature_1` VARCHAR(255), `oth_feature_2` VARCHAR(255), `oth_feature_3` VARCHAR(255), `shp_feature_1` VARCHAR(255), `shp_feature_2` VARCHAR(255), `shp_feature_3` VARCHAR(255), `other_property_details` VARCHAR(255), FOREIGN KEY (`property_type_code` ) REFERENCES `Ref_Property_Types`(`property_type_code` ) )] to count the number of properties having room_count greater than or equal to 2; raise this property count to the 3rd power, and calculate the sum of the squares of its decimal digits; multiply this sum by 30 and add 150 to establish the final appraisal warranty reserve.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/real_estate_properties/real_estate_properties.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM Properties WHERE room_count >= 2\")\nprops = c.fetchone()[0]\n\ncubed = props ** 3\ndigit_sq_sum = sum(int(d)**2 for d in str(cubed))\nfinal_answer = digit_sq_sum * 30 + 150\n",
+    "gold_answer": 2700,
     "component_parts": [
       {
-        "label": "derived from spider_val_0104",
-        "original_id": "spider_val_0104",
+        "description": "derived from spider_val_0019",
+        "original_id": "spider_val_0019",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0104",
-        "original_id": "gsm8k_test_0104",
+        "description": "derived from HumanEval/60",
+        "original_id": "HumanEval/60",
         "stage": 2,
+        "domain": "code"
+      },
+      {
+        "description": "derived from gsm8k_test_0023",
+        "original_id": "gsm8k_test_0023",
+        "stage": 3,
         "domain": "math"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/battle_death/battle_death.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT sum(killed) FROM death\")\ntotal_killed = c.fetchone()[0]  # total\nfinal_answer = (total_killed * 2500) + 150000\n",
-    "gold_answer": "370000",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0005",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0005",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
-      "math"
+      "math",
+      "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "An industrial fabrication ledger table steel_beams [CREATE TABLE beams (lot_id int, length_m int, defect_rate float)] contains 4 structural lots: (1, 12, 0.05), (2, 20, 0.02), (3, 15, 0.08), and (4, 25, 0.01); query the average length in meters of beams that maintain a defect rate strictly below 0.04; if a skyscraper project requires 48 such beams, determine the combined length in meters of all 48 structural members.",
+    "num_stages": 3,
+    "prompt": "From the orchestra database [Database Schema: CREATE TABLE \"conductor\" ( \"Conductor_ID\" int, \"Name\" text, \"Age\" int, \"Nationality\" text, \"Year_of_Work\" int, PRIMARY KEY (\"Conductor_ID\") ); CREATE TABLE \"orchestra\" ( \"Orchestra_ID\" int, \"Orchestra\" text, \"Conductor_ID\" int, \"Record_Company\" text, \"Year_of_Founded\" real, \"Major_Record_Format\" text, PRIMARY KEY (\"Orchestra_ID\"), FOREIGN KEY (`Conductor_ID`) REFERENCES `conductor`(`Conductor_ID`) )], query the count of conductors whose Year_of_Work is strictly greater than 5; multiply this conductor count by 45 and add 60 to compute a total performance stipend; find the total count of distinct positive integer divisors of that total stipend.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/orchestra/orchestra.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM conductor WHERE Year_of_Work > 5\")\nconds = c.fetchone()[0]\n\nstipend = conds * 45 + 60\ndivs = [d for d in range(1, stipend + 1) if stipend % d == 0]\nfinal_answer = len(divs)\n",
+    "gold_answer": 24,
     "component_parts": [
       {
-        "label": "derived from spider_val_0105",
-        "original_id": "spider_val_0105",
+        "description": "derived from spider_val_0020",
+        "original_id": "spider_val_0020",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0105",
-        "original_id": "gsm8k_test_0105",
+        "description": "derived from gsm8k_test_0024",
+        "original_id": "gsm8k_test_0024",
         "stage": 2,
         "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/66",
+        "original_id": "HumanEval/66",
+        "stage": 3,
+        "domain": "code"
       }
-    ],
-    "reference_program": "# Defect rate < 0.04: lot 2 (20 m), lot 4 (25 m) -> avg length = (20 + 25) / 2 = 22.5 m\navg_len = (20 + 25) / 2.0  # 22.5\nfinal_answer = int(avg_len * 48)  # 1080\n",
-    "gold_answer": "1080",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0006",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0006",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
+      "code",
       "math"
     ],
-    "solvability": "tool-required",
-    "prompt": "In the dog_kennels database [Database Schema: CREATE TABLE `Breeds` ( `breed_code` VARCHAR(10) PRIMARY KEY , `breed_name` VARCHAR(80) ); CREATE TABLE `Owners` ( `owner_id` INTEGER PRIMARY KEY , `first_name` VARCHAR(50), `last_name` VARCHAR(50), `street` VARCHAR(50), `city` VARCHAR(50), `state` VARCHAR(20), `zip_code` VARCHAR(20), `email_address` VARCHAR(50), `home_phone` VARCHAR(20), `cell_number` VARCHAR(20) ); CREATE TABLE `Dogs` ( `dog_id` INTEGER PRIMARY KEY , `owner_id` INTEGER NOT NULL, `abandoned_yn` VARCHAR(1), `breed_code` VARCHAR(10) NOT NULL, `size_code` VARCHAR(10) NOT NULL, `name` VARCHAR(50), `age` VARCHAR(20), `date_of_birth` DATETIME, `gender` VARCHAR(1), `weight` VARCHAR(20), `date_arrived` DATETIME, `date_adopted` DATETIME, `date_departed` DATETIME, FOREIGN KEY (`breed_code` ) REFERENCES `Breeds`(`breed_code` ), FOREIGN KEY (`size_code` ) REFERENCES `Sizes`(`size_code` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ) ); CREATE TABLE `Treatments` ( `treatment_id` INTEGER PRIMARY KEY , `dog_id` INTEGER NOT NULL, `professional_id` INTEGER NOT NULL, `treatment_type_code` VARCHAR(10) NOT NULL, `date_of_treatment` DATETIME, `cost_of_treatment` DECIMAL(19,4), FOREIGN KEY (`treatment_type_code` ) REFERENCES `Treatment_Types`(`treatment_type_code` ), FOREIGN KEY (`professional_id` ) REFERENCES `Professionals`(`professional_id` ), FOREIGN KEY (`dog_id` ) REFERENCES `Dogs`(`dog_id` ) )], query the count of dogs that have Breed_Code 'B_02'; if a canine nutrition research protocol provisions each of these dogs with 450 grams of specialized dietary kibble twice daily over an 8-day clinical trial, compute the total quantity of kibble in grams consumed across all qualifying dogs.",
+    "num_stages": 3,
+    "prompt": "Query the battle_death database [Database Schema: CREATE TABLE \"ship\" ( \"lost_in_battle\" int, \"id\" int, \"name\" text, \"tonnage\" text, \"ship_type\" text, \"location\" text, \"disposition_of_ship\" text, primary key(\"id\"), foreign key (`lost_in_battle`) references `battle`(\"id\") ); CREATE TABLE \"death\" ( \"caused_by_ship_id\" int, \"id\" int, \"note\" text, \"killed\" int, \"injured\" int, primary key(\"id\"), foreign key (\"caused_by_ship_id\") references `ship`(\"id\") )] to count the number of records in the death table where killed is strictly greater than 5; defining a Fibonacci recurrence with F_0 = 1 and F_1 = 2 where F_n = F_(n-1) + F_(n-2), compute the term at index equal to that record count; multiply this term by 125 and add 200 to obtain the memorial compensation fund.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/battle_death/battle_death.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM death WHERE killed > 5\")\ncnt = c.fetchone()[0]\n\nf0, f1 = 1, 2\nfor _ in range(cnt - 1):\n    f0, f1 = f1, f0 + f1\n\nfinal_answer = f1 * 125 + 200\n",
+    "gold_answer": 1200,
     "component_parts": [
       {
-        "label": "derived from spider_val_0106",
-        "original_id": "spider_val_0106",
+        "description": "derived from spider_val_0021",
+        "original_id": "spider_val_0021",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0106",
-        "original_id": "gsm8k_test_0106",
+        "description": "derived from HumanEval/75",
+        "original_id": "HumanEval/75",
         "stage": 2,
+        "domain": "code"
+      },
+      {
+        "description": "derived from gsm8k_test_0040",
+        "original_id": "gsm8k_test_0040",
+        "stage": 3,
         "domain": "math"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/dog_kennels/dog_kennels.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM Dogs WHERE Breed_Code = 'B_02'\")\ndogs_count = c.fetchone()[0]\nfinal_answer = dogs_count * (450 * 2) * 8\n",
-    "gold_answer": "0",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0007",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0007",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
-      "math"
+      "math",
+      "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A municipal transit depot table commuter_coaches [CREATE TABLE coaches (coach_id int, passenger_capacity int, route_zone text)] lists 4 transit coaches: (1, 55, 'North'), (2, 45, 'South'), (3, 60, 'North'), and (4, 40, 'South'); query the combined passenger capacity of all coaches operating in zone 'North'; if tickets retail for 6 dollars per passenger and operating expenses total 180 dollars per full-capacity run, compute the net profit generated when all North coaches operate at full capacity.",
+    "num_stages": 3,
+    "prompt": "In the concert_singer database [Database Schema: CREATE TABLE \"stadium\" ( \"Stadium_ID\" int, \"Location\" text, \"Name\" text, \"Capacity\" int, \"Highest\" int, \"Lowest\" int, \"Average\" int, PRIMARY KEY (\"Stadium_ID\") ); CREATE TABLE \"singer\" ( \"Singer_ID\" int, \"Name\" text, \"Country\" text, \"Song_Name\" text, \"Song_release_year\" text, \"Age\" int, \"Is_male\" bool, PRIMARY KEY (\"Singer_ID\") )], count the number of singers whose Song_release_year is strictly greater than 2005; multiply this singer count by 75 and add 100 to determine a tour bonus; an automated cashier dispenses this bonus using a greedy selection with bill denominations of 100, 50, 20, and 10 in descending order; calculate the total number of bills dispensed.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/concert_singer/concert_singer.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM singer WHERE Song_release_year > 2005\")\nsingers = c.fetchone()[0]\n\nbonus = singers * 75 + 100\ndenoms = [100, 50, 20, 10]\nbills = 0\nrem = bonus\nfor d in denoms:\n    bills += rem // d\n    rem %= d\n\nfinal_answer = bills\n",
+    "gold_answer": 4,
     "component_parts": [
       {
-        "label": "derived from spider_val_0107",
-        "original_id": "spider_val_0107",
+        "description": "derived from spider_val_0022",
+        "original_id": "spider_val_0022",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0107",
-        "original_id": "gsm8k_test_0107",
+        "description": "derived from gsm8k_test_0041",
+        "original_id": "gsm8k_test_0041",
         "stage": 2,
         "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/77",
+        "original_id": "HumanEval/77",
+        "stage": 3,
+        "domain": "code"
       }
-    ],
-    "reference_program": "# Coaches in 'North': coach 1 (55), coach 3 (60) -> combined capacity = 115\ntotal_cap = 55 + 60  # 115\nrevenue = total_cap * 6  # 690\nexpenses = 180 * 2  # 360 (two coach runs)\nfinal_answer = revenue - expenses  # 330\n",
-    "gold_answer": "330",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0008",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0008",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
+      "code",
       "math"
     ],
-    "solvability": "tool-required",
-    "prompt": "From the employee_hire_evaluation database [Database Schema: CREATE TABLE \"employee\" ( \"Employee_ID\" int, \"Name\" text, \"Age\" int, \"City\" text, PRIMARY KEY (\"Employee_ID\") ); CREATE TABLE \"shop\" ( \"Shop_ID\" int, \"Name\" text, \"Location\" text, \"District\" text, \"Number_products\" int, \"Manager_name\" text, PRIMARY KEY (\"Shop_ID\") ); CREATE TABLE \"evaluation\" ( \"Employee_ID\" text, \"Year_awarded\" text, \"Bonus\" real, PRIMARY KEY (\"Employee_ID\",\"Year_awarded\"), FOREIGN KEY (`Employee_ID`) REFERENCES `employee`(`Employee_ID`) )], query the count of employees whose Age is strictly greater than 30; if every senior employee meeting this age criterion receives an executive training grant of 3,200 dollars plus a 500-dollar wellness stipend, calculate the combined expenditure allocated for all qualifying employees.",
+    "num_stages": 3,
+    "prompt": "Query the pets_1 database [Database Schema: CREATE TABLE Student ( StuID INTEGER PRIMARY KEY, LName VARCHAR(12), Fname VARCHAR(12), Age INTEGER, Sex VARCHAR(1), Major INTEGER, Advisor INTEGER, city_code VARCHAR(3) ); CREATE TABLE Pets ( PetID INTEGER PRIMARY KEY, PetType VARCHAR(20), pet_age INTEGER, weight REAL )] to count the number of students whose age is strictly greater than 20; generate the sequence of prime numbers starting with 2 up to that count of total primes, and compute their sum; multiply this sum by 15 and subtract 70 to determine the scholarship allowance.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/pets_1/pets_1.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM Student WHERE age > 20\")\ncount = c.fetchone()[0]\n\nprimes = []\ncurr = 2\nwhile len(primes) < count:\n    is_p = True\n    for p in primes:\n        if p * p > curr:\n            break\n        if curr % p == 0:\n            is_p = False\n            break\n    if is_p:\n        primes.append(curr)\n    curr += 1\n\nfinal_answer = sum(primes) * 15 - 70\n",
+    "gold_answer": 800,
     "component_parts": [
       {
-        "label": "derived from spider_val_0108",
-        "original_id": "spider_val_0108",
+        "description": "derived from spider_val_0023",
+        "original_id": "spider_val_0023",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0108",
-        "original_id": "gsm8k_test_0108",
+        "description": "derived from HumanEval/84",
+        "original_id": "HumanEval/84",
         "stage": 2,
+        "domain": "code"
+      },
+      {
+        "description": "derived from gsm8k_test_0042",
+        "original_id": "gsm8k_test_0042",
+        "stage": 3,
         "domain": "math"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM employee WHERE Age > 30\")\nn_emp = c.fetchone()[0]\nfinal_answer = n_emp * (3200 + 500)\n",
-    "gold_answer": "14800",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0009",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0009",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
-      "math"
+      "math",
+      "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A hardware distribution depot table warehouse_pallets [CREATE TABLE pallets (pallet_id int, cartons int, unit_cost int)] contains 3 supply pallets: (1, 24, 15), (2, 36, 12), and (3, 40, 10); query the total unit value (cartons multiplied by unit_cost) for pallet 2; if a retail buyer marks up this pallet inventory by 50 percent and incurs shipping costs of 45 dollars, compute the total customer purchase price.",
+    "num_stages": 3,
+    "prompt": "From the poker_player database [Database Schema: CREATE TABLE \"poker_player\" ( \"Poker_Player_ID\" int, \"People_ID\" int, \"Final_Table_Made\" real, \"Best_Finish\" real, \"Money_Rank\" real, \"Earnings\" real, PRIMARY KEY (\"Poker_Player_ID\"), FOREIGN KEY (\"People_ID\") REFERENCES `people`(\"People_ID\") ); CREATE TABLE \"people\" ( \"People_ID\" int, \"Nationality\" text, \"Name\" text, \"Birth_Date\" text, \"Height\" real, PRIMARY KEY (\"People_ID\") )], query the count of people in the people table whose Height is strictly greater than 175; multiply this count by 32 and add 80 to establish an inventory weight credit; a logistics manager packs gear with capacity equal to that weight credit divided by 10 using integer division, choosing among packages with (weight, value) pairs (10, 25), (15, 40), (20, 55), and (25, 75) where each package can be selected at most once; compute the maximum achievable value.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/poker_player/poker_player.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM people WHERE Height > 175\")\ncnt = c.fetchone()[0]\n\ncredit = cnt * 32 + 80\ncap = credit // 10\n\nitems = [(10, 25), (15, 40), (20, 55), (25, 75)]\ndp = [0] * (cap + 1)\nfor w, v in items:\n    for j in range(cap, w - 1, -1):\n        dp[j] = max(dp[j], dp[j - w] + v)\n\nfinal_answer = dp[cap]\n",
+    "gold_answer": 80,
     "component_parts": [
       {
-        "label": "derived from spider_val_0109",
-        "original_id": "spider_val_0109",
+        "description": "derived from spider_val_0024",
+        "original_id": "spider_val_0024",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0109",
-        "original_id": "gsm8k_test_0109",
+        "description": "derived from gsm8k_test_0043",
+        "original_id": "gsm8k_test_0043",
         "stage": 2,
         "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/92",
+        "original_id": "HumanEval/92",
+        "stage": 3,
+        "domain": "code"
       }
-    ],
-    "reference_program": "# Pallet 2: 36 cartons * 12 unit cost = 432\ncost = 36 * 12  # 432\nmarkup = cost * 1.50  # 648\nfinal_answer = int(markup + 45)  # 693\n",
-    "gold_answer": "693",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0010",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0010",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
+      "code",
       "math"
     ],
-    "solvability": "tool-required",
-    "prompt": "Query the world_1 database [Database Schema: CREATE TABLE `city` ( `ID` integer NOT NULL PRIMARY KEY AUTOINCREMENT , `Name` char(35) NOT NULL DEFAULT '' , `CountryCode` char(3) NOT NULL DEFAULT '' , `District` char(20) NOT NULL DEFAULT '' , `Population` integer NOT NULL DEFAULT '0' , CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) ); CREATE TABLE `country` ( `Code` char(3) NOT NULL DEFAULT '' , `Name` char(52) NOT NULL DEFAULT '' , `Continent` text NOT NULL DEFAULT 'Asia' , `Region` char(26) NOT NULL DEFAULT '' , `SurfaceArea` float(10,2) NOT NULL DEFAULT '0.00' , `IndepYear` integer DEFAULT NULL , `Population` integer NOT NULL DEFAULT '0' , `LifeExpectancy` float(3,1) DEFAULT NULL , `GNP` float(10,2) DEFAULT NULL , `GNPOld` float(10,2) DEFAULT NULL , `LocalName` char(45) NOT NULL DEFAULT '' , `GovernmentForm` char(45) NOT NULL DEFAULT '' , `HeadOfState` char(60) DEFAULT NULL , `Capital` integer DEFAULT NULL , `Code2` char(2) NOT NULL DEFAULT '' , PRIMARY KEY (`Code`) ); CREATE TABLE `countrylanguage` ( `CountryCode` char(3) NOT NULL DEFAULT '' , `Language` char(30) NOT NULL DEFAULT '' , `IsOfficial` text NOT NULL DEFAULT 'F' , `Percentage` float(4,1) NOT NULL DEFAULT '0.0' , PRIMARY KEY (`CountryCode`,`Language`) , CONSTRAINT `countryLanguage_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) )] to find the total population of all cities located in CountryCode 'NLD'; if a public infrastructure initiative budgets 240 euros per resident and establishes a reserve fund of 5,000,000 euros, compute the total initiative budget in euros.",
+    "num_stages": 3,
+    "prompt": "In the dog_kennels database [Database Schema: CREATE TABLE `Charges` ( `charge_id` INTEGER PRIMARY KEY , `charge_type` VARCHAR(10), `charge_amount` DECIMAL(19,4) ); CREATE TABLE `Dogs` ( `dog_id` INTEGER PRIMARY KEY , `owner_id` INTEGER NOT NULL, `abandoned_yn` VARCHAR(1), `breed_code` VARCHAR(10) NOT NULL, `size_code` VARCHAR(10) NOT NULL, `name` VARCHAR(50), `age` VARCHAR(20), `date_of_birth` DATETIME, `gender` VARCHAR(1), `weight` VARCHAR(20), `date_arrived` DATETIME, `date_adopted` DATETIME, `date_departed` DATETIME, FOREIGN KEY (`breed_code` ) REFERENCES `Breeds`(`breed_code` ), FOREIGN KEY (`size_code` ) REFERENCES `Sizes`(`size_code` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ) )], count the number of records in the Charges table where charge_amount is strictly greater than 50; multiply this count by 2 to define an integer rank, and compute the factorial of that integer rank; divide this factorial by 8 using integer division and add 60 to find the final facility audit score.",
+    "reference_code": "import sqlite3\nimport math\nconn = sqlite3.connect('data/spider/database/dog_kennels/dog_kennels.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM Charges WHERE charge_amount > 50\")\ncharges = c.fetchone()[0]\n\nrank = charges * 2\nfact = math.factorial(rank)\nfinal_answer = fact // 8 + 60\n",
+    "gold_answer": 150,
     "component_parts": [
       {
-        "label": "derived from spider_val_0110",
-        "original_id": "spider_val_0110",
+        "description": "derived from spider_val_0025",
+        "original_id": "spider_val_0025",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0110",
-        "original_id": "gsm8k_test_0110",
+        "description": "derived from HumanEval/94",
+        "original_id": "HumanEval/94",
         "stage": 2,
+        "domain": "code"
+      },
+      {
+        "description": "derived from gsm8k_test_0044",
+        "original_id": "gsm8k_test_0044",
+        "stage": 3,
         "domain": "math"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/world_1/world_1.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT sum(Population) FROM city WHERE CountryCode = 'NLD'\")\npop = c.fetchone()[0]\nfinal_answer = (pop * 240) + 5000000\n",
-    "gold_answer": "1248211760",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0011",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0011",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
       "sql",
-      "math"
+      "math",
+      "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A bakery inventory table bulk_flour [CREATE TABLE sacks (sack_id int, weight_lbs int, grade text)] registers 4 grain sacks: (1, 50, 'A'), (2, 75, 'B'), (3, 100, 'A'), and (4, 50, 'B'); query the sum of weight in pounds for all Grade-A flour sacks; if each pound of Grade-A flour yields 3 artisan baguettes selling for 4 dollars each, determine the total revenue generated from all baguettes produced.",
+    "num_stages": 3,
+    "prompt": "A freight shipping table cargo_manifest [CREATE TABLE manifest (shipment_id int, weight_kg int, priority int)] contains 6 cargo entries: (1, 350, 1), (2, 500, 2), (3, 400, 1), (4, 250, 2), (5, 600, 1), and (6, 450, 1); query the sum of weight_kg for entries having priority equal to 1; divide this total weight by 15 using integer division to compute a distribution index; determine the total count of distinct positive integer divisors of that distribution index.",
+    "reference_code": "w = 1800\nidx = w // 15\ndivs = [d for d in range(1, idx + 1) if idx % d == 0]\nfinal_answer = len(divs)\n",
+    "gold_answer": 16,
     "component_parts": [
       {
-        "label": "derived from spider_val_0111",
-        "original_id": "spider_val_0111",
+        "description": "derived from spider_val_0026",
+        "original_id": "spider_val_0026",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0111",
-        "original_id": "gsm8k_test_0111",
+        "description": "derived from gsm8k_test_0045",
+        "original_id": "gsm8k_test_0045",
         "stage": 2,
         "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/95",
+        "original_id": "HumanEval/95",
+        "stage": 3,
+        "domain": "code"
       }
-    ],
-    "reference_program": "# Grade-A sacks: sack 1 (50 lbs), sack 3 (100 lbs) -> total weight = 150 lbs\nweight = 50 + 100  # 150\nbaguettes = weight * 3  # 450\nfinal_answer = baguettes * 4  # 1800\n",
-    "gold_answer": "1800",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0012",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0012",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
-      "sql",
+      "math",
+      "code",
       "math"
     ],
-    "solvability": "tool-required",
-    "prompt": "From the wta_1 database [Database Schema: CREATE TABLE players( \"player_id\" INT PRIMARY KEY, \"first_name\" TEXT, \"last_name\" TEXT, \"hand\" TEXT, \"birth_date\" DATE, \"country_code\" TEXT ); CREATE TABLE matches( \"best_of\" INT, \"draw_size\" INT, \"loser_age\" FLOAT, \"loser_entry\" TEXT, \"loser_hand\" TEXT, \"loser_ht\" INT, \"loser_id\" INT, \"loser_ioc\" TEXT, \"loser_name\" TEXT, \"loser_rank\" INT, \"loser_rank_points\" INT, \"loser_seed\" INT, \"match_num\" INT, \"minutes\" INT, \"round\" TEXT, \"score\" TEXT, \"surface\" TEXT, \"tourney_date\" DATE, \"tourney_id\" TEXT, \"tourney_level\" TEXT, \"tourney_name\" TEXT, \"winner_age\" FLOAT, \"winner_entry\" TEXT, \"winner_hand\" TEXT, \"winner_ht\" INT, \"winner_id\" INT, \"winner_ioc\" TEXT, \"winner_name\" TEXT, \"winner_rank\" INT, \"winner_rank_points\" INT, \"winner_seed\" INT, \"year\" INT, FOREIGN KEY(loser_id) REFERENCES players(player_id), FOREIGN KEY(winner_id) REFERENCES players(player_id) )], query the count of players who have hand = 'L'; if a sports agency provisions 1,450 dollars in equipment sponsorship per left-handed player alongside an annual marketing retainer of 12,000 dollars, calculate the agency's total annual financial commitment for these left-handed athletes.",
+    "num_stages": 3,
+    "prompt": "A supply depot receives 1500 crates of electronics, rejecting 20 percent during inspection; of the passing crates, exactly 75 percent are dispatched for overseas export while all remaining crates are reserved for local stores; an automated packager loads these local crates using a greedy allocation into containers holding 18 crates and cartons holding 5 crates in order of largest to smallest, leaving any crates fewer than 5 loose; if handling costs are 40 dollars per 18-crate container, 15 dollars per 5-crate carton, and 5 dollars storage per loose crate, calculate the total packaging and handling cost.",
+    "reference_code": "total = 1500\npassing = total - int(total * 0.20)\nlocal = passing - int(passing * 0.75)\n\nc18 = local // 18\nrem1 = local % 18\nc5 = rem1 // 5\nloose = rem1 % 5\n\nfinal_answer = (c18 * 40) + (c5 * 15) + (loose * 5)\n",
+    "gold_answer": 680,
     "component_parts": [
       {
-        "label": "derived from spider_val_0112",
-        "original_id": "spider_val_0112",
+        "description": "derived from gsm8k_test_0046",
+        "original_id": "gsm8k_test_0046",
         "stage": 1,
-        "domain": "sql"
+        "domain": "math"
       },
       {
-        "label": "derived from gsm8k_test_0112",
-        "original_id": "gsm8k_test_0112",
+        "description": "derived from HumanEval/96",
+        "original_id": "HumanEval/96",
         "stage": 2,
+        "domain": "code"
+      },
+      {
+        "description": "derived from gsm8k_test_0047",
+        "original_id": "gsm8k_test_0047",
+        "stage": 3,
         "domain": "math"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/wta_1/wta_1.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM players WHERE hand = 'L'\")\nn_lh = c.fetchone()[0]\nfinal_answer = (n_lh * 1450) + 12000\n",
-    "gold_answer": "718150",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0013",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0013",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "sql",
-      "math"
-    ],
     "solvability": "solvable_without_tools",
-    "prompt": "A dairy bottling ledger table milk_tanks [CREATE TABLE tanks (tank_id int, gallons int, fat_pct float)] logs 3 cooling tanks: (1, 1200, 3.5), (2, 800, 4.0), and (3, 1500, 3.8); query the total gallons stored in tanks having fat_pct greater than or equal to 3.8; if 400 gallons are diverted for butter processing and the remainder is packaged into half-gallon jugs, calculate the total number of jugs produced.",
+    "domains": [
+      "code",
+      "math",
+      "code"
+    ],
+    "num_stages": 3,
+    "prompt": "A pseudorandom generator initializes state X_0 = 17 and updates successive states according to recurrence X_(n+1) = (11 * X_n + 23) modulo 128; compute the generated state X_5; multiply X_5 by 12 and add 4 to form an integer target; calculate the sum of the squares of the decimal digits of that integer target.",
+    "reference_code": "x = 17\nfor _ in range(5):\n    x = (11 * x + 23) % 128\n\ntarget = x * 12 + 4\nfinal_answer = sum(int(d)**2 for d in str(target))\n",
+    "gold_answer": 49,
     "component_parts": [
       {
-        "label": "derived from spider_val_0113",
-        "original_id": "spider_val_0113",
+        "description": "derived from HumanEval/98",
+        "original_id": "HumanEval/98",
         "stage": 1,
-        "domain": "sql"
+        "domain": "code"
       },
       {
-        "label": "derived from gsm8k_test_0113",
-        "original_id": "gsm8k_test_0113",
+        "description": "derived from gsm8k_test_0048",
+        "original_id": "gsm8k_test_0048",
         "stage": 2,
         "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/99",
+        "original_id": "HumanEval/99",
+        "stage": 3,
+        "domain": "code"
       }
-    ],
-    "reference_program": "# Tanks >= 3.8: tank 2 (800 gal, 4.0), tank 3 (1500 gal, 3.8) -> total = 2300 gal\ntotal_gal = 800 + 1500  # 2300\nrem = total_gal - 400  # 1900\nfinal_answer = rem * 2  # 3800 half-gallon jugs\n",
-    "gold_answer": "3800",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0014",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0014",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
+    "domains": [
+      "sql",
+      "math",
+      "code"
+    ],
+    "num_stages": 3,
+    "prompt": "A clinical diagnostic table laboratory_tests [CREATE TABLE tests (sample_id int, temp float, ph float, valid int)] records 6 clinical assays: (1, 37.5, 7.2, 1), (2, 42.0, 6.8, 0), (3, 36.8, 7.4, 1), (4, 38.2, 7.1, 1), (5, 45.0, 5.5, 0), and (6, 37.0, 7.3, 1); query the count of assays marked valid with valid equal to 1; multiply this valid count by 110 and add 60 to compute a laboratory supply allocation; an automated logistics unit has weight capacity equal to that allocation divided by 10 using integer division, choosing among reagent containers with (weight, value) pairs (12, 30), (18, 48), (22, 60), and (28, 80) where each container can be picked at most once; find the maximum achievable reagent value within capacity.",
+    "reference_code": "cnt = 4\nalloc = cnt * 110 + 60\ncap = alloc // 10\n\nitems = [(12, 30), (18, 48), (22, 60), (28, 80)]\ndp = [0] * (cap + 1)\nfor w, v in items:\n    for j in range(cap, w - 1, -1):\n        dp[j] = max(dp[j], dp[j - w] + v)\n\nfinal_answer = dp[cap]\n",
+    "gold_answer": 140,
+    "component_parts": [
+      {
+        "description": "derived from spider_val_0027",
+        "original_id": "spider_val_0027",
+        "stage": 1,
+        "domain": "sql"
+      },
+      {
+        "description": "derived from gsm8k_test_0049",
+        "original_id": "gsm8k_test_0049",
+        "stage": 2,
+        "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/101",
+        "original_id": "HumanEval/101",
+        "stage": 3,
+        "domain": "code"
+      }
+    ]
+  },
+  {
+    "subtask_id": "compound_heldout_0015",
+    "original_id": "compound_heldout_0015",
+    "track": "A",
+    "task_type": "compound",
+    "stratum": "composed",
+    "solvability": "solvable_without_tools",
+    "domains": [
+      "math",
+      "sql",
+      "code"
+    ],
+    "num_stages": 3,
+    "prompt": "A financing facility lends 40000 dollars earning simple annual interest at 6 percent per year over 3 years; evaluate the tariff bracket table tariff_tiers [CREATE TABLE tariffs (tier_id int, t_min int, t_max int, fee int, bonus int)] listing tiers (1, 0, 25000, 2, 50), (2, 25001, 45000, 3, 100), (3, 45001, 65000, 4, 200), and (4, 65001, 90000, 5, 400); locate the tier encompassing the total loan maturity balance and calculate administrative charges as bonus plus (balance multiplied by fee divided by 1000 using integer division); taking the decimal digits of this charge from left to right, compute the sum of each digit multiplied by its 1-based position.",
+    "reference_code": "p = 40000\ninterest = p * 0.06 * 3\nbalance = int(p + interest)\n\nbonus = 200\nfee = 4\ncharge = bonus + (balance * fee // 1000)\n\ndigits = [int(d) for d in str(charge)]\nfinal_answer = sum((i + 1) * d for i, d in enumerate(digits))\n",
+    "gold_answer": 43,
+    "component_parts": [
+      {
+        "description": "derived from gsm8k_test_0050",
+        "original_id": "gsm8k_test_0050",
+        "stage": 1,
+        "domain": "math"
+      },
+      {
+        "description": "derived from spider_val_0028",
+        "original_id": "spider_val_0028",
+        "stage": 2,
+        "domain": "sql"
+      },
+      {
+        "description": "derived from HumanEval/102",
+        "original_id": "HumanEval/102",
+        "stage": 3,
+        "domain": "code"
+      }
+    ]
+  },
+  {
+    "subtask_id": "compound_heldout_0016",
+    "original_id": "compound_heldout_0016",
+    "track": "A",
+    "task_type": "compound",
+    "stratum": "composed",
+    "solvability": "solvable_without_tools",
+    "domains": [
+      "sql",
+      "math",
+      "code"
+    ],
+    "num_stages": 3,
+    "prompt": "A municipal water grid table water_network [CREATE TABLE meters (meter_id int, flow_rate int, active int)] logs 6 telemetry meters: (1, 45, 1), (2, 80, 1), (3, 60, 0), (4, 75, 1), (5, 90, 1), and (6, 50, 0); query the count of meters that are active with active equal to 1 and have flow_rate greater than or equal to 70; multiply this qualifying meter count by 75 and add 125 to determine a pump pressure rating; convert this rating into its standard binary string representation without prefixes and calculate the total count of '1' digits.",
+    "reference_code": "cnt = 3\nrating = cnt * 75 + 125\nb = bin(rating)[2:]\nfinal_answer = b.count('1')\n",
+    "gold_answer": 6,
+    "component_parts": [
+      {
+        "description": "derived from spider_val_0029",
+        "original_id": "spider_val_0029",
+        "stage": 1,
+        "domain": "sql"
+      },
+      {
+        "description": "derived from gsm8k_test_0051",
+        "original_id": "gsm8k_test_0051",
+        "stage": 2,
+        "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/103",
+        "original_id": "HumanEval/103",
+        "stage": 3,
+        "domain": "code"
+      }
+    ]
+  },
+  {
+    "subtask_id": "compound_heldout_0017",
+    "original_id": "compound_heldout_0017",
+    "track": "A",
+    "task_type": "compound",
+    "stratum": "composed",
+    "solvability": "solvable_without_tools",
+    "domains": [
+      "code",
+      "math",
+      "code"
+    ],
+    "num_stages": 3,
+    "prompt": "Simulate the Collatz transition sequence starting from seed integer n = 27 where n transitions to n / 2 if n is even and 3 * n + 1 if n is odd, counting the total number of transition steps taken until n reaches 1; multiply this step count by 12 and subtract 32 to determine a composite calibration score; find the count of distinct prime factors of this composite calibration score.",
+    "reference_code": "n = 27\nsteps = 0\nwhile n != 1:\n    if n % 2 == 0:\n        n //= 2\n    else:\n        n = 3 * n + 1\n    steps += 1\n\nscore = steps * 12 - 32\n\nfactors = set()\nd = 2\ntemp = score\nwhile d * d <= temp:\n    if temp % d == 0:\n        factors.add(d)\n        while temp % d == 0:\n            temp //= d\n    d += 1\nif temp > 1:\n    factors.add(temp)\n\nfinal_answer = len(factors)\n",
+    "gold_answer": 3,
+    "component_parts": [
+      {
+        "description": "derived from HumanEval/104",
+        "original_id": "HumanEval/104",
+        "stage": 1,
+        "domain": "code"
+      },
+      {
+        "description": "derived from gsm8k_test_0052",
+        "original_id": "gsm8k_test_0052",
+        "stage": 2,
+        "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/106",
+        "original_id": "HumanEval/106",
+        "stage": 3,
+        "domain": "code"
+      }
+    ]
+  },
+  {
+    "subtask_id": "compound_heldout_0018",
+    "original_id": "compound_heldout_0018",
+    "track": "A",
+    "task_type": "compound",
+    "stratum": "composed",
+    "solvability": "solvable_without_tools",
+    "domains": [
+      "math",
+      "code",
+      "math"
+    ],
+    "num_stages": 3,
+    "prompt": "A semiconductor fabrication facility produces 800 microchips, discarding 5 percent during testing; of the functional chips, exactly 60 percent are classified as standard grade while all remaining chips are graded as premium; an automated packager loads these premium chips using a greedy tray allocation into trays of 20, 6, and 2 chips in order of largest to smallest; if packaging costs are 35 dollars per 20-chip tray, 15 dollars per 6-chip tray, and 8 dollars per 2-chip tray, calculate the total packaging cost.",
+    "reference_code": "chips = 800\npassing = chips - int(chips * 0.05)\npremium = passing - int(passing * 0.60)\n\nt20 = premium // 20\nrem1 = premium % 20\nt6 = rem1 // 6\nrem2 = rem1 % 6\nt2 = rem2 // 2\n\nfinal_answer = (t20 * 35) + (t6 * 15) + (t2 * 8)\n",
+    "gold_answer": 541,
+    "component_parts": [
+      {
+        "description": "derived from gsm8k_test_0053",
+        "original_id": "gsm8k_test_0053",
+        "stage": 1,
+        "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/108",
+        "original_id": "HumanEval/108",
+        "stage": 2,
+        "domain": "code"
+      },
+      {
+        "description": "derived from gsm8k_test_0054",
+        "original_id": "gsm8k_test_0054",
+        "stage": 3,
+        "domain": "math"
+      }
+    ]
+  },
+  {
+    "subtask_id": "compound_heldout_0019",
+    "original_id": "compound_heldout_0019",
+    "track": "A",
+    "task_type": "compound",
+    "stratum": "composed",
+    "solvability": "solvable_without_tools",
+    "domains": [
+      "sql",
+      "math",
+      "code"
+    ],
+    "num_stages": 3,
+    "prompt": "A retail warehouse ledger store_inventory [CREATE TABLE stock (item_id int, stock int, reorder_level int)] lists 6 commodities: (1, 15, 20), (2, 45, 30), (3, 8, 15), (4, 60, 40), (5, 12, 25), and (6, 30, 25); query the count of items whose stock is strictly less than their reorder_level; multiply this reorder count by 80 and add 60 to determine a replenishment allowance; a warehouse bot has payload capacity equal to that allowance divided by 10 using integer division, choosing among goods with (weight, value) pairs (8, 20), (12, 32), (16, 45), and (20, 60) where each commodity can be chosen at most once; compute the maximum achievable inventory value.",
+    "reference_code": "cnt = 3\nalloc = cnt * 80 + 60\ncap = alloc // 10\n\nitems = [(8, 20), (12, 32), (16, 45), (20, 60)]\ndp = [0] * (cap + 1)\nfor w, v in items:\n    for j in range(cap, w - 1, -1):\n        dp[j] = max(dp[j], dp[j - w] + v)\n\nfinal_answer = dp[cap]\n",
+    "gold_answer": 80,
+    "component_parts": [
+      {
+        "description": "derived from spider_val_0030",
+        "original_id": "spider_val_0030",
+        "stage": 1,
+        "domain": "sql"
+      },
+      {
+        "description": "derived from gsm8k_test_0055",
+        "original_id": "gsm8k_test_0055",
+        "stage": 2,
+        "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/110",
+        "original_id": "HumanEval/110",
+        "stage": 3,
+        "domain": "code"
+      }
+    ]
+  },
+  {
+    "subtask_id": "compound_heldout_0020",
+    "original_id": "compound_heldout_0020",
+    "track": "A",
+    "task_type": "compound",
+    "stratum": "composed",
+    "solvability": "solvable_without_tools",
+    "domains": [
+      "code",
+      "math",
+      "code"
+    ],
+    "num_stages": 3,
+    "prompt": "An autonomous explorer drone begins at origin (0, 0) and traverses six displacement vectors: (5, 3), (-2, 4), (3, -6), (-4, 1), (2, 2), and (-1, -1); calculate the final Manhattan distance (|x| + |y|) of the drone from the origin; multiply this Manhattan distance by 150 and add 200 to compute total power consumption; calculate the sum of the squares of the decimal digits of that power consumption.",
+    "reference_code": "moves = [(5, 3), (-2, 4), (3, -6), (-4, 1), (2, 2), (-1, -1)]\nx = sum(dx for dx, dy in moves)\ny = sum(dy for dx, dy in moves)\ndist = abs(x) + abs(y)\n\npwr = dist * 150 + 200\nfinal_answer = sum(int(d)**2 for d in str(pwr))\n",
+    "gold_answer": 2,
+    "component_parts": [
+      {
+        "description": "derived from HumanEval/111",
+        "original_id": "HumanEval/111",
+        "stage": 1,
+        "domain": "code"
+      },
+      {
+        "description": "derived from gsm8k_test_0056",
+        "original_id": "gsm8k_test_0056",
+        "stage": 2,
+        "domain": "math"
+      },
+      {
+        "description": "derived from HumanEval/112",
+        "original_id": "HumanEval/112",
+        "stage": 3,
+        "domain": "code"
+      }
+    ]
+  },
+  {
+    "subtask_id": "compound_heldout_0021",
+    "original_id": "compound_heldout_0021",
+    "track": "A",
+    "task_type": "compound",
+    "stratum": "composed",
+    "solvability": "tool-required",
     "domains": [
       "sql",
       "math"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "An express package facility table courier_vans [CREATE TABLE vans (van_id int, parcels int, fuel_liters int)] logs 3 delivery vehicles: (1, 80, 25), (2, 95, 30), and (3, 110, 35); query the maximum parcels carried by any single van; if a peak delivery bonus awards 3 dollars per parcel for counts exceeding 100 and a baseline transport fee of 150 dollars applies, compute the total courier compensation for that peak van.",
+    "num_stages": 2,
+    "prompt": "Query the flight_2 database [Database Schema: CREATE TABLE 'airlines' ( uid INTEGER PRIMARY KEY, Airline TEXT, Abbreviation TEXT, Country TEXT ); CREATE TABLE 'flights' ( Airline INTEGER, FlightNo INTEGER, SourceAirport TEXT, DestAirport TEXT, PRIMARY KEY(Airline, FlightNo), FOREIGN KEY (SourceAirport) REFERENCES airports(AirportCode), FOREIGN KEY (DestAirport) REFERENCES airports(AirportCode) )] to count the number of airlines whose Country is 'USA'; suppose each qualifying airline leases an average of 45 terminal gates at 1500 dollars per gate per month, and an airport authority awards a 10 percent volume rebate on all gate lease fees; compute the total net monthly gate revenue collected across all qualifying airlines.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/flight_2/flight_2.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM airlines WHERE Country = 'USA'\")\ncnt = c.fetchone()[0]\n\ngates = cnt * 45\ngross = gates * 1500\nnet = int(gross * 0.90)\nfinal_answer = net\n",
+    "gold_answer": 729000,
     "component_parts": [
       {
-        "label": "derived from spider_val_0114",
-        "original_id": "spider_val_0114",
+        "description": "derived from spider_val_0031",
+        "original_id": "spider_val_0031",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0114",
-        "original_id": "gsm8k_test_0114",
+        "description": "derived from gsm8k_test_0057",
+        "original_id": "gsm8k_test_0057",
         "stage": 2,
         "domain": "math"
       }
-    ],
-    "reference_program": "# Max parcels: van 3 (110 parcels)\nmax_p = 110\nbonus = (max_p - 100) * 3  # (110 - 100) * 3 = 30\nfinal_answer = 150 + bonus  # 180\n",
-    "gold_answer": "180",
-    "checker_type": "exact_match"
-  },
-  {
-    "subtask_id": "compound_heldout_0015",
-    "task_type": "composed",
-    "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "math",
-      "code"
-    ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A solar energy plant installs 18 solar panels on East roof generating 250 kWh each and 22 panels on West roof generating 300 kWh each; calculate the total energy generated in thousands of kWh (divide total kWh by 1000), and write and execute Python code to compute and print the sum of squares of the decimal digits of that whole-number thousand-kWh figure.",
-    "component_parts": [
-      {
-        "label": "derived from gsm8k_test_0115",
-        "original_id": "gsm8k_test_0115",
-        "stage": 1,
-        "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/0",
-        "original_id": "HumanEval/0",
-        "stage": 2,
-        "domain": "code"
-      }
-    ],
-    "reference_program": "east = 18 * 250  # 4500\nwest = 22 * 300  # 6600\ntotal_kwh = east + west  # 11100\nthousands = total_kwh // 1000  # 11\n# Digits of 11: 1 and 1\nfinal_answer = (1**2) + (1**2)  # 2\n",
-    "gold_answer": "2",
-    "checker_type": "exact_match"
-  },
-  {
-    "subtask_id": "compound_heldout_0016",
-    "task_type": "composed",
-    "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "math",
-      "code"
-    ],
-    "solvability": "tool-required",
-    "prompt": "A discrete financial sequence generates quarterly account balances according to the recurrence B(0) = 500 and B(k) = (B(k-1) * 17 + 83) mod 10000 for k=1 to 25; write and execute Python code to simulate all 25 quarters, determine how many quarters ended with a balance strictly greater than 5000, and print that qualifying quarter count.",
-    "component_parts": [
-      {
-        "label": "derived from gsm8k_test_0116",
-        "original_id": "gsm8k_test_0116",
-        "stage": 1,
-        "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/1",
-        "original_id": "HumanEval/1",
-        "stage": 2,
-        "domain": "code"
-      }
-    ],
-    "reference_program": "bal = 500\ncount_gt = 0\nfor k in range(1, 26):\n    bal = (bal * 17 + 83) % 10000\n    if bal > 5000:\n        count_gt += 1\nfinal_answer = count_gt\n",
-    "gold_answer": "15",
-    "checker_type": "exact_match"
-  },
-  {
-    "subtask_id": "compound_heldout_0017",
-    "task_type": "composed",
-    "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "math",
-      "code"
-    ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A library book restoration program fixes 35 volumes on Monday, 45 on Tuesday, and 28 on Wednesday; if 8 restored volumes fail quality inspection, determine the count of successfully restored books, and write and execute Python code to determine whether this successful count is divisible by 5, printing the remainder when dividing the count by 7.",
-    "component_parts": [
-      {
-        "label": "derived from gsm8k_test_0117",
-        "original_id": "gsm8k_test_0117",
-        "stage": 1,
-        "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/3",
-        "original_id": "HumanEval/3",
-        "stage": 2,
-        "domain": "code"
-      }
-    ],
-    "reference_program": "total = 35 + 45 + 28  # 108\nsound = total - 8  # 100\nfinal_answer = sound % 7  # 100 % 7 = 2\n",
-    "gold_answer": "2",
-    "checker_type": "exact_match"
-  },
-  {
-    "subtask_id": "compound_heldout_0018",
-    "task_type": "composed",
-    "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "math",
-      "code"
-    ],
-    "solvability": "tool-required",
-    "prompt": "A network routing gateway evaluates packets with integer checksums from 101 to 150 inclusive; write and execute Python code to calculate the checksum of each packet, identify all packets whose checksum is an integer power of two, and print the sum of those power-of-two checksum values.",
-    "component_parts": [
-      {
-        "label": "derived from gsm8k_test_0118",
-        "original_id": "gsm8k_test_0118",
-        "stage": 1,
-        "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/4",
-        "original_id": "HumanEval/4",
-        "stage": 2,
-        "domain": "code"
-      }
-    ],
-    "reference_program": "powers = []\nfor n in range(101, 151):\n    if (n & (n - 1) == 0) and n > 0:\n        powers.append(n)\nfinal_answer = sum(powers)  # 128\n",
-    "gold_answer": "128",
-    "checker_type": "exact_match"
-  },
-  {
-    "subtask_id": "compound_heldout_0019",
-    "task_type": "composed",
-    "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "math",
-      "code"
-    ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A wholesale roaster blends 40 kg of Arabica at 15 dollars/kg and 60 kg of Robusta at 10 dollars/kg; compute the average blend cost per kg in dollars, and write and execute Python code to compute and print the product of all integers from 1 up to that average cost value.",
-    "component_parts": [
-      {
-        "label": "derived from gsm8k_test_0119",
-        "original_id": "gsm8k_test_0119",
-        "stage": 1,
-        "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/5",
-        "original_id": "HumanEval/5",
-        "stage": 2,
-        "domain": "code"
-      }
-    ],
-    "reference_program": "cost = (40 * 15) + (60 * 10)  # 600 + 600 = 1200\nweight = 100\navg_cost = 1200 // 100  # 12\nimport math\nfinal_answer = math.factorial(avg_cost)  # 479001600\n",
-    "gold_answer": "479001600",
-    "checker_type": "exact_match"
-  },
-  {
-    "subtask_id": "compound_heldout_0020",
-    "task_type": "composed",
-    "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "math",
-      "code"
-    ],
-    "solvability": "tool-required",
-    "prompt": "Consider the Fibonacci sequence defined by F(1)=1, F(2)=1, F(n)=F(n-1)+F(n-2); write and execute Python code to compute the 24th Fibonacci number and determine the total number of prime factors (counting multiplicities) that compose it.",
-    "component_parts": [
-      {
-        "label": "derived from gsm8k_test_0120",
-        "original_id": "gsm8k_test_0120",
-        "stage": 1,
-        "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/7",
-        "original_id": "HumanEval/7",
-        "stage": 2,
-        "domain": "code"
-      }
-    ],
-    "reference_program": "def get_fib(n):\n    a, b = 1, 1\n    for _ in range(n - 2):\n        a, b = b, a + b\n    return b\n\nval = get_fib(24)  # 46368\n# Prime factorization of 46368\nfactors = []\nd = 2\ntemp = val\nwhile d * d <= temp:\n    while temp % d == 0:\n        factors.append(d)\n        temp //= d\n    d += 1\nif temp > 1:\n    factors.append(temp)\nfinal_answer = len(factors)\n",
-    "gold_answer": "9",
-    "checker_type": "exact_match"
-  },
-  {
-    "subtask_id": "compound_heldout_0021",
-    "task_type": "composed",
-    "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "math",
-      "code"
-    ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A cyclist trains for 4 days riding 25 km, 30 km, 35 km, and 40 km respectively; determine the median daily distance in kilometers, and write and execute Python code to compute and print the square of that median distance.",
-    "component_parts": [
-      {
-        "label": "derived from gsm8k_test_0121",
-        "original_id": "gsm8k_test_0121",
-        "stage": 1,
-        "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/9",
-        "original_id": "HumanEval/9",
-        "stage": 2,
-        "domain": "code"
-      }
-    ],
-    "reference_program": "# Distances: 25, 30, 35, 40 -> median is (30 + 35) / 2 = 32.5 or integer 32? Let's use 5 days:\n# 20, 25, 30, 35, 40 -> median = 30\nmedian_dist = 30  # middle of 20, 25, 30, 35, 40\nfinal_answer = median_dist ** 2  # 900\n",
-    "gold_answer": "900",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0022",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0022",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
-      "math",
+      "sql",
       "code"
     ],
-    "solvability": "tool-required",
-    "prompt": "A cybersecurity hash algorithm processes the string 'CYBERSEC2026'; write and execute Python code to compute the ASCII ordinal value of each character, calculate the cumulative product of these ordinal values modulo 999983, and print the resulting integer.",
+    "num_stages": 2,
+    "prompt": "From the tvshow database [Database Schema: CREATE TABLE \"TV_Channel\" ( \"id\" text, \"series_name\" text, \"Country\" text, \"Language\" text, \"Content\" text, \"Pixel_aspect_ratio_PAR\" text, \"Hight_definition_TV\" text, \"Pay_per_view_PPV\" text, \"Package_Option\" text, PRIMARY KEY (\"id\") ); CREATE TABLE \"TV_series\" ( \"id\" real, \"Episode\" text, \"Air_Date\" text, \"Rating\" text, \"Share\" real, \"18_49_Rating_Share\" text, \"Viewers_m\" text, \"Weekly_Rank\" real, \"Channel\" text, PRIMARY KEY (\"id\"), FOREIGN KEY (`Channel`) REFERENCES `TV_Channel`(`id`) )], count the number of television broadcast channels whose Language is recorded as 'English'; multiply this channel count by 4 to define an integer rank, and write and execute Python code to compute and print the exact factorial of that integer rank.",
+    "reference_code": "import sqlite3\nimport math\nconn = sqlite3.connect('data/spider/database/tvshow/tvshow.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM TV_Channel WHERE Language = 'English'\")\ncnt = c.fetchone()[0]\n\nrank = cnt * 4\nfinal_answer = math.factorial(rank)\n",
+    "gold_answer": 479001600,
     "component_parts": [
       {
-        "label": "derived from gsm8k_test_0122",
-        "original_id": "gsm8k_test_0122",
+        "description": "derived from spider_val_0032",
+        "original_id": "spider_val_0032",
         "stage": 1,
-        "domain": "math"
+        "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/10",
-        "original_id": "HumanEval/10",
+        "description": "derived from HumanEval/113",
+        "original_id": "HumanEval/113",
         "stage": 2,
         "domain": "code"
       }
-    ],
-    "reference_program": "s = 'CYBERSEC2026'\nprod = 1\nfor ch in s:\n    prod = (prod * ord(ch)) % 999983\nfinal_answer = prod\n",
-    "gold_answer": "43650",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0023",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0023",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
-      "math",
-      "code"
+      "sql",
+      "math"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A timber merchant stacks 12 pine logs, 15 cedar logs, and 9 oak logs; if 6 logs are sold to a furniture maker, determine the count of remaining logs, and write and execute Python code to compute and print the count of positive integer divisors of that remaining log count.",
+    "num_stages": 2,
+    "prompt": "In the world_1 database [Database Schema: CREATE TABLE `city` ( `ID` integer NOT NULL PRIMARY KEY AUTOINCREMENT , `Name` char(35) NOT NULL DEFAULT '' , `CountryCode` char(3) NOT NULL DEFAULT '' , `District` char(20) NOT NULL DEFAULT '' , `Population` integer NOT NULL DEFAULT '0' , CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) ); CREATE TABLE `country` ( `Code` char(3) NOT NULL DEFAULT '' , `Name` char(52) NOT NULL DEFAULT '' , `Continent` text NOT NULL DEFAULT 'Asia' , `Region` char(26) NOT NULL DEFAULT '' , `SurfaceArea` float(10,2) NOT NULL DEFAULT '0.00' , `IndepYear` integer DEFAULT NULL , `Population` integer NOT NULL DEFAULT '0' , `LifeExpectancy` float(3,1) DEFAULT NULL , `GNP` float(10,2) DEFAULT NULL , `GNPOld` float(10,2) DEFAULT NULL , `LocalName` char(45) NOT NULL DEFAULT '' , `GovernmentForm` char(45) NOT NULL DEFAULT '' , `HeadOfState` char(60) DEFAULT NULL , `Capital` integer DEFAULT NULL , `Code2` char(2) NOT NULL DEFAULT '' , PRIMARY KEY (`Code`) )], count the number of countries whose independence year IndepYear is strictly greater than 1950; if each of these post-1950 sovereign nations operates an average of 35 diplomatic missions abroad and an international treaty fund contributes 450 dollars per mission for security upgrades, compute the total treaty upgrade funding awarded.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/world_1/world_1.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM country WHERE IndepYear > 1950\")\ncnt = c.fetchone()[0]\n\nmissions = cnt * 35\nfinal_answer = missions * 450\n",
+    "gold_answer": 1732500,
     "component_parts": [
       {
-        "label": "derived from gsm8k_test_0123",
-        "original_id": "gsm8k_test_0123",
+        "description": "derived from spider_val_0033",
+        "original_id": "spider_val_0033",
         "stage": 1,
-        "domain": "math"
+        "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/11",
-        "original_id": "HumanEval/11",
+        "description": "derived from gsm8k_test_0058",
+        "original_id": "gsm8k_test_0058",
         "stage": 2,
-        "domain": "code"
+        "domain": "math"
       }
-    ],
-    "reference_program": "total = 12 + 15 + 9  # 36\nrem = total - 6  # 30\ndivs = []\nfor d in range(1, 31):\n    if 30 % d == 0:\n        divs.append(d)\nfinal_answer = len(divs)  # divisors of 30: 1, 2, 3, 5, 6, 10, 15, 30 -> 8\n",
-    "gold_answer": "8",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0024",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0024",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
-      "math",
+      "sql",
       "code"
     ],
-    "solvability": "tool-required",
-    "prompt": "An array of 20 integer measurements is generated by M(k) = (k * 43) mod 100 for k=1 to 20; write and execute Python code to generate the list of measurements, filter out all odd values, and compute and print the variance of the remaining even measurements rounded to the nearest integer.",
+    "num_stages": 2,
+    "prompt": "Query the real_estate_properties database [Database Schema: CREATE TABLE `Properties` ( `property_id` INTEGER PRIMARY KEY, `property_type_code` VARCHAR(20) NOT NULL, `date_on_market` DATETIME, `date_sold` DATETIME, `property_name` VARCHAR(80), `property_address` VARCHAR(255), `room_count` INTEGER, `vendor_requested_price` DECIMAL(19,4), `buyer_offered_price` DECIMAL(19,4), `agreed_selling_price` DECIMAL(19,4), `apt_feature_1` VARCHAR(255), `apt_feature_2` VARCHAR(255), `apt_feature_3` VARCHAR(255), `fld_feature_1` VARCHAR(255), `fld_feature_2` VARCHAR(255), `fld_feature_3` VARCHAR(255), `hse_feature_1` VARCHAR(255), `hse_feature_2` VARCHAR(255), `hse_feature_3` VARCHAR(255), `oth_feature_1` VARCHAR(255), `oth_feature_2` VARCHAR(255), `oth_feature_3` VARCHAR(255), `shp_feature_1` VARCHAR(255), `shp_feature_2` VARCHAR(255), `shp_feature_3` VARCHAR(255), `other_property_details` VARCHAR(255), FOREIGN KEY (`property_type_code` ) REFERENCES `Ref_Property_Types`(`property_type_code` ) )] to count the number of properties whose vendor_requested_price is strictly greater than 500000; write and execute Python code to generate the first N prime numbers starting with 2, where N equals that luxury property count, and print the sum of those prime numbers.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/real_estate_properties/real_estate_properties.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM Properties WHERE vendor_requested_price > 500000\")\ncount = c.fetchone()[0]\n\nprimes = []\ncurr = 2\nwhile len(primes) < count:\n    is_p = True\n    for p in primes:\n        if p * p > curr:\n            break\n        if curr % p == 0:\n            is_p = False\n            break\n    if is_p:\n        primes.append(curr)\n    curr += 1\n\nfinal_answer = sum(primes)\n",
+    "gold_answer": 28,
     "component_parts": [
       {
-        "label": "derived from gsm8k_test_0124",
-        "original_id": "gsm8k_test_0124",
+        "description": "derived from spider_val_0034",
+        "original_id": "spider_val_0034",
         "stage": 1,
-        "domain": "math"
+        "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/12",
-        "original_id": "HumanEval/12",
+        "description": "derived from HumanEval/114",
+        "original_id": "HumanEval/114",
         "stage": 2,
         "domain": "code"
       }
-    ],
-    "reference_program": "vals = [(k * 43) % 100 for k in range(1, 21)]\nevens = [x for x in vals if x % 2 == 0]\nmean = sum(evens) / len(evens)\nsq_diffs = []\nfor x in evens:\n    sq_diffs.append((x - mean)**2)\nvariance = sum(sq_diffs) / len(evens)\nfinal_answer = round(variance)\n",
-    "gold_answer": "777",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0025",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0025",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
-      "math",
-      "code"
+      "sql",
+      "math"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A bakery bakes 72 chocolate cookies and 48 oatmeal cookies; they package them into identical gift boxes with no cookies left over; determine the greatest common divisor of the two cookie counts to find the maximum possible box count, and write and execute Python code to compute and print the square root of that box count.",
+    "num_stages": 2,
+    "prompt": "Query the orchestra database [Database Schema: CREATE TABLE \"conductor\" ( \"Conductor_ID\" int, \"Name\" text, \"Age\" int, \"Nationality\" text, \"Year_of_Work\" int, PRIMARY KEY (\"Conductor_ID\") ); CREATE TABLE \"orchestra\" ( \"Orchestra_ID\" int, \"Orchestra\" text, \"Conductor_ID\" int, \"Record_Company\" text, \"Year_of_Founded\" real, \"Major_Record_Format\" text, PRIMARY KEY (\"Orchestra_ID\"), FOREIGN KEY (`Conductor_ID`) REFERENCES `conductor`(`Conductor_ID`) )] to count the number of orchestras having Year_of_Founded strictly greater than 1980; suppose each modern orchestra performs 45 concerts per year, selling an average of 250 tickets per concert at a ticket price of 40 dollars; calculate the total annual ticket revenue generated across all qualifying orchestras.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/orchestra/orchestra.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM orchestra WHERE Year_of_Founded > 1980\")\ncnt = c.fetchone()[0]\n\nconcerts = cnt * 45\nfinal_answer = concerts * 250 * 40\n",
+    "gold_answer": 5400000,
     "component_parts": [
       {
-        "label": "derived from gsm8k_test_0125",
-        "original_id": "gsm8k_test_0125",
+        "description": "derived from spider_val_0035",
+        "original_id": "spider_val_0035",
         "stage": 1,
-        "domain": "math"
+        "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/15",
-        "original_id": "HumanEval/15",
+        "description": "derived from gsm8k_test_0059",
+        "original_id": "gsm8k_test_0059",
         "stage": 2,
-        "domain": "code"
+        "domain": "math"
       }
-    ],
-    "reference_program": "# GCD(72, 48) = 24\nimport math\ngcd_val = math.gcd(72, 48)  # 24\n# Let's adjust to 72 and 18 -> gcd = 18; 64 and 36 -> gcd = 4\n# 100 and 64 -> gcd = 4; 72 and 32 -> gcd = 8; 108 and 72 -> gcd = 36\n# With 72 and 128 -> gcd = 8; With 72 and 36 -> gcd = 36\ngcd_val = math.gcd(72, 36)  # 36\nfinal_answer = int(math.isqrt(36))  # 6\n",
-    "gold_answer": "6",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0026",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0026",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
-      "math",
+      "sql",
       "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A student scores 88, 92, 94, and 86 on four midterm examinations; compute the average examination score, and write and execute Python code to compute and print the binary representation of that integer average score formatted as a standard binary string.",
+    "num_stages": 2,
+    "prompt": "In the battle_death database [Database Schema: CREATE TABLE \"ship\" ( \"lost_in_battle\" int, \"id\" int, \"name\" text, \"tonnage\" text, \"ship_type\" text, \"location\" text, \"disposition_of_ship\" text, primary key(\"id\"), foreign key (`lost_in_battle`) references `battle`(\"id\") ); CREATE TABLE \"death\" ( \"caused_by_ship_id\" int, \"id\" int, \"note\" text, \"killed\" int, \"injured\" int, primary key(\"id\"), foreign key (\"caused_by_ship_id\") references `ship`(\"id\") )], count the number of vessels in the ship table whose tonnage is strictly greater than 5000; starting from this vessel count as initial integer n, simulate the Collatz sequence where n transitions to n / 2 if n is even and 3 * n + 1 if n is odd, counting the total number of transition steps taken until n reaches 1.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/battle_death/battle_death.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM ship WHERE tonnage > 5000\")\nn = c.fetchone()[0]\n\nsteps = 0\nwhile n != 1:\n    if n % 2 == 0:\n        n //= 2\n    else:\n        n = 3 * n + 1\n    steps += 1\n\nfinal_answer = steps\n",
+    "gold_answer": 5,
     "component_parts": [
       {
-        "label": "derived from gsm8k_test_0141",
-        "original_id": "gsm8k_test_0141",
+        "description": "derived from spider_val_0036",
+        "original_id": "spider_val_0036",
         "stage": 1,
-        "domain": "math"
+        "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/18",
-        "original_id": "HumanEval/18",
+        "description": "derived from HumanEval/119",
+        "original_id": "HumanEval/119",
         "stage": 2,
         "domain": "code"
       }
-    ],
-    "reference_program": "scores = [88, 92, 94, 86]\navg_score = sum(scores) // len(scores)  # 90\nfinal_answer = bin(avg_score)[2:]  # '1011010'\n",
-    "gold_answer": "1011010",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0027",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0027",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
-      "math",
-      "code"
+      "sql",
+      "math"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A warehouse holds 15 boxes of bolts with 20 bolts each and 10 boxes with 30 bolts each; calculate the total bolt inventory, divide by 50 to package into shipping kits, and write and execute Python code to compute and print the cube of that kit count.",
+    "num_stages": 2,
+    "prompt": "From the concert_singer database [Database Schema: CREATE TABLE \"stadium\" ( \"Stadium_ID\" int, \"Location\" text, \"Name\" text, \"Capacity\" int, \"Highest\" int, \"Lowest\" int, \"Average\" int, PRIMARY KEY (\"Stadium_ID\") ); CREATE TABLE \"singer\" ( \"Singer_ID\" int, \"Name\" text, \"Country\" text, \"Song_Name\" text, \"Song_release_year\" text, \"Age\" int, \"Is_male\" bool, PRIMARY KEY (\"Singer_ID\") )], query the total count of stadiums whose Capacity is strictly greater than 40000; if each large arena hosts 12 summer music festivals with an average attendance of 35000 fans per festival and an environmental clean-up fee assesses 2 dollars per attendee, compute the total clean-up fees collected.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/concert_singer/concert_singer.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM stadium WHERE Capacity > 40000\")\nstadiums = c.fetchone()[0]\n\nattendees = stadiums * 12 * 35000\nfinal_answer = attendees * 2\n",
+    "gold_answer": 840000,
     "component_parts": [
       {
-        "label": "derived from gsm8k_test_0127",
-        "original_id": "gsm8k_test_0127",
+        "description": "derived from spider_val_0037",
+        "original_id": "spider_val_0037",
         "stage": 1,
-        "domain": "math"
+        "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/19",
-        "original_id": "HumanEval/19",
+        "description": "derived from gsm8k_test_0060",
+        "original_id": "gsm8k_test_0060",
         "stage": 2,
-        "domain": "code"
+        "domain": "math"
       }
-    ],
-    "reference_program": "total_bolts = (15 * 20) + (10 * 30)  # 300 + 300 = 600\nkits = total_bolts // 50  # 12\nfinal_answer = kits ** 3  # 1728\n",
-    "gold_answer": "1728",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0028",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0028",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
-      "math",
+      "sql",
       "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A farm produces 45 liters of goat milk and 55 liters of sheep milk each morning; over a 5-day week, compute the total milk volume in liters, and write and execute Python code to find and print the sum of the decimal digits of that weekly volume.",
+    "num_stages": 2,
+    "prompt": "In the pets_1 database [Database Schema: CREATE TABLE Student ( StuID INTEGER PRIMARY KEY, LName VARCHAR(12), Fname VARCHAR(12), Age INTEGER, Sex VARCHAR(1), Major INTEGER, Advisor INTEGER, city_code VARCHAR(3) ); CREATE TABLE Pets ( PetID INTEGER PRIMARY KEY, PetType VARCHAR(20), pet_age INTEGER, weight REAL )], count the number of registered animals in the Pets table whose weight is strictly greater than 5; write and execute Python code to compute and print the sum of the cubes of all positive integers from 1 up to that animal count inclusive.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/pets_1/pets_1.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM Pets WHERE weight > 5\")\nn = c.fetchone()[0]\n\nfinal_answer = sum(i**3 for i in range(1, n + 1))\n",
+    "gold_answer": 36,
     "component_parts": [
       {
-        "label": "derived from gsm8k_test_0128",
-        "original_id": "gsm8k_test_0128",
+        "description": "derived from spider_val_0038",
+        "original_id": "spider_val_0038",
         "stage": 1,
-        "domain": "math"
+        "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/21",
-        "original_id": "HumanEval/21",
+        "description": "derived from HumanEval/121",
+        "original_id": "HumanEval/121",
         "stage": 2,
         "domain": "code"
       }
-    ],
-    "reference_program": "daily = 45 + 55  # 100\nweekly = daily * 5  # 500\n# Digits of 500: 5, 0, 0 -> sum = 5\nd_sum = 0\nfor d in str(weekly):\n    d_sum += int(d)\nfinal_answer = d_sum  # 5\n",
-    "gold_answer": "5",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0029",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0029",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
-      "code"
+      "math"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A university research dataset table conference_papers [CREATE TABLE papers (paper_id int, citations int, track text)] lists 4 publications: (1, 45, 'AI'), (2, 28, 'DB'), (3, 62, 'AI'), and (4, 15, 'DB'); query the maximum citation count among 'AI' track papers; write and execute Python code to compute and print the largest prime number strictly less than that maximum citation count.",
+    "num_stages": 2,
+    "prompt": "Query the poker_player database [Database Schema: CREATE TABLE \"poker_player\" ( \"Poker_Player_ID\" int, \"People_ID\" int, \"Final_Table_Made\" real, \"Best_Finish\" real, \"Money_Rank\" real, \"Earnings\" real, PRIMARY KEY (\"Poker_Player_ID\"), FOREIGN KEY (\"People_ID\") REFERENCES `people`(\"People_ID\") ); CREATE TABLE \"people\" ( \"People_ID\" int, \"Nationality\" text, \"Name\" text, \"Birth_Date\" text, \"Height\" real, PRIMARY KEY (\"People_ID\") )] to count the number of players whose Final_Table_Made count is strictly greater than 5; suppose each veteran pro conducts 15 masterclass training clinics per year with 20 enrolled participants per clinic at a tuition fee of 350 dollars per participant; calculate the total combined tuition revenue generated.",
+    "reference_code": "import sqlite3\nconn = sqlite3.connect('data/spider/database/poker_player/poker_player.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM poker_player WHERE Final_Table_Made > 5\")\npros = c.fetchone()[0]\n\nclinics = pros * 15\nfinal_answer = clinics * 20 * 350\n",
+    "gold_answer": 525000,
     "component_parts": [
       {
-        "label": "derived from spider_val_0129",
-        "original_id": "spider_val_0129",
+        "description": "derived from spider_val_0039",
+        "original_id": "spider_val_0039",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/22",
-        "original_id": "HumanEval/22",
+        "description": "derived from gsm8k_test_0061",
+        "original_id": "gsm8k_test_0061",
         "stage": 2,
-        "domain": "code"
+        "domain": "math"
       }
-    ],
-    "reference_program": "# AI citations: 45, 62 -> max = 62\nmax_cit = 62\nprimes = []\nfor n in range(2, 62):\n    is_p = True\n    for d in range(2, int(n**0.5) + 1):\n        if n % d == 0:\n            is_p = False\n            break\n    if is_p:\n        primes.append(n)\nfinal_answer = max(primes)  # 61\n",
-    "gold_answer": "61",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0030",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0030",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "tool-required",
     "domains": [
       "sql",
       "code"
     ],
-    "solvability": "tool-required",
-    "prompt": "In the battle_death database [Database Schema: CREATE TABLE \"battle\" ( \"id\" int, \"name\" text, \"date\" text, \"bulgarian_commander\" text, \"latin_commander\" text, \"result\" text, primary key(\"id\") ); CREATE TABLE \"ship\" ( \"lost_in_battle\" int, \"id\" int, \"name\" text, \"tonnage\" text, \"ship_type\" text, \"location\" text, \"disposition_of_ship\" text, primary key(\"id\"), foreign key (`lost_in_battle`) references `battle`(\"id\") ); CREATE TABLE \"death\" ( \"caused_by_ship_id\" int, \"id\" int, \"note\" text, \"killed\" int, \"injured\" int, primary key(\"id\"), foreign key (\"caused_by_ship_id\") references `ship`(\"id\") )], query the count of battles that were recorded in the battle table; multiply this count by 10 to establish an integer target, and write and execute Python code to calculate and print the sum of all divisors of that target integer.",
+    "num_stages": 2,
+    "prompt": "From the dog_kennels database [Database Schema: CREATE TABLE `Charges` ( `charge_id` INTEGER PRIMARY KEY , `charge_type` VARCHAR(10), `charge_amount` DECIMAL(19,4) ); CREATE TABLE `Dogs` ( `dog_id` INTEGER PRIMARY KEY , `owner_id` INTEGER NOT NULL, `abandoned_yn` VARCHAR(1), `breed_code` VARCHAR(10) NOT NULL, `size_code` VARCHAR(10) NOT NULL, `name` VARCHAR(50), `age` VARCHAR(20), `date_of_birth` DATETIME, `gender` VARCHAR(1), `weight` VARCHAR(20), `date_arrived` DATETIME, `date_adopted` DATETIME, `date_departed` DATETIME, FOREIGN KEY (`breed_code` ) REFERENCES `Breeds`(`breed_code` ), FOREIGN KEY (`size_code` ) REFERENCES `Sizes`(`size_code` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ) )], count the number of rescued dogs marked as abandoned with abandoned_yn equal to '1'; multiply this count by 5 to define an integer rank, and write and execute Python code to compute and print the exact factorial of that rank.",
+    "reference_code": "import sqlite3\nimport math\nconn = sqlite3.connect('data/spider/database/dog_kennels/dog_kennels.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM dogs WHERE abandoned_yn = '1'\")\ncnt = c.fetchone()[0]\n\nrank = cnt * 5\nfinal_answer = math.factorial(rank)\n",
+    "gold_answer": 1307674368000,
     "component_parts": [
       {
-        "label": "derived from spider_val_0130",
-        "original_id": "spider_val_0130",
+        "description": "derived from spider_val_0040",
+        "original_id": "spider_val_0040",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/23",
-        "original_id": "HumanEval/23",
+        "description": "derived from HumanEval/122",
+        "original_id": "HumanEval/122",
         "stage": 2,
         "domain": "code"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/battle_death/battle_death.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM battle\")\nb_count = c.fetchone()[0]  # count\ntarget = b_count * 10\ndivs = []\nfor d in range(1, target + 1):\n    if target % d == 0:\n        divs.append(d)\nfinal_answer = sum(divs)\n",
-    "gold_answer": "186",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0031",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0031",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
       "sql",
-      "code"
+      "math"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A hardware warehouse inventory table server_racks [CREATE TABLE racks (rack_id int, u_height int, servers int)] lists 3 datacenter racks: (1, 42, 18), (2, 48, 24), and (3, 42, 16); query the minimum server count across all 42U racks; write and execute Python code to determine and print the factorial of that minimum server count divided by 8.",
+    "num_stages": 2,
+    "prompt": "An artisan roastery ledger table coffee_sales [CREATE TABLE orders (order_id int, blend text, bags int, price int)] records retail batches (1, 'Dark', 25, 14), (2, 'Light', 30, 12), (3, 'Dark', 40, 14), (4, 'Medium', 50, 13), (5, 'Dark', 35, 14), and (6, 'Light', 20, 12); query the total gross revenue (sum of bags multiplied by price) earned exclusively from 'Dark' roast sales; if gross profit margin equals 25 percent of revenue and distribution costs deduct 50 dollars from gross profit, compute the net distribution profit in whole dollars.",
+    "reference_code": "gross = (25 * 14) + (40 * 14) + (35 * 14)\nprofit = int(gross * 0.25)\nfinal_answer = profit - 50\n",
+    "gold_answer": 300,
     "component_parts": [
       {
-        "label": "derived from spider_val_0131",
-        "original_id": "spider_val_0131",
+        "description": "derived from spider_val_0041",
+        "original_id": "spider_val_0041",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from HumanEval/26",
-        "original_id": "HumanEval/26",
+        "description": "derived from gsm8k_test_0062",
+        "original_id": "gsm8k_test_0062",
         "stage": 2,
-        "domain": "code"
+        "domain": "math"
       }
-    ],
-    "reference_program": "# 42U racks: rack 1 (18), rack 3 (16) -> min server count = 16\nmin_s = 16\nquot = min_s // 8  # 2\nimport math\nfinal_answer = math.factorial(quot)  # 2! = 2\n",
-    "gold_answer": "2",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0032",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0032",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
-      "sql",
+      "math",
       "code"
     ],
-    "solvability": "tool-required",
-    "prompt": "Query the flight_2 database [Database Schema: CREATE TABLE 'airlines' ( uid INTEGER PRIMARY KEY, Airline TEXT, Abbreviation TEXT, Country TEXT ); CREATE TABLE 'airports' ( City TEXT, AirportCode TEXT PRIMARY KEY, AirportName TEXT, Country TEXT, CountryAbbrev TEXT ); CREATE TABLE 'flights' ( Airline INTEGER, FlightNo INTEGER, SourceAirport TEXT, DestAirport TEXT, PRIMARY KEY(Airline, FlightNo), FOREIGN KEY (SourceAirport) REFERENCES airports(AirportCode), FOREIGN KEY (DestAirport) REFERENCES airports(AirportCode) )] to find the total count of distinct airlines listed in the airlines table; write and execute Python code to compute and print the product of all positive odd integers strictly less than that airline count.",
+    "num_stages": 2,
+    "prompt": "In an 8-team premier division, every pair of teams competes against each other twice across a season; across all scheduled tournament matches indexed from 0 through (total matches - 1), match points are awarded such that if the match index is divisible by 4 the match results in a draw awarding 2 total points, while all other matches award 3 total points; simulate all matches to determine the total points awarded across the season.",
+    "reference_code": "teams = 8\ntotal_matches = (teams * (teams - 1) // 2) * 2\n\npoints = 0\nfor m in range(total_matches):\n    if m % 4 == 0:\n        points += 2\n    else:\n        points += 3\n\nfinal_answer = points\n",
+    "gold_answer": 154,
     "component_parts": [
       {
-        "label": "derived from spider_val_0132",
-        "original_id": "spider_val_0132",
+        "description": "derived from gsm8k_test_0063",
+        "original_id": "gsm8k_test_0063",
         "stage": 1,
-        "domain": "sql"
+        "domain": "math"
       },
       {
-        "label": "derived from HumanEval/27",
-        "original_id": "HumanEval/27",
+        "description": "derived from HumanEval/123",
+        "original_id": "HumanEval/123",
         "stage": 2,
         "domain": "code"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/flight_2/flight_2.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(distinct Airline) FROM airlines\")\nn_air = c.fetchone()[0]\nprod = 1\nfor x in range(1, n_air, 2):\n    prod *= x\nfinal_answer = prod\n",
-    "gold_answer": "10395",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0033",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0033",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "sql",
-      "code"
-    ],
     "solvability": "solvable_without_tools",
-    "prompt": "A telecom antenna catalog table transmission_towers [CREATE TABLE towers (tower_id int, height_m int, relays int)] contains 3 towers: (10, 85, 4), (20, 120, 6), and (30, 95, 5); query the sum of relay counts across towers taller than 90 meters; write and execute Python code to calculate and print the sum of cubes of all integers from 1 up to that relay sum.",
+    "domains": [
+      "code",
+      "math"
+    ],
+    "num_stages": 2,
+    "prompt": "Consider the character sequence 'AAAAABBBCCCCCCCCDDDDDD' compressed using run-length encoding where consecutive identical characters are represented as count followed by character (for example, 5A for AAAAA); determine the total character length of this compressed string; if a wireless router transmits 4000 such compressed strings per hour during a 10-hour cycle and bandwidth costs 6 dollars per 1000 transmitted characters, calculate the total bandwidth fee in whole dollars using integer division.",
+    "reference_code": "compressed_len = len('5A3B8C6D')\ntotal_chars = compressed_len * 4000 * 10\nfinal_answer = (total_chars * 6) // 1000\n",
+    "gold_answer": 1920,
     "component_parts": [
       {
-        "label": "derived from spider_val_0133",
-        "original_id": "spider_val_0133",
+        "description": "derived from HumanEval/124",
+        "original_id": "HumanEval/124",
         "stage": 1,
-        "domain": "sql"
+        "domain": "code"
       },
       {
-        "label": "derived from HumanEval/29",
-        "original_id": "HumanEval/29",
+        "description": "derived from gsm8k_test_0064",
+        "original_id": "gsm8k_test_0064",
         "stage": 2,
-        "domain": "code"
+        "domain": "math"
       }
-    ],
-    "reference_program": "# Towers > 90m: tower 20 (6 relays), tower 30 (5 relays) -> sum = 11 relays\nrelay_sum = 6 + 5  # 11\ns_cubes = 0\nfor i in range(1, 12):\n    s_cubes += i**3\nfinal_answer = s_cubes  # (11 * 12 / 2)^2 = 66^2 = 4356\n",
-    "gold_answer": "4356",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0034",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0034",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
-      "sql",
+      "math",
       "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A cargo terminal dispatch log table freight_barges [CREATE TABLE barges (barge_id int, capacity_tons int, port text)] registers 4 river barges: (1, 450, 'East'), (2, 600, 'West'), (3, 350, 'East'), and (4, 500, 'West'); query the minimum capacity in tons among barges assigned to port 'West'; divide that capacity by 100 to obtain an integer factor, and write and execute Python code to print that factor formatted as a reversed decimal string.",
+    "num_stages": 2,
+    "prompt": "Find the smallest positive integer N that leaves a remainder of 2 when divided by 5, a remainder of 4 when divided by 7, and a remainder of 3 when divided by 8; calculate the square of N, and determine the sum of its decimal digits.",
+    "reference_code": "n = 1\nwhile True:\n    if n % 5 == 2 and n % 7 == 4 and n % 8 == 3:\n        break\n    n += 1\n\nn_sq = n ** 2\nfinal_answer = sum(int(d) for d in str(n_sq))\n",
+    "gold_answer": 25,
     "component_parts": [
       {
-        "label": "derived from spider_val_0134",
-        "original_id": "spider_val_0134",
+        "description": "derived from gsm8k_test_0065",
+        "original_id": "gsm8k_test_0065",
         "stage": 1,
-        "domain": "sql"
+        "domain": "math"
       },
       {
-        "label": "derived from HumanEval/30",
-        "original_id": "HumanEval/30",
+        "description": "derived from HumanEval/125",
+        "original_id": "HumanEval/125",
         "stage": 2,
         "domain": "code"
       }
-    ],
-    "reference_program": "# Port 'West': barge 2 (600), barge 4 (500) -> min = 500\nmin_cap = 500\nfactor = min_cap // 100  # 5\n# Reversed string of '5' is '5' (let's use 500 // 4 = 125 -> '521')\n# Let's say: divide that capacity by 4 to obtain an integer factor -> 125 -> '521'\nfactor = min_cap // 4  # 125\nfinal_answer = str(factor)[::-1]  # '521'\n",
-    "gold_answer": "521",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0035",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0035",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
-    "domains": [
-      "sql",
-      "math",
-      "code"
-    ],
     "solvability": "solvable_without_tools",
-    "prompt": "A seaport container terminal table cargo_vessels [CREATE TABLE vessels (vessel_id int, containers int, origin text)] lists 3 ships: (1, 140, 'Asia'), (2, 210, 'Europe'), and (3, 150, 'Asia'); query the total containers carried by vessels originating in 'Asia'; if 40 containers are inspected by customs and the remainder is divided equally among 5 automated rail shuttles, determine the containers per shuttle, and write and execute Python code to compute and print the product of the decimal digits of that shuttle container count.",
+    "domains": [
+      "code",
+      "math"
+    ],
+    "num_stages": 2,
+    "prompt": "An autonomous survey vehicle starts at coordinate origin (0, 0) and follows six displacement vectors: (3, 4), (-2, 2), (4, -3), (-1, -1), (2, 3), and (-1, 1); determine the final Manhattan distance (|x| + |y|) of the vehicle from the origin; if the vehicle consumes 125 milliwatts per unit of Manhattan distance and begins with a full battery reserve of 4000 milliwatts, compute the remaining battery reserve.",
+    "reference_code": "moves = [(3, 4), (-2, 2), (4, -3), (-1, -1), (2, 3), (-1, 1)]\nx = sum(dx for dx, dy in moves)\ny = sum(dy for dx, dy in moves)\ndist = abs(x) + abs(y)\n\nconsumption = dist * 125\nfinal_answer = 4000 - consumption\n",
+    "gold_answer": 2625,
     "component_parts": [
       {
-        "label": "derived from spider_val_0135",
-        "original_id": "spider_val_0135",
+        "description": "derived from HumanEval/131",
+        "original_id": "HumanEval/131",
         "stage": 1,
-        "domain": "sql"
+        "domain": "code"
       },
       {
-        "label": "derived from gsm8k_test_0135",
-        "original_id": "gsm8k_test_0135",
+        "description": "derived from gsm8k_test_0066",
+        "original_id": "gsm8k_test_0066",
         "stage": 2,
         "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/34",
-        "original_id": "HumanEval/34",
-        "stage": 3,
-        "domain": "code"
       }
-    ],
-    "reference_program": "# Asia vessels: vessel 1 (140), vessel 3 (150) -> total = 290\ntotal_cont = 140 + 150  # 290\nuninspected = total_cont - 40  # 250\nper_shuttle = uninspected // 5  # 50\nd1, d2 = int(str(per_shuttle)[0]), int(str(per_shuttle)[1])\nfinal_answer = d1 * d2  # 5 * 0 = 0\n",
-    "gold_answer": "0",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0036",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0036",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
       "sql",
-      "math",
-      "code"
+      "math"
     ],
-    "solvability": "tool-required",
-    "prompt": "Query the dog_kennels database [Database Schema: CREATE TABLE `Breeds` ( `breed_code` VARCHAR(10) PRIMARY KEY , `breed_name` VARCHAR(80) ); CREATE TABLE `Owners` ( `owner_id` INTEGER PRIMARY KEY , `first_name` VARCHAR(50), `last_name` VARCHAR(50), `street` VARCHAR(50), `city` VARCHAR(50), `state` VARCHAR(20), `zip_code` VARCHAR(20), `email_address` VARCHAR(50), `home_phone` VARCHAR(20), `cell_number` VARCHAR(20) ); CREATE TABLE `Dogs` ( `dog_id` INTEGER PRIMARY KEY , `owner_id` INTEGER NOT NULL, `abandoned_yn` VARCHAR(1), `breed_code` VARCHAR(10) NOT NULL, `size_code` VARCHAR(10) NOT NULL, `name` VARCHAR(50), `age` VARCHAR(20), `date_of_birth` DATETIME, `gender` VARCHAR(1), `weight` VARCHAR(20), `date_arrived` DATETIME, `date_adopted` DATETIME, `date_departed` DATETIME, FOREIGN KEY (`breed_code` ) REFERENCES `Breeds`(`breed_code` ), FOREIGN KEY (`size_code` ) REFERENCES `Sizes`(`size_code` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ) ); CREATE TABLE `Treatments` ( `treatment_id` INTEGER PRIMARY KEY , `dog_id` INTEGER NOT NULL, `professional_id` INTEGER NOT NULL, `treatment_type_code` VARCHAR(10) NOT NULL, `date_of_treatment` DATETIME, `cost_of_treatment` DECIMAL(19,4), FOREIGN KEY (`treatment_type_code` ) REFERENCES `Treatment_Types`(`treatment_type_code` ), FOREIGN KEY (`professional_id` ) REFERENCES `Professionals`(`professional_id` ), FOREIGN KEY (`dog_id` ) REFERENCES `Dogs`(`dog_id` ) )] to find the total count of treatments recorded in the Treatments table; multiply that treatment count by 12, add 16 to represent supply kits, and write and execute Python code to compute and print the greatest integer divisor of that total kit count that is strictly smaller than the kit count itself.",
+    "num_stages": 2,
+    "prompt": "An electronics manufacturing component inventory electronic_parts [CREATE TABLE parts (part_id int, category text, units int, unit_cost int)] lists supplies (1, 'Sensor', 40, 18), (2, 'Relay', 60, 10), (3, 'Sensor', 50, 20), (4, 'Switch', 80, 8), (5, 'Sensor', 30, 22), and (6, 'Relay', 45, 11); query the total expenditure (sum of units multiplied by unit_cost) incurred exclusively on 'Sensor' category parts; if a supplier discount waives 15 percent of this expenditure and expedited freight shipping adds 75 dollars, compute the final total procurement expenditure in whole dollars using integer arithmetic.",
+    "reference_code": "gross = (40 * 18) + (50 * 20) + (30 * 22)\ndiscount = int(gross * 0.15)\nnet = gross - discount\nfinal_answer = net + 75\n",
+    "gold_answer": 2098,
     "component_parts": [
       {
-        "label": "derived from spider_val_0136",
-        "original_id": "spider_val_0136",
+        "description": "derived from spider_val_0043",
+        "original_id": "spider_val_0043",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0136",
-        "original_id": "gsm8k_test_0136",
+        "description": "derived from gsm8k_test_0067",
+        "original_id": "gsm8k_test_0067",
         "stage": 2,
         "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/37",
-        "original_id": "HumanEval/37",
-        "stage": 3,
-        "domain": "code"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/dog_kennels/dog_kennels.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(*) FROM Treatments\")\nn_treat = c.fetchone()[0]\nkits = n_treat * 12 + 16\ndivs = []\nfor d in range(1, kits):\n    if kits % d == 0:\n        divs.append(d)\nfinal_answer = max(divs)\n",
-    "gold_answer": "98",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0037",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0037",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
-      "sql",
       "math",
       "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A metropolitan utility table water_reservoirs [CREATE TABLE reservoirs (res_id int, megaliters int, status text)] logs 4 dams: (1, 80, 'active'), (2, 120, 'active'), (3, 50, 'maintenance'), and (4, 100, 'active'); query the sum of megaliters held in 'active' reservoirs; if 60 megaliters are pumped to treatment plants and the remainder supplies 8 urban residential wards equally, find the water allocated per ward in megaliters, and write and execute Python code to compute and print the square of that ward allocation.",
+    "num_stages": 2,
+    "prompt": "A bagel bakery bakes 360 specialty bagels: exactly 10 percent are blueberry, 40 percent are toasted sesame, and all remaining bagels are plain; calculate the total number of plain bagels baked; convert this plain bagel count into its standard binary string representation without prefixes, and compute the product of the count of '1' digits and the count of '0' digits in that string.",
+    "reference_code": "total = 360\nblueberry = int(total * 0.10)\nsesame = int(total * 0.40)\nplain = total - blueberry - sesame\n\nb = bin(plain)[2:]\nones = b.count('1')\nzeros = b.count('0')\nfinal_answer = ones * zeros\n",
+    "gold_answer": 16,
     "component_parts": [
       {
-        "label": "derived from spider_val_0137",
-        "original_id": "spider_val_0137",
+        "description": "derived from gsm8k_test_0068",
+        "original_id": "gsm8k_test_0068",
         "stage": 1,
-        "domain": "sql"
-      },
-      {
-        "label": "derived from gsm8k_test_0137",
-        "original_id": "gsm8k_test_0137",
-        "stage": 2,
         "domain": "math"
       },
       {
-        "label": "derived from HumanEval/38",
-        "original_id": "HumanEval/38",
-        "stage": 3,
+        "description": "derived from HumanEval/135",
+        "original_id": "HumanEval/135",
+        "stage": 2,
         "domain": "code"
       }
-    ],
-    "reference_program": "# Active dams: 1 (80), 2 (120), 4 (100) -> total = 300\ntotal_active = 80 + 120 + 100  # 300\nrem = total_active - 60  # 240\nper_ward = rem // 8  # 30\nfinal_answer = per_ward ** 2  # 900\n",
-    "gold_answer": "900",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0038",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0038",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
-      "sql",
-      "math",
-      "code"
+      "code",
+      "math"
     ],
-    "solvability": "tool-required",
-    "prompt": "From the battle_death database [Database Schema: CREATE TABLE \"battle\" ( \"id\" int, \"name\" text, \"date\" text, \"bulgarian_commander\" text, \"latin_commander\" text, \"result\" text, primary key(\"id\") ); CREATE TABLE \"ship\" ( \"lost_in_battle\" int, \"id\" int, \"name\" text, \"tonnage\" text, \"ship_type\" text, \"location\" text, \"disposition_of_ship\" text, primary key(\"id\"), foreign key (`lost_in_battle`) references `battle`(\"id\") ); CREATE TABLE \"death\" ( \"caused_by_ship_id\" int, \"id\" int, \"note\" text, \"killed\" int, \"injured\" int, primary key(\"id\"), foreign key (\"caused_by_ship_id\") references `ship`(\"id\") )], query the count of distinct naval ships recorded in the ship table; multiply this ship count by 15, subtract 5, and write and execute Python code to determine whether that calculated integer is prime, printing 1 if it is prime and 0 otherwise.",
+    "num_stages": 2,
+    "prompt": "Simulate the Collatz sequence starting with seed value n = 23 where n transitions to n / 2 if n is even and 3 * n + 1 if n is odd, counting the total number of transition steps taken until n reaches 1; multiply this step count by 60 and add 250 to calculate the final maintenance fee.",
+    "reference_code": "n = 23\nsteps = 0\nwhile n != 1:\n    if n % 2 == 0:\n        n //= 2\n    else:\n        n = 3 * n + 1\n    steps += 1\n\nfinal_answer = steps * 60 + 250\n",
+    "gold_answer": 1150,
     "component_parts": [
       {
-        "label": "derived from spider_val_0138",
-        "original_id": "spider_val_0138",
+        "description": "derived from HumanEval/136",
+        "original_id": "HumanEval/136",
         "stage": 1,
-        "domain": "sql"
+        "domain": "code"
       },
       {
-        "label": "derived from gsm8k_test_0138",
-        "original_id": "gsm8k_test_0138",
+        "description": "derived from gsm8k_test_0069",
+        "original_id": "gsm8k_test_0069",
         "stage": 2,
         "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/39",
-        "original_id": "HumanEval/39",
-        "stage": 3,
-        "domain": "code"
       }
-    ],
-    "reference_program": "import sqlite3\nconn = sqlite3.connect('data/spider/database/battle_death/battle_death.sqlite')\nc = conn.cursor()\nc.execute(\"SELECT count(distinct id) FROM ship\")\nn_ships = c.fetchone()[0]\nval = n_ships * 15 - 5\nis_prime = 1\nfor d in range(2, int(val**0.5) + 1):\n    if val % d == 0:\n        is_prime = 0\n        break\nfinal_answer = is_prime\n",
-    "gold_answer": "0",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0039",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0039",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
       "sql",
-      "math",
-      "code"
+      "math"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "An agricultural cooperative orchard log table orange_groves [CREATE TABLE groves (grove_id int, crates int, variety text)] logs 3 parcels: (1, 35, 'Valencia'), (2, 45, 'Navel'), and (3, 55, 'Valencia'); query the total crates gathered from 'Valencia' groves; if 10 crates are bruised and the remaining sound crates are divided equally across 4 farm stands, calculate the crates supplied per stand, and write and execute Python code to compute and print the 3rd power of that crates-per-stand value.",
+    "num_stages": 2,
+    "prompt": "A data center power monitoring table server_clusters [CREATE TABLE clusters (server_id int, room text, kw int, uptime_pct float)] logs telemetry (1, 'Alpha', 45, 99.8), (2, 'Beta', 30, 99.2), (3, 'Alpha', 55, 99.9), (4, 'Gamma', 60, 98.5), (5, 'Alpha', 50, 99.7), and (6, 'Beta', 35, 99.5); query the total power load in kilowatts (sum of kw) drawn exclusively by servers located in server room 'Alpha'; if these servers run continuously for 720 hours in a month at an energy rate of 0.12 dollars per kilowatt-hour and a green facility incentive discounts 10 percent off the electricity bill, compute the final net monthly power cost in whole dollars using integer arithmetic.",
+    "reference_code": "kw = 45 + 55 + 50\ntotal_kwh = kw * 720\ngross = total_kwh * 0.12\ndiscount = int(gross * 0.10)\nfinal_answer = int(gross - discount)\n",
+    "gold_answer": 11664,
     "component_parts": [
       {
-        "label": "derived from spider_val_0139",
-        "original_id": "spider_val_0139",
+        "description": "derived from spider_val_0044",
+        "original_id": "spider_val_0044",
         "stage": 1,
         "domain": "sql"
       },
       {
-        "label": "derived from gsm8k_test_0139",
-        "original_id": "gsm8k_test_0139",
+        "description": "derived from gsm8k_test_0070",
+        "original_id": "gsm8k_test_0070",
         "stage": 2,
         "domain": "math"
-      },
-      {
-        "label": "derived from HumanEval/40",
-        "original_id": "HumanEval/40",
-        "stage": 3,
-        "domain": "code"
       }
-    ],
-    "reference_program": "# Valencia groves: grove 1 (35), grove 3 (55) -> total = 90\ntotal_val = 35 + 55  # 90\nsound = total_val - 10  # 80\nper_stand = sound // 4  # 20\nfinal_answer = per_stand ** 3  # 8000\n",
-    "gold_answer": "8000",
-    "checker_type": "exact_match"
+    ]
   },
   {
     "subtask_id": "compound_heldout_0040",
-    "task_type": "composed",
+    "original_id": "compound_heldout_0040",
+    "track": "A",
+    "task_type": "compound",
     "stratum": "composed",
-    "is_compound": true,
+    "solvability": "solvable_without_tools",
     "domains": [
-      "sql",
       "math",
       "code"
     ],
-    "solvability": "solvable_without_tools",
-    "prompt": "A freight railyard log table coal_hopper_trains [CREATE TABLE train_cars (car_id int, tons int, depot text)] records 4 railcars: (1, 65, 'Central'), (2, 75, 'Central'), (3, 85, 'East'), and (4, 95, 'East'); query the average tonnage of railcars routed to 'Central' depot; add 25 tons from emergency stockpile and divide the total equally into 5 thermal furnaces to find the fuel tons per furnace, and write and execute Python code to compute and print the factorial of that fuel tonnage divided by 4.",
+    "num_stages": 2,
+    "prompt": "A citrus grower harvests 600 kilograms of oranges, setting aside 15 percent for fresh juice production; the remaining oranges are packed into commercial crates holding 8 kilograms each; find the whole number count of completed crates, take the last decimal digit of this crate count, and write and execute Python code to compute and print the factorial of that single digit.",
+    "reference_code": "import math\nharvest = 600\njuice = int(harvest * 0.15)\nremaining = harvest - juice\ncrates = remaining // 8\nlast_digit = crates % 10\nfinal_answer = math.factorial(last_digit)\n",
+    "gold_answer": 6,
     "component_parts": [
       {
-        "label": "derived from spider_val_0140",
-        "original_id": "spider_val_0140",
+        "description": "derived from gsm8k_test_0071",
+        "original_id": "gsm8k_test_0071",
         "stage": 1,
-        "domain": "sql"
-      },
-      {
-        "label": "derived from gsm8k_test_0140",
-        "original_id": "gsm8k_test_0140",
-        "stage": 2,
         "domain": "math"
       },
       {
-        "label": "derived from HumanEval/41",
-        "original_id": "HumanEval/41",
-        "stage": 3,
+        "description": "derived from HumanEval/138",
+        "original_id": "HumanEval/138",
+        "stage": 2,
         "domain": "code"
       }
-    ],
-    "reference_program": "# Central cars: car 1 (65), car 2 (75) -> avg tons = 70\navg_tons = (65 + 75) // 2  # 70\ntotal_fuel = avg_tons + 25  # 95? Let's make clean: 60 and 80 -> avg 70 + 30 = 100 // 5 = 20\n# Let's use (60 + 80) // 2 = 70 + 10 = 80 // 5 = 16. 16 // 4 = 4. 4! = 24\navg_tons = 70\ntotal_fuel = avg_tons + 10  # 80\nper_furnace = total_fuel // 5  # 16\nquot = per_furnace // 4  # 4\nimport math\nfinal_answer = math.factorial(quot)  # 4! = 24\n",
-    "gold_answer": "24",
-    "checker_type": "exact_match"
+    ]
   }
 ]

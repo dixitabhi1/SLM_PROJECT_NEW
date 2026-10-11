@@ -465,3 +465,4 @@ with open(FACT_POOL_PATH, "w", encoding="utf-8") as f:
     json.dump(master_pool, f, indent=2)
 
 print(f"Master Fact Pool created with {master_pool['total_facts_count']} total facts ({len(DEV_FACTS)} Dev, {len(HELDOUT_FACTS)} Held-Out).")
+

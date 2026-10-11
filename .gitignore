@@ -46,4 +46,11 @@ data/spider/database/
 *.gguf
 *.bin
 
+# Quarantined Held-Out & Reserve Splits (Cryptographic Hashes Committed in Manifests)
+data/track_a_heldout_candidate.json
+data/reserve_set_quarantine.json
+data/track_b/track_b_heldout_candidate.json
+data/track_b/master_fact_pool.json
+
+
 

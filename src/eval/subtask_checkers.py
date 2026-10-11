@@ -180,12 +180,24 @@ def check_sql_subtask(subtask_id: str, output: str, gold_query: str, subtask: Di
     if not query or not query.strip():
         return False, checker_name, "Empty or missing SQL query in output"
 
-    conn = sqlite3.connect(":memory:")
-    cursor = conn.cursor()
-
+    conn = None
     try:
-        # 1. Setup schema and table fixtures
-        if subtask and "schema_ddl" in subtask:
+        # 1. Connect to database or setup in-memory schema
+        db_id = subtask.get("db_id") if subtask else None
+        if db_id:
+            import os
+            repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+            db_path = os.path.join(repo_root, "data", "spider", "database", db_id, f"{db_id}.sqlite")
+            if not os.path.exists(db_path):
+                db_path = os.path.join(repo_root, "data", "spider_databases", "all_databases", db_id, f"{db_id}.sqlite")
+            if not os.path.exists(db_path):
+                return False, checker_name, f"Database file not found for db_id: {db_id}"
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            gold_sql = subtask.get("gold_query") or subtask.get("gold_sql") or gold_query
+        elif subtask and "schema_ddl" in subtask:
+            conn = sqlite3.connect(":memory:")
+            cursor = conn.cursor()
             for stmt in subtask["schema_ddl"].split(";"):
                 if stmt.strip():
                     cursor.execute(stmt)
@@ -194,6 +206,8 @@ def check_sql_subtask(subtask_id: str, output: str, gold_query: str, subtask: Di
                     cursor.execute(stmt)
             gold_sql = subtask.get("gold_sql", gold_query)
         else:
+            conn = sqlite3.connect(":memory:")
+            cursor = conn.cursor()
             # Legacy fixed subtasks fallback
             if subtask_id == "subtask_11":
                 cursor.execute("CREATE TABLE departments(dept_id INT, name TEXT, budget REAL, building TEXT);")
@@ -242,7 +256,8 @@ def check_sql_subtask(subtask_id: str, output: str, gold_query: str, subtask: Di
     except Exception as e:
         return False, checker_name, f"SQLite execution failure: {str(e)[:150]}"
     finally:
-        conn.close()
+        if conn:
+            conn.close()
 
 
 def check_qa_subtask(subtask_id: str, output: str, gold_option: str) -> Tuple[bool, str, str]:
@@ -250,28 +265,71 @@ def check_qa_subtask(subtask_id: str, output: str, gold_option: str) -> Tuple[bo
     checker_name = "multiple_choice_exact_match"
     gold_letter = gold_option.strip("()").upper()
 
-    match = re.search(r"(?:answer\s*(?:is|:)?\s*|option\s*|[(\[])([A-D])[)\]]", output, re.IGNORECASE)
-    if match:
-        pred_letter = match.group(1).upper()
+    # 1. Primary: Explicit answer declaration (e.g. "Answer: (B)", "Answer: B", "Final Answer: B")
+    # Take the LAST occurrence in case the model discusses options earlier
+    explicit_matches = re.findall(
+        r"(?:answer\s*(?:is|:)?\s*|final\s+answer\s*(?:is|:)?\s*)(?:\()?([A-D])(?:\))?",
+        output,
+        re.IGNORECASE,
+    )
+    if explicit_matches:
+        pred_letter = explicit_matches[-1].upper()
         if pred_letter == gold_letter:
             return True, checker_name, f"Selected correct option ({pred_letter})"
         return False, checker_name, f"Selected option ({pred_letter}) != gold ({gold_letter})"
 
+    # 2. Boxed answer format (e.g. \boxed{B} or \boxed{(B)})
+    boxed = re.findall(r"\\boxed\{[(\[]?([A-D])[)\]]?\}", output, re.IGNORECASE)
+    if boxed:
+        pred_letter = boxed[-1].upper()
+        if pred_letter == gold_letter:
+            return True, checker_name, f"Selected correct boxed option ({pred_letter})"
+        return False, checker_name, f"Selected boxed option ({pred_letter}) != gold ({gold_letter})"
+
+    # 3. Secondary: "correct choice is (B)", "option is (B)"
+    secondary_matches = re.findall(
+        r"(?:correct\s+(?:choice|option)\s*(?:is|:)?\s*|option\s*(?:is|:)?\s*)(?:\()?([A-D])(?:\))?",
+        output,
+        re.IGNORECASE,
+    )
+    if secondary_matches:
+        pred_letter = secondary_matches[-1].upper()
+        if pred_letter == gold_letter:
+            return True, checker_name, f"Selected correct option ({pred_letter})"
+        return False, checker_name, f"Selected option ({pred_letter}) != gold ({gold_letter})"
+
+    # 4. Fallback: parenthesized letter at the end of the response
+    paren_matches = re.findall(r"[(]([A-D])[)]", output)
+    if paren_matches:
+        pred_letter = paren_matches[-1].upper()
+        if pred_letter == gold_letter:
+            return True, checker_name, f"Selected parenthesized option ({pred_letter})"
+        return False, checker_name, f"Selected parenthesized option ({pred_letter}) != gold ({gold_letter})"
+
+    # 5. Final fallback: standalone letter
     standalone = re.findall(r"\b([A-D])\b", output)
     if standalone:
-        pred_letter = standalone[0].upper()
+        pred_letter = standalone[-1].upper()
         if pred_letter == gold_letter:
             return True, checker_name, f"Selected standalone letter matched gold ({gold_letter})"
         return False, checker_name, f"Selected standalone letter ({pred_letter}) != gold ({gold_letter})"
 
-    return False, checker_name, f"Could not extract choice letter from output"
+    return False, checker_name, "Could not extract choice letter from output"
 
 
 def evaluate_subtask(subtask: Dict[str, Any], output: str) -> Tuple[bool, str, str]:
     """Routes subtask to the appropriate objective checker."""
-    st_type = subtask.get("type", "")
-    st_id = subtask.get("id", "")
-    gold = subtask.get("gold") or subtask.get("gold_answer") or subtask.get("gold_sql") or subtask.get("gold_letter") or ""
+    st_type = subtask.get("type") or subtask.get("task_type") or subtask.get("stratum") or ""
+    st_id = subtask.get("id") or subtask.get("subtask_id") or subtask.get("original_id") or ""
+    gold = (
+        subtask.get("gold")
+        or subtask.get("gold_answer")
+        or subtask.get("gold_sql")
+        or subtask.get("gold_query")
+        or subtask.get("gold_number")
+        or subtask.get("gold_letter")
+        or ""
+    )
 
     if st_type == "code":
         return check_code_subtask(st_id, output, subtask)
@@ -281,5 +339,8 @@ def evaluate_subtask(subtask: Dict[str, Any], output: str) -> Tuple[bool, str, s
         return check_sql_subtask(st_id, output, gold, subtask)
     elif st_type == "qa":
         return check_qa_subtask(st_id, output, gold)
+    elif st_type in ["composed", "compound"]:
+        return check_math_subtask(st_id, output, str(gold))
     else:
         return False, "unknown_type", f"Unrecognized subtask type '{st_type}'"
+

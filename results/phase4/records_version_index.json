@@ -1,0 +1,1130 @@
+{
+  "b19bf6058a028c64b792344b88bf1e1b8032a5e2ed5872d37967814b180527d8": {
+    "item_id": "spider_val_0718",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "b19bf6058a028c64b792344b88bf1e1b8032a5e2ed5872d37967814b180527d8",
+    "is_compound": false
+  },
+  "6ad5007bf1c8061c49818b34d87e906fe09597fdd09979ca62e868eeeb076296": {
+    "item_id": "spider_val_0676",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "6ad5007bf1c8061c49818b34d87e906fe09597fdd09979ca62e868eeeb076296",
+    "is_compound": false
+  },
+  "e60d15ae206e999f933ddd20f0665f7fbf2707d8aa5875dc2a6a713cee03acc0": {
+    "item_id": "spider_val_0180",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e60d15ae206e999f933ddd20f0665f7fbf2707d8aa5875dc2a6a713cee03acc0",
+    "is_compound": false
+  },
+  "5885ca9a56f5c50b9ced4168328fa60fc77b4cf9e302c6a2530bdda4e30b80f9": {
+    "item_id": "spider_val_0710",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "5885ca9a56f5c50b9ced4168328fa60fc77b4cf9e302c6a2530bdda4e30b80f9",
+    "is_compound": false
+  },
+  "ef65fc552f6fe187220872bb3d8741d48317e58fb7ee60b6e37fc9f90325f2f7": {
+    "item_id": "spider_val_0816",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "ef65fc552f6fe187220872bb3d8741d48317e58fb7ee60b6e37fc9f90325f2f7",
+    "is_compound": false
+  },
+  "1e55eedbe77bb2948c80dc4d0fe6f486ba0917c9b4e7bef149734fef0fa742be": {
+    "item_id": "spider_val_0263",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "1e55eedbe77bb2948c80dc4d0fe6f486ba0917c9b4e7bef149734fef0fa742be",
+    "is_compound": false
+  },
+  "b2a8a9c31701552399172432eab501095751b54a3b903c4022d6a28c6d9a517d": {
+    "item_id": "spider_val_0797",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "b2a8a9c31701552399172432eab501095751b54a3b903c4022d6a28c6d9a517d",
+    "is_compound": false
+  },
+  "fe2299672a554239e21c3b35e05ea1b08439523b98cbfbc5e8e17d11f92fe235": {
+    "item_id": "spider_val_0646",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "fe2299672a554239e21c3b35e05ea1b08439523b98cbfbc5e8e17d11f92fe235",
+    "is_compound": false
+  },
+  "7c857ccb800198e463685c828420187e47b3f39e8ae754d6b90df57b579dd32c": {
+    "item_id": "spider_val_0776",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "7c857ccb800198e463685c828420187e47b3f39e8ae754d6b90df57b579dd32c",
+    "is_compound": false
+  },
+  "f6457b774e4549e1da46d847549d20ca4efafa72367f546f2b94268cf57fd514": {
+    "item_id": "spider_val_0242",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "f6457b774e4549e1da46d847549d20ca4efafa72367f546f2b94268cf57fd514",
+    "is_compound": false
+  },
+  "281bd35c8bb3af674d5766961496e2d741f6de8b5865c37e9a6598aa8ec16810": {
+    "item_id": "spider_val_0475",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "281bd35c8bb3af674d5766961496e2d741f6de8b5865c37e9a6598aa8ec16810",
+    "is_compound": false
+  },
+  "0a1e30908dd39df75596dd7816db840167377e1e9f159228c5a0e2b84c77035c": {
+    "item_id": "spider_val_0705",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "0a1e30908dd39df75596dd7816db840167377e1e9f159228c5a0e2b84c77035c",
+    "is_compound": false
+  },
+  "c36163c339c21fd8b41a2246b1d5ec0b93d1449c3d3b3f0698d2530adba4d22a": {
+    "item_id": "spider_val_0009",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "c36163c339c21fd8b41a2246b1d5ec0b93d1449c3d3b3f0698d2530adba4d22a",
+    "is_compound": false
+  },
+  "711b2eb077f5863a058eb8716cf22acbfbe6ff6703b3802cd8011293cf6430d9": {
+    "item_id": "NYSEDREGENTS_2014_4_22",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "711b2eb077f5863a058eb8716cf22acbfbe6ff6703b3802cd8011293cf6430d9",
+    "is_compound": false
+  },
+  "d9e94f9877164f057db142ae626dbc29aa56fc3aca5cf55060736ad89caae576": {
+    "item_id": "spider_val_0936",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "d9e94f9877164f057db142ae626dbc29aa56fc3aca5cf55060736ad89caae576",
+    "is_compound": false
+  },
+  "8fbdd1dd4b1b24617ab25b51f45d9965ea34fff0afab7af315c47e1a832c1640": {
+    "item_id": "Mercury_7018008",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "8fbdd1dd4b1b24617ab25b51f45d9965ea34fff0afab7af315c47e1a832c1640",
+    "is_compound": false
+  },
+  "1e6dfd8c4b96ce47c358784c40b563781f695ece2752eebbc2605d6fbd8a3ad6": {
+    "item_id": "Mercury_7081760",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "1e6dfd8c4b96ce47c358784c40b563781f695ece2752eebbc2605d6fbd8a3ad6",
+    "is_compound": false
+  },
+  "1c95e28a662ce87beb07da77df252582a4464f78995905ef674b2dc31914a2a7": {
+    "item_id": "Mercury_SC_408700",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "1c95e28a662ce87beb07da77df252582a4464f78995905ef674b2dc31914a2a7",
+    "is_compound": false
+  },
+  "c3632b1fca673a4960cea209467be3abde6cd4448a6af268f4a7880eccbb1bcb": {
+    "item_id": "LEAP_2006_8_10412",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "c3632b1fca673a4960cea209467be3abde6cd4448a6af268f4a7880eccbb1bcb",
+    "is_compound": false
+  },
+  "acbef925a453b64fc66adf8f895b54724369f5356ba3ac21833b27871bf0e4ca": {
+    "item_id": "Mercury_7099768",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "acbef925a453b64fc66adf8f895b54724369f5356ba3ac21833b27871bf0e4ca",
+    "is_compound": false
+  },
+  "81a94bceaeb65f82558d83d8653db410066ebae7d39d97a9f9fd20152f2d5122": {
+    "item_id": "spider_val_0042",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "81a94bceaeb65f82558d83d8653db410066ebae7d39d97a9f9fd20152f2d5122",
+    "is_compound": false
+  },
+  "42b3c7ebccb4f13aad46fdb2786aa825adf428576a1f3a6a44f2b71ba279f70d": {
+    "item_id": "TIMSS_2007_4_pg26",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "42b3c7ebccb4f13aad46fdb2786aa825adf428576a1f3a6a44f2b71ba279f70d",
+    "is_compound": false
+  },
+  "c453c0b154482a23f1663e811cd6f1289781b617096c70e7a42abbd4b7769a67": {
+    "item_id": "Mercury_7205135",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "c453c0b154482a23f1663e811cd6f1289781b617096c70e7a42abbd4b7769a67",
+    "is_compound": false
+  },
+  "c31126138a4c3ff93f3db683df294a662ea896c0906e589bafaf04d91953ccd2": {
+    "item_id": "Mercury_7183733",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "c31126138a4c3ff93f3db683df294a662ea896c0906e589bafaf04d91953ccd2",
+    "is_compound": false
+  },
+  "bbcc552eb90cdb9927fb72954c01e5fa99943db6369a7de7b1d94fffe7f43e0a": {
+    "item_id": "MEA_2013_5_3",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "bbcc552eb90cdb9927fb72954c01e5fa99943db6369a7de7b1d94fffe7f43e0a",
+    "is_compound": false
+  },
+  "3a5217fbc2ff459575caf778ca7ca44d494ab2bc1fc447072bf6f74d7836bd51": {
+    "item_id": "Mercury_7130603",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "3a5217fbc2ff459575caf778ca7ca44d494ab2bc1fc447072bf6f74d7836bd51",
+    "is_compound": false
+  },
+  "1c762518fc41fcdce804e256510f40fd0a8337afa23b8ceef6af028ef6ec0ef5": {
+    "item_id": "MEAP_2005_5_1",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "1c762518fc41fcdce804e256510f40fd0a8337afa23b8ceef6af028ef6ec0ef5",
+    "is_compound": false
+  },
+  "f4dd1e0b19a2ef1edcbf8c7a4d96461b24f81b9e5bd44887c8162e4744ac29aa": {
+    "item_id": "Mercury_SC_402104",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "f4dd1e0b19a2ef1edcbf8c7a4d96461b24f81b9e5bd44887c8162e4744ac29aa",
+    "is_compound": false
+  },
+  "b7bad9c31cd995c294a1a3fe9fc5548cea6f8d6ef2a3f348f542dacf7cd31cfb": {
+    "item_id": "Mercury_7124338",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "b7bad9c31cd995c294a1a3fe9fc5548cea6f8d6ef2a3f348f542dacf7cd31cfb",
+    "is_compound": false
+  },
+  "cca5934ca3959068a85b5cece2c27fd9de5b881730d7a6e442abcea17e18663d": {
+    "item_id": "Mercury_7236023",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "cca5934ca3959068a85b5cece2c27fd9de5b881730d7a6e442abcea17e18663d",
+    "is_compound": false
+  },
+  "a97cc7516e1c4e1b6e0125187667dc66fa4ee3841736d43cd52b06fd4163c233": {
+    "item_id": "HumanEval/2",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "9c53073954102a28e8aa37a775e430ca5508f3e72ada701eddb057eb8b9a2168",
+    "is_compound": false
+  },
+  "059b2a13723f6d26e0ec2ddf2d3ce2016aa86988544efddd157c9bdab7c3a798": {
+    "item_id": "HumanEval/25",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "059b2a13723f6d26e0ec2ddf2d3ce2016aa86988544efddd157c9bdab7c3a798",
+    "is_compound": false
+  },
+  "4169ddd9a8b82326fb54686043c0968fbf7218cb735e90888699a198af9f9bbd": {
+    "item_id": "HumanEval/133",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "81d479dfd21dda1f3360d36484cbfc52ade778d94064ca73784f5d0fca57c919",
+    "is_compound": false
+  },
+  "fb1d25eb49f96ffa04675377ccae56631bc5a25d7df6bc4e5c95523c1d9653e1": {
+    "item_id": "HumanEval/17",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "fb1d25eb49f96ffa04675377ccae56631bc5a25d7df6bc4e5c95523c1d9653e1",
+    "is_compound": false
+  },
+  "9c2be28eda65f7ca76d1e9424fb270536a955254fc6e9dd38ebc6273a90b1938": {
+    "item_id": "HumanEval/76",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "65564eca88e5ce5ac9ffdd1edd3f374ad333426fc3f9491195970c5495c439dd",
+    "is_compound": false
+  },
+  "836ad9a59ca4e1d4afb91e64594ed7d8f93915c08f405a9315b3baa6ac653871": {
+    "item_id": "HumanEval/28",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "836ad9a59ca4e1d4afb91e64594ed7d8f93915c08f405a9315b3baa6ac653871",
+    "is_compound": false
+  },
+  "a28aec806cbf0db44e15466408fc78f40d92d928eaa28bf9d37ae9a2cc2ec1eb": {
+    "item_id": "HumanEval/144",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "259cb9d14330f4dbf033f12c8c88aedf7d56cd994080e4b68197c1c1b662a7e8",
+    "is_compound": false
+  },
+  "a39c530776f5a7e466d3ae393502a88be3bfffe5b1c55f2b84778b29e11ed04b": {
+    "item_id": "HumanEval/73",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e34fc7cd9fb085a170a89401989a4d654d49607068599e4d7f87da620144f03b",
+    "is_compound": false
+  },
+  "8da6e87950bd1d03ae874fe228e6944d50c050dd87ace845802002d0f5b0ee31": {
+    "item_id": "HumanEval/35",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "c137495db6e9b19fbb80fdfbed842a3578f39b29c5281e783627b4c1a4b34cdc",
+    "is_compound": false
+  },
+  "035bbab93eb48010f35df5f95992b3f90861d382feb4f3933f9bc00bfb4f65b2": {
+    "item_id": "HumanEval/33",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "55fb44e25bb999fc718569a6b4a34492c944e127eb07af04aba3f62d44bb83c1",
+    "is_compound": false
+  },
+  "94fd407cb91a7c64c98e27fd1ca7364512a50920e8b9e011cb3c9b551ccee636": {
+    "item_id": "HumanEval/36",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "3f008c4d41dc264553b44b128a627b64850f351afb985521e27bf3b0639d297c",
+    "is_compound": false
+  },
+  "20d0ab20346a4b24c20551e15f6e84bbe552aa2fd3bbde96370e9c59c0c2cd2c": {
+    "item_id": "HumanEval/48",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "ab553065c22a97b9b26fad711011a5de4296ff0b02b957d53e0cbd1cd4f758a6",
+    "is_compound": false
+  },
+  "c0ff47f8f73aeb4ab6fdee76b7c1bf996cad8c759e7ee5396fd7f22f8d50b7b7": {
+    "item_id": "HumanEval/46",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "33765d8306f906910952720875a9a896dd3fd45554cadce89f79a4c07329149f",
+    "is_compound": false
+  },
+  "679bfd90d3608bd7e0a8c7591abb0e97f9cfca2f6c97cd55771218c3fc89a631": {
+    "item_id": "HumanEval/147",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "560b5ab1872713088cf84dfe19e28bddbc94263ff2d767b56cf8722db10e60b0",
+    "is_compound": false
+  },
+  "fca9a50e4a7149956e5db4e87cda181539cab220d62e9311e5103ba7a5845c3a": {
+    "item_id": "HumanEval/127",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "5ed2f022424d3c769d8a5c45a66e2f278bb85e14903b32f72da659f606d580a3",
+    "is_compound": false
+  },
+  "8a13f9063c48cacd947cd3353d4c3f696f445eacbb7eff073205ab68bb0c3103": {
+    "item_id": "gsm8k_test_0625",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "2565c66d230bb77be16a5a82b3b0795de67823231c3683ed982e6594ddc962f7",
+    "is_compound": false
+  },
+  "7abedc9fa550c5819f29c544168c441a53e52399f3b557fc4072d3d41cf21a8b": {
+    "item_id": "gsm8k_test_0530",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "61a160602e4c398fd99174ea09a09fdb8f4ae5cfbeb6d4da7e9827a792737e5c",
+    "is_compound": false
+  },
+  "2072dcb98efe2073d4c5e21d7f3f87ffe8a8cdd306d967e93f133e926d1f3fc2": {
+    "item_id": "gsm8k_test_0987",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "11c63abe60244093c15d1a55927810d692e53eda0b72c88c46faa2a727053cd9",
+    "is_compound": false
+  },
+  "c7c5deec125a799438945e2e3eed7889a23018fa06bc47c8eb210ba775e2e262": {
+    "item_id": "gsm8k_test_0616",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "4306a041211190826fe73dd693fcd7d3e4bc0560169ac74af5ac28b0ee646dca",
+    "is_compound": false
+  },
+  "8df7b657f8f6123c954c38149f791b729c39b0ec3d16fa71c4bb2c0c757b26ac": {
+    "item_id": "gsm8k_test_0003",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "370d34398398fe493d201d9bbaef90feaf8c529ba9dbb318faa0c09d4f0c130c",
+    "is_compound": false
+  },
+  "b5dc4d203a178624c935158f98b83b75f0fb6ea4f1038dde657f584bd85353fb": {
+    "item_id": "gsm8k_test_0612",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "a6c8a20e129ca9f978fd92a4f5a9bbe26605088a847566114e5534ca956c4b0d",
+    "is_compound": false
+  },
+  "6f81813bb5a4b3f1381c950751d5023857d9de305a0fae882d2da8485baa5cb8": {
+    "item_id": "gsm8k_test_0973",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "a853bede95abbaa914e53d46d935bb85269d9c451184f64089c92cbc4df155b6",
+    "is_compound": false
+  },
+  "e9c3050e79278ced49c4981eec7b0834148f894d2b009bf9e2c7e8901844e5e6": {
+    "item_id": "gsm8k_test_0089",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "8813474d1484c53f7c9c1a679fec34f5168eb83283aa4a86b725cf51f773e78f",
+    "is_compound": false
+  },
+  "dd1c84e6d5ef89ebed6cfcf7678ea5ccdbf9fb9ec207dd87bfd71cdee530e5e6": {
+    "item_id": "gsm8k_test_0401",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "811f678cf0412f2e8b769e8405c6c4df61c251b37595a8d2c511a2b1e78a5f32",
+    "is_compound": false
+  },
+  "b489cc045ddeb623cf84b49d19dec697399a7b66cf6e424ca820facacd06367b": {
+    "item_id": "gsm8k_test_0827",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "4a16c27be66ceb87b260d5b82d3f3b17c7378f980d66939cb32d940de1c7e796",
+    "is_compound": false
+  },
+  "a24d616589635d989a14568b481bc6e04de08357fc33f35381c86d1ecbf9620e": {
+    "item_id": "gsm8k_test_0727",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "57d75341e716c12b6b048cb10cca1ea999cb831a08be5f147c171b6308cc058a",
+    "is_compound": false
+  },
+  "e3205b7414ec9dcfe15ea7f2b6de9d66ba4392dccee4e43791186d379b09419c": {
+    "item_id": "gsm8k_test_1064",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "c845c1800c462807c357fd533e7ce8c14768f83183fb83226b6da5e41f7d216d",
+    "is_compound": false
+  },
+  "c7355bbeb4cb07a0cb052fa59d4affd1d6a7aed6165cbb5689c31af72da0411a": {
+    "item_id": "gsm8k_test_0174",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "837d3f86f448c9368f4d527fdd9bc3fa7b6033cbd67d4de25a5abf82b4899896",
+    "is_compound": false
+  },
+  "aafc2ae759da43378ad57e7e1b41f8ca5938b9b853bea2a003e227bf1d96e074": {
+    "item_id": "gsm8k_test_0648",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e786502ab551998cf5c83cb8743831c5632c188746bb0fa9962eb63a64e76ca5",
+    "is_compound": false
+  },
+  "7f6087a7a05f52f4c03292e56a2a296da985bed94e0cc8c95791eb7ed35f8522": {
+    "item_id": "gsm8k_test_1261",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "eea822dc91965efa219cc1c9b04febbcf6592b5c3f5d266f0cf7afbb46e64c94",
+    "is_compound": false
+  },
+  "12fac9421882894ef71a10beefe8442971baaaf2d0c8f8c63ccfb7f19d643c1c": {
+    "item_id": "compound_dev_0002",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "bf8ac4441b4bfe7524ec9780e610c67e433eaa9091cc1a0bec8d7674e8d61538",
+    "is_compound": true
+  },
+  "19207b78899c7cb244c023b8b2dd5cc650b0291ba9493d0fd50303d0858af9aa": {
+    "item_id": "compound_dev_0001",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "4a2609a8d4d1f34de2c44f8a4ecd0cbd6336d89e07bcbb12a04eb3c086a40252",
+    "is_compound": true
+  },
+  "e2ca115275c8b3a1cc99f63d21e8f5b0480a65450a2f634216b3f96781b3a964": {
+    "item_id": "compound_dev_0003",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "033e542281815df4bcc73823356e56c3fe3c0214091558f294b6ea2ea6efd97d",
+    "is_compound": true
+  },
+  "70073b26835a751e558df8785863477b6a8242590161a3ff317d26a532fc695a": {
+    "item_id": "compound_dev_0004",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "60fd4b684fbba57f536620ba23f7fe8f5163a0f08f38f28d3fbd1dbe2f8bd640",
+    "is_compound": true
+  },
+  "48cfccc26c103d71d6d62ccaef7ebe761c20e6780daf4c528eebca94a2616119": {
+    "item_id": "compound_dev_0005",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "ce1331f7a9404e08f1d7a0647398a6202b765a5893db7c1242623f71e6349521",
+    "is_compound": true
+  },
+  "facc9a5884f201b2261890b74e0a966f4290ebae1281c8459803cccf25b11e39": {
+    "item_id": "compound_dev_0006",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "9021096ce09698f0c29f28156cfc2298e6c3e3f06ba06b3dd0acd74dbc562d68",
+    "is_compound": true
+  },
+  "4d2a7f02918a6a85138b6c11d9e11166fda51a01bada01783259b6c7d71bd837": {
+    "item_id": "compound_dev_0007",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "9be680771253665f02160d1c027ace6b78fd5cfd7d6b0e93931bd5733db211f2",
+    "is_compound": true
+  },
+  "6dc0c2b84175ab577c57dab7da56cc2854a50b5af055bec5f4887d6cce47c852": {
+    "item_id": "compound_dev_0008",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "6d2cf622ce31842cc37ee1c9f308582f6f7f96a7eb8e75330c55a5dc3acc3b6e",
+    "is_compound": true
+  },
+  "cc930d94f2bab0bc0a0194655ecb21c619132c8cceb24b69c2b68862acad61bf": {
+    "item_id": "compound_dev_0010",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "33b9800fe38684b6c6c9b868641e38b65662b2b33eb3f2b598d8002f0a010003",
+    "is_compound": true
+  },
+  "31afe4213fcfc816e3599c29fcad41a7f4809e936d9faefabc7c85e40586e515": {
+    "item_id": "compound_dev_0009",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "b8d57c985dbd9c287f68592660bd678896a76b82dd67548d170bdacb8228df4d",
+    "is_compound": true
+  },
+  "b85d93226fda75f49f0e0e344d514c9c875ecde5c5ce156823fe5d0a4dade8f5": {
+    "item_id": "compound_dev_0011",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "befa4ec63fa7faa06509d6ece18bf5eb210c01bfb1a0b16bfc24ce9ff897f724",
+    "is_compound": true
+  },
+  "5619d5efee6870fd21ac1f64c305b8902d478a857a227e7bf9b11a0883e43cb7": {
+    "item_id": "compound_dev_0012",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "4b10320252f22d87b7d1c08ec1c33f0f0b3187871165ecfcd44e50261d3d0004",
+    "is_compound": true
+  },
+  "c3726671d57433bc94636d576b2932205381de08c5c772292802d12290f741db": {
+    "item_id": "compound_dev_0014",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "6791c3d7f36476fe2891e7c73b7caf8452cc5d0d0b3bf0984f8bd67a45469c49",
+    "is_compound": true
+  },
+  "dfdea975ab8930be835b9971da74a63782407212a803f975c68975edc7d360fa": {
+    "item_id": "compound_dev_0013",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "cca6496eec03c6e39bac87bf2eef1f410113f7679bd9cd6c77afafceadab1052",
+    "is_compound": true
+  },
+  "16dbc72a55c8b0b348f878bb0c5e63864318fcec67a791bf976634fef213ecbe": {
+    "item_id": "compound_dev_0015",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "187ecb5ef53f12728f01c4dfd865eb083bdeefcb6d4bccf4c97dcf06d4cb23a5",
+    "is_compound": true
+  },
+  "4df222c0a5435de26b7037e33ffaf18e131667c4a75d4ee3d5e3fdf8ed5f1ee6": {
+    "item_id": "compound_dev_0016",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "5d3058829f3c2618749e95676eee4842126fc30a02c5a2ebf231e9a7f96bf192",
+    "is_compound": true
+  },
+  "86c9f603c3133ae6691e03a8340c3ef66ec488d4b078dfe00a52335a5febf100": {
+    "item_id": "compound_dev_0017",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "9dea986aa1f28a6dfa8521bbb0eeeb5a16d692727b6ac80bf30a12450f890782",
+    "is_compound": true
+  },
+  "f0df873eb4c49627a3a21c22decce050f7669cfad8b13212434dc34c2054ce9c": {
+    "item_id": "compound_dev_0018",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "88d2d1b2e177c9f50577f1e2a8952906abd24d562e22f5472aca084ef41759ee",
+    "is_compound": true
+  },
+  "488bcf893ff838b521026cbc1fff11708465d32b38a7a02cacebf9d6a7ddc5db": {
+    "item_id": "compound_dev_0019",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "4dfd0595e1564116db7f90deadc93f59bb06b8718888d7c00090de7104bd74ad",
+    "is_compound": true
+  },
+  "b8095e67174d1a658fce9ad964726240c41542675b7bdaf0bf71f032051b3b22": {
+    "item_id": "compound_dev_0020",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e253d53241aa1bbe9e413111ead43fbdf3df948e6573a036b47bfdefbcdd9519",
+    "is_compound": true
+  },
+  "7c86e7189a04129e5b4ea1437a2178808a7c285e7e766c488b6b81fd23b762b6": {
+    "item_id": "compound_dev_0021",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "526d1397bc1f71723991f1dcd70fc6c724c74b5e7b886d838d23418a35f73c92",
+    "is_compound": true
+  },
+  "583e205775654a8f03455e792fa4ae4e1dd862cf5b0898f1f72f3e71c769ebc2": {
+    "item_id": "compound_dev_0022",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "b6b73fe46ada3df71991e4ae5925ccd3792721fb9535501aab73c8ecdd5bf1e2",
+    "is_compound": true
+  },
+  "167c50dd5afbd0855d45af4e79fb16c61ecbeee989ee8ff5c46a344409882fd1": {
+    "item_id": "compound_dev_0024",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "484ca06cac8c2e88e47d237976364f803e291d23d5efdb32eb253929918cf698",
+    "is_compound": true
+  },
+  "e9b4ae2ba68f9ab5e55a4bf7731107a91c8c2cdcec1e66f2628c2169d50249bd": {
+    "item_id": "compound_dev_0023",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "4cb417302dbc0790283bd03e5cbc349d9b4025c2f0b4497cb2a24d58242f709e",
+    "is_compound": true
+  },
+  "d3dc366cb2dd743647518791153abc6b762e5dff31a0810a79071523736e4694": {
+    "item_id": "compound_dev_0025",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "a27e2ce56fb9d83733ca97ef3bd1c6e2faaf2f83266b9ca0246bc62e6c7f1948",
+    "is_compound": true
+  },
+  "af72e4a7c3caa807f67db64743d71c196195d35934c640059336e6d1b3ae171c": {
+    "item_id": "compound_dev_0026",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "714677f152c6514f0d94f03b6265dda6c70c7dfaa37fc4f4cc52cb2126486e48",
+    "is_compound": true
+  },
+  "311decb59c625eee1d088ff407be22f441cd05a018319eb1bc46bce6713e80fe": {
+    "item_id": "compound_dev_0028",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e46b927ffdf0b6f92d62d084d7cb74a082b98c8762980b7dd7347f0af3d36dcf",
+    "is_compound": true
+  },
+  "6d0620e0f29306790747500b57c75b425c6f9e366f661c12c3841146943eeca4": {
+    "item_id": "compound_dev_0027",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "05cfaba0d14307689f65c0b1182c47100f7e3a7df94c0fe851bd17b13db94068",
+    "is_compound": true
+  },
+  "408364bc76ec1d891f827b26977f95f6d76e4607aa8831f4f4ddd58c3511d99a": {
+    "item_id": "compound_dev_0030",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "970574bc0571839014f007de61e08dc7c1e168988f8ea98943f53e44a90d2151",
+    "is_compound": true
+  },
+  "c7ac0082c2ea61c40d060b4fbb0087ac9a739c2a79b3f1234be22a8515103667": {
+    "item_id": "compound_dev_0031",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "9454b2e38d1dfb0ac90f4cc78f0a0064d8d4a322e810578383dd84b1dbe0ab08",
+    "is_compound": true
+  },
+  "98f2ee67de339882429dda33592e2fa7b20b79285cafd7b4120cbbfbee5beed6": {
+    "item_id": "compound_dev_0029",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "61c976cfa72a537e3bfef03dd0f2e627f6f98694f4aa93c317f695aa1c260f8f",
+    "is_compound": true
+  },
+  "c38c39467e18e1ef06149a326f454afc696655f87b8219d07bf4eda1fc7f4638": {
+    "item_id": "compound_dev_0032",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e5fda90790a408708fc74efb8444866ff819b1f7b50a6db0b15308a8b495dc29",
+    "is_compound": true
+  },
+  "825e734d3b8ab51e61ecbea87337184eb093d44b5a29447ff3e5f8324bd3ede2": {
+    "item_id": "compound_dev_0034",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "50c8117b2442a64ab1e844d4d8ef063f69992f0e87d4abfcfcebdc2cd9fa783c",
+    "is_compound": true
+  },
+  "8a376bf1d76c8a575eccf51205f889d5c339f7a98e5f6a96f884aeef1370101a": {
+    "item_id": "compound_dev_0033",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "57191a202d0235a95a797d0707ed567a4a27feae501d1419bf6a06c711f1ddbe",
+    "is_compound": true
+  },
+  "d87b6ec2832584eef475fe1c54c3bcec789aff8d4b3e8b5af595acfe1c7a6887": {
+    "item_id": "compound_dev_0036",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "540d7cc084df477d03a2d7562ec47c8f7aabedab9a503742d21f2460b4bd4385",
+    "is_compound": true
+  },
+  "e6df2bb48e3f8d2d06a3a757f6805475e379b203b0c299bfab42debe298b1429": {
+    "item_id": "compound_dev_0035",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "5316fb99d50b0e6bd22106d5438b038003bee327c0895b094594b10831bc938d",
+    "is_compound": true
+  },
+  "7f4386af65ff97534c91a94abd81b91fafa809ba447d4ba81e66789d755bc80a": {
+    "item_id": "compound_dev_0038",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "34b767b4d948df8d52badbfdb90eabb4b56a3b00e331306cbd26acf76683f153",
+    "is_compound": true
+  },
+  "62678e47ee613de5caf54c6fcfbd69bab2b1b26699a3fd629816161a462e267f": {
+    "item_id": "compound_dev_0037",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "54129545b0f39773b889879ff87bd1e5b9f423c9761ff0f433dff601e16119fd",
+    "is_compound": true
+  },
+  "7ae88540904866b2846c6902f192b2db33cda53a607059ff7315ce220204064b": {
+    "item_id": "track_b_dev_0001",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "7ae88540904866b2846c6902f192b2db33cda53a607059ff7315ce220204064b",
+    "is_compound": false
+  },
+  "faf4d687701b7de4e7308c6509b15e80df5abbd5aaeeb796eff64ad10e7e58ab": {
+    "item_id": "track_b_dev_0002",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "faf4d687701b7de4e7308c6509b15e80df5abbd5aaeeb796eff64ad10e7e58ab",
+    "is_compound": false
+  },
+  "6ae26078c42ae929244d1b629d8f05ad61ef5f51405da978d03fb4c2f147640b": {
+    "item_id": "compound_dev_0040",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "58aac49a62e531f861be819376dac7e86232c7238897f6093ccf2477b96e962f",
+    "is_compound": true
+  },
+  "ea124e6c2ab8d9306cda867c513b997b075dbe5a9ce84b64e2718ac7bae905b8": {
+    "item_id": "track_b_dev_0003",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "ea124e6c2ab8d9306cda867c513b997b075dbe5a9ce84b64e2718ac7bae905b8",
+    "is_compound": false
+  },
+  "3e8b16cfc736533ac14745403225a3fbc9803457e636e4839114eb9f5770c432": {
+    "item_id": "track_b_dev_0004",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "3e8b16cfc736533ac14745403225a3fbc9803457e636e4839114eb9f5770c432",
+    "is_compound": false
+  },
+  "e70315a581d4f9b1f269d3d8998a1cf0c0b6ed8f37b60f612a3984787082566a": {
+    "item_id": "track_b_dev_0005",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e70315a581d4f9b1f269d3d8998a1cf0c0b6ed8f37b60f612a3984787082566a",
+    "is_compound": false
+  },
+  "9eea53f0fc2352a15e45ebcb3a4eefab279f1436ae09746464d246207d3f3e04": {
+    "item_id": "track_b_dev_0006",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "9eea53f0fc2352a15e45ebcb3a4eefab279f1436ae09746464d246207d3f3e04",
+    "is_compound": false
+  },
+  "c479f20717e22d0bd8906e68866d34c8d2380627063878f2e000c73c12928dbe": {
+    "item_id": "track_b_dev_0008",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "c479f20717e22d0bd8906e68866d34c8d2380627063878f2e000c73c12928dbe",
+    "is_compound": false
+  },
+  "7200b2668c3f678e197cc24858079d07f4b78239f1b3a5b739ca020e3e5fafad": {
+    "item_id": "track_b_dev_0009",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "7200b2668c3f678e197cc24858079d07f4b78239f1b3a5b739ca020e3e5fafad",
+    "is_compound": false
+  },
+  "cf6f0abf2c7cae2eecb14aaa4c2cf0b85ac5bee3d322a36feb04de750694b756": {
+    "item_id": "track_b_dev_0010",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "cf6f0abf2c7cae2eecb14aaa4c2cf0b85ac5bee3d322a36feb04de750694b756",
+    "is_compound": false
+  },
+  "2e0bf256f9685faf0227087c2997652d94bd1d24159f4ab20d8266151e503303": {
+    "item_id": "compound_dev_0039",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "9a39f32e9b251b8d6a4c416534901903ca8dfcf9251e3d4f03c203c9432eb817",
+    "is_compound": true
+  },
+  "d4f99299cc7e66ffdfc275e5c93d6fd93d3da6bdda609160b4e93ab59c0d9635": {
+    "item_id": "track_b_dev_0013",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "d4f99299cc7e66ffdfc275e5c93d6fd93d3da6bdda609160b4e93ab59c0d9635",
+    "is_compound": false
+  },
+  "d392ce209d1360dba0b7e24d78a58a7a84ab084210606349d4e7547e8d96c287": {
+    "item_id": "track_b_dev_0012",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "d392ce209d1360dba0b7e24d78a58a7a84ab084210606349d4e7547e8d96c287",
+    "is_compound": false
+  },
+  "5974fdce23d09835b882f4a90086e58909bdad5a198aabfdfa4b3523f13faf9e": {
+    "item_id": "track_b_dev_0011",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "5974fdce23d09835b882f4a90086e58909bdad5a198aabfdfa4b3523f13faf9e",
+    "is_compound": false
+  },
+  "53a9d341830c500402d9e33016c19b6bc472d9c503f21cc623a665a2c7672e45": {
+    "item_id": "track_b_dev_0015",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "53a9d341830c500402d9e33016c19b6bc472d9c503f21cc623a665a2c7672e45",
+    "is_compound": false
+  },
+  "cfa8df8f05d1e769d171414a30cf2cd53f89a9fccf85c5c710cf31292f89de01": {
+    "item_id": "track_b_dev_0014",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "cfa8df8f05d1e769d171414a30cf2cd53f89a9fccf85c5c710cf31292f89de01",
+    "is_compound": false
+  },
+  "48d296bc6f1abdc39e84b3e45016498d5d54285ab0d28c5a2ee7040904e7ba21": {
+    "item_id": "track_b_dev_0017",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "48d296bc6f1abdc39e84b3e45016498d5d54285ab0d28c5a2ee7040904e7ba21",
+    "is_compound": false
+  },
+  "37887258388eb454b20de9267f3be6d1343336428199e536228b82b6644cfe10": {
+    "item_id": "track_b_dev_0018",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "37887258388eb454b20de9267f3be6d1343336428199e536228b82b6644cfe10",
+    "is_compound": false
+  },
+  "346bc06cb778b267b937e06ada0912a40e8f83605f75b0f6b235ced66aed8719": {
+    "item_id": "track_b_dev_0019",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "346bc06cb778b267b937e06ada0912a40e8f83605f75b0f6b235ced66aed8719",
+    "is_compound": false
+  },
+  "201003a91c0246770c3e93ec66eba4dea5636324db0e5167d8dc73968fba6963": {
+    "item_id": "track_b_dev_0021",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "201003a91c0246770c3e93ec66eba4dea5636324db0e5167d8dc73968fba6963",
+    "is_compound": false
+  },
+  "60a550002941dccf4dfa56fbddd57e0e2ab0fc5d09bd89557e3c885c737b831e": {
+    "item_id": "track_b_dev_0020",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "60a550002941dccf4dfa56fbddd57e0e2ab0fc5d09bd89557e3c885c737b831e",
+    "is_compound": false
+  },
+  "a55a68830b1170cb09ca73172f472d853112c16f214da6616e6b727812a8a861": {
+    "item_id": "track_b_dev_0022",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "a55a68830b1170cb09ca73172f472d853112c16f214da6616e6b727812a8a861",
+    "is_compound": false
+  },
+  "3a5851f36da84cc2303818d72b63648285ab95f259161b2187813cd9d16d8ad0": {
+    "item_id": "track_b_dev_0023",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "3a5851f36da84cc2303818d72b63648285ab95f259161b2187813cd9d16d8ad0",
+    "is_compound": false
+  },
+  "1f88766ca71dd4037651a05a57bf2d3dcda4061822df1f3a1505b63033e5bd67": {
+    "item_id": "track_b_dev_0024",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "1f88766ca71dd4037651a05a57bf2d3dcda4061822df1f3a1505b63033e5bd67",
+    "is_compound": false
+  },
+  "1c6c71c2e1ea92cee2ca73fcd644df928ea8cf64cf47b99145cc89ff819a2cd5": {
+    "item_id": "track_b_dev_0025",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "1c6c71c2e1ea92cee2ca73fcd644df928ea8cf64cf47b99145cc89ff819a2cd5",
+    "is_compound": false
+  },
+  "e0d8a485ba17042c8ad99d75abcd90220aec6876b8805a8ab233eeea3ab4a348": {
+    "item_id": "track_b_dev_0026",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e0d8a485ba17042c8ad99d75abcd90220aec6876b8805a8ab233eeea3ab4a348",
+    "is_compound": false
+  },
+  "05a313984dfe19a9aaa451e1b3e13a135e5d4b03a467057888c4f38a9771b782": {
+    "item_id": "track_b_dev_0027",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "05a313984dfe19a9aaa451e1b3e13a135e5d4b03a467057888c4f38a9771b782",
+    "is_compound": false
+  },
+  "fe32533e62db51a861c5d7ebda34ad2c9025df4e2c697ef19d931f891aea9304": {
+    "item_id": "track_b_dev_0028",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "fe32533e62db51a861c5d7ebda34ad2c9025df4e2c697ef19d931f891aea9304",
+    "is_compound": false
+  },
+  "e2b2776bda003d8a30ef2e92e44d2d89c42419d94136baa65e8cd675fd10e8b7": {
+    "item_id": "track_b_dev_0030",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e2b2776bda003d8a30ef2e92e44d2d89c42419d94136baa65e8cd675fd10e8b7",
+    "is_compound": false
+  },
+  "1c529f732cfe03a45f81b86debb2215c8e112a316417872e97617310e9e8b56f": {
+    "item_id": "track_b_dev_0029",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "1c529f732cfe03a45f81b86debb2215c8e112a316417872e97617310e9e8b56f",
+    "is_compound": false
+  },
+  "639a11d5cf5783c9dcfb4d3e5b5b8cb2c0204ad38aad19b5f6623584ed4d551c": {
+    "item_id": "track_b_dev_0031",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "639a11d5cf5783c9dcfb4d3e5b5b8cb2c0204ad38aad19b5f6623584ed4d551c",
+    "is_compound": false
+  },
+  "37f178b686179650afc23c375a38624b9f89b9cba1169b88c5ce8e0e6545f12e": {
+    "item_id": "track_b_dev_0032",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "37f178b686179650afc23c375a38624b9f89b9cba1169b88c5ce8e0e6545f12e",
+    "is_compound": false
+  },
+  "69625f34a7f7d9170be108bf778142e5fc850dd725d3cd871aba38b0ab4300a4": {
+    "item_id": "track_b_dev_0033",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "69625f34a7f7d9170be108bf778142e5fc850dd725d3cd871aba38b0ab4300a4",
+    "is_compound": false
+  },
+  "e8fd3c3780387fc2e345d8db88b762029eed79e5e89c5630a5209992035fb2d1": {
+    "item_id": "track_b_dev_0034",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e8fd3c3780387fc2e345d8db88b762029eed79e5e89c5630a5209992035fb2d1",
+    "is_compound": false
+  },
+  "d87dd4e7871fd0bcbda536ae1e9a94a735143e83dce657aa8a20eaebe6002bb1": {
+    "item_id": "track_b_dev_0036",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "d87dd4e7871fd0bcbda536ae1e9a94a735143e83dce657aa8a20eaebe6002bb1",
+    "is_compound": false
+  },
+  "5c55663eb0fa13f8be5be7e71d0c944bd01abbc43bc7e25810e67b05ca4596d2": {
+    "item_id": "track_b_dev_0035",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "5c55663eb0fa13f8be5be7e71d0c944bd01abbc43bc7e25810e67b05ca4596d2",
+    "is_compound": false
+  },
+  "5b22f817b8057c170ce3ca63cc6af63187f4a6b68be0b6c4e8677fbb870c3216": {
+    "item_id": "track_b_dev_0037",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "5b22f817b8057c170ce3ca63cc6af63187f4a6b68be0b6c4e8677fbb870c3216",
+    "is_compound": false
+  },
+  "6415c30c87823467c1189a5c28cdc61453125dd0624ac28177fde4ecc945b1a5": {
+    "item_id": "track_b_dev_0038",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "6415c30c87823467c1189a5c28cdc61453125dd0624ac28177fde4ecc945b1a5",
+    "is_compound": false
+  },
+  "ab50070cbfe5db9b5b6a735d53559ccc2e53289fc6c69247fbf777fee8a2c27d": {
+    "item_id": "track_b_dev_0039",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "ab50070cbfe5db9b5b6a735d53559ccc2e53289fc6c69247fbf777fee8a2c27d",
+    "is_compound": false
+  },
+  "cd0e2b3f8d8851ef1809818110e7137a9b75a222bef58c84b8f7ae6b15f0468e": {
+    "item_id": "track_b_dev_0040",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "cd0e2b3f8d8851ef1809818110e7137a9b75a222bef58c84b8f7ae6b15f0468e",
+    "is_compound": false
+  },
+  "7638b3297d0ada8a28b1b0f92ed51a8a4925ac0ed8b9662d7fc9957c329dd81a": {
+    "item_id": "track_b_dev_0041",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "7638b3297d0ada8a28b1b0f92ed51a8a4925ac0ed8b9662d7fc9957c329dd81a",
+    "is_compound": false
+  },
+  "80bd0f1fcce893541b97e326c03cebf8784099a39a4f44808268780327f93a77": {
+    "item_id": "track_b_dev_0042",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "80bd0f1fcce893541b97e326c03cebf8784099a39a4f44808268780327f93a77",
+    "is_compound": false
+  },
+  "ade3d68dda45f19acb5689006b6ed138e74d30fc07bdfe4cb0a8c8be8df3790c": {
+    "item_id": "track_b_dev_0043",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "ade3d68dda45f19acb5689006b6ed138e74d30fc07bdfe4cb0a8c8be8df3790c",
+    "is_compound": false
+  },
+  "c52880c312ef0e7b2e943f99f11b327b4b3ccf91d55c2e60487d35eee8246814": {
+    "item_id": "track_b_dev_0044",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "c52880c312ef0e7b2e943f99f11b327b4b3ccf91d55c2e60487d35eee8246814",
+    "is_compound": false
+  },
+  "e09f5693342125aff0a93868e6b70ced364395d1631e42181cf90960b555a0c2": {
+    "item_id": "track_b_dev_0045",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "e09f5693342125aff0a93868e6b70ced364395d1631e42181cf90960b555a0c2",
+    "is_compound": false
+  },
+  "d6be420a092a2c76c437c8d71122a0e0d502366851a67ad7d1291a0ef3421000": {
+    "item_id": "track_b_dev_0046",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "d6be420a092a2c76c437c8d71122a0e0d502366851a67ad7d1291a0ef3421000",
+    "is_compound": false
+  },
+  "cdf8c3cf8ea1fe0f374e568402d5a94ad339b0732c9e36e94355b34867813c54": {
+    "item_id": "track_b_dev_0047",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "cdf8c3cf8ea1fe0f374e568402d5a94ad339b0732c9e36e94355b34867813c54",
+    "is_compound": false
+  },
+  "92ee8fb30748f6ba5345e7771fe6fe71f96c45f065ccd7444cb65005aad74477": {
+    "item_id": "track_b_dev_0048",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "92ee8fb30748f6ba5345e7771fe6fe71f96c45f065ccd7444cb65005aad74477",
+    "is_compound": false
+  },
+  "712a852a37b1678f74d284a04c32faed686bf3e6ac477941557923760e397482": {
+    "item_id": "track_b_dev_0049",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "712a852a37b1678f74d284a04c32faed686bf3e6ac477941557923760e397482",
+    "is_compound": false
+  },
+  "5e7f90bbfb77945e2e71c9870aeccb26d543cca9dd19cdf722bb78675dd8dfb3": {
+    "item_id": "track_b_dev_0050",
+    "version_by_prompt_hash": "v1.0",
+    "clean_prompt_hash": "5e7f90bbfb77945e2e71c9870aeccb26d543cca9dd19cdf722bb78675dd8dfb3",
+    "is_compound": false
+  },
+  "07f58f8402367f56e18101118e48f5cb5566feb9586f07a9cc04151729bc8dac": {
+    "item_id": "compound_dev_0001",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "47addee5706dd5e8651755a9c42c15db7ff3c03a3b69db1efbcd799993a36776",
+    "is_compound": true
+  },
+  "e73d5513919ecf0918d88570a969d58ec99ae2339686f5246b091d90152ab18f": {
+    "item_id": "compound_dev_0002",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "bc4eeb102f93590bf73c1bdab4901a071b57163e7194ddd2b255dccf67b555a2",
+    "is_compound": true
+  },
+  "e888a42831f949e4d8176988adec1a0f3958cbeb53a0c061ddda3ccb5d6869e8": {
+    "item_id": "compound_dev_0003",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "9ac65e8c6ffb3bb16f73f612ab018dfa54df829232deb3dceba3cf99fa790378",
+    "is_compound": true
+  },
+  "ff9f0b111ca875e754aaa56797a0494e617f9658f06eb5e3387597c4555a55ff": {
+    "item_id": "compound_dev_0004",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "7c8e1b737ca8dc536a5c7eb7cc0cf2b0d8976faf1f879a662943f4bb7ab0ceae",
+    "is_compound": true
+  },
+  "8dc0c6f35fbeb99fc7cbfe5873b585bfafd963d08dd9752f2de2eb9d0d280294": {
+    "item_id": "compound_dev_0005",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "2eb76b95629a86c44063b92cdbf586703f344049fab066bc2334986a022083a8",
+    "is_compound": true
+  },
+  "45699102325e208826667123ba359d8b5383dee40ff9df506e0a2dd9980d43fd": {
+    "item_id": "compound_dev_0006",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "be48bf358f2792436cd5b6c8247b8149a7fe9ffedbb1964f24a92e185cfe66d8",
+    "is_compound": true
+  },
+  "356f3775a14c3372b616240d70a0fec32815fbe779846087b1c5628fc4611641": {
+    "item_id": "compound_dev_0007",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "cb918ea788a9e7ab2566d08e506ef9ebd481c5e67516fef359685b445a1cd074",
+    "is_compound": true
+  },
+  "f89458f143050ae82dd9c270f8c22a3aea5156dbe88ed6099e597f9eb5e63ca5": {
+    "item_id": "compound_dev_0008",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "c6b81046e962f5cdc4a0ffe491d2f6782e5b6d4187ffce2f081fc6fa9de3d004",
+    "is_compound": true
+  },
+  "87985c2148962ad385a96281c2e7ed2b55b150ebab9ba1db6c391d455ef7313c": {
+    "item_id": "compound_dev_0009",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "1a69d8fddfa314cd376ba8f040fbed3f576dc97f4ce4391b50064ea74ba2ad9d",
+    "is_compound": true
+  },
+  "5abf554f72257976850ccf91af4d908c8bd3b42097e6db0cf9a4926f6f930e4e": {
+    "item_id": "compound_dev_0010",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "360a64b7bec0a3b6d4fb522cd0d102757bcefc0ff5cb3df4d5b673c3c3e6274f",
+    "is_compound": true
+  },
+  "519e61c0ceb56174be7d0b1b9c41ab326255f8add4f925734b4bbda9800a7400": {
+    "item_id": "compound_dev_0011",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "185911ef4e0fcbc08a15af3484fac799a9d3998352dbe601637ea73d230cdbc1",
+    "is_compound": true
+  },
+  "1ba7599cb227623bc2c88ce6c79fcd05e1ddfa7ec02e703d541da8f5c82f0860": {
+    "item_id": "compound_dev_0012",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "e6cb9137073c345cd46874b7292985a2e6b54906233d3a2946a06c263b1d00eb",
+    "is_compound": true
+  },
+  "b2d13726448ca1979980231e7ff68096659abaf934f4722d78c4de0b6ca54af6": {
+    "item_id": "compound_dev_0013",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "3513d71d3c9e0f56be6e45c342a65ecba2eb2a485e094e41ddc2e5ba937e6860",
+    "is_compound": true
+  },
+  "6e5c8646e0b658f5cd1ba176ead4afcf7249ba24cc37ae8129c02dee75fd9a3a": {
+    "item_id": "compound_dev_0014",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "79f23c3586c892bf59601f8610d6e051c609145f11a27a086d23cb53ab87301b",
+    "is_compound": true
+  },
+  "2b8a866226525693b121ee41130eabaad44637fa2b10ff0708807f6d5d237b9d": {
+    "item_id": "compound_dev_0015",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "005e60fdec480f96ec6e2ab90c0efb8c1bb2c791e1d53e29fc1d358b304cc837",
+    "is_compound": true
+  },
+  "b41d59901fd21647b0ec383a902a23886d52ab1be54c852692ab738d251330f2": {
+    "item_id": "compound_dev_0016",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "af162bcec10cc76e179931b2f95eff63db3e6e900a6c694845d8ab2fe9056e9f",
+    "is_compound": true
+  },
+  "af89288ae146946afc4a83b2dbf86da684ce57ee5a6fd8d1472c6d6831f1e655": {
+    "item_id": "compound_dev_0017",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "cc7377e943cc1823c3b54d2f90aeb70c12db0fef20507075cce971d3f1d2941e",
+    "is_compound": true
+  },
+  "ab5cd2ff0e9ff2fa576e13dd54b6c13ffc48d32611139447bd509a73b115635b": {
+    "item_id": "compound_dev_0018",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "2dc8c8a014e376daf4211f8a0fbb203579aa665d858483baa3a009b2c9b8bdd4",
+    "is_compound": true
+  },
+  "29611d6e8464197c79c593d861537f74be239c7723f11301681e40e0e2858edf": {
+    "item_id": "compound_dev_0019",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "088548efd9b884cbbf1697e0f278a4e96a215647219bacf1d253e1aa1fbf0561",
+    "is_compound": true
+  },
+  "e5fb65fbf93dcf02675f554e62ea1fa1211663952c33beb0ac07ce08d5bf5e94": {
+    "item_id": "compound_dev_0020",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "b2082456ad75ea88ee1f8defdfa60158f3eb56e7ce21fcfa72310a8b9ba5832c",
+    "is_compound": true
+  },
+  "54602c5401306b05586f134dfda101f04e9155ee37d05ed0233cb8ed99df1996": {
+    "item_id": "compound_dev_0021",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "ce909c10ae88eb8e184f2c4814bf2ec58e9a16f0198cf9aff43437c1c93b9cfd",
+    "is_compound": true
+  },
+  "eafae89ae007648df17f52057714e4ee12d2bd1f6cbbbbc3b9ba37250cd8e4f5": {
+    "item_id": "compound_dev_0022",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "2970ab6e820d5e9a5041e4ec4988d0790ef70121eea3b2c7e5cbd4248402d010",
+    "is_compound": true
+  },
+  "3a8f9edd0e1b6e340ca19824dda11320c8cf5a1bd08cb9f12a681462cb762d79": {
+    "item_id": "compound_dev_0023",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "ba11145351372d28a75c3ced8ded19e458b34165cc13a78ff46c07ce95283610",
+    "is_compound": true
+  },
+  "478bb79c7b8f40cfafdc82233f0691dffd0222922bfc2f926c9ce4028134a7cd": {
+    "item_id": "compound_dev_0024",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "a6fbec89c8432686c45c9b656127e39393fac588cf57eeb896609e89e30ccb3f",
+    "is_compound": true
+  },
+  "befb55c48188e3194782e0a885b4041ee0666512b7fc035f53c47797601d76a9": {
+    "item_id": "compound_dev_0025",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "a6bb56c4169ed3ad6882f631cc39e39f0567555cb1253c2bf4663a45cffc1c75",
+    "is_compound": true
+  },
+  "c2df9014a077b69115b6d83eae4e6ea8bec9a1c165922a845c7d5a8b7716598c": {
+    "item_id": "compound_dev_0026",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "db262c4a8c0188db96342b0101217ebeebd82291fd12c5a07a74a7c36d1ea194",
+    "is_compound": true
+  },
+  "44a4138f796f3abb6c5ecce055d11c1a99decf9080a7007501d6e0ecee419853": {
+    "item_id": "compound_dev_0027",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "9b9aff2ff0159773d6ef84e9e1e360781d94b826df47901ccf2eadd91c3476b7",
+    "is_compound": true
+  },
+  "4054bf424887075c5ea8e054ea91063c6d2ed8002fdfa10db8e0c5454447ae96": {
+    "item_id": "compound_dev_0028",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "c73aee76e9e3cb05fed2477593769a80e02550c0ffa402b9f5970bcbf8b4cd8a",
+    "is_compound": true
+  },
+  "5a08397aed16a60bd6ec56aa47d66a3bd29c3284663ffef69fb5231a96bf9e48": {
+    "item_id": "compound_dev_0029",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "5390bbf88204aa8c3c730b9a791cec15845e97550eb794ceba8e85e4bf2e9a80",
+    "is_compound": true
+  },
+  "273f03e6b16dca5aa28d689515cd7e86ce2d671f53755c9e74695268b6e0f27f": {
+    "item_id": "compound_dev_0030",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "a985e06533e1f4df88f3913ce64ed984139c9b83a44857fdaf9208588e017201",
+    "is_compound": true
+  },
+  "21004f80617484a637b2f7efa28b624598e1fc5bf6ffbf1ea43491798c746692": {
+    "item_id": "compound_dev_0031",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "14a8c0230909dfb7353889e8be8a9131042d2b87044d02a18b5b24533b87e7c3",
+    "is_compound": true
+  },
+  "afc337568e8aaca0ea8a3e6ad4280264869d8f862c659ae8db140126075d6e35": {
+    "item_id": "compound_dev_0032",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "9f2c35abbf691dfbb114e02b8aeb9c4a592e0858ffe91f7315d953d1269ed2ea",
+    "is_compound": true
+  },
+  "b75a37952d24647afc10062b691556b5b804a9e1a68a13044ceed7a4a1879929": {
+    "item_id": "compound_dev_0033",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "f6dd2c1270af9a92bbd804ddbb904eb1f24eb5350540de559e596236eb1e193d",
+    "is_compound": true
+  },
+  "30879f740bcb73e0247a61541caafe6cc771fbf52f22f4a821be7bddcf3a3fbc": {
+    "item_id": "compound_dev_0034",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "c5c54806dde35b29eeff80589a7520f68a945c332ed443a4cd7c81978fb9e296",
+    "is_compound": true
+  },
+  "86422964ddaa9d67d2cef95ee934e23d798f56a13c35958f1f3e600674bf630b": {
+    "item_id": "compound_dev_0035",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "f519e30ad618a25820d8f6f2b84fe483a620413d2bc7e929a2f83bbec9a5fc76",
+    "is_compound": true
+  },
+  "64431ddded280cc980c316c673f38a46c895e7a74c499bd07c8f4ce0848e5c8d": {
+    "item_id": "compound_dev_0036",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "049bc73d37ced615d6f7b31421694541165f60a164abcb0533bc60484f1526ed",
+    "is_compound": true
+  },
+  "65adc535a1523ad5d5983dbe1d56521100bbec9712f62a18e03c7ff440fe0ef4": {
+    "item_id": "compound_dev_0037",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "7469c321a7934c33df4e35afdb6e97b644228273731c83190f6a45b4f0f314a4",
+    "is_compound": true
+  },
+  "2ab59c223ea32cde7b6a7aef96c446c0e3c02babe768a59c37f9b49c34b21404": {
+    "item_id": "compound_dev_0038",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "b81234a182a1bc231e15d25307c038564a792865c7c1a16a09e752d2570af674",
+    "is_compound": true
+  },
+  "f0a33b31545b2e9e439fe9cafb117b0ad635f9e35f121cc107474f9807631d74": {
+    "item_id": "compound_dev_0039",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "609fc306ddd4c90cba21a28ae81dc7d752fc680cd5a67d7b0523819d1d82b7ff",
+    "is_compound": true
+  },
+  "e4ba0c20fdd92c61d834028338bcbab7408537df8fa3c7701fac8e7040c45f90": {
+    "item_id": "compound_dev_0040",
+    "version_by_prompt_hash": "v2.0_unapproved_hard",
+    "clean_prompt_hash": "ad91df87a08c47ca71bd938d376a704d38e2449b25b6ed810ffad40579a407f7",
+    "is_compound": true
+  }
+}

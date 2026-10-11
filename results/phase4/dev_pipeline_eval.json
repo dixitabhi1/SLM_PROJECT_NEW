@@ -1,0 +1,207 @@
+{
+  "timestamp": "2026-10-09T14:07:11Z",
+  "dataset": "track_a_dev_split.json",
+  "dataset_count": 100,
+  "c0_phi4mini": {
+    "total_count": 100,
+    "total_passes": 60,
+    "total_acc": 60.0,
+    "ci_95": [
+      50.0,
+      70.0
+    ],
+    "clean_share": 100.0,
+    "mean_duration_s": 6.48,
+    "strata": {
+      "atomic": {
+        "count": 60,
+        "passes": 49,
+        "acc": 81.67,
+        "ci_95": [
+          71.67,
+          91.67
+        ]
+      },
+      "compound": {
+        "count": 40,
+        "passes": 11,
+        "acc": 27.5,
+        "ci_95": [
+          15.0,
+          42.5
+        ]
+      },
+      "solvable_without_tools": {
+        "count": 20,
+        "passes": 10,
+        "acc": 50.0,
+        "ci_95": [
+          30.0,
+          70.0
+        ]
+      },
+      "tool_required": {
+        "count": 20,
+        "passes": 1,
+        "acc": 5.0,
+        "ci_95": [
+          0.0,
+          15.0
+        ]
+      }
+    },
+    "tasks": {
+      "sql": {
+        "count": 15,
+        "passes": 9,
+        "acc": 60.0,
+        "ci_95": [
+          33.33,
+          80.0
+        ]
+      },
+      "qa": {
+        "count": 15,
+        "passes": 13,
+        "acc": 86.67,
+        "ci_95": [
+          66.67,
+          100.0
+        ]
+      },
+      "code": {
+        "count": 15,
+        "passes": 13,
+        "acc": 86.67,
+        "ci_95": [
+          66.67,
+          100.0
+        ]
+      },
+      "math": {
+        "count": 15,
+        "passes": 14,
+        "acc": 93.33,
+        "ci_95": [
+          80.0,
+          100.0
+        ]
+      },
+      "compound": {
+        "count": 40,
+        "passes": 11,
+        "acc": 27.5,
+        "ci_95": [
+          15.0,
+          42.5
+        ]
+      }
+    },
+    "compound_stages": {
+      "stage_1": null,
+      "stage_2": null,
+      "stage_3": null
+    }
+  },
+  "specialist_pipeline_phi4mini": {
+    "total_count": 100,
+    "total_passes": 58,
+    "total_acc": 58.0,
+    "ci_95": [
+      49.0,
+      68.0
+    ],
+    "clean_share": 93.0,
+    "mean_duration_s": 6.1,
+    "strata": {
+      "atomic": {
+        "count": 60,
+        "passes": 48,
+        "acc": 80.0,
+        "ci_95": [
+          70.0,
+          90.0
+        ]
+      },
+      "compound": {
+        "count": 40,
+        "passes": 10,
+        "acc": 25.0,
+        "ci_95": [
+          12.5,
+          40.0
+        ]
+      },
+      "solvable_without_tools": {
+        "count": 20,
+        "passes": 2,
+        "acc": 10.0,
+        "ci_95": [
+          0.0,
+          25.0
+        ]
+      },
+      "tool_required": {
+        "count": 20,
+        "passes": 8,
+        "acc": 40.0,
+        "ci_95": [
+          20.0,
+          60.0
+        ]
+      }
+    },
+    "tasks": {
+      "sql": {
+        "count": 15,
+        "passes": 10,
+        "acc": 66.67,
+        "ci_95": [
+          46.67,
+          86.67
+        ]
+      },
+      "qa": {
+        "count": 15,
+        "passes": 12,
+        "acc": 80.0,
+        "ci_95": [
+          60.0,
+          100.0
+        ]
+      },
+      "code": {
+        "count": 15,
+        "passes": 14,
+        "acc": 93.33,
+        "ci_95": [
+          80.0,
+          100.0
+        ]
+      },
+      "math": {
+        "count": 15,
+        "passes": 12,
+        "acc": 80.0,
+        "ci_95": [
+          60.0,
+          100.0
+        ]
+      },
+      "compound": {
+        "count": 40,
+        "passes": 10,
+        "acc": 25.0,
+        "ci_95": [
+          12.5,
+          40.0
+        ]
+      }
+    },
+    "compound_stages": {
+      "stage_1": 50.0,
+      "stage_2": 37.5,
+      "stage_3": 45.0
+    }
+  }
+}

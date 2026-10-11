@@ -115,4 +115,46 @@ def test_audit_secret_leakage_clean():
     assert len(errors) == 0, f"Found unexpected secret in repository: {errors}"
 
 
+def test_audit_benchmark_leakage_clean():
+    from src.audit.audit_rules import audit_benchmark_leakage
+
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    errors = audit_benchmark_leakage(repo_root)
+    assert len(errors) == 0, f"Found benchmark leakage in pipeline prompts, adapters, or skills: {errors}"
+
+
+def test_audit_results_journal_catches_shrink_and_deletion():
+    from src.audit.audit_rules import audit_results_journal
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        res_dir = os.path.join(tmpdir, "results")
+        os.makedirs(res_dir, exist_ok=True)
+        test_file = os.path.join(res_dir, "test_records.jsonl")
+
+        # Step 1: Initial creation of 2 records
+        with open(test_file, "w", encoding="utf-8") as f:
+            f.write('{"id": 1, "status": "COMPLETE"}\n{"id": 2, "status": "COMPLETE"}\n')
+
+        # Initial audit should register file and pass
+        errs = audit_results_journal(tmpdir)
+        assert len(errs) == 0
+
+        # Step 2: Shrink the file (remove a line)
+        with open(test_file, "w", encoding="utf-8") as f:
+            f.write('{"id": 1, "status": "COMPLETE"}\n')
+
+        # Audit must catch shrink
+        errs_shrink = audit_results_journal(tmpdir)
+        assert any("shrunk" in e or "decreased" in e for e in errs_shrink)
+
+        # Step 3: Delete the file completely
+        os.remove(test_file)
+
+        # Audit must catch disappearance
+        errs_del = audit_results_journal(tmpdir)
+        assert any("disappeared" in e for e in errs_del)
+
+
+
+
 

@@ -1,0 +1,216 @@
+{
+  "timestamp": "2026-10-11T11:41:16Z",
+  "gates": {
+    "G1_prompt_only_and_leakage_audit": {
+      "passed": true,
+      "leakage_errors": [],
+      "full_audit_errors": []
+    },
+    "G2_orchestration_model_calls_and_fallbacks": {
+      "passed": true,
+      "fallback_rates_pct": {
+        "analyser": 5.0,
+        "decomposer": 0.0,
+        "colorer": 0.0,
+        "matcher": 0.0
+      },
+      "max_fallback_rate_pct": 5.0,
+      "threshold_max_pct": 10.0
+    },
+    "G3_failed_plus_truncated_rate": {
+      "passed": true,
+      "c0_failed_trunc_pct": 0.0,
+      "pipe_failed_trunc_pct": 0.0,
+      "threshold_max_pct": 2.0
+    },
+    "G4_accuracy_non_inferiority": {
+      "passed": true,
+      "track_a": {
+        "passed": true,
+        "c0_acc": 58.0,
+        "pipe_acc": 61.0,
+        "delta_pp": 3.0
+      },
+      "track_b": {
+        "passed": true,
+        "c0_acc": 0.0,
+        "pipe_acc": 4.0,
+        "delta_pp": 4.0
+      }
+    },
+    "ALL_GATES_PASSED": true
+  },
+  "router": {
+    "total_items": 100,
+    "router_accuracy_pct": 97.0,
+    "outside_data_routes": 38,
+    "direct_routes": 62
+  },
+  "decomposer": {
+    "evaluated_items": 38,
+    "correct_items": 38,
+    "decomposer_accuracy_pct": 100.0
+  },
+  "comparative_strata": {
+    "c0": {
+      "track_a_total": {
+        "count": 100,
+        "passes": 58,
+        "acc": 58.0,
+        "ci_95": [
+          48.0,
+          68.0
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 7.55,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "track_b_total": {
+        "count": 50,
+        "passes": 0,
+        "acc": 0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 1.12,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_atomic": {
+        "count": 60,
+        "passes": 47,
+        "acc": 78.33,
+        "ci_95": [
+          66.67,
+          88.33
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 3.93,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_compound": {
+        "count": 40,
+        "passes": 11,
+        "acc": 27.5,
+        "ci_95": [
+          15.0,
+          42.5
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 12.97,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_comp_solv": {
+        "count": 20,
+        "passes": 10,
+        "acc": 50.0,
+        "ci_95": [
+          30.0,
+          70.0
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 13.9,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_comp_treq": {
+        "count": 20,
+        "passes": 1,
+        "acc": 5.0,
+        "ci_95": [
+          0.0,
+          15.0
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 12.04,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      }
+    },
+    "pipeline": {
+      "track_a_total": {
+        "count": 100,
+        "passes": 61,
+        "acc": 61.0,
+        "ci_95": [
+          51.0,
+          70.0
+        ],
+        "clean_share": 94.0,
+        "mean_duration": 15.29,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "track_b_total": {
+        "count": 50,
+        "passes": 2,
+        "acc": 4.0,
+        "ci_95": [
+          0.0,
+          10.0
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 12.44,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_atomic": {
+        "count": 60,
+        "passes": 41,
+        "acc": 68.33,
+        "ci_95": [
+          56.67,
+          80.0
+        ],
+        "clean_share": 95.0,
+        "mean_duration": 8.16,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_compound": {
+        "count": 40,
+        "passes": 20,
+        "acc": 50.0,
+        "ci_95": [
+          35.0,
+          65.0
+        ],
+        "clean_share": 92.5,
+        "mean_duration": 25.98,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_comp_solv": {
+        "count": 20,
+        "passes": 10,
+        "acc": 50.0,
+        "ci_95": [
+          30.0,
+          70.0
+        ],
+        "clean_share": 85.0,
+        "mean_duration": 17.44,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_comp_treq": {
+        "count": 20,
+        "passes": 10,
+        "acc": 50.0,
+        "ci_95": [
+          30.0,
+          70.0
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 34.52,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      }
+    }
+  }
+}

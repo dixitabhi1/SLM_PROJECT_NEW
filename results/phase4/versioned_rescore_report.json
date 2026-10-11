@@ -1,0 +1,1526 @@
+{
+  "timestamp": "2026-10-08",
+  "scorer_version": "1.0.0",
+  "scorer_sha256": "27f58ee0b362a46f92bb7fdfb480bb75babe92d3147f1996a07c50b2227c2bda",
+  "c0_phi4_mini": {
+    "all_dev": {
+      "n_total": 150,
+      "n_valid": 150,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 44.67,
+      "ci_valid_95": [
+        36.67,
+        52.67
+      ],
+      "acc_total": 44.67,
+      "ci_total_95": [
+        36.67,
+        52.67
+      ],
+      "passed_count": 67
+    },
+    "track_a_all": {
+      "n_total": 100,
+      "n_valid": 100,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 67.0,
+      "ci_valid_95": [
+        58.0,
+        76.0
+      ],
+      "acc_total": 67.0,
+      "ci_total_95": [
+        58.0,
+        76.0
+      ],
+      "passed_count": 67
+    },
+    "atomic_all": {
+      "n_total": 60,
+      "n_valid": 60,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 78.33,
+      "ci_valid_95": [
+        68.33,
+        88.33
+      ],
+      "acc_total": 78.33,
+      "ci_total_95": [
+        68.33,
+        88.33
+      ],
+      "passed_count": 47
+    },
+    "atomic_math": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 86.67,
+      "ci_valid_95": [
+        66.67,
+        100.0
+      ],
+      "acc_total": 86.67,
+      "ci_total_95": [
+        66.67,
+        100.0
+      ],
+      "passed_count": 13
+    },
+    "atomic_code": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 86.67,
+      "ci_valid_95": [
+        66.67,
+        100.0
+      ],
+      "acc_total": 86.67,
+      "ci_total_95": [
+        66.67,
+        100.0
+      ],
+      "passed_count": 13
+    },
+    "atomic_sql": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 53.33,
+      "ci_valid_95": [
+        26.67,
+        80.0
+      ],
+      "acc_total": 53.33,
+      "ci_total_95": [
+        26.67,
+        80.0
+      ],
+      "passed_count": 8
+    },
+    "atomic_qa": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 86.67,
+      "ci_valid_95": [
+        66.67,
+        100.0
+      ],
+      "acc_total": 86.67,
+      "ci_total_95": [
+        66.67,
+        100.0
+      ],
+      "passed_count": 13
+    },
+    "compound_all": {
+      "n_total": 40,
+      "n_valid": 40,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 50.0,
+      "ci_valid_95": [
+        35.0,
+        65.0
+      ],
+      "acc_total": 50.0,
+      "ci_total_95": [
+        35.0,
+        65.0
+      ],
+      "passed_count": 20
+    },
+    "compound_solvable_without_tools": {
+      "n_total": 24,
+      "n_valid": 24,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 75.0,
+      "ci_valid_95": [
+        58.33,
+        91.67
+      ],
+      "acc_total": 75.0,
+      "ci_total_95": [
+        58.33,
+        91.67
+      ],
+      "passed_count": 18
+    },
+    "compound_tool_required": {
+      "n_total": 16,
+      "n_valid": 16,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 12.5,
+      "ci_valid_95": [
+        0.0,
+        31.25
+      ],
+      "acc_total": 12.5,
+      "ci_total_95": [
+        0.0,
+        31.25
+      ],
+      "passed_count": 2
+    },
+    "compound_2_stage": {
+      "n_total": 34,
+      "n_valid": 34,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 50.0,
+      "ci_valid_95": [
+        32.35,
+        67.65
+      ],
+      "acc_total": 50.0,
+      "ci_total_95": [
+        32.35,
+        67.65
+      ],
+      "passed_count": 17
+    },
+    "compound_3_stage": {
+      "n_total": 6,
+      "n_valid": 6,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 50.0,
+      "ci_valid_95": [
+        16.67,
+        83.33
+      ],
+      "acc_total": 50.0,
+      "ci_total_95": [
+        16.67,
+        83.33
+      ],
+      "passed_count": 3
+    },
+    "track_b_all": {
+      "n_total": 50,
+      "n_valid": 50,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 0.0,
+      "ci_valid_95": [
+        0.0,
+        0.0
+      ],
+      "acc_total": 0.0,
+      "ci_total_95": [
+        0.0,
+        0.0
+      ],
+      "passed_count": 0
+    }
+  },
+  "b0_qwen27b": {
+    "all_dev": {
+      "n_total": 150,
+      "n_valid": 147,
+      "n_failed": 3,
+      "n_truncated": 3,
+      "failure_rate_pct": 2.0,
+      "truncation_rate_pct": 2.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 54.42,
+      "ci_valid_95": [
+        46.26,
+        62.59
+      ],
+      "acc_total": 53.33,
+      "ci_total_95": [
+        45.33,
+        61.33
+      ],
+      "passed_count": 80
+    },
+    "track_a_all": {
+      "n_total": 100,
+      "n_valid": 97,
+      "n_failed": 3,
+      "n_truncated": 3,
+      "failure_rate_pct": 3.0,
+      "truncation_rate_pct": 3.0,
+      "comparable_under_2pct_rule": false,
+      "acc_valid": 82.47,
+      "ci_valid_95": [
+        74.23,
+        89.69
+      ],
+      "acc_total": 80.0,
+      "ci_total_95": [
+        72.0,
+        88.0
+      ],
+      "passed_count": 80
+    },
+    "atomic_all": {
+      "n_total": 60,
+      "n_valid": 60,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 93.33,
+      "ci_valid_95": [
+        86.67,
+        98.33
+      ],
+      "acc_total": 93.33,
+      "ci_total_95": [
+        86.67,
+        98.33
+      ],
+      "passed_count": 56
+    },
+    "atomic_math": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 100.0,
+      "ci_valid_95": [
+        100.0,
+        100.0
+      ],
+      "acc_total": 100.0,
+      "ci_total_95": [
+        100.0,
+        100.0
+      ],
+      "passed_count": 15
+    },
+    "atomic_code": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 93.33,
+      "ci_valid_95": [
+        80.0,
+        100.0
+      ],
+      "acc_total": 93.33,
+      "ci_total_95": [
+        80.0,
+        100.0
+      ],
+      "passed_count": 14
+    },
+    "atomic_sql": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 80.0,
+      "ci_valid_95": [
+        60.0,
+        100.0
+      ],
+      "acc_total": 80.0,
+      "ci_total_95": [
+        60.0,
+        100.0
+      ],
+      "passed_count": 12
+    },
+    "atomic_qa": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 100.0,
+      "ci_valid_95": [
+        100.0,
+        100.0
+      ],
+      "acc_total": 100.0,
+      "ci_total_95": [
+        100.0,
+        100.0
+      ],
+      "passed_count": 15
+    },
+    "compound_all": {
+      "n_total": 40,
+      "n_valid": 37,
+      "n_failed": 3,
+      "n_truncated": 3,
+      "failure_rate_pct": 7.5,
+      "truncation_rate_pct": 7.5,
+      "comparable_under_2pct_rule": false,
+      "acc_valid": 64.86,
+      "ci_valid_95": [
+        48.65,
+        81.08
+      ],
+      "acc_total": 60.0,
+      "ci_total_95": [
+        45.0,
+        75.0
+      ],
+      "passed_count": 24
+    },
+    "compound_solvable_without_tools": {
+      "n_total": 24,
+      "n_valid": 24,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 87.5,
+      "ci_valid_95": [
+        75.0,
+        100.0
+      ],
+      "acc_total": 87.5,
+      "ci_total_95": [
+        75.0,
+        100.0
+      ],
+      "passed_count": 21
+    },
+    "compound_tool_required": {
+      "n_total": 16,
+      "n_valid": 13,
+      "n_failed": 3,
+      "n_truncated": 3,
+      "failure_rate_pct": 18.75,
+      "truncation_rate_pct": 18.75,
+      "comparable_under_2pct_rule": false,
+      "acc_valid": 23.08,
+      "ci_valid_95": [
+        0.0,
+        46.15
+      ],
+      "acc_total": 18.75,
+      "ci_total_95": [
+        0.0,
+        37.5
+      ],
+      "passed_count": 3
+    },
+    "compound_2_stage": {
+      "n_total": 34,
+      "n_valid": 31,
+      "n_failed": 3,
+      "n_truncated": 3,
+      "failure_rate_pct": 8.82,
+      "truncation_rate_pct": 8.82,
+      "comparable_under_2pct_rule": false,
+      "acc_valid": 64.52,
+      "ci_valid_95": [
+        48.39,
+        80.65
+      ],
+      "acc_total": 58.82,
+      "ci_total_95": [
+        41.18,
+        73.53
+      ],
+      "passed_count": 20
+    },
+    "compound_3_stage": {
+      "n_total": 6,
+      "n_valid": 6,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 66.67,
+      "ci_valid_95": [
+        33.33,
+        100.0
+      ],
+      "acc_total": 66.67,
+      "ci_total_95": [
+        33.33,
+        100.0
+      ],
+      "passed_count": 4
+    },
+    "track_b_all": {
+      "n_total": 50,
+      "n_valid": 50,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 0.0,
+      "ci_valid_95": [
+        0.0,
+        0.0
+      ],
+      "acc_total": 0.0,
+      "ci_total_95": [
+        0.0,
+        0.0
+      ],
+      "passed_count": 0
+    }
+  },
+  "b0_gpt120b": {
+    "all_dev": {
+      "n_total": 150,
+      "n_valid": 150,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 51.33,
+      "ci_valid_95": [
+        43.33,
+        59.33
+      ],
+      "acc_total": 51.33,
+      "ci_total_95": [
+        43.33,
+        59.33
+      ],
+      "passed_count": 77
+    },
+    "track_a_all": {
+      "n_total": 100,
+      "n_valid": 100,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 77.0,
+      "ci_valid_95": [
+        69.0,
+        85.0
+      ],
+      "acc_total": 77.0,
+      "ci_total_95": [
+        69.0,
+        85.0
+      ],
+      "passed_count": 77
+    },
+    "atomic_all": {
+      "n_total": 60,
+      "n_valid": 60,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 85.0,
+      "ci_valid_95": [
+        75.0,
+        93.33
+      ],
+      "acc_total": 85.0,
+      "ci_total_95": [
+        75.0,
+        93.33
+      ],
+      "passed_count": 51
+    },
+    "atomic_math": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 93.33,
+      "ci_valid_95": [
+        80.0,
+        100.0
+      ],
+      "acc_total": 93.33,
+      "ci_total_95": [
+        80.0,
+        100.0
+      ],
+      "passed_count": 14
+    },
+    "atomic_code": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 100.0,
+      "ci_valid_95": [
+        100.0,
+        100.0
+      ],
+      "acc_total": 100.0,
+      "ci_total_95": [
+        100.0,
+        100.0
+      ],
+      "passed_count": 15
+    },
+    "atomic_sql": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 53.33,
+      "ci_valid_95": [
+        26.67,
+        80.0
+      ],
+      "acc_total": 53.33,
+      "ci_total_95": [
+        26.67,
+        80.0
+      ],
+      "passed_count": 8
+    },
+    "atomic_qa": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 93.33,
+      "ci_valid_95": [
+        80.0,
+        100.0
+      ],
+      "acc_total": 93.33,
+      "ci_total_95": [
+        80.0,
+        100.0
+      ],
+      "passed_count": 14
+    },
+    "compound_all": {
+      "n_total": 40,
+      "n_valid": 40,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 65.0,
+      "ci_valid_95": [
+        50.0,
+        80.0
+      ],
+      "acc_total": 65.0,
+      "ci_total_95": [
+        50.0,
+        80.0
+      ],
+      "passed_count": 26
+    },
+    "compound_solvable_without_tools": {
+      "n_total": 24,
+      "n_valid": 24,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 91.67,
+      "ci_valid_95": [
+        79.17,
+        100.0
+      ],
+      "acc_total": 91.67,
+      "ci_total_95": [
+        79.17,
+        100.0
+      ],
+      "passed_count": 22
+    },
+    "compound_tool_required": {
+      "n_total": 16,
+      "n_valid": 16,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 25.0,
+      "ci_valid_95": [
+        6.25,
+        50.0
+      ],
+      "acc_total": 25.0,
+      "ci_total_95": [
+        6.25,
+        50.0
+      ],
+      "passed_count": 4
+    },
+    "compound_2_stage": {
+      "n_total": 34,
+      "n_valid": 34,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 67.65,
+      "ci_valid_95": [
+        52.94,
+        82.35
+      ],
+      "acc_total": 67.65,
+      "ci_total_95": [
+        52.94,
+        82.35
+      ],
+      "passed_count": 23
+    },
+    "compound_3_stage": {
+      "n_total": 6,
+      "n_valid": 6,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 50.0,
+      "ci_valid_95": [
+        16.67,
+        83.33
+      ],
+      "acc_total": 50.0,
+      "ci_total_95": [
+        16.67,
+        83.33
+      ],
+      "passed_count": 3
+    },
+    "track_b_all": {
+      "n_total": 50,
+      "n_valid": 50,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "failure_rate_pct": 0.0,
+      "truncation_rate_pct": 0.0,
+      "comparable_under_2pct_rule": true,
+      "acc_valid": 0.0,
+      "ci_valid_95": [
+        0.0,
+        0.0
+      ],
+      "acc_total": 0.0,
+      "ci_total_95": [
+        0.0,
+        0.0
+      ],
+      "passed_count": 0
+    }
+  },
+  "hand_check_audit": {
+    "python_sandbox_test": {
+      "total_passes_available": 42,
+      "sampled_passes_count": 10,
+      "sampled_passes": [
+        {
+          "item_id": "HumanEval/127",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\nimport math\n\ndef _is_prime(n: int) -> bool:\n    \"\"\"Return True if n is a prime number, otherwise False.\"\"\"\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/73",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\ndef smallest_change(arr):\n    n = len(arr)\n    changes = 0\n    \n    for i in range(n // 2):\n        if arr[i] != arr[n - i - 1]:\n            changes += 1\n            \n    return changes\n```",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/25",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\nfrom typing import List\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be li",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/144",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\ndef simplify(x, n):\n    \"\"\"Your task is to implement a function that will simplify the expression\n    x * n. The function returns True if x * n evaluates to a whole number and False\n    othe",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/133",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\nimport math\n\ndef sum_squares(lst):\n    \"\"\"You are given a list of numbers.\n    You need to return the sum of squared numbers in the given list,\n    round each element in the list to the uppe",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/25",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\nfrom typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be l",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/35",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\ndef max_element(l: list):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    if ",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/144",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\ndef simplify(x, n):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a\n\n    def simplify_fraction(fraction):\n        numerator, denominator = map(int, fraction.",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/28",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\ndef concatenate(strings: List[str]) -> str:\n    \"\"\" Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n    \"\"\"\n\n  ",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/2",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "python_sandbox_test",
+          "passed": true,
+          "checker_details": "HumanEval assertions passed",
+          "output_preview": "```python\nimport math\n\ndef truncate_number(number: float) -> float:\n    \"\"\"Return the decimal (fractional) part of a positive floating\u2011point number.\n\n    The function extracts the integer part (the gr",
+          "gold_preview": "[]"
+        }
+      ],
+      "total_fails_available": 3,
+      "sampled_fails_count": 3,
+      "sampled_fails": [
+        {
+          "item_id": "HumanEval/33",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "python_sandbox_test",
+          "passed": false,
+          "checker_details": "Execution failed: Traceback (most recent call last):\n  File \"C:\\Users\\ACER\\AppData\\Local\\Temp\\tmpbt6s1gp8\\script.py\", line 42, in <module>\n    check(sort_third)\n  File ",
+          "output_preview": "```python\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/127",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "python_sandbox_test",
+          "passed": false,
+          "checker_details": "Execution failed: Traceback (most recent call last):\n  File \"C:\\Users\\ACER\\AppData\\Local\\Temp\\tmpenb400mr\\script.py\", line 74, in <module>\n    check(intersection)\n  Fil",
+          "output_preview": "```python\ndef intersection(interval1, interval2):\n    \"\"\"You are given two intervals,\n    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).\n    The given interv",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "HumanEval/127",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "python_sandbox_test",
+          "passed": false,
+          "checker_details": "Execution failed: Traceback (most recent call last):\n  File \"C:\\Users\\ACER\\AppData\\Local\\Temp\\tmpv22de0va\\script.py\", line 56, in <module>\n    check(intersection)\n  Fil",
+          "output_preview": "```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i",
+          "gold_preview": "[]"
+        }
+      ]
+    },
+    "exact_numeric_test": {
+      "total_passes_available": 112,
+      "sampled_passes_count": 10,
+      "sampled_passes": [
+        {
+          "item_id": "compound_dev_0029",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 25",
+          "output_preview": "To solve this problem step by step, we'll follow these steps:\n\n1. Query the `Cartoon` table to find the count of cartoons written by Joseph Kuhr.\n2. Multiply that count by 25 to establish a target int",
+          "gold_preview": "25"
+        },
+        {
+          "item_id": "compound_dev_0034",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 262144",
+          "output_preview": "To solve this problem step by step, we need to follow these steps:\n\n1. Create the table with the given records.\n2. Query the average hours worked per shift.\n3. Compute the 6th power of that average va",
+          "gold_preview": "262144"
+        },
+        {
+          "item_id": "compound_dev_0028",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 11",
+          "output_preview": "Here is the step-by-step solution to the problem.\n\n### Step 1: Calculate the Total Ticket Revenue\n\nFirst, we calculate the revenue generated from adult tickets and child tickets separately, then sum t",
+          "gold_preview": "11"
+        },
+        {
+          "item_id": "gsm8k_test_0612",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 30",
+          "output_preview": "**Step\u2011by\u2011step solution**\n\n1. **First player:** ate a 6\u2011ounce steak.  \n   \u2192 Meat consumed = 6\u202foz.\n\n2. **Second player:** ate beef tips, 8 tips \u00d7 1\u202foz each = 8\u202foz.  \n   \u2192 Meat consumed = 8\u202foz.\n\n3. **Th",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "gsm8k_test_0003",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 540",
+          "output_preview": "Let's break down the problem step by step:\n\n1. James runs 3 sprints each time he goes for a run.\n2. He goes for a run 3 times a week.\n3. Each sprint is 60 meters long.\n\nFirst, we need to find out how ",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "compound_dev_0040",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 810000",
+          "output_preview": "Here is the step-by-step solution to the problem.\n\n### Step 1: Calculate the Total Crate Harvest\n\nFirst, we sum the crates from all four orchards recorded in the `harvest` table.\n\n*   Orchard 1: 45 cr",
+          "gold_preview": "810000"
+        },
+        {
+          "item_id": "compound_dev_0027",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 9232",
+          "output_preview": "To solve the problem step by step, we will follow the Collatz sequence rules for the starting number \\( n = 27 \\):\n\n1. If \\( n \\) is even, divide it by 2.\n2. If \\( n \\) is odd, multiply it by 3 and ad",
+          "gold_preview": "9232"
+        },
+        {
+          "item_id": "compound_dev_0012",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 840",
+          "output_preview": "**Step\u2011by\u2011step solution**\n\n1. **List the recorded temperatures**  \n   - Zone\u202f1: 24.5\u202f\u00b0C  \n   - Zone\u202f2: 28.0\u202f\u00b0C  \n   - Zone\u202f3: 26.5\u202f\u00b0C  \n   - Zone\u202f4: 29.0\u202f\u00b0C  \n\n2. **Compute the average temperature**  ",
+          "gold_preview": "840"
+        },
+        {
+          "item_id": "gsm8k_test_1064",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 247",
+          "output_preview": "**Step\u2011by\u2011step solution**\n\n1. **Monday:** 32 classes visited.  \n2. **Tuesday:** \u201cTwice as many\u201d as Monday \u2192 \\(2 \\times 32 = 64\\) classes.  \n3. **Wednesday:** \u201cThree times as many\u201d as Monday \u2192 \\(3 \\tim",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "compound_dev_0008",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "exact_numeric_test",
+          "passed": true,
+          "checker_details": "Matched #### 910",
+          "output_preview": "**Step\u2011by\u2011step solution**\n\n1. **Identify qualifying runners** \u2013 only those with **laps\u202f\u2265\u202f12**.  \n   From the data:\n   - Runner\u202f2: 15 laps  \n   - Runner\u202f4: 20 laps  \n\n2. **Compute kilometers per runner",
+          "gold_preview": "910"
+        }
+      ],
+      "total_fails_available": 50,
+      "sampled_fails_count": 10,
+      "sampled_fails": [
+        {
+          "item_id": "compound_dev_0039",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Extracted #### 6105 != gold 11325",
+          "output_preview": "Here is the step-by-step solution to the problem.\n\n### Step 1: Analyze the Database Schema and Query Requirements\n\nWe have two tables:\n1.  `poker_player`: Contains `Poker_Player_ID`, `People_ID`, and ",
+          "gold_preview": "11325"
+        },
+        {
+          "item_id": "compound_dev_0009",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Extracted #### 340000 != gold 202797",
+          "output_preview": "To solve this problem, we need to follow these steps:\n\n1.  **Find the maximum Earnings** from the `poker_player` table.\n2.  **Calculate the amount pledged to charity**: 15% of the maximum earnings.\n3.",
+          "gold_preview": "202797"
+        },
+        {
+          "item_id": "compound_dev_0023",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Extracted #### 1241 != gold 441",
+          "output_preview": "To solve this problem step by step, we need to simulate the particle population over 25 microseconds using the given recurrence relation. Let's break down the process:\n\n1. **Initial conditions**: At \\",
+          "gold_preview": "441"
+        },
+        {
+          "item_id": "compound_dev_0020",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Extracted #### 160 != gold 10100000",
+          "output_preview": "Here is the step-by-step solution to the problem.\n\n### Step 1: Calculate the Total Distance\n\nFirst, we sum the kilometers logged in each week of the training cycle:\n- Week 1: 25 km\n- Week 2: 35 km\n- W",
+          "gold_preview": "10100000"
+        },
+        {
+          "item_id": "compound_dev_0003",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Did not find gold number 522 in output",
+          "output_preview": "**Step\u2011by\u2011step solution**\n\n1. **Count the concerts that occurred in 2014 or 2015**  \n\n   ```sql\n   SELECT COUNT(*) AS concert_cnt\n   FROM concert\n   WHERE Year IN ('2014','2015');\n   ```\n\n   Let the r",
+          "gold_preview": "522"
+        },
+        {
+          "item_id": "compound_dev_0031",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Extracted #### 14 != gold 1",
+          "output_preview": "To solve this problem step by step, we'll follow these steps:\n\n1. Connect to the database.\n2. Query the count of conductors whose Age is strictly greater than 50.\n3. Calculate the sum of the squares o",
+          "gold_preview": "1"
+        },
+        {
+          "item_id": "gsm8k_test_0530",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Extracted #### 48 != gold 36",
+          "output_preview": "Let's break down Josh's workout routine step by step:\n\n1. Josh worked out for 4 hours every week for 8 weeks.\n2. He spent 5 hours each for two consecutive weeks.\n3. He spent 6 hours in one week.\n\nFirs",
+          "gold_preview": "[]"
+        },
+        {
+          "item_id": "compound_dev_0018",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Extracted #### 28 != gold 24",
+          "output_preview": "Let's break down the problem step by step:\n\n1. **Calculate the total number of articles written per week:**\n   - The writer crafts 4 articles per day.\n   - The writer works 5 days a week.\n   - Total a",
+          "gold_preview": "24"
+        },
+        {
+          "item_id": "compound_dev_0013",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Extracted #### 5250 != gold 5550",
+          "output_preview": "To solve this problem, we need to perform two main steps:\n1.  Calculate the average age of all registered singers from the `singer` table.\n2.  Calculate the stipend amount based on the rule: $150 \\tim",
+          "gold_preview": "5550"
+        },
+        {
+          "item_id": "compound_dev_0039",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "exact_numeric_test",
+          "passed": false,
+          "checker_details": "Did not find gold number 11325 in output",
+          "output_preview": "To solve this problem step by step, we'll follow these steps:\n\n1. Join the `poker_player` and `people` tables to filter players with Nationality 'Russia'.\n2. Count the number of such players.\n3. Multi",
+          "gold_preview": "11325"
+        }
+      ]
+    },
+    "sqlite_execution_test": {
+      "total_passes_available": 28,
+      "sampled_passes_count": 10,
+      "sampled_passes": [
+        {
+          "item_id": "spider_val_0676",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Ordered result rows match gold (1 rows)",
+          "output_preview": "```sql\nSELECT Nationality\nFROM people\nGROUP BY Nationality\nORDER BY COUNT(*) DESC\nLIMIT 1;\n```",
+          "gold_preview": "SELECT Nationality FROM people GROUP BY Nationality ORDER BY COUNT(*) DESC LIMIT 1"
+        },
+        {
+          "item_id": "spider_val_0776",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Result rows match gold multiset (6 rows)",
+          "output_preview": "```sql\nSELECT c.Name\nFROM country c\nWHERE c.Continent = 'Asia'\nAND c.Population > (\n    SELECT MAX(a.Population)\n    FROM country a\n    WHERE a.Continent = 'Africa'\n);\n```",
+          "gold_preview": "SELECT Name FROM country WHERE Continent  =  \"Asia\"  AND population  >  (SELECT max(population) FROM"
+        },
+        {
+          "item_id": "spider_val_0009",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Result rows match gold multiset (3 rows)",
+          "output_preview": "```sql\nSELECT DISTINCT s.Country\nFROM singer s\nWHERE s.Age > 20;\n```",
+          "gold_preview": "SELECT DISTINCT country FROM singer WHERE age  >  20"
+        },
+        {
+          "item_id": "spider_val_0475",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Ordered result rows match gold (1 rows)",
+          "output_preview": "```sql\nSELECT country_code\nFROM players\nGROUP BY country_code\nORDER BY COUNT(*) DESC\nLIMIT 1;\n```",
+          "gold_preview": "SELECT country_code FROM players GROUP BY country_code ORDER BY count(*) DESC LIMIT 1"
+        },
+        {
+          "item_id": "spider_val_0180",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Result rows match gold multiset (1 rows)",
+          "output_preview": "```sql\nSELECT Country\nFROM airlines\nWHERE Airline = 'JetBlue Airways';\n```",
+          "gold_preview": "SELECT Country FROM AIRLINES WHERE Airline  =  \"JetBlue Airways\""
+        },
+        {
+          "item_id": "spider_val_0263",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Result rows match gold multiset under column permutation (5 rows)",
+          "output_preview": "```sql\nSELECT City, COUNT(*) AS Number_of_Employees\nFROM employee\nGROUP BY City;\n```",
+          "gold_preview": "SELECT count(*) ,  city FROM employee GROUP BY city"
+        },
+        {
+          "item_id": "spider_val_0710",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Result rows match gold multiset (1 rows)",
+          "output_preview": "```sql\nSELECT c.Region\nFROM city AS k\nJOIN country AS c ON k.CountryCode = c.Code\nWHERE k.Name = 'Kabul';\n```",
+          "gold_preview": "SELECT Region FROM country AS T1 JOIN city AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Name  =  \"Ka"
+        },
+        {
+          "item_id": "spider_val_0797",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Result rows match gold multiset under column permutation (17 rows)",
+          "output_preview": "```sql\nSELECT \n    c.GovernmentForm,\n    SUM(c.Population) AS TotalPopulation\nFROM country c\nGROUP BY c.GovernmentForm\nHAVING AVG(c.LifeExpectancy) > 72;\n```",
+          "gold_preview": "SELECT sum(Population) ,  GovernmentForm FROM country GROUP BY GovernmentForm HAVING avg(LifeExpecta"
+        },
+        {
+          "item_id": "spider_val_0797",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Result rows match gold multiset under column permutation (17 rows)",
+          "output_preview": "```sql\nSELECT \n    GovernmentForm,\n    SUM(Population) AS TotalPopulation\nFROM \n    country\nGROUP BY \n    GovernmentForm\nHAVING \n    AVG(LifeExpectancy) > 72;\n```",
+          "gold_preview": "SELECT sum(Population) ,  GovernmentForm FROM country GROUP BY GovernmentForm HAVING avg(LifeExpecta"
+        },
+        {
+          "item_id": "spider_val_0710",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "sqlite_execution_test",
+          "passed": true,
+          "checker_details": "Result rows match gold multiset (1 rows)",
+          "output_preview": "```sql\nSELECT c.Region\nFROM city AS t1\nJOIN country AS c ON t1.CountryCode = c.Code\nWHERE t1.Name = 'Kabul';\n```",
+          "gold_preview": "SELECT Region FROM country AS T1 JOIN city AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Name  =  \"Ka"
+        }
+      ],
+      "total_fails_available": 17,
+      "sampled_fails_count": 10,
+      "sampled_fails": [
+        {
+          "item_id": "spider_val_0816",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Result rows mismatch: got [('Afghanistan', 'Pashto', 52.4), ('Albania', 'Albaniana', 97.9), ('Algeria', 'Arabic', 86.0), ('American Samoa', 'Samoan', 90.6), ('Andorra', 'Spanish', 44.6), ('Angola', 'Ovimbundu', 37.2), ('Anguilla', 'English', 0.0), ('Antigua and Barbuda', 'Creole English', 95.7), ('Argentina', 'Spanish', 96.8), ('Armenia', 'Armenian', 93.4), ('Aruba', 'Papiamento', 76.7), ('Australia', 'English', 81.2), ('Austria', 'German', 92.0), ('Azerbaijan', 'Azerbaijani', 89.0), ('Bahamas', 'Creole English', 89.7), ('Bahrain', 'Arabic', 67.7), ('Bangladesh', 'Bengali', 97.7), ('Barbados', 'Bajan', 95.1), ('Belarus', 'Belorussian', 65.6), ('Belgium', 'Dutch', 59.2), ('Belize', 'English', 50.8), ('Benin', 'Fon', 39.8), ('Bermuda', 'English', 100.0), ('Bhutan', 'Dzongkha', 50.0), ('Bolivia', 'Spanish', 87.7), ('Bosnia and Herzegovina', 'Serbo-Croatian', 99.2), ('Botswana', 'Tswana', 75.5), ('Brazil', 'Portuguese', 97.5), ('Brunei', 'Malay', 45.5), ('Bulgaria', 'Bulgariana', 83.2), ('Burkina Faso', 'Mossi', 50.2), ('Burundi', 'Kirundi', 98.1), ('Cambodia', 'Khmer', 88.6), ('Cameroon', 'Fang', 19.7), ('Canada', 'English', 60.4), ('Cape Verde', 'Crioulo', 100.0), ('Cayman Islands', 'English', 0.0), ('Central African Republic', 'Gbaya', 23.8), ('Chad', 'Sara', 27.7), ('Chile', 'Spanish', 89.7), ('China', 'Chinese', 92.0), ('Christmas Island', 'Chinese', 0.0), ('Christmas Island', 'English', 0.0), ('Cocos (Keeling) Islands', 'English', 0.0), ('Cocos (Keeling) Islands', 'Malay', 0.0), ('Colombia', 'Spanish', 99.0), ('Comoros', 'Comorian', 75.0), ('Congo', 'Kongo', 51.5), ('Congo, The Democratic Republic of the', 'Luba', 18.0), ('Cook Islands', 'English', 0.0), ('Cook Islands', 'Maori', 0.0), ('Costa Rica', 'Spanish', 97.5), ('Croatia', 'Serbo-Croatian', 95.9), ('Cuba', 'Spanish', 100.0), ('Cyprus', 'Greek', 74.1), ('Czech Republic', 'Czech', 81.2), ('C\u00f4te d\u2019Ivoire', 'Akan', 30.0), ('Denmark', 'Danish', 93.5), ('Djibouti', 'Somali', 43.9), ('Dominica', 'Creole English', 100.0), ('Dominican Republic', 'Spanish', 98.0), ('East Timor', 'Portuguese', 0.0), ('East Timor', 'Sunda', 0.0), ('Ecuador', 'Spanish', 93.0), ('Egypt', 'Arabic', 98.8), ('El Salvador', 'Spanish', 100.0), ('Equatorial Guinea', 'Fang', 84.8), ('Eritrea', 'Tigrinja', 49.1), ('Estonia', 'Estonian', 65.3), ('Ethiopia', 'Oromo', 31.0), ('Falkland Islands', 'English', 0.0), ('Faroe Islands', 'Faroese', 100.0), ('Fiji Islands', 'Fijian', 50.8), ('Finland', 'Finnish', 92.7), ('France', 'French', 93.6), ('French Guiana', 'Creole French', 94.3), ('French Polynesia', 'Tahitian', 46.4), ('Gabon', 'Fang', 35.8), ('Gambia', 'Malinke', 34.1), ('Georgia', 'Georgiana', 71.7), ('Germany', 'German', 91.3), ('Ghana', 'Akan', 52.4), ('Gibraltar', 'English', 88.9), ('Greece', 'Greek', 98.5), ('Greenland', 'Greenlandic', 87.5), ('Grenada', 'Creole English', 100.0), ('Guadeloupe', 'Creole French', 95.0), ('Guam', 'English', 37.5), ('Guatemala', 'Spanish', 64.7), ('Guinea', 'Ful', 38.6), ('Guinea-Bissau', 'Crioulo', 36.4), ('Guyana', 'Creole English', 96.4), ('Haiti', 'Haiti Creole', 100.0), ('Holy See (Vatican City State)', 'Italian', 0.0), ('Honduras', 'Spanish', 97.2), ('Hong Kong', 'Canton Chinese', 88.7), ('Hungary', 'Hungarian', 98.5), ('Iceland', 'Icelandic', 95.7), ('India', 'Hindi', 39.9), ('Indonesia', 'Javanese', 39.4), ('Iran', 'Persian', 45.7), ('Iraq', 'Arabic', 77.2), ('Ireland', 'English', 98.4), ('Israel', 'Hebrew', 63.1), ('Italy', 'Italian', 94.1), ('Jamaica', 'Creole English', 94.2), ('Japan', 'Japanese', 99.1), ('Jordan', 'Arabic', 97.9), ('Kazakstan', 'Kazakh', 46.0), ('Kenya', 'Kikuyu', 20.9), ('Kiribati', 'Kiribati', 98.9), ('Kuwait', 'Arabic', 78.1), ('Kyrgyzstan', 'Kirgiz', 59.7), ('Laos', 'Lao', 67.2), ('Latvia', 'Latvian', 55.1), ('Lebanon', 'Arabic', 93.0), ('Lesotho', 'Sotho', 85.0), ('Liberia', 'Kpelle', 19.5), ('Libyan Arab Jamahiriya', 'Arabic', 96.0), ('Liechtenstein', 'German', 89.0), ('Lithuania', 'Lithuanian', 81.6), ('Luxembourg', 'Luxembourgish', 64.4), ('Macao', 'Canton Chinese', 85.6), ('Macedonia', 'Macedonian', 66.5), ('Madagascar', 'Malagasy', 98.9), ('Malawi', 'Chichewa', 58.3), ('Malaysia', 'Malay', 58.4), ('Maldives', 'Dhivehi', 100.0), ('Mali', 'Bambara', 31.8), ('Malta', 'Maltese', 95.8), ('Marshall Islands', 'Marshallese', 96.8), ('Martinique', 'Creole French', 96.6), ('Mauritania', 'Hassaniya', 81.7), ('Mauritius', 'Creole French', 70.6), ('Mayotte', 'Mahor\u00e9', 41.9), ('Mexico', 'Spanish', 92.1), ('Micronesia, Federated States of', 'Trukese', 41.6), ('Moldova', 'Romanian', 61.9), ('Monaco', 'French', 41.9), ('Mongolia', 'Mongolian', 78.8), ('Montserrat', 'English', 0.0), ('Morocco', 'Arabic', 65.0), ('Mozambique', 'Makua', 27.8), ('Myanmar', 'Burmese', 69.0), ('Namibia', 'Ovambo', 50.7), ('Nauru', 'Nauru', 57.5), ('Nepal', 'Nepali', 50.4), ('Netherlands', 'Dutch', 95.6), ('Netherlands Antilles', 'Papiamento', 86.2), ('New Caledonia', 'Malenasian Languages', 45.4), ('New Zealand', 'English', 87.0), ('Nicaragua', 'Spanish', 97.6), ('Niger', 'Hausa', 53.1), ('Nigeria', 'Joruba', 21.4), ('Niue', 'English', 0.0), ('Niue', 'Niue', 0.0), ('Norfolk Island', 'English', 0.0), ('North Korea', 'Korean', 99.9), ('Northern Mariana Islands', 'Philippene Languages', 34.1), ('Norway', 'Norwegian', 96.6), ('Oman', 'Arabic', 76.7), ('Pakistan', 'Punjabi', 48.2), ('Palau', 'Palau', 82.2), ('Palestine', 'Arabic', 95.9), ('Panama', 'Spanish', 76.8), ('Papua New Guinea', 'Papuan Languages', 78.1), ('Paraguay', 'Spanish', 55.1), ('Peru', 'Spanish', 79.8), ('Philippines', 'Pilipino', 29.3), ('Pitcairn', 'Pitcairnese', 0.0), ('Poland', 'Polish', 97.6), ('Portugal', 'Portuguese', 99.0), ('Puerto Rico', 'Spanish', 51.3), ('Qatar', 'Arabic', 40.7), ('Romania', 'Romanian', 90.7), ('Russian Federation', 'Russian', 86.6), ('Rwanda', 'Rwanda', 100.0), ('R\u00e9union', 'Creole French', 91.5), ('Saint Helena', 'English', 0.0), ('Saint Kitts and Nevis', 'Creole English', 100.0), ('Saint Lucia', 'Creole French', 80.0), ('Saint Pierre and Miquelon', 'French', 0.0), ('Saint Vincent and the Grenadines', 'Creole English', 99.1), ('Samoa', 'Samoan-English', 52.0), ('San Marino', 'Italian', 100.0), ('Sao Tome and Principe', 'Crioulo', 86.3), ('Saudi Arabia', 'Arabic', 95.0), ('Senegal', 'Wolof', 48.1), ('Seychelles', 'Seselwa', 91.3), ('Sierra Leone', 'Mende', 34.8), ('Singapore', 'Chinese', 77.1), ('Slovakia', 'Slovak', 85.6), ('Slovenia', 'Slovene', 87.9), ('Solomon Islands', 'Malenasian Languages', 85.6), ('Somalia', 'Somali', 98.3), ('South Africa', 'Zulu', 22.7), ('South Korea', 'Korean', 99.9), ('Spain', 'Spanish', 74.4), ('Sri Lanka', 'Singali', 60.3), ('Sudan', 'Arabic', 49.4), ('Suriname', 'Sranantonga', 81.0), ('Svalbard and Jan Mayen', 'Norwegian', 0.0), ('Svalbard and Jan Mayen', 'Russian', 0.0), ('Swaziland', 'Swazi', 89.9), ('Sweden', 'Swedish', 89.5), ('Switzerland', 'German', 63.6), ('Syria', 'Arabic', 90.0), ('Taiwan', 'Min', 66.7), ('Tajikistan', 'Tadzhik', 62.2), ('Tanzania', 'Nyamwesi', 21.1), ('Thailand', 'Thai', 52.6), ('Togo', 'Ewe', 23.2), ('Tokelau', 'English', 0.0), ('Tokelau', 'Tokelau', 0.0), ('Tonga', 'Tongan', 98.3), ('Trinidad and Tobago', 'English', 93.5), ('Tunisia', 'Arabic', 69.9), ('Turkey', 'Turkish', 87.6), ('Turkmenistan', 'Turkmenian', 76.7), ('Turks and Caicos Islands', 'English', 0.0), ('Tuvalu', 'Tuvalu', 92.5), ('Uganda', 'Ganda', 18.1), ('Ukraine', 'Ukrainian', 64.7), ('United Arab Emirates', 'Arabic', 42.0), ('United Kingdom', 'English', 97.3), ('United States', 'English', 86.2), ('United States Minor Outlying Islands', 'English', 0.0), ('Uruguay', 'Spanish', 95.7), ('Uzbekistan', 'Uzbek', 72.6), ('Vanuatu', 'Bislama', 56.6), ('Venezuela', 'Spanish', 96.9), ('Vietnam', 'Vietnamese', 86.8), ('Virgin Islands, British', 'English', 0.0), ('Virgin Islands, U.S.', 'English', 81.7), ('Wallis and Futuna', 'Futuna', 0.0), ('Wallis and Futuna', 'Wallis', 0.0), ('Western Sahara', 'Arabic', 100.0), ('Yemen', 'Arabic', 99.6), ('Yugoslavia', 'Serbo-Croatian', 75.2), ('Zambia', 'Bemba', 29.7), ('Zimbabwe', 'Shona', 72.1)] != gold [('Papiamento', 'ABW', 76.7), ('Pashto', 'AFG', 52.4), ('Ovimbundu', 'AGO', 37.2), ('English', 'AIA', 0.0), ('Albaniana', 'ALB', 97.9), ('Spanish', 'AND', 44.6), ('Papiamento', 'ANT', 86.2), ('Arabic', 'ARE', 42.0), ('Spanish', 'ARG', 96.8), ('Armenian', 'ARM', 93.4), ('Samoan', 'ASM', 90.6), ('Creole English', 'ATG', 95.7), ('English', 'AUS', 81.2), ('German', 'AUT', 92.0), ('Azerbaijani', 'AZE', 89.0), ('Kirundi', 'BDI', 98.1), ('Dutch', 'BEL', 59.2), ('Fon', 'BEN', 39.8), ('Mossi', 'BFA', 50.2), ('Bengali', 'BGD', 97.7), ('Bulgariana', 'BGR', 83.2), ('Arabic', 'BHR', 67.7), ('Creole English', 'BHS', 89.7), ('Serbo-Croatian', 'BIH', 99.2), ('Belorussian', 'BLR', 65.6), ('English', 'BLZ', 50.8), ('English', 'BMU', 100.0), ('Spanish', 'BOL', 87.7), ('Portuguese', 'BRA', 97.5), ('Bajan', 'BRB', 95.1), ('Malay', 'BRN', 45.5), ('Dzongkha', 'BTN', 50.0), ('Tswana', 'BWA', 75.5), ('Gbaya', 'CAF', 23.8), ('English', 'CAN', 60.4), ('English', 'CCK', 0.0), ('German', 'CHE', 63.6), ('Spanish', 'CHL', 89.7), ('Chinese', 'CHN', 92.0), ('Akan', 'CIV', 30.0), ('Fang', 'CMR', 19.7), ('Luba', 'COD', 18.0), ('Kongo', 'COG', 51.5), ('English', 'COK', 0.0), ('Spanish', 'COL', 99.0), ('Comorian', 'COM', 75.0), ('Crioulo', 'CPV', 100.0), ('Spanish', 'CRI', 97.5), ('Spanish', 'CUB', 100.0), ('Chinese', 'CXR', 0.0), ('English', 'CYM', 0.0), ('Greek', 'CYP', 74.1), ('Czech', 'CZE', 81.2), ('German', 'DEU', 91.3), ('Somali', 'DJI', 43.9), ('Creole English', 'DMA', 100.0), ('Danish', 'DNK', 93.5), ('Spanish', 'DOM', 98.0), ('Arabic', 'DZA', 86.0), ('Spanish', 'ECU', 93.0), ('Arabic', 'EGY', 98.8), ('Tigrinja', 'ERI', 49.1), ('Arabic', 'ESH', 100.0), ('Spanish', 'ESP', 74.4), ('Estonian', 'EST', 65.3), ('Oromo', 'ETH', 31.0), ('Finnish', 'FIN', 92.7), ('Fijian', 'FJI', 50.8), ('English', 'FLK', 0.0), ('French', 'FRA', 93.6), ('Faroese', 'FRO', 100.0), ('Trukese', 'FSM', 41.6), ('Fang', 'GAB', 35.8), ('English', 'GBR', 97.3), ('Georgiana', 'GEO', 71.7), ('Akan', 'GHA', 52.4), ('English', 'GIB', 88.9), ('Ful', 'GIN', 38.6), ('Creole French', 'GLP', 95.0), ('Malinke', 'GMB', 34.1), ('Crioulo', 'GNB', 36.4), ('Fang', 'GNQ', 84.8), ('Greek', 'GRC', 98.5), ('Creole English', 'GRD', 100.0), ('Greenlandic', 'GRL', 87.5), ('Spanish', 'GTM', 64.7), ('Creole French', 'GUF', 94.3), ('English', 'GUM', 37.5), ('Creole English', 'GUY', 96.4), ('Canton Chinese', 'HKG', 88.7), ('Spanish', 'HND', 97.2), ('Serbo-Croatian', 'HRV', 95.9), ('Haiti Creole', 'HTI', 100.0), ('Hungarian', 'HUN', 98.5), ('Javanese', 'IDN', 39.4), ('Hindi', 'IND', 39.9), ('English', 'IRL', 98.4), ('Persian', 'IRN', 45.7), ('Arabic', 'IRQ', 77.2), ('Icelandic', 'ISL', 95.7), ('Hebrew', 'ISR', 63.1), ('Italian', 'ITA', 94.1), ('Creole English', 'JAM', 94.2), ('Arabic', 'JOR', 97.9), ('Japanese', 'JPN', 99.1), ('Kazakh', 'KAZ', 46.0), ('Kikuyu', 'KEN', 20.9), ('Kirgiz', 'KGZ', 59.7), ('Khmer', 'KHM', 88.6), ('Kiribati', 'KIR', 98.9), ('Creole English', 'KNA', 100.0), ('Korean', 'KOR', 99.9), ('Arabic', 'KWT', 78.1), ('Lao', 'LAO', 67.2), ('Arabic', 'LBN', 93.0), ('Kpelle', 'LBR', 19.5), ('Arabic', 'LBY', 96.0), ('Creole French', 'LCA', 80.0), ('German', 'LIE', 89.0), ('Singali', 'LKA', 60.3), ('Sotho', 'LSO', 85.0), ('Lithuanian', 'LTU', 81.6), ('Luxembourgish', 'LUX', 64.4), ('Latvian', 'LVA', 55.1), ('Canton Chinese', 'MAC', 85.6), ('Arabic', 'MAR', 65.0), ('French', 'MCO', 41.9), ('Romanian', 'MDA', 61.9), ('Malagasy', 'MDG', 98.9), ('Dhivehi', 'MDV', 100.0), ('Spanish', 'MEX', 92.1), ('Marshallese', 'MHL', 96.8), ('Macedonian', 'MKD', 66.5), ('Bambara', 'MLI', 31.8), ('Maltese', 'MLT', 95.8), ('Burmese', 'MMR', 69.0), ('Mongolian', 'MNG', 78.8), ('Philippene Languages', 'MNP', 34.1), ('Makua', 'MOZ', 27.8), ('Hassaniya', 'MRT', 81.7), ('English', 'MSR', 0.0), ('Creole French', 'MTQ', 96.6), ('Creole French', 'MUS', 70.6), ('Chichewa', 'MWI', 58.3), ('Malay', 'MYS', 58.4), ('Mahor\u00e9', 'MYT', 41.9), ('Ovambo', 'NAM', 50.7), ('Malenasian Languages', 'NCL', 45.4), ('Hausa', 'NER', 53.1), ('English', 'NFK', 0.0), ('Joruba', 'NGA', 21.4), ('Spanish', 'NIC', 97.6), ('English', 'NIU', 0.0), ('Dutch', 'NLD', 95.6), ('Norwegian', 'NOR', 96.6), ('Nepali', 'NPL', 50.4), ('Nauru', 'NRU', 57.5), ('English', 'NZL', 87.0), ('Arabic', 'OMN', 76.7), ('Punjabi', 'PAK', 48.2), ('Spanish', 'PAN', 76.8), ('Pitcairnese', 'PCN', 0.0), ('Spanish', 'PER', 79.8), ('Pilipino', 'PHL', 29.3), ('Palau', 'PLW', 82.2), ('Papuan Languages', 'PNG', 78.1), ('Polish', 'POL', 97.6), ('Spanish', 'PRI', 51.3), ('Korean', 'PRK', 99.9), ('Portuguese', 'PRT', 99.0), ('Spanish', 'PRY', 55.1), ('Arabic', 'PSE', 95.9), ('Tahitian', 'PYF', 46.4), ('Arabic', 'QAT', 40.7), ('Creole French', 'REU', 91.5), ('Romanian', 'ROM', 90.7), ('Russian', 'RUS', 86.6), ('Rwanda', 'RWA', 100.0), ('Arabic', 'SAU', 95.0), ('Arabic', 'SDN', 49.4), ('Wolof', 'SEN', 48.1), ('Chinese', 'SGP', 77.1), ('English', 'SHN', 0.0), ('Norwegian', 'SJM', 0.0), ('Malenasian Languages', 'SLB', 85.6), ('Mende', 'SLE', 34.8), ('Spanish', 'SLV', 100.0), ('Italian', 'SMR', 100.0), ('Somali', 'SOM', 98.3), ('French', 'SPM', 0.0), ('Crioulo', 'STP', 86.3), ('Sranantonga', 'SUR', 81.0), ('Slovak', 'SVK', 85.6), ('Slovene', 'SVN', 87.9), ('Swedish', 'SWE', 89.5), ('Swazi', 'SWZ', 89.9), ('Seselwa', 'SYC', 91.3), ('Arabic', 'SYR', 90.0), ('English', 'TCA', 0.0), ('Sara', 'TCD', 27.7), ('Ewe', 'TGO', 23.2), ('Thai', 'THA', 52.6), ('Tadzhik', 'TJK', 62.2), ('English', 'TKL', 0.0), ('Turkmenian', 'TKM', 76.7), ('Portuguese', 'TMP', 0.0), ('Tongan', 'TON', 98.3), ('English', 'TTO', 93.5), ('Arabic', 'TUN', 69.9), ('Turkish', 'TUR', 87.6), ('Tuvalu', 'TUV', 92.5), ('Min', 'TWN', 66.7), ('Nyamwesi', 'TZA', 21.1), ('Ganda', 'UGA', 18.1), ('Ukrainian', 'UKR', 64.7), ('English', 'UMI', 0.0), ('Spanish', 'URY', 95.7), ('English', 'USA', 86.2), ('Uzbek', 'UZB', 72.6), ('Italian', 'VAT', 0.0), ('Creole English', 'VCT', 99.1), ('Spanish', 'VEN', 96.9), ('English', 'VGB', 0.0), ('English', 'VIR', 81.7), ('Vietnamese', 'VNM', 86.8), ('Bislama', 'VUT', 56.6), ('Futuna', 'WLF', 0.0), ('Samoan-English', 'WSM', 52.0), ('Arabic', 'YEM', 99.6), ('Serbo-Croatian', 'YUG', 75.2), ('Zulu', 'ZAF', 22.7), ('Bemba', 'ZMB', 29.7), ('Shona', 'ZWE', 72.1)]",
+          "output_preview": "Here is a SQLite query that returns, for every country, the language (or languages, in case of a tie) that has the highest percentage of speakers:\n\n```sql\nSELECT \n    c.Name      AS Country,\n    cl.La",
+          "gold_preview": "SELECT LANGUAGE ,  CountryCode ,  max(Percentage) FROM countrylanguage GROUP BY CountryCode"
+        },
+        {
+          "item_id": "spider_val_0646",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Result rows mismatch: got [('Sky Famiglia',), ('no ( FTV )',), ('Sky Famiglia + Sky HD',)] != gold [('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('no ( FTV )',), ('Sky Famiglia + Sky HD',), ('no ( FTV )',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',)]",
+          "output_preview": "```sql\nSELECT DISTINCT tc.Package_Option\nFROM TV_Channel tc\nWHERE tc.id NOT IN (\n    SELECT c.Channel\n    FROM Cartoon c\n    WHERE c.Directed_by = 'Ben Jones'\n);\n```",
+          "gold_preview": "SELECT package_option FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by"
+        },
+        {
+          "item_id": "spider_val_0180",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Result rows mismatch: got [] != gold [('USA',)]",
+          "output_preview": "```sql\nSELECT Country\nFROM airlines\nWHERE Airline = 'Jetblue Airways';\n```",
+          "gold_preview": "SELECT Country FROM AIRLINES WHERE Airline  =  \"JetBlue Airways\""
+        },
+        {
+          "item_id": "spider_val_0676",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Ordered rows mismatch: got [('Russia', 6)] != gold [('Russia',)]",
+          "output_preview": "```sql\nSELECT Nationality, COUNT(*) AS Count\nFROM people\nGROUP BY Nationality\nORDER BY Count DESC\nLIMIT 1;\n```",
+          "gold_preview": "SELECT Nationality FROM people GROUP BY Nationality ORDER BY COUNT(*) DESC LIMIT 1"
+        },
+        {
+          "item_id": "spider_val_0705",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Result rows mismatch: got [(143,)] != gold [(122,)]",
+          "output_preview": "```sql\nSELECT COUNT(*) AS RepublicCount\nFROM country\nWHERE GovernmentForm LIKE '%Republic%';\n```",
+          "gold_preview": "SELECT count(*) FROM country WHERE GovernmentForm  =  \"Republic\""
+        },
+        {
+          "item_id": "spider_val_0816",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Result rows mismatch: got [('ABW', 'Papiamento'), ('AFG', 'Pashto'), ('AGO', 'Ovimbundu'), ('AIA', 'English'), ('ALB', 'Albaniana'), ('AND', 'Spanish'), ('ANT', 'Papiamento'), ('ARE', 'Arabic'), ('ARG', 'Spanish'), ('ARM', 'Armenian'), ('ASM', 'Samoan'), ('ATG', 'Creole English'), ('AUS', 'English'), ('AUT', 'German'), ('AZE', 'Azerbaijani'), ('BDI', 'Kirundi'), ('BEL', 'Dutch'), ('BEN', 'Fon'), ('BFA', 'Mossi'), ('BGD', 'Bengali'), ('BGR', 'Bulgariana'), ('BHR', 'Arabic'), ('BHS', 'Creole English'), ('BIH', 'Serbo-Croatian'), ('BLR', 'Belorussian'), ('BLZ', 'English'), ('BMU', 'English'), ('BOL', 'Spanish'), ('BRA', 'Portuguese'), ('BRB', 'Bajan'), ('BRN', 'Malay'), ('BTN', 'Dzongkha'), ('BWA', 'Tswana'), ('CAF', 'Gbaya'), ('CAN', 'English'), ('CCK', 'English'), ('CCK', 'Malay'), ('CHE', 'German'), ('CHL', 'Spanish'), ('CHN', 'Chinese'), ('CIV', 'Akan'), ('CMR', 'Fang'), ('COD', 'Luba'), ('COG', 'Kongo'), ('COK', 'English'), ('COK', 'Maori'), ('COL', 'Spanish'), ('COM', 'Comorian'), ('CPV', 'Crioulo'), ('CRI', 'Spanish'), ('CUB', 'Spanish'), ('CXR', 'Chinese'), ('CXR', 'English'), ('CYM', 'English'), ('CYP', 'Greek'), ('CZE', 'Czech'), ('DEU', 'German'), ('DJI', 'Somali'), ('DMA', 'Creole English'), ('DNK', 'Danish'), ('DOM', 'Spanish'), ('DZA', 'Arabic'), ('ECU', 'Spanish'), ('EGY', 'Arabic'), ('ERI', 'Tigrinja'), ('ESH', 'Arabic'), ('ESP', 'Spanish'), ('EST', 'Estonian'), ('ETH', 'Oromo'), ('FIN', 'Finnish'), ('FJI', 'Fijian'), ('FLK', 'English'), ('FRA', 'French'), ('FRO', 'Faroese'), ('FSM', 'Trukese'), ('GAB', 'Fang'), ('GBR', 'English'), ('GEO', 'Georgiana'), ('GHA', 'Akan'), ('GIB', 'English'), ('GIN', 'Ful'), ('GLP', 'Creole French'), ('GMB', 'Malinke'), ('GNB', 'Crioulo'), ('GNQ', 'Fang'), ('GRC', 'Greek'), ('GRD', 'Creole English'), ('GRL', 'Greenlandic'), ('GTM', 'Spanish'), ('GUF', 'Creole French'), ('GUM', 'English'), ('GUY', 'Creole English'), ('HKG', 'Canton Chinese'), ('HND', 'Spanish'), ('HRV', 'Serbo-Croatian'), ('HTI', 'Haiti Creole'), ('HUN', 'Hungarian'), ('IDN', 'Javanese'), ('IND', 'Hindi'), ('IRL', 'English'), ('IRN', 'Persian'), ('IRQ', 'Arabic'), ('ISL', 'Icelandic'), ('ISR', 'Hebrew'), ('ITA', 'Italian'), ('JAM', 'Creole English'), ('JOR', 'Arabic'), ('JPN', 'Japanese'), ('KAZ', 'Kazakh'), ('KEN', 'Kikuyu'), ('KGZ', 'Kirgiz'), ('KHM', 'Khmer'), ('KIR', 'Kiribati'), ('KNA', 'Creole English'), ('KOR', 'Korean'), ('KWT', 'Arabic'), ('LAO', 'Lao'), ('LBN', 'Arabic'), ('LBR', 'Kpelle'), ('LBY', 'Arabic'), ('LCA', 'Creole French'), ('LIE', 'German'), ('LKA', 'Singali'), ('LSO', 'Sotho'), ('LTU', 'Lithuanian'), ('LUX', 'Luxembourgish'), ('LVA', 'Latvian'), ('MAC', 'Canton Chinese'), ('MAR', 'Arabic'), ('MCO', 'French'), ('MDA', 'Romanian'), ('MDG', 'Malagasy'), ('MDV', 'Dhivehi'), ('MEX', 'Spanish'), ('MHL', 'Marshallese'), ('MKD', 'Macedonian'), ('MLI', 'Bambara'), ('MLT', 'Maltese'), ('MMR', 'Burmese'), ('MNG', 'Mongolian'), ('MNP', 'Philippene Languages'), ('MOZ', 'Makua'), ('MRT', 'Hassaniya'), ('MSR', 'English'), ('MTQ', 'Creole French'), ('MUS', 'Creole French'), ('MWI', 'Chichewa'), ('MYS', 'Malay'), ('MYT', 'Mahor\u00e9'), ('NAM', 'Ovambo'), ('NCL', 'Malenasian Languages'), ('NER', 'Hausa'), ('NFK', 'English'), ('NGA', 'Joruba'), ('NIC', 'Spanish'), ('NIU', 'English'), ('NIU', 'Niue'), ('NLD', 'Dutch'), ('NOR', 'Norwegian'), ('NPL', 'Nepali'), ('NRU', 'Nauru'), ('NZL', 'English'), ('OMN', 'Arabic'), ('PAK', 'Punjabi'), ('PAN', 'Spanish'), ('PCN', 'Pitcairnese'), ('PER', 'Spanish'), ('PHL', 'Pilipino'), ('PLW', 'Palau'), ('PNG', 'Papuan Languages'), ('POL', 'Polish'), ('PRI', 'Spanish'), ('PRK', 'Korean'), ('PRT', 'Portuguese'), ('PRY', 'Spanish'), ('PSE', 'Arabic'), ('PYF', 'Tahitian'), ('QAT', 'Arabic'), ('REU', 'Creole French'), ('ROM', 'Romanian'), ('RUS', 'Russian'), ('RWA', 'Rwanda'), ('SAU', 'Arabic'), ('SDN', 'Arabic'), ('SEN', 'Wolof'), ('SGP', 'Chinese'), ('SHN', 'English'), ('SJM', 'Norwegian'), ('SJM', 'Russian'), ('SLB', 'Malenasian Languages'), ('SLE', 'Mende'), ('SLV', 'Spanish'), ('SMR', 'Italian'), ('SOM', 'Somali'), ('SPM', 'French'), ('STP', 'Crioulo'), ('SUR', 'Sranantonga'), ('SVK', 'Slovak'), ('SVN', 'Slovene'), ('SWE', 'Swedish'), ('SWZ', 'Swazi'), ('SYC', 'Seselwa'), ('SYR', 'Arabic'), ('TCA', 'English'), ('TCD', 'Sara'), ('TGO', 'Ewe'), ('THA', 'Thai'), ('TJK', 'Tadzhik'), ('TKL', 'English'), ('TKL', 'Tokelau'), ('TKM', 'Turkmenian'), ('TMP', 'Portuguese'), ('TMP', 'Sunda'), ('TON', 'Tongan'), ('TTO', 'English'), ('TUN', 'Arabic'), ('TUR', 'Turkish'), ('TUV', 'Tuvalu'), ('TWN', 'Min'), ('TZA', 'Nyamwesi'), ('UGA', 'Ganda'), ('UKR', 'Ukrainian'), ('UMI', 'English'), ('URY', 'Spanish'), ('USA', 'English'), ('UZB', 'Uzbek'), ('VAT', 'Italian'), ('VCT', 'Creole English'), ('VEN', 'Spanish'), ('VGB', 'English'), ('VIR', 'English'), ('VNM', 'Vietnamese'), ('VUT', 'Bislama'), ('WLF', 'Futuna'), ('WLF', 'Wallis'), ('WSM', 'Samoan-English'), ('YEM', 'Arabic'), ('YUG', 'Serbo-Croatian'), ('ZAF', 'Zulu'), ('ZMB', 'Bemba'), ('ZWE', 'Shona')] != gold [('Papiamento', 'ABW', 76.7), ('Pashto', 'AFG', 52.4), ('Ovimbundu', 'AGO', 37.2), ('English', 'AIA', 0.0), ('Albaniana', 'ALB', 97.9), ('Spanish', 'AND', 44.6), ('Papiamento', 'ANT', 86.2), ('Arabic', 'ARE', 42.0), ('Spanish', 'ARG', 96.8), ('Armenian', 'ARM', 93.4), ('Samoan', 'ASM', 90.6), ('Creole English', 'ATG', 95.7), ('English', 'AUS', 81.2), ('German', 'AUT', 92.0), ('Azerbaijani', 'AZE', 89.0), ('Kirundi', 'BDI', 98.1), ('Dutch', 'BEL', 59.2), ('Fon', 'BEN', 39.8), ('Mossi', 'BFA', 50.2), ('Bengali', 'BGD', 97.7), ('Bulgariana', 'BGR', 83.2), ('Arabic', 'BHR', 67.7), ('Creole English', 'BHS', 89.7), ('Serbo-Croatian', 'BIH', 99.2), ('Belorussian', 'BLR', 65.6), ('English', 'BLZ', 50.8), ('English', 'BMU', 100.0), ('Spanish', 'BOL', 87.7), ('Portuguese', 'BRA', 97.5), ('Bajan', 'BRB', 95.1), ('Malay', 'BRN', 45.5), ('Dzongkha', 'BTN', 50.0), ('Tswana', 'BWA', 75.5), ('Gbaya', 'CAF', 23.8), ('English', 'CAN', 60.4), ('English', 'CCK', 0.0), ('German', 'CHE', 63.6), ('Spanish', 'CHL', 89.7), ('Chinese', 'CHN', 92.0), ('Akan', 'CIV', 30.0), ('Fang', 'CMR', 19.7), ('Luba', 'COD', 18.0), ('Kongo', 'COG', 51.5), ('English', 'COK', 0.0), ('Spanish', 'COL', 99.0), ('Comorian', 'COM', 75.0), ('Crioulo', 'CPV', 100.0), ('Spanish', 'CRI', 97.5), ('Spanish', 'CUB', 100.0), ('Chinese', 'CXR', 0.0), ('English', 'CYM', 0.0), ('Greek', 'CYP', 74.1), ('Czech', 'CZE', 81.2), ('German', 'DEU', 91.3), ('Somali', 'DJI', 43.9), ('Creole English', 'DMA', 100.0), ('Danish', 'DNK', 93.5), ('Spanish', 'DOM', 98.0), ('Arabic', 'DZA', 86.0), ('Spanish', 'ECU', 93.0), ('Arabic', 'EGY', 98.8), ('Tigrinja', 'ERI', 49.1), ('Arabic', 'ESH', 100.0), ('Spanish', 'ESP', 74.4), ('Estonian', 'EST', 65.3), ('Oromo', 'ETH', 31.0), ('Finnish', 'FIN', 92.7), ('Fijian', 'FJI', 50.8), ('English', 'FLK', 0.0), ('French', 'FRA', 93.6), ('Faroese', 'FRO', 100.0), ('Trukese', 'FSM', 41.6), ('Fang', 'GAB', 35.8), ('English', 'GBR', 97.3), ('Georgiana', 'GEO', 71.7), ('Akan', 'GHA', 52.4), ('English', 'GIB', 88.9), ('Ful', 'GIN', 38.6), ('Creole French', 'GLP', 95.0), ('Malinke', 'GMB', 34.1), ('Crioulo', 'GNB', 36.4), ('Fang', 'GNQ', 84.8), ('Greek', 'GRC', 98.5), ('Creole English', 'GRD', 100.0), ('Greenlandic', 'GRL', 87.5), ('Spanish', 'GTM', 64.7), ('Creole French', 'GUF', 94.3), ('English', 'GUM', 37.5), ('Creole English', 'GUY', 96.4), ('Canton Chinese', 'HKG', 88.7), ('Spanish', 'HND', 97.2), ('Serbo-Croatian', 'HRV', 95.9), ('Haiti Creole', 'HTI', 100.0), ('Hungarian', 'HUN', 98.5), ('Javanese', 'IDN', 39.4), ('Hindi', 'IND', 39.9), ('English', 'IRL', 98.4), ('Persian', 'IRN', 45.7), ('Arabic', 'IRQ', 77.2), ('Icelandic', 'ISL', 95.7), ('Hebrew', 'ISR', 63.1), ('Italian', 'ITA', 94.1), ('Creole English', 'JAM', 94.2), ('Arabic', 'JOR', 97.9), ('Japanese', 'JPN', 99.1), ('Kazakh', 'KAZ', 46.0), ('Kikuyu', 'KEN', 20.9), ('Kirgiz', 'KGZ', 59.7), ('Khmer', 'KHM', 88.6), ('Kiribati', 'KIR', 98.9), ('Creole English', 'KNA', 100.0), ('Korean', 'KOR', 99.9), ('Arabic', 'KWT', 78.1), ('Lao', 'LAO', 67.2), ('Arabic', 'LBN', 93.0), ('Kpelle', 'LBR', 19.5), ('Arabic', 'LBY', 96.0), ('Creole French', 'LCA', 80.0), ('German', 'LIE', 89.0), ('Singali', 'LKA', 60.3), ('Sotho', 'LSO', 85.0), ('Lithuanian', 'LTU', 81.6), ('Luxembourgish', 'LUX', 64.4), ('Latvian', 'LVA', 55.1), ('Canton Chinese', 'MAC', 85.6), ('Arabic', 'MAR', 65.0), ('French', 'MCO', 41.9), ('Romanian', 'MDA', 61.9), ('Malagasy', 'MDG', 98.9), ('Dhivehi', 'MDV', 100.0), ('Spanish', 'MEX', 92.1), ('Marshallese', 'MHL', 96.8), ('Macedonian', 'MKD', 66.5), ('Bambara', 'MLI', 31.8), ('Maltese', 'MLT', 95.8), ('Burmese', 'MMR', 69.0), ('Mongolian', 'MNG', 78.8), ('Philippene Languages', 'MNP', 34.1), ('Makua', 'MOZ', 27.8), ('Hassaniya', 'MRT', 81.7), ('English', 'MSR', 0.0), ('Creole French', 'MTQ', 96.6), ('Creole French', 'MUS', 70.6), ('Chichewa', 'MWI', 58.3), ('Malay', 'MYS', 58.4), ('Mahor\u00e9', 'MYT', 41.9), ('Ovambo', 'NAM', 50.7), ('Malenasian Languages', 'NCL', 45.4), ('Hausa', 'NER', 53.1), ('English', 'NFK', 0.0), ('Joruba', 'NGA', 21.4), ('Spanish', 'NIC', 97.6), ('English', 'NIU', 0.0), ('Dutch', 'NLD', 95.6), ('Norwegian', 'NOR', 96.6), ('Nepali', 'NPL', 50.4), ('Nauru', 'NRU', 57.5), ('English', 'NZL', 87.0), ('Arabic', 'OMN', 76.7), ('Punjabi', 'PAK', 48.2), ('Spanish', 'PAN', 76.8), ('Pitcairnese', 'PCN', 0.0), ('Spanish', 'PER', 79.8), ('Pilipino', 'PHL', 29.3), ('Palau', 'PLW', 82.2), ('Papuan Languages', 'PNG', 78.1), ('Polish', 'POL', 97.6), ('Spanish', 'PRI', 51.3), ('Korean', 'PRK', 99.9), ('Portuguese', 'PRT', 99.0), ('Spanish', 'PRY', 55.1), ('Arabic', 'PSE', 95.9), ('Tahitian', 'PYF', 46.4), ('Arabic', 'QAT', 40.7), ('Creole French', 'REU', 91.5), ('Romanian', 'ROM', 90.7), ('Russian', 'RUS', 86.6), ('Rwanda', 'RWA', 100.0), ('Arabic', 'SAU', 95.0), ('Arabic', 'SDN', 49.4), ('Wolof', 'SEN', 48.1), ('Chinese', 'SGP', 77.1), ('English', 'SHN', 0.0), ('Norwegian', 'SJM', 0.0), ('Malenasian Languages', 'SLB', 85.6), ('Mende', 'SLE', 34.8), ('Spanish', 'SLV', 100.0), ('Italian', 'SMR', 100.0), ('Somali', 'SOM', 98.3), ('French', 'SPM', 0.0), ('Crioulo', 'STP', 86.3), ('Sranantonga', 'SUR', 81.0), ('Slovak', 'SVK', 85.6), ('Slovene', 'SVN', 87.9), ('Swedish', 'SWE', 89.5), ('Swazi', 'SWZ', 89.9), ('Seselwa', 'SYC', 91.3), ('Arabic', 'SYR', 90.0), ('English', 'TCA', 0.0), ('Sara', 'TCD', 27.7), ('Ewe', 'TGO', 23.2), ('Thai', 'THA', 52.6), ('Tadzhik', 'TJK', 62.2), ('English', 'TKL', 0.0), ('Turkmenian', 'TKM', 76.7), ('Portuguese', 'TMP', 0.0), ('Tongan', 'TON', 98.3), ('English', 'TTO', 93.5), ('Arabic', 'TUN', 69.9), ('Turkish', 'TUR', 87.6), ('Tuvalu', 'TUV', 92.5), ('Min', 'TWN', 66.7), ('Nyamwesi', 'TZA', 21.1), ('Ganda', 'UGA', 18.1), ('Ukrainian', 'UKR', 64.7), ('English', 'UMI', 0.0), ('Spanish', 'URY', 95.7), ('English', 'USA', 86.2), ('Uzbek', 'UZB', 72.6), ('Italian', 'VAT', 0.0), ('Creole English', 'VCT', 99.1), ('Spanish', 'VEN', 96.9), ('English', 'VGB', 0.0), ('English', 'VIR', 81.7), ('Vietnamese', 'VNM', 86.8), ('Bislama', 'VUT', 56.6), ('Futuna', 'WLF', 0.0), ('Samoan-English', 'WSM', 52.0), ('Arabic', 'YEM', 99.6), ('Serbo-Croatian', 'YUG', 75.2), ('Zulu', 'ZAF', 22.7), ('Bemba', 'ZMB', 29.7), ('Shona', 'ZWE', 72.1)]",
+          "output_preview": "```sql\nSELECT \n    cl.CountryCode,\n    cl.Language\nFROM countrylanguage cl\nINNER JOIN (\n    SELECT \n        CountryCode,\n        MAX(Percentage) AS MaxPercentage\n    FROM countrylanguage\n    GROUP BY ",
+          "gold_preview": "SELECT LANGUAGE ,  CountryCode ,  max(Percentage) FROM countrylanguage GROUP BY CountryCode"
+        },
+        {
+          "item_id": "spider_val_0242",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Result rows mismatch: got [('United Airlines', 'UAL', 100), ('US Airways', 'USAir', 100), ('Delta Airlines', 'Delta', 100), ('Southwest Airlines', 'Southwest', 100), ('American Airlines', 'American', 100), ('Northwest Airlines', 'Northwest', 100), ('Continental Airlines', 'Continental', 100), ('JetBlue Airways', 'JetBlue', 100), ('Frontier Airlines', 'Frontier', 100), ('AirTran Airways', 'AirTran', 100), ('Allegiant Air', 'Allegiant', 100), ('Virgin America', 'Virgin', 100)] != gold [('AirTran Airways',), ('Allegiant Air',), ('American Airlines',), ('Continental Airlines',), ('Delta Airlines',), ('Frontier Airlines',), ('JetBlue Airways',), ('Northwest Airlines',), ('Southwest Airlines',), ('US Airways',), ('United Airlines',), ('Virgin America',)]",
+          "output_preview": "```sql\nSELECT \n    a.Airline,\n    a.Abbreviation,\n    COUNT(*) AS flight_count\nFROM airlines AS a\nJOIN flights AS f\n    ON a.uid = f.Airline\nGROUP BY a.uid\nHAVING COUNT(*) >= 10;\n```",
+          "gold_preview": "SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airlin"
+        },
+        {
+          "item_id": "spider_val_0816",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Result rows mismatch: got [('Afghanistan', 'Pashto', 52.4), ('Albania', 'Albaniana', 97.9), ('Algeria', 'Arabic', 86.0), ('American Samoa', 'Samoan', 90.6), ('Andorra', 'Spanish', 44.6), ('Angola', 'Ovimbundu', 37.2), ('Anguilla', 'English', 0.0), ('Antigua and Barbuda', 'Creole English', 95.7), ('Argentina', 'Spanish', 96.8), ('Armenia', 'Armenian', 93.4), ('Aruba', 'Papiamento', 76.7), ('Australia', 'English', 81.2), ('Austria', 'German', 92.0), ('Azerbaijan', 'Azerbaijani', 89.0), ('Bahamas', 'Creole English', 89.7), ('Bahrain', 'Arabic', 67.7), ('Bangladesh', 'Bengali', 97.7), ('Barbados', 'Bajan', 95.1), ('Belarus', 'Belorussian', 65.6), ('Belgium', 'Dutch', 59.2), ('Belize', 'English', 50.8), ('Benin', 'Fon', 39.8), ('Bermuda', 'English', 100.0), ('Bhutan', 'Dzongkha', 50.0), ('Bolivia', 'Spanish', 87.7), ('Bosnia and Herzegovina', 'Serbo-Croatian', 99.2), ('Botswana', 'Tswana', 75.5), ('Brazil', 'Portuguese', 97.5), ('Brunei', 'Malay', 45.5), ('Bulgaria', 'Bulgariana', 83.2), ('Burkina Faso', 'Mossi', 50.2), ('Burundi', 'Kirundi', 98.1), ('Cambodia', 'Khmer', 88.6), ('Cameroon', 'Fang', 19.7), ('Canada', 'English', 60.4), ('Cape Verde', 'Crioulo', 100.0), ('Cayman Islands', 'English', 0.0), ('Central African Republic', 'Gbaya', 23.8), ('Chad', 'Sara', 27.7), ('Chile', 'Spanish', 89.7), ('China', 'Chinese', 92.0), ('Christmas Island', 'Chinese', 0.0), ('Christmas Island', 'English', 0.0), ('Cocos (Keeling) Islands', 'English', 0.0), ('Cocos (Keeling) Islands', 'Malay', 0.0), ('Colombia', 'Spanish', 99.0), ('Comoros', 'Comorian', 75.0), ('Congo', 'Kongo', 51.5), ('Congo, The Democratic Republic of the', 'Luba', 18.0), ('Cook Islands', 'English', 0.0), ('Cook Islands', 'Maori', 0.0), ('Costa Rica', 'Spanish', 97.5), ('Croatia', 'Serbo-Croatian', 95.9), ('Cuba', 'Spanish', 100.0), ('Cyprus', 'Greek', 74.1), ('Czech Republic', 'Czech', 81.2), ('C\u00f4te d\u2019Ivoire', 'Akan', 30.0), ('Denmark', 'Danish', 93.5), ('Djibouti', 'Somali', 43.9), ('Dominica', 'Creole English', 100.0), ('Dominican Republic', 'Spanish', 98.0), ('East Timor', 'Portuguese', 0.0), ('East Timor', 'Sunda', 0.0), ('Ecuador', 'Spanish', 93.0), ('Egypt', 'Arabic', 98.8), ('El Salvador', 'Spanish', 100.0), ('Equatorial Guinea', 'Fang', 84.8), ('Eritrea', 'Tigrinja', 49.1), ('Estonia', 'Estonian', 65.3), ('Ethiopia', 'Oromo', 31.0), ('Falkland Islands', 'English', 0.0), ('Faroe Islands', 'Faroese', 100.0), ('Fiji Islands', 'Fijian', 50.8), ('Finland', 'Finnish', 92.7), ('France', 'French', 93.6), ('French Guiana', 'Creole French', 94.3), ('French Polynesia', 'Tahitian', 46.4), ('Gabon', 'Fang', 35.8), ('Gambia', 'Malinke', 34.1), ('Georgia', 'Georgiana', 71.7), ('Germany', 'German', 91.3), ('Ghana', 'Akan', 52.4), ('Gibraltar', 'English', 88.9), ('Greece', 'Greek', 98.5), ('Greenland', 'Greenlandic', 87.5), ('Grenada', 'Creole English', 100.0), ('Guadeloupe', 'Creole French', 95.0), ('Guam', 'English', 37.5), ('Guatemala', 'Spanish', 64.7), ('Guinea', 'Ful', 38.6), ('Guinea-Bissau', 'Crioulo', 36.4), ('Guyana', 'Creole English', 96.4), ('Haiti', 'Haiti Creole', 100.0), ('Holy See (Vatican City State)', 'Italian', 0.0), ('Honduras', 'Spanish', 97.2), ('Hong Kong', 'Canton Chinese', 88.7), ('Hungary', 'Hungarian', 98.5), ('Iceland', 'Icelandic', 95.7), ('India', 'Hindi', 39.9), ('Indonesia', 'Javanese', 39.4), ('Iran', 'Persian', 45.7), ('Iraq', 'Arabic', 77.2), ('Ireland', 'English', 98.4), ('Israel', 'Hebrew', 63.1), ('Italy', 'Italian', 94.1), ('Jamaica', 'Creole English', 94.2), ('Japan', 'Japanese', 99.1), ('Jordan', 'Arabic', 97.9), ('Kazakstan', 'Kazakh', 46.0), ('Kenya', 'Kikuyu', 20.9), ('Kiribati', 'Kiribati', 98.9), ('Kuwait', 'Arabic', 78.1), ('Kyrgyzstan', 'Kirgiz', 59.7), ('Laos', 'Lao', 67.2), ('Latvia', 'Latvian', 55.1), ('Lebanon', 'Arabic', 93.0), ('Lesotho', 'Sotho', 85.0), ('Liberia', 'Kpelle', 19.5), ('Libyan Arab Jamahiriya', 'Arabic', 96.0), ('Liechtenstein', 'German', 89.0), ('Lithuania', 'Lithuanian', 81.6), ('Luxembourg', 'Luxembourgish', 64.4), ('Macao', 'Canton Chinese', 85.6), ('Macedonia', 'Macedonian', 66.5), ('Madagascar', 'Malagasy', 98.9), ('Malawi', 'Chichewa', 58.3), ('Malaysia', 'Malay', 58.4), ('Maldives', 'Dhivehi', 100.0), ('Mali', 'Bambara', 31.8), ('Malta', 'Maltese', 95.8), ('Marshall Islands', 'Marshallese', 96.8), ('Martinique', 'Creole French', 96.6), ('Mauritania', 'Hassaniya', 81.7), ('Mauritius', 'Creole French', 70.6), ('Mayotte', 'Mahor\u00e9', 41.9), ('Mexico', 'Spanish', 92.1), ('Micronesia, Federated States of', 'Trukese', 41.6), ('Moldova', 'Romanian', 61.9), ('Monaco', 'French', 41.9), ('Mongolia', 'Mongolian', 78.8), ('Montserrat', 'English', 0.0), ('Morocco', 'Arabic', 65.0), ('Mozambique', 'Makua', 27.8), ('Myanmar', 'Burmese', 69.0), ('Namibia', 'Ovambo', 50.7), ('Nauru', 'Nauru', 57.5), ('Nepal', 'Nepali', 50.4), ('Netherlands', 'Dutch', 95.6), ('Netherlands Antilles', 'Papiamento', 86.2), ('New Caledonia', 'Malenasian Languages', 45.4), ('New Zealand', 'English', 87.0), ('Nicaragua', 'Spanish', 97.6), ('Niger', 'Hausa', 53.1), ('Nigeria', 'Joruba', 21.4), ('Niue', 'English', 0.0), ('Niue', 'Niue', 0.0), ('Norfolk Island', 'English', 0.0), ('North Korea', 'Korean', 99.9), ('Northern Mariana Islands', 'Philippene Languages', 34.1), ('Norway', 'Norwegian', 96.6), ('Oman', 'Arabic', 76.7), ('Pakistan', 'Punjabi', 48.2), ('Palau', 'Palau', 82.2), ('Palestine', 'Arabic', 95.9), ('Panama', 'Spanish', 76.8), ('Papua New Guinea', 'Papuan Languages', 78.1), ('Paraguay', 'Spanish', 55.1), ('Peru', 'Spanish', 79.8), ('Philippines', 'Pilipino', 29.3), ('Pitcairn', 'Pitcairnese', 0.0), ('Poland', 'Polish', 97.6), ('Portugal', 'Portuguese', 99.0), ('Puerto Rico', 'Spanish', 51.3), ('Qatar', 'Arabic', 40.7), ('Romania', 'Romanian', 90.7), ('Russian Federation', 'Russian', 86.6), ('Rwanda', 'Rwanda', 100.0), ('R\u00e9union', 'Creole French', 91.5), ('Saint Helena', 'English', 0.0), ('Saint Kitts and Nevis', 'Creole English', 100.0), ('Saint Lucia', 'Creole French', 80.0), ('Saint Pierre and Miquelon', 'French', 0.0), ('Saint Vincent and the Grenadines', 'Creole English', 99.1), ('Samoa', 'Samoan-English', 52.0), ('San Marino', 'Italian', 100.0), ('Sao Tome and Principe', 'Crioulo', 86.3), ('Saudi Arabia', 'Arabic', 95.0), ('Senegal', 'Wolof', 48.1), ('Seychelles', 'Seselwa', 91.3), ('Sierra Leone', 'Mende', 34.8), ('Singapore', 'Chinese', 77.1), ('Slovakia', 'Slovak', 85.6), ('Slovenia', 'Slovene', 87.9), ('Solomon Islands', 'Malenasian Languages', 85.6), ('Somalia', 'Somali', 98.3), ('South Africa', 'Zulu', 22.7), ('South Korea', 'Korean', 99.9), ('Spain', 'Spanish', 74.4), ('Sri Lanka', 'Singali', 60.3), ('Sudan', 'Arabic', 49.4), ('Suriname', 'Sranantonga', 81.0), ('Svalbard and Jan Mayen', 'Norwegian', 0.0), ('Svalbard and Jan Mayen', 'Russian', 0.0), ('Swaziland', 'Swazi', 89.9), ('Sweden', 'Swedish', 89.5), ('Switzerland', 'German', 63.6), ('Syria', 'Arabic', 90.0), ('Taiwan', 'Min', 66.7), ('Tajikistan', 'Tadzhik', 62.2), ('Tanzania', 'Nyamwesi', 21.1), ('Thailand', 'Thai', 52.6), ('Togo', 'Ewe', 23.2), ('Tokelau', 'English', 0.0), ('Tokelau', 'Tokelau', 0.0), ('Tonga', 'Tongan', 98.3), ('Trinidad and Tobago', 'English', 93.5), ('Tunisia', 'Arabic', 69.9), ('Turkey', 'Turkish', 87.6), ('Turkmenistan', 'Turkmenian', 76.7), ('Turks and Caicos Islands', 'English', 0.0), ('Tuvalu', 'Tuvalu', 92.5), ('Uganda', 'Ganda', 18.1), ('Ukraine', 'Ukrainian', 64.7), ('United Arab Emirates', 'Arabic', 42.0), ('United Kingdom', 'English', 97.3), ('United States', 'English', 86.2), ('United States Minor Outlying Islands', 'English', 0.0), ('Uruguay', 'Spanish', 95.7), ('Uzbekistan', 'Uzbek', 72.6), ('Vanuatu', 'Bislama', 56.6), ('Venezuela', 'Spanish', 96.9), ('Vietnam', 'Vietnamese', 86.8), ('Virgin Islands, British', 'English', 0.0), ('Virgin Islands, U.S.', 'English', 81.7), ('Wallis and Futuna', 'Futuna', 0.0), ('Wallis and Futuna', 'Wallis', 0.0), ('Western Sahara', 'Arabic', 100.0), ('Yemen', 'Arabic', 99.6), ('Yugoslavia', 'Serbo-Croatian', 75.2), ('Zambia', 'Bemba', 29.7), ('Zimbabwe', 'Shona', 72.1)] != gold [('Papiamento', 'ABW', 76.7), ('Pashto', 'AFG', 52.4), ('Ovimbundu', 'AGO', 37.2), ('English', 'AIA', 0.0), ('Albaniana', 'ALB', 97.9), ('Spanish', 'AND', 44.6), ('Papiamento', 'ANT', 86.2), ('Arabic', 'ARE', 42.0), ('Spanish', 'ARG', 96.8), ('Armenian', 'ARM', 93.4), ('Samoan', 'ASM', 90.6), ('Creole English', 'ATG', 95.7), ('English', 'AUS', 81.2), ('German', 'AUT', 92.0), ('Azerbaijani', 'AZE', 89.0), ('Kirundi', 'BDI', 98.1), ('Dutch', 'BEL', 59.2), ('Fon', 'BEN', 39.8), ('Mossi', 'BFA', 50.2), ('Bengali', 'BGD', 97.7), ('Bulgariana', 'BGR', 83.2), ('Arabic', 'BHR', 67.7), ('Creole English', 'BHS', 89.7), ('Serbo-Croatian', 'BIH', 99.2), ('Belorussian', 'BLR', 65.6), ('English', 'BLZ', 50.8), ('English', 'BMU', 100.0), ('Spanish', 'BOL', 87.7), ('Portuguese', 'BRA', 97.5), ('Bajan', 'BRB', 95.1), ('Malay', 'BRN', 45.5), ('Dzongkha', 'BTN', 50.0), ('Tswana', 'BWA', 75.5), ('Gbaya', 'CAF', 23.8), ('English', 'CAN', 60.4), ('English', 'CCK', 0.0), ('German', 'CHE', 63.6), ('Spanish', 'CHL', 89.7), ('Chinese', 'CHN', 92.0), ('Akan', 'CIV', 30.0), ('Fang', 'CMR', 19.7), ('Luba', 'COD', 18.0), ('Kongo', 'COG', 51.5), ('English', 'COK', 0.0), ('Spanish', 'COL', 99.0), ('Comorian', 'COM', 75.0), ('Crioulo', 'CPV', 100.0), ('Spanish', 'CRI', 97.5), ('Spanish', 'CUB', 100.0), ('Chinese', 'CXR', 0.0), ('English', 'CYM', 0.0), ('Greek', 'CYP', 74.1), ('Czech', 'CZE', 81.2), ('German', 'DEU', 91.3), ('Somali', 'DJI', 43.9), ('Creole English', 'DMA', 100.0), ('Danish', 'DNK', 93.5), ('Spanish', 'DOM', 98.0), ('Arabic', 'DZA', 86.0), ('Spanish', 'ECU', 93.0), ('Arabic', 'EGY', 98.8), ('Tigrinja', 'ERI', 49.1), ('Arabic', 'ESH', 100.0), ('Spanish', 'ESP', 74.4), ('Estonian', 'EST', 65.3), ('Oromo', 'ETH', 31.0), ('Finnish', 'FIN', 92.7), ('Fijian', 'FJI', 50.8), ('English', 'FLK', 0.0), ('French', 'FRA', 93.6), ('Faroese', 'FRO', 100.0), ('Trukese', 'FSM', 41.6), ('Fang', 'GAB', 35.8), ('English', 'GBR', 97.3), ('Georgiana', 'GEO', 71.7), ('Akan', 'GHA', 52.4), ('English', 'GIB', 88.9), ('Ful', 'GIN', 38.6), ('Creole French', 'GLP', 95.0), ('Malinke', 'GMB', 34.1), ('Crioulo', 'GNB', 36.4), ('Fang', 'GNQ', 84.8), ('Greek', 'GRC', 98.5), ('Creole English', 'GRD', 100.0), ('Greenlandic', 'GRL', 87.5), ('Spanish', 'GTM', 64.7), ('Creole French', 'GUF', 94.3), ('English', 'GUM', 37.5), ('Creole English', 'GUY', 96.4), ('Canton Chinese', 'HKG', 88.7), ('Spanish', 'HND', 97.2), ('Serbo-Croatian', 'HRV', 95.9), ('Haiti Creole', 'HTI', 100.0), ('Hungarian', 'HUN', 98.5), ('Javanese', 'IDN', 39.4), ('Hindi', 'IND', 39.9), ('English', 'IRL', 98.4), ('Persian', 'IRN', 45.7), ('Arabic', 'IRQ', 77.2), ('Icelandic', 'ISL', 95.7), ('Hebrew', 'ISR', 63.1), ('Italian', 'ITA', 94.1), ('Creole English', 'JAM', 94.2), ('Arabic', 'JOR', 97.9), ('Japanese', 'JPN', 99.1), ('Kazakh', 'KAZ', 46.0), ('Kikuyu', 'KEN', 20.9), ('Kirgiz', 'KGZ', 59.7), ('Khmer', 'KHM', 88.6), ('Kiribati', 'KIR', 98.9), ('Creole English', 'KNA', 100.0), ('Korean', 'KOR', 99.9), ('Arabic', 'KWT', 78.1), ('Lao', 'LAO', 67.2), ('Arabic', 'LBN', 93.0), ('Kpelle', 'LBR', 19.5), ('Arabic', 'LBY', 96.0), ('Creole French', 'LCA', 80.0), ('German', 'LIE', 89.0), ('Singali', 'LKA', 60.3), ('Sotho', 'LSO', 85.0), ('Lithuanian', 'LTU', 81.6), ('Luxembourgish', 'LUX', 64.4), ('Latvian', 'LVA', 55.1), ('Canton Chinese', 'MAC', 85.6), ('Arabic', 'MAR', 65.0), ('French', 'MCO', 41.9), ('Romanian', 'MDA', 61.9), ('Malagasy', 'MDG', 98.9), ('Dhivehi', 'MDV', 100.0), ('Spanish', 'MEX', 92.1), ('Marshallese', 'MHL', 96.8), ('Macedonian', 'MKD', 66.5), ('Bambara', 'MLI', 31.8), ('Maltese', 'MLT', 95.8), ('Burmese', 'MMR', 69.0), ('Mongolian', 'MNG', 78.8), ('Philippene Languages', 'MNP', 34.1), ('Makua', 'MOZ', 27.8), ('Hassaniya', 'MRT', 81.7), ('English', 'MSR', 0.0), ('Creole French', 'MTQ', 96.6), ('Creole French', 'MUS', 70.6), ('Chichewa', 'MWI', 58.3), ('Malay', 'MYS', 58.4), ('Mahor\u00e9', 'MYT', 41.9), ('Ovambo', 'NAM', 50.7), ('Malenasian Languages', 'NCL', 45.4), ('Hausa', 'NER', 53.1), ('English', 'NFK', 0.0), ('Joruba', 'NGA', 21.4), ('Spanish', 'NIC', 97.6), ('English', 'NIU', 0.0), ('Dutch', 'NLD', 95.6), ('Norwegian', 'NOR', 96.6), ('Nepali', 'NPL', 50.4), ('Nauru', 'NRU', 57.5), ('English', 'NZL', 87.0), ('Arabic', 'OMN', 76.7), ('Punjabi', 'PAK', 48.2), ('Spanish', 'PAN', 76.8), ('Pitcairnese', 'PCN', 0.0), ('Spanish', 'PER', 79.8), ('Pilipino', 'PHL', 29.3), ('Palau', 'PLW', 82.2), ('Papuan Languages', 'PNG', 78.1), ('Polish', 'POL', 97.6), ('Spanish', 'PRI', 51.3), ('Korean', 'PRK', 99.9), ('Portuguese', 'PRT', 99.0), ('Spanish', 'PRY', 55.1), ('Arabic', 'PSE', 95.9), ('Tahitian', 'PYF', 46.4), ('Arabic', 'QAT', 40.7), ('Creole French', 'REU', 91.5), ('Romanian', 'ROM', 90.7), ('Russian', 'RUS', 86.6), ('Rwanda', 'RWA', 100.0), ('Arabic', 'SAU', 95.0), ('Arabic', 'SDN', 49.4), ('Wolof', 'SEN', 48.1), ('Chinese', 'SGP', 77.1), ('English', 'SHN', 0.0), ('Norwegian', 'SJM', 0.0), ('Malenasian Languages', 'SLB', 85.6), ('Mende', 'SLE', 34.8), ('Spanish', 'SLV', 100.0), ('Italian', 'SMR', 100.0), ('Somali', 'SOM', 98.3), ('French', 'SPM', 0.0), ('Crioulo', 'STP', 86.3), ('Sranantonga', 'SUR', 81.0), ('Slovak', 'SVK', 85.6), ('Slovene', 'SVN', 87.9), ('Swedish', 'SWE', 89.5), ('Swazi', 'SWZ', 89.9), ('Seselwa', 'SYC', 91.3), ('Arabic', 'SYR', 90.0), ('English', 'TCA', 0.0), ('Sara', 'TCD', 27.7), ('Ewe', 'TGO', 23.2), ('Thai', 'THA', 52.6), ('Tadzhik', 'TJK', 62.2), ('English', 'TKL', 0.0), ('Turkmenian', 'TKM', 76.7), ('Portuguese', 'TMP', 0.0), ('Tongan', 'TON', 98.3), ('English', 'TTO', 93.5), ('Arabic', 'TUN', 69.9), ('Turkish', 'TUR', 87.6), ('Tuvalu', 'TUV', 92.5), ('Min', 'TWN', 66.7), ('Nyamwesi', 'TZA', 21.1), ('Ganda', 'UGA', 18.1), ('Ukrainian', 'UKR', 64.7), ('English', 'UMI', 0.0), ('Spanish', 'URY', 95.7), ('English', 'USA', 86.2), ('Uzbek', 'UZB', 72.6), ('Italian', 'VAT', 0.0), ('Creole English', 'VCT', 99.1), ('Spanish', 'VEN', 96.9), ('English', 'VGB', 0.0), ('English', 'VIR', 81.7), ('Vietnamese', 'VNM', 86.8), ('Bislama', 'VUT', 56.6), ('Futuna', 'WLF', 0.0), ('Samoan-English', 'WSM', 52.0), ('Arabic', 'YEM', 99.6), ('Serbo-Croatian', 'YUG', 75.2), ('Zulu', 'ZAF', 22.7), ('Bemba', 'ZMB', 29.7), ('Shona', 'ZWE', 72.1)]",
+          "output_preview": "```sql\nSELECT c.Name AS Country, cl.Language AS Language, cl.Percentage\nFROM country c\nJOIN countrylanguage cl ON c.Code = cl.CountryCode\nWHERE cl.Percentage = (\n    SELECT MAX(cl2.Percentage)\n    FRO",
+          "gold_preview": "SELECT LANGUAGE ,  CountryCode ,  max(Percentage) FROM countrylanguage GROUP BY CountryCode"
+        },
+        {
+          "item_id": "spider_val_0936",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Ordered rows mismatch: got [(14, 'Funk', 4)] != gold [(14, 'Funk')]",
+          "output_preview": "```sql\nSELECT o.owner_id, o.last_name, COUNT(t.treatment_id) AS treatment_count\nFROM Owners o\nJOIN Dogs d ON o.owner_id = d.owner_id\nJOIN Treatments t ON d.dog_id = t.dog_id\nGROUP BY o.owner_id, o.las",
+          "gold_preview": "SELECT T1.owner_id ,  T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id "
+        },
+        {
+          "item_id": "spider_val_0705",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "sqlite_execution_test",
+          "passed": false,
+          "checker_details": "Result rows mismatch: got [(143,)] != gold [(122,)]",
+          "output_preview": "```sql\nSELECT COUNT(*) \nFROM country \nWHERE GovernmentForm LIKE '%Republic%';\n```",
+          "gold_preview": "SELECT count(*) FROM country WHERE GovernmentForm  =  \"Republic\""
+        }
+      ]
+    },
+    "multiple_choice_exact_match": {
+      "total_passes_available": 42,
+      "sampled_passes_count": 10,
+      "sampled_passes": [
+        {
+          "item_id": "Mercury_7205135",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (C)",
+          "output_preview": "Answer: (C)",
+          "gold_preview": "C"
+        },
+        {
+          "item_id": "Mercury_7099768",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (D)",
+          "output_preview": "To determine the correct answer, let's analyze the energy transformations involved when a bowling ball is released and moves down the lane:\n\n1.  **Initial State**: When the bowler releases the ball, i",
+          "gold_preview": "D"
+        },
+        {
+          "item_id": "Mercury_7236023",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (B)",
+          "output_preview": "Answer: (B)",
+          "gold_preview": "B"
+        },
+        {
+          "item_id": "Mercury_7130603",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (C)",
+          "output_preview": "To determine which quantity is not measured in joules, let's analyze the standard SI units for each option:\n\n1.  **Heat**: Heat is a form of energy transfer. The SI unit for energy, including heat, is",
+          "gold_preview": "C"
+        },
+        {
+          "item_id": "MEA_2013_5_3",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (D)",
+          "output_preview": "Answer: (D)",
+          "gold_preview": "D"
+        },
+        {
+          "item_id": "Mercury_7236023",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (B)",
+          "output_preview": "Answer: (B) Air particles move up and to the right. \n\nIn the Northern Hemisphere, the Coriolis effect causes moving air to deflect to the right. In the context of a low-pressure system, air moves inwa",
+          "gold_preview": "B"
+        },
+        {
+          "item_id": "LEAP_2006_8_10412",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (B)",
+          "output_preview": "Answer: (B) heating changed the chemical bonds in the egg.",
+          "gold_preview": "B"
+        },
+        {
+          "item_id": "Mercury_7081760",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (B)",
+          "output_preview": "Answer: (B) revise scientific knowledge.",
+          "gold_preview": "B"
+        },
+        {
+          "item_id": "Mercury_7018008",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (A)",
+          "output_preview": "An atom consists of a nucleus containing protons (which have a positive charge) and neutrons (which have no charge), surrounded by electrons (which have a negative charge). In a stable, un-ionized ato",
+          "gold_preview": "A"
+        },
+        {
+          "item_id": "Mercury_SC_402104",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "multiple_choice_exact_match",
+          "passed": true,
+          "checker_details": "Selected correct option (D)",
+          "output_preview": "Answer: (D)",
+          "gold_preview": "D"
+        }
+      ],
+      "total_fails_available": 3,
+      "sampled_fails_count": 3,
+      "sampled_fails": [
+        {
+          "item_id": "TIMSS_2007_4_pg26",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "multiple_choice_exact_match",
+          "passed": false,
+          "checker_details": "Selected option (A) != gold (B)",
+          "output_preview": "Answer: (A) a spider",
+          "gold_preview": "B"
+        },
+        {
+          "item_id": "Mercury_7130603",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "multiple_choice_exact_match",
+          "passed": false,
+          "checker_details": "Selected option (B) != gold (C)",
+          "output_preview": "Answer: (B)",
+          "gold_preview": "C"
+        },
+        {
+          "item_id": "Mercury_7130603",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "multiple_choice_exact_match",
+          "passed": false,
+          "checker_details": "Selected option (B) != gold (C)",
+          "output_preview": "Answer: (B) light",
+          "gold_preview": "C"
+        }
+      ]
+    },
+    "fact_checklist_scorer": {
+      "total_passes_available": 0,
+      "sampled_passes_count": 0,
+      "sampled_passes": [],
+      "total_fails_available": 150,
+      "sampled_fails_count": 10,
+      "sampled_fails": [
+        {
+          "item_id": "track_b_dev_0048",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.00, Violations: 0",
+          "output_preview": "theta-48: 45.2 degrees\ntheta-49: -196.0 Kelvin",
+          "gold_preview": "[{'type': 'token', 'value': 'DevModule-Prop-48', 'description': 'component DevModule-Prop-48'}, {'ty"
+        },
+        {
+          "item_id": "track_b_dev_0022",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.00, Violations: 0",
+          "output_preview": "theta-22: 45.5\ntheta-23: 60.2",
+          "gold_preview": "[{'type': 'token', 'value': 'DevModule-Life-22', 'description': 'component DevModule-Life-22'}, {'ty"
+        },
+        {
+          "item_id": "track_b_dev_0017",
+          "model_id": "openai/gpt-oss-120b",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.33, Violations: 0",
+          "output_preview": "SensorMount-M3 max telemetry drift: 0.12\u202f\u00b5s/h  \nSensorMount-M3 bracket damping polymer: PTFE\u2011reinforced silicone",
+          "gold_preview": "[{'type': 'token', 'value': 'SensorMount-M3', 'description': 'component SensorMount-M3'}, {'type': '"
+        },
+        {
+          "item_id": "track_b_dev_0044",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.00, Violations: 0",
+          "output_preview": "theta-44: 0.0000\ntheta-45: 0.0000",
+          "gold_preview": "[{'type': 'token', 'value': 'DevModule-Levi-44', 'description': 'component DevModule-Levi-44'}, {'ty"
+        },
+        {
+          "item_id": "track_b_dev_0042",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.00, Violations: 0",
+          "output_preview": "key: theta-42 = 0.85\nkey: theta-43 = 0.90",
+          "gold_preview": "[{'type': 'token', 'value': 'DevModule-Tele-42', 'description': 'component DevModule-Tele-42'}, {'ty"
+        },
+        {
+          "item_id": "track_b_dev_0045",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.00, Violations: 0",
+          "output_preview": "theta-45: 45\ntheta-46: 46",
+          "gold_preview": "[{'type': 'token', 'value': 'DevModule-Airl-45', 'description': 'component DevModule-Airl-45'}, {'ty"
+        },
+        {
+          "item_id": "track_b_dev_0041",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.00, Violations: 0",
+          "output_preview": "theta-41: 0.041\ntheta-42: 0.042",
+          "gold_preview": "[{'type': 'token', 'value': 'DevModule-Cryo-41', 'description': 'component DevModule-Cryo-41'}, {'ty"
+        },
+        {
+          "item_id": "track_b_dev_0004",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.00, Violations: 0",
+          "output_preview": "component_designation: HG42-EMC-09\nfriction_pad_material: Sintered Tungsten Carbide\nnominal_emergency_deceleration_rating: 12.5 g",
+          "gold_preview": "[{'type': 'token', 'value': 'EddyShoe-B7', 'description': 'caliper EddyShoe-B7'}, {'type': 'token', "
+        },
+        {
+          "item_id": "track_b_dev_0019",
+          "model_id": "qwen/qwen3.8-27b",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.33, Violations: 0",
+          "output_preview": "I cannot provide the specific active settings, primary o-ring elastomer, or clamping sealing pressure for the \"HyperGrid v4.2\" specification or the \"DoorSeal-V4\" component, as this appears to be a fic",
+          "gold_preview": "[{'type': 'token', 'value': 'DoorSeal-V4', 'description': 'component DoorSeal-V4'}, {'type': 'phrase"
+        },
+        {
+          "item_id": "track_b_dev_0019",
+          "model_id": "microsoft/Phi-4-mini-instruct",
+          "checker": "fact_checklist_scorer",
+          "passed": false,
+          "checker_details": "Recall: 0.33, Violations: 0",
+          "output_preview": "key: DoorSeal-V4 active settings\nvalue: primary o-ring elastomer: Viton\nvalue: clamping sealing pressure: 150 psi",
+          "gold_preview": "[{'type': 'token', 'value': 'DoorSeal-V4', 'description': 'component DoorSeal-V4'}, {'type': 'phrase"
+        }
+      ]
+    }
+  }
+}

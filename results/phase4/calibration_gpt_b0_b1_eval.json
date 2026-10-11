@@ -1,0 +1,288 @@
+{
+  "b0_total_acc": 50.0,
+  "b0_tool_required_acc": 11.11111111111111,
+  "b0_solvable_w_o_tools_acc": 90.0,
+  "b1_total_acc": 0.0,
+  "b1_tool_required_acc": 0.0,
+  "b1_solvable_w_o_tools_acc": 0.0,
+  "b0_records": [
+    {
+      "item_id": "calib_hard_0001",
+      "solvability": "tool-required",
+      "num_stages": 3,
+      "passed": false,
+      "gold": 511,
+      "output": "",
+      "details": "Did not find gold number 511 in output"
+    },
+    {
+      "item_id": "calib_hard_0002",
+      "solvability": "tool-required",
+      "num_stages": 3,
+      "passed": true,
+      "gold": -250,
+      "output": "**Reasoning**\n\n1. **Count Asian countries**  \n   In the classic *world* sample database, the `country` table contains 49 entries whose `Continent` is `'Asia'`.\n\n2. **Generate the sequence**  \n   - Start with \\(a_0 = 7\\).  \n   - Recurrence: \\(a_n = (3 \\times a_{n-1} + 11) \\bmod 1000\\).\n\n   Computing the first few terms:\n\n   | n | \\(a_n\\) | \\(a_n \\bmod 3\\) |\n   |---|--------|-----------------|\n   | 1 | 32  | 2 |\n   | 2 | 107 | 2 |\n   | 3 | 332 | 2 |\n   | 4 | 7   | 1 |\n   | 5 | 32  | 2 |\n   | \u2026 | \u2026   | \u2026 |\n\n   The sequence repeats every 4 terms: **32,\u202f107,\u202f332,\u202f7**.  \n   None of these values are divisible by 3, and because the pattern repeats, **no term among \\(a_1\\) \u2026 \\(a_{49}\\) is a multiple of 3**.\n\n3. **Sum of terms divisible by 3**  \n   \\[\n   \\text{Sum} = 0\n   \\]\n\n4. **Final valuation**  \n   \\[\n   \\text{Result} = (0 \\times 4) - 250 = -250\n   \\]\n\n---\n\n**Final Answer:**\u202f-250",
+      "details": "Matched declared -250"
+    },
+    {
+      "item_id": "calib_hard_0003",
+      "solvability": "tool-required",
+      "num_stages": 3,
+      "passed": false,
+      "gold": 57,
+      "output": "**Step\u202f1 \u2013 Sum the years of work for conductors older than 35**\n\nThe problem gives no actual rows for the `conductor` table.  \nIf there are no conductors with `Age > 35`, the sum of their `Year_of_Work` values is **0**.\n\n**Step\u202f2 \u2013 Compute the target rank**\n\n\\[\n\\text{target rank}= \\frac{\\text{total Year\\_of\\_Work}}{5}+17\n                 = \\frac{0}{5}+17\n                 = 17\n\\]\n\nThe target rank is an integer, 17.\n\n**Step\u202f3 \u2013 Find the 17\u2011th prime**\n\nListing the primes in order (rank\u202f1 = 2):\n\n2,\u202f3,\u202f5,\u202f7,\u202f11,\u202f13,\u202f17,\u202f19,\u202f23,\u202f29,\u202f31,\u202f37,\u202f41,\u202f43,\u202f47,\u202f53,\u202f**59**, \u2026\n\nThe 17\u2011th prime is **59**.\n\n**Step\u202f4 \u2013 Sum the squares of its decimal digits**\n\nDigits of 59: 5 and 9.\n\n\\[\n5^{2}+9^{2}=25+81=106\n\\]\n\n---\n\n**Final Answer: 106**",
+      "details": "Did not find gold number 57 in output"
+    },
+    {
+      "item_id": "calib_hard_0004",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0005",
+      "solvability": "tool-required",
+      "num_stages": 3,
+      "passed": false,
+      "gold": -60,
+      "output": "**Step\u2011by\u2011step reasoning**\n\n1. **Compute the total of `Final_Table_Made`**  \n   The SQL statement that returns the sum of the `Final_Table_Made` column for all rows in the `poker_player` table is:\n\n   ```sql\n   SELECT SUM(Final_Table_Made) AS total_final_table_made\n   FROM poker_player;\n   ```\n\n   This query yields a single numeric value (let\u2019s call it **S**).\n\n2. **Find the remainder of\u202fS\u202fwhen divided by\u202f7**  \n   The remainder **R** is computed as:\n\n   \\[\n   R = S \\bmod 7\n   \\]\n\n   (If `S` is a non\u2011integer, the remainder is taken on the integer part of `S`.)\n\n3. **Initial warehouse stock**  \n   The problem states that the initial stock equals the remainder multiplied by\u202f25:\n\n   \\[\n   \\text{initial_stock} = 25 \\times R\n   \\]\n\n4. **Batch consumption rules**  \n   For each batch\u202fk\u202f(1\u202f\u2264\u202fk\u202f\u2264\u202f12):\n\n   - If\u202fk\u202fis odd \u2192 consumption = \\(3k + 2\\) units  \n   - If\u202fk\u202fis even \u2192 consumption = \\(2k + 1\\) units  \n\n   The total consumption **C** over the 12 batches is therefore:\n\n   \\[\n   \\begin{aligned}\n   C &= \\sum_{k=1}^{12}\n        \\begin{cases}\n          3k + 2 & \\text{if } k \\text{ is odd} \\\\\n          2k + 1 & \\text{if } k \\text{ is even}\n        \\end{cases} \\\\\n   &= (3\\cdot1+2) + (2\\cdot2+1) + (3\\cdot3+2) + (2\\cdot4+1) + \\dots + (2\\cdot12+1) \\\\\n   &= 5 + 5 + 11 + 9 + 17 + 13 + 23 + 17 + 29 + 21 + 35 + 25 \\\\\n   &= 210\n   \\end{aligned}\n   \\]\n\n5. **Remaining stock after all batches**  \n\n   \\[\n   \\text{final_stock} = \\text{initial_stock} - C\n   \\]\n\n   Substituting the expressions for `initial_stock` and `C`:\n\n   \\[\n   \\text{final_stock} = 25R - 210\n   \\]\n\n   Since the remainder **R** can only be an integer from\u202f0\u202fto\u202f6, the possible final stock values are:\n\n   | R | final_stock = 25\u00b7R \u2013 210 |\n   |---|--------------------------|\n   | 0 | -210 |\n   | 1 | -185 |\n   | 2 | -160 |\n   | 3 | -135 |\n   | 4 | -110 |\n   | 5 |  -85 |\n   | 6 |  -60 |\n\n   The exact numeric answer depends on the actual sum **S** retrieved from the database.\n\n---\n\n**Conclusion**\n\nI cannot compute the exact numeric result because I don\u2019t have access to the contents of the `poker_player` table. If you run the SQL query above and provide the resulting sum **S**, you can plug it into the formula:\n\n\\[\n\\text{Final Answer} = 25 \\times (S \\bmod 7) - 210\n\\]\n\nand obtain the precise remaining stock count.",
+      "details": "Did not find gold number -60 in output"
+    },
+    {
+      "item_id": "calib_hard_0006",
+      "solvability": "tool-required",
+      "num_stages": 2,
+      "passed": false,
+      "gold": 134190,
+      "output": "**Step\u202f1 \u2013 Get the number of flights for Airline\u202fID\u202f1**\n\n```sql\nSELECT COUNT(*) AS flight_cnt\nFROM flights\nWHERE Airline = 1;\n```\n\nAssume the query returns **N** flights.\n\n**Step\u202f2 \u2013 Compute the luggage revenue**\n\n* Average passengers per flight = 142  \n* Percentage that check a bag = 35\u202f% \u2192 0.35  \n* Bags per checking passenger = 1 (one piece per passenger)  \n* Price per checked bag = $30  \n\nLuggage revenue before discount per flight:\n\n\\[\n142 \\times 0.35 \\times 30 = 1\\,491\\text{ dollars}\n\\]\n\n**Step\u202f3 \u2013 Apply the corporate loyalty discount**\n\nThe discount waives 10\u202f% of the total luggage fees, so the net factor is \\(1 - 0.10 = 0.90\\).\n\nNet revenue per flight:\n\n\\[\n1\\,491 \\times 0.90 = 1\\,341.9\\text{ dollars}\n\\]\n\n**Step\u202f4 \u2013 Multiply by the number of flights**\n\n\\[\n\\text{Total net luggage revenue} = N \\times 1\\,341.9\n\\]\n\nRounded to whole dollars:\n\n\\[\n\\text{Final revenue} = \\text{round}(N \\times 1\\,341.9)\n\\]\n\n---\n\n**Final Answer:** `round(N\u202f\u00d7\u202f1\u202f341.9)` dollars  \n\n*(Replace **N** with the flight count obtained from the query above to get the exact numeric result.)*",
+      "details": "Did not find gold number 134190 in output"
+    },
+    {
+      "item_id": "calib_hard_0007",
+      "solvability": "tool-required",
+      "num_stages": 2,
+      "passed": false,
+      "gold": 48,
+      "output": "",
+      "details": "Did not find gold number 48 in output"
+    },
+    {
+      "item_id": "calib_hard_0008",
+      "solvability": "tool-required",
+      "num_stages": 2,
+      "passed": false,
+      "gold": 696000,
+      "output": "**Step\u2011by\u2011step reasoning**\n\n1. **Count the qualifying airlines**  \n   The airlines we need are those whose `Country` column equals `'USA'`.  \n   ```sql\n   SELECT COUNT(DISTINCT uid) AS usa_airline_cnt\n   FROM airlines\n   WHERE Country = 'USA';\n   ```\n   Let this count be **N**.\n\n2. **Compute the overhaul cost per airline**  \n   - Turbine servicing:\u202f4 aircraft \u00d7\u202f$8\u202f500\u202f=\u202f$34\u202f000  \n   - Avionics recertification:\u202f2 aircraft \u00d7\u202f$12\u202f000\u202f=\u202f$24\u202f000  \n\n   **Cost per airline** = $34\u202f000\u202f+\u202f$24\u202f000\u202f=\u202f$58\u202f000.\n\n3. **Total combined overhaul cost**  \n   Multiply the per\u2011airline cost by the number of qualifying airlines:\n\n   \\[\n   \\text{Total Cost} = N \\times 58{,}000\n   \\]\n\n**Final numeric answer (expressed in terms of the query result)**  \n\n```\nFinal Answer: 58000 * (SELECT COUNT(DISTINCT uid) FROM airlines WHERE Country = 'USA')\n```",
+      "details": "Did not find gold number 696000 in output"
+    },
+    {
+      "item_id": "calib_hard_0009",
+      "solvability": "tool-required",
+      "num_stages": 2,
+      "passed": false,
+      "gold": 84,
+      "output": "**Step\u202f1 \u2013 Query the TV\u2011show database**\n\nTo obtain the number of episodes whose **Share** value is strictly greater than\u202f5.0 you can run the following SQL statement:\n\n```sql\nSELECT COUNT(*) AS episodes_gt_5\nFROM TV_series\nWHERE Share > 5.0;\n```\n\nThe query returns a single integer (let\u2019s call it **N**) \u2013 the total count of episodes that satisfy the condition.\n\n---\n\n**Step\u202f2 \u2013 Binary\u2011sequence problem**\n\nNow we consider **all binary sequences of length\u202fN** that satisfy the \u201cno two adjacent\u202f1\u2019s\u201d rule.  \nAmong those sequences we need to count how many contain **exactly three\u202f1\u2019s**.\n\nA binary sequence with no two adjacent\u202f1\u2019s is often called a *Fibonacci word* because the total number of such sequences of length\u202fL follows the Fibonacci recurrence.  \nWhen we also fix the number of\u202f1\u2019s, the count can be expressed combinatorially.\n\n*Combinatorial insight*  \nIf a binary string of length\u202fL has exactly\u202fk\u202f1\u2019s and no two 1\u2019s are adjacent, we can think of placing the\u202fk\u202f1\u2019s into the L\u2011k\u202f+\u202f1 \u201cgaps\u201d that exist between (and at the ends of) the\u202f0\u2019s. Formally, the number of such strings is:\n\n\\[\n\\displaystyle \\binom{L - k + 1}{k}\n\\]\n\nwhere \\(\\binom{a}{b}\\) is the binomial coefficient \u201ca choose b\u201d.\n\n*Applying it to our case*  \nHere \\(L = N\\) (the episode count) and \\(k = 3\\). Therefore the number of valid binary sequences is:\n\n\\[\n\\displaystyle \\text{Count} = \\binom{N - 3 + 1}{3}\n               = \\binom{N - 2}{3}\n\\]\n\n---\n\n**Step\u202f3 \u2013 Algorithm (pseudocode)**\n\n```pseudo\n# Step 1: Get N from the database\nN = execute_sql(\"SELECT COUNT(*) FROM TV_series WHERE Share > 5.0\")\n\n# Step 2: Compute the number of binary strings of length N\n#         with no adjacent 1's and exactly three 1's\nif N < 3:\n    result = 0                     # not enough positions for three 1's\nelse:\n    result = binomial(N - 2, 3)    # (N-2) choose 3\n\noutput result\n```\n\nThe `binomial(n, k)` function can be implemented with the standard multiplicative formula:\n\n```pseudo\nfunction binomial(n, k):\n    if k < 0 or k > n: return 0\n    if k > n - k: k = n - k        # take advantage of symmetry\n    res = 1\n    for i from 1 to k:\n        res = res * (n - k + i) / i\n    return res\n```\n\n---\n\n**Final numeric answer**\n\nThe exact numeric answer depends on the value of **N**, which is the result of the SQL query on your specific `TV_series` table. Once you run the query and obtain **N**, plug it into the formula \\(\\displaystyle \\binom{N-2}{3}\\) (or use the algorithm above) to get the final count.\n\n*If you provide the value of N, I can compute the final number for you.*",
+      "details": "Did not find gold number 84 in output"
+    },
+    {
+      "item_id": "calib_hard_0010",
+      "solvability": "tool-required",
+      "num_stages": 2,
+      "passed": false,
+      "gold": 2295,
+      "output": "**Reasoning**\n\n1. **Count senior dogs** \u2013 Dogs whose `age` (stored as text) is greater than\u202f3 years:  \n\n   ```sql\n   SELECT COUNT(*) AS senior_count\n   FROM Dogs\n   WHERE CAST(age AS INTEGER) > 3;\n   ```\n\n   The query returns **5** senior dogs.\n\n2. **Daily food per senior dog** \u2013 420\u202fg.  \n   **30\u2011day cycle** \u2192 420\u202fg\u202f\u00d7\u202f30\u202f=\u202f12\u202f600\u202fg = **12.6\u202fkg** per dog.\n\n3. **Total food required** \u2013 5 dogs\u202f\u00d7\u202f12.6\u202fkg = **63\u202fkg**.\n\n4. **Bags needed** \u2013 Food is sold in sealed 2.5\u202fkg bags; only whole bags can be bought.  \n\n   \\[\n   \\text{bags} = \\left\\lceil \\frac{63\\text{\u202fkg}}{2.5\\text{\u202fkg/bag}} \\right\\rceil\n               = \\left\\lceil 25.2 \\right\\rceil\n               = 26\\text{ bags}\n   \\]\n\n5. **Cost** \u2013 Each bag costs \\$45.  \n\n   \\[\n   \\text{total cost} = 26 \\times \\$45 = \\$1\\,170\n   \\]\n\n**Final Answer:** 1170",
+      "details": "Did not find gold number 2295 in output"
+    },
+    {
+      "item_id": "calib_hard_0011",
+      "solvability": "solvable_without_tools",
+      "num_stages": 3,
+      "passed": true,
+      "gold": 230,
+      "output": "Final Answer: 230",
+      "details": "Last integer matched gold 230"
+    },
+    {
+      "item_id": "calib_hard_0012",
+      "solvability": "solvable_without_tools",
+      "num_stages": 3,
+      "passed": true,
+      "gold": 655,
+      "output": "The facility ends up with  \n\n- **Surviving components:** \\(850 \\times 0.88 = 748\\)  \n- **Nickel\u2011finished components:** \\(748 - 0.75 \\times 748 = 748 - 561 = 187\\)\n\nPackaging the 187 nickel parts greedily:\n\n1. **13\u2011part containers:** \\(\\left\\lfloor \\frac{187}{13}\\right\\rfloor = 14\\) containers, using \\(14 \\times 13 = 182\\) parts.  \n2. **Remaining parts:** \\(187 - 182 = 5\\)  \n3. **7\u2011part containers:** none (5\u202f<\u202f7).  \n4. **3\u2011part containers:** \\(\\left\\lfloor \\frac{5}{3}\\right\\rfloor = 1\\) container, using 3 parts.  \n5. **Unpackaged parts:** \\(5 - 3 = 2\\) parts.\n\nCost calculation  \n\n- 13\u2011part containers: \\(14 \\times \\$45 = \\$630\\)  \n- 7\u2011part containers: \\(0 \\times \\$25 = \\$0\\)  \n- 3\u2011part containers: \\(1 \\times \\$15 = \\$15\\)  \n- Storage for unpackaged parts: \\(2 \\times \\$5 = \\$10\\)\n\n**Total cost:** \\(630 + 0 + 15 + 10 = \\$655\\)\n\n**Final Answer: 655**",
+      "details": "Last integer matched gold 655"
+    },
+    {
+      "item_id": "calib_hard_0013",
+      "solvability": "solvable_without_tools",
+      "num_stages": 3,
+      "passed": true,
+      "gold": 46,
+      "output": "**Step\u202f1: Generate the pseudorandom states**\n\nThe recurrence is  \n\n\\[\nX_{n+1}= (17X_n+43)\\pmod{256},\\qquad X_0=19\n\\]\n\nCompute sequentially:\n\n| n | \\(X_n\\) calculation | \\(X_n\\) |\n|---|----------------------|--------|\n|0| given | 19 |\n|1| \\(17\u00b719+43 = 366\\) \u2192 \\(366\\bmod256 = 110\\) | 110 |\n|2| \\(17\u00b7110+43 = 1913\\) \u2192 \\(1913\\bmod256 = 121\\) | 121 |\n|3| \\(17\u00b7121+43 = 2100\\) \u2192 \\(2100\\bmod256 = 52\\) | 52 |\n|4| \\(17\u00b752+43 = 927\\) \u2192 \\(927\\bmod256 = 159\\) | 159 |\n|5| \\(17\u00b7159+43 = 2746\\) \u2192 \\(2746\\bmod256 = 186\\) | 186 |\n|6| \\(17\u00b7186+43 = 3205\\) \u2192 \\(3205\\bmod256 = 133\\) | 133 |\n|7| \\(17\u00b7133+43 = 2304\\) \u2192 \\(2304\\bmod256 = 0\\) | 0 |\n|8| \\(17\u00b70+43 = 43\\) \u2192 \\(43\\bmod256 = 43\\) | **43** |\n\nThus \\(X_8 = 43\\).\n\n---\n\n**Step\u202f2: Apply the arithmetic operations**\n\n\\[\n\\begin{aligned}\n\\text{Multiply by 14:}&\\; 43 \\times 14 = 602\\\\\n\\text{Subtract 50:}&\\; 602 - 50 = 552\\\\\n\\text{Integer\u2011divide by 3:}&\\; \\left\\lfloor\\frac{552}{3}\\right\\rfloor = 184\n\\end{aligned}\n\\]\n\nResulting integer = **184**.\n\n---\n\n**Step\u202f3: Unique prime factors of 184**\n\n\\[\n184 = 2^3 \\times 23\n\\]\n\nUnique primes: \\(2\\) and \\(23\\).\n\nProduct of the unique prime factors:\n\n\\[\n2 \\times 23 = 46\n\\]\n\n---\n\n**Final Answer:** 46",
+      "details": "Matched declared 46"
+    },
+    {
+      "item_id": "calib_hard_0014",
+      "solvability": "solvable_without_tools",
+      "num_stages": 3,
+      "passed": true,
+      "gold": 535,
+      "output": "**Step\u2011by\u2011step reasoning**\n\n1. **Select priority\u202f=\u202f1 rows**  \n   We have the packages:  \n   - (1,\u202f14,\u202f1) \u2192 weight\u202f14  \n   - (3,\u202f35,\u202f1) \u2192 weight\u202f35  \n   - (4,\u202f18,\u202f1) \u2192 weight\u202f18  \n   - (6,\u202f25,\u202f1) \u2192 weight\u202f25  \n   - (8,\u202f32,\u202f1) \u2192 weight\u202f32  \n\n2. **Sum of their weights**  \n   \\(14 + 35 + 18 + 25 + 32 = 124\\)\n\n3. **60\u202f% of this sum**  \n   \\(0.60 \\times 124 = 74.4\\)\n\n4. **Sort the weights in strictly descending order**  \n   35,\u202f32,\u202f25,\u202f18,\u202f14\n\n5. **Find the smallest count of largest packages whose cumulative weight \u2265\u202f74.4**  \n\n   | Count | Cumulative weight |\n   |-------|-------------------|\n   | 1     | 35                |\n   | 2     | 35\u202f+\u202f32\u202f=\u202f67       |\n   | 3     | 35\u202f+\u202f32\u202f+\u202f25\u202f=\u202f92  |\n\n   At count\u202f=\u202f3 the cumulative weight (92) meets/exceeds 74.4.  \n   Minimum required count = **3**.\n\n6. **Compute the handling fee**  \n   \\(3 \\times 150 + 85 = 450 + 85 = 535\\)\n\n**Final Answer:** 535",
+      "details": "Matched declared 535"
+    },
+    {
+      "item_id": "calib_hard_0015",
+      "solvability": "solvable_without_tools",
+      "num_stages": 3,
+      "passed": true,
+      "gold": 38,
+      "output": "The simple\u2011interest balance after 5 years is  \n\n\\(40000 + 40000 \\times 0.06 \\times 5 = 40000 + 12000 = 52000\\).\n\nThe balance 52\u202f000 falls in the tier \\((50001, 75000, 4, 250)\\).\n\nCombined service cost:  \n\n\\[\n\\text{cost} = 250 + \\left\\lfloor\\frac{52000 \\times 4}{1000}\\right\\rfloor\n            = 250 + \\left\\lfloor\\frac{208000}{1000}\\right\\rfloor\n            = 250 + 208 = 458.\n\\]\n\nDigits of 458 are 4 (position\u202f1), 5 (position\u202f2), 8 (position\u202f3).\n\n\\[\n4\\cdot1 + 5\\cdot2 + 8\\cdot3 = 4 + 10 + 24 = 38.\n\\]\n\n**Final Answer: 38**",
+      "details": "Matched declared 38"
+    },
+    {
+      "item_id": "calib_hard_0016",
+      "solvability": "solvable_without_tools",
+      "num_stages": 2,
+      "passed": true,
+      "gold": 149,
+      "output": "The tournament has  \n\n- \\( \\binom{8}{2}=28 \\) pairs of teams, each playing 2 matches \u2192 \\(28 \\times 2 = 56\\) matches, indexed \\(0\\) to \\(55\\).\n\n- Matches whose index is divisible by\u202f3 are draws (2 points total).  \n  Indices divisible by\u202f3 in this range are \\(0,3,6,\\dots,54\\).  \n  Count\u202f=\u202f\\(\\left\\lfloor\\frac{55}{3}\\right\\rfloor + 1 = 18 + 1 = 19\\) draws.\n\n- The remaining matches are non\u2011draws, each awarding 3 points total.  \n  Count\u202f=\u202f\\(56 - 19 = 37\\) non\u2011draws.\n\nTotal points awarded:\n\n\\[\n19 \\times 2 \\;+\\; 37 \\times 3 \\;=\\; 38 \\;+\\; 111 \\;=\\; 149.\n\\]\n\n**Final Answer: 149**",
+      "details": "Last integer matched gold 149"
+    },
+    {
+      "item_id": "calib_hard_0017",
+      "solvability": "solvable_without_tools",
+      "num_stages": 2,
+      "passed": true,
+      "gold": 1036,
+      "output": "Final Answer: 1036",
+      "details": "Last integer matched gold 1036"
+    },
+    {
+      "item_id": "calib_hard_0018",
+      "solvability": "solvable_without_tools",
+      "num_stages": 2,
+      "passed": false,
+      "gold": 3085,
+      "output": "**Reasoning**\n\n1. **Identify Tech items and compute their gross revenue**  \n   - Item\u202f1:\u202f45\u202funits\u202f\u00d7\u202f$120\u202f=\u202f$5,400  \n   - Item\u202f3:\u202f30\u202funits\u202f\u00d7\u202f$200\u202f=\u202f$6,000  \n   - Item\u202f5:\u202f60\u202funits\u202f\u00d7\u202f$85\u202f=\u202f$5,100  \n\n   Total gross revenue for the **Tech** category:  \n   \\(5,400 + 6,000 + 5,100 = 16,500\\).\n\n2. **Calculate pre\u2011tax profit (22\u202f% of gross revenue)**  \n   Using integer arithmetic:  \n   \\[\n   \\text{pre\u2011tax profit} = \\frac{16,500 \\times 22}{100} = 3,630\n   \\]\n\n3. **Calculate corporate tax (15\u202f% of pre\u2011tax profit)**  \n   \\[\n   \\text{tax} = \\frac{3,630 \\times 15}{100} = 544.5 \\;\\rightarrow\\; 544\n   \\]\n   (integer division truncates the fractional part.)\n\n4. **Compute net post\u2011tax profit**  \n   \\[\n   \\text{net profit} = 3,630 - 544 = 3,086\n   \\]\n\n**Final Answer:** 3086",
+      "details": "Did not find gold number 3085 in output"
+    },
+    {
+      "item_id": "calib_hard_0019",
+      "solvability": "solvable_without_tools",
+      "num_stages": 2,
+      "passed": true,
+      "gold": 37,
+      "output": "The integer \\(N\\) must satisfy  \n\n\\[\n\\begin{cases}\nN\\equiv 3 \\pmod 5\\\\\nN\\equiv 4 \\pmod 7\\\\\nN\\equiv 6 \\pmod{11}\n\\end{cases}\n\\]\n\nUsing the Chinese Remainder Theorem:\n\n1. From \\(N\\equiv 3\\pmod5\\) write \\(N=5a+3\\).\n2. Plug into the second congruence: \\(5a+3\\equiv4\\pmod7\\Rightarrow5a\\equiv1\\pmod7\\).\n   The inverse of \\(5\\) mod\u202f7 is \\(3\\), so \\(a\\equiv3\\pmod7\\); let \\(a=7b+3\\).\n3. Then \\(N=5(7b+3)+3=35b+18\\).\n4. Impose the third congruence: \\(35b+18\\equiv6\\pmod{11}\\).\n   Since \\(35\\equiv2\\pmod{11}\\) and \\(18\\equiv7\\pmod{11}\\), we have \\(2b+7\\equiv6\\pmod{11}\\Rightarrow2b\\equiv10\\pmod{11}\\).\n   The inverse of \\(2\\) mod\u202f11 is \\(6\\), giving \\(b\\equiv5\\pmod{11}\\); write \\(b=11c+5\\).\n\nThus  \n\n\\[\nN = 35(11c+5)+18 = 385c + 193.\n\\]\n\nThe smallest positive solution corresponds to \\(c=0\\):\n\n\\[\n\\boxed{N=193}.\n\\]\n\nNow compute \\(N^{3}\\):\n\n\\[\n193^{2}=37249,\\qquad\n193^{3}=37249\\times193 = 7\\,189\\,057.\n\\]\n\nSum of the decimal digits of \\(7\\,189\\,057\\):\n\n\\[\n7+1+8+9+0+5+7 = 37.\n\\]\n\n**Final Answer: 37**",
+      "details": "Matched declared 37"
+    },
+    {
+      "item_id": "calib_hard_0020",
+      "solvability": "solvable_without_tools",
+      "num_stages": 2,
+      "passed": true,
+      "gold": 1310,
+      "output": "The rover\u2019s final coordinates are \\((6, 8)\\), giving a Manhattan distance of \\(|6|+|8| = 14\\).  \nEnergy used = \\(14 \\times 85 = 1190\\)\u202fmW.  \nRemaining battery = \\(2500 - 1190 = 1310\\)\u202fmW.\n\n**Final Answer: 1310**",
+      "details": "Matched declared 1310"
+    }
+  ],
+  "b1_records": [
+    {
+      "item_id": "calib_hard_0001",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0002",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0003",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0004",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0005",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0006",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0007",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0008",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0009",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0010",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0011",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0012",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0013",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0014",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0015",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0016",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0017",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0018",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0019",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "item_id": "calib_hard_0020",
+      "passed": false,
+      "error": "HTTP Error 400: Bad Request"
+    }
+  ]
+}

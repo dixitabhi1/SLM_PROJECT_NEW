@@ -7,8 +7,11 @@ Per Condition 13b.5 and Hard Rules 5/6, this card describes sources, licenses, s
 
 ## 1. Track A: Objective Evaluation Suite (Primary Track)
 
-### 1.1 Task Composition & Canonical Provenance
-Track A consists strictly of 100% downloaded benchmark items with preserved official IDs and reproducible download commands. Zero agent-written items are included in the atomic stratum.
+### 1.1 Task Composition, Canonical Provenance & Authorship Attribution
+- **Atomic Stratum (Track A, 60%):** Consists strictly of 100% downloaded official benchmark items with preserved official IDs and reproducible download commands.
+- **Compound Stratum (Track A, 40%):** All composed items across Dev, Held-Out, and Reserve splits are **agent-authored** (synthesized by the coding agent by chaining official atomic tasks with natural-language framing and self-contained Python reference programs). Specifically, held-out and reserve composed items were written by the agent.
+- **Track B (100%):** All 50 HyperGrid corpus documents, the master fact pool of 160 invented facts, and all evaluation questions across Dev and Held-Out are **agent-authored** (synthesized by the coding agent).
+
 
 | Task Domain | Benchmark Source | Upstream Split | License | Exact Download Command / API Source | Verification Checker |
 |---|---|---|---|---|---|
@@ -46,7 +49,7 @@ Track A is enlarged to **100 items per split**, partitioned deterministically wi
 
 | Split Name | File Path | Item Count | Compound Ratio | Cryptographic SHA-256 Hash | Status |
 |---|---|---|---|---|---|
-| **Track A Dev Split** | `data/track_a_dev_split.json` | 100 | 40.0% (40 items) | `e3e6ccccf3a856f318e60b249a016145653fc0cf5e191616df40ee184ae046de` | Complete for Dev progression |
+| **Track A Dev Split** | `data/track_a_dev_split.json` | 100 | 40.0% (40 items) | `1167025a5b20d1fce8e8f6e00d46316c1a32c0678e15ecb16e62d8d7a5d4c24e` | Complete for Dev progression |
 | **Track A Held-Out Candidate** | `data/track_a_heldout_candidate.json` | 100 | 40.0% (40 items) | `0d959ce08b613d3dd3054cb6601807c50d415a3fabe1cfe31550b5a4388fcf31` | **CANDIDATE PENDING OWNER REVIEW BEFORE LOCK** |
 | **Track A Reserve Quarantine** | `data/reserve_set_quarantine.json` | 100 | 40.0% (40 items) | `18d43de45b8b4ac43dcd9d3a0b227d0078c5e8c6cc466792d9f649d860262cce` | Untouched, quarantined reserve |
 

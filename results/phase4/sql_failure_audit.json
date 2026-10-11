@@ -1,0 +1,5674 @@
+[
+  {
+    "item_id": "spider_val_0180",
+    "db_id": "flight_2",
+    "question": "What country is Jetblue Airways affiliated with?",
+    "schema_in_prompt": true,
+    "prompt": "[Database: flight_2]\n[Database Schema:\nCREATE TABLE 'airlines' ( uid INTEGER PRIMARY KEY, Airline TEXT, Abbreviation TEXT, Country TEXT )\nCREATE TABLE 'airports' ( City TEXT, AirportCode TEXT PRIMARY KEY, AirportName TEXT, Country TEXT, CountryAbbrev TEXT )\nCREATE TABLE 'flights' ( Airline INTEGER, FlightNo INTEGER, SourceAirport TEXT, DestAirport TEXT, PRIMARY KEY(Airline, FlightNo), FOREIGN KEY (SourceAirport) REFERENCES airports(AirportCode), FOREIGN KEY (DestAirport) REFERENCES airports(AirportCode) )\n]\nQuestion: What country is Jetblue Airways affiliated with?\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT Country FROM AIRLINES WHERE Airline  =  \"JetBlue Airways\"",
+    "gold_rows": [
+      [
+        "USA"
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT Country FROM airlines WHERE Airline = 'JetBlue Airways'",
+        "pred_rows": [
+          [
+            "USA"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset (1 rows)"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT Country\nFROM airlines\nWHERE Airline = 'JetBlue Airways'",
+        "pred_rows": [
+          [
+            "USA"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset (1 rows)"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT Country\nFROM airlines\nWHERE Airline = 'Jetblue Airways'",
+        "pred_rows": [],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [] != gold [('USA',)]"
+      }
+    },
+    "fault_diagnosis": "Model error"
+  },
+  {
+    "item_id": "spider_val_0242",
+    "db_id": "flight_2",
+    "question": "Which airlines have at least 10 flights?",
+    "schema_in_prompt": true,
+    "prompt": "[Database: flight_2]\n[Database Schema:\nCREATE TABLE 'airlines' ( uid INTEGER PRIMARY KEY, Airline TEXT, Abbreviation TEXT, Country TEXT )\nCREATE TABLE 'airports' ( City TEXT, AirportCode TEXT PRIMARY KEY, AirportName TEXT, Country TEXT, CountryAbbrev TEXT )\nCREATE TABLE 'flights' ( Airline INTEGER, FlightNo INTEGER, SourceAirport TEXT, DestAirport TEXT, PRIMARY KEY(Airline, FlightNo), FOREIGN KEY (SourceAirport) REFERENCES airports(AirportCode), FOREIGN KEY (DestAirport) REFERENCES airports(AirportCode) )\n]\nQuestion: Which airlines have at least 10 flights?\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  >  10",
+    "gold_rows": [
+      [
+        "AirTran Airways"
+      ],
+      [
+        "Allegiant Air"
+      ],
+      [
+        "American Airlines"
+      ],
+      [
+        "Continental Airlines"
+      ],
+      [
+        "Delta Airlines"
+      ],
+      [
+        "Frontier Airlines"
+      ],
+      [
+        "JetBlue Airways"
+      ],
+      [
+        "Northwest Airlines"
+      ],
+      [
+        "Southwest Airlines"
+      ],
+      [
+        "US Airways"
+      ],
+      [
+        "United Airlines"
+      ],
+      [
+        "Virgin America"
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT Airline, COUNT(*) AS FlightCount\nFROM flights\nGROUP BY Airline\nHAVING COUNT(*) >= 10",
+        "pred_rows": [
+          [
+            1,
+            100
+          ],
+          [
+            2,
+            100
+          ],
+          [
+            3,
+            100
+          ],
+          [
+            4,
+            100
+          ],
+          [
+            5,
+            100
+          ],
+          [
+            6,
+            100
+          ],
+          [
+            7,
+            100
+          ],
+          [
+            8,
+            100
+          ],
+          [
+            9,
+            100
+          ],
+          [
+            10,
+            100
+          ],
+          [
+            11,
+            100
+          ],
+          [
+            12,
+            100
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [(1, 100), (2, 100), (3, 100), (4, 100), (5, 100), (6, 100), (7, 100), (8, 100), (9, 100), (10, 100), (11, 100), (12, 100)] != gold [('AirTran Airways',), ('Allegiant Air',), ('American Airlines',), ('Continental Airlines',), ('Delta Airlines',), ('Frontier Airlines',), ('JetBlue Airways',), ('Northwest Airlines',), ('Southwest Airlines',), ('US Airways',), ('United Airlines',), ('Virgin America',)]"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT a.Airline\nFROM airlines a\nJOIN flights f ON a.uid = f.Airline\nGROUP BY a.uid\nHAVING COUNT(*) >= 10",
+        "pred_rows": [
+          [
+            "United Airlines"
+          ],
+          [
+            "US Airways"
+          ],
+          [
+            "Delta Airlines"
+          ],
+          [
+            "Southwest Airlines"
+          ],
+          [
+            "American Airlines"
+          ],
+          [
+            "Northwest Airlines"
+          ],
+          [
+            "Continental Airlines"
+          ],
+          [
+            "JetBlue Airways"
+          ],
+          [
+            "Frontier Airlines"
+          ],
+          [
+            "AirTran Airways"
+          ],
+          [
+            "Allegiant Air"
+          ],
+          [
+            "Virgin America"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset (12 rows)"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT \n    a.Airline,\n    a.Abbreviation,\n    COUNT(*) AS flight_count\nFROM airlines AS a\nJOIN flights AS f\n    ON a.uid = f.Airline\nGROUP BY a.uid\nHAVING COUNT(*) >= 10",
+        "pred_rows": [
+          [
+            "United Airlines",
+            "UAL",
+            100
+          ],
+          [
+            "US Airways",
+            "USAir",
+            100
+          ],
+          [
+            "Delta Airlines",
+            "Delta",
+            100
+          ],
+          [
+            "Southwest Airlines",
+            "Southwest",
+            100
+          ],
+          [
+            "American Airlines",
+            "American",
+            100
+          ],
+          [
+            "Northwest Airlines",
+            "Northwest",
+            100
+          ],
+          [
+            "Continental Airlines",
+            "Continental",
+            100
+          ],
+          [
+            "JetBlue Airways",
+            "JetBlue",
+            100
+          ],
+          [
+            "Frontier Airlines",
+            "Frontier",
+            100
+          ],
+          [
+            "AirTran Airways",
+            "AirTran",
+            100
+          ],
+          [
+            "Allegiant Air",
+            "Allegiant",
+            100
+          ],
+          [
+            "Virgin America",
+            "Virgin",
+            100
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [('United Airlines', 'UAL', 100), ('US Airways', 'USAir', 100), ('Delta Airlines', 'Delta', 100), ('Southwest Airlines', 'Southwest', 100), ('American Airlines', 'American', 100), ('Northwest Airlines', 'Northwest', 100), ('Continental Airlines', 'Continental', 100), ('JetBlue Airways', 'JetBlue', 100), ('Frontier Airlines', 'Frontier', 100), ('AirTran Airways', 'AirTran', 100), ('Allegiant Air', 'Allegiant', 100), ('Virgin America', 'Virgin', 100)] != gold [('AirTran Airways',), ('Allegiant Air',), ('American Airlines',), ('Continental Airlines',), ('Delta Airlines',), ('Frontier Airlines',), ('JetBlue Airways',), ('Northwest Airlines',), ('Southwest Airlines',), ('US Airways',), ('United Airlines',), ('Virgin America',)]"
+      }
+    },
+    "fault_diagnosis": "Spider gold query ambiguity ('at least 10' interpreted as > 10 in gold rather than >= 10; model also projected extra columns)"
+  },
+  {
+    "item_id": "spider_val_0263",
+    "db_id": "employee_hire_evaluation",
+    "question": "What is the number of employees from each city?",
+    "schema_in_prompt": true,
+    "prompt": "[Database: employee_hire_evaluation]\n[Database Schema:\nCREATE TABLE \"employee\" ( \"Employee_ID\" int, \"Name\" text, \"Age\" int, \"City\" text, PRIMARY KEY (\"Employee_ID\") )\nCREATE TABLE \"shop\" ( \"Shop_ID\" int, \"Name\" text, \"Location\" text, \"District\" text, \"Number_products\" int, \"Manager_name\" text, PRIMARY KEY (\"Shop_ID\") )\nCREATE TABLE \"hiring\" ( \"Shop_ID\" int, \"Employee_ID\" int, \"Start_from\" text, \"Is_full_time\" bool, PRIMARY KEY (\"Employee_ID\"), FOREIGN KEY (`Shop_ID`) REFERENCES `shop`(`Shop_ID`), FOREIGN KEY (`Employee_ID`) REFERENCES `employee`(`Employee_ID`) )\nCREATE TABLE \"evaluation\" ( \"Employee_ID\" text, \"Year_awarded\" text, \"Bonus\" real, PRIMARY KEY (\"Employee_ID\",\"Year_awarded\"), FOREIGN KEY (`Employee_ID`) REFERENCES `employee`(`Employee_ID`) )\n]\nQuestion: What is the number of employees from each city?\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT count(*) ,  city FROM employee GROUP BY city",
+    "gold_rows": [
+      [
+        3,
+        "Bath"
+      ],
+      [
+        3,
+        "Bristol"
+      ],
+      [
+        1,
+        "Leicester"
+      ],
+      [
+        1,
+        "Sale"
+      ],
+      [
+        2,
+        "Wasps"
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT City, COUNT(*) AS Number_of_Employees\nFROM employee\nGROUP BY City",
+        "pred_rows": [
+          [
+            "Bath",
+            3
+          ],
+          [
+            "Bristol",
+            3
+          ],
+          [
+            "Leicester",
+            1
+          ],
+          [
+            "Sale",
+            1
+          ],
+          [
+            "Wasps",
+            2
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset under column permutation (5 rows)"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT City, COUNT(*) \nFROM employee \nGROUP BY City",
+        "pred_rows": [
+          [
+            "Bath",
+            3
+          ],
+          [
+            "Bristol",
+            3
+          ],
+          [
+            "Leicester",
+            1
+          ],
+          [
+            "Sale",
+            1
+          ],
+          [
+            "Wasps",
+            2
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset under column permutation (5 rows)"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT\n    City,\n    COUNT(*) AS employee_count\nFROM employee\nGROUP BY City\nORDER BY employee_count DESC",
+        "pred_rows": [
+          [
+            "Bristol",
+            3
+          ],
+          [
+            "Bath",
+            3
+          ],
+          [
+            "Wasps",
+            2
+          ],
+          [
+            "Sale",
+            1
+          ],
+          [
+            "Leicester",
+            1
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset under column permutation (5 rows)"
+      }
+    },
+    "fault_diagnosis": "Checker fault (column order permutation mismatch; semantically correct query, fixed in versioned checker)"
+  },
+  {
+    "item_id": "spider_val_0475",
+    "db_id": "wta_1",
+    "question": "find the code of the country where has the greatest number of players.",
+    "schema_in_prompt": true,
+    "prompt": "[Database: wta_1]\n[Database Schema:\nCREATE TABLE players( \"player_id\" INT PRIMARY KEY, \"first_name\" TEXT, \"last_name\" TEXT, \"hand\" TEXT, \"birth_date\" DATE, \"country_code\" TEXT )\nCREATE TABLE matches( \"best_of\" INT, \"draw_size\" INT, \"loser_age\" FLOAT, \"loser_entry\" TEXT, \"loser_hand\" TEXT, \"loser_ht\" INT, \"loser_id\" INT, \"loser_ioc\" TEXT, \"loser_name\" TEXT, \"loser_rank\" INT, \"loser_rank_points\" INT, \"loser_seed\" INT, \"match_num\" INT, \"minutes\" INT, \"round\" TEXT, \"score\" TEXT, \"surface\" TEXT, \"tourney_date\" DATE, \"tourney_id\" TEXT, \"tourney_level\" TEXT, \"tourney_name\" TEXT, \"winner_age\" FLOAT, \"winner_entry\" TEXT, \"winner_hand\" TEXT, \"winner_ht\" INT, \"winner_id\" INT, \"winner_ioc\" TEXT, \"winner_name\" TEXT, \"winner_rank\" INT, \"winner_rank_points\" INT, \"winner_seed\" INT, \"year\" INT, FOREIGN KEY(loser_id) REFERENCES players(player_id), FOREIGN KEY(winner_id) REFERENCES players(player_id) )\nCREATE TABLE rankings(\"ranking_date\" DATE,\"ranking\" INT,\"player_id\" INT,\"ranking_points\" INT,\"tours\" INT,FOREIGN KEY(player_id) REFERENCES players(player_id))\n]\nQuestion: find the code of the country where has the greatest number of players.\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT country_code FROM players GROUP BY country_code ORDER BY count(*) DESC LIMIT 1",
+    "gold_rows": [
+      [
+        "USA"
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT country_code, COUNT(*) AS player_count\nFROM players\nGROUP BY country_code\nORDER BY player_count DESC\nLIMIT 1",
+        "pred_rows": [
+          [
+            "USA",
+            2217
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Ordered rows mismatch: got [('USA', 2217)] != gold [('USA',)]"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT country_code\nFROM players\nGROUP BY country_code\nORDER BY COUNT(player_id) DESC\nLIMIT 1",
+        "pred_rows": [
+          [
+            "USA"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Ordered result rows match gold (1 rows)"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT country_code\nFROM players\nGROUP BY country_code\nORDER BY COUNT(*) DESC\nLIMIT 1",
+        "pred_rows": [
+          [
+            "USA"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Ordered result rows match gold (1 rows)"
+      }
+    },
+    "fault_diagnosis": "Model error"
+  },
+  {
+    "item_id": "spider_val_0646",
+    "db_id": "tvshow",
+    "question": "What are the package options of all tv channels that are not playing any cartoons directed by Ben Jones?",
+    "schema_in_prompt": true,
+    "prompt": "[Database: tvshow]\n[Database Schema:\nCREATE TABLE \"TV_Channel\" ( \"id\" text, \"series_name\" text, \"Country\" text, \"Language\" text, \"Content\" text, \"Pixel_aspect_ratio_PAR\" text, \"Hight_definition_TV\" text, \"Pay_per_view_PPV\" text, \"Package_Option\" text, PRIMARY KEY (\"id\") )\nCREATE TABLE \"TV_series\" ( \"id\" real, \"Episode\" text, \"Air_Date\" text, \"Rating\" text, \"Share\" real, \"18_49_Rating_Share\" text, \"Viewers_m\" text, \"Weekly_Rank\" real, \"Channel\" text, PRIMARY KEY (\"id\"), FOREIGN KEY (`Channel`) REFERENCES `TV_Channel`(`id`) )\nCREATE TABLE \"Cartoon\" ( \"id\" real, \"Title\" text, \"Directed_by\" text, \"Written_by\" text, \"Original_air_date\" text, \"Production_code\" real, \"Channel\" text, PRIMARY KEY (\"id\"), FOREIGN KEY (`Channel`) REFERENCES `TV_Channel`(`id`) )\n]\nQuestion: What are the package options of all tv channels that are not playing any cartoons directed by Ben Jones?\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT package_option FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones')",
+    "gold_rows": [
+      [
+        "Sky Famiglia"
+      ],
+      [
+        "Sky Famiglia"
+      ],
+      [
+        "Sky Famiglia"
+      ],
+      [
+        "Sky Famiglia"
+      ],
+      [
+        "no ( FTV )"
+      ],
+      [
+        "Sky Famiglia + Sky HD"
+      ],
+      [
+        "no ( FTV )"
+      ],
+      [
+        "Sky Famiglia"
+      ],
+      [
+        "Sky Famiglia"
+      ],
+      [
+        "Sky Famiglia"
+      ],
+      [
+        "Sky Famiglia"
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT DISTINCT TV_Channel.Package_Option\nFROM TV_Channel\nJOIN TV_series ON TV_Channel.id = TV_series.Channel\nJOIN Cartoon ON TV_channel.id = Cartoon.Channel\nWHERE Cartoon.Directed_by = 'Ben Jones'\nAND TV_channel.id NOT IN (\n    SELECT DISTINCT TV_series.Channel\n    FROM TV_series\n    JOIN Cartoon ON TV_series.Channel = Cartoon.Channel\n    WHERE Cartoon.Directed_by = 'Ben Jones'\n)",
+        "pred_rows": [],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [] != gold [('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('no ( FTV )',), ('Sky Famiglia + Sky HD',), ('no ( FTV )',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',)]"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT DISTINCT tc.Package_Option\nFROM TV_Channel tc\nWHERE tc.id NOT IN (\n    SELECT c.Channel\n    FROM Cartoon c\n    WHERE c.Directed_by = 'Ben Jones'\n)",
+        "pred_rows": [
+          [
+            "Sky Famiglia"
+          ],
+          [
+            "no ( FTV )"
+          ],
+          [
+            "Sky Famiglia + Sky HD"
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [('Sky Famiglia',), ('no ( FTV )',), ('Sky Famiglia + Sky HD',)] != gold [('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('no ( FTV )',), ('Sky Famiglia + Sky HD',), ('no ( FTV )',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',)]"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT DISTINCT tc.Package_Option\nFROM TV_Channel AS tc\nWHERE NOT EXISTS (\n    SELECT 1\n    FROM Cartoon AS c\n    WHERE c.Channel = tc.id\n      AND c.Directed_by = 'Ben Jones'\n)",
+        "pred_rows": [
+          [
+            "Sky Famiglia"
+          ],
+          [
+            "no ( FTV )"
+          ],
+          [
+            "Sky Famiglia + Sky HD"
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [('Sky Famiglia',), ('no ( FTV )',), ('Sky Famiglia + Sky HD',)] != gold [('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('no ( FTV )',), ('Sky Famiglia + Sky HD',), ('no ( FTV )',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',), ('Sky Famiglia',)]"
+      }
+    },
+    "fault_diagnosis": "Spider gold query ambiguity (models used DISTINCT on package options; gold omitted DISTINCT)"
+  },
+  {
+    "item_id": "spider_val_0676",
+    "db_id": "poker_player",
+    "question": "Give the nationality that is most common across all people.",
+    "schema_in_prompt": true,
+    "prompt": "[Database: poker_player]\n[Database Schema:\nCREATE TABLE \"poker_player\" ( \"Poker_Player_ID\" int, \"People_ID\" int, \"Final_Table_Made\" real, \"Best_Finish\" real, \"Money_Rank\" real, \"Earnings\" real, PRIMARY KEY (\"Poker_Player_ID\"), FOREIGN KEY (\"People_ID\") REFERENCES `people`(\"People_ID\") )\nCREATE TABLE \"people\" ( \"People_ID\" int, \"Nationality\" text, \"Name\" text, \"Birth_Date\" text, \"Height\" real, PRIMARY KEY (\"People_ID\") )\n]\nQuestion: Give the nationality that is most common across all people.\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT Nationality FROM people GROUP BY Nationality ORDER BY COUNT(*) DESC LIMIT 1",
+    "gold_rows": [
+      [
+        "Russia"
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT Nationality, COUNT(*) AS Count\nFROM people\nGROUP BY Nationality\nORDER BY Count DESC\nLIMIT 1",
+        "pred_rows": [
+          [
+            "Russia",
+            6
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Ordered rows mismatch: got [('Russia', 6)] != gold [('Russia',)]"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT Nationality\nFROM people\nGROUP BY Nationality\nORDER BY COUNT(*) DESC\nLIMIT 1",
+        "pred_rows": [
+          [
+            "Russia"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Ordered result rows match gold (1 rows)"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT\n    Nationality,\n    COUNT(*) AS cnt\nFROM\n    people\nGROUP BY\n    Nationality\nORDER BY\n    cnt DESC\nLIMIT 1",
+        "pred_rows": [
+          [
+            "Russia",
+            6
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Ordered rows mismatch: got [('Russia', 6)] != gold [('Russia',)]"
+      }
+    },
+    "fault_diagnosis": "Model error"
+  },
+  {
+    "item_id": "spider_val_0705",
+    "db_id": "world_1",
+    "question": "How many countries have governments that are republics?",
+    "schema_in_prompt": true,
+    "prompt": "[Database: world_1]\n[Database Schema:\nCREATE TABLE `city` ( `ID` integer NOT NULL PRIMARY KEY AUTOINCREMENT , `Name` char(35) NOT NULL DEFAULT '' , `CountryCode` char(3) NOT NULL DEFAULT '' , `District` char(20) NOT NULL DEFAULT '' , `Population` integer NOT NULL DEFAULT '0' , CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) )\nCREATE TABLE sqlite_sequence(name,seq)\nCREATE TABLE `country` ( `Code` char(3) NOT NULL DEFAULT '' , `Name` char(52) NOT NULL DEFAULT '' , `Continent` text NOT NULL DEFAULT 'Asia' , `Region` char(26) NOT NULL DEFAULT '' , `SurfaceArea` float(10,2) NOT NULL DEFAULT '0.00' , `IndepYear` integer DEFAULT NULL , `Population` integer NOT NULL DEFAULT '0' , `LifeExpectancy` float(3,1) DEFAULT NULL , `GNP` float(10,2) DEFAULT NULL , `GNPOld` float(10,2) DEFAULT NULL , `LocalName` char(45) NOT NULL DEFAULT '' , `GovernmentForm` char(45) NOT NULL DEFAULT '' , `HeadOfState` char(60) DEFAULT NULL , `Capital` integer DEFAULT NULL , `Code2` char(2) NOT NULL DEFAULT '' , PRIMARY KEY (`Code`) )\nCREATE TABLE `countrylanguage` ( `CountryCode` char(3) NOT NULL DEFAULT '' , `Language` char(30) NOT NULL DEFAULT '' , `IsOfficial` text NOT NULL DEFAULT 'F' , `Percentage` float(4,1) NOT NULL DEFAULT '0.0' , PRIMARY KEY (`CountryCode`,`Language`) , CONSTRAINT `countryLanguage_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) )\n]\nQuestion: How many countries have governments that are republics?\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT count(*) FROM country WHERE GovernmentForm  =  \"Republic\"",
+    "gold_rows": [
+      [
+        122
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT COUNT(*) AS RepublicCount\nFROM country\nWHERE GovernmentForm = 'Republic'",
+        "pred_rows": [
+          [
+            122
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset (1 rows)"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT COUNT(*) \nFROM country \nWHERE GovernmentForm LIKE '%Republic%'",
+        "pred_rows": [
+          [
+            143
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [(143,)] != gold [(122,)]"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT COUNT(*) AS RepublicCount\nFROM country\nWHERE GovernmentForm LIKE '%Republic%'",
+        "pred_rows": [
+          [
+            143
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [(143,)] != gold [(122,)]"
+      }
+    },
+    "fault_diagnosis": "Model error"
+  },
+  {
+    "item_id": "spider_val_0776",
+    "db_id": "world_1",
+    "question": "Which Asian countries have a population that is larger than any country in Africa?",
+    "schema_in_prompt": true,
+    "prompt": "[Database: world_1]\n[Database Schema:\nCREATE TABLE `city` ( `ID` integer NOT NULL PRIMARY KEY AUTOINCREMENT , `Name` char(35) NOT NULL DEFAULT '' , `CountryCode` char(3) NOT NULL DEFAULT '' , `District` char(20) NOT NULL DEFAULT '' , `Population` integer NOT NULL DEFAULT '0' , CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) )\nCREATE TABLE sqlite_sequence(name,seq)\nCREATE TABLE `country` ( `Code` char(3) NOT NULL DEFAULT '' , `Name` char(52) NOT NULL DEFAULT '' , `Continent` text NOT NULL DEFAULT 'Asia' , `Region` char(26) NOT NULL DEFAULT '' , `SurfaceArea` float(10,2) NOT NULL DEFAULT '0.00' , `IndepYear` integer DEFAULT NULL , `Population` integer NOT NULL DEFAULT '0' , `LifeExpectancy` float(3,1) DEFAULT NULL , `GNP` float(10,2) DEFAULT NULL , `GNPOld` float(10,2) DEFAULT NULL , `LocalName` char(45) NOT NULL DEFAULT '' , `GovernmentForm` char(45) NOT NULL DEFAULT '' , `HeadOfState` char(60) DEFAULT NULL , `Capital` integer DEFAULT NULL , `Code2` char(2) NOT NULL DEFAULT '' , PRIMARY KEY (`Code`) )\nCREATE TABLE `countrylanguage` ( `CountryCode` char(3) NOT NULL DEFAULT '' , `Language` char(30) NOT NULL DEFAULT '' , `IsOfficial` text NOT NULL DEFAULT 'F' , `Percentage` float(4,1) NOT NULL DEFAULT '0.0' , PRIMARY KEY (`CountryCode`,`Language`) , CONSTRAINT `countryLanguage_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) )\n]\nQuestion: Which Asian countries have a population that is larger than any country in Africa?\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT Name FROM country WHERE Continent  =  \"Asia\"  AND population  >  (SELECT max(population) FROM country WHERE Continent  =  \"Africa\")",
+    "gold_rows": [
+      [
+        "Bangladesh"
+      ],
+      [
+        "China"
+      ],
+      [
+        "Indonesia"
+      ],
+      [
+        "India"
+      ],
+      [
+        "Japan"
+      ],
+      [
+        "Pakistan"
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT c.Name\nFROM country c\nWHERE c.Continent = 'Asia'\nAND c.Population > (\n    SELECT MAX(a.Population)\n    FROM country a\n    WHERE a.Continent = 'Africa'\n)",
+        "pred_rows": [
+          [
+            "Bangladesh"
+          ],
+          [
+            "China"
+          ],
+          [
+            "Indonesia"
+          ],
+          [
+            "India"
+          ],
+          [
+            "Japan"
+          ],
+          [
+            "Pakistan"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset (6 rows)"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT DISTINCT c.Name\nFROM country c\nWHERE c.Continent = 'Asia'\n  AND c.Population > (\n    SELECT MAX(c2.Population)\n    FROM country c2\n    WHERE c2.Continent = 'Africa'\n  )",
+        "pred_rows": [
+          [
+            "Bangladesh"
+          ],
+          [
+            "China"
+          ],
+          [
+            "Indonesia"
+          ],
+          [
+            "India"
+          ],
+          [
+            "Japan"
+          ],
+          [
+            "Pakistan"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset (6 rows)"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT \n    Code,\n    Name,\n    Population\nFROM \n    country\nWHERE \n    Continent = 'Asia'\n    AND Population > (\n        SELECT MAX(Population)\n        FROM country\n        WHERE Continent = 'Africa'\n    )",
+        "pred_rows": [
+          [
+            "BGD",
+            "Bangladesh",
+            129155000
+          ],
+          [
+            "CHN",
+            "China",
+            1277558000
+          ],
+          [
+            "IDN",
+            "Indonesia",
+            212107000
+          ],
+          [
+            "IND",
+            "India",
+            1013662000
+          ],
+          [
+            "JPN",
+            "Japan",
+            126714000
+          ],
+          [
+            "PAK",
+            "Pakistan",
+            156483000
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [('BGD', 'Bangladesh', 129155000), ('CHN', 'China', 1277558000), ('IDN', 'Indonesia', 212107000), ('IND', 'India', 1013662000), ('JPN', 'Japan', 126714000), ('PAK', 'Pakistan', 156483000)] != gold [('Bangladesh',), ('China',), ('Indonesia',), ('India',), ('Japan',), ('Pakistan',)]"
+      }
+    },
+    "fault_diagnosis": "Model error"
+  },
+  {
+    "item_id": "spider_val_0797",
+    "db_id": "world_1",
+    "question": "What are the different government forms and what is the total population of each for government forms that have an average life expectancy greater than 72?",
+    "schema_in_prompt": true,
+    "prompt": "[Database: world_1]\n[Database Schema:\nCREATE TABLE `city` ( `ID` integer NOT NULL PRIMARY KEY AUTOINCREMENT , `Name` char(35) NOT NULL DEFAULT '' , `CountryCode` char(3) NOT NULL DEFAULT '' , `District` char(20) NOT NULL DEFAULT '' , `Population` integer NOT NULL DEFAULT '0' , CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) )\nCREATE TABLE sqlite_sequence(name,seq)\nCREATE TABLE `country` ( `Code` char(3) NOT NULL DEFAULT '' , `Name` char(52) NOT NULL DEFAULT '' , `Continent` text NOT NULL DEFAULT 'Asia' , `Region` char(26) NOT NULL DEFAULT '' , `SurfaceArea` float(10,2) NOT NULL DEFAULT '0.00' , `IndepYear` integer DEFAULT NULL , `Population` integer NOT NULL DEFAULT '0' , `LifeExpectancy` float(3,1) DEFAULT NULL , `GNP` float(10,2) DEFAULT NULL , `GNPOld` float(10,2) DEFAULT NULL , `LocalName` char(45) NOT NULL DEFAULT '' , `GovernmentForm` char(45) NOT NULL DEFAULT '' , `HeadOfState` char(60) DEFAULT NULL , `Capital` integer DEFAULT NULL , `Code2` char(2) NOT NULL DEFAULT '' , PRIMARY KEY (`Code`) )\nCREATE TABLE `countrylanguage` ( `CountryCode` char(3) NOT NULL DEFAULT '' , `Language` char(30) NOT NULL DEFAULT '' , `IsOfficial` text NOT NULL DEFAULT 'F' , `Percentage` float(4,1) NOT NULL DEFAULT '0.0' , PRIMARY KEY (`CountryCode`,`Language`) , CONSTRAINT `countryLanguage_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) )\n]\nQuestion: What are the different government forms and what is the total population of each for government forms that have an average life expectancy greater than 72?\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT sum(Population) ,  GovernmentForm FROM country GROUP BY GovernmentForm HAVING avg(LifeExpectancy)  >  72",
+    "gold_rows": [
+      [
+        3947000,
+        "Commonwealth of the US"
+      ],
+      [
+        1972000,
+        "Constitutional Monarchy (Emirate)"
+      ],
+      [
+        82516000,
+        "Constitutional Monarchy, Federation"
+      ],
+      [
+        193050,
+        "Dependent Territory of the UK"
+      ],
+      [
+        2441000,
+        "Emirate Federation"
+      ],
+      [
+        7160400,
+        "Federation"
+      ],
+      [
+        617000,
+        "Monarchy (Emirate)"
+      ],
+      [
+        2870000,
+        "Monarchy (Sultanate)"
+      ],
+      [
+        464000,
+        "Nonmetropolitan Territory of France"
+      ],
+      [
+        320000,
+        "Nonmetropolitan Territory of The Netherlands"
+      ],
+      [
+        1731000,
+        "Overseas Department of France"
+      ],
+      [
+        78000,
+        "Parliamentary Coprincipality"
+      ],
+      [
+        99000,
+        "Part of Denmark"
+      ],
+      [
+        115072000,
+        "Socialistic Republic"
+      ],
+      [
+        5605000,
+        "Socialistic State"
+      ],
+      [
+        7255000,
+        "Special Administrative Region of China"
+      ],
+      [
+        329000,
+        "US Territory"
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT \n    c.GovernmentForm, \n    SUM(c.Population) AS TotalPopulation\nFROM \n    country c\nJOIN \n    countrylanguage cl ON c.Code = cl.CountryCode\nWHERE \n    cl.Percentage > 0.0\nGROUP BY \n    c.GovernmentForm\nHAVING \n    AVG(c.LifeExpectancy) > 72",
+        "pred_rows": [
+          [
+            "Commonwealth of the US",
+            8206000
+          ],
+          [
+            "Constitutional Monarchy",
+            1827629800
+          ],
+          [
+            "Constitutional Monarchy (Emirate)",
+            1972000
+          ],
+          [
+            "Constitutional Monarchy, Federation",
+            719750000
+          ],
+          [
+            "Dependent Territory of the UK",
+            115000
+          ],
+          [
+            "Emirate Federation",
+            2441000
+          ],
+          [
+            "Federation",
+            28641600
+          ],
+          [
+            "Monarchy (Emirate)",
+            617000
+          ],
+          [
+            "Monarchy (Sultanate)",
+            3854000
+          ],
+          [
+            "Nonmetropolitan Territory of France",
+            1347000
+          ],
+          [
+            "Nonmetropolitan Territory of The Netherlands",
+            846000
+          ],
+          [
+            "Overseas Department of France",
+            4009000
+          ],
+          [
+            "Parliamentary Coprincipality",
+            312000
+          ],
+          [
+            "Socialistic State",
+            11210000
+          ],
+          [
+            "Special Administrative Region of China",
+            35802000
+          ],
+          [
+            "US Territory",
+            1323000
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [('Commonwealth of the US', 8206000), ('Constitutional Monarchy', 1827629800), ('Constitutional Monarchy (Emirate)', 1972000), ('Constitutional Monarchy, Federation', 719750000), ('Dependent Territory of the UK', 115000), ('Emirate Federation', 2441000), ('Federation', 28641600), ('Monarchy (Emirate)', 617000), ('Monarchy (Sultanate)', 3854000), ('Nonmetropolitan Territory of France', 1347000), ('Nonmetropolitan Territory of The Netherlands', 846000), ('Overseas Department of France', 4009000), ('Parliamentary Coprincipality', 312000), ('Socialistic State', 11210000), ('Special Administrative Region of China', 35802000), ('US Territory', 1323000)] != gold [(3947000, 'Commonwealth of the US'), (1972000, 'Constitutional Monarchy (Emirate)'), (82516000, 'Constitutional Monarchy, Federation'), (193050, 'Dependent Territory of the UK'), (2441000, 'Emirate Federation'), (7160400, 'Federation'), (617000, 'Monarchy (Emirate)'), (2870000, 'Monarchy (Sultanate)'), (464000, 'Nonmetropolitan Territory of France'), (320000, 'Nonmetropolitan Territory of The Netherlands'), (1731000, 'Overseas Department of France'), (78000, 'Parliamentary Coprincipality'), (99000, 'Part of Denmark'), (115072000, 'Socialistic Republic'), (5605000, 'Socialistic State'), (7255000, 'Special Administrative Region of China'), (329000, 'US Territory')]"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT \n    c.GovernmentForm,\n    SUM(c.Population) AS TotalPopulation\nFROM country c\nGROUP BY c.GovernmentForm\nHAVING AVG(c.LifeExpectancy) > 72",
+        "pred_rows": [
+          [
+            "Commonwealth of the US",
+            3947000
+          ],
+          [
+            "Constitutional Monarchy (Emirate)",
+            1972000
+          ],
+          [
+            "Constitutional Monarchy, Federation",
+            82516000
+          ],
+          [
+            "Dependent Territory of the UK",
+            193050
+          ],
+          [
+            "Emirate Federation",
+            2441000
+          ],
+          [
+            "Federation",
+            7160400
+          ],
+          [
+            "Monarchy (Emirate)",
+            617000
+          ],
+          [
+            "Monarchy (Sultanate)",
+            2870000
+          ],
+          [
+            "Nonmetropolitan Territory of France",
+            464000
+          ],
+          [
+            "Nonmetropolitan Territory of The Netherlands",
+            320000
+          ],
+          [
+            "Overseas Department of France",
+            1731000
+          ],
+          [
+            "Parliamentary Coprincipality",
+            78000
+          ],
+          [
+            "Part of Denmark",
+            99000
+          ],
+          [
+            "Socialistic Republic",
+            115072000
+          ],
+          [
+            "Socialistic State",
+            5605000
+          ],
+          [
+            "Special Administrative Region of China",
+            7255000
+          ],
+          [
+            "US Territory",
+            329000
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset under column permutation (17 rows)"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT \n    GovernmentForm,\n    SUM(Population) AS TotalPopulation\nFROM \n    country\nGROUP BY \n    GovernmentForm\nHAVING \n    AVG(LifeExpectancy) > 72",
+        "pred_rows": [
+          [
+            "Commonwealth of the US",
+            3947000
+          ],
+          [
+            "Constitutional Monarchy (Emirate)",
+            1972000
+          ],
+          [
+            "Constitutional Monarchy, Federation",
+            82516000
+          ],
+          [
+            "Dependent Territory of the UK",
+            193050
+          ],
+          [
+            "Emirate Federation",
+            2441000
+          ],
+          [
+            "Federation",
+            7160400
+          ],
+          [
+            "Monarchy (Emirate)",
+            617000
+          ],
+          [
+            "Monarchy (Sultanate)",
+            2870000
+          ],
+          [
+            "Nonmetropolitan Territory of France",
+            464000
+          ],
+          [
+            "Nonmetropolitan Territory of The Netherlands",
+            320000
+          ],
+          [
+            "Overseas Department of France",
+            1731000
+          ],
+          [
+            "Parliamentary Coprincipality",
+            78000
+          ],
+          [
+            "Part of Denmark",
+            99000
+          ],
+          [
+            "Socialistic Republic",
+            115072000
+          ],
+          [
+            "Socialistic State",
+            5605000
+          ],
+          [
+            "Special Administrative Region of China",
+            7255000
+          ],
+          [
+            "US Territory",
+            329000
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": true,
+        "checker_reason": "Result rows match gold multiset under column permutation (17 rows)"
+      }
+    },
+    "fault_diagnosis": "Checker fault (column order permutation mismatch; semantically correct query, fixed in versioned checker)"
+  },
+  {
+    "item_id": "spider_val_0816",
+    "db_id": "world_1",
+    "question": "What is the language spoken by the largest percentage of people in each country?",
+    "schema_in_prompt": true,
+    "prompt": "[Database: world_1]\n[Database Schema:\nCREATE TABLE `city` ( `ID` integer NOT NULL PRIMARY KEY AUTOINCREMENT , `Name` char(35) NOT NULL DEFAULT '' , `CountryCode` char(3) NOT NULL DEFAULT '' , `District` char(20) NOT NULL DEFAULT '' , `Population` integer NOT NULL DEFAULT '0' , CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) )\nCREATE TABLE sqlite_sequence(name,seq)\nCREATE TABLE `country` ( `Code` char(3) NOT NULL DEFAULT '' , `Name` char(52) NOT NULL DEFAULT '' , `Continent` text NOT NULL DEFAULT 'Asia' , `Region` char(26) NOT NULL DEFAULT '' , `SurfaceArea` float(10,2) NOT NULL DEFAULT '0.00' , `IndepYear` integer DEFAULT NULL , `Population` integer NOT NULL DEFAULT '0' , `LifeExpectancy` float(3,1) DEFAULT NULL , `GNP` float(10,2) DEFAULT NULL , `GNPOld` float(10,2) DEFAULT NULL , `LocalName` char(45) NOT NULL DEFAULT '' , `GovernmentForm` char(45) NOT NULL DEFAULT '' , `HeadOfState` char(60) DEFAULT NULL , `Capital` integer DEFAULT NULL , `Code2` char(2) NOT NULL DEFAULT '' , PRIMARY KEY (`Code`) )\nCREATE TABLE `countrylanguage` ( `CountryCode` char(3) NOT NULL DEFAULT '' , `Language` char(30) NOT NULL DEFAULT '' , `IsOfficial` text NOT NULL DEFAULT 'F' , `Percentage` float(4,1) NOT NULL DEFAULT '0.0' , PRIMARY KEY (`CountryCode`,`Language`) , CONSTRAINT `countryLanguage_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`) )\n]\nQuestion: What is the language spoken by the largest percentage of people in each country?\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT LANGUAGE ,  CountryCode ,  max(Percentage) FROM countrylanguage GROUP BY CountryCode",
+    "gold_rows": [
+      [
+        "Papiamento",
+        "ABW",
+        76.7
+      ],
+      [
+        "Pashto",
+        "AFG",
+        52.4
+      ],
+      [
+        "Ovimbundu",
+        "AGO",
+        37.2
+      ],
+      [
+        "English",
+        "AIA",
+        0.0
+      ],
+      [
+        "Albaniana",
+        "ALB",
+        97.9
+      ],
+      [
+        "Spanish",
+        "AND",
+        44.6
+      ],
+      [
+        "Papiamento",
+        "ANT",
+        86.2
+      ],
+      [
+        "Arabic",
+        "ARE",
+        42.0
+      ],
+      [
+        "Spanish",
+        "ARG",
+        96.8
+      ],
+      [
+        "Armenian",
+        "ARM",
+        93.4
+      ],
+      [
+        "Samoan",
+        "ASM",
+        90.6
+      ],
+      [
+        "Creole English",
+        "ATG",
+        95.7
+      ],
+      [
+        "English",
+        "AUS",
+        81.2
+      ],
+      [
+        "German",
+        "AUT",
+        92.0
+      ],
+      [
+        "Azerbaijani",
+        "AZE",
+        89.0
+      ],
+      [
+        "Kirundi",
+        "BDI",
+        98.1
+      ],
+      [
+        "Dutch",
+        "BEL",
+        59.2
+      ],
+      [
+        "Fon",
+        "BEN",
+        39.8
+      ],
+      [
+        "Mossi",
+        "BFA",
+        50.2
+      ],
+      [
+        "Bengali",
+        "BGD",
+        97.7
+      ],
+      [
+        "Bulgariana",
+        "BGR",
+        83.2
+      ],
+      [
+        "Arabic",
+        "BHR",
+        67.7
+      ],
+      [
+        "Creole English",
+        "BHS",
+        89.7
+      ],
+      [
+        "Serbo-Croatian",
+        "BIH",
+        99.2
+      ],
+      [
+        "Belorussian",
+        "BLR",
+        65.6
+      ],
+      [
+        "English",
+        "BLZ",
+        50.8
+      ],
+      [
+        "English",
+        "BMU",
+        100.0
+      ],
+      [
+        "Spanish",
+        "BOL",
+        87.7
+      ],
+      [
+        "Portuguese",
+        "BRA",
+        97.5
+      ],
+      [
+        "Bajan",
+        "BRB",
+        95.1
+      ],
+      [
+        "Malay",
+        "BRN",
+        45.5
+      ],
+      [
+        "Dzongkha",
+        "BTN",
+        50.0
+      ],
+      [
+        "Tswana",
+        "BWA",
+        75.5
+      ],
+      [
+        "Gbaya",
+        "CAF",
+        23.8
+      ],
+      [
+        "English",
+        "CAN",
+        60.4
+      ],
+      [
+        "English",
+        "CCK",
+        0.0
+      ],
+      [
+        "German",
+        "CHE",
+        63.6
+      ],
+      [
+        "Spanish",
+        "CHL",
+        89.7
+      ],
+      [
+        "Chinese",
+        "CHN",
+        92.0
+      ],
+      [
+        "Akan",
+        "CIV",
+        30.0
+      ],
+      [
+        "Fang",
+        "CMR",
+        19.7
+      ],
+      [
+        "Luba",
+        "COD",
+        18.0
+      ],
+      [
+        "Kongo",
+        "COG",
+        51.5
+      ],
+      [
+        "English",
+        "COK",
+        0.0
+      ],
+      [
+        "Spanish",
+        "COL",
+        99.0
+      ],
+      [
+        "Comorian",
+        "COM",
+        75.0
+      ],
+      [
+        "Crioulo",
+        "CPV",
+        100.0
+      ],
+      [
+        "Spanish",
+        "CRI",
+        97.5
+      ],
+      [
+        "Spanish",
+        "CUB",
+        100.0
+      ],
+      [
+        "Chinese",
+        "CXR",
+        0.0
+      ],
+      [
+        "English",
+        "CYM",
+        0.0
+      ],
+      [
+        "Greek",
+        "CYP",
+        74.1
+      ],
+      [
+        "Czech",
+        "CZE",
+        81.2
+      ],
+      [
+        "German",
+        "DEU",
+        91.3
+      ],
+      [
+        "Somali",
+        "DJI",
+        43.9
+      ],
+      [
+        "Creole English",
+        "DMA",
+        100.0
+      ],
+      [
+        "Danish",
+        "DNK",
+        93.5
+      ],
+      [
+        "Spanish",
+        "DOM",
+        98.0
+      ],
+      [
+        "Arabic",
+        "DZA",
+        86.0
+      ],
+      [
+        "Spanish",
+        "ECU",
+        93.0
+      ],
+      [
+        "Arabic",
+        "EGY",
+        98.8
+      ],
+      [
+        "Tigrinja",
+        "ERI",
+        49.1
+      ],
+      [
+        "Arabic",
+        "ESH",
+        100.0
+      ],
+      [
+        "Spanish",
+        "ESP",
+        74.4
+      ],
+      [
+        "Estonian",
+        "EST",
+        65.3
+      ],
+      [
+        "Oromo",
+        "ETH",
+        31.0
+      ],
+      [
+        "Finnish",
+        "FIN",
+        92.7
+      ],
+      [
+        "Fijian",
+        "FJI",
+        50.8
+      ],
+      [
+        "English",
+        "FLK",
+        0.0
+      ],
+      [
+        "French",
+        "FRA",
+        93.6
+      ],
+      [
+        "Faroese",
+        "FRO",
+        100.0
+      ],
+      [
+        "Trukese",
+        "FSM",
+        41.6
+      ],
+      [
+        "Fang",
+        "GAB",
+        35.8
+      ],
+      [
+        "English",
+        "GBR",
+        97.3
+      ],
+      [
+        "Georgiana",
+        "GEO",
+        71.7
+      ],
+      [
+        "Akan",
+        "GHA",
+        52.4
+      ],
+      [
+        "English",
+        "GIB",
+        88.9
+      ],
+      [
+        "Ful",
+        "GIN",
+        38.6
+      ],
+      [
+        "Creole French",
+        "GLP",
+        95.0
+      ],
+      [
+        "Malinke",
+        "GMB",
+        34.1
+      ],
+      [
+        "Crioulo",
+        "GNB",
+        36.4
+      ],
+      [
+        "Fang",
+        "GNQ",
+        84.8
+      ],
+      [
+        "Greek",
+        "GRC",
+        98.5
+      ],
+      [
+        "Creole English",
+        "GRD",
+        100.0
+      ],
+      [
+        "Greenlandic",
+        "GRL",
+        87.5
+      ],
+      [
+        "Spanish",
+        "GTM",
+        64.7
+      ],
+      [
+        "Creole French",
+        "GUF",
+        94.3
+      ],
+      [
+        "English",
+        "GUM",
+        37.5
+      ],
+      [
+        "Creole English",
+        "GUY",
+        96.4
+      ],
+      [
+        "Canton Chinese",
+        "HKG",
+        88.7
+      ],
+      [
+        "Spanish",
+        "HND",
+        97.2
+      ],
+      [
+        "Serbo-Croatian",
+        "HRV",
+        95.9
+      ],
+      [
+        "Haiti Creole",
+        "HTI",
+        100.0
+      ],
+      [
+        "Hungarian",
+        "HUN",
+        98.5
+      ],
+      [
+        "Javanese",
+        "IDN",
+        39.4
+      ],
+      [
+        "Hindi",
+        "IND",
+        39.9
+      ],
+      [
+        "English",
+        "IRL",
+        98.4
+      ],
+      [
+        "Persian",
+        "IRN",
+        45.7
+      ],
+      [
+        "Arabic",
+        "IRQ",
+        77.2
+      ],
+      [
+        "Icelandic",
+        "ISL",
+        95.7
+      ],
+      [
+        "Hebrew",
+        "ISR",
+        63.1
+      ],
+      [
+        "Italian",
+        "ITA",
+        94.1
+      ],
+      [
+        "Creole English",
+        "JAM",
+        94.2
+      ],
+      [
+        "Arabic",
+        "JOR",
+        97.9
+      ],
+      [
+        "Japanese",
+        "JPN",
+        99.1
+      ],
+      [
+        "Kazakh",
+        "KAZ",
+        46.0
+      ],
+      [
+        "Kikuyu",
+        "KEN",
+        20.9
+      ],
+      [
+        "Kirgiz",
+        "KGZ",
+        59.7
+      ],
+      [
+        "Khmer",
+        "KHM",
+        88.6
+      ],
+      [
+        "Kiribati",
+        "KIR",
+        98.9
+      ],
+      [
+        "Creole English",
+        "KNA",
+        100.0
+      ],
+      [
+        "Korean",
+        "KOR",
+        99.9
+      ],
+      [
+        "Arabic",
+        "KWT",
+        78.1
+      ],
+      [
+        "Lao",
+        "LAO",
+        67.2
+      ],
+      [
+        "Arabic",
+        "LBN",
+        93.0
+      ],
+      [
+        "Kpelle",
+        "LBR",
+        19.5
+      ],
+      [
+        "Arabic",
+        "LBY",
+        96.0
+      ],
+      [
+        "Creole French",
+        "LCA",
+        80.0
+      ],
+      [
+        "German",
+        "LIE",
+        89.0
+      ],
+      [
+        "Singali",
+        "LKA",
+        60.3
+      ],
+      [
+        "Sotho",
+        "LSO",
+        85.0
+      ],
+      [
+        "Lithuanian",
+        "LTU",
+        81.6
+      ],
+      [
+        "Luxembourgish",
+        "LUX",
+        64.4
+      ],
+      [
+        "Latvian",
+        "LVA",
+        55.1
+      ],
+      [
+        "Canton Chinese",
+        "MAC",
+        85.6
+      ],
+      [
+        "Arabic",
+        "MAR",
+        65.0
+      ],
+      [
+        "French",
+        "MCO",
+        41.9
+      ],
+      [
+        "Romanian",
+        "MDA",
+        61.9
+      ],
+      [
+        "Malagasy",
+        "MDG",
+        98.9
+      ],
+      [
+        "Dhivehi",
+        "MDV",
+        100.0
+      ],
+      [
+        "Spanish",
+        "MEX",
+        92.1
+      ],
+      [
+        "Marshallese",
+        "MHL",
+        96.8
+      ],
+      [
+        "Macedonian",
+        "MKD",
+        66.5
+      ],
+      [
+        "Bambara",
+        "MLI",
+        31.8
+      ],
+      [
+        "Maltese",
+        "MLT",
+        95.8
+      ],
+      [
+        "Burmese",
+        "MMR",
+        69.0
+      ],
+      [
+        "Mongolian",
+        "MNG",
+        78.8
+      ],
+      [
+        "Philippene Languages",
+        "MNP",
+        34.1
+      ],
+      [
+        "Makua",
+        "MOZ",
+        27.8
+      ],
+      [
+        "Hassaniya",
+        "MRT",
+        81.7
+      ],
+      [
+        "English",
+        "MSR",
+        0.0
+      ],
+      [
+        "Creole French",
+        "MTQ",
+        96.6
+      ],
+      [
+        "Creole French",
+        "MUS",
+        70.6
+      ],
+      [
+        "Chichewa",
+        "MWI",
+        58.3
+      ],
+      [
+        "Malay",
+        "MYS",
+        58.4
+      ],
+      [
+        "Mahor\u00e9",
+        "MYT",
+        41.9
+      ],
+      [
+        "Ovambo",
+        "NAM",
+        50.7
+      ],
+      [
+        "Malenasian Languages",
+        "NCL",
+        45.4
+      ],
+      [
+        "Hausa",
+        "NER",
+        53.1
+      ],
+      [
+        "English",
+        "NFK",
+        0.0
+      ],
+      [
+        "Joruba",
+        "NGA",
+        21.4
+      ],
+      [
+        "Spanish",
+        "NIC",
+        97.6
+      ],
+      [
+        "English",
+        "NIU",
+        0.0
+      ],
+      [
+        "Dutch",
+        "NLD",
+        95.6
+      ],
+      [
+        "Norwegian",
+        "NOR",
+        96.6
+      ],
+      [
+        "Nepali",
+        "NPL",
+        50.4
+      ],
+      [
+        "Nauru",
+        "NRU",
+        57.5
+      ],
+      [
+        "English",
+        "NZL",
+        87.0
+      ],
+      [
+        "Arabic",
+        "OMN",
+        76.7
+      ],
+      [
+        "Punjabi",
+        "PAK",
+        48.2
+      ],
+      [
+        "Spanish",
+        "PAN",
+        76.8
+      ],
+      [
+        "Pitcairnese",
+        "PCN",
+        0.0
+      ],
+      [
+        "Spanish",
+        "PER",
+        79.8
+      ],
+      [
+        "Pilipino",
+        "PHL",
+        29.3
+      ],
+      [
+        "Palau",
+        "PLW",
+        82.2
+      ],
+      [
+        "Papuan Languages",
+        "PNG",
+        78.1
+      ],
+      [
+        "Polish",
+        "POL",
+        97.6
+      ],
+      [
+        "Spanish",
+        "PRI",
+        51.3
+      ],
+      [
+        "Korean",
+        "PRK",
+        99.9
+      ],
+      [
+        "Portuguese",
+        "PRT",
+        99.0
+      ],
+      [
+        "Spanish",
+        "PRY",
+        55.1
+      ],
+      [
+        "Arabic",
+        "PSE",
+        95.9
+      ],
+      [
+        "Tahitian",
+        "PYF",
+        46.4
+      ],
+      [
+        "Arabic",
+        "QAT",
+        40.7
+      ],
+      [
+        "Creole French",
+        "REU",
+        91.5
+      ],
+      [
+        "Romanian",
+        "ROM",
+        90.7
+      ],
+      [
+        "Russian",
+        "RUS",
+        86.6
+      ],
+      [
+        "Rwanda",
+        "RWA",
+        100.0
+      ],
+      [
+        "Arabic",
+        "SAU",
+        95.0
+      ],
+      [
+        "Arabic",
+        "SDN",
+        49.4
+      ],
+      [
+        "Wolof",
+        "SEN",
+        48.1
+      ],
+      [
+        "Chinese",
+        "SGP",
+        77.1
+      ],
+      [
+        "English",
+        "SHN",
+        0.0
+      ],
+      [
+        "Norwegian",
+        "SJM",
+        0.0
+      ],
+      [
+        "Malenasian Languages",
+        "SLB",
+        85.6
+      ],
+      [
+        "Mende",
+        "SLE",
+        34.8
+      ],
+      [
+        "Spanish",
+        "SLV",
+        100.0
+      ],
+      [
+        "Italian",
+        "SMR",
+        100.0
+      ],
+      [
+        "Somali",
+        "SOM",
+        98.3
+      ],
+      [
+        "French",
+        "SPM",
+        0.0
+      ],
+      [
+        "Crioulo",
+        "STP",
+        86.3
+      ],
+      [
+        "Sranantonga",
+        "SUR",
+        81.0
+      ],
+      [
+        "Slovak",
+        "SVK",
+        85.6
+      ],
+      [
+        "Slovene",
+        "SVN",
+        87.9
+      ],
+      [
+        "Swedish",
+        "SWE",
+        89.5
+      ],
+      [
+        "Swazi",
+        "SWZ",
+        89.9
+      ],
+      [
+        "Seselwa",
+        "SYC",
+        91.3
+      ],
+      [
+        "Arabic",
+        "SYR",
+        90.0
+      ],
+      [
+        "English",
+        "TCA",
+        0.0
+      ],
+      [
+        "Sara",
+        "TCD",
+        27.7
+      ],
+      [
+        "Ewe",
+        "TGO",
+        23.2
+      ],
+      [
+        "Thai",
+        "THA",
+        52.6
+      ],
+      [
+        "Tadzhik",
+        "TJK",
+        62.2
+      ],
+      [
+        "English",
+        "TKL",
+        0.0
+      ],
+      [
+        "Turkmenian",
+        "TKM",
+        76.7
+      ],
+      [
+        "Portuguese",
+        "TMP",
+        0.0
+      ],
+      [
+        "Tongan",
+        "TON",
+        98.3
+      ],
+      [
+        "English",
+        "TTO",
+        93.5
+      ],
+      [
+        "Arabic",
+        "TUN",
+        69.9
+      ],
+      [
+        "Turkish",
+        "TUR",
+        87.6
+      ],
+      [
+        "Tuvalu",
+        "TUV",
+        92.5
+      ],
+      [
+        "Min",
+        "TWN",
+        66.7
+      ],
+      [
+        "Nyamwesi",
+        "TZA",
+        21.1
+      ],
+      [
+        "Ganda",
+        "UGA",
+        18.1
+      ],
+      [
+        "Ukrainian",
+        "UKR",
+        64.7
+      ],
+      [
+        "English",
+        "UMI",
+        0.0
+      ],
+      [
+        "Spanish",
+        "URY",
+        95.7
+      ],
+      [
+        "English",
+        "USA",
+        86.2
+      ],
+      [
+        "Uzbek",
+        "UZB",
+        72.6
+      ],
+      [
+        "Italian",
+        "VAT",
+        0.0
+      ],
+      [
+        "Creole English",
+        "VCT",
+        99.1
+      ],
+      [
+        "Spanish",
+        "VEN",
+        96.9
+      ],
+      [
+        "English",
+        "VGB",
+        0.0
+      ],
+      [
+        "English",
+        "VIR",
+        81.7
+      ],
+      [
+        "Vietnamese",
+        "VNM",
+        86.8
+      ],
+      [
+        "Bislama",
+        "VUT",
+        56.6
+      ],
+      [
+        "Futuna",
+        "WLF",
+        0.0
+      ],
+      [
+        "Samoan-English",
+        "WSM",
+        52.0
+      ],
+      [
+        "Arabic",
+        "YEM",
+        99.6
+      ],
+      [
+        "Serbo-Croatian",
+        "YUG",
+        75.2
+      ],
+      [
+        "Zulu",
+        "ZAF",
+        22.7
+      ],
+      [
+        "Bemba",
+        "ZMB",
+        29.7
+      ],
+      [
+        "Shona",
+        "ZWE",
+        72.1
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT c.Name AS Country, cl.Language AS Language, cl.Percentage\nFROM country c\nJOIN countrylanguage cl ON c.Code = cl.CountryCode\nWHERE cl.Percentage = (\n    SELECT MAX(cl2.Percentage)\n    FROM countrylanguage cl2\n    WHERE cl2.CountryCode = c.Code\n)\nORDER BY c.Name",
+        "pred_rows": [
+          [
+            "Afghanistan",
+            "Pashto",
+            52.4
+          ],
+          [
+            "Albania",
+            "Albaniana",
+            97.9
+          ],
+          [
+            "Algeria",
+            "Arabic",
+            86.0
+          ],
+          [
+            "American Samoa",
+            "Samoan",
+            90.6
+          ],
+          [
+            "Andorra",
+            "Spanish",
+            44.6
+          ],
+          [
+            "Angola",
+            "Ovimbundu",
+            37.2
+          ],
+          [
+            "Anguilla",
+            "English",
+            0.0
+          ],
+          [
+            "Antigua and Barbuda",
+            "Creole English",
+            95.7
+          ],
+          [
+            "Argentina",
+            "Spanish",
+            96.8
+          ],
+          [
+            "Armenia",
+            "Armenian",
+            93.4
+          ],
+          [
+            "Aruba",
+            "Papiamento",
+            76.7
+          ],
+          [
+            "Australia",
+            "English",
+            81.2
+          ],
+          [
+            "Austria",
+            "German",
+            92.0
+          ],
+          [
+            "Azerbaijan",
+            "Azerbaijani",
+            89.0
+          ],
+          [
+            "Bahamas",
+            "Creole English",
+            89.7
+          ],
+          [
+            "Bahrain",
+            "Arabic",
+            67.7
+          ],
+          [
+            "Bangladesh",
+            "Bengali",
+            97.7
+          ],
+          [
+            "Barbados",
+            "Bajan",
+            95.1
+          ],
+          [
+            "Belarus",
+            "Belorussian",
+            65.6
+          ],
+          [
+            "Belgium",
+            "Dutch",
+            59.2
+          ],
+          [
+            "Belize",
+            "English",
+            50.8
+          ],
+          [
+            "Benin",
+            "Fon",
+            39.8
+          ],
+          [
+            "Bermuda",
+            "English",
+            100.0
+          ],
+          [
+            "Bhutan",
+            "Dzongkha",
+            50.0
+          ],
+          [
+            "Bolivia",
+            "Spanish",
+            87.7
+          ],
+          [
+            "Bosnia and Herzegovina",
+            "Serbo-Croatian",
+            99.2
+          ],
+          [
+            "Botswana",
+            "Tswana",
+            75.5
+          ],
+          [
+            "Brazil",
+            "Portuguese",
+            97.5
+          ],
+          [
+            "Brunei",
+            "Malay",
+            45.5
+          ],
+          [
+            "Bulgaria",
+            "Bulgariana",
+            83.2
+          ],
+          [
+            "Burkina Faso",
+            "Mossi",
+            50.2
+          ],
+          [
+            "Burundi",
+            "Kirundi",
+            98.1
+          ],
+          [
+            "Cambodia",
+            "Khmer",
+            88.6
+          ],
+          [
+            "Cameroon",
+            "Fang",
+            19.7
+          ],
+          [
+            "Canada",
+            "English",
+            60.4
+          ],
+          [
+            "Cape Verde",
+            "Crioulo",
+            100.0
+          ],
+          [
+            "Cayman Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Central African Republic",
+            "Gbaya",
+            23.8
+          ],
+          [
+            "Chad",
+            "Sara",
+            27.7
+          ],
+          [
+            "Chile",
+            "Spanish",
+            89.7
+          ],
+          [
+            "China",
+            "Chinese",
+            92.0
+          ],
+          [
+            "Christmas Island",
+            "Chinese",
+            0.0
+          ],
+          [
+            "Christmas Island",
+            "English",
+            0.0
+          ],
+          [
+            "Cocos (Keeling) Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Cocos (Keeling) Islands",
+            "Malay",
+            0.0
+          ],
+          [
+            "Colombia",
+            "Spanish",
+            99.0
+          ],
+          [
+            "Comoros",
+            "Comorian",
+            75.0
+          ],
+          [
+            "Congo",
+            "Kongo",
+            51.5
+          ],
+          [
+            "Congo, The Democratic Republic of the",
+            "Luba",
+            18.0
+          ],
+          [
+            "Cook Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Cook Islands",
+            "Maori",
+            0.0
+          ],
+          [
+            "Costa Rica",
+            "Spanish",
+            97.5
+          ],
+          [
+            "Croatia",
+            "Serbo-Croatian",
+            95.9
+          ],
+          [
+            "Cuba",
+            "Spanish",
+            100.0
+          ],
+          [
+            "Cyprus",
+            "Greek",
+            74.1
+          ],
+          [
+            "Czech Republic",
+            "Czech",
+            81.2
+          ],
+          [
+            "C\u00f4te d\u2019Ivoire",
+            "Akan",
+            30.0
+          ],
+          [
+            "Denmark",
+            "Danish",
+            93.5
+          ],
+          [
+            "Djibouti",
+            "Somali",
+            43.9
+          ],
+          [
+            "Dominica",
+            "Creole English",
+            100.0
+          ],
+          [
+            "Dominican Republic",
+            "Spanish",
+            98.0
+          ],
+          [
+            "East Timor",
+            "Portuguese",
+            0.0
+          ],
+          [
+            "East Timor",
+            "Sunda",
+            0.0
+          ],
+          [
+            "Ecuador",
+            "Spanish",
+            93.0
+          ],
+          [
+            "Egypt",
+            "Arabic",
+            98.8
+          ],
+          [
+            "El Salvador",
+            "Spanish",
+            100.0
+          ],
+          [
+            "Equatorial Guinea",
+            "Fang",
+            84.8
+          ],
+          [
+            "Eritrea",
+            "Tigrinja",
+            49.1
+          ],
+          [
+            "Estonia",
+            "Estonian",
+            65.3
+          ],
+          [
+            "Ethiopia",
+            "Oromo",
+            31.0
+          ],
+          [
+            "Falkland Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Faroe Islands",
+            "Faroese",
+            100.0
+          ],
+          [
+            "Fiji Islands",
+            "Fijian",
+            50.8
+          ],
+          [
+            "Finland",
+            "Finnish",
+            92.7
+          ],
+          [
+            "France",
+            "French",
+            93.6
+          ],
+          [
+            "French Guiana",
+            "Creole French",
+            94.3
+          ],
+          [
+            "French Polynesia",
+            "Tahitian",
+            46.4
+          ],
+          [
+            "Gabon",
+            "Fang",
+            35.8
+          ],
+          [
+            "Gambia",
+            "Malinke",
+            34.1
+          ],
+          [
+            "Georgia",
+            "Georgiana",
+            71.7
+          ],
+          [
+            "Germany",
+            "German",
+            91.3
+          ],
+          [
+            "Ghana",
+            "Akan",
+            52.4
+          ],
+          [
+            "Gibraltar",
+            "English",
+            88.9
+          ],
+          [
+            "Greece",
+            "Greek",
+            98.5
+          ],
+          [
+            "Greenland",
+            "Greenlandic",
+            87.5
+          ],
+          [
+            "Grenada",
+            "Creole English",
+            100.0
+          ],
+          [
+            "Guadeloupe",
+            "Creole French",
+            95.0
+          ],
+          [
+            "Guam",
+            "English",
+            37.5
+          ],
+          [
+            "Guatemala",
+            "Spanish",
+            64.7
+          ],
+          [
+            "Guinea",
+            "Ful",
+            38.6
+          ],
+          [
+            "Guinea-Bissau",
+            "Crioulo",
+            36.4
+          ],
+          [
+            "Guyana",
+            "Creole English",
+            96.4
+          ],
+          [
+            "Haiti",
+            "Haiti Creole",
+            100.0
+          ],
+          [
+            "Holy See (Vatican City State)",
+            "Italian",
+            0.0
+          ],
+          [
+            "Honduras",
+            "Spanish",
+            97.2
+          ],
+          [
+            "Hong Kong",
+            "Canton Chinese",
+            88.7
+          ],
+          [
+            "Hungary",
+            "Hungarian",
+            98.5
+          ],
+          [
+            "Iceland",
+            "Icelandic",
+            95.7
+          ],
+          [
+            "India",
+            "Hindi",
+            39.9
+          ],
+          [
+            "Indonesia",
+            "Javanese",
+            39.4
+          ],
+          [
+            "Iran",
+            "Persian",
+            45.7
+          ],
+          [
+            "Iraq",
+            "Arabic",
+            77.2
+          ],
+          [
+            "Ireland",
+            "English",
+            98.4
+          ],
+          [
+            "Israel",
+            "Hebrew",
+            63.1
+          ],
+          [
+            "Italy",
+            "Italian",
+            94.1
+          ],
+          [
+            "Jamaica",
+            "Creole English",
+            94.2
+          ],
+          [
+            "Japan",
+            "Japanese",
+            99.1
+          ],
+          [
+            "Jordan",
+            "Arabic",
+            97.9
+          ],
+          [
+            "Kazakstan",
+            "Kazakh",
+            46.0
+          ],
+          [
+            "Kenya",
+            "Kikuyu",
+            20.9
+          ],
+          [
+            "Kiribati",
+            "Kiribati",
+            98.9
+          ],
+          [
+            "Kuwait",
+            "Arabic",
+            78.1
+          ],
+          [
+            "Kyrgyzstan",
+            "Kirgiz",
+            59.7
+          ],
+          [
+            "Laos",
+            "Lao",
+            67.2
+          ],
+          [
+            "Latvia",
+            "Latvian",
+            55.1
+          ],
+          [
+            "Lebanon",
+            "Arabic",
+            93.0
+          ],
+          [
+            "Lesotho",
+            "Sotho",
+            85.0
+          ],
+          [
+            "Liberia",
+            "Kpelle",
+            19.5
+          ],
+          [
+            "Libyan Arab Jamahiriya",
+            "Arabic",
+            96.0
+          ],
+          [
+            "Liechtenstein",
+            "German",
+            89.0
+          ],
+          [
+            "Lithuania",
+            "Lithuanian",
+            81.6
+          ],
+          [
+            "Luxembourg",
+            "Luxembourgish",
+            64.4
+          ],
+          [
+            "Macao",
+            "Canton Chinese",
+            85.6
+          ],
+          [
+            "Macedonia",
+            "Macedonian",
+            66.5
+          ],
+          [
+            "Madagascar",
+            "Malagasy",
+            98.9
+          ],
+          [
+            "Malawi",
+            "Chichewa",
+            58.3
+          ],
+          [
+            "Malaysia",
+            "Malay",
+            58.4
+          ],
+          [
+            "Maldives",
+            "Dhivehi",
+            100.0
+          ],
+          [
+            "Mali",
+            "Bambara",
+            31.8
+          ],
+          [
+            "Malta",
+            "Maltese",
+            95.8
+          ],
+          [
+            "Marshall Islands",
+            "Marshallese",
+            96.8
+          ],
+          [
+            "Martinique",
+            "Creole French",
+            96.6
+          ],
+          [
+            "Mauritania",
+            "Hassaniya",
+            81.7
+          ],
+          [
+            "Mauritius",
+            "Creole French",
+            70.6
+          ],
+          [
+            "Mayotte",
+            "Mahor\u00e9",
+            41.9
+          ],
+          [
+            "Mexico",
+            "Spanish",
+            92.1
+          ],
+          [
+            "Micronesia, Federated States of",
+            "Trukese",
+            41.6
+          ],
+          [
+            "Moldova",
+            "Romanian",
+            61.9
+          ],
+          [
+            "Monaco",
+            "French",
+            41.9
+          ],
+          [
+            "Mongolia",
+            "Mongolian",
+            78.8
+          ],
+          [
+            "Montserrat",
+            "English",
+            0.0
+          ],
+          [
+            "Morocco",
+            "Arabic",
+            65.0
+          ],
+          [
+            "Mozambique",
+            "Makua",
+            27.8
+          ],
+          [
+            "Myanmar",
+            "Burmese",
+            69.0
+          ],
+          [
+            "Namibia",
+            "Ovambo",
+            50.7
+          ],
+          [
+            "Nauru",
+            "Nauru",
+            57.5
+          ],
+          [
+            "Nepal",
+            "Nepali",
+            50.4
+          ],
+          [
+            "Netherlands",
+            "Dutch",
+            95.6
+          ],
+          [
+            "Netherlands Antilles",
+            "Papiamento",
+            86.2
+          ],
+          [
+            "New Caledonia",
+            "Malenasian Languages",
+            45.4
+          ],
+          [
+            "New Zealand",
+            "English",
+            87.0
+          ],
+          [
+            "Nicaragua",
+            "Spanish",
+            97.6
+          ],
+          [
+            "Niger",
+            "Hausa",
+            53.1
+          ],
+          [
+            "Nigeria",
+            "Joruba",
+            21.4
+          ],
+          [
+            "Niue",
+            "English",
+            0.0
+          ],
+          [
+            "Niue",
+            "Niue",
+            0.0
+          ],
+          [
+            "Norfolk Island",
+            "English",
+            0.0
+          ],
+          [
+            "North Korea",
+            "Korean",
+            99.9
+          ],
+          [
+            "Northern Mariana Islands",
+            "Philippene Languages",
+            34.1
+          ],
+          [
+            "Norway",
+            "Norwegian",
+            96.6
+          ],
+          [
+            "Oman",
+            "Arabic",
+            76.7
+          ],
+          [
+            "Pakistan",
+            "Punjabi",
+            48.2
+          ],
+          [
+            "Palau",
+            "Palau",
+            82.2
+          ],
+          [
+            "Palestine",
+            "Arabic",
+            95.9
+          ],
+          [
+            "Panama",
+            "Spanish",
+            76.8
+          ],
+          [
+            "Papua New Guinea",
+            "Papuan Languages",
+            78.1
+          ],
+          [
+            "Paraguay",
+            "Spanish",
+            55.1
+          ],
+          [
+            "Peru",
+            "Spanish",
+            79.8
+          ],
+          [
+            "Philippines",
+            "Pilipino",
+            29.3
+          ],
+          [
+            "Pitcairn",
+            "Pitcairnese",
+            0.0
+          ],
+          [
+            "Poland",
+            "Polish",
+            97.6
+          ],
+          [
+            "Portugal",
+            "Portuguese",
+            99.0
+          ],
+          [
+            "Puerto Rico",
+            "Spanish",
+            51.3
+          ],
+          [
+            "Qatar",
+            "Arabic",
+            40.7
+          ],
+          [
+            "Romania",
+            "Romanian",
+            90.7
+          ],
+          [
+            "Russian Federation",
+            "Russian",
+            86.6
+          ],
+          [
+            "Rwanda",
+            "Rwanda",
+            100.0
+          ],
+          [
+            "R\u00e9union",
+            "Creole French",
+            91.5
+          ],
+          [
+            "Saint Helena",
+            "English",
+            0.0
+          ],
+          [
+            "Saint Kitts and Nevis",
+            "Creole English",
+            100.0
+          ],
+          [
+            "Saint Lucia",
+            "Creole French",
+            80.0
+          ],
+          [
+            "Saint Pierre and Miquelon",
+            "French",
+            0.0
+          ],
+          [
+            "Saint Vincent and the Grenadines",
+            "Creole English",
+            99.1
+          ],
+          [
+            "Samoa",
+            "Samoan-English",
+            52.0
+          ],
+          [
+            "San Marino",
+            "Italian",
+            100.0
+          ],
+          [
+            "Sao Tome and Principe",
+            "Crioulo",
+            86.3
+          ],
+          [
+            "Saudi Arabia",
+            "Arabic",
+            95.0
+          ],
+          [
+            "Senegal",
+            "Wolof",
+            48.1
+          ],
+          [
+            "Seychelles",
+            "Seselwa",
+            91.3
+          ],
+          [
+            "Sierra Leone",
+            "Mende",
+            34.8
+          ],
+          [
+            "Singapore",
+            "Chinese",
+            77.1
+          ],
+          [
+            "Slovakia",
+            "Slovak",
+            85.6
+          ],
+          [
+            "Slovenia",
+            "Slovene",
+            87.9
+          ],
+          [
+            "Solomon Islands",
+            "Malenasian Languages",
+            85.6
+          ],
+          [
+            "Somalia",
+            "Somali",
+            98.3
+          ],
+          [
+            "South Africa",
+            "Zulu",
+            22.7
+          ],
+          [
+            "South Korea",
+            "Korean",
+            99.9
+          ],
+          [
+            "Spain",
+            "Spanish",
+            74.4
+          ],
+          [
+            "Sri Lanka",
+            "Singali",
+            60.3
+          ],
+          [
+            "Sudan",
+            "Arabic",
+            49.4
+          ],
+          [
+            "Suriname",
+            "Sranantonga",
+            81.0
+          ],
+          [
+            "Svalbard and Jan Mayen",
+            "Norwegian",
+            0.0
+          ],
+          [
+            "Svalbard and Jan Mayen",
+            "Russian",
+            0.0
+          ],
+          [
+            "Swaziland",
+            "Swazi",
+            89.9
+          ],
+          [
+            "Sweden",
+            "Swedish",
+            89.5
+          ],
+          [
+            "Switzerland",
+            "German",
+            63.6
+          ],
+          [
+            "Syria",
+            "Arabic",
+            90.0
+          ],
+          [
+            "Taiwan",
+            "Min",
+            66.7
+          ],
+          [
+            "Tajikistan",
+            "Tadzhik",
+            62.2
+          ],
+          [
+            "Tanzania",
+            "Nyamwesi",
+            21.1
+          ],
+          [
+            "Thailand",
+            "Thai",
+            52.6
+          ],
+          [
+            "Togo",
+            "Ewe",
+            23.2
+          ],
+          [
+            "Tokelau",
+            "English",
+            0.0
+          ],
+          [
+            "Tokelau",
+            "Tokelau",
+            0.0
+          ],
+          [
+            "Tonga",
+            "Tongan",
+            98.3
+          ],
+          [
+            "Trinidad and Tobago",
+            "English",
+            93.5
+          ],
+          [
+            "Tunisia",
+            "Arabic",
+            69.9
+          ],
+          [
+            "Turkey",
+            "Turkish",
+            87.6
+          ],
+          [
+            "Turkmenistan",
+            "Turkmenian",
+            76.7
+          ],
+          [
+            "Turks and Caicos Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Tuvalu",
+            "Tuvalu",
+            92.5
+          ],
+          [
+            "Uganda",
+            "Ganda",
+            18.1
+          ],
+          [
+            "Ukraine",
+            "Ukrainian",
+            64.7
+          ],
+          [
+            "United Arab Emirates",
+            "Arabic",
+            42.0
+          ],
+          [
+            "United Kingdom",
+            "English",
+            97.3
+          ],
+          [
+            "United States",
+            "English",
+            86.2
+          ],
+          [
+            "United States Minor Outlying Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Uruguay",
+            "Spanish",
+            95.7
+          ],
+          [
+            "Uzbekistan",
+            "Uzbek",
+            72.6
+          ],
+          [
+            "Vanuatu",
+            "Bislama",
+            56.6
+          ],
+          [
+            "Venezuela",
+            "Spanish",
+            96.9
+          ],
+          [
+            "Vietnam",
+            "Vietnamese",
+            86.8
+          ],
+          [
+            "Virgin Islands, British",
+            "English",
+            0.0
+          ],
+          [
+            "Virgin Islands, U.S.",
+            "English",
+            81.7
+          ],
+          [
+            "Wallis and Futuna",
+            "Futuna",
+            0.0
+          ],
+          [
+            "Wallis and Futuna",
+            "Wallis",
+            0.0
+          ],
+          [
+            "Western Sahara",
+            "Arabic",
+            100.0
+          ],
+          [
+            "Yemen",
+            "Arabic",
+            99.6
+          ],
+          [
+            "Yugoslavia",
+            "Serbo-Croatian",
+            75.2
+          ],
+          [
+            "Zambia",
+            "Bemba",
+            29.7
+          ],
+          [
+            "Zimbabwe",
+            "Shona",
+            72.1
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [('Afghanistan', 'Pashto', 52.4), ('Albania', 'Albaniana', 97.9), ('Algeria', 'Arabic', 86.0), ('American Samoa', 'Samoan', 90.6), ('Andorra', 'Spanish', 44.6), ('Angola', 'Ovimbundu', 37.2), ('Anguilla', 'English', 0.0), ('Antigua and Barbuda', 'Creole English', 95.7), ('Argentina', 'Spanish', 96.8), ('Armenia', 'Armenian', 93.4), ('Aruba', 'Papiamento', 76.7), ('Australia', 'English', 81.2), ('Austria', 'German', 92.0), ('Azerbaijan', 'Azerbaijani', 89.0), ('Bahamas', 'Creole English', 89.7), ('Bahrain', 'Arabic', 67.7), ('Bangladesh', 'Bengali', 97.7), ('Barbados', 'Bajan', 95.1), ('Belarus', 'Belorussian', 65.6), ('Belgium', 'Dutch', 59.2), ('Belize', 'English', 50.8), ('Benin', 'Fon', 39.8), ('Bermuda', 'English', 100.0), ('Bhutan', 'Dzongkha', 50.0), ('Bolivia', 'Spanish', 87.7), ('Bosnia and Herzegovina', 'Serbo-Croatian', 99.2), ('Botswana', 'Tswana', 75.5), ('Brazil', 'Portuguese', 97.5), ('Brunei', 'Malay', 45.5), ('Bulgaria', 'Bulgariana', 83.2), ('Burkina Faso', 'Mossi', 50.2), ('Burundi', 'Kirundi', 98.1), ('Cambodia', 'Khmer', 88.6), ('Cameroon', 'Fang', 19.7), ('Canada', 'English', 60.4), ('Cape Verde', 'Crioulo', 100.0), ('Cayman Islands', 'English', 0.0), ('Central African Republic', 'Gbaya', 23.8), ('Chad', 'Sara', 27.7), ('Chile', 'Spanish', 89.7), ('China', 'Chinese', 92.0), ('Christmas Island', 'Chinese', 0.0), ('Christmas Island', 'English', 0.0), ('Cocos (Keeling) Islands', 'English', 0.0), ('Cocos (Keeling) Islands', 'Malay', 0.0), ('Colombia', 'Spanish', 99.0), ('Comoros', 'Comorian', 75.0), ('Congo', 'Kongo', 51.5), ('Congo, The Democratic Republic of the', 'Luba', 18.0), ('Cook Islands', 'English', 0.0), ('Cook Islands', 'Maori', 0.0), ('Costa Rica', 'Spanish', 97.5), ('Croatia', 'Serbo-Croatian', 95.9), ('Cuba', 'Spanish', 100.0), ('Cyprus', 'Greek', 74.1), ('Czech Republic', 'Czech', 81.2), ('C\u00f4te d\u2019Ivoire', 'Akan', 30.0), ('Denmark', 'Danish', 93.5), ('Djibouti', 'Somali', 43.9), ('Dominica', 'Creole English', 100.0), ('Dominican Republic', 'Spanish', 98.0), ('East Timor', 'Portuguese', 0.0), ('East Timor', 'Sunda', 0.0), ('Ecuador', 'Spanish', 93.0), ('Egypt', 'Arabic', 98.8), ('El Salvador', 'Spanish', 100.0), ('Equatorial Guinea', 'Fang', 84.8), ('Eritrea', 'Tigrinja', 49.1), ('Estonia', 'Estonian', 65.3), ('Ethiopia', 'Oromo', 31.0), ('Falkland Islands', 'English', 0.0), ('Faroe Islands', 'Faroese', 100.0), ('Fiji Islands', 'Fijian', 50.8), ('Finland', 'Finnish', 92.7), ('France', 'French', 93.6), ('French Guiana', 'Creole French', 94.3), ('French Polynesia', 'Tahitian', 46.4), ('Gabon', 'Fang', 35.8), ('Gambia', 'Malinke', 34.1), ('Georgia', 'Georgiana', 71.7), ('Germany', 'German', 91.3), ('Ghana', 'Akan', 52.4), ('Gibraltar', 'English', 88.9), ('Greece', 'Greek', 98.5), ('Greenland', 'Greenlandic', 87.5), ('Grenada', 'Creole English', 100.0), ('Guadeloupe', 'Creole French', 95.0), ('Guam', 'English', 37.5), ('Guatemala', 'Spanish', 64.7), ('Guinea', 'Ful', 38.6), ('Guinea-Bissau', 'Crioulo', 36.4), ('Guyana', 'Creole English', 96.4), ('Haiti', 'Haiti Creole', 100.0), ('Holy See (Vatican City State)', 'Italian', 0.0), ('Honduras', 'Spanish', 97.2), ('Hong Kong', 'Canton Chinese', 88.7), ('Hungary', 'Hungarian', 98.5), ('Iceland', 'Icelandic', 95.7), ('India', 'Hindi', 39.9), ('Indonesia', 'Javanese', 39.4), ('Iran', 'Persian', 45.7), ('Iraq', 'Arabic', 77.2), ('Ireland', 'English', 98.4), ('Israel', 'Hebrew', 63.1), ('Italy', 'Italian', 94.1), ('Jamaica', 'Creole English', 94.2), ('Japan', 'Japanese', 99.1), ('Jordan', 'Arabic', 97.9), ('Kazakstan', 'Kazakh', 46.0), ('Kenya', 'Kikuyu', 20.9), ('Kiribati', 'Kiribati', 98.9), ('Kuwait', 'Arabic', 78.1), ('Kyrgyzstan', 'Kirgiz', 59.7), ('Laos', 'Lao', 67.2), ('Latvia', 'Latvian', 55.1), ('Lebanon', 'Arabic', 93.0), ('Lesotho', 'Sotho', 85.0), ('Liberia', 'Kpelle', 19.5), ('Libyan Arab Jamahiriya', 'Arabic', 96.0), ('Liechtenstein', 'German', 89.0), ('Lithuania', 'Lithuanian', 81.6), ('Luxembourg', 'Luxembourgish', 64.4), ('Macao', 'Canton Chinese', 85.6), ('Macedonia', 'Macedonian', 66.5), ('Madagascar', 'Malagasy', 98.9), ('Malawi', 'Chichewa', 58.3), ('Malaysia', 'Malay', 58.4), ('Maldives', 'Dhivehi', 100.0), ('Mali', 'Bambara', 31.8), ('Malta', 'Maltese', 95.8), ('Marshall Islands', 'Marshallese', 96.8), ('Martinique', 'Creole French', 96.6), ('Mauritania', 'Hassaniya', 81.7), ('Mauritius', 'Creole French', 70.6), ('Mayotte', 'Mahor\u00e9', 41.9), ('Mexico', 'Spanish', 92.1), ('Micronesia, Federated States of', 'Trukese', 41.6), ('Moldova', 'Romanian', 61.9), ('Monaco', 'French', 41.9), ('Mongolia', 'Mongolian', 78.8), ('Montserrat', 'English', 0.0), ('Morocco', 'Arabic', 65.0), ('Mozambique', 'Makua', 27.8), ('Myanmar', 'Burmese', 69.0), ('Namibia', 'Ovambo', 50.7), ('Nauru', 'Nauru', 57.5), ('Nepal', 'Nepali', 50.4), ('Netherlands', 'Dutch', 95.6), ('Netherlands Antilles', 'Papiamento', 86.2), ('New Caledonia', 'Malenasian Languages', 45.4), ('New Zealand', 'English', 87.0), ('Nicaragua', 'Spanish', 97.6), ('Niger', 'Hausa', 53.1), ('Nigeria', 'Joruba', 21.4), ('Niue', 'English', 0.0), ('Niue', 'Niue', 0.0), ('Norfolk Island', 'English', 0.0), ('North Korea', 'Korean', 99.9), ('Northern Mariana Islands', 'Philippene Languages', 34.1), ('Norway', 'Norwegian', 96.6), ('Oman', 'Arabic', 76.7), ('Pakistan', 'Punjabi', 48.2), ('Palau', 'Palau', 82.2), ('Palestine', 'Arabic', 95.9), ('Panama', 'Spanish', 76.8), ('Papua New Guinea', 'Papuan Languages', 78.1), ('Paraguay', 'Spanish', 55.1), ('Peru', 'Spanish', 79.8), ('Philippines', 'Pilipino', 29.3), ('Pitcairn', 'Pitcairnese', 0.0), ('Poland', 'Polish', 97.6), ('Portugal', 'Portuguese', 99.0), ('Puerto Rico', 'Spanish', 51.3), ('Qatar', 'Arabic', 40.7), ('Romania', 'Romanian', 90.7), ('Russian Federation', 'Russian', 86.6), ('Rwanda', 'Rwanda', 100.0), ('R\u00e9union', 'Creole French', 91.5), ('Saint Helena', 'English', 0.0), ('Saint Kitts and Nevis', 'Creole English', 100.0), ('Saint Lucia', 'Creole French', 80.0), ('Saint Pierre and Miquelon', 'French', 0.0), ('Saint Vincent and the Grenadines', 'Creole English', 99.1), ('Samoa', 'Samoan-English', 52.0), ('San Marino', 'Italian', 100.0), ('Sao Tome and Principe', 'Crioulo', 86.3), ('Saudi Arabia', 'Arabic', 95.0), ('Senegal', 'Wolof', 48.1), ('Seychelles', 'Seselwa', 91.3), ('Sierra Leone', 'Mende', 34.8), ('Singapore', 'Chinese', 77.1), ('Slovakia', 'Slovak', 85.6), ('Slovenia', 'Slovene', 87.9), ('Solomon Islands', 'Malenasian Languages', 85.6), ('Somalia', 'Somali', 98.3), ('South Africa', 'Zulu', 22.7), ('South Korea', 'Korean', 99.9), ('Spain', 'Spanish', 74.4), ('Sri Lanka', 'Singali', 60.3), ('Sudan', 'Arabic', 49.4), ('Suriname', 'Sranantonga', 81.0), ('Svalbard and Jan Mayen', 'Norwegian', 0.0), ('Svalbard and Jan Mayen', 'Russian', 0.0), ('Swaziland', 'Swazi', 89.9), ('Sweden', 'Swedish', 89.5), ('Switzerland', 'German', 63.6), ('Syria', 'Arabic', 90.0), ('Taiwan', 'Min', 66.7), ('Tajikistan', 'Tadzhik', 62.2), ('Tanzania', 'Nyamwesi', 21.1), ('Thailand', 'Thai', 52.6), ('Togo', 'Ewe', 23.2), ('Tokelau', 'English', 0.0), ('Tokelau', 'Tokelau', 0.0), ('Tonga', 'Tongan', 98.3), ('Trinidad and Tobago', 'English', 93.5), ('Tunisia', 'Arabic', 69.9), ('Turkey', 'Turkish', 87.6), ('Turkmenistan', 'Turkmenian', 76.7), ('Turks and Caicos Islands', 'English', 0.0), ('Tuvalu', 'Tuvalu', 92.5), ('Uganda', 'Ganda', 18.1), ('Ukraine', 'Ukrainian', 64.7), ('United Arab Emirates', 'Arabic', 42.0), ('United Kingdom', 'English', 97.3), ('United States', 'English', 86.2), ('United States Minor Outlying Islands', 'English', 0.0), ('Uruguay', 'Spanish', 95.7), ('Uzbekistan', 'Uzbek', 72.6), ('Vanuatu', 'Bislama', 56.6), ('Venezuela', 'Spanish', 96.9), ('Vietnam', 'Vietnamese', 86.8), ('Virgin Islands, British', 'English', 0.0), ('Virgin Islands, U.S.', 'English', 81.7), ('Wallis and Futuna', 'Futuna', 0.0), ('Wallis and Futuna', 'Wallis', 0.0), ('Western Sahara', 'Arabic', 100.0), ('Yemen', 'Arabic', 99.6), ('Yugoslavia', 'Serbo-Croatian', 75.2), ('Zambia', 'Bemba', 29.7), ('Zimbabwe', 'Shona', 72.1)] != gold [('Papiamento', 'ABW', 76.7), ('Pashto', 'AFG', 52.4), ('Ovimbundu', 'AGO', 37.2), ('English', 'AIA', 0.0), ('Albaniana', 'ALB', 97.9), ('Spanish', 'AND', 44.6), ('Papiamento', 'ANT', 86.2), ('Arabic', 'ARE', 42.0), ('Spanish', 'ARG', 96.8), ('Armenian', 'ARM', 93.4), ('Samoan', 'ASM', 90.6), ('Creole English', 'ATG', 95.7), ('English', 'AUS', 81.2), ('German', 'AUT', 92.0), ('Azerbaijani', 'AZE', 89.0), ('Kirundi', 'BDI', 98.1), ('Dutch', 'BEL', 59.2), ('Fon', 'BEN', 39.8), ('Mossi', 'BFA', 50.2), ('Bengali', 'BGD', 97.7), ('Bulgariana', 'BGR', 83.2), ('Arabic', 'BHR', 67.7), ('Creole English', 'BHS', 89.7), ('Serbo-Croatian', 'BIH', 99.2), ('Belorussian', 'BLR', 65.6), ('English', 'BLZ', 50.8), ('English', 'BMU', 100.0), ('Spanish', 'BOL', 87.7), ('Portuguese', 'BRA', 97.5), ('Bajan', 'BRB', 95.1), ('Malay', 'BRN', 45.5), ('Dzongkha', 'BTN', 50.0), ('Tswana', 'BWA', 75.5), ('Gbaya', 'CAF', 23.8), ('English', 'CAN', 60.4), ('English', 'CCK', 0.0), ('German', 'CHE', 63.6), ('Spanish', 'CHL', 89.7), ('Chinese', 'CHN', 92.0), ('Akan', 'CIV', 30.0), ('Fang', 'CMR', 19.7), ('Luba', 'COD', 18.0), ('Kongo', 'COG', 51.5), ('English', 'COK', 0.0), ('Spanish', 'COL', 99.0), ('Comorian', 'COM', 75.0), ('Crioulo', 'CPV', 100.0), ('Spanish', 'CRI', 97.5), ('Spanish', 'CUB', 100.0), ('Chinese', 'CXR', 0.0), ('English', 'CYM', 0.0), ('Greek', 'CYP', 74.1), ('Czech', 'CZE', 81.2), ('German', 'DEU', 91.3), ('Somali', 'DJI', 43.9), ('Creole English', 'DMA', 100.0), ('Danish', 'DNK', 93.5), ('Spanish', 'DOM', 98.0), ('Arabic', 'DZA', 86.0), ('Spanish', 'ECU', 93.0), ('Arabic', 'EGY', 98.8), ('Tigrinja', 'ERI', 49.1), ('Arabic', 'ESH', 100.0), ('Spanish', 'ESP', 74.4), ('Estonian', 'EST', 65.3), ('Oromo', 'ETH', 31.0), ('Finnish', 'FIN', 92.7), ('Fijian', 'FJI', 50.8), ('English', 'FLK', 0.0), ('French', 'FRA', 93.6), ('Faroese', 'FRO', 100.0), ('Trukese', 'FSM', 41.6), ('Fang', 'GAB', 35.8), ('English', 'GBR', 97.3), ('Georgiana', 'GEO', 71.7), ('Akan', 'GHA', 52.4), ('English', 'GIB', 88.9), ('Ful', 'GIN', 38.6), ('Creole French', 'GLP', 95.0), ('Malinke', 'GMB', 34.1), ('Crioulo', 'GNB', 36.4), ('Fang', 'GNQ', 84.8), ('Greek', 'GRC', 98.5), ('Creole English', 'GRD', 100.0), ('Greenlandic', 'GRL', 87.5), ('Spanish', 'GTM', 64.7), ('Creole French', 'GUF', 94.3), ('English', 'GUM', 37.5), ('Creole English', 'GUY', 96.4), ('Canton Chinese', 'HKG', 88.7), ('Spanish', 'HND', 97.2), ('Serbo-Croatian', 'HRV', 95.9), ('Haiti Creole', 'HTI', 100.0), ('Hungarian', 'HUN', 98.5), ('Javanese', 'IDN', 39.4), ('Hindi', 'IND', 39.9), ('English', 'IRL', 98.4), ('Persian', 'IRN', 45.7), ('Arabic', 'IRQ', 77.2), ('Icelandic', 'ISL', 95.7), ('Hebrew', 'ISR', 63.1), ('Italian', 'ITA', 94.1), ('Creole English', 'JAM', 94.2), ('Arabic', 'JOR', 97.9), ('Japanese', 'JPN', 99.1), ('Kazakh', 'KAZ', 46.0), ('Kikuyu', 'KEN', 20.9), ('Kirgiz', 'KGZ', 59.7), ('Khmer', 'KHM', 88.6), ('Kiribati', 'KIR', 98.9), ('Creole English', 'KNA', 100.0), ('Korean', 'KOR', 99.9), ('Arabic', 'KWT', 78.1), ('Lao', 'LAO', 67.2), ('Arabic', 'LBN', 93.0), ('Kpelle', 'LBR', 19.5), ('Arabic', 'LBY', 96.0), ('Creole French', 'LCA', 80.0), ('German', 'LIE', 89.0), ('Singali', 'LKA', 60.3), ('Sotho', 'LSO', 85.0), ('Lithuanian', 'LTU', 81.6), ('Luxembourgish', 'LUX', 64.4), ('Latvian', 'LVA', 55.1), ('Canton Chinese', 'MAC', 85.6), ('Arabic', 'MAR', 65.0), ('French', 'MCO', 41.9), ('Romanian', 'MDA', 61.9), ('Malagasy', 'MDG', 98.9), ('Dhivehi', 'MDV', 100.0), ('Spanish', 'MEX', 92.1), ('Marshallese', 'MHL', 96.8), ('Macedonian', 'MKD', 66.5), ('Bambara', 'MLI', 31.8), ('Maltese', 'MLT', 95.8), ('Burmese', 'MMR', 69.0), ('Mongolian', 'MNG', 78.8), ('Philippene Languages', 'MNP', 34.1), ('Makua', 'MOZ', 27.8), ('Hassaniya', 'MRT', 81.7), ('English', 'MSR', 0.0), ('Creole French', 'MTQ', 96.6), ('Creole French', 'MUS', 70.6), ('Chichewa', 'MWI', 58.3), ('Malay', 'MYS', 58.4), ('Mahor\u00e9', 'MYT', 41.9), ('Ovambo', 'NAM', 50.7), ('Malenasian Languages', 'NCL', 45.4), ('Hausa', 'NER', 53.1), ('English', 'NFK', 0.0), ('Joruba', 'NGA', 21.4), ('Spanish', 'NIC', 97.6), ('English', 'NIU', 0.0), ('Dutch', 'NLD', 95.6), ('Norwegian', 'NOR', 96.6), ('Nepali', 'NPL', 50.4), ('Nauru', 'NRU', 57.5), ('English', 'NZL', 87.0), ('Arabic', 'OMN', 76.7), ('Punjabi', 'PAK', 48.2), ('Spanish', 'PAN', 76.8), ('Pitcairnese', 'PCN', 0.0), ('Spanish', 'PER', 79.8), ('Pilipino', 'PHL', 29.3), ('Palau', 'PLW', 82.2), ('Papuan Languages', 'PNG', 78.1), ('Polish', 'POL', 97.6), ('Spanish', 'PRI', 51.3), ('Korean', 'PRK', 99.9), ('Portuguese', 'PRT', 99.0), ('Spanish', 'PRY', 55.1), ('Arabic', 'PSE', 95.9), ('Tahitian', 'PYF', 46.4), ('Arabic', 'QAT', 40.7), ('Creole French', 'REU', 91.5), ('Romanian', 'ROM', 90.7), ('Russian', 'RUS', 86.6), ('Rwanda', 'RWA', 100.0), ('Arabic', 'SAU', 95.0), ('Arabic', 'SDN', 49.4), ('Wolof', 'SEN', 48.1), ('Chinese', 'SGP', 77.1), ('English', 'SHN', 0.0), ('Norwegian', 'SJM', 0.0), ('Malenasian Languages', 'SLB', 85.6), ('Mende', 'SLE', 34.8), ('Spanish', 'SLV', 100.0), ('Italian', 'SMR', 100.0), ('Somali', 'SOM', 98.3), ('French', 'SPM', 0.0), ('Crioulo', 'STP', 86.3), ('Sranantonga', 'SUR', 81.0), ('Slovak', 'SVK', 85.6), ('Slovene', 'SVN', 87.9), ('Swedish', 'SWE', 89.5), ('Swazi', 'SWZ', 89.9), ('Seselwa', 'SYC', 91.3), ('Arabic', 'SYR', 90.0), ('English', 'TCA', 0.0), ('Sara', 'TCD', 27.7), ('Ewe', 'TGO', 23.2), ('Thai', 'THA', 52.6), ('Tadzhik', 'TJK', 62.2), ('English', 'TKL', 0.0), ('Turkmenian', 'TKM', 76.7), ('Portuguese', 'TMP', 0.0), ('Tongan', 'TON', 98.3), ('English', 'TTO', 93.5), ('Arabic', 'TUN', 69.9), ('Turkish', 'TUR', 87.6), ('Tuvalu', 'TUV', 92.5), ('Min', 'TWN', 66.7), ('Nyamwesi', 'TZA', 21.1), ('Ganda', 'UGA', 18.1), ('Ukrainian', 'UKR', 64.7), ('English', 'UMI', 0.0), ('Spanish', 'URY', 95.7), ('English', 'USA', 86.2), ('Uzbek', 'UZB', 72.6), ('Italian', 'VAT', 0.0), ('Creole English', 'VCT', 99.1), ('Spanish', 'VEN', 96.9), ('English', 'VGB', 0.0), ('English', 'VIR', 81.7), ('Vietnamese', 'VNM', 86.8), ('Bislama', 'VUT', 56.6), ('Futuna', 'WLF', 0.0), ('Samoan-English', 'WSM', 52.0), ('Arabic', 'YEM', 99.6), ('Serbo-Croatian', 'YUG', 75.2), ('Zulu', 'ZAF', 22.7), ('Bemba', 'ZMB', 29.7), ('Shona', 'ZWE', 72.1)]"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT \n    cl.CountryCode,\n    cl.Language\nFROM countrylanguage cl\nINNER JOIN (\n    SELECT \n        CountryCode,\n        MAX(Percentage) AS MaxPercentage\n    FROM countrylanguage\n    GROUP BY CountryCode\n) max_cl ON cl.CountryCode = max_cl.CountryCode AND cl.Percentage = max_cl.MaxPercentage",
+        "pred_rows": [
+          [
+            "ABW",
+            "Papiamento"
+          ],
+          [
+            "AFG",
+            "Pashto"
+          ],
+          [
+            "AGO",
+            "Ovimbundu"
+          ],
+          [
+            "AIA",
+            "English"
+          ],
+          [
+            "ALB",
+            "Albaniana"
+          ],
+          [
+            "AND",
+            "Spanish"
+          ],
+          [
+            "ANT",
+            "Papiamento"
+          ],
+          [
+            "ARE",
+            "Arabic"
+          ],
+          [
+            "ARG",
+            "Spanish"
+          ],
+          [
+            "ARM",
+            "Armenian"
+          ],
+          [
+            "ASM",
+            "Samoan"
+          ],
+          [
+            "ATG",
+            "Creole English"
+          ],
+          [
+            "AUS",
+            "English"
+          ],
+          [
+            "AUT",
+            "German"
+          ],
+          [
+            "AZE",
+            "Azerbaijani"
+          ],
+          [
+            "BDI",
+            "Kirundi"
+          ],
+          [
+            "BEL",
+            "Dutch"
+          ],
+          [
+            "BEN",
+            "Fon"
+          ],
+          [
+            "BFA",
+            "Mossi"
+          ],
+          [
+            "BGD",
+            "Bengali"
+          ],
+          [
+            "BGR",
+            "Bulgariana"
+          ],
+          [
+            "BHR",
+            "Arabic"
+          ],
+          [
+            "BHS",
+            "Creole English"
+          ],
+          [
+            "BIH",
+            "Serbo-Croatian"
+          ],
+          [
+            "BLR",
+            "Belorussian"
+          ],
+          [
+            "BLZ",
+            "English"
+          ],
+          [
+            "BMU",
+            "English"
+          ],
+          [
+            "BOL",
+            "Spanish"
+          ],
+          [
+            "BRA",
+            "Portuguese"
+          ],
+          [
+            "BRB",
+            "Bajan"
+          ],
+          [
+            "BRN",
+            "Malay"
+          ],
+          [
+            "BTN",
+            "Dzongkha"
+          ],
+          [
+            "BWA",
+            "Tswana"
+          ],
+          [
+            "CAF",
+            "Gbaya"
+          ],
+          [
+            "CAN",
+            "English"
+          ],
+          [
+            "CCK",
+            "English"
+          ],
+          [
+            "CCK",
+            "Malay"
+          ],
+          [
+            "CHE",
+            "German"
+          ],
+          [
+            "CHL",
+            "Spanish"
+          ],
+          [
+            "CHN",
+            "Chinese"
+          ],
+          [
+            "CIV",
+            "Akan"
+          ],
+          [
+            "CMR",
+            "Fang"
+          ],
+          [
+            "COD",
+            "Luba"
+          ],
+          [
+            "COG",
+            "Kongo"
+          ],
+          [
+            "COK",
+            "English"
+          ],
+          [
+            "COK",
+            "Maori"
+          ],
+          [
+            "COL",
+            "Spanish"
+          ],
+          [
+            "COM",
+            "Comorian"
+          ],
+          [
+            "CPV",
+            "Crioulo"
+          ],
+          [
+            "CRI",
+            "Spanish"
+          ],
+          [
+            "CUB",
+            "Spanish"
+          ],
+          [
+            "CXR",
+            "Chinese"
+          ],
+          [
+            "CXR",
+            "English"
+          ],
+          [
+            "CYM",
+            "English"
+          ],
+          [
+            "CYP",
+            "Greek"
+          ],
+          [
+            "CZE",
+            "Czech"
+          ],
+          [
+            "DEU",
+            "German"
+          ],
+          [
+            "DJI",
+            "Somali"
+          ],
+          [
+            "DMA",
+            "Creole English"
+          ],
+          [
+            "DNK",
+            "Danish"
+          ],
+          [
+            "DOM",
+            "Spanish"
+          ],
+          [
+            "DZA",
+            "Arabic"
+          ],
+          [
+            "ECU",
+            "Spanish"
+          ],
+          [
+            "EGY",
+            "Arabic"
+          ],
+          [
+            "ERI",
+            "Tigrinja"
+          ],
+          [
+            "ESH",
+            "Arabic"
+          ],
+          [
+            "ESP",
+            "Spanish"
+          ],
+          [
+            "EST",
+            "Estonian"
+          ],
+          [
+            "ETH",
+            "Oromo"
+          ],
+          [
+            "FIN",
+            "Finnish"
+          ],
+          [
+            "FJI",
+            "Fijian"
+          ],
+          [
+            "FLK",
+            "English"
+          ],
+          [
+            "FRA",
+            "French"
+          ],
+          [
+            "FRO",
+            "Faroese"
+          ],
+          [
+            "FSM",
+            "Trukese"
+          ],
+          [
+            "GAB",
+            "Fang"
+          ],
+          [
+            "GBR",
+            "English"
+          ],
+          [
+            "GEO",
+            "Georgiana"
+          ],
+          [
+            "GHA",
+            "Akan"
+          ],
+          [
+            "GIB",
+            "English"
+          ],
+          [
+            "GIN",
+            "Ful"
+          ],
+          [
+            "GLP",
+            "Creole French"
+          ],
+          [
+            "GMB",
+            "Malinke"
+          ],
+          [
+            "GNB",
+            "Crioulo"
+          ],
+          [
+            "GNQ",
+            "Fang"
+          ],
+          [
+            "GRC",
+            "Greek"
+          ],
+          [
+            "GRD",
+            "Creole English"
+          ],
+          [
+            "GRL",
+            "Greenlandic"
+          ],
+          [
+            "GTM",
+            "Spanish"
+          ],
+          [
+            "GUF",
+            "Creole French"
+          ],
+          [
+            "GUM",
+            "English"
+          ],
+          [
+            "GUY",
+            "Creole English"
+          ],
+          [
+            "HKG",
+            "Canton Chinese"
+          ],
+          [
+            "HND",
+            "Spanish"
+          ],
+          [
+            "HRV",
+            "Serbo-Croatian"
+          ],
+          [
+            "HTI",
+            "Haiti Creole"
+          ],
+          [
+            "HUN",
+            "Hungarian"
+          ],
+          [
+            "IDN",
+            "Javanese"
+          ],
+          [
+            "IND",
+            "Hindi"
+          ],
+          [
+            "IRL",
+            "English"
+          ],
+          [
+            "IRN",
+            "Persian"
+          ],
+          [
+            "IRQ",
+            "Arabic"
+          ],
+          [
+            "ISL",
+            "Icelandic"
+          ],
+          [
+            "ISR",
+            "Hebrew"
+          ],
+          [
+            "ITA",
+            "Italian"
+          ],
+          [
+            "JAM",
+            "Creole English"
+          ],
+          [
+            "JOR",
+            "Arabic"
+          ],
+          [
+            "JPN",
+            "Japanese"
+          ],
+          [
+            "KAZ",
+            "Kazakh"
+          ],
+          [
+            "KEN",
+            "Kikuyu"
+          ],
+          [
+            "KGZ",
+            "Kirgiz"
+          ],
+          [
+            "KHM",
+            "Khmer"
+          ],
+          [
+            "KIR",
+            "Kiribati"
+          ],
+          [
+            "KNA",
+            "Creole English"
+          ],
+          [
+            "KOR",
+            "Korean"
+          ],
+          [
+            "KWT",
+            "Arabic"
+          ],
+          [
+            "LAO",
+            "Lao"
+          ],
+          [
+            "LBN",
+            "Arabic"
+          ],
+          [
+            "LBR",
+            "Kpelle"
+          ],
+          [
+            "LBY",
+            "Arabic"
+          ],
+          [
+            "LCA",
+            "Creole French"
+          ],
+          [
+            "LIE",
+            "German"
+          ],
+          [
+            "LKA",
+            "Singali"
+          ],
+          [
+            "LSO",
+            "Sotho"
+          ],
+          [
+            "LTU",
+            "Lithuanian"
+          ],
+          [
+            "LUX",
+            "Luxembourgish"
+          ],
+          [
+            "LVA",
+            "Latvian"
+          ],
+          [
+            "MAC",
+            "Canton Chinese"
+          ],
+          [
+            "MAR",
+            "Arabic"
+          ],
+          [
+            "MCO",
+            "French"
+          ],
+          [
+            "MDA",
+            "Romanian"
+          ],
+          [
+            "MDG",
+            "Malagasy"
+          ],
+          [
+            "MDV",
+            "Dhivehi"
+          ],
+          [
+            "MEX",
+            "Spanish"
+          ],
+          [
+            "MHL",
+            "Marshallese"
+          ],
+          [
+            "MKD",
+            "Macedonian"
+          ],
+          [
+            "MLI",
+            "Bambara"
+          ],
+          [
+            "MLT",
+            "Maltese"
+          ],
+          [
+            "MMR",
+            "Burmese"
+          ],
+          [
+            "MNG",
+            "Mongolian"
+          ],
+          [
+            "MNP",
+            "Philippene Languages"
+          ],
+          [
+            "MOZ",
+            "Makua"
+          ],
+          [
+            "MRT",
+            "Hassaniya"
+          ],
+          [
+            "MSR",
+            "English"
+          ],
+          [
+            "MTQ",
+            "Creole French"
+          ],
+          [
+            "MUS",
+            "Creole French"
+          ],
+          [
+            "MWI",
+            "Chichewa"
+          ],
+          [
+            "MYS",
+            "Malay"
+          ],
+          [
+            "MYT",
+            "Mahor\u00e9"
+          ],
+          [
+            "NAM",
+            "Ovambo"
+          ],
+          [
+            "NCL",
+            "Malenasian Languages"
+          ],
+          [
+            "NER",
+            "Hausa"
+          ],
+          [
+            "NFK",
+            "English"
+          ],
+          [
+            "NGA",
+            "Joruba"
+          ],
+          [
+            "NIC",
+            "Spanish"
+          ],
+          [
+            "NIU",
+            "English"
+          ],
+          [
+            "NIU",
+            "Niue"
+          ],
+          [
+            "NLD",
+            "Dutch"
+          ],
+          [
+            "NOR",
+            "Norwegian"
+          ],
+          [
+            "NPL",
+            "Nepali"
+          ],
+          [
+            "NRU",
+            "Nauru"
+          ],
+          [
+            "NZL",
+            "English"
+          ],
+          [
+            "OMN",
+            "Arabic"
+          ],
+          [
+            "PAK",
+            "Punjabi"
+          ],
+          [
+            "PAN",
+            "Spanish"
+          ],
+          [
+            "PCN",
+            "Pitcairnese"
+          ],
+          [
+            "PER",
+            "Spanish"
+          ],
+          [
+            "PHL",
+            "Pilipino"
+          ],
+          [
+            "PLW",
+            "Palau"
+          ],
+          [
+            "PNG",
+            "Papuan Languages"
+          ],
+          [
+            "POL",
+            "Polish"
+          ],
+          [
+            "PRI",
+            "Spanish"
+          ],
+          [
+            "PRK",
+            "Korean"
+          ],
+          [
+            "PRT",
+            "Portuguese"
+          ],
+          [
+            "PRY",
+            "Spanish"
+          ],
+          [
+            "PSE",
+            "Arabic"
+          ],
+          [
+            "PYF",
+            "Tahitian"
+          ],
+          [
+            "QAT",
+            "Arabic"
+          ],
+          [
+            "REU",
+            "Creole French"
+          ],
+          [
+            "ROM",
+            "Romanian"
+          ],
+          [
+            "RUS",
+            "Russian"
+          ],
+          [
+            "RWA",
+            "Rwanda"
+          ],
+          [
+            "SAU",
+            "Arabic"
+          ],
+          [
+            "SDN",
+            "Arabic"
+          ],
+          [
+            "SEN",
+            "Wolof"
+          ],
+          [
+            "SGP",
+            "Chinese"
+          ],
+          [
+            "SHN",
+            "English"
+          ],
+          [
+            "SJM",
+            "Norwegian"
+          ],
+          [
+            "SJM",
+            "Russian"
+          ],
+          [
+            "SLB",
+            "Malenasian Languages"
+          ],
+          [
+            "SLE",
+            "Mende"
+          ],
+          [
+            "SLV",
+            "Spanish"
+          ],
+          [
+            "SMR",
+            "Italian"
+          ],
+          [
+            "SOM",
+            "Somali"
+          ],
+          [
+            "SPM",
+            "French"
+          ],
+          [
+            "STP",
+            "Crioulo"
+          ],
+          [
+            "SUR",
+            "Sranantonga"
+          ],
+          [
+            "SVK",
+            "Slovak"
+          ],
+          [
+            "SVN",
+            "Slovene"
+          ],
+          [
+            "SWE",
+            "Swedish"
+          ],
+          [
+            "SWZ",
+            "Swazi"
+          ],
+          [
+            "SYC",
+            "Seselwa"
+          ],
+          [
+            "SYR",
+            "Arabic"
+          ],
+          [
+            "TCA",
+            "English"
+          ],
+          [
+            "TCD",
+            "Sara"
+          ],
+          [
+            "TGO",
+            "Ewe"
+          ],
+          [
+            "THA",
+            "Thai"
+          ],
+          [
+            "TJK",
+            "Tadzhik"
+          ],
+          [
+            "TKL",
+            "English"
+          ],
+          [
+            "TKL",
+            "Tokelau"
+          ],
+          [
+            "TKM",
+            "Turkmenian"
+          ],
+          [
+            "TMP",
+            "Portuguese"
+          ],
+          [
+            "TMP",
+            "Sunda"
+          ],
+          [
+            "TON",
+            "Tongan"
+          ],
+          [
+            "TTO",
+            "English"
+          ],
+          [
+            "TUN",
+            "Arabic"
+          ],
+          [
+            "TUR",
+            "Turkish"
+          ],
+          [
+            "TUV",
+            "Tuvalu"
+          ],
+          [
+            "TWN",
+            "Min"
+          ],
+          [
+            "TZA",
+            "Nyamwesi"
+          ],
+          [
+            "UGA",
+            "Ganda"
+          ],
+          [
+            "UKR",
+            "Ukrainian"
+          ],
+          [
+            "UMI",
+            "English"
+          ],
+          [
+            "URY",
+            "Spanish"
+          ],
+          [
+            "USA",
+            "English"
+          ],
+          [
+            "UZB",
+            "Uzbek"
+          ],
+          [
+            "VAT",
+            "Italian"
+          ],
+          [
+            "VCT",
+            "Creole English"
+          ],
+          [
+            "VEN",
+            "Spanish"
+          ],
+          [
+            "VGB",
+            "English"
+          ],
+          [
+            "VIR",
+            "English"
+          ],
+          [
+            "VNM",
+            "Vietnamese"
+          ],
+          [
+            "VUT",
+            "Bislama"
+          ],
+          [
+            "WLF",
+            "Futuna"
+          ],
+          [
+            "WLF",
+            "Wallis"
+          ],
+          [
+            "WSM",
+            "Samoan-English"
+          ],
+          [
+            "YEM",
+            "Arabic"
+          ],
+          [
+            "YUG",
+            "Serbo-Croatian"
+          ],
+          [
+            "ZAF",
+            "Zulu"
+          ],
+          [
+            "ZMB",
+            "Bemba"
+          ],
+          [
+            "ZWE",
+            "Shona"
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [('ABW', 'Papiamento'), ('AFG', 'Pashto'), ('AGO', 'Ovimbundu'), ('AIA', 'English'), ('ALB', 'Albaniana'), ('AND', 'Spanish'), ('ANT', 'Papiamento'), ('ARE', 'Arabic'), ('ARG', 'Spanish'), ('ARM', 'Armenian'), ('ASM', 'Samoan'), ('ATG', 'Creole English'), ('AUS', 'English'), ('AUT', 'German'), ('AZE', 'Azerbaijani'), ('BDI', 'Kirundi'), ('BEL', 'Dutch'), ('BEN', 'Fon'), ('BFA', 'Mossi'), ('BGD', 'Bengali'), ('BGR', 'Bulgariana'), ('BHR', 'Arabic'), ('BHS', 'Creole English'), ('BIH', 'Serbo-Croatian'), ('BLR', 'Belorussian'), ('BLZ', 'English'), ('BMU', 'English'), ('BOL', 'Spanish'), ('BRA', 'Portuguese'), ('BRB', 'Bajan'), ('BRN', 'Malay'), ('BTN', 'Dzongkha'), ('BWA', 'Tswana'), ('CAF', 'Gbaya'), ('CAN', 'English'), ('CCK', 'English'), ('CCK', 'Malay'), ('CHE', 'German'), ('CHL', 'Spanish'), ('CHN', 'Chinese'), ('CIV', 'Akan'), ('CMR', 'Fang'), ('COD', 'Luba'), ('COG', 'Kongo'), ('COK', 'English'), ('COK', 'Maori'), ('COL', 'Spanish'), ('COM', 'Comorian'), ('CPV', 'Crioulo'), ('CRI', 'Spanish'), ('CUB', 'Spanish'), ('CXR', 'Chinese'), ('CXR', 'English'), ('CYM', 'English'), ('CYP', 'Greek'), ('CZE', 'Czech'), ('DEU', 'German'), ('DJI', 'Somali'), ('DMA', 'Creole English'), ('DNK', 'Danish'), ('DOM', 'Spanish'), ('DZA', 'Arabic'), ('ECU', 'Spanish'), ('EGY', 'Arabic'), ('ERI', 'Tigrinja'), ('ESH', 'Arabic'), ('ESP', 'Spanish'), ('EST', 'Estonian'), ('ETH', 'Oromo'), ('FIN', 'Finnish'), ('FJI', 'Fijian'), ('FLK', 'English'), ('FRA', 'French'), ('FRO', 'Faroese'), ('FSM', 'Trukese'), ('GAB', 'Fang'), ('GBR', 'English'), ('GEO', 'Georgiana'), ('GHA', 'Akan'), ('GIB', 'English'), ('GIN', 'Ful'), ('GLP', 'Creole French'), ('GMB', 'Malinke'), ('GNB', 'Crioulo'), ('GNQ', 'Fang'), ('GRC', 'Greek'), ('GRD', 'Creole English'), ('GRL', 'Greenlandic'), ('GTM', 'Spanish'), ('GUF', 'Creole French'), ('GUM', 'English'), ('GUY', 'Creole English'), ('HKG', 'Canton Chinese'), ('HND', 'Spanish'), ('HRV', 'Serbo-Croatian'), ('HTI', 'Haiti Creole'), ('HUN', 'Hungarian'), ('IDN', 'Javanese'), ('IND', 'Hindi'), ('IRL', 'English'), ('IRN', 'Persian'), ('IRQ', 'Arabic'), ('ISL', 'Icelandic'), ('ISR', 'Hebrew'), ('ITA', 'Italian'), ('JAM', 'Creole English'), ('JOR', 'Arabic'), ('JPN', 'Japanese'), ('KAZ', 'Kazakh'), ('KEN', 'Kikuyu'), ('KGZ', 'Kirgiz'), ('KHM', 'Khmer'), ('KIR', 'Kiribati'), ('KNA', 'Creole English'), ('KOR', 'Korean'), ('KWT', 'Arabic'), ('LAO', 'Lao'), ('LBN', 'Arabic'), ('LBR', 'Kpelle'), ('LBY', 'Arabic'), ('LCA', 'Creole French'), ('LIE', 'German'), ('LKA', 'Singali'), ('LSO', 'Sotho'), ('LTU', 'Lithuanian'), ('LUX', 'Luxembourgish'), ('LVA', 'Latvian'), ('MAC', 'Canton Chinese'), ('MAR', 'Arabic'), ('MCO', 'French'), ('MDA', 'Romanian'), ('MDG', 'Malagasy'), ('MDV', 'Dhivehi'), ('MEX', 'Spanish'), ('MHL', 'Marshallese'), ('MKD', 'Macedonian'), ('MLI', 'Bambara'), ('MLT', 'Maltese'), ('MMR', 'Burmese'), ('MNG', 'Mongolian'), ('MNP', 'Philippene Languages'), ('MOZ', 'Makua'), ('MRT', 'Hassaniya'), ('MSR', 'English'), ('MTQ', 'Creole French'), ('MUS', 'Creole French'), ('MWI', 'Chichewa'), ('MYS', 'Malay'), ('MYT', 'Mahor\u00e9'), ('NAM', 'Ovambo'), ('NCL', 'Malenasian Languages'), ('NER', 'Hausa'), ('NFK', 'English'), ('NGA', 'Joruba'), ('NIC', 'Spanish'), ('NIU', 'English'), ('NIU', 'Niue'), ('NLD', 'Dutch'), ('NOR', 'Norwegian'), ('NPL', 'Nepali'), ('NRU', 'Nauru'), ('NZL', 'English'), ('OMN', 'Arabic'), ('PAK', 'Punjabi'), ('PAN', 'Spanish'), ('PCN', 'Pitcairnese'), ('PER', 'Spanish'), ('PHL', 'Pilipino'), ('PLW', 'Palau'), ('PNG', 'Papuan Languages'), ('POL', 'Polish'), ('PRI', 'Spanish'), ('PRK', 'Korean'), ('PRT', 'Portuguese'), ('PRY', 'Spanish'), ('PSE', 'Arabic'), ('PYF', 'Tahitian'), ('QAT', 'Arabic'), ('REU', 'Creole French'), ('ROM', 'Romanian'), ('RUS', 'Russian'), ('RWA', 'Rwanda'), ('SAU', 'Arabic'), ('SDN', 'Arabic'), ('SEN', 'Wolof'), ('SGP', 'Chinese'), ('SHN', 'English'), ('SJM', 'Norwegian'), ('SJM', 'Russian'), ('SLB', 'Malenasian Languages'), ('SLE', 'Mende'), ('SLV', 'Spanish'), ('SMR', 'Italian'), ('SOM', 'Somali'), ('SPM', 'French'), ('STP', 'Crioulo'), ('SUR', 'Sranantonga'), ('SVK', 'Slovak'), ('SVN', 'Slovene'), ('SWE', 'Swedish'), ('SWZ', 'Swazi'), ('SYC', 'Seselwa'), ('SYR', 'Arabic'), ('TCA', 'English'), ('TCD', 'Sara'), ('TGO', 'Ewe'), ('THA', 'Thai'), ('TJK', 'Tadzhik'), ('TKL', 'English'), ('TKL', 'Tokelau'), ('TKM', 'Turkmenian'), ('TMP', 'Portuguese'), ('TMP', 'Sunda'), ('TON', 'Tongan'), ('TTO', 'English'), ('TUN', 'Arabic'), ('TUR', 'Turkish'), ('TUV', 'Tuvalu'), ('TWN', 'Min'), ('TZA', 'Nyamwesi'), ('UGA', 'Ganda'), ('UKR', 'Ukrainian'), ('UMI', 'English'), ('URY', 'Spanish'), ('USA', 'English'), ('UZB', 'Uzbek'), ('VAT', 'Italian'), ('VCT', 'Creole English'), ('VEN', 'Spanish'), ('VGB', 'English'), ('VIR', 'English'), ('VNM', 'Vietnamese'), ('VUT', 'Bislama'), ('WLF', 'Futuna'), ('WLF', 'Wallis'), ('WSM', 'Samoan-English'), ('YEM', 'Arabic'), ('YUG', 'Serbo-Croatian'), ('ZAF', 'Zulu'), ('ZMB', 'Bemba'), ('ZWE', 'Shona')] != gold [('Papiamento', 'ABW', 76.7), ('Pashto', 'AFG', 52.4), ('Ovimbundu', 'AGO', 37.2), ('English', 'AIA', 0.0), ('Albaniana', 'ALB', 97.9), ('Spanish', 'AND', 44.6), ('Papiamento', 'ANT', 86.2), ('Arabic', 'ARE', 42.0), ('Spanish', 'ARG', 96.8), ('Armenian', 'ARM', 93.4), ('Samoan', 'ASM', 90.6), ('Creole English', 'ATG', 95.7), ('English', 'AUS', 81.2), ('German', 'AUT', 92.0), ('Azerbaijani', 'AZE', 89.0), ('Kirundi', 'BDI', 98.1), ('Dutch', 'BEL', 59.2), ('Fon', 'BEN', 39.8), ('Mossi', 'BFA', 50.2), ('Bengali', 'BGD', 97.7), ('Bulgariana', 'BGR', 83.2), ('Arabic', 'BHR', 67.7), ('Creole English', 'BHS', 89.7), ('Serbo-Croatian', 'BIH', 99.2), ('Belorussian', 'BLR', 65.6), ('English', 'BLZ', 50.8), ('English', 'BMU', 100.0), ('Spanish', 'BOL', 87.7), ('Portuguese', 'BRA', 97.5), ('Bajan', 'BRB', 95.1), ('Malay', 'BRN', 45.5), ('Dzongkha', 'BTN', 50.0), ('Tswana', 'BWA', 75.5), ('Gbaya', 'CAF', 23.8), ('English', 'CAN', 60.4), ('English', 'CCK', 0.0), ('German', 'CHE', 63.6), ('Spanish', 'CHL', 89.7), ('Chinese', 'CHN', 92.0), ('Akan', 'CIV', 30.0), ('Fang', 'CMR', 19.7), ('Luba', 'COD', 18.0), ('Kongo', 'COG', 51.5), ('English', 'COK', 0.0), ('Spanish', 'COL', 99.0), ('Comorian', 'COM', 75.0), ('Crioulo', 'CPV', 100.0), ('Spanish', 'CRI', 97.5), ('Spanish', 'CUB', 100.0), ('Chinese', 'CXR', 0.0), ('English', 'CYM', 0.0), ('Greek', 'CYP', 74.1), ('Czech', 'CZE', 81.2), ('German', 'DEU', 91.3), ('Somali', 'DJI', 43.9), ('Creole English', 'DMA', 100.0), ('Danish', 'DNK', 93.5), ('Spanish', 'DOM', 98.0), ('Arabic', 'DZA', 86.0), ('Spanish', 'ECU', 93.0), ('Arabic', 'EGY', 98.8), ('Tigrinja', 'ERI', 49.1), ('Arabic', 'ESH', 100.0), ('Spanish', 'ESP', 74.4), ('Estonian', 'EST', 65.3), ('Oromo', 'ETH', 31.0), ('Finnish', 'FIN', 92.7), ('Fijian', 'FJI', 50.8), ('English', 'FLK', 0.0), ('French', 'FRA', 93.6), ('Faroese', 'FRO', 100.0), ('Trukese', 'FSM', 41.6), ('Fang', 'GAB', 35.8), ('English', 'GBR', 97.3), ('Georgiana', 'GEO', 71.7), ('Akan', 'GHA', 52.4), ('English', 'GIB', 88.9), ('Ful', 'GIN', 38.6), ('Creole French', 'GLP', 95.0), ('Malinke', 'GMB', 34.1), ('Crioulo', 'GNB', 36.4), ('Fang', 'GNQ', 84.8), ('Greek', 'GRC', 98.5), ('Creole English', 'GRD', 100.0), ('Greenlandic', 'GRL', 87.5), ('Spanish', 'GTM', 64.7), ('Creole French', 'GUF', 94.3), ('English', 'GUM', 37.5), ('Creole English', 'GUY', 96.4), ('Canton Chinese', 'HKG', 88.7), ('Spanish', 'HND', 97.2), ('Serbo-Croatian', 'HRV', 95.9), ('Haiti Creole', 'HTI', 100.0), ('Hungarian', 'HUN', 98.5), ('Javanese', 'IDN', 39.4), ('Hindi', 'IND', 39.9), ('English', 'IRL', 98.4), ('Persian', 'IRN', 45.7), ('Arabic', 'IRQ', 77.2), ('Icelandic', 'ISL', 95.7), ('Hebrew', 'ISR', 63.1), ('Italian', 'ITA', 94.1), ('Creole English', 'JAM', 94.2), ('Arabic', 'JOR', 97.9), ('Japanese', 'JPN', 99.1), ('Kazakh', 'KAZ', 46.0), ('Kikuyu', 'KEN', 20.9), ('Kirgiz', 'KGZ', 59.7), ('Khmer', 'KHM', 88.6), ('Kiribati', 'KIR', 98.9), ('Creole English', 'KNA', 100.0), ('Korean', 'KOR', 99.9), ('Arabic', 'KWT', 78.1), ('Lao', 'LAO', 67.2), ('Arabic', 'LBN', 93.0), ('Kpelle', 'LBR', 19.5), ('Arabic', 'LBY', 96.0), ('Creole French', 'LCA', 80.0), ('German', 'LIE', 89.0), ('Singali', 'LKA', 60.3), ('Sotho', 'LSO', 85.0), ('Lithuanian', 'LTU', 81.6), ('Luxembourgish', 'LUX', 64.4), ('Latvian', 'LVA', 55.1), ('Canton Chinese', 'MAC', 85.6), ('Arabic', 'MAR', 65.0), ('French', 'MCO', 41.9), ('Romanian', 'MDA', 61.9), ('Malagasy', 'MDG', 98.9), ('Dhivehi', 'MDV', 100.0), ('Spanish', 'MEX', 92.1), ('Marshallese', 'MHL', 96.8), ('Macedonian', 'MKD', 66.5), ('Bambara', 'MLI', 31.8), ('Maltese', 'MLT', 95.8), ('Burmese', 'MMR', 69.0), ('Mongolian', 'MNG', 78.8), ('Philippene Languages', 'MNP', 34.1), ('Makua', 'MOZ', 27.8), ('Hassaniya', 'MRT', 81.7), ('English', 'MSR', 0.0), ('Creole French', 'MTQ', 96.6), ('Creole French', 'MUS', 70.6), ('Chichewa', 'MWI', 58.3), ('Malay', 'MYS', 58.4), ('Mahor\u00e9', 'MYT', 41.9), ('Ovambo', 'NAM', 50.7), ('Malenasian Languages', 'NCL', 45.4), ('Hausa', 'NER', 53.1), ('English', 'NFK', 0.0), ('Joruba', 'NGA', 21.4), ('Spanish', 'NIC', 97.6), ('English', 'NIU', 0.0), ('Dutch', 'NLD', 95.6), ('Norwegian', 'NOR', 96.6), ('Nepali', 'NPL', 50.4), ('Nauru', 'NRU', 57.5), ('English', 'NZL', 87.0), ('Arabic', 'OMN', 76.7), ('Punjabi', 'PAK', 48.2), ('Spanish', 'PAN', 76.8), ('Pitcairnese', 'PCN', 0.0), ('Spanish', 'PER', 79.8), ('Pilipino', 'PHL', 29.3), ('Palau', 'PLW', 82.2), ('Papuan Languages', 'PNG', 78.1), ('Polish', 'POL', 97.6), ('Spanish', 'PRI', 51.3), ('Korean', 'PRK', 99.9), ('Portuguese', 'PRT', 99.0), ('Spanish', 'PRY', 55.1), ('Arabic', 'PSE', 95.9), ('Tahitian', 'PYF', 46.4), ('Arabic', 'QAT', 40.7), ('Creole French', 'REU', 91.5), ('Romanian', 'ROM', 90.7), ('Russian', 'RUS', 86.6), ('Rwanda', 'RWA', 100.0), ('Arabic', 'SAU', 95.0), ('Arabic', 'SDN', 49.4), ('Wolof', 'SEN', 48.1), ('Chinese', 'SGP', 77.1), ('English', 'SHN', 0.0), ('Norwegian', 'SJM', 0.0), ('Malenasian Languages', 'SLB', 85.6), ('Mende', 'SLE', 34.8), ('Spanish', 'SLV', 100.0), ('Italian', 'SMR', 100.0), ('Somali', 'SOM', 98.3), ('French', 'SPM', 0.0), ('Crioulo', 'STP', 86.3), ('Sranantonga', 'SUR', 81.0), ('Slovak', 'SVK', 85.6), ('Slovene', 'SVN', 87.9), ('Swedish', 'SWE', 89.5), ('Swazi', 'SWZ', 89.9), ('Seselwa', 'SYC', 91.3), ('Arabic', 'SYR', 90.0), ('English', 'TCA', 0.0), ('Sara', 'TCD', 27.7), ('Ewe', 'TGO', 23.2), ('Thai', 'THA', 52.6), ('Tadzhik', 'TJK', 62.2), ('English', 'TKL', 0.0), ('Turkmenian', 'TKM', 76.7), ('Portuguese', 'TMP', 0.0), ('Tongan', 'TON', 98.3), ('English', 'TTO', 93.5), ('Arabic', 'TUN', 69.9), ('Turkish', 'TUR', 87.6), ('Tuvalu', 'TUV', 92.5), ('Min', 'TWN', 66.7), ('Nyamwesi', 'TZA', 21.1), ('Ganda', 'UGA', 18.1), ('Ukrainian', 'UKR', 64.7), ('English', 'UMI', 0.0), ('Spanish', 'URY', 95.7), ('English', 'USA', 86.2), ('Uzbek', 'UZB', 72.6), ('Italian', 'VAT', 0.0), ('Creole English', 'VCT', 99.1), ('Spanish', 'VEN', 96.9), ('English', 'VGB', 0.0), ('English', 'VIR', 81.7), ('Vietnamese', 'VNM', 86.8), ('Bislama', 'VUT', 56.6), ('Futuna', 'WLF', 0.0), ('Samoan-English', 'WSM', 52.0), ('Arabic', 'YEM', 99.6), ('Serbo-Croatian', 'YUG', 75.2), ('Zulu', 'ZAF', 22.7), ('Bemba', 'ZMB', 29.7), ('Shona', 'ZWE', 72.1)]"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT \n    c.Name      AS Country,\n    cl.Language AS Language,\n    cl.Percentage\nFROM country AS c\nJOIN countrylanguage AS cl\n      ON c.Code = cl.CountryCode\nWHERE cl.Percentage = (\n        SELECT MAX(Percentage)\n        FROM countrylanguage\n        WHERE CountryCode = c.Code\n      )\nORDER BY c.Name",
+        "pred_rows": [
+          [
+            "Afghanistan",
+            "Pashto",
+            52.4
+          ],
+          [
+            "Albania",
+            "Albaniana",
+            97.9
+          ],
+          [
+            "Algeria",
+            "Arabic",
+            86.0
+          ],
+          [
+            "American Samoa",
+            "Samoan",
+            90.6
+          ],
+          [
+            "Andorra",
+            "Spanish",
+            44.6
+          ],
+          [
+            "Angola",
+            "Ovimbundu",
+            37.2
+          ],
+          [
+            "Anguilla",
+            "English",
+            0.0
+          ],
+          [
+            "Antigua and Barbuda",
+            "Creole English",
+            95.7
+          ],
+          [
+            "Argentina",
+            "Spanish",
+            96.8
+          ],
+          [
+            "Armenia",
+            "Armenian",
+            93.4
+          ],
+          [
+            "Aruba",
+            "Papiamento",
+            76.7
+          ],
+          [
+            "Australia",
+            "English",
+            81.2
+          ],
+          [
+            "Austria",
+            "German",
+            92.0
+          ],
+          [
+            "Azerbaijan",
+            "Azerbaijani",
+            89.0
+          ],
+          [
+            "Bahamas",
+            "Creole English",
+            89.7
+          ],
+          [
+            "Bahrain",
+            "Arabic",
+            67.7
+          ],
+          [
+            "Bangladesh",
+            "Bengali",
+            97.7
+          ],
+          [
+            "Barbados",
+            "Bajan",
+            95.1
+          ],
+          [
+            "Belarus",
+            "Belorussian",
+            65.6
+          ],
+          [
+            "Belgium",
+            "Dutch",
+            59.2
+          ],
+          [
+            "Belize",
+            "English",
+            50.8
+          ],
+          [
+            "Benin",
+            "Fon",
+            39.8
+          ],
+          [
+            "Bermuda",
+            "English",
+            100.0
+          ],
+          [
+            "Bhutan",
+            "Dzongkha",
+            50.0
+          ],
+          [
+            "Bolivia",
+            "Spanish",
+            87.7
+          ],
+          [
+            "Bosnia and Herzegovina",
+            "Serbo-Croatian",
+            99.2
+          ],
+          [
+            "Botswana",
+            "Tswana",
+            75.5
+          ],
+          [
+            "Brazil",
+            "Portuguese",
+            97.5
+          ],
+          [
+            "Brunei",
+            "Malay",
+            45.5
+          ],
+          [
+            "Bulgaria",
+            "Bulgariana",
+            83.2
+          ],
+          [
+            "Burkina Faso",
+            "Mossi",
+            50.2
+          ],
+          [
+            "Burundi",
+            "Kirundi",
+            98.1
+          ],
+          [
+            "Cambodia",
+            "Khmer",
+            88.6
+          ],
+          [
+            "Cameroon",
+            "Fang",
+            19.7
+          ],
+          [
+            "Canada",
+            "English",
+            60.4
+          ],
+          [
+            "Cape Verde",
+            "Crioulo",
+            100.0
+          ],
+          [
+            "Cayman Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Central African Republic",
+            "Gbaya",
+            23.8
+          ],
+          [
+            "Chad",
+            "Sara",
+            27.7
+          ],
+          [
+            "Chile",
+            "Spanish",
+            89.7
+          ],
+          [
+            "China",
+            "Chinese",
+            92.0
+          ],
+          [
+            "Christmas Island",
+            "Chinese",
+            0.0
+          ],
+          [
+            "Christmas Island",
+            "English",
+            0.0
+          ],
+          [
+            "Cocos (Keeling) Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Cocos (Keeling) Islands",
+            "Malay",
+            0.0
+          ],
+          [
+            "Colombia",
+            "Spanish",
+            99.0
+          ],
+          [
+            "Comoros",
+            "Comorian",
+            75.0
+          ],
+          [
+            "Congo",
+            "Kongo",
+            51.5
+          ],
+          [
+            "Congo, The Democratic Republic of the",
+            "Luba",
+            18.0
+          ],
+          [
+            "Cook Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Cook Islands",
+            "Maori",
+            0.0
+          ],
+          [
+            "Costa Rica",
+            "Spanish",
+            97.5
+          ],
+          [
+            "Croatia",
+            "Serbo-Croatian",
+            95.9
+          ],
+          [
+            "Cuba",
+            "Spanish",
+            100.0
+          ],
+          [
+            "Cyprus",
+            "Greek",
+            74.1
+          ],
+          [
+            "Czech Republic",
+            "Czech",
+            81.2
+          ],
+          [
+            "C\u00f4te d\u2019Ivoire",
+            "Akan",
+            30.0
+          ],
+          [
+            "Denmark",
+            "Danish",
+            93.5
+          ],
+          [
+            "Djibouti",
+            "Somali",
+            43.9
+          ],
+          [
+            "Dominica",
+            "Creole English",
+            100.0
+          ],
+          [
+            "Dominican Republic",
+            "Spanish",
+            98.0
+          ],
+          [
+            "East Timor",
+            "Portuguese",
+            0.0
+          ],
+          [
+            "East Timor",
+            "Sunda",
+            0.0
+          ],
+          [
+            "Ecuador",
+            "Spanish",
+            93.0
+          ],
+          [
+            "Egypt",
+            "Arabic",
+            98.8
+          ],
+          [
+            "El Salvador",
+            "Spanish",
+            100.0
+          ],
+          [
+            "Equatorial Guinea",
+            "Fang",
+            84.8
+          ],
+          [
+            "Eritrea",
+            "Tigrinja",
+            49.1
+          ],
+          [
+            "Estonia",
+            "Estonian",
+            65.3
+          ],
+          [
+            "Ethiopia",
+            "Oromo",
+            31.0
+          ],
+          [
+            "Falkland Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Faroe Islands",
+            "Faroese",
+            100.0
+          ],
+          [
+            "Fiji Islands",
+            "Fijian",
+            50.8
+          ],
+          [
+            "Finland",
+            "Finnish",
+            92.7
+          ],
+          [
+            "France",
+            "French",
+            93.6
+          ],
+          [
+            "French Guiana",
+            "Creole French",
+            94.3
+          ],
+          [
+            "French Polynesia",
+            "Tahitian",
+            46.4
+          ],
+          [
+            "Gabon",
+            "Fang",
+            35.8
+          ],
+          [
+            "Gambia",
+            "Malinke",
+            34.1
+          ],
+          [
+            "Georgia",
+            "Georgiana",
+            71.7
+          ],
+          [
+            "Germany",
+            "German",
+            91.3
+          ],
+          [
+            "Ghana",
+            "Akan",
+            52.4
+          ],
+          [
+            "Gibraltar",
+            "English",
+            88.9
+          ],
+          [
+            "Greece",
+            "Greek",
+            98.5
+          ],
+          [
+            "Greenland",
+            "Greenlandic",
+            87.5
+          ],
+          [
+            "Grenada",
+            "Creole English",
+            100.0
+          ],
+          [
+            "Guadeloupe",
+            "Creole French",
+            95.0
+          ],
+          [
+            "Guam",
+            "English",
+            37.5
+          ],
+          [
+            "Guatemala",
+            "Spanish",
+            64.7
+          ],
+          [
+            "Guinea",
+            "Ful",
+            38.6
+          ],
+          [
+            "Guinea-Bissau",
+            "Crioulo",
+            36.4
+          ],
+          [
+            "Guyana",
+            "Creole English",
+            96.4
+          ],
+          [
+            "Haiti",
+            "Haiti Creole",
+            100.0
+          ],
+          [
+            "Holy See (Vatican City State)",
+            "Italian",
+            0.0
+          ],
+          [
+            "Honduras",
+            "Spanish",
+            97.2
+          ],
+          [
+            "Hong Kong",
+            "Canton Chinese",
+            88.7
+          ],
+          [
+            "Hungary",
+            "Hungarian",
+            98.5
+          ],
+          [
+            "Iceland",
+            "Icelandic",
+            95.7
+          ],
+          [
+            "India",
+            "Hindi",
+            39.9
+          ],
+          [
+            "Indonesia",
+            "Javanese",
+            39.4
+          ],
+          [
+            "Iran",
+            "Persian",
+            45.7
+          ],
+          [
+            "Iraq",
+            "Arabic",
+            77.2
+          ],
+          [
+            "Ireland",
+            "English",
+            98.4
+          ],
+          [
+            "Israel",
+            "Hebrew",
+            63.1
+          ],
+          [
+            "Italy",
+            "Italian",
+            94.1
+          ],
+          [
+            "Jamaica",
+            "Creole English",
+            94.2
+          ],
+          [
+            "Japan",
+            "Japanese",
+            99.1
+          ],
+          [
+            "Jordan",
+            "Arabic",
+            97.9
+          ],
+          [
+            "Kazakstan",
+            "Kazakh",
+            46.0
+          ],
+          [
+            "Kenya",
+            "Kikuyu",
+            20.9
+          ],
+          [
+            "Kiribati",
+            "Kiribati",
+            98.9
+          ],
+          [
+            "Kuwait",
+            "Arabic",
+            78.1
+          ],
+          [
+            "Kyrgyzstan",
+            "Kirgiz",
+            59.7
+          ],
+          [
+            "Laos",
+            "Lao",
+            67.2
+          ],
+          [
+            "Latvia",
+            "Latvian",
+            55.1
+          ],
+          [
+            "Lebanon",
+            "Arabic",
+            93.0
+          ],
+          [
+            "Lesotho",
+            "Sotho",
+            85.0
+          ],
+          [
+            "Liberia",
+            "Kpelle",
+            19.5
+          ],
+          [
+            "Libyan Arab Jamahiriya",
+            "Arabic",
+            96.0
+          ],
+          [
+            "Liechtenstein",
+            "German",
+            89.0
+          ],
+          [
+            "Lithuania",
+            "Lithuanian",
+            81.6
+          ],
+          [
+            "Luxembourg",
+            "Luxembourgish",
+            64.4
+          ],
+          [
+            "Macao",
+            "Canton Chinese",
+            85.6
+          ],
+          [
+            "Macedonia",
+            "Macedonian",
+            66.5
+          ],
+          [
+            "Madagascar",
+            "Malagasy",
+            98.9
+          ],
+          [
+            "Malawi",
+            "Chichewa",
+            58.3
+          ],
+          [
+            "Malaysia",
+            "Malay",
+            58.4
+          ],
+          [
+            "Maldives",
+            "Dhivehi",
+            100.0
+          ],
+          [
+            "Mali",
+            "Bambara",
+            31.8
+          ],
+          [
+            "Malta",
+            "Maltese",
+            95.8
+          ],
+          [
+            "Marshall Islands",
+            "Marshallese",
+            96.8
+          ],
+          [
+            "Martinique",
+            "Creole French",
+            96.6
+          ],
+          [
+            "Mauritania",
+            "Hassaniya",
+            81.7
+          ],
+          [
+            "Mauritius",
+            "Creole French",
+            70.6
+          ],
+          [
+            "Mayotte",
+            "Mahor\u00e9",
+            41.9
+          ],
+          [
+            "Mexico",
+            "Spanish",
+            92.1
+          ],
+          [
+            "Micronesia, Federated States of",
+            "Trukese",
+            41.6
+          ],
+          [
+            "Moldova",
+            "Romanian",
+            61.9
+          ],
+          [
+            "Monaco",
+            "French",
+            41.9
+          ],
+          [
+            "Mongolia",
+            "Mongolian",
+            78.8
+          ],
+          [
+            "Montserrat",
+            "English",
+            0.0
+          ],
+          [
+            "Morocco",
+            "Arabic",
+            65.0
+          ],
+          [
+            "Mozambique",
+            "Makua",
+            27.8
+          ],
+          [
+            "Myanmar",
+            "Burmese",
+            69.0
+          ],
+          [
+            "Namibia",
+            "Ovambo",
+            50.7
+          ],
+          [
+            "Nauru",
+            "Nauru",
+            57.5
+          ],
+          [
+            "Nepal",
+            "Nepali",
+            50.4
+          ],
+          [
+            "Netherlands",
+            "Dutch",
+            95.6
+          ],
+          [
+            "Netherlands Antilles",
+            "Papiamento",
+            86.2
+          ],
+          [
+            "New Caledonia",
+            "Malenasian Languages",
+            45.4
+          ],
+          [
+            "New Zealand",
+            "English",
+            87.0
+          ],
+          [
+            "Nicaragua",
+            "Spanish",
+            97.6
+          ],
+          [
+            "Niger",
+            "Hausa",
+            53.1
+          ],
+          [
+            "Nigeria",
+            "Joruba",
+            21.4
+          ],
+          [
+            "Niue",
+            "English",
+            0.0
+          ],
+          [
+            "Niue",
+            "Niue",
+            0.0
+          ],
+          [
+            "Norfolk Island",
+            "English",
+            0.0
+          ],
+          [
+            "North Korea",
+            "Korean",
+            99.9
+          ],
+          [
+            "Northern Mariana Islands",
+            "Philippene Languages",
+            34.1
+          ],
+          [
+            "Norway",
+            "Norwegian",
+            96.6
+          ],
+          [
+            "Oman",
+            "Arabic",
+            76.7
+          ],
+          [
+            "Pakistan",
+            "Punjabi",
+            48.2
+          ],
+          [
+            "Palau",
+            "Palau",
+            82.2
+          ],
+          [
+            "Palestine",
+            "Arabic",
+            95.9
+          ],
+          [
+            "Panama",
+            "Spanish",
+            76.8
+          ],
+          [
+            "Papua New Guinea",
+            "Papuan Languages",
+            78.1
+          ],
+          [
+            "Paraguay",
+            "Spanish",
+            55.1
+          ],
+          [
+            "Peru",
+            "Spanish",
+            79.8
+          ],
+          [
+            "Philippines",
+            "Pilipino",
+            29.3
+          ],
+          [
+            "Pitcairn",
+            "Pitcairnese",
+            0.0
+          ],
+          [
+            "Poland",
+            "Polish",
+            97.6
+          ],
+          [
+            "Portugal",
+            "Portuguese",
+            99.0
+          ],
+          [
+            "Puerto Rico",
+            "Spanish",
+            51.3
+          ],
+          [
+            "Qatar",
+            "Arabic",
+            40.7
+          ],
+          [
+            "Romania",
+            "Romanian",
+            90.7
+          ],
+          [
+            "Russian Federation",
+            "Russian",
+            86.6
+          ],
+          [
+            "Rwanda",
+            "Rwanda",
+            100.0
+          ],
+          [
+            "R\u00e9union",
+            "Creole French",
+            91.5
+          ],
+          [
+            "Saint Helena",
+            "English",
+            0.0
+          ],
+          [
+            "Saint Kitts and Nevis",
+            "Creole English",
+            100.0
+          ],
+          [
+            "Saint Lucia",
+            "Creole French",
+            80.0
+          ],
+          [
+            "Saint Pierre and Miquelon",
+            "French",
+            0.0
+          ],
+          [
+            "Saint Vincent and the Grenadines",
+            "Creole English",
+            99.1
+          ],
+          [
+            "Samoa",
+            "Samoan-English",
+            52.0
+          ],
+          [
+            "San Marino",
+            "Italian",
+            100.0
+          ],
+          [
+            "Sao Tome and Principe",
+            "Crioulo",
+            86.3
+          ],
+          [
+            "Saudi Arabia",
+            "Arabic",
+            95.0
+          ],
+          [
+            "Senegal",
+            "Wolof",
+            48.1
+          ],
+          [
+            "Seychelles",
+            "Seselwa",
+            91.3
+          ],
+          [
+            "Sierra Leone",
+            "Mende",
+            34.8
+          ],
+          [
+            "Singapore",
+            "Chinese",
+            77.1
+          ],
+          [
+            "Slovakia",
+            "Slovak",
+            85.6
+          ],
+          [
+            "Slovenia",
+            "Slovene",
+            87.9
+          ],
+          [
+            "Solomon Islands",
+            "Malenasian Languages",
+            85.6
+          ],
+          [
+            "Somalia",
+            "Somali",
+            98.3
+          ],
+          [
+            "South Africa",
+            "Zulu",
+            22.7
+          ],
+          [
+            "South Korea",
+            "Korean",
+            99.9
+          ],
+          [
+            "Spain",
+            "Spanish",
+            74.4
+          ],
+          [
+            "Sri Lanka",
+            "Singali",
+            60.3
+          ],
+          [
+            "Sudan",
+            "Arabic",
+            49.4
+          ],
+          [
+            "Suriname",
+            "Sranantonga",
+            81.0
+          ],
+          [
+            "Svalbard and Jan Mayen",
+            "Norwegian",
+            0.0
+          ],
+          [
+            "Svalbard and Jan Mayen",
+            "Russian",
+            0.0
+          ],
+          [
+            "Swaziland",
+            "Swazi",
+            89.9
+          ],
+          [
+            "Sweden",
+            "Swedish",
+            89.5
+          ],
+          [
+            "Switzerland",
+            "German",
+            63.6
+          ],
+          [
+            "Syria",
+            "Arabic",
+            90.0
+          ],
+          [
+            "Taiwan",
+            "Min",
+            66.7
+          ],
+          [
+            "Tajikistan",
+            "Tadzhik",
+            62.2
+          ],
+          [
+            "Tanzania",
+            "Nyamwesi",
+            21.1
+          ],
+          [
+            "Thailand",
+            "Thai",
+            52.6
+          ],
+          [
+            "Togo",
+            "Ewe",
+            23.2
+          ],
+          [
+            "Tokelau",
+            "English",
+            0.0
+          ],
+          [
+            "Tokelau",
+            "Tokelau",
+            0.0
+          ],
+          [
+            "Tonga",
+            "Tongan",
+            98.3
+          ],
+          [
+            "Trinidad and Tobago",
+            "English",
+            93.5
+          ],
+          [
+            "Tunisia",
+            "Arabic",
+            69.9
+          ],
+          [
+            "Turkey",
+            "Turkish",
+            87.6
+          ],
+          [
+            "Turkmenistan",
+            "Turkmenian",
+            76.7
+          ],
+          [
+            "Turks and Caicos Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Tuvalu",
+            "Tuvalu",
+            92.5
+          ],
+          [
+            "Uganda",
+            "Ganda",
+            18.1
+          ],
+          [
+            "Ukraine",
+            "Ukrainian",
+            64.7
+          ],
+          [
+            "United Arab Emirates",
+            "Arabic",
+            42.0
+          ],
+          [
+            "United Kingdom",
+            "English",
+            97.3
+          ],
+          [
+            "United States",
+            "English",
+            86.2
+          ],
+          [
+            "United States Minor Outlying Islands",
+            "English",
+            0.0
+          ],
+          [
+            "Uruguay",
+            "Spanish",
+            95.7
+          ],
+          [
+            "Uzbekistan",
+            "Uzbek",
+            72.6
+          ],
+          [
+            "Vanuatu",
+            "Bislama",
+            56.6
+          ],
+          [
+            "Venezuela",
+            "Spanish",
+            96.9
+          ],
+          [
+            "Vietnam",
+            "Vietnamese",
+            86.8
+          ],
+          [
+            "Virgin Islands, British",
+            "English",
+            0.0
+          ],
+          [
+            "Virgin Islands, U.S.",
+            "English",
+            81.7
+          ],
+          [
+            "Wallis and Futuna",
+            "Futuna",
+            0.0
+          ],
+          [
+            "Wallis and Futuna",
+            "Wallis",
+            0.0
+          ],
+          [
+            "Western Sahara",
+            "Arabic",
+            100.0
+          ],
+          [
+            "Yemen",
+            "Arabic",
+            99.6
+          ],
+          [
+            "Yugoslavia",
+            "Serbo-Croatian",
+            75.2
+          ],
+          [
+            "Zambia",
+            "Bemba",
+            29.7
+          ],
+          [
+            "Zimbabwe",
+            "Shona",
+            72.1
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Result rows mismatch: got [('Afghanistan', 'Pashto', 52.4), ('Albania', 'Albaniana', 97.9), ('Algeria', 'Arabic', 86.0), ('American Samoa', 'Samoan', 90.6), ('Andorra', 'Spanish', 44.6), ('Angola', 'Ovimbundu', 37.2), ('Anguilla', 'English', 0.0), ('Antigua and Barbuda', 'Creole English', 95.7), ('Argentina', 'Spanish', 96.8), ('Armenia', 'Armenian', 93.4), ('Aruba', 'Papiamento', 76.7), ('Australia', 'English', 81.2), ('Austria', 'German', 92.0), ('Azerbaijan', 'Azerbaijani', 89.0), ('Bahamas', 'Creole English', 89.7), ('Bahrain', 'Arabic', 67.7), ('Bangladesh', 'Bengali', 97.7), ('Barbados', 'Bajan', 95.1), ('Belarus', 'Belorussian', 65.6), ('Belgium', 'Dutch', 59.2), ('Belize', 'English', 50.8), ('Benin', 'Fon', 39.8), ('Bermuda', 'English', 100.0), ('Bhutan', 'Dzongkha', 50.0), ('Bolivia', 'Spanish', 87.7), ('Bosnia and Herzegovina', 'Serbo-Croatian', 99.2), ('Botswana', 'Tswana', 75.5), ('Brazil', 'Portuguese', 97.5), ('Brunei', 'Malay', 45.5), ('Bulgaria', 'Bulgariana', 83.2), ('Burkina Faso', 'Mossi', 50.2), ('Burundi', 'Kirundi', 98.1), ('Cambodia', 'Khmer', 88.6), ('Cameroon', 'Fang', 19.7), ('Canada', 'English', 60.4), ('Cape Verde', 'Crioulo', 100.0), ('Cayman Islands', 'English', 0.0), ('Central African Republic', 'Gbaya', 23.8), ('Chad', 'Sara', 27.7), ('Chile', 'Spanish', 89.7), ('China', 'Chinese', 92.0), ('Christmas Island', 'Chinese', 0.0), ('Christmas Island', 'English', 0.0), ('Cocos (Keeling) Islands', 'English', 0.0), ('Cocos (Keeling) Islands', 'Malay', 0.0), ('Colombia', 'Spanish', 99.0), ('Comoros', 'Comorian', 75.0), ('Congo', 'Kongo', 51.5), ('Congo, The Democratic Republic of the', 'Luba', 18.0), ('Cook Islands', 'English', 0.0), ('Cook Islands', 'Maori', 0.0), ('Costa Rica', 'Spanish', 97.5), ('Croatia', 'Serbo-Croatian', 95.9), ('Cuba', 'Spanish', 100.0), ('Cyprus', 'Greek', 74.1), ('Czech Republic', 'Czech', 81.2), ('C\u00f4te d\u2019Ivoire', 'Akan', 30.0), ('Denmark', 'Danish', 93.5), ('Djibouti', 'Somali', 43.9), ('Dominica', 'Creole English', 100.0), ('Dominican Republic', 'Spanish', 98.0), ('East Timor', 'Portuguese', 0.0), ('East Timor', 'Sunda', 0.0), ('Ecuador', 'Spanish', 93.0), ('Egypt', 'Arabic', 98.8), ('El Salvador', 'Spanish', 100.0), ('Equatorial Guinea', 'Fang', 84.8), ('Eritrea', 'Tigrinja', 49.1), ('Estonia', 'Estonian', 65.3), ('Ethiopia', 'Oromo', 31.0), ('Falkland Islands', 'English', 0.0), ('Faroe Islands', 'Faroese', 100.0), ('Fiji Islands', 'Fijian', 50.8), ('Finland', 'Finnish', 92.7), ('France', 'French', 93.6), ('French Guiana', 'Creole French', 94.3), ('French Polynesia', 'Tahitian', 46.4), ('Gabon', 'Fang', 35.8), ('Gambia', 'Malinke', 34.1), ('Georgia', 'Georgiana', 71.7), ('Germany', 'German', 91.3), ('Ghana', 'Akan', 52.4), ('Gibraltar', 'English', 88.9), ('Greece', 'Greek', 98.5), ('Greenland', 'Greenlandic', 87.5), ('Grenada', 'Creole English', 100.0), ('Guadeloupe', 'Creole French', 95.0), ('Guam', 'English', 37.5), ('Guatemala', 'Spanish', 64.7), ('Guinea', 'Ful', 38.6), ('Guinea-Bissau', 'Crioulo', 36.4), ('Guyana', 'Creole English', 96.4), ('Haiti', 'Haiti Creole', 100.0), ('Holy See (Vatican City State)', 'Italian', 0.0), ('Honduras', 'Spanish', 97.2), ('Hong Kong', 'Canton Chinese', 88.7), ('Hungary', 'Hungarian', 98.5), ('Iceland', 'Icelandic', 95.7), ('India', 'Hindi', 39.9), ('Indonesia', 'Javanese', 39.4), ('Iran', 'Persian', 45.7), ('Iraq', 'Arabic', 77.2), ('Ireland', 'English', 98.4), ('Israel', 'Hebrew', 63.1), ('Italy', 'Italian', 94.1), ('Jamaica', 'Creole English', 94.2), ('Japan', 'Japanese', 99.1), ('Jordan', 'Arabic', 97.9), ('Kazakstan', 'Kazakh', 46.0), ('Kenya', 'Kikuyu', 20.9), ('Kiribati', 'Kiribati', 98.9), ('Kuwait', 'Arabic', 78.1), ('Kyrgyzstan', 'Kirgiz', 59.7), ('Laos', 'Lao', 67.2), ('Latvia', 'Latvian', 55.1), ('Lebanon', 'Arabic', 93.0), ('Lesotho', 'Sotho', 85.0), ('Liberia', 'Kpelle', 19.5), ('Libyan Arab Jamahiriya', 'Arabic', 96.0), ('Liechtenstein', 'German', 89.0), ('Lithuania', 'Lithuanian', 81.6), ('Luxembourg', 'Luxembourgish', 64.4), ('Macao', 'Canton Chinese', 85.6), ('Macedonia', 'Macedonian', 66.5), ('Madagascar', 'Malagasy', 98.9), ('Malawi', 'Chichewa', 58.3), ('Malaysia', 'Malay', 58.4), ('Maldives', 'Dhivehi', 100.0), ('Mali', 'Bambara', 31.8), ('Malta', 'Maltese', 95.8), ('Marshall Islands', 'Marshallese', 96.8), ('Martinique', 'Creole French', 96.6), ('Mauritania', 'Hassaniya', 81.7), ('Mauritius', 'Creole French', 70.6), ('Mayotte', 'Mahor\u00e9', 41.9), ('Mexico', 'Spanish', 92.1), ('Micronesia, Federated States of', 'Trukese', 41.6), ('Moldova', 'Romanian', 61.9), ('Monaco', 'French', 41.9), ('Mongolia', 'Mongolian', 78.8), ('Montserrat', 'English', 0.0), ('Morocco', 'Arabic', 65.0), ('Mozambique', 'Makua', 27.8), ('Myanmar', 'Burmese', 69.0), ('Namibia', 'Ovambo', 50.7), ('Nauru', 'Nauru', 57.5), ('Nepal', 'Nepali', 50.4), ('Netherlands', 'Dutch', 95.6), ('Netherlands Antilles', 'Papiamento', 86.2), ('New Caledonia', 'Malenasian Languages', 45.4), ('New Zealand', 'English', 87.0), ('Nicaragua', 'Spanish', 97.6), ('Niger', 'Hausa', 53.1), ('Nigeria', 'Joruba', 21.4), ('Niue', 'English', 0.0), ('Niue', 'Niue', 0.0), ('Norfolk Island', 'English', 0.0), ('North Korea', 'Korean', 99.9), ('Northern Mariana Islands', 'Philippene Languages', 34.1), ('Norway', 'Norwegian', 96.6), ('Oman', 'Arabic', 76.7), ('Pakistan', 'Punjabi', 48.2), ('Palau', 'Palau', 82.2), ('Palestine', 'Arabic', 95.9), ('Panama', 'Spanish', 76.8), ('Papua New Guinea', 'Papuan Languages', 78.1), ('Paraguay', 'Spanish', 55.1), ('Peru', 'Spanish', 79.8), ('Philippines', 'Pilipino', 29.3), ('Pitcairn', 'Pitcairnese', 0.0), ('Poland', 'Polish', 97.6), ('Portugal', 'Portuguese', 99.0), ('Puerto Rico', 'Spanish', 51.3), ('Qatar', 'Arabic', 40.7), ('Romania', 'Romanian', 90.7), ('Russian Federation', 'Russian', 86.6), ('Rwanda', 'Rwanda', 100.0), ('R\u00e9union', 'Creole French', 91.5), ('Saint Helena', 'English', 0.0), ('Saint Kitts and Nevis', 'Creole English', 100.0), ('Saint Lucia', 'Creole French', 80.0), ('Saint Pierre and Miquelon', 'French', 0.0), ('Saint Vincent and the Grenadines', 'Creole English', 99.1), ('Samoa', 'Samoan-English', 52.0), ('San Marino', 'Italian', 100.0), ('Sao Tome and Principe', 'Crioulo', 86.3), ('Saudi Arabia', 'Arabic', 95.0), ('Senegal', 'Wolof', 48.1), ('Seychelles', 'Seselwa', 91.3), ('Sierra Leone', 'Mende', 34.8), ('Singapore', 'Chinese', 77.1), ('Slovakia', 'Slovak', 85.6), ('Slovenia', 'Slovene', 87.9), ('Solomon Islands', 'Malenasian Languages', 85.6), ('Somalia', 'Somali', 98.3), ('South Africa', 'Zulu', 22.7), ('South Korea', 'Korean', 99.9), ('Spain', 'Spanish', 74.4), ('Sri Lanka', 'Singali', 60.3), ('Sudan', 'Arabic', 49.4), ('Suriname', 'Sranantonga', 81.0), ('Svalbard and Jan Mayen', 'Norwegian', 0.0), ('Svalbard and Jan Mayen', 'Russian', 0.0), ('Swaziland', 'Swazi', 89.9), ('Sweden', 'Swedish', 89.5), ('Switzerland', 'German', 63.6), ('Syria', 'Arabic', 90.0), ('Taiwan', 'Min', 66.7), ('Tajikistan', 'Tadzhik', 62.2), ('Tanzania', 'Nyamwesi', 21.1), ('Thailand', 'Thai', 52.6), ('Togo', 'Ewe', 23.2), ('Tokelau', 'English', 0.0), ('Tokelau', 'Tokelau', 0.0), ('Tonga', 'Tongan', 98.3), ('Trinidad and Tobago', 'English', 93.5), ('Tunisia', 'Arabic', 69.9), ('Turkey', 'Turkish', 87.6), ('Turkmenistan', 'Turkmenian', 76.7), ('Turks and Caicos Islands', 'English', 0.0), ('Tuvalu', 'Tuvalu', 92.5), ('Uganda', 'Ganda', 18.1), ('Ukraine', 'Ukrainian', 64.7), ('United Arab Emirates', 'Arabic', 42.0), ('United Kingdom', 'English', 97.3), ('United States', 'English', 86.2), ('United States Minor Outlying Islands', 'English', 0.0), ('Uruguay', 'Spanish', 95.7), ('Uzbekistan', 'Uzbek', 72.6), ('Vanuatu', 'Bislama', 56.6), ('Venezuela', 'Spanish', 96.9), ('Vietnam', 'Vietnamese', 86.8), ('Virgin Islands, British', 'English', 0.0), ('Virgin Islands, U.S.', 'English', 81.7), ('Wallis and Futuna', 'Futuna', 0.0), ('Wallis and Futuna', 'Wallis', 0.0), ('Western Sahara', 'Arabic', 100.0), ('Yemen', 'Arabic', 99.6), ('Yugoslavia', 'Serbo-Croatian', 75.2), ('Zambia', 'Bemba', 29.7), ('Zimbabwe', 'Shona', 72.1)] != gold [('Papiamento', 'ABW', 76.7), ('Pashto', 'AFG', 52.4), ('Ovimbundu', 'AGO', 37.2), ('English', 'AIA', 0.0), ('Albaniana', 'ALB', 97.9), ('Spanish', 'AND', 44.6), ('Papiamento', 'ANT', 86.2), ('Arabic', 'ARE', 42.0), ('Spanish', 'ARG', 96.8), ('Armenian', 'ARM', 93.4), ('Samoan', 'ASM', 90.6), ('Creole English', 'ATG', 95.7), ('English', 'AUS', 81.2), ('German', 'AUT', 92.0), ('Azerbaijani', 'AZE', 89.0), ('Kirundi', 'BDI', 98.1), ('Dutch', 'BEL', 59.2), ('Fon', 'BEN', 39.8), ('Mossi', 'BFA', 50.2), ('Bengali', 'BGD', 97.7), ('Bulgariana', 'BGR', 83.2), ('Arabic', 'BHR', 67.7), ('Creole English', 'BHS', 89.7), ('Serbo-Croatian', 'BIH', 99.2), ('Belorussian', 'BLR', 65.6), ('English', 'BLZ', 50.8), ('English', 'BMU', 100.0), ('Spanish', 'BOL', 87.7), ('Portuguese', 'BRA', 97.5), ('Bajan', 'BRB', 95.1), ('Malay', 'BRN', 45.5), ('Dzongkha', 'BTN', 50.0), ('Tswana', 'BWA', 75.5), ('Gbaya', 'CAF', 23.8), ('English', 'CAN', 60.4), ('English', 'CCK', 0.0), ('German', 'CHE', 63.6), ('Spanish', 'CHL', 89.7), ('Chinese', 'CHN', 92.0), ('Akan', 'CIV', 30.0), ('Fang', 'CMR', 19.7), ('Luba', 'COD', 18.0), ('Kongo', 'COG', 51.5), ('English', 'COK', 0.0), ('Spanish', 'COL', 99.0), ('Comorian', 'COM', 75.0), ('Crioulo', 'CPV', 100.0), ('Spanish', 'CRI', 97.5), ('Spanish', 'CUB', 100.0), ('Chinese', 'CXR', 0.0), ('English', 'CYM', 0.0), ('Greek', 'CYP', 74.1), ('Czech', 'CZE', 81.2), ('German', 'DEU', 91.3), ('Somali', 'DJI', 43.9), ('Creole English', 'DMA', 100.0), ('Danish', 'DNK', 93.5), ('Spanish', 'DOM', 98.0), ('Arabic', 'DZA', 86.0), ('Spanish', 'ECU', 93.0), ('Arabic', 'EGY', 98.8), ('Tigrinja', 'ERI', 49.1), ('Arabic', 'ESH', 100.0), ('Spanish', 'ESP', 74.4), ('Estonian', 'EST', 65.3), ('Oromo', 'ETH', 31.0), ('Finnish', 'FIN', 92.7), ('Fijian', 'FJI', 50.8), ('English', 'FLK', 0.0), ('French', 'FRA', 93.6), ('Faroese', 'FRO', 100.0), ('Trukese', 'FSM', 41.6), ('Fang', 'GAB', 35.8), ('English', 'GBR', 97.3), ('Georgiana', 'GEO', 71.7), ('Akan', 'GHA', 52.4), ('English', 'GIB', 88.9), ('Ful', 'GIN', 38.6), ('Creole French', 'GLP', 95.0), ('Malinke', 'GMB', 34.1), ('Crioulo', 'GNB', 36.4), ('Fang', 'GNQ', 84.8), ('Greek', 'GRC', 98.5), ('Creole English', 'GRD', 100.0), ('Greenlandic', 'GRL', 87.5), ('Spanish', 'GTM', 64.7), ('Creole French', 'GUF', 94.3), ('English', 'GUM', 37.5), ('Creole English', 'GUY', 96.4), ('Canton Chinese', 'HKG', 88.7), ('Spanish', 'HND', 97.2), ('Serbo-Croatian', 'HRV', 95.9), ('Haiti Creole', 'HTI', 100.0), ('Hungarian', 'HUN', 98.5), ('Javanese', 'IDN', 39.4), ('Hindi', 'IND', 39.9), ('English', 'IRL', 98.4), ('Persian', 'IRN', 45.7), ('Arabic', 'IRQ', 77.2), ('Icelandic', 'ISL', 95.7), ('Hebrew', 'ISR', 63.1), ('Italian', 'ITA', 94.1), ('Creole English', 'JAM', 94.2), ('Arabic', 'JOR', 97.9), ('Japanese', 'JPN', 99.1), ('Kazakh', 'KAZ', 46.0), ('Kikuyu', 'KEN', 20.9), ('Kirgiz', 'KGZ', 59.7), ('Khmer', 'KHM', 88.6), ('Kiribati', 'KIR', 98.9), ('Creole English', 'KNA', 100.0), ('Korean', 'KOR', 99.9), ('Arabic', 'KWT', 78.1), ('Lao', 'LAO', 67.2), ('Arabic', 'LBN', 93.0), ('Kpelle', 'LBR', 19.5), ('Arabic', 'LBY', 96.0), ('Creole French', 'LCA', 80.0), ('German', 'LIE', 89.0), ('Singali', 'LKA', 60.3), ('Sotho', 'LSO', 85.0), ('Lithuanian', 'LTU', 81.6), ('Luxembourgish', 'LUX', 64.4), ('Latvian', 'LVA', 55.1), ('Canton Chinese', 'MAC', 85.6), ('Arabic', 'MAR', 65.0), ('French', 'MCO', 41.9), ('Romanian', 'MDA', 61.9), ('Malagasy', 'MDG', 98.9), ('Dhivehi', 'MDV', 100.0), ('Spanish', 'MEX', 92.1), ('Marshallese', 'MHL', 96.8), ('Macedonian', 'MKD', 66.5), ('Bambara', 'MLI', 31.8), ('Maltese', 'MLT', 95.8), ('Burmese', 'MMR', 69.0), ('Mongolian', 'MNG', 78.8), ('Philippene Languages', 'MNP', 34.1), ('Makua', 'MOZ', 27.8), ('Hassaniya', 'MRT', 81.7), ('English', 'MSR', 0.0), ('Creole French', 'MTQ', 96.6), ('Creole French', 'MUS', 70.6), ('Chichewa', 'MWI', 58.3), ('Malay', 'MYS', 58.4), ('Mahor\u00e9', 'MYT', 41.9), ('Ovambo', 'NAM', 50.7), ('Malenasian Languages', 'NCL', 45.4), ('Hausa', 'NER', 53.1), ('English', 'NFK', 0.0), ('Joruba', 'NGA', 21.4), ('Spanish', 'NIC', 97.6), ('English', 'NIU', 0.0), ('Dutch', 'NLD', 95.6), ('Norwegian', 'NOR', 96.6), ('Nepali', 'NPL', 50.4), ('Nauru', 'NRU', 57.5), ('English', 'NZL', 87.0), ('Arabic', 'OMN', 76.7), ('Punjabi', 'PAK', 48.2), ('Spanish', 'PAN', 76.8), ('Pitcairnese', 'PCN', 0.0), ('Spanish', 'PER', 79.8), ('Pilipino', 'PHL', 29.3), ('Palau', 'PLW', 82.2), ('Papuan Languages', 'PNG', 78.1), ('Polish', 'POL', 97.6), ('Spanish', 'PRI', 51.3), ('Korean', 'PRK', 99.9), ('Portuguese', 'PRT', 99.0), ('Spanish', 'PRY', 55.1), ('Arabic', 'PSE', 95.9), ('Tahitian', 'PYF', 46.4), ('Arabic', 'QAT', 40.7), ('Creole French', 'REU', 91.5), ('Romanian', 'ROM', 90.7), ('Russian', 'RUS', 86.6), ('Rwanda', 'RWA', 100.0), ('Arabic', 'SAU', 95.0), ('Arabic', 'SDN', 49.4), ('Wolof', 'SEN', 48.1), ('Chinese', 'SGP', 77.1), ('English', 'SHN', 0.0), ('Norwegian', 'SJM', 0.0), ('Malenasian Languages', 'SLB', 85.6), ('Mende', 'SLE', 34.8), ('Spanish', 'SLV', 100.0), ('Italian', 'SMR', 100.0), ('Somali', 'SOM', 98.3), ('French', 'SPM', 0.0), ('Crioulo', 'STP', 86.3), ('Sranantonga', 'SUR', 81.0), ('Slovak', 'SVK', 85.6), ('Slovene', 'SVN', 87.9), ('Swedish', 'SWE', 89.5), ('Swazi', 'SWZ', 89.9), ('Seselwa', 'SYC', 91.3), ('Arabic', 'SYR', 90.0), ('English', 'TCA', 0.0), ('Sara', 'TCD', 27.7), ('Ewe', 'TGO', 23.2), ('Thai', 'THA', 52.6), ('Tadzhik', 'TJK', 62.2), ('English', 'TKL', 0.0), ('Turkmenian', 'TKM', 76.7), ('Portuguese', 'TMP', 0.0), ('Tongan', 'TON', 98.3), ('English', 'TTO', 93.5), ('Arabic', 'TUN', 69.9), ('Turkish', 'TUR', 87.6), ('Tuvalu', 'TUV', 92.5), ('Min', 'TWN', 66.7), ('Nyamwesi', 'TZA', 21.1), ('Ganda', 'UGA', 18.1), ('Ukrainian', 'UKR', 64.7), ('English', 'UMI', 0.0), ('Spanish', 'URY', 95.7), ('English', 'USA', 86.2), ('Uzbek', 'UZB', 72.6), ('Italian', 'VAT', 0.0), ('Creole English', 'VCT', 99.1), ('Spanish', 'VEN', 96.9), ('English', 'VGB', 0.0), ('English', 'VIR', 81.7), ('Vietnamese', 'VNM', 86.8), ('Bislama', 'VUT', 56.6), ('Futuna', 'WLF', 0.0), ('Samoan-English', 'WSM', 52.0), ('Arabic', 'YEM', 99.6), ('Serbo-Croatian', 'YUG', 75.2), ('Zulu', 'ZAF', 22.7), ('Bemba', 'ZMB', 29.7), ('Shona', 'ZWE', 72.1)]"
+      }
+    },
+    "fault_diagnosis": "Model error"
+  },
+  {
+    "item_id": "spider_val_0936",
+    "db_id": "dog_kennels",
+    "question": "Which owner has paid for the most treatments on his or her dogs? List the owner id and last name.",
+    "schema_in_prompt": true,
+    "prompt": "[Database: dog_kennels]\n[Database Schema:\nCREATE TABLE `Breeds` ( `breed_code` VARCHAR(10) PRIMARY KEY , `breed_name` VARCHAR(80) )\nCREATE TABLE `Charges` ( `charge_id` INTEGER PRIMARY KEY , `charge_type` VARCHAR(10), `charge_amount` DECIMAL(19,4) )\nCREATE TABLE `Sizes` ( `size_code` VARCHAR(10) PRIMARY KEY , `size_description` VARCHAR(80) )\nCREATE TABLE `Treatment_Types` ( `treatment_type_code` VARCHAR(10) PRIMARY KEY , `treatment_type_description` VARCHAR(80) )\nCREATE TABLE `Owners` ( `owner_id` INTEGER PRIMARY KEY , `first_name` VARCHAR(50), `last_name` VARCHAR(50), `street` VARCHAR(50), `city` VARCHAR(50), `state` VARCHAR(20), `zip_code` VARCHAR(20), `email_address` VARCHAR(50), `home_phone` VARCHAR(20), `cell_number` VARCHAR(20) )\nCREATE TABLE `Dogs` ( `dog_id` INTEGER PRIMARY KEY , `owner_id` INTEGER NOT NULL, `abandoned_yn` VARCHAR(1), `breed_code` VARCHAR(10) NOT NULL, `size_code` VARCHAR(10) NOT NULL, `name` VARCHAR(50), `age` VARCHAR(20), `date_of_birth` DATETIME, `gender` VARCHAR(1), `weight` VARCHAR(20), `date_arrived` DATETIME, `date_adopted` DATETIME, `date_departed` DATETIME, FOREIGN KEY (`breed_code` ) REFERENCES `Breeds`(`breed_code` ), FOREIGN KEY (`size_code` ) REFERENCES `Sizes`(`size_code` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ), FOREIGN KEY (`owner_id` ) REFERENCES `Owners`(`owner_id` ) )\nCREATE TABLE `Professionals` ( `professional_id` INTEGER PRIMARY KEY , `role_code` VARCHAR(10) NOT NULL, `first_name` VARCHAR(50), `street` VARCHAR(50), `city` VARCHAR(50), `state` VARCHAR(20), `zip_code` VARCHAR(20), `last_name` VARCHAR(50), `email_address` VARCHAR(50), `home_phone` VARCHAR(20), `cell_number` VARCHAR(20) )\nCREATE TABLE `Treatments` ( `treatment_id` INTEGER PRIMARY KEY , `dog_id` INTEGER NOT NULL, `professional_id` INTEGER NOT NULL, `treatment_type_code` VARCHAR(10) NOT NULL, `date_of_treatment` DATETIME, `cost_of_treatment` DECIMAL(19,4), FOREIGN KEY (`treatment_type_code` ) REFERENCES `Treatment_Types`(`treatment_type_code` ), FOREIGN KEY (`professional_id` ) REFERENCES `Professionals`(`professional_id` ), FOREIGN KEY (`dog_id` ) REFERENCES `Dogs`(`dog_id` ) )\n]\nQuestion: Which owner has paid for the most treatments on his or her dogs? List the owner id and last name.\nWrite a valid SQLite SQL query to answer the question. Enclose your SQL query in ```sql ... ```.",
+    "gold_sql": "SELECT T1.owner_id ,  T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id JOIN Treatments AS T3 ON T2.dog_id  =  T3.dog_id GROUP BY T1.owner_id ORDER BY count(*) DESC LIMIT 1",
+    "gold_rows": [
+      [
+        14,
+        "Funk"
+      ]
+    ],
+    "model_evals": {
+      "C0 (Phi-4-mini)": {
+        "pred_sql": "SELECT o.owner_id, o.last_name, COUNT(t.treatment_id) AS treatment_count\nFROM Owners o\nJOIN Dogs d ON o.owner_id = d.owner_id\nJOIN Treatments t ON d.dog_id = t.dog_id\nGROUP BY o.owner_id, o.last_name\nORDER BY treatment_count DESC\nLIMIT 1",
+        "pred_rows": [
+          [
+            14,
+            "Funk",
+            4
+          ]
+        ],
+        "passed_legacy": false,
+        "passed_versioned": false,
+        "checker_reason": "Ordered rows mismatch: got [(14, 'Funk', 4)] != gold [(14, 'Funk')]"
+      },
+      "B0 (Qwen-27B)": {
+        "pred_sql": "SELECT \n    o.owner_id,\n    o.last_name\nFROM Owners o\nJOIN Dogs d ON o.owner_id = d.owner_id\nJOIN Treatments t ON d.dog_id = t.dog_id\nGROUP BY o.owner_id, o.last_name\nORDER BY COUNT(t.treatment_id) DESC\nLIMIT 1",
+        "pred_rows": [
+          [
+            14,
+            "Funk"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Ordered result rows match gold (1 rows)"
+      },
+      "B0 (GPT-OSS-120B)": {
+        "pred_sql": "SELECT \n    o.owner_id,\n    o.last_name\nFROM Owners AS o\nJOIN Dogs AS d       ON d.owner_id = o.owner_id\nJOIN Treatments AS t ON t.dog_id = d.dog_id\nGROUP BY o.owner_id, o.last_name\nORDER BY COUNT(t.treatment_id) DESC\nLIMIT 1",
+        "pred_rows": [
+          [
+            14,
+            "Funk"
+          ]
+        ],
+        "passed_legacy": true,
+        "passed_versioned": true,
+        "checker_reason": "Ordered result rows match gold (1 rows)"
+      }
+    },
+    "fault_diagnosis": "Model error"
+  }
+]

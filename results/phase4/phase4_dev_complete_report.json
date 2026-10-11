@@ -1,0 +1,683 @@
+{
+  "timestamp": "2026-10-08 15:49:29",
+  "budget_tokens": 2048,
+  "gates": {
+    "gate1_c0_compound_acc": 50.0,
+    "gate1_threshold": 60.0,
+    "gate1_pass": true,
+    "gate2_qwen_solvable_acc": 50.0,
+    "gate2_gpt_solvable_acc": 91.67,
+    "gate2_threshold": 90.0,
+    "gate2_pass": false,
+    "overall_pass": false
+  },
+  "c0_phi4_mini": {
+    "all_dev": {
+      "n_total": 150,
+      "n_valid": 150,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 44.0,
+      "ci_valid_95": [
+        36.0,
+        52.0
+      ],
+      "acc_total": 44.0,
+      "ci_total_95": [
+        36.0,
+        52.0
+      ],
+      "passed_count": 66
+    },
+    "track_a_all": {
+      "n_total": 100,
+      "n_valid": 100,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 66.0,
+      "ci_valid_95": [
+        57.0,
+        75.0
+      ],
+      "acc_total": 66.0,
+      "ci_total_95": [
+        57.0,
+        75.0
+      ],
+      "passed_count": 66
+    },
+    "atomic_all": {
+      "n_total": 60,
+      "n_valid": 60,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 76.67,
+      "ci_valid_95": [
+        65.0,
+        86.67
+      ],
+      "acc_total": 76.67,
+      "ci_total_95": [
+        65.0,
+        86.67
+      ],
+      "passed_count": 46
+    },
+    "atomic_math": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 86.67,
+      "ci_valid_95": [
+        66.67,
+        100.0
+      ],
+      "acc_total": 86.67,
+      "ci_total_95": [
+        66.67,
+        100.0
+      ],
+      "passed_count": 13
+    },
+    "atomic_code": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 86.67,
+      "ci_valid_95": [
+        66.67,
+        100.0
+      ],
+      "acc_total": 86.67,
+      "ci_total_95": [
+        66.67,
+        100.0
+      ],
+      "passed_count": 13
+    },
+    "atomic_sql": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 46.67,
+      "ci_valid_95": [
+        20.0,
+        73.33
+      ],
+      "acc_total": 46.67,
+      "ci_total_95": [
+        20.0,
+        73.33
+      ],
+      "passed_count": 7
+    },
+    "atomic_qa": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 86.67,
+      "ci_valid_95": [
+        66.67,
+        100.0
+      ],
+      "acc_total": 86.67,
+      "ci_total_95": [
+        66.67,
+        100.0
+      ],
+      "passed_count": 13
+    },
+    "compound_all": {
+      "n_total": 40,
+      "n_valid": 40,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 50.0,
+      "ci_valid_95": [
+        35.0,
+        65.0
+      ],
+      "acc_total": 50.0,
+      "ci_total_95": [
+        35.0,
+        65.0
+      ],
+      "passed_count": 20
+    },
+    "compound_solvable_without_tools": {
+      "n_total": 24,
+      "n_valid": 24,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 75.0,
+      "ci_valid_95": [
+        58.33,
+        91.67
+      ],
+      "acc_total": 75.0,
+      "ci_total_95": [
+        58.33,
+        91.67
+      ],
+      "passed_count": 18
+    },
+    "compound_tool_required": {
+      "n_total": 16,
+      "n_valid": 16,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 12.5,
+      "ci_valid_95": [
+        0.0,
+        31.25
+      ],
+      "acc_total": 12.5,
+      "ci_total_95": [
+        0.0,
+        31.25
+      ],
+      "passed_count": 2
+    },
+    "compound_2_stage": {
+      "n_total": 34,
+      "n_valid": 34,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 50.0,
+      "ci_valid_95": [
+        32.35,
+        67.65
+      ],
+      "acc_total": 50.0,
+      "ci_total_95": [
+        32.35,
+        67.65
+      ],
+      "passed_count": 17
+    },
+    "compound_3_stage": {
+      "n_total": 6,
+      "n_valid": 6,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 50.0,
+      "ci_valid_95": [
+        16.67,
+        83.33
+      ],
+      "acc_total": 50.0,
+      "ci_total_95": [
+        16.67,
+        83.33
+      ],
+      "passed_count": 3
+    },
+    "track_b_all": {
+      "n_total": 50,
+      "n_valid": 50,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 0.0,
+      "ci_valid_95": [
+        0.0,
+        0.0
+      ],
+      "acc_total": 0.0,
+      "ci_total_95": [
+        0.0,
+        0.0
+      ],
+      "passed_count": 0
+    }
+  },
+  "b0_qwen27b": {
+    "all_dev": {
+      "n_total": 150,
+      "n_valid": 128,
+      "n_failed": 22,
+      "n_truncated": 13,
+      "acc_valid": 52.34,
+      "ci_valid_95": [
+        43.75,
+        60.94
+      ],
+      "acc_total": 44.67,
+      "ci_total_95": [
+        36.67,
+        52.67
+      ],
+      "passed_count": 67
+    },
+    "track_a_all": {
+      "n_total": 100,
+      "n_valid": 78,
+      "n_failed": 22,
+      "n_truncated": 13,
+      "acc_valid": 85.9,
+      "ci_valid_95": [
+        78.21,
+        93.59
+      ],
+      "acc_total": 67.0,
+      "ci_total_95": [
+        58.0,
+        76.0
+      ],
+      "passed_count": 67
+    },
+    "atomic_all": {
+      "n_total": 60,
+      "n_valid": 60,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 90.0,
+      "ci_valid_95": [
+        81.67,
+        96.67
+      ],
+      "acc_total": 90.0,
+      "ci_total_95": [
+        81.67,
+        96.67
+      ],
+      "passed_count": 54
+    },
+    "atomic_math": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 100.0,
+      "ci_valid_95": [
+        100.0,
+        100.0
+      ],
+      "acc_total": 100.0,
+      "ci_total_95": [
+        100.0,
+        100.0
+      ],
+      "passed_count": 15
+    },
+    "atomic_code": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 93.33,
+      "ci_valid_95": [
+        80.0,
+        100.0
+      ],
+      "acc_total": 93.33,
+      "ci_total_95": [
+        80.0,
+        100.0
+      ],
+      "passed_count": 14
+    },
+    "atomic_sql": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 66.67,
+      "ci_valid_95": [
+        40.0,
+        86.67
+      ],
+      "acc_total": 66.67,
+      "ci_total_95": [
+        40.0,
+        86.67
+      ],
+      "passed_count": 10
+    },
+    "atomic_qa": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 100.0,
+      "ci_valid_95": [
+        100.0,
+        100.0
+      ],
+      "acc_total": 100.0,
+      "ci_total_95": [
+        100.0,
+        100.0
+      ],
+      "passed_count": 15
+    },
+    "compound_all": {
+      "n_total": 40,
+      "n_valid": 18,
+      "n_failed": 22,
+      "n_truncated": 13,
+      "acc_valid": 72.22,
+      "ci_valid_95": [
+        50.0,
+        88.89
+      ],
+      "acc_total": 32.5,
+      "ci_total_95": [
+        17.5,
+        47.5
+      ],
+      "passed_count": 13
+    },
+    "compound_solvable_without_tools": {
+      "n_total": 24,
+      "n_valid": 13,
+      "n_failed": 11,
+      "n_truncated": 2,
+      "acc_valid": 92.31,
+      "ci_valid_95": [
+        76.92,
+        100.0
+      ],
+      "acc_total": 50.0,
+      "ci_total_95": [
+        29.17,
+        70.83
+      ],
+      "passed_count": 12
+    },
+    "compound_tool_required": {
+      "n_total": 16,
+      "n_valid": 5,
+      "n_failed": 11,
+      "n_truncated": 11,
+      "acc_valid": 20.0,
+      "ci_valid_95": [
+        0.0,
+        60.0
+      ],
+      "acc_total": 6.25,
+      "ci_total_95": [
+        0.0,
+        18.75
+      ],
+      "passed_count": 1
+    },
+    "compound_2_stage": {
+      "n_total": 34,
+      "n_valid": 15,
+      "n_failed": 19,
+      "n_truncated": 11,
+      "acc_valid": 73.33,
+      "ci_valid_95": [
+        53.33,
+        93.33
+      ],
+      "acc_total": 32.35,
+      "ci_total_95": [
+        17.65,
+        47.06
+      ],
+      "passed_count": 11
+    },
+    "compound_3_stage": {
+      "n_total": 6,
+      "n_valid": 3,
+      "n_failed": 3,
+      "n_truncated": 2,
+      "acc_valid": 66.67,
+      "ci_valid_95": [
+        0.0,
+        100.0
+      ],
+      "acc_total": 33.33,
+      "ci_total_95": [
+        0.0,
+        66.67
+      ],
+      "passed_count": 2
+    },
+    "track_b_all": {
+      "n_total": 50,
+      "n_valid": 50,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 0.0,
+      "ci_valid_95": [
+        0.0,
+        0.0
+      ],
+      "acc_total": 0.0,
+      "ci_total_95": [
+        0.0,
+        0.0
+      ],
+      "passed_count": 0
+    }
+  },
+  "b0_gpt120b": {
+    "all_dev": {
+      "n_total": 150,
+      "n_valid": 149,
+      "n_failed": 1,
+      "n_truncated": 1,
+      "acc_valid": 49.66,
+      "ci_valid_95": [
+        41.61,
+        57.72
+      ],
+      "acc_total": 49.33,
+      "ci_total_95": [
+        41.33,
+        57.33
+      ],
+      "passed_count": 74
+    },
+    "track_a_all": {
+      "n_total": 100,
+      "n_valid": 99,
+      "n_failed": 1,
+      "n_truncated": 1,
+      "acc_valid": 74.75,
+      "ci_valid_95": [
+        65.66,
+        82.83
+      ],
+      "acc_total": 74.0,
+      "ci_total_95": [
+        65.0,
+        82.0
+      ],
+      "passed_count": 74
+    },
+    "atomic_all": {
+      "n_total": 60,
+      "n_valid": 60,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 81.67,
+      "ci_valid_95": [
+        71.67,
+        91.67
+      ],
+      "acc_total": 81.67,
+      "ci_total_95": [
+        71.67,
+        91.67
+      ],
+      "passed_count": 49
+    },
+    "atomic_math": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 93.33,
+      "ci_valid_95": [
+        80.0,
+        100.0
+      ],
+      "acc_total": 93.33,
+      "ci_total_95": [
+        80.0,
+        100.0
+      ],
+      "passed_count": 14
+    },
+    "atomic_code": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 100.0,
+      "ci_valid_95": [
+        100.0,
+        100.0
+      ],
+      "acc_total": 100.0,
+      "ci_total_95": [
+        100.0,
+        100.0
+      ],
+      "passed_count": 15
+    },
+    "atomic_sql": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 40.0,
+      "ci_valid_95": [
+        20.0,
+        66.67
+      ],
+      "acc_total": 40.0,
+      "ci_total_95": [
+        20.0,
+        66.67
+      ],
+      "passed_count": 6
+    },
+    "atomic_qa": {
+      "n_total": 15,
+      "n_valid": 15,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 93.33,
+      "ci_valid_95": [
+        80.0,
+        100.0
+      ],
+      "acc_total": 93.33,
+      "ci_total_95": [
+        80.0,
+        100.0
+      ],
+      "passed_count": 14
+    },
+    "compound_all": {
+      "n_total": 40,
+      "n_valid": 39,
+      "n_failed": 1,
+      "n_truncated": 1,
+      "acc_valid": 64.1,
+      "ci_valid_95": [
+        48.72,
+        79.49
+      ],
+      "acc_total": 62.5,
+      "ci_total_95": [
+        47.5,
+        77.5
+      ],
+      "passed_count": 25
+    },
+    "compound_solvable_without_tools": {
+      "n_total": 24,
+      "n_valid": 24,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 91.67,
+      "ci_valid_95": [
+        79.17,
+        100.0
+      ],
+      "acc_total": 91.67,
+      "ci_total_95": [
+        79.17,
+        100.0
+      ],
+      "passed_count": 22
+    },
+    "compound_tool_required": {
+      "n_total": 16,
+      "n_valid": 15,
+      "n_failed": 1,
+      "n_truncated": 1,
+      "acc_valid": 20.0,
+      "ci_valid_95": [
+        0.0,
+        40.0
+      ],
+      "acc_total": 18.75,
+      "ci_total_95": [
+        0.0,
+        37.5
+      ],
+      "passed_count": 3
+    },
+    "compound_2_stage": {
+      "n_total": 34,
+      "n_valid": 33,
+      "n_failed": 1,
+      "n_truncated": 1,
+      "acc_valid": 66.67,
+      "ci_valid_95": [
+        51.52,
+        81.82
+      ],
+      "acc_total": 64.71,
+      "ci_total_95": [
+        50.0,
+        79.41
+      ],
+      "passed_count": 22
+    },
+    "compound_3_stage": {
+      "n_total": 6,
+      "n_valid": 6,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 50.0,
+      "ci_valid_95": [
+        16.67,
+        83.33
+      ],
+      "acc_total": 50.0,
+      "ci_total_95": [
+        16.67,
+        83.33
+      ],
+      "passed_count": 3
+    },
+    "track_b_all": {
+      "n_total": 50,
+      "n_valid": 50,
+      "n_failed": 0,
+      "n_truncated": 0,
+      "acc_valid": 0.0,
+      "ci_valid_95": [
+        0.0,
+        0.0
+      ],
+      "acc_total": 0.0,
+      "ci_total_95": [
+        0.0,
+        0.0
+      ],
+      "passed_count": 0
+    }
+  }
+}

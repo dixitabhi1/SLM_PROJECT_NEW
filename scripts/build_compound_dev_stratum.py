@@ -44,3 +44,4 @@ def execute_reference_program(code_str: str) -> str:
     return str(locs["final_answer"]).strip()
 
 print("Compound stratum builder module loaded.")
+
