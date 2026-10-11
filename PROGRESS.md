@@ -20,6 +20,19 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 ---
 
+## 1.5 Pipeline Freeze Declaration
+
+- **Freeze Commit:** `7ad397f` (tagged `v1.0-frozen`)
+- **Freeze Date:** 2026-10-11
+- **Success Criteria Satisfied:**
+  1. **G1 (Leakage & Integrity):** Strict prompt-only black-box entry point `run_specialist_pipeline(prompt)`. Zero dataset metadata inspection under `src/pipeline/` (`audit_pipeline_leakage` passes). Full repository audit (`run_full_audit`) passes with 0 violations.
+  2. **G2 (Model-Based Orchestration):** Every orchestration stage (Analyser, Decomposer, Colorer, Matcher) is an LLM model call (`call_phi`). Fallback rate on Dev is 5.0% for Analyser, 0.0% for Decomposer, 0.0% for Colorer, 0.0% for Matcher (all $\le 10\%$ threshold).
+  3. **G3 (Execution Completeness):** Failed plus truncated items: $C_0 = 0.0\%$, Specialist Pipeline = $0.0\%$ (threshold $\le 2\%$).
+  4. **G4 (Accuracy Non-Inferiority):** Pipeline overall accuracy exceeds $C_0$ on both tracks: Track A Dev is 61.00% vs 58.00% ($+3.00\text{ pp}$); Track B Dev is 4.00% vs 0.00% ($+4.00\text{ pp}$). Tool-required compound accuracy leaped from 5.00% to 50.00% ($+45.00\text{ pp}$) with 0.00 pp degradation on solvable items.
+- **Freeze Invariant:** Strict code freeze in force. From commit `7ad397f` forward, no pipeline code (`src/pipeline/`), prompt, skill, or knowledge file may be altered.
+
+---
+
 ## 2. Validity Ledger
 
 Every headline number reported in any publication, brief, or table must appear here with its source file and current verification status (`stands`, `void`, or `superseded`).
