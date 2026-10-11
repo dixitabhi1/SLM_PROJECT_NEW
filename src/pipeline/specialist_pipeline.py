@@ -378,7 +378,7 @@ def execute_data_fetch(subtask_1: str, color_1: str, db_name: str, prompt: str) 
     """
     if color_1 == "CORPUS_RAG" or "hypergrid" in prompt.lower():
         retriever = get_bm25_retriever()
-        passages = retriever.retrieve(subtask_1 or prompt, top_k=3)
+        passages = retriever.retrieve(prompt, top_k=5)
         context_str = "\n\n".join([f"[{p.doc_id}]:\n{p.text}" for p in passages])
         return True, context_str, context_str
 
@@ -452,6 +452,21 @@ def execute_downstream_reasoning(subtask_2: str, fetched_data: Any, fetched_summ
     Stage 7: Downstream Reasoning with clean numeric passing.
     Returns: (clean_execution: bool, full_output: str, final_answer: str)
     """
+    # Track B technical document retrieval path
+    if "[HyperGrid_" in fetched_summary or "hypergrid" in prompt.lower() or color_2 == "CORPUS_RAG":
+        user_msg = (
+            f"Task:\n{prompt}\n\n"
+            f"Retrieved Documents:\n{fetched_summary}\n\n"
+            f"Answer the question in concise key-value pairs (max 75 words). "
+            f"Explicitly include all component designations, names, and parameters mentioned in the text.\n"
+            f"Conclude with: Final Answer: <key-value pairs>"
+        )
+        resp = call_phi([
+            {"role": "system", "content": "You are an expert technical assistant. Answer the question based on the provided reference documents in concise key-value format."},
+            {"role": "user", "content": user_msg}
+        ], temperature=0.0, max_tokens=512)
+        return True, resp, resp
+
     # Clean numeric passing to prevent conversational error compounding
     if isinstance(fetched_data, (int, float)):
         context_str = f"The verified data retrieved from the database is: {fetched_data}."
