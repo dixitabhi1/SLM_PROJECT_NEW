@@ -174,6 +174,29 @@ SOURCE: <DATABASE, CORPUS, or NONE>
 DATABASE_NAME: <name or NONE>"""
 
 
+def task_asks_for_query(prompt: str) -> bool:
+    """
+    Stage 1/2 Helper: Generic detection of whether the user task asks for a query as the answer.
+    Operates strictly on the raw prompt text string (never on item metadata).
+    """
+    p_lower = prompt.lower()
+    indicators = [
+        "write a valid sqlite query",
+        "write a sqlite query",
+        "write an sql query",
+        "write a sql query",
+        "return a valid sqlite query",
+        "return an sqlite query",
+        "return an sql query",
+    ]
+    if any(ind in p_lower for ind in indicators):
+        return True
+    if "```sql" in p_lower and ("query" in p_lower or "select" in p_lower):
+        if re.search(r"(?:write|return|output|provide)\s+.*?(?:query|sql)", p_lower):
+            return True
+    return False
+
+
 def analyse_task_model_call(prompt: str) -> Tuple[Dict[str, Any], bool]:
     """
     Stage 1: Model Call to analyse if outside data is needed.
@@ -189,6 +212,8 @@ def analyse_task_model_call(prompt: str) -> Tuple[Dict[str, Any], bool]:
     source_m = re.search(r"SOURCE:\s*(DATABASE|CORPUS|NONE)", resp, re.IGNORECASE)
     db_m = re.search(r"DATABASE_NAME:\s*([a-zA-Z0-9_\-]+)", resp, re.IGNORECASE)
 
+    asks_query = task_asks_for_query(prompt)
+
     if needs_m and source_m:
         needs_val = needs_m.group(1).upper() == "YES"
         source_val = source_m.group(1).upper()
@@ -197,6 +222,7 @@ def analyse_task_model_call(prompt: str) -> Tuple[Dict[str, Any], bool]:
             "needs_outside_data": needs_val,
             "source": source_val,
             "database_name": db_val,
+            "asks_for_query": asks_query,
             "raw_response": resp
         }, False
 
@@ -211,11 +237,11 @@ def analyse_task_model_call(prompt: str) -> Tuple[Dict[str, Any], bool]:
     has_db = bool(db_name) or "[database:" in p_lower or "query the" in p_lower
 
     if is_corpus:
-        return {"needs_outside_data": True, "source": "CORPUS", "database_name": "", "raw_response": resp}, True
+        return {"needs_outside_data": True, "source": "CORPUS", "database_name": "", "asks_for_query": asks_query, "raw_response": resp}, True
     if has_db:
-        return {"needs_outside_data": True, "source": "DATABASE", "database_name": db_name, "raw_response": resp}, True
+        return {"needs_outside_data": True, "source": "DATABASE", "database_name": db_name, "asks_for_query": asks_query, "raw_response": resp}, True
 
-    return {"needs_outside_data": False, "source": "NONE", "database_name": "", "raw_response": resp}, True
+    return {"needs_outside_data": False, "source": "NONE", "database_name": "", "asks_for_query": asks_query, "raw_response": resp}, True
 
 
 # =========================================================================
@@ -390,8 +416,8 @@ def execute_data_fetch(subtask_1: str, color_1: str, db_name: str, prompt: str) 
             if db.lower() in prompt.lower():
                 db_to_use = db
                 break
-    if not db_to_use and KNOWN_DATABASES:
-        db_to_use = KNOWN_DATABASES[0]
+    if not db_to_use:
+        return False, "Error: No database identified in task prompt", None
 
     schema_str = get_table_schema(db_to_use)
 
@@ -515,6 +541,7 @@ def run_specialist_pipeline(prompt: str) -> Dict[str, Any]:
     t0 = time.time()
     fallbacks = {
         "analyser": False,
+        "database_identifier": False,
         "decomposer": False,
         "colorer": False,
         "matcher": False
@@ -526,6 +553,89 @@ def run_specialist_pipeline(prompt: str) -> Dict[str, Any]:
     needs_outside = analysis["needs_outside_data"]
 
     # Stage 2: Routing Rule
+    if analysis.get("asks_for_query", False):
+        # DIRECT QUERY-WRITING PATH (v1.1 SQL FIX)
+        t_sql = time.time()
+        db_to_use = analysis.get("database_name", "")
+        if not db_to_use or db_to_use not in KNOWN_DATABASES:
+            for db in KNOWN_DATABASES:
+                if db.lower() in prompt.lower():
+                    db_to_use = db
+                    break
+        if not db_to_use:
+            fallbacks["database_identifier"] = True
+            schema_str = ""
+        else:
+            schema_str = get_table_schema(db_to_use)
+
+        if "[database schema:" not in prompt.lower() and schema_str:
+            query_prompt = f"Database: {db_to_use}\nSchema:\n{schema_str}\n\n{prompt}"
+        else:
+            query_prompt = prompt
+
+        direct_sql_sys = (
+            "You are an expert SQL assistant. Given the database schema and question, write a single valid SQLite query that answers the question.\n"
+            "Guidelines:\n"
+            "- Return ONLY the exact column(s) requested by the question. Do not include auxiliary count or aggregate columns in the SELECT clause unless explicitly asked.\n"
+            "- Ensure necessary table joins are included when attributes belong to relational tables.\n"
+            "- Output strictly the SQL query enclosed in ```sql\n<query>\n```. Do not provide conversational explanations."
+        )
+
+        resp_1 = call_phi([
+            {"role": "system", "content": direct_sql_sys},
+            {"role": "user", "content": query_prompt}
+        ], temperature=0.0, max_tokens=256)
+        query_1 = extract_sql_from_text(resp_1)
+        clean_1, out_1 = execute_sql_tolerant(db_to_use, query_1, prompt_context=prompt)
+        final_query = query_1
+        retried = False
+        all_clean = clean_1
+
+        if not clean_1:
+            retried = True
+            retry_msg = (
+                f"The query failed execution with error:\n{out_1}\n"
+                f"Please fix the query and provide a valid SQLite query in ```sql ... ```."
+            )
+            resp_2 = call_phi([
+                {"role": "system", "content": direct_sql_sys},
+                {"role": "user", "content": query_prompt},
+                {"role": "assistant", "content": f"```sql\n{query_1}\n```"},
+                {"role": "user", "content": retry_msg}
+            ], temperature=0.0, max_tokens=256)
+            query_2 = extract_sql_from_text(resp_2)
+            clean_2, out_2 = execute_sql_tolerant(db_to_use, query_2, prompt_context=prompt)
+            final_query = query_2
+            all_clean = clean_2
+
+        formatted_output = f"```sql\n{final_query}\n```"
+        dt = time.time() - t0
+
+        return {
+            "routed_to": "direct_sql",
+            "needs_outside_data": True,
+            "clean_execution": all_clean,
+            "output": formatted_output,
+            "full_output": formatted_output,
+            "final_answer": formatted_output,
+            "fallbacks": fallbacks,
+            "subtasks": [prompt],
+            "colors": ["SQL_DATA"],
+            "retried": retried,
+            "stages": [
+                {
+                    "stage_num": 1,
+                    "name": "direct_sql_query",
+                    "type": "model_call",
+                    "clean_execution": all_clean,
+                    "retried": retried,
+                    "output": formatted_output,
+                    "duration": time.time() - t_sql
+                }
+            ],
+            "duration": dt
+        }
+
     if not needs_outside:
         # DIRECT ANSWER PATH: Single model call, zero decomposition
         t_direct = time.time()
@@ -580,6 +690,8 @@ def run_specialist_pipeline(prompt: str) -> Dict[str, Any]:
         prompt=prompt
     )
     dt_s6 = time.time() - t_s6
+    if not clean_fetch and "No database identified" in str(fetch_summary):
+        fallbacks["database_identifier"] = True
 
     # Stage 7: Downstream Reasoning Specialist with Numeric Passing
     t_s7 = time.time()

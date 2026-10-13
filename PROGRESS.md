@@ -49,6 +49,23 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 ---
 
+## 1.7 Pipeline v1.1 Dev Tag & SQL Fix
+
+- **Tag:** `v1.1-dev`
+- **Date:** 2026-10-13
+- **Changes in v1.1:**
+  1. Generic query-writing detection (`task_asks_for_query`) in Analyser operating strictly on task prompt text (matching harness SQL instruction phrasing).
+  2. Direct query-writing path with database schema, tolerant SQLite execution check, and 1 retry on execution error.
+  3. Explicit fallback logging for database identification (`fallbacks["database_identifier"]`), eliminating silent fallback to `KNOWN_DATABASES[0]`.
+  4. Non-SQL invariance: 84/85 Track A non-SQL dev items bit-for-bit identical raw outputs (98.8%), 85/85 (100.0%) identical pass/fail verdicts. Track B path untouched (48/50, 96.0%).
+- **Dev Performance:**
+  - Spider SQL: jumped from 2/15 (13.3%) to 7/15 (46.7%), gaining +5 solved items (+33.3 pp).
+  - Track A Overall: jumped from 61/100 (61.0%) to 66/100 (66.0%) (+5.0 pp).
+  - Track B (Strict & Facts Alone): 48/50 (96.0%), identical between frozen v1.0 and v1.1.
+- **Reserve Split:** Untouched.
+
+---
+
 ## 2. Validity Ledger
 
 Every headline number reported in any publication, brief, or table must appear here with its source file and current verification status (`stands`, `void`, or `superseded`).
