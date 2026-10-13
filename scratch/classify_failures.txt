@@ -1,0 +1,53 @@
+=== GPT-120B FAILURES (17 items) ===
+track_b_heldout_v2_0002: failed=["Missing phrase '376.99 m^3/h' (Total Recirculation Volume Phase-3 value)"] | neg=[]
+  OUT: 'Final Answer: \n- StatorCoreX-H02 Harmonic Distortion Rate Phase-2: 3.19\u202f%  \n- CabinAirH-H27 Total Recirculation Volume Phase-3: 376.99\u202fm³/h'
+track_b_heldout_v2_0004: failed=["Missing phrase '63.73 uohm' (Contact Resistance Target Phase-1 value)"] | neg=[]
+  OUT: 'Peak Torque Density (MagRotorZ‑H04): 93.88\u202fNm/kg  \nContact Resistance Target (BusCouplerR‑H29): 63.73\u202fµΩ  \n\nFinal Answer: Peak Torque Density (MagRotorZ‑H04)=93.88\u202fNm/kg; Contact Resistance Target (BusCouplerR‑H29)=63.73\u202fµΩ.'
+track_b_heldout_v2_0007: failed=["Missing phrase '52.19 kw/m^2' (Surface Heat Flux Phase-3 value)"] | neg=[]
+  OUT: 'Surface Heat Flux Phase-3 (ColdPlateK‑H07): 52.19\u202fkW/m²  \nStored Kinetic Reserve Phase-4 (CapBankV‑H32): 883.84\u202fkJ  \n\nFinal Answer: Surface Heat Flux Phase-3 = 52.19\u202fkW/m²; Stored Kinetic Reserve Phase-4 = 883.84\u202fkJ.'
+track_b_heldout_v2_0009: failed=["Missing phrase '20.73 us' (Fiber Optical Latency Phase-1 value)"] | neg=[]
+  OUT: 'Fiber Optical Latency Phase-1 (OptiNodeQ‑H09):\u202f20.73\u202fµs  \nHarmonic Distortion Rate Phase-2 (StatorCoreX‑H34):\u202f47.03\u202f%\n\nFinal Answer: Fiber Optical Latency Phase-1 (OptiNodeQ‑H09)=20.73\u202fµs; Harmonic Distortion Rate Phase-2 (StatorCoreX‑H34)=47.03\u202f%'
+track_b_heldout_v2_0014: failed=["Missing phrase '639.18 c' (Thermal Saturation Temp Phase-2 value)", "Missing phrase '46.03 kw/m^2' (Surface Heat Flux Phase-3 value)"] | neg=[]
+  OUT: 'Final Answer: \n- Thermal Saturation Temp Phase-2 (EddyDiscY-H14): 639.18\u202f°C  \n- Surface Heat Flux Phase-3 (ColdPlateK-H39): 46.03\u202fkW/m²'
+track_b_heldout_v2_0016: failed=["Missing phrase '14.57 us' (Fiber Optical Latency Phase-1 value)"] | neg=[]
+  OUT: 'Final Answer: \n- Specific Wear Rate Phase-4 (FrictionShoeB‑H16): 26.12\u202fum/stop  \n- Fiber Optical Latency Phase-1 (OptiNodeQ‑H41): 14.57\u202fµs'
+track_b_heldout_v2_0021: failed=["Missing phrase '633.02 c' (Thermal Saturation Temp Phase-2 value)"] | neg=[]
+  OUT: 'Final Answer: \n- Elastomer Durometer Phase-1 (SealRingU-H21): 110.77\u202fShoreA  \n- Thermal Saturation Temp Phase-2 (EddyDiscY-H46): 633.02\u202f°C'
+track_b_heldout_v2_0023: failed=["Missing phrase '19.96 um/stop' (Specific Wear Rate Phase-4 value)"] | neg=[]
+  OUT: 'Final Answer: \n- Roughing Pump Down Time Phase-3 (EvacPumpI-H23): **69.51\u202fs**  \n- Specific Wear Rate Phase-4 (FrictionShoeB-H48): **19.96\u202fµm/stop**'
+track_b_heldout_v2_0025: failed=["Missing token 'OxyRegulatorD-H25' (component OxyRegulatorD-H25)", "Missing token 'DampingPlateC-H50' (component DampingPlateC-H50)"] | neg=[]
+  OUT: 'SupplyManifoldPressurePhase1_OxyRegulatorD-H25: 449.25\u202fkPa  \nSecondaryDampingRatioPhase2_DampingPlateC-H50: 19.22\u202fratio  \n\nFinal Answer: SupplyManifoldPressurePhase1_OxyRegulatorD-H25: 449.25\u202fkPa; SecondaryDampingRatioPhase2_DampingPlateC-H50: 19.22\u202fratio.'
+track_b_heldout_v2_0027: failed=["Missing phrase '376.99 m^3/h' (Total Recirculation Volume Phase-3 value)", "Missing phrase '22.64 ut' (Magnetic Bias Drift Phase-4 value)"] | neg=[]
+  OUT: 'Final Answer: CabinAirH-H27 Total Recirculation Volume Phase-3: 376.99\u202fm³/h; LevSensorG-H52 Magnetic Bias Drift Phase-4: 22.64\u202fµT.'
+track_b_heldout_v2_0029: failed=["Missing phrase '63.73 uohm' (Contact Resistance Target Phase-1 value)"] | neg=[]
+  OUT: 'Final Answer: \n- Contact Resistance Target Phase-1 (BusCouplerR‑H29): **63.73\u202fµΩ**  \n- Differential Stroke Speed Phase-2 (GateValveO‑H54): **118.98\u202fmm/s**'
+track_b_heldout_v2_0034: failed=["Missing token 'StatorCoreX-H34' (component StatorCoreX-H34)", "Missing token 'CabinAirH-H59' (component CabinAirH-H59)", "Missing phrase '370.83 m^3/h' (Total Recirculation Volume Phase-3 value)"] | neg=[]
+  OUT: 'Final Answer: \n- HarmonicDistortionRate_Phase2_StatorCoreX-H34: 47.03\u202f%  \n- TotalRecirculationVolume_Phase3_CabinAirH-H59: 370.83\u202fm³/h'
+track_b_heldout_v2_0036: failed=["Missing phrase '57.57 uohm' (Contact Resistance Target Phase-1 value)"] | neg=[]
+  OUT: 'Final Answer: \n- Peak Torque Density Phase-4 (MagRotorZ-H36): 137.72\u202fNm/kg  \n- Contact Resistance Target Phase-1 (BusCouplerR-H61): 57.57\u202fµΩ'
+track_b_heldout_v2_0039: failed=["Missing phrase '46.03 kw/m^2' (Surface Heat Flux Phase-3 value)"] | neg=[]
+  OUT: 'Surface Heat Flux Phase-3 (ColdPlateK‑H39):\u202f46.03\u202fkW/m²  \nStored Kinetic Reserve Phase-4 (CapBankV‑H64):\u202f877.68\u202fkJ  \n\nFinal Answer: Surface Heat Flux Phase-3 = 46.03\u202fkW/m²; Stored Kinetic Reserve Phase-4 = 877.68\u202fkJ.'
+track_b_heldout_v2_0041: failed=["Missing phrase '14.57 us' (Fiber Optical Latency Phase-1 value)"] | neg=[]
+  OUT: 'Fiber Optical Latency Phase-1 (OptiNodeQ‑H41):\u202f14.57\u202fµs  \nHarmonic Distortion Rate Phase-2 (StatorCoreX‑H66):\u202f40.87\u202f%\n\nFinal Answer: Fiber Optical Latency Phase-1 (OptiNodeQ‑H41)=14.57\u202fµs; Harmonic Distortion Rate Phase-2 (StatorCoreX‑H66)=40.87\u202f%'
+track_b_heldout_v2_0046: failed=["Missing phrase '633.02 c' (Thermal Saturation Temp Phase-2 value)", "Missing phrase '89.87 kw/m^2' (Surface Heat Flux Phase-3 value)"] | neg=[]
+  OUT: 'Thermal Saturation Temp Phase‑2 (EddyDiscY‑H46):\u202f633.02\u202f°C  \nSurface Heat Flux Phase‑3 (ColdPlateK‑H71):\u202f89.87\u202fkW/m²  \n\nFinal Answer: Thermal Saturation Temp Phase‑2 = 633.02\u202f°C; Surface Heat Flux Phase‑3 = 89.87\u202fkW/m².'
+track_b_heldout_v2_0048: failed=["Missing phrase '8.41 us' (Fiber Optical Latency Phase-1 value)"] | neg=[]
+  OUT: 'Specific Wear Rate Phase-4 (FrictionShoeB‑H48):\u202f19.96\u202fum/stop  \nFiber Optical Latency Phase-1 (OptiNodeQ‑H73):\u202f8.41\u202fµs  \n\nFinal Answer: Specific Wear Rate Phase-4 (FrictionShoeB‑H48)=19.96\u202fum/stop; Fiber Optical Latency Phase-1 (OptiNodeQ‑H73)=8.41\u202fµs.'
+
+=== QWEN-27B FAILURES (8 items) ===
+track_b_heldout_v2_0005: failed=["Missing token 'CryoPumpN-H05' (component CryoPumpN-H05)", "Missing token 'RectifierStackT-H30' (component RectifierStackT-H30)"] | neg=[]
+  OUT: 'Final Answer:\nCryoPumpN-H05_Vapor_Mass_Flow_Phase-1: 38.05 g/s\nRectifierStackT-H30_Forward_Voltage_Drop_Phase-2: 42.95 V'
+track_b_heldout_v2_0021: failed=["Missing token 'SealRingU-H21' (component SealRingU-H21)", "Missing token 'EddyDiscY-H46' (component EddyDiscY-H46)"] | neg=[]
+  OUT: 'Final Answer: SealRingU-H21_Elastomer_Durometer_Phase-1: 110.77 ShoreA; EddyDiscY-H46_Thermal_Saturation_Temp_Phase-2: 633.02 C'
+track_b_heldout_v2_0022: failed=["Missing token 'GateValveO-H22' (component GateValveO-H22)", "Missing token 'CaliperUnitM-H47' (component CaliperUnitM-H47)"] | neg=[]
+  OUT: 'Final Answer: GateValveO-H22_Differential_Stroke_Speed_Phase-2: 125.14 mm/s; CaliperUnitM-H47_Clampping_Normal_Force_Phase-3: 92.89 kN'
+track_b_heldout_v2_0026: failed=["Missing token 'ScrubberMatrixF-H26' (component ScrubberMatrixF-H26)", "Missing token 'GuideRailE-H51' (component GuideRailE-H51)"] | neg=[]
+  OUT: 'Final Answer: ScrubberMatrixF-H26_CO2_Absorption_Capacity_Phase-2: 49.82 mol/h; GuideRailE-H51_Lateral_Deviation_Limit_Phase-3: 20.72 mm'
+track_b_heldout_v2_0028: failed=["Missing token 'ChilledLoopL-H28' (component ChilledLoopL-H28)", "Missing token 'SealRingU-H53' (component SealRingU-H53)"] | neg=[]
+  OUT: 'Final Answer: ChilledLoopL-H28_Cabin_Target_Humidity_Phase-4: 84.86 %; SealRingU-H53_Elastomer_Durometer_Phase-1: 104.61 ShoreA'
+track_b_heldout_v2_0029: failed=["Missing token 'BusCouplerR-H29' (component BusCouplerR-H29)", "Missing token 'GateValveO-H54' (component GateValveO-H54)"] | neg=[]
+  OUT: 'Final Answer: BusCouplerR-H29_Contact_Resistance_Target_Phase-1: 63.73 uOhm; GateValveO-H54_Differential_Stroke_Speed_Phase-2: 118.98 mm/s'
+track_b_heldout_v2_0034: failed=["Missing token 'StatorCoreX-H34' (component StatorCoreX-H34)", "Missing token 'CabinAirH-H59' (component CabinAirH-H59)"] | neg=[]
+  OUT: 'Final Answer: StatorCoreX-H34_Harmonic_Distortion_Rate_Phase-2: 47.03 %; CabinAirH-H59_Total_Recirculation_Volume_Phase-3: 370.83 m^3/h'
+track_b_heldout_v2_0037: failed=["Missing token 'CryoPumpN-H37' (component CryoPumpN-H37)", "Missing token 'RectifierStackT-H62' (component RectifierStackT-H62)"] | neg=[]
+  OUT: 'Final Answer: CryoPumpN-H37_Vapor_Mass_Flow_Phase-1: 31.89 g/s; RectifierStackT-H62_Forward_Voltage_Drop_Phase-2: 36.79 V'

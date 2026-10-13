@@ -23,9 +23,10 @@ REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, REPO_ROOT)
 
 from src.sandbox.runner import execute_python_code
-from src.eval.fact_checklist_scorer import score_fact_checklist
+from src.eval.fact_checklist_scorer import score_fact_checklist, normalize_unicode_text
 
-SCORER_VERSION = "1.0.0"
+SCORER_VERSION = "1.1.0"
+
 
 
 def extract_code_block(text: str) -> str:
@@ -311,6 +312,7 @@ def score_record(item: Dict[str, Any], output_text: str) -> Dict[str, Any]:
     """
     Main scoring function for any item given its ground truth and raw output text.
     """
+    output_text = normalize_unicode_text(output_text)
     if "checklist" in item:
         # Track B
         res = score_fact_checklist(output_text, item["checklist"], max_word_cap=item.get("word_cap", 75))

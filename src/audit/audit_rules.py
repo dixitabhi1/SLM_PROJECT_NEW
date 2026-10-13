@@ -95,6 +95,65 @@ def audit_knowledge_files(repo_root: str) -> List[str]:
     return errors
 
 
+def audit_committed_lines_immutability(repo_root: str) -> List[str]:
+    """
+    Hard Rule 2 Enforcement:
+    Compares each results (.jsonl) and corrections file with its last committed version in git (HEAD).
+    Fails if any existing line has changed, been reordered, or been deleted/truncated.
+    """
+    errors = []
+    try:
+        cmd = ["git", "ls-files", "results/*.jsonl", "results/**/*.jsonl"]
+        res = subprocess.run(cmd, cwd=repo_root, capture_output=True, text=True, check=True)
+        tracked_files = [f.strip() for f in res.stdout.splitlines() if f.strip()]
+    except Exception as e:
+        return [f"Failed to inspect git tracked results files: {e}"]
+
+    for rel_path in tracked_files:
+        full_path = os.path.join(repo_root, rel_path)
+        if not os.path.exists(full_path):
+            errors.append(f"Hard Rule 2 Violation: Git-tracked result file missing on disk: {rel_path}")
+            continue
+        try:
+            head_out = subprocess.run(
+                ["git", "show", f"HEAD:{rel_path}"],
+                cwd=repo_root,
+                capture_output=True,
+                text=True,
+                errors="replace",
+                check=True
+            )
+            head_lines = head_out.stdout.splitlines()
+        except Exception as e:
+            errors.append(f"Hard Rule 2: Failed to read HEAD version of {rel_path}: {e}")
+            continue
+
+        try:
+            with open(full_path, "r", encoding="utf-8", errors="replace") as f:
+                working_lines = f.read().splitlines()
+        except Exception as e:
+            errors.append(f"Hard Rule 2: Failed to read working file {rel_path}: {e}")
+            continue
+
+        if len(working_lines) < len(head_lines):
+            errors.append(
+                f"Hard Rule 2 Violation: {rel_path} was truncated or lines were deleted! "
+                f"HEAD has {len(head_lines)} lines, working copy has only {len(working_lines)} lines."
+            )
+            continue
+
+        for idx, (hl, wl) in enumerate(zip(head_lines, working_lines), 1):
+            if hl != wl:
+                errors.append(
+                    f"Hard Rule 2 Violation: Line {idx} in {rel_path} was modified in-place.\n"
+                    f"  Committed (HEAD): {hl}\n"
+                    f"  Working copy:     {wl}"
+                )
+                break
+
+    return errors
+
+
 def audit_run_records(log_file_path: str, corrections_map: Dict[Tuple[str, str], Dict[str, Any]] = None, repo_root: str = ".") -> List[str]:
     """
     Audits an append-only JSONL run records file.
@@ -733,24 +792,41 @@ def run_full_audit(repo_root: str = ".") -> Tuple[bool, List[str]]:
         all_errors.extend(leak_errors)
 
     # 8. Check results files (run records and corrections)
+    immutability_errors = audit_committed_lines_immutability(repo_root)
+    all_errors.extend(immutability_errors)
+
     corrections_map = {}
     record_files = glob.glob(os.path.join(repo_root, "results", "**", "*.jsonl"), recursive=True)
     for rf in record_files:
         if "corrections" in os.path.basename(rf):
             # Audit corrections per Hard Rule 2: must have reason, target_file, item_id
             with open(rf, "r", encoding="utf-8") as f:
-                for l_idx, line in enumerate(f, 1):
-                    if not line.strip():
-                        continue
-                    try:
-                        c_rec = json.loads(line)
-                        if not c_rec.get("reason") or not c_rec.get("target_file") or not c_rec.get("item_id"):
-                            all_errors.append(f"Hard Rule 2 Violation: Line {l_idx} in {rf} missing required reason/target_file/item_id")
-                        else:
-                            tf = os.path.normpath(c_rec.get("target_file", "")).replace("\\", "/")
-                            corrections_map[(tf, str(c_rec.get("item_id")))] = c_rec
-                    except Exception as e:
-                        all_errors.append(f"Hard Rule 2 Violation: Line {l_idx} in {rf} is invalid JSON: {e}")
+                raw_lines = [line.strip() for line in f if line.strip()]
+
+            # Identify any original records supplemented by later reference corrections
+            referenced_actions = set()
+            for line in raw_lines:
+                try:
+                    c_rec = json.loads(line)
+                    if c_rec.get("reference_action"):
+                        referenced_actions.add(c_rec["reference_action"])
+                except Exception:
+                    pass
+
+            for l_idx, line in enumerate(raw_lines, 1):
+                try:
+                    c_rec = json.loads(line)
+                    if not c_rec.get("reason") or not c_rec.get("target_file") or not c_rec.get("item_id"):
+                        action = c_rec.get("action", "")
+                        if action and action in referenced_actions:
+                            # Valid: original unindexed row referenced and supplemented by later correction row
+                            continue
+                        all_errors.append(f"Hard Rule 2 Violation: Line {l_idx} in {rf} missing required reason/target_file/item_id")
+                    else:
+                        tf = os.path.normpath(c_rec.get("target_file", "")).replace("\\", "/")
+                        corrections_map[(tf, str(c_rec.get("item_id")))] = c_rec
+                except Exception as e:
+                    all_errors.append(f"Hard Rule 2 Violation: Line {l_idx} in {rf} is invalid JSON: {e}")
 
     for rf in record_files:
         if ".git" in rf or ".gemini" in rf or "corrections" in os.path.basename(rf):

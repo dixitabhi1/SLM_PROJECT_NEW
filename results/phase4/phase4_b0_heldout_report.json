@@ -1,0 +1,171 @@
+{
+  "timestamp": "2026-10-11T14:09:31Z",
+  "split": "heldout",
+  "condition": "B0",
+  "hashes": {
+    "track_a_heldout_sha256": "2314fca186a064ffcface62f42dc346bda9fdc73c5221852e8ecf5b19aafd629",
+    "track_b_heldout_sha256": "b021e2d0032d15a20f24315fb4538fe59ecd3ecb323f9a8ca295c2b421d7ed6d"
+  },
+  "results": {
+    "qwen27b": {
+      "track_a_total": {
+        "count": 100,
+        "passes": 68,
+        "acc": 68.0,
+        "ci_95": [
+          59.0,
+          76.0
+        ],
+        "clean_share": 90.0,
+        "mean_duration": 1.8,
+        "failed_or_trunc": 23,
+        "failed_trunc_pct": 23.0
+      },
+      "track_b_total": {
+        "count": 50,
+        "passes": 0,
+        "acc": 0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "clean_share": 98.0,
+        "mean_duration": 1.18,
+        "failed_or_trunc": 1,
+        "failed_trunc_pct": 2.0
+      },
+      "tra_atomic": {
+        "count": 60,
+        "passes": 51,
+        "acc": 85.0,
+        "ci_95": [
+          75.0,
+          93.33
+        ],
+        "clean_share": 98.33,
+        "mean_duration": 1.47,
+        "failed_or_trunc": 3,
+        "failed_trunc_pct": 5.0
+      },
+      "tra_compound": {
+        "count": 40,
+        "passes": 17,
+        "acc": 42.5,
+        "ci_95": [
+          27.5,
+          57.5
+        ],
+        "clean_share": 77.5,
+        "mean_duration": 2.31,
+        "failed_or_trunc": 20,
+        "failed_trunc_pct": 50.0
+      },
+      "tra_comp_solv": {
+        "count": 20,
+        "passes": 17,
+        "acc": 85.0,
+        "ci_95": [
+          70.0,
+          100.0
+        ],
+        "clean_share": 85.0,
+        "mean_duration": 1.75,
+        "failed_or_trunc": 3,
+        "failed_trunc_pct": 15.0
+      },
+      "tra_comp_treq": {
+        "count": 20,
+        "passes": 0,
+        "acc": 0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "clean_share": 70.0,
+        "mean_duration": 2.87,
+        "failed_or_trunc": 17,
+        "failed_trunc_pct": 85.0
+      }
+    },
+    "gpt120b": {
+      "track_a_total": {
+        "count": 100,
+        "passes": 73,
+        "acc": 73.0,
+        "ci_95": [
+          64.0,
+          81.0
+        ],
+        "clean_share": 99.0,
+        "mean_duration": 1.59,
+        "failed_or_trunc": 2,
+        "failed_trunc_pct": 2.0
+      },
+      "track_b_total": {
+        "count": 50,
+        "passes": 0,
+        "acc": 0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 1.07,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_atomic": {
+        "count": 60,
+        "passes": 53,
+        "acc": 88.33,
+        "ci_95": [
+          80.0,
+          96.67
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 1.19,
+        "failed_or_trunc": 1,
+        "failed_trunc_pct": 1.67
+      },
+      "tra_compound": {
+        "count": 40,
+        "passes": 20,
+        "acc": 50.0,
+        "ci_95": [
+          32.5,
+          65.0
+        ],
+        "clean_share": 97.5,
+        "mean_duration": 2.19,
+        "failed_or_trunc": 1,
+        "failed_trunc_pct": 2.5
+      },
+      "tra_comp_solv": {
+        "count": 20,
+        "passes": 20,
+        "acc": 100.0,
+        "ci_95": [
+          100.0,
+          100.0
+        ],
+        "clean_share": 100.0,
+        "mean_duration": 1.95,
+        "failed_or_trunc": 0,
+        "failed_trunc_pct": 0.0
+      },
+      "tra_comp_treq": {
+        "count": 20,
+        "passes": 0,
+        "acc": 0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "clean_share": 95.0,
+        "mean_duration": 2.42,
+        "failed_or_trunc": 1,
+        "failed_trunc_pct": 5.0
+      }
+    }
+  }
+}

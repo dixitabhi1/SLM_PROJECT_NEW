@@ -1,0 +1,357 @@
+{
+  "total": 50,
+  "passes": 45,
+  "acc": 90.0,
+  "results": [
+    {
+      "question_id": "track_b_dev_0001",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0002",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0003",
+      "binary_pass": false,
+      "recall": 0.5,
+      "precision": 1.0,
+      "details": "Recall: 0.50, Precision: 1.00 | Failed: Numeric mismatch for 86.5 ms +/- 0.2 (brake actuation time 86.5 ms)"
+    },
+    {
+      "question_id": "track_b_dev_0004",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0005",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0006",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0007",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0008",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0009",
+      "binary_pass": false,
+      "recall": 0.6667,
+      "precision": 1.0,
+      "details": "Recall: 0.67, Precision: 1.00 | Failed: Missing token 'CryoLoop-Gamma' (component CryoLoop-Gamma)"
+    },
+    {
+      "question_id": "track_b_dev_0010",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0011",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0012",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0013",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0014",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0015",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0016",
+      "binary_pass": false,
+      "recall": 0.6667,
+      "precision": 1.0,
+      "details": "Recall: 0.67, Precision: 1.00 | Failed: Missing token 'SensorMount-M3' (component SensorMount-M3)"
+    },
+    {
+      "question_id": "track_b_dev_0017",
+      "binary_pass": false,
+      "recall": 0.6667,
+      "precision": 1.0,
+      "details": "Recall: 0.67, Precision: 1.00 | Failed: Missing token 'SensorMount-M3' (component SensorMount-M3)"
+    },
+    {
+      "question_id": "track_b_dev_0018",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0019",
+      "binary_pass": false,
+      "recall": 0.6667,
+      "precision": 1.0,
+      "details": "Recall: 0.67, Precision: 1.00 | Failed: Missing token 'DoorSeal-V4' (component DoorSeal-V4)"
+    },
+    {
+      "question_id": "track_b_dev_0020",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0021",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0022",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0023",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0024",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0025",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0026",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0027",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0028",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0029",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0030",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0031",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0032",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0033",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0034",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0035",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0036",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0037",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0038",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0039",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0040",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0041",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0042",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0043",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0044",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0045",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0046",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0047",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0048",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0049",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    },
+    {
+      "question_id": "track_b_dev_0050",
+      "binary_pass": true,
+      "recall": 1.0,
+      "precision": 1.0,
+      "details": "Recall: 1.00, Precision: 1.00"
+    }
+  ]
+}

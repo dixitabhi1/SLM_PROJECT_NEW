@@ -25,6 +25,12 @@
       "tool_required": 16
     }
   },
+  "heldout_split": {
+    "file": "data/track_a_heldout_split.json",
+    "sha256": "2314fca186a064ffcface62f42dc346bda9fdc73c5221852e8ecf5b19aafd629",
+    "count": 100,
+    "status": "LOCKED"
+  },
   "unapproved_heldout_candidate": {
     "file": "data/unapproved/track_a_heldout_candidate_unapproved.json",
     "sha256": "8171d86da10de7f44aa04c6576fd39bf1c63fd0fb068d871bcdec20591dcfd0a",

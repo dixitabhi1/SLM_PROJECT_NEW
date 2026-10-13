@@ -1,0 +1,2302 @@
+[
+  {
+    "question_id": "track_b_heldout_v2_0001",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Propulsion and LifeSupport subsystems. What is the Thrust Response Time Phase-1 of DynoDrive-H01, and what is the CO2 Absorption Capacity Phase-2 of ScrubberMatrixF-H26? Provide a concise key-value response.",
+    "subsystem": "Propulsion & LifeSupport",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-001",
+      "FACT-NEWHELD-026"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DynoDrive-H01\nthrust_response_time_phase-1: 13.87 ms\ncomponent_2: ScrubberMatrixF-H26\nco2_absorption_capacity_phase-2: 49.82 mol/h",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DynoDrive-H01",
+        "description": "component DynoDrive-H01"
+      },
+      {
+        "type": "token",
+        "value": "ScrubberMatrixF-H26",
+        "description": "component ScrubberMatrixF-H26"
+      },
+      {
+        "type": "phrase",
+        "value": "13.87 ms",
+        "description": "Thrust Response Time Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "49.82 mol/h",
+        "description": "CO2 Absorption Capacity Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "12.21",
+          "43.84",
+          "9.02",
+          "32.38"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0002",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Propulsion and LifeSupport subsystems. What is the Harmonic Distortion Rate Phase-2 of StatorCoreX-H02, and what is the Total Recirculation Volume Phase-3 of CabinAirH-H27? Provide a concise key-value response.",
+    "subsystem": "Propulsion & LifeSupport",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-002",
+      "FACT-NEWHELD-027"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: StatorCoreX-H02\nharmonic_distortion_rate_phase-2: 3.19 %\ncomponent_2: CabinAirH-H27\ntotal_recirculation_volume_phase-3: 376.99 m^3/h",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "StatorCoreX-H02",
+        "description": "component StatorCoreX-H02"
+      },
+      {
+        "type": "token",
+        "value": "CabinAirH-H27",
+        "description": "component CabinAirH-H27"
+      },
+      {
+        "type": "phrase",
+        "value": "3.19 %",
+        "description": "Harmonic Distortion Rate Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "376.99 m^3/h",
+        "description": "Total Recirculation Volume Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "2.81",
+          "331.75",
+          "2.07",
+          "245.04"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0003",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Propulsion and LifeSupport subsystems. What is the Inductive Coupling Gap Phase-3 of FluxLinear-H03, and what is the Cabin Target Humidity Phase-4 of ChilledLoopL-H28? Provide a concise key-value response.",
+    "subsystem": "Propulsion & LifeSupport",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-003",
+      "FACT-NEWHELD-028"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: FluxLinear-H03\ninductive_coupling_gap_phase-3: 18.91 mm\ncomponent_2: ChilledLoopL-H28\ncabin_target_humidity_phase-4: 84.86 %",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "FluxLinear-H03",
+        "description": "component FluxLinear-H03"
+      },
+      {
+        "type": "token",
+        "value": "ChilledLoopL-H28",
+        "description": "component ChilledLoopL-H28"
+      },
+      {
+        "type": "phrase",
+        "value": "18.91 mm",
+        "description": "Inductive Coupling Gap Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "84.86 %",
+        "description": "Cabin Target Humidity Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "16.64",
+          "74.68",
+          "12.29",
+          "55.16"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0004",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Propulsion and PowerDistribution subsystems. What is the Peak Torque Density Phase-4 of MagRotorZ-H04, and what is the Contact Resistance Target Phase-1 of BusCouplerR-H29? Provide a concise key-value response.",
+    "subsystem": "Propulsion & PowerDistribution",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-004",
+      "FACT-NEWHELD-029"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: MagRotorZ-H04\npeak_torque_density_phase-4: 93.88 Nm/kg\ncomponent_2: BusCouplerR-H29\ncontact_resistance_target_phase-1: 63.73 uOhm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "MagRotorZ-H04",
+        "description": "component MagRotorZ-H04"
+      },
+      {
+        "type": "token",
+        "value": "BusCouplerR-H29",
+        "description": "component BusCouplerR-H29"
+      },
+      {
+        "type": "phrase",
+        "value": "93.88 nm/kg",
+        "description": "Peak Torque Density Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "63.73 uohm",
+        "description": "Contact Resistance Target Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "82.61",
+          "56.08",
+          "61.02",
+          "41.42"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0005",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Cryogenics and PowerDistribution subsystems. What is the Vapor Mass Flow Phase-1 of CryoPumpN-H05, and what is the Forward Voltage Drop Phase-2 of RectifierStackT-H30? Provide a concise key-value response.",
+    "subsystem": "Cryogenics & PowerDistribution",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-005",
+      "FACT-NEWHELD-030"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: CryoPumpN-H05\nvapor_mass_flow_phase-1: 38.05 g/s\ncomponent_2: RectifierStackT-H30\nforward_voltage_drop_phase-2: 42.95 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CryoPumpN-H05",
+        "description": "component CryoPumpN-H05"
+      },
+      {
+        "type": "token",
+        "value": "RectifierStackT-H30",
+        "description": "component RectifierStackT-H30"
+      },
+      {
+        "type": "phrase",
+        "value": "38.05 g/s",
+        "description": "Vapor Mass Flow Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "42.95 v",
+        "description": "Forward Voltage Drop Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "33.48",
+          "37.8",
+          "24.73",
+          "27.92"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0006",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Cryogenics and PowerDistribution subsystems. What is the Thermal Conductance Phase-2 of HeliumShield-H06, and what is the Series Inductance Rating Phase-3 of FilterChokeS-H31? Provide a concise key-value response.",
+    "subsystem": "Cryogenics & PowerDistribution",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-006",
+      "FACT-NEWHELD-031"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeliumShield-H06\nthermal_conductance_phase-2: 8.24 W/mK\ncomponent_2: FilterChokeS-H31\nseries_inductance_rating_phase-3: 58.07 mH",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeliumShield-H06",
+        "description": "component HeliumShield-H06"
+      },
+      {
+        "type": "token",
+        "value": "FilterChokeS-H31",
+        "description": "component FilterChokeS-H31"
+      },
+      {
+        "type": "phrase",
+        "value": "8.24 w/mk",
+        "description": "Thermal Conductance Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "58.07 mh",
+        "description": "Series Inductance Rating Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "7.25",
+          "51.1",
+          "5.36",
+          "37.75"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0007",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Cryogenics and PowerDistribution subsystems. What is the Surface Heat Flux Phase-3 of ColdPlateK-H07, and what is the Stored Kinetic Reserve Phase-4 of CapBankV-H32? Provide a concise key-value response.",
+    "subsystem": "Cryogenics & PowerDistribution",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-007",
+      "FACT-NEWHELD-032"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: ColdPlateK-H07\nsurface_heat_flux_phase-3: 52.19 kW/m^2\ncomponent_2: CapBankV-H32\nstored_kinetic_reserve_phase-4: 883.84 kJ",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "ColdPlateK-H07",
+        "description": "component ColdPlateK-H07"
+      },
+      {
+        "type": "token",
+        "value": "CapBankV-H32",
+        "description": "component CapBankV-H32"
+      },
+      {
+        "type": "phrase",
+        "value": "52.19 kw/m^2",
+        "description": "Surface Heat Flux Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "883.84 kj",
+        "description": "Stored Kinetic Reserve Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "45.93",
+          "777.78",
+          "33.92",
+          "574.5"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0008",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Cryogenics and Propulsion subsystems. What is the Radiative Heat Load Phase-4 of DewarNeck-H08, and what is the Thrust Response Time Phase-1 of DynoDrive-H33? Provide a concise key-value response.",
+    "subsystem": "Cryogenics & Propulsion",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-008",
+      "FACT-NEWHELD-033"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DewarNeck-H08\nradiative_heat_load_phase-4: 13.31 W\ncomponent_2: DynoDrive-H33\nthrust_response_time_phase-1: 57.71 ms",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DewarNeck-H08",
+        "description": "component DewarNeck-H08"
+      },
+      {
+        "type": "token",
+        "value": "DynoDrive-H33",
+        "description": "component DynoDrive-H33"
+      },
+      {
+        "type": "phrase",
+        "value": "13.31 w",
+        "description": "Radiative Heat Load Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "57.71 ms",
+        "description": "Thrust Response Time Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "11.71",
+          "50.78",
+          "8.65",
+          "37.51"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0009",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Telemetry and Propulsion subsystems. What is the Fiber Optical Latency Phase-1 of OptiNodeQ-H09, and what is the Harmonic Distortion Rate Phase-2 of StatorCoreX-H34? Provide a concise key-value response.",
+    "subsystem": "Telemetry & Propulsion",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-009",
+      "FACT-NEWHELD-034"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: OptiNodeQ-H09\nfiber_optical_latency_phase-1: 20.73 us\ncomponent_2: StatorCoreX-H34\nharmonic_distortion_rate_phase-2: 47.03 %",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "OptiNodeQ-H09",
+        "description": "component OptiNodeQ-H09"
+      },
+      {
+        "type": "token",
+        "value": "StatorCoreX-H34",
+        "description": "component StatorCoreX-H34"
+      },
+      {
+        "type": "phrase",
+        "value": "20.73 us",
+        "description": "Fiber Optical Latency Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "47.03 %",
+        "description": "Harmonic Distortion Rate Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "18.24",
+          "41.39",
+          "13.47",
+          "30.57"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0010",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Telemetry and Propulsion subsystems. What is the Buffer Queue Depth Phase-2 of MeshSwitchV-H10, and what is the Inductive Coupling Gap Phase-3 of FluxLinear-H35? Provide a concise key-value response.",
+    "subsystem": "Telemetry & Propulsion",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-010",
+      "FACT-NEWHELD-035"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: MeshSwitchV-H10\nbuffer_queue_depth_phase-2: 141.7 packets\ncomponent_2: FluxLinear-H35\ninductive_coupling_gap_phase-3: 62.75 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "MeshSwitchV-H10",
+        "description": "component MeshSwitchV-H10"
+      },
+      {
+        "type": "token",
+        "value": "FluxLinear-H35",
+        "description": "component FluxLinear-H35"
+      },
+      {
+        "type": "phrase",
+        "value": "141.7 packets",
+        "description": "Buffer Queue Depth Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "62.75 mm",
+        "description": "Inductive Coupling Gap Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "124.7",
+          "55.22",
+          "92.1",
+          "40.79"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0011",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Telemetry and Propulsion subsystems. What is the Signal Attenuation Phase-3 of WaveGuideJ-H11, and what is the Peak Torque Density Phase-4 of MagRotorZ-H36? Provide a concise key-value response.",
+    "subsystem": "Telemetry & Propulsion",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-011",
+      "FACT-NEWHELD-036"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: WaveGuideJ-H11\nsignal_attenuation_phase-3: 15.19 dB/m\ncomponent_2: MagRotorZ-H36\npeak_torque_density_phase-4: 137.72 Nm/kg",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "WaveGuideJ-H11",
+        "description": "component WaveGuideJ-H11"
+      },
+      {
+        "type": "token",
+        "value": "MagRotorZ-H36",
+        "description": "component MagRotorZ-H36"
+      },
+      {
+        "type": "phrase",
+        "value": "15.19 db/m",
+        "description": "Signal Attenuation Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "137.72 nm/kg",
+        "description": "Peak Torque Density Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "13.37",
+          "121.19",
+          "9.87",
+          "89.52"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0012",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Telemetry and Cryogenics subsystems. What is the Carrier Carrier Offset Phase-4 of RadioBeamP-H12, and what is the Vapor Mass Flow Phase-1 of CryoPumpN-H37? Provide a concise key-value response.",
+    "subsystem": "Telemetry & Cryogenics",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-012",
+      "FACT-NEWHELD-037"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: RadioBeamP-H12\ncarrier_carrier_offset_phase-4: 20.14 kHz\ncomponent_2: CryoPumpN-H37\nvapor_mass_flow_phase-1: 31.89 g/s",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "RadioBeamP-H12",
+        "description": "component RadioBeamP-H12"
+      },
+      {
+        "type": "token",
+        "value": "CryoPumpN-H37",
+        "description": "component CryoPumpN-H37"
+      },
+      {
+        "type": "phrase",
+        "value": "20.14 khz",
+        "description": "Carrier Carrier Offset Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "31.89 g/s",
+        "description": "Vapor Mass Flow Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "17.72",
+          "28.06",
+          "13.09",
+          "20.73"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0013",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Braking and Cryogenics subsystems. What is the Deploy Actuation Slew Phase-1 of AeroBrakeW-H13, and what is the Thermal Conductance Phase-2 of HeliumShield-H38? Provide a concise key-value response.",
+    "subsystem": "Braking & Cryogenics",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-013",
+      "FACT-NEWHELD-038"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: AeroBrakeW-H13\ndeploy_actuation_slew_phase-1: 62.81 deg/s\ncomponent_2: HeliumShield-H38\nthermal_conductance_phase-2: 2.08 W/mK",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "AeroBrakeW-H13",
+        "description": "component AeroBrakeW-H13"
+      },
+      {
+        "type": "token",
+        "value": "HeliumShield-H38",
+        "description": "component HeliumShield-H38"
+      },
+      {
+        "type": "phrase",
+        "value": "62.81 deg/s",
+        "description": "Deploy Actuation Slew Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "2.08 w/mk",
+        "description": "Thermal Conductance Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "55.27",
+          "1.83",
+          "40.83",
+          "1.35"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0014",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Braking and Cryogenics subsystems. What is the Thermal Saturation Temp Phase-2 of EddyDiscY-H14, and what is the Surface Heat Flux Phase-3 of ColdPlateK-H39? Provide a concise key-value response.",
+    "subsystem": "Braking & Cryogenics",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-014",
+      "FACT-NEWHELD-039"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: EddyDiscY-H14\nthermal_saturation_temp_phase-2: 639.18 C\ncomponent_2: ColdPlateK-H39\nsurface_heat_flux_phase-3: 46.03 kW/m^2",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "EddyDiscY-H14",
+        "description": "component EddyDiscY-H14"
+      },
+      {
+        "type": "token",
+        "value": "ColdPlateK-H39",
+        "description": "component ColdPlateK-H39"
+      },
+      {
+        "type": "phrase",
+        "value": "639.18 c",
+        "description": "Thermal Saturation Temp Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "46.03 kw/m^2",
+        "description": "Surface Heat Flux Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "562.48",
+          "40.51",
+          "415.47",
+          "29.92"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0015",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Braking and Cryogenics subsystems. What is the Clamping Normal Force Phase-3 of CaliperUnitM-H15, and what is the Radiative Heat Load Phase-4 of DewarNeck-H40? Provide a concise key-value response.",
+    "subsystem": "Braking & Cryogenics",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-015",
+      "FACT-NEWHELD-040"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: CaliperUnitM-H15\nclamping_normal_force_phase-3: 99.05 kN\ncomponent_2: DewarNeck-H40\nradiative_heat_load_phase-4: 7.15 W",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CaliperUnitM-H15",
+        "description": "component CaliperUnitM-H15"
+      },
+      {
+        "type": "token",
+        "value": "DewarNeck-H40",
+        "description": "component DewarNeck-H40"
+      },
+      {
+        "type": "phrase",
+        "value": "99.05 kn",
+        "description": "Clamping Normal Force Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "7.15 w",
+        "description": "Radiative Heat Load Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "87.16",
+          "6.29",
+          "64.38",
+          "4.65"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0016",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Braking and Telemetry subsystems. What is the Specific Wear Rate Phase-4 of FrictionShoeB-H16, and what is the Fiber Optical Latency Phase-1 of OptiNodeQ-H41? Provide a concise key-value response.",
+    "subsystem": "Braking & Telemetry",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-016",
+      "FACT-NEWHELD-041"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: FrictionShoeB-H16\nspecific_wear_rate_phase-4: 26.12 um/stop\ncomponent_2: OptiNodeQ-H41\nfiber_optical_latency_phase-1: 14.57 us",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "FrictionShoeB-H16",
+        "description": "component FrictionShoeB-H16"
+      },
+      {
+        "type": "token",
+        "value": "OptiNodeQ-H41",
+        "description": "component OptiNodeQ-H41"
+      },
+      {
+        "type": "phrase",
+        "value": "26.12 um/stop",
+        "description": "Specific Wear Rate Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "14.57 us",
+        "description": "Fiber Optical Latency Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "22.99",
+          "12.82",
+          "16.98",
+          "9.47"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0017",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Levitation and Telemetry subsystems. What is the Air Gap Sensed Clearance Phase-1 of SuspensionPodA-H17, and what is the Buffer Queue Depth Phase-2 of MeshSwitchV-H42? Provide a concise key-value response.",
+    "subsystem": "Levitation & Telemetry",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-017",
+      "FACT-NEWHELD-042"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: SuspensionPodA-H17\nair_gap_sensed_clearance_phase-1: 39.69 mm\ncomponent_2: MeshSwitchV-H42\nbuffer_queue_depth_phase-2: 135.54 packets",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "SuspensionPodA-H17",
+        "description": "component SuspensionPodA-H17"
+      },
+      {
+        "type": "token",
+        "value": "MeshSwitchV-H42",
+        "description": "component MeshSwitchV-H42"
+      },
+      {
+        "type": "phrase",
+        "value": "39.69 mm",
+        "description": "Air Gap Sensed Clearance Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "135.54 packets",
+        "description": "Buffer Queue Depth Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "34.93",
+          "119.28",
+          "25.8",
+          "88.1"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0018",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Levitation and Telemetry subsystems. What is the Secondary Damping Ratio Phase-2 of DampingPlateC-H18, and what is the Signal Attenuation Phase-3 of WaveGuideJ-H43? Provide a concise key-value response.",
+    "subsystem": "Levitation & Telemetry",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-018",
+      "FACT-NEWHELD-043"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DampingPlateC-H18\nsecondary_damping_ratio_phase-2: 25.38 ratio\ncomponent_2: WaveGuideJ-H43\nsignal_attenuation_phase-3: 9.03 dB/m",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DampingPlateC-H18",
+        "description": "component DampingPlateC-H18"
+      },
+      {
+        "type": "token",
+        "value": "WaveGuideJ-H43",
+        "description": "component WaveGuideJ-H43"
+      },
+      {
+        "type": "phrase",
+        "value": "25.38 ratio",
+        "description": "Secondary Damping Ratio Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "9.03 db/m",
+        "description": "Signal Attenuation Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "22.33",
+          "7.95",
+          "16.5",
+          "5.87"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0019",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Levitation and Telemetry subsystems. What is the Lateral Deviation Limit Phase-3 of GuideRailE-H19, and what is the Carrier Carrier Offset Phase-4 of RadioBeamP-H44? Provide a concise key-value response.",
+    "subsystem": "Levitation & Telemetry",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-019",
+      "FACT-NEWHELD-044"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: GuideRailE-H19\nlateral_deviation_limit_phase-3: 26.88 mm\ncomponent_2: RadioBeamP-H44\ncarrier_carrier_offset_phase-4: 13.98 kHz",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "GuideRailE-H19",
+        "description": "component GuideRailE-H19"
+      },
+      {
+        "type": "token",
+        "value": "RadioBeamP-H44",
+        "description": "component RadioBeamP-H44"
+      },
+      {
+        "type": "phrase",
+        "value": "26.88 mm",
+        "description": "Lateral Deviation Limit Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "13.98 khz",
+        "description": "Carrier Carrier Offset Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "23.65",
+          "12.3",
+          "17.47",
+          "9.09"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0020",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Levitation and Braking subsystems. What is the Magnetic Bias Drift Phase-4 of LevSensorG-H20, and what is the Deploy Actuation Slew Phase-1 of AeroBrakeW-H45? Provide a concise key-value response.",
+    "subsystem": "Levitation & Braking",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-020",
+      "FACT-NEWHELD-045"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: LevSensorG-H20\nmagnetic_bias_drift_phase-4: 28.8 uT\ncomponent_2: AeroBrakeW-H45\ndeploy_actuation_slew_phase-1: 56.65 deg/s",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "LevSensorG-H20",
+        "description": "component LevSensorG-H20"
+      },
+      {
+        "type": "token",
+        "value": "AeroBrakeW-H45",
+        "description": "component AeroBrakeW-H45"
+      },
+      {
+        "type": "phrase",
+        "value": "28.8 ut",
+        "description": "Magnetic Bias Drift Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "56.65 deg/s",
+        "description": "Deploy Actuation Slew Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "25.34",
+          "49.85",
+          "18.72",
+          "36.82"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0021",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Airlock and Braking subsystems. What is the Elastomer Durometer Phase-1 of SealRingU-H21, and what is the Thermal Saturation Temp Phase-2 of EddyDiscY-H46? Provide a concise key-value response.",
+    "subsystem": "Airlock & Braking",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-021",
+      "FACT-NEWHELD-046"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: SealRingU-H21\nelastomer_durometer_phase-1: 110.77 ShoreA\ncomponent_2: EddyDiscY-H46\nthermal_saturation_temp_phase-2: 633.02 C",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "SealRingU-H21",
+        "description": "component SealRingU-H21"
+      },
+      {
+        "type": "token",
+        "value": "EddyDiscY-H46",
+        "description": "component EddyDiscY-H46"
+      },
+      {
+        "type": "phrase",
+        "value": "110.77 shorea",
+        "description": "Elastomer Durometer Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "633.02 c",
+        "description": "Thermal Saturation Temp Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "97.48",
+          "557.06",
+          "72.0",
+          "411.46"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0022",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Airlock and Braking subsystems. What is the Differential Stroke Speed Phase-2 of GateValveO-H22, and what is the Clamping Normal Force Phase-3 of CaliperUnitM-H47? Provide a concise key-value response.",
+    "subsystem": "Airlock & Braking",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-022",
+      "FACT-NEWHELD-047"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: GateValveO-H22\ndifferential_stroke_speed_phase-2: 125.14 mm/s\ncomponent_2: CaliperUnitM-H47\nclamping_normal_force_phase-3: 92.89 kN",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "GateValveO-H22",
+        "description": "component GateValveO-H22"
+      },
+      {
+        "type": "token",
+        "value": "CaliperUnitM-H47",
+        "description": "component CaliperUnitM-H47"
+      },
+      {
+        "type": "phrase",
+        "value": "125.14 mm/s",
+        "description": "Differential Stroke Speed Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "92.89 kn",
+        "description": "Clamping Normal Force Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "110.12",
+          "81.74",
+          "81.34",
+          "60.38"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0023",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Airlock and Braking subsystems. What is the Roughing Pump Down Time Phase-3 of EvacPumpI-H23, and what is the Specific Wear Rate Phase-4 of FrictionShoeB-H48? Provide a concise key-value response.",
+    "subsystem": "Airlock & Braking",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-023",
+      "FACT-NEWHELD-048"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: EvacPumpI-H23\nroughing_pump_down_time_phase-3: 69.51 s\ncomponent_2: FrictionShoeB-H48\nspecific_wear_rate_phase-4: 19.96 um/stop",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "EvacPumpI-H23",
+        "description": "component EvacPumpI-H23"
+      },
+      {
+        "type": "token",
+        "value": "FrictionShoeB-H48",
+        "description": "component FrictionShoeB-H48"
+      },
+      {
+        "type": "phrase",
+        "value": "69.51 s",
+        "description": "Roughing Pump Down Time Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "19.96 um/stop",
+        "description": "Specific Wear Rate Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "61.17",
+          "17.56",
+          "45.18",
+          "12.97"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0024",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Airlock and Levitation subsystems. What is the Venting Orifice Diameter Phase-4 of PressureEqualT-H24, and what is the Air Gap Sensed Clearance Phase-1 of SuspensionPodA-H49? Provide a concise key-value response.",
+    "subsystem": "Airlock & Levitation",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-024",
+      "FACT-NEWHELD-049"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: PressureEqualT-H24\nventing_orifice_diameter_phase-4: 86.88 mm\ncomponent_2: SuspensionPodA-H49\nair_gap_sensed_clearance_phase-1: 33.53 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "PressureEqualT-H24",
+        "description": "component PressureEqualT-H24"
+      },
+      {
+        "type": "token",
+        "value": "SuspensionPodA-H49",
+        "description": "component SuspensionPodA-H49"
+      },
+      {
+        "type": "phrase",
+        "value": "86.88 mm",
+        "description": "Venting Orifice Diameter Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "33.53 mm",
+        "description": "Air Gap Sensed Clearance Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "76.45",
+          "29.51",
+          "56.47",
+          "21.79"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0025",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the LifeSupport and Levitation subsystems. What is the Supply Manifold Pressure Phase-1 of OxyRegulatorD-H25, and what is the Secondary Damping Ratio Phase-2 of DampingPlateC-H50? Provide a concise key-value response.",
+    "subsystem": "LifeSupport & Levitation",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-025",
+      "FACT-NEWHELD-050"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: OxyRegulatorD-H25\nsupply_manifold_pressure_phase-1: 449.25 kPa\ncomponent_2: DampingPlateC-H50\nsecondary_damping_ratio_phase-2: 19.22 ratio",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "OxyRegulatorD-H25",
+        "description": "component OxyRegulatorD-H25"
+      },
+      {
+        "type": "token",
+        "value": "DampingPlateC-H50",
+        "description": "component DampingPlateC-H50"
+      },
+      {
+        "type": "phrase",
+        "value": "449.25 kpa",
+        "description": "Supply Manifold Pressure Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "19.22 ratio",
+        "description": "Secondary Damping Ratio Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "395.34",
+          "16.91",
+          "292.01",
+          "12.49"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0026",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the LifeSupport and Levitation subsystems. What is the CO2 Absorption Capacity Phase-2 of ScrubberMatrixF-H26, and what is the Lateral Deviation Limit Phase-3 of GuideRailE-H51? Provide a concise key-value response.",
+    "subsystem": "LifeSupport & Levitation",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-026",
+      "FACT-NEWHELD-051"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: ScrubberMatrixF-H26\nco2_absorption_capacity_phase-2: 49.82 mol/h\ncomponent_2: GuideRailE-H51\nlateral_deviation_limit_phase-3: 20.72 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "ScrubberMatrixF-H26",
+        "description": "component ScrubberMatrixF-H26"
+      },
+      {
+        "type": "token",
+        "value": "GuideRailE-H51",
+        "description": "component GuideRailE-H51"
+      },
+      {
+        "type": "phrase",
+        "value": "49.82 mol/h",
+        "description": "CO2 Absorption Capacity Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "20.72 mm",
+        "description": "Lateral Deviation Limit Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "43.84",
+          "18.23",
+          "32.38",
+          "13.47"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0027",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the LifeSupport and Levitation subsystems. What is the Total Recirculation Volume Phase-3 of CabinAirH-H27, and what is the Magnetic Bias Drift Phase-4 of LevSensorG-H52? Provide a concise key-value response.",
+    "subsystem": "LifeSupport & Levitation",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-027",
+      "FACT-NEWHELD-052"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: CabinAirH-H27\ntotal_recirculation_volume_phase-3: 376.99 m^3/h\ncomponent_2: LevSensorG-H52\nmagnetic_bias_drift_phase-4: 22.64 uT",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CabinAirH-H27",
+        "description": "component CabinAirH-H27"
+      },
+      {
+        "type": "token",
+        "value": "LevSensorG-H52",
+        "description": "component LevSensorG-H52"
+      },
+      {
+        "type": "phrase",
+        "value": "376.99 m^3/h",
+        "description": "Total Recirculation Volume Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "22.64 ut",
+        "description": "Magnetic Bias Drift Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "331.75",
+          "19.92",
+          "245.04",
+          "14.72"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0028",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the LifeSupport and Airlock subsystems. What is the Cabin Target Humidity Phase-4 of ChilledLoopL-H28, and what is the Elastomer Durometer Phase-1 of SealRingU-H53? Provide a concise key-value response.",
+    "subsystem": "LifeSupport & Airlock",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-028",
+      "FACT-NEWHELD-053"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: ChilledLoopL-H28\ncabin_target_humidity_phase-4: 84.86 %\ncomponent_2: SealRingU-H53\nelastomer_durometer_phase-1: 104.61 ShoreA",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "ChilledLoopL-H28",
+        "description": "component ChilledLoopL-H28"
+      },
+      {
+        "type": "token",
+        "value": "SealRingU-H53",
+        "description": "component SealRingU-H53"
+      },
+      {
+        "type": "phrase",
+        "value": "84.86 %",
+        "description": "Cabin Target Humidity Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "104.61 shorea",
+        "description": "Elastomer Durometer Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "74.68",
+          "92.06",
+          "55.16",
+          "68.0"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0029",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the PowerDistribution and Airlock subsystems. What is the Contact Resistance Target Phase-1 of BusCouplerR-H29, and what is the Differential Stroke Speed Phase-2 of GateValveO-H54? Provide a concise key-value response.",
+    "subsystem": "PowerDistribution & Airlock",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-029",
+      "FACT-NEWHELD-054"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: BusCouplerR-H29\ncontact_resistance_target_phase-1: 63.73 uOhm\ncomponent_2: GateValveO-H54\ndifferential_stroke_speed_phase-2: 118.98 mm/s",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "BusCouplerR-H29",
+        "description": "component BusCouplerR-H29"
+      },
+      {
+        "type": "token",
+        "value": "GateValveO-H54",
+        "description": "component GateValveO-H54"
+      },
+      {
+        "type": "phrase",
+        "value": "63.73 uohm",
+        "description": "Contact Resistance Target Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "118.98 mm/s",
+        "description": "Differential Stroke Speed Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "56.08",
+          "104.7",
+          "41.42",
+          "77.34"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0030",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the PowerDistribution and Airlock subsystems. What is the Forward Voltage Drop Phase-2 of RectifierStackT-H30, and what is the Roughing Pump Down Time Phase-3 of EvacPumpI-H55? Provide a concise key-value response.",
+    "subsystem": "PowerDistribution & Airlock",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-030",
+      "FACT-NEWHELD-055"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: RectifierStackT-H30\nforward_voltage_drop_phase-2: 42.95 V\ncomponent_2: EvacPumpI-H55\nroughing_pump_down_time_phase-3: 63.35 s",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "RectifierStackT-H30",
+        "description": "component RectifierStackT-H30"
+      },
+      {
+        "type": "token",
+        "value": "EvacPumpI-H55",
+        "description": "component EvacPumpI-H55"
+      },
+      {
+        "type": "phrase",
+        "value": "42.95 v",
+        "description": "Forward Voltage Drop Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "63.35 s",
+        "description": "Roughing Pump Down Time Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "37.8",
+          "55.75",
+          "27.92",
+          "41.18"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0031",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the PowerDistribution and Airlock subsystems. What is the Series Inductance Rating Phase-3 of FilterChokeS-H31, and what is the Venting Orifice Diameter Phase-4 of PressureEqualT-H56? Provide a concise key-value response.",
+    "subsystem": "PowerDistribution & Airlock",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-031",
+      "FACT-NEWHELD-056"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: FilterChokeS-H31\nseries_inductance_rating_phase-3: 58.07 mH\ncomponent_2: PressureEqualT-H56\nventing_orifice_diameter_phase-4: 80.72 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "FilterChokeS-H31",
+        "description": "component FilterChokeS-H31"
+      },
+      {
+        "type": "token",
+        "value": "PressureEqualT-H56",
+        "description": "component PressureEqualT-H56"
+      },
+      {
+        "type": "phrase",
+        "value": "58.07 mh",
+        "description": "Series Inductance Rating Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "80.72 mm",
+        "description": "Venting Orifice Diameter Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "51.1",
+          "71.03",
+          "37.75",
+          "52.47"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0032",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the PowerDistribution and LifeSupport subsystems. What is the Stored Kinetic Reserve Phase-4 of CapBankV-H32, and what is the Supply Manifold Pressure Phase-1 of OxyRegulatorD-H57? Provide a concise key-value response.",
+    "subsystem": "PowerDistribution & LifeSupport",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-032",
+      "FACT-NEWHELD-057"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: CapBankV-H32\nstored_kinetic_reserve_phase-4: 883.84 kJ\ncomponent_2: OxyRegulatorD-H57\nsupply_manifold_pressure_phase-1: 443.09 kPa",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CapBankV-H32",
+        "description": "component CapBankV-H32"
+      },
+      {
+        "type": "token",
+        "value": "OxyRegulatorD-H57",
+        "description": "component OxyRegulatorD-H57"
+      },
+      {
+        "type": "phrase",
+        "value": "883.84 kj",
+        "description": "Stored Kinetic Reserve Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "443.09 kpa",
+        "description": "Supply Manifold Pressure Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "777.78",
+          "389.92",
+          "574.5",
+          "288.01"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0033",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Propulsion and LifeSupport subsystems. What is the Thrust Response Time Phase-1 of DynoDrive-H33, and what is the CO2 Absorption Capacity Phase-2 of ScrubberMatrixF-H58? Provide a concise key-value response.",
+    "subsystem": "Propulsion & LifeSupport",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-033",
+      "FACT-NEWHELD-058"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DynoDrive-H33\nthrust_response_time_phase-1: 57.71 ms\ncomponent_2: ScrubberMatrixF-H58\nco2_absorption_capacity_phase-2: 43.66 mol/h",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DynoDrive-H33",
+        "description": "component DynoDrive-H33"
+      },
+      {
+        "type": "token",
+        "value": "ScrubberMatrixF-H58",
+        "description": "component ScrubberMatrixF-H58"
+      },
+      {
+        "type": "phrase",
+        "value": "57.71 ms",
+        "description": "Thrust Response Time Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "43.66 mol/h",
+        "description": "CO2 Absorption Capacity Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "50.78",
+          "38.42",
+          "37.51",
+          "28.38"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0034",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Propulsion and LifeSupport subsystems. What is the Harmonic Distortion Rate Phase-2 of StatorCoreX-H34, and what is the Total Recirculation Volume Phase-3 of CabinAirH-H59? Provide a concise key-value response.",
+    "subsystem": "Propulsion & LifeSupport",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-034",
+      "FACT-NEWHELD-059"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: StatorCoreX-H34\nharmonic_distortion_rate_phase-2: 47.03 %\ncomponent_2: CabinAirH-H59\ntotal_recirculation_volume_phase-3: 370.83 m^3/h",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "StatorCoreX-H34",
+        "description": "component StatorCoreX-H34"
+      },
+      {
+        "type": "token",
+        "value": "CabinAirH-H59",
+        "description": "component CabinAirH-H59"
+      },
+      {
+        "type": "phrase",
+        "value": "47.03 %",
+        "description": "Harmonic Distortion Rate Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "370.83 m^3/h",
+        "description": "Total Recirculation Volume Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "41.39",
+          "326.33",
+          "30.57",
+          "241.04"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0035",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Propulsion and LifeSupport subsystems. What is the Inductive Coupling Gap Phase-3 of FluxLinear-H35, and what is the Cabin Target Humidity Phase-4 of ChilledLoopL-H60? Provide a concise key-value response.",
+    "subsystem": "Propulsion & LifeSupport",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-035",
+      "FACT-NEWHELD-060"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: FluxLinear-H35\ninductive_coupling_gap_phase-3: 62.75 mm\ncomponent_2: ChilledLoopL-H60\ncabin_target_humidity_phase-4: 78.7 %",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "FluxLinear-H35",
+        "description": "component FluxLinear-H35"
+      },
+      {
+        "type": "token",
+        "value": "ChilledLoopL-H60",
+        "description": "component ChilledLoopL-H60"
+      },
+      {
+        "type": "phrase",
+        "value": "62.75 mm",
+        "description": "Inductive Coupling Gap Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "78.7 %",
+        "description": "Cabin Target Humidity Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "55.22",
+          "69.26",
+          "40.79",
+          "51.16"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0036",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Propulsion and PowerDistribution subsystems. What is the Peak Torque Density Phase-4 of MagRotorZ-H36, and what is the Contact Resistance Target Phase-1 of BusCouplerR-H61? Provide a concise key-value response.",
+    "subsystem": "Propulsion & PowerDistribution",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-036",
+      "FACT-NEWHELD-061"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: MagRotorZ-H36\npeak_torque_density_phase-4: 137.72 Nm/kg\ncomponent_2: BusCouplerR-H61\ncontact_resistance_target_phase-1: 57.57 uOhm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "MagRotorZ-H36",
+        "description": "component MagRotorZ-H36"
+      },
+      {
+        "type": "token",
+        "value": "BusCouplerR-H61",
+        "description": "component BusCouplerR-H61"
+      },
+      {
+        "type": "phrase",
+        "value": "137.72 nm/kg",
+        "description": "Peak Torque Density Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "57.57 uohm",
+        "description": "Contact Resistance Target Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "121.19",
+          "50.66",
+          "89.52",
+          "37.42"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0037",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Cryogenics and PowerDistribution subsystems. What is the Vapor Mass Flow Phase-1 of CryoPumpN-H37, and what is the Forward Voltage Drop Phase-2 of RectifierStackT-H62? Provide a concise key-value response.",
+    "subsystem": "Cryogenics & PowerDistribution",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-037",
+      "FACT-NEWHELD-062"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: CryoPumpN-H37\nvapor_mass_flow_phase-1: 31.89 g/s\ncomponent_2: RectifierStackT-H62\nforward_voltage_drop_phase-2: 36.79 V",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CryoPumpN-H37",
+        "description": "component CryoPumpN-H37"
+      },
+      {
+        "type": "token",
+        "value": "RectifierStackT-H62",
+        "description": "component RectifierStackT-H62"
+      },
+      {
+        "type": "phrase",
+        "value": "31.89 g/s",
+        "description": "Vapor Mass Flow Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "36.79 v",
+        "description": "Forward Voltage Drop Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "28.06",
+          "32.38",
+          "20.73",
+          "23.91"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0038",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Cryogenics and PowerDistribution subsystems. What is the Thermal Conductance Phase-2 of HeliumShield-H38, and what is the Series Inductance Rating Phase-3 of FilterChokeS-H63? Provide a concise key-value response.",
+    "subsystem": "Cryogenics & PowerDistribution",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-038",
+      "FACT-NEWHELD-063"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: HeliumShield-H38\nthermal_conductance_phase-2: 2.08 W/mK\ncomponent_2: FilterChokeS-H63\nseries_inductance_rating_phase-3: 51.91 mH",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "HeliumShield-H38",
+        "description": "component HeliumShield-H38"
+      },
+      {
+        "type": "token",
+        "value": "FilterChokeS-H63",
+        "description": "component FilterChokeS-H63"
+      },
+      {
+        "type": "phrase",
+        "value": "2.08 w/mk",
+        "description": "Thermal Conductance Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "51.91 mh",
+        "description": "Series Inductance Rating Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "1.83",
+          "45.68",
+          "1.35",
+          "33.74"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0039",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Cryogenics and PowerDistribution subsystems. What is the Surface Heat Flux Phase-3 of ColdPlateK-H39, and what is the Stored Kinetic Reserve Phase-4 of CapBankV-H64? Provide a concise key-value response.",
+    "subsystem": "Cryogenics & PowerDistribution",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-039",
+      "FACT-NEWHELD-064"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: ColdPlateK-H39\nsurface_heat_flux_phase-3: 46.03 kW/m^2\ncomponent_2: CapBankV-H64\nstored_kinetic_reserve_phase-4: 877.68 kJ",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "ColdPlateK-H39",
+        "description": "component ColdPlateK-H39"
+      },
+      {
+        "type": "token",
+        "value": "CapBankV-H64",
+        "description": "component CapBankV-H64"
+      },
+      {
+        "type": "phrase",
+        "value": "46.03 kw/m^2",
+        "description": "Surface Heat Flux Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "877.68 kj",
+        "description": "Stored Kinetic Reserve Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "40.51",
+          "772.36",
+          "29.92",
+          "570.49"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0040",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Cryogenics and Propulsion subsystems. What is the Radiative Heat Load Phase-4 of DewarNeck-H40, and what is the Thrust Response Time Phase-1 of DynoDrive-H65? Provide a concise key-value response.",
+    "subsystem": "Cryogenics & Propulsion",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-040",
+      "FACT-NEWHELD-065"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DewarNeck-H40\nradiative_heat_load_phase-4: 7.15 W\ncomponent_2: DynoDrive-H65\nthrust_response_time_phase-1: 51.55 ms",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DewarNeck-H40",
+        "description": "component DewarNeck-H40"
+      },
+      {
+        "type": "token",
+        "value": "DynoDrive-H65",
+        "description": "component DynoDrive-H65"
+      },
+      {
+        "type": "phrase",
+        "value": "7.15 w",
+        "description": "Radiative Heat Load Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "51.55 ms",
+        "description": "Thrust Response Time Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "6.29",
+          "45.36",
+          "4.65",
+          "33.51"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0041",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Telemetry and Propulsion subsystems. What is the Fiber Optical Latency Phase-1 of OptiNodeQ-H41, and what is the Harmonic Distortion Rate Phase-2 of StatorCoreX-H66? Provide a concise key-value response.",
+    "subsystem": "Telemetry & Propulsion",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-041",
+      "FACT-NEWHELD-066"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: OptiNodeQ-H41\nfiber_optical_latency_phase-1: 14.57 us\ncomponent_2: StatorCoreX-H66\nharmonic_distortion_rate_phase-2: 40.87 %",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "OptiNodeQ-H41",
+        "description": "component OptiNodeQ-H41"
+      },
+      {
+        "type": "token",
+        "value": "StatorCoreX-H66",
+        "description": "component StatorCoreX-H66"
+      },
+      {
+        "type": "phrase",
+        "value": "14.57 us",
+        "description": "Fiber Optical Latency Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "40.87 %",
+        "description": "Harmonic Distortion Rate Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "12.82",
+          "35.97",
+          "9.47",
+          "26.57"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0042",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Telemetry and Propulsion subsystems. What is the Buffer Queue Depth Phase-2 of MeshSwitchV-H42, and what is the Inductive Coupling Gap Phase-3 of FluxLinear-H67? Provide a concise key-value response.",
+    "subsystem": "Telemetry & Propulsion",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-042",
+      "FACT-NEWHELD-067"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: MeshSwitchV-H42\nbuffer_queue_depth_phase-2: 135.54 packets\ncomponent_2: FluxLinear-H67\ninductive_coupling_gap_phase-3: 56.59 mm",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "MeshSwitchV-H42",
+        "description": "component MeshSwitchV-H42"
+      },
+      {
+        "type": "token",
+        "value": "FluxLinear-H67",
+        "description": "component FluxLinear-H67"
+      },
+      {
+        "type": "phrase",
+        "value": "135.54 packets",
+        "description": "Buffer Queue Depth Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "56.59 mm",
+        "description": "Inductive Coupling Gap Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "119.28",
+          "49.8",
+          "88.1",
+          "36.78"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0043",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Telemetry and Propulsion subsystems. What is the Signal Attenuation Phase-3 of WaveGuideJ-H43, and what is the Peak Torque Density Phase-4 of MagRotorZ-H68? Provide a concise key-value response.",
+    "subsystem": "Telemetry & Propulsion",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-043",
+      "FACT-NEWHELD-068"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: WaveGuideJ-H43\nsignal_attenuation_phase-3: 9.03 dB/m\ncomponent_2: MagRotorZ-H68\npeak_torque_density_phase-4: 131.56 Nm/kg",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "WaveGuideJ-H43",
+        "description": "component WaveGuideJ-H43"
+      },
+      {
+        "type": "token",
+        "value": "MagRotorZ-H68",
+        "description": "component MagRotorZ-H68"
+      },
+      {
+        "type": "phrase",
+        "value": "9.03 db/m",
+        "description": "Signal Attenuation Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "131.56 nm/kg",
+        "description": "Peak Torque Density Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "7.95",
+          "115.77",
+          "5.87",
+          "85.51"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0044",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Telemetry and Cryogenics subsystems. What is the Carrier Carrier Offset Phase-4 of RadioBeamP-H44, and what is the Vapor Mass Flow Phase-1 of CryoPumpN-H69? Provide a concise key-value response.",
+    "subsystem": "Telemetry & Cryogenics",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-044",
+      "FACT-NEWHELD-069"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: RadioBeamP-H44\ncarrier_carrier_offset_phase-4: 13.98 kHz\ncomponent_2: CryoPumpN-H69\nvapor_mass_flow_phase-1: 75.73 g/s",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "RadioBeamP-H44",
+        "description": "component RadioBeamP-H44"
+      },
+      {
+        "type": "token",
+        "value": "CryoPumpN-H69",
+        "description": "component CryoPumpN-H69"
+      },
+      {
+        "type": "phrase",
+        "value": "13.98 khz",
+        "description": "Carrier Carrier Offset Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "75.73 g/s",
+        "description": "Vapor Mass Flow Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "12.3",
+          "66.64",
+          "9.09",
+          "49.22"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0045",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Braking and Cryogenics subsystems. What is the Deploy Actuation Slew Phase-1 of AeroBrakeW-H45, and what is the Thermal Conductance Phase-2 of HeliumShield-H70? Provide a concise key-value response.",
+    "subsystem": "Braking & Cryogenics",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-045",
+      "FACT-NEWHELD-070"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: AeroBrakeW-H45\ndeploy_actuation_slew_phase-1: 56.65 deg/s\ncomponent_2: HeliumShield-H70\nthermal_conductance_phase-2: 45.92 W/mK",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "AeroBrakeW-H45",
+        "description": "component AeroBrakeW-H45"
+      },
+      {
+        "type": "token",
+        "value": "HeliumShield-H70",
+        "description": "component HeliumShield-H70"
+      },
+      {
+        "type": "phrase",
+        "value": "56.65 deg/s",
+        "description": "Deploy Actuation Slew Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "45.92 w/mk",
+        "description": "Thermal Conductance Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "49.85",
+          "40.41",
+          "36.82",
+          "29.85"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0046",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Braking and Cryogenics subsystems. What is the Thermal Saturation Temp Phase-2 of EddyDiscY-H46, and what is the Surface Heat Flux Phase-3 of ColdPlateK-H71? Provide a concise key-value response.",
+    "subsystem": "Braking & Cryogenics",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-046",
+      "FACT-NEWHELD-071"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: EddyDiscY-H46\nthermal_saturation_temp_phase-2: 633.02 C\ncomponent_2: ColdPlateK-H71\nsurface_heat_flux_phase-3: 89.87 kW/m^2",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "EddyDiscY-H46",
+        "description": "component EddyDiscY-H46"
+      },
+      {
+        "type": "token",
+        "value": "ColdPlateK-H71",
+        "description": "component ColdPlateK-H71"
+      },
+      {
+        "type": "phrase",
+        "value": "633.02 c",
+        "description": "Thermal Saturation Temp Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "89.87 kw/m^2",
+        "description": "Surface Heat Flux Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "557.06",
+          "79.09",
+          "411.46",
+          "58.42"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0047",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Braking and Cryogenics subsystems. What is the Clamping Normal Force Phase-3 of CaliperUnitM-H47, and what is the Radiative Heat Load Phase-4 of DewarNeck-H72? Provide a concise key-value response.",
+    "subsystem": "Braking & Cryogenics",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-047",
+      "FACT-NEWHELD-072"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: CaliperUnitM-H47\nclamping_normal_force_phase-3: 92.89 kN\ncomponent_2: DewarNeck-H72\nradiative_heat_load_phase-4: 50.99 W",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "CaliperUnitM-H47",
+        "description": "component CaliperUnitM-H47"
+      },
+      {
+        "type": "token",
+        "value": "DewarNeck-H72",
+        "description": "component DewarNeck-H72"
+      },
+      {
+        "type": "phrase",
+        "value": "92.89 kn",
+        "description": "Clamping Normal Force Phase-3 value"
+      },
+      {
+        "type": "phrase",
+        "value": "50.99 w",
+        "description": "Radiative Heat Load Phase-4 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "81.74",
+          "44.87",
+          "60.38",
+          "33.14"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0048",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Braking and Telemetry subsystems. What is the Specific Wear Rate Phase-4 of FrictionShoeB-H48, and what is the Fiber Optical Latency Phase-1 of OptiNodeQ-H73? Provide a concise key-value response.",
+    "subsystem": "Braking & Telemetry",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-048",
+      "FACT-NEWHELD-073"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: FrictionShoeB-H48\nspecific_wear_rate_phase-4: 19.96 um/stop\ncomponent_2: OptiNodeQ-H73\nfiber_optical_latency_phase-1: 8.41 us",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "FrictionShoeB-H48",
+        "description": "component FrictionShoeB-H48"
+      },
+      {
+        "type": "token",
+        "value": "OptiNodeQ-H73",
+        "description": "component OptiNodeQ-H73"
+      },
+      {
+        "type": "phrase",
+        "value": "19.96 um/stop",
+        "description": "Specific Wear Rate Phase-4 value"
+      },
+      {
+        "type": "phrase",
+        "value": "8.41 us",
+        "description": "Fiber Optical Latency Phase-1 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "17.56",
+          "7.4",
+          "12.97",
+          "5.47"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0049",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Levitation and Telemetry subsystems. What is the Air Gap Sensed Clearance Phase-1 of SuspensionPodA-H49, and what is the Buffer Queue Depth Phase-2 of MeshSwitchV-H74? Provide a concise key-value response.",
+    "subsystem": "Levitation & Telemetry",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-049",
+      "FACT-NEWHELD-074"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: SuspensionPodA-H49\nair_gap_sensed_clearance_phase-1: 33.53 mm\ncomponent_2: MeshSwitchV-H74\nbuffer_queue_depth_phase-2: 129.38 packets",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "SuspensionPodA-H49",
+        "description": "component SuspensionPodA-H49"
+      },
+      {
+        "type": "token",
+        "value": "MeshSwitchV-H74",
+        "description": "component MeshSwitchV-H74"
+      },
+      {
+        "type": "phrase",
+        "value": "33.53 mm",
+        "description": "Air Gap Sensed Clearance Phase-1 value"
+      },
+      {
+        "type": "phrase",
+        "value": "129.38 packets",
+        "description": "Buffer Queue Depth Phase-2 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "29.51",
+          "113.85",
+          "21.79",
+          "84.1"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  },
+  {
+    "question_id": "track_b_heldout_v2_0050",
+    "split": "heldout",
+    "prompt": "For the HyperGrid v4.2 specification, cross-reference the Levitation and Telemetry subsystems. What is the Secondary Damping Ratio Phase-2 of DampingPlateC-H50, and what is the Signal Attenuation Phase-3 of WaveGuideJ-H75? Provide a concise key-value response.",
+    "subsystem": "Levitation & Telemetry",
+    "multi_hop_type": "cross_subsystem",
+    "fact_ids": [
+      "FACT-NEWHELD-050",
+      "FACT-NEWHELD-075"
+    ],
+    "expected_answer_format": "key: value structured pairs (max 75 words)",
+    "gold_sample_output": "component_1: DampingPlateC-H50\nsecondary_damping_ratio_phase-2: 19.22 ratio\ncomponent_2: WaveGuideJ-H75\nsignal_attenuation_phase-3: 2.87 dB/m",
+    "word_cap": 75,
+    "checklist": [
+      {
+        "type": "token",
+        "value": "DampingPlateC-H50",
+        "description": "component DampingPlateC-H50"
+      },
+      {
+        "type": "token",
+        "value": "WaveGuideJ-H75",
+        "description": "component WaveGuideJ-H75"
+      },
+      {
+        "type": "phrase",
+        "value": "19.22 ratio",
+        "description": "Secondary Damping Ratio Phase-2 value"
+      },
+      {
+        "type": "phrase",
+        "value": "2.87 db/m",
+        "description": "Signal Attenuation Phase-3 value"
+      },
+      {
+        "type": "negative",
+        "banned_tokens": [
+          "16.91",
+          "2.53",
+          "12.49",
+          "1.87"
+        ],
+        "description": "distractor and superseded values"
+      }
+    ]
+  }
+]

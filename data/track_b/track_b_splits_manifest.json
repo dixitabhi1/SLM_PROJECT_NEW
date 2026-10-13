@@ -18,6 +18,14 @@
     "multi_hop_constraint": "Each question combines >= 2 facts; max usage per fact <= 2; zero doc/section citations",
     "word_cap": 75
   },
+  "heldout_split": {
+    "file": "data/track_b/track_b_heldout_split.json",
+    "sha256": "b021e2d0032d15a20f24315fb4538fe59ecd3ecb323f9a8ca295c2b421d7ed6d",
+    "count": 50,
+    "multi_hop_constraint": "Each question combines >= 2 facts; max usage per fact <= 2; zero doc/section citations",
+    "word_cap": 75,
+    "status": "LOCKED"
+  },
   "heldout_candidate": {
     "file": "data/track_b/track_b_heldout_candidate.json",
     "sha256": "b021e2d0032d15a20f24315fb4538fe59ecd3ecb323f9a8ca295c2b421d7ed6d",
