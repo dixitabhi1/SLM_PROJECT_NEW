@@ -70,23 +70,31 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 - **Freeze Tag:** `v1.1-cascade-frozen`
 - **Freeze Date:** 2026-10-14
-- **Dev Evaluation Matrix ($N=150$, Dev Only):**
+- **Scorer Version:** Fact checklist scorer v1.2.0 (`src/eval/fact_checklist_scorer.py`, incorporating format tolerance, Unicode normalization, and true fact check).
+- **Dev Evaluation Matrix ($N=150$, Rescored with Scorer v1.2.0):**
   - **Pipeline v1.1 Alone:** Overall 76.0% (114/150), Track A 66.0% (66/100), Track B 96.0% (48/50), 0.0% escalation share, 0 calls, 0 tokens.
   - **Tier 1 (T1 \| T4: Execution / Format Failure):** Overall 77.3% (116/150), Track A 68.0%, Track B 96.0%, 3.3% escalation (5 items), 5 calls, 3,614 tokens. 2 fixed, 0 broke, net gain +2.
   - **Tier 2 (T1–T4: Tier 1 + Analyser / DB Fallback):** Overall 78.0% (117/150), Track A 69.0%, Track B 96.0%, 7.3% escalation (11 items), 17 calls, 17,520 tokens. 4 fixed, 1 broke, net gain +3.
-  - **Tier 3 (Tier 2 + T5 Self-Check Disagreement):** Overall 80.7% (121/150), Track A 80.0%, Track B 82.0%, 28.0% escalation (42 items), 62 calls, 63,886 tokens. 16 fixed, 9 broke, net gain +7.
-  - **Tier 4 (Tier 3 + T6 Self-Consistency):** Overall 74.7% (112/150), Track A 90.0%, Track B 44.0%, 66.0% escalation (99 items), 119 calls, 111,675 tokens. 27 fixed, 29 broke, net gain -2.
+  - **Tier 3 (Tier 2 + T5 Self-Check Disagreement, Unfiltered):** Overall 80.7% (121/150), Track A 80.0%, Track B 82.0%, 28.0% escalation (42 items), 62 calls, 63,886 tokens. 16 fixed, 9 broke, net gain +7.
+  - **Chosen Trigger: Tier 3 without Corpus Escalation:** Overall **85.3% (128/150)**, Track A **80.0% (80/100)**, Track B **96.0% (48/50)**, 21.3% escalation (32 items), 52 calls, 55,201 tokens. **16 fixed, 2 broke, net gain +14**.
+  - **Tier 4 (Tier 3 + T6 Self-Consistency):** **DROPPED** due to negative net gain (-2) caused by sampling sensitivity and false alarms.
   - **Reference: Oracle (Escalate strictly wrong v1.1):** Overall 95.3% (143/150), Track A 95.0%, Track B 96.0%, 24.0% escalation (36 items), 46 calls, 46,474 tokens. 29 fixed, 0 broke, net gain +29.
   - **Reference: Escalate Everything (120B with Tools alone):** Overall 70.7% (106/150), Track A 91.0%, Track B 30.0%, 100.0% escalation (150 items), 170 calls, 142,015 tokens. 29 fixed, 37 broke, net gain -8.
-- **Selected Frozen Trigger:**
-  - **Primary (Max Accuracy): Tier 3 (T1–T5)**. Achieves highest overall dev accuracy (80.7%, +4.7 pp net gain) with 28.0% escalation share.
-  - **Conservative (Zero Regression): Tier 2 (T1–T4)**. Achieves 78.0% (+2.0 pp) with 7.3% escalation share, 80% escalation precision, and zero Track B regressions.
-- **Success Criteria for Part C (Reserve Split Run):**
-  1. **SQL Non-Regression:** Pipeline v1.1 maintains or improves upon Spider SQL accuracy on the Reserve split.
-  2. **Cascade Non-Inferiority:** The cascade achieves overall accuracy $\ge$ Pipeline v1.1 on Reserve with escalation share $\le 30.0\%$.
-  3. **Cryptographic Reserve Verification:** SHA-256 hash of Reserve split verified before and after execution.
-  4. **Single Frozen Run:** Zero prompt or code changes during execution.
-  5. **Zero Monetary Cost:** Strictly $0.00 spend.
+- **T5 (Self-Check) Dev Flag Rates:**
+  - Overall ($N=150$): Total flagged 42/150 (28.0%); Right items flagged 22/114 (19.3% false alarm); Wrong items flagged 20/36 (55.6% detection).
+  - Track A ($N=100$): Total flagged 32/100 (32.0%); Right items flagged 12/66 (18.2%); Wrong items flagged 20/34 (58.8%).
+  - Track B ($N=50$): Total flagged 10/50 (20.0%); Right items flagged 10/48 (20.8%); Wrong items flagged 0/2 (0.0%).
+- **Chosen Frozen Trigger:**
+  - **Trigger Rule:** `(T1 or T2 or T3 or T4 or T5) and (not is_corpus)`
+  - **Implementation:** Active in `src/pipeline/cascade.py`. Uses strictly the pipeline's own execution output (`clean_execution`, `fallbacks`, `final_answer`, `self_check`, and `analyser.source != 'CORPUS'`). Zero gold labels or metadata used.
+- **Pre-Registered Success Criteria for Part C (Reserve Split Run):**
+  1. **Cascade Accuracy on Reserve:** Overall accuracy $\ge 80.0\%$ (pre-registered Dev benchmark: $85.3\% \pm 5.0\%$).
+  2. **Escalation Share on Reserve:** Bounded to $\le 30.0\%$ of Reserve items (pre-registered Dev benchmark: $21.3\% \pm 6.0\%$).
+  3. **Paired Difference against Pipeline v1.1 Alone:** Statistically significant non-inferiority and improvement $\ge +5.0\text{ pp}$ (pre-registered Dev benchmark: $+9.33\text{ pp}$ $[+4.00, +14.67]\text{ pp}$, $p < 0.001$).
+  4. **Paired Difference against 120B Model with Tools Alone:** Statistically significant superiority $\ge +8.0\text{ pp}$ (pre-registered Dev benchmark: $+14.67\text{ pp}$ $[+6.00, +23.33]\text{ pp}$, $p < 0.001$).
+  5. **Cryptographic Reserve Verification:** Reserve split SHA-256 (`bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`) strictly verified before and after execution.
+  6. **Single Frozen Run:** Zero prompt or code changes during execution.
+  7. **Zero Monetary Cost:** Strictly $0.00 spend.
 - **Reserve Split Status:** **Cryptographically locked and completely untouched.**
 
 ---

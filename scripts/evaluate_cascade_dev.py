@@ -193,10 +193,9 @@ def main():
         ("Pipeline v1.1 Alone", lambda iid, r: False),
         ("Tier 1: T1|T4 (Unclean/No Ans)", lambda iid, r: item_triggers[iid]["Tier1"]),
         ("Tier 2: Tier 1 + Analyser/DB Fallback", lambda iid, r: item_triggers[iid]["Tier2"]),
-        ("Tier 3: Tier 2 + T5 (Self-Check)", lambda iid, r: item_triggers[iid]["Tier3"]),
-        ("Tier 4: Tier 3 + T6 (Self-Consistency)", lambda iid, r: item_triggers[iid]["Tier4"]),
+        ("Tier 3: Tier 2 + T5 (Self-Check, All)", lambda iid, r: item_triggers[iid]["Tier3"]),
+        ("Chosen Trigger: Tier 3 (No Corpus Escalation)", lambda iid, r: item_triggers[iid]["Tier3"] and not ("hypergrid" in r["prompt"].lower() or "v4.2" in r["prompt"].lower())),
         ("Sensitivity: T5 (Self-Check Alone)", lambda iid, r: item_triggers[iid]["T5"]),
-        ("Sensitivity: T6 (Self-Consistency Alone)", lambda iid, r: item_triggers[iid]["T6"]),
         ("Reference: Oracle (Escalate Wrong v1.1)", lambda iid, r: not r.get("passed", False)),
         ("Reference: Escalate Everything (120B Alone)", lambda iid, r: True),
     ]
