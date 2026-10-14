@@ -16,7 +16,7 @@ This file tracks project phase progression, the authoritative validity ledger of
 | **4. Pipeline & Dev Eval** | Build full pipeline (Analyser + Decomposer + Colorer + Matcher) & evaluate on Dev (N=150) | **COMPLETE** | Sunday fix round complete; G1–G4 PASSED | Evaluated on all 150 dev items; G1–G4 all pass; Track A +3.0pp, Tool-Req +45.0pp, 0 Groq tokens used |
 | **5. Held-Out Evaluation** | Lock held-out split (SHA-256); evaluate C0, Pipeline, and Baselines (B0 & B1) | **COMPLETE** | Frozen run complete; all conditions evaluated | Track A: Pipeline 67.0% vs C0 56.0% (+11.0pp); Compound Tool-Req: 80.0% vs 5.0% (+75.0pp); B0 & B1 completed |
 | **6. Final Report** | Automated script-generated comparative report directly from disk records | **COMPLETE (CLOSED)** | Owner sign-off; Tag `v1.0-report` | Standalone script-generated report `docs/heldout_evaluation_report.md` closed and verified by automated tests |
-| **7. Pipeline v1.1 & Cascade** | Generic SQL query-writing path + cascade escalation on Dev (N=100) | **IN PROGRESS** | Stop after Step 3 (Dev table review) | Developing v1.1 direct SQL path with schema execution & retry; testing on Dev only; reserve untouched |
+| **7. Pipeline v1.1 & Cascade** | Generic SQL query-writing path + cascade escalation on Dev (N=150) | **DEV COMPLETE / FROZEN** | Mandatory Stop before Part C (Reserve) | Part A (SQL fix) and Part B (Cascade calibration) complete on Dev; frozen tag v1.1-cascade-frozen; Reserve untouched |
 | **Post-Benchmark** | LoRA adapters (C4) and multi-model fine-tuning (E2–E4) | PENDING | Follow-up phase | Postponed to preserve execution schedule |
 
 ---
@@ -63,6 +63,31 @@ This file tracks project phase progression, the authoritative validity ledger of
   - Track A Overall: jumped from 61/100 (61.0%) to 66/100 (66.0%) (+5.0 pp).
   - Track B (Strict & Facts Alone): 48/50 (96.0%), identical between frozen v1.0 and v1.1.
 - **Reserve Split:** Untouched.
+
+---
+
+## 1.8 Cascade Dev Calibration & Freeze Declaration
+
+- **Freeze Tag:** `v1.1-cascade-frozen`
+- **Freeze Date:** 2026-10-14
+- **Dev Evaluation Matrix ($N=150$, Dev Only):**
+  - **Pipeline v1.1 Alone:** Overall 76.0% (114/150), Track A 66.0% (66/100), Track B 96.0% (48/50), 0.0% escalation share, 0 calls, 0 tokens.
+  - **Tier 1 (T1 \| T4: Execution / Format Failure):** Overall 77.3% (116/150), Track A 68.0%, Track B 96.0%, 3.3% escalation (5 items), 5 calls, 3,614 tokens. 2 fixed, 0 broke, net gain +2.
+  - **Tier 2 (T1–T4: Tier 1 + Analyser / DB Fallback):** Overall 78.0% (117/150), Track A 69.0%, Track B 96.0%, 7.3% escalation (11 items), 17 calls, 17,520 tokens. 4 fixed, 1 broke, net gain +3.
+  - **Tier 3 (Tier 2 + T5 Self-Check Disagreement):** Overall 80.7% (121/150), Track A 80.0%, Track B 82.0%, 28.0% escalation (42 items), 62 calls, 63,886 tokens. 16 fixed, 9 broke, net gain +7.
+  - **Tier 4 (Tier 3 + T6 Self-Consistency):** Overall 74.7% (112/150), Track A 90.0%, Track B 44.0%, 66.0% escalation (99 items), 119 calls, 111,675 tokens. 27 fixed, 29 broke, net gain -2.
+  - **Reference: Oracle (Escalate strictly wrong v1.1):** Overall 95.3% (143/150), Track A 95.0%, Track B 96.0%, 24.0% escalation (36 items), 46 calls, 46,474 tokens. 29 fixed, 0 broke, net gain +29.
+  - **Reference: Escalate Everything (120B with Tools alone):** Overall 70.7% (106/150), Track A 91.0%, Track B 30.0%, 100.0% escalation (150 items), 170 calls, 142,015 tokens. 29 fixed, 37 broke, net gain -8.
+- **Selected Frozen Trigger:**
+  - **Primary (Max Accuracy): Tier 3 (T1–T5)**. Achieves highest overall dev accuracy (80.7%, +4.7 pp net gain) with 28.0% escalation share.
+  - **Conservative (Zero Regression): Tier 2 (T1–T4)**. Achieves 78.0% (+2.0 pp) with 7.3% escalation share, 80% escalation precision, and zero Track B regressions.
+- **Success Criteria for Part C (Reserve Split Run):**
+  1. **SQL Non-Regression:** Pipeline v1.1 maintains or improves upon Spider SQL accuracy on the Reserve split.
+  2. **Cascade Non-Inferiority:** The cascade achieves overall accuracy $\ge$ Pipeline v1.1 on Reserve with escalation share $\le 30.0\%$.
+  3. **Cryptographic Reserve Verification:** SHA-256 hash of Reserve split verified before and after execution.
+  4. **Single Frozen Run:** Zero prompt or code changes during execution.
+  5. **Zero Monetary Cost:** Strictly $0.00 spend.
+- **Reserve Split Status:** **Cryptographically locked and completely untouched.**
 
 ---
 

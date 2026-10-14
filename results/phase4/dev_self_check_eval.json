@@ -1,0 +1,1202 @@
+{
+  "spider_val_0676": {
+    "item_id": "spider_val_0676",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly queries the \"people\" table to count the occurrences of each nationality, groups the results by nationality, orders them in descending order by the count, and limits the result to just the most common nationality. This directly answers the task prompt.",
+    "duration": 1.98
+  },
+  "spider_val_0718": {
+    "item_id": "spider_val_0718",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The provided SQL query attempts to calculate the average life expectancy for countries in the region of Central Africa. However, the region table and its relationship with the country table are not defined in the given database schema. Additionally, the region table is not mentioned in the schema, so the WHERE clause referencing 'Central Africa' is incorrect. The query also assumes that there is a region table with a 'Name' column and a 'Code' column, which is not provided",
+    "duration": 3.22
+  },
+  "spider_val_0816": {
+    "item_id": "spider_val_0816",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer returns the language spoken by the largest percentage of people in each country, but it does not directly answer the question of what the language spoken by the largest percentage of people in each country is. The query returns all languages with the maximum percentage for each country, not just one language per country.",
+    "duration": 1.91
+  },
+  "spider_val_0180": {
+    "item_id": "spider_val_0180",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer directly answers the task by providing a valid SQLite query that retrieves the country of affiliation for Jetblue Airways from the 'airlines' table.",
+    "duration": 1.34
+  },
+  "spider_val_0710": {
+    "item_id": "spider_val_0710",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly forms a valid SQLite query that retrieves the region of the city Kabul by joining the `city` and `country` tables on the `CountryCode` and filtering for the city name 'Kabul'. The requested column `Region` is correctly selected.",
+    "duration": 1.78
+  },
+  "spider_val_0797": {
+    "item_id": "spider_val_0797",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly queries the `country` table to select the different government forms and the total population for each government form where the average life expectancy is greater than 72. It joins the `countrylanguage` table to filter by life expectancy and groups the results by government form. The requested column is included in the SELECT statement.",
+    "duration": 2.07
+  },
+  "spider_val_0263": {
+    "item_id": "spider_val_0263",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly returns the requested column, which is the number of employees from each city, using a valid SQLite query.",
+    "duration": 1.31
+  },
+  "spider_val_0646": {
+    "item_id": "spider_val_0646",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly forms an SQL query that selects the package options of TV channels that are not playing any cartoons directed by Ben Jones, using a LEFT JOIN to include all TV channels and filtering out cartoons directed by Ben Jones.",
+    "duration": 1.89
+  },
+  "spider_val_0776": {
+    "item_id": "spider_val_0776",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer returns the names of Asian countries with a population larger than any African country, but it does not directly answer the task prompt which asks for the requested column. The task prompt asks for a valid SQLite query that returns only the requested column, but the candidate answer returns the names of countries instead of a single column.",
+    "duration": 2.18
+  },
+  "spider_val_0242": {
+    "item_id": "spider_val_0242",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly forms an SQL query that joins the 'airlines' and 'flights' tables, groups the results by airline, and filters for airlines with at least 10 flights. The query returns the requested column, which is the list of airlines meeting the criteria.",
+    "duration": 1.9
+  },
+  "spider_val_0475": {
+    "item_id": "spider_val_0475",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly forms an SQL query that groups the players by their country code, counts the number of players per country, orders the results in descending order, and limits the output to the country with the greatest number of players. The requested column, country_code, is returned as specified.",
+    "duration": 2.42
+  },
+  "spider_val_0042": {
+    "item_id": "spider_val_0042",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer incorrectly assumes that there is a direct relationship between concerts and singers through the \"singer_in_concert\" table. However, the schema does not indicate that a concert can have multiple singers, nor does it indicate that a singer can participate in multiple concerts. The correct query should not involve the \"singer_in_concert\" table. Additionally, the query should check for concerts that occurred in both 2014 and 2015, not singers",
+    "duration": 3.28
+  },
+  "spider_val_0936": {
+    "item_id": "spider_val_0936",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly forms an SQL query that joins the relevant tables and groups the results by owner_id and last_name. It then counts the number of treatments for each owner, orders them in descending order, and limits the result to the owner with the most treatments. The query returns only the requested columns: owner_id and last_name.",
+    "duration": 2.94
+  },
+  "spider_val_0705": {
+    "item_id": "spider_val_0705",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer directly answers the task by providing a valid SQLite query that counts the number of countries with governments that are republics.",
+    "duration": 1.2
+  },
+  "spider_val_0009": {
+    "item_id": "spider_val_0009",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly returns the distinct countries of singers who are above age 20 by joining the \"singer\" table with the \"singer_in_concert\" table on the Singer_ID, and filtering the results where the Age is greater than 20.",
+    "duration": 1.78
+  },
+  "NYSEDREGENTS_2014_4_22": {
+    "item_id": "NYSEDREGENTS_2014_4_22",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies that the change in fur thickness is an adaptive response to seasonal environmental changes.",
+    "duration": 0.95
+  },
+  "Mercury_7018008": {
+    "item_id": "Mercury_7018008",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\n\nREASON: The candidate answer correctly identifies that an atom can be neutral when the number of protons and electrons are equal, which directly answers the question about the electrical property of an atom.",
+    "duration": 1.36
+  },
+  "Mercury_7081760": {
+    "item_id": "Mercury_7081760",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The investigation of the structure, DNA, and life cycle of a newly discovered organism would likely lead to new findings that could update or revise existing scientific knowledge.",
+    "duration": 1.21
+  },
+  "Mercury_SC_408700": {
+    "item_id": "Mercury_SC_408700",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies conduction as the method of heat transfer from the tea to the spoon. Conduction is the process where heat is transferred through direct contact between materials at different temperatures.",
+    "duration": 1.39
+  },
+  "LEAP_2006_8_10412": {
+    "item_id": "LEAP_2006_8_10412",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly explains that heating causes the chemical bonds in the egg to change, leading to the solidification of the liquid parts. This is the correct explanation for why the liquid parts of the egg became solid after boiling.",
+    "duration": 1.61
+  },
+  "Mercury_7099768": {
+    "item_id": "Mercury_7099768",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\n\nREASON: The candidate answer incorrectly states that the energy is stored in the ball until it hits the pins. The energy is not stored but converted into other forms of energy such as heat and sound when it makes contact with the floor. The correct option should reflect this conversion of energy.",
+    "duration": 1.93
+  },
+  "TIMSS_2007_4_pg26": {
+    "item_id": "TIMSS_2007_4_pg26",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\n\nREASON: The candidate answer correctly identifies that a centipede has six legs, which is the most likely answer among the given options.",
+    "duration": 1.06
+  },
+  "Mercury_7205135": {
+    "item_id": "Mercury_7205135",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies that as the temperature increases, the particles gain kinetic energy and move more rapidly, which directly answers the question about the effect on particles when the block of iron is melted.",
+    "duration": 1.42
+  },
+  "MEA_2013_5_3": {
+    "item_id": "MEA_2013_5_3",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies the characteristic that classifies the Sun as a star, which is its ability to produce light and energy through nuclear reactions.",
+    "duration": 1.16
+  },
+  "Mercury_7183733": {
+    "item_id": "Mercury_7183733",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies that the survival of alligators in the Everglades is dependent upon the restriction of prey habitat area, as the water level changes affect the availability and location of food sources for the alligators.",
+    "duration": 1.7
+  },
+  "Mercury_7130603": {
+    "item_id": "Mercury_7130603",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies that power is measured in watts, which is not a joule, and thus directly answers the task prompt.",
+    "duration": 1.24
+  },
+  "MEAP_2005_5_1": {
+    "item_id": "MEAP_2005_5_1",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies water vapor as a gas and correctly states that it is not visible to the naked eye, which corresponds to option (C) an invisible gas.",
+    "duration": 1.27
+  },
+  "Mercury_7236023": {
+    "item_id": "Mercury_7236023",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer incorrectly states that air particles move down and to the right as they move outward from the low-pressure center. In reality, as air moves outward from a low-pressure center in the Northern Hemisphere, it moves horizontally outward and is deflected to the right due to the Coriolis effect. There is no vertical motion (up or down) mentioned in the correct description of the motion. The correct answer should reflect horizontal motion outward and deflection to the",
+    "duration": 3.14
+  },
+  "Mercury_SC_402104": {
+    "item_id": "Mercury_SC_402104",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer directly addresses the likely consequence of dumping toxic chemicals into a pond, which is harmful to aquatic life, specifically fish.",
+    "duration": 1.13
+  },
+  "Mercury_7124338": {
+    "item_id": "Mercury_7124338",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer directly addresses the benefit of a questioning mind for a scientist, which is to conduct research to confirm or disprove theories. This aligns with the nature of scientific inquiry.",
+    "duration": 1.32
+  },
+  "HumanEval/2": {
+    "item_id": "HumanEval/2",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function as described in the task prompt. It returns the decimal part of a positive floating point number and raises a ValueError for negative inputs, which aligns with the given task.",
+    "duration": 1.62
+  },
+  "HumanEval/25": {
+    "item_id": "HumanEval/25",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function as described in the task prompt. It returns a list of prime factors of the given integer in the order from smallest to largest, with each factor listed the number of times it appears in the factorization. The examples provided in the docstring are also correctly handled by the function.",
+    "duration": 2.33
+  },
+  "HumanEval/133": {
+    "item_id": "HumanEval/133",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function as described in the task prompt, rounding each element to the upper int(Ceiling) first and then calculating the sum of squared numbers.",
+    "duration": 1.74
+  },
+  "HumanEval/17": {
+    "item_id": "HumanEval/17",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function as described in the task prompt. It parses the input string, splits it into individual notes, and appends the corresponding number of beats for each note to the list `beats`. The function also includes a ValueError exception for invalid notes, which is consistent with the task description.",
+    "duration": 2.51
+  },
+  "HumanEval/144": {
+    "item_id": "HumanEval/144",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function as described in the task prompt. It simplifies the expression x * n by converting the string representations of fractions into integers, multiplying them, and then checking if the result is a whole number by using the modulo operator.",
+    "duration": 2.02
+  },
+  "HumanEval/76": {
+    "item_id": "HumanEval/76",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function as described in the task prompt. It checks if x is a simple power of n by iterating through powers of n until it either finds a match with x or exceeds it. It also correctly handles the edge case when n is 1.",
+    "duration": 2.0
+  },
+  "HumanEval/28": {
+    "item_id": "HumanEval/28",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function by using the `join` method to concatenate the list of strings into a single string, as shown in the provided examples.",
+    "duration": 1.26
+  },
+  "HumanEval/33": {
+    "item_id": "HumanEval/33",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function as described in the task prompt. It extracts elements at indices divisible by three, sorts them, and reconstructs the list with the sorted elements at the appropriate indices while keeping the other elements unchanged. The examples provided in the docstring are also correctly handled by the function.",
+    "duration": 2.6
+  },
+  "HumanEval/73": {
+    "item_id": "HumanEval/73",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function to find the minimum number of elements that need to be changed to make the array palindromic. It iterates through the first half of the array and compares each element with its corresponding element from the end of the array. If they are not equal, it increments the changes counter. The function returns the total number of changes needed to make the array palindromic.",
+    "duration": 2.92
+  },
+  "HumanEval/36": {
+    "item_id": "HumanEval/36",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the fizz_buzz function as described in the task prompt. It counts the occurrences of the digit '7' in numbers less than n that are divisible by 11 or 13. The provided test cases also match the expected outputs.",
+    "duration": 1.88
+  },
+  "HumanEval/35": {
+    "item_id": "HumanEval/35",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function to find the maximum element in a list, handles the case of an empty list, and includes the provided test cases.",
+    "duration": 1.45
+  },
+  "HumanEval/46": {
+    "item_id": "HumanEval/46",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the fib4 function as described in the task prompt. It handles the base cases for n=0, 1, 2, and 3, and uses a loop to compute the n-th element of the fib4 sequence for n greater than 3 without using recursion. The function also includes the expected outputs for the given examples.",
+    "duration": 2.59
+  },
+  "HumanEval/48": {
+    "item_id": "HumanEval/48",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function to check if a given string is a palindrome, following the examples provided in the task prompt. It includes cleaning the input text by removing non-alphanumeric characters and converting it to lowercase, then comparing the cleaned text with its reverse to determine if it's a palindrome.",
+    "duration": 2.11
+  },
+  "HumanEval/127": {
+    "item_id": "HumanEval/127",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function as described in the task prompt. It calculates the intersection of two intervals, checks if the intersection exists, calculates the length of the intersection, and finally checks if the length is a prime number. The function returns \"YES\" if the length is prime and \"NO\" otherwise.",
+    "duration": 2.47
+  },
+  "HumanEval/147": {
+    "item_id": "HumanEval/147",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly implements the function as described in the task prompt. It creates the array `a` according to the given formula, iterates through all possible triples `(i, j, k)` with `i < j < k`, and checks if the sum of the triple is a multiple of 3. The function returns the correct count of valid triples.",
+    "duration": 2.77
+  },
+  "gsm8k_test_0530": {
+    "item_id": "gsm8k_test_0530",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem into steps, calculates the total hours for each scenario, and sums them up to arrive at the final answer of 36 hours. The conclusion with the final answer is correctly formatted as requested.",
+    "duration": 2.08
+  },
+  "gsm8k_test_0625": {
+    "item_id": "gsm8k_test_0625",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt and arrives at the correct final answer.",
+    "duration": 1.1
+  },
+  "gsm8k_test_0987": {
+    "item_id": "gsm8k_test_0987",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem step by step and arrives at the final answer, which matches the task prompt. The final answer is correctly concluded with the specified format.",
+    "duration": 1.63
+  },
+  "gsm8k_test_0003": {
+    "item_id": "gsm8k_test_0003",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly calculates the total distance James runs in a week by multiplying the number of sprints by the distance of each sprint and concludes with the correct final answer.",
+    "duration": 1.37
+  },
+  "gsm8k_test_0616": {
+    "item_id": "gsm8k_test_0616",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the growth of the beanstalk week by week and arrives at the final height after 3 weeks as 10 inches. The conclusion matches the final answer requested in the task prompt.",
+    "duration": 1.58
+  },
+  "gsm8k_test_0612": {
+    "item_id": "gsm8k_test_0612",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem step by step and arrives at the correct total ounces of meat consumed by the team, which is 30 ounces. The final answer is correctly concluded with the required format.",
+    "duration": 1.61
+  },
+  "gsm8k_test_0089": {
+    "item_id": "gsm8k_test_0089",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem into steps and arrives at the final answer of $18, which matches the task prompt.",
+    "duration": 1.35
+  },
+  "gsm8k_test_0973": {
+    "item_id": "gsm8k_test_0973",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt and arrives at the correct final answer.",
+    "duration": 1.07
+  },
+  "gsm8k_test_0827": {
+    "item_id": "gsm8k_test_0827",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt to calculate the total amount Milly will lose, including the cost of shipping and the difference between the purchase price and the refund amount. The final answer is correctly concluded with the specified format.",
+    "duration": 2.06
+  },
+  "gsm8k_test_0401": {
+    "item_id": "gsm8k_test_0401",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem into steps, calculates the total number of days worked in a year, and then calculates the total earnings for the year. The final answer is correctly concluded with the requested format.",
+    "duration": 1.67
+  },
+  "gsm8k_test_0727": {
+    "item_id": "gsm8k_test_0727",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem into steps, calculates the number of windows smashed for both students' and teachers' cars, and sums them up to arrive at the final answer. The conclusion with the final answer is correctly formatted as requested.",
+    "duration": 1.95
+  },
+  "gsm8k_test_1064": {
+    "item_id": "gsm8k_test_1064",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem step by step and arrives at the final answer, which matches the task prompt.",
+    "duration": 1.14
+  },
+  "gsm8k_test_0174": {
+    "item_id": "gsm8k_test_0174",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly calculates the total time it takes to peel and cut each potato, adds them together, multiplies by the total number of potatoes, and converts the total time into minutes. The final answer is correctly concluded with the requested format.",
+    "duration": 2.13
+  },
+  "gsm8k_test_1261": {
+    "item_id": "gsm8k_test_1261",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem into steps, calculates the cost for each type of clothing per week, sums up the total cost for one week, and then multiplies by 5 to find the total cost for 5 weeks. The final answer is correctly concluded with the required format.",
+    "duration": 2.21
+  },
+  "gsm8k_test_0648": {
+    "item_id": "gsm8k_test_0648",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem into steps, calculates the total number of people, and then multiplies by 2 to find the total number of cupcakes Howie should buy. The final answer is correctly concluded with the number 54.",
+    "duration": 1.94
+  },
+  "compound_dev_v2_0001": {
+    "item_id": "compound_dev_v2_0001",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task prompt. The task prompt asks for the maximum achievable total package value within the drone capacity, which is calculated based on the composite operational score. The candidate answer does not show any calculation or reasoning process that leads to the final answer.",
+    "duration": 2.28
+  },
+  "compound_dev_v2_0002": {
+    "item_id": "compound_dev_v2_0002",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "NO\n\nREASON: The candidate answer does not directly answer the task prompt. The task prompt asks for a calculation based on the count of flights whose FlightNo is strictly greater than 1000, followed by a Collatz sequence simulation and a final logistics fee calculation. The provided answer does not show any calculation or reasoning steps that would lead to the final logistics fee.",
+    "duration": 2.27
+  },
+  "compound_dev_v2_0003": {
+    "item_id": "compound_dev_v2_0003",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly and correctly answer the given task. The task requires the calculation of the sum of all generated terms from X_1 through X_15 that are strictly greater than 150. The candidate answer only calculates the terms up to X_15 but does not filter out the terms that are strictly greater than 150 before summing them up. Additionally, the candidate answer does not conclude with 'Final Answer: <answer>' or '####",
+    "duration": 4.01
+  },
+  "compound_dev_v2_0004": {
+    "item_id": "compound_dev_v2_0004",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly and correctly answer the given task. The task requires a step-by-step calculation to arrive at the final budget allocation, which involves counting employees, calculating an integer target, finding unique prime factors, and performing arithmetic operations. The provided answer does not show any of these steps or calculations.",
+    "duration": 2.22
+  },
+  "compound_dev_v2_0005": {
+    "item_id": "compound_dev_v2_0005",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer provided is incorrect. The task was to compute the total points awarded based on the match index, not to return the number of competitive tennis leagues formed. The final answer should be the total points awarded, which is 50, not the number of leagues.",
+    "duration": 2.84
+  },
+  "compound_dev_v2_0006": {
+    "item_id": "compound_dev_v2_0006",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not show the step-by-step calculation process as requested in the task prompt. The final answer is not derived from the given task prompt and cannot be verified without the calculation steps.",
+    "duration": 1.52
+  },
+  "compound_dev_v2_0007": {
+    "item_id": "compound_dev_v2_0007",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "NO\n\nREASON: The candidate answer does not directly answer the task prompt. The task requires counting the distinct caused_by_ship_id values in the death table, computing the Fibonacci term at that index, multiplying it by 4, and adding 115 to find the final valuation. The candidate answer does not show any of these steps or the result of the computation.",
+    "duration": 2.24
+  },
+  "compound_dev_v2_0008": {
+    "item_id": "compound_dev_v2_0008",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not provide any calculation or reasoning process that directly answers the task prompt. The task requires a step-by-step calculation of the total disbursement purse and the total count of coins dispensed, which is not shown in the candidate answer.",
+    "duration": 1.97
+  },
+  "compound_dev_v2_0009": {
+    "item_id": "compound_dev_v2_0009",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task prompt. The task requires counting the number of players with Earnings greater than 100000, generating a sequence of prime numbers up to that count, summing those primes, multiplying by 6, and subtracting 174. The provided answer does not show any of these steps or calculations.",
+    "duration": 2.22
+  },
+  "compound_dev_v2_0010": {
+    "item_id": "compound_dev_v2_0010",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task. The task requires counting the number of registered dogs whose age is strictly less than 3, multiplying this count by 40, adding 16, converting the result into binary, and then counting the number of '0' digits in that binary representation. The candidate answer only provides the final count of '0' digits without showing the intermediate steps or the final binary representation.",
+    "duration": 2.97
+  },
+  "compound_dev_v2_0011": {
+    "item_id": "compound_dev_v2_0011",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt and arrives at the final answer of 181, which is the maximum achievable equipment value within the given capacity.",
+    "duration": 2.19
+  },
+  "compound_dev_v2_0012": {
+    "item_id": "compound_dev_v2_0012",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer incorrectly calculated the number of 25-container pallets needed. The correct calculation should result in 16 full pallets and 8 containers left unpalletized. The handling cost for the 25-container pallets should be 16 * 60 dollars = 960 dollars. The storage cost for the unpalletized containers should be 8 * 5 dollars = 40 dollars. The total handling and storage cost should be 960 dollars +",
+    "duration": 3.4
+  },
+  "compound_dev_v2_0013": {
+    "item_id": "compound_dev_v2_0013",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt and arrives at the final answer of 70, which is the sum of the unique prime factors of the resulting integer after performing the specified operations.",
+    "duration": 2.09
+  },
+  "compound_dev_v2_0014": {
+    "item_id": "compound_dev_v2_0014",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not show the step-by-step calculation process as requested in the task prompt. The final answer is not directly derived from the given task prompt.",
+    "duration": 1.37
+  },
+  "compound_dev_v2_0015": {
+    "item_id": "compound_dev_v2_0015",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt and arrives at the final answer of 9, which is the sum of each digit multiplied by its 1-based digit position in the combined administrative fee.",
+    "duration": 2.12
+  },
+  "compound_dev_v2_0016": {
+    "item_id": "compound_dev_v2_0016",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt and arrives at the final answer of 31, which is the sum of the decimal digits of the network strain index raised to the 3rd power.",
+    "duration": 2.16
+  },
+  "compound_dev_v2_0017": {
+    "item_id": "compound_dev_v2_0017",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly and correctly answer the given task. The task requires the total count of distinct positive integer divisors of the composite frequency, but the candidate answer only provides the sequence of transitions without computing the composite frequency or its divisors.",
+    "duration": 2.93
+  },
+  "compound_dev_v2_0018": {
+    "item_id": "compound_dev_v2_0018",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt to calculate the total packaging cost for the copper-coated sensors. Each step logically follows from the previous one, and the final answer is presented correctly.",
+    "duration": 2.16
+  },
+  "compound_dev_v2_0019": {
+    "item_id": "compound_dev_v2_0019",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt and arrives at the final answer of 208, which is the maximum achievable total bond yield within the given escrow capacity.",
+    "duration": 2.29
+  },
+  "compound_dev_v2_0020": {
+    "item_id": "compound_dev_v2_0020",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt and arrives at the final answer of 66, which is the sum of the squares of the decimal digits of the remaining battery reserve.",
+    "duration": 2.25
+  },
+  "compound_dev_v2_0021": {
+    "item_id": "compound_dev_v2_0021",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task prompt. The task prompt asks for the total count of flights operated with Airline ID 2, not the net luggage revenue. The calculation provided in the candidate answer seems to be based on incorrect assumptions or missing steps.",
+    "duration": 2.0
+  },
+  "compound_dev_v2_0022": {
+    "item_id": "compound_dev_v2_0022",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task prompt. The task prompt asks for the count of cities with CountryCode 'USA' that have a Population strictly greater than 1,000,000, followed by a Collatz sequence simulation starting from this count. The provided answer only gives the final count of transition steps in the Collatz sequence, not the initial city count or the Collatz sequence itself.",
+    "duration": 2.6
+  },
+  "compound_dev_v2_0023": {
+    "item_id": "compound_dev_v2_0023",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "NO\n\nREASON: The candidate answer does not directly answer the task prompt. The task prompt asks for the total count of concerts staged in the year 2014 and the total ticket revenue collected in whole dollars. The candidate answer only provides the total ticket revenue collected, without showing the calculation steps or the total count of concerts.",
+    "duration": 2.07
+  },
+  "compound_dev_v2_0024": {
+    "item_id": "compound_dev_v2_0024",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task prompt. The task prompt asks to count the number of TV series episodes with a Share strictly greater than 4.0, not to count valid binary sequences containing exactly two 1s. The provided answer seems unrelated to the task prompt.",
+    "duration": 2.11
+  },
+  "compound_dev_v2_0025": {
+    "item_id": "compound_dev_v2_0025",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not show the step-by-step calculation process that leads to the final answer. The calculation of the total dollar expenditure needed to buy all required sacks of feed is missing.",
+    "duration": 1.76
+  },
+  "compound_dev_v2_0026": {
+    "item_id": "compound_dev_v2_0026",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\n\nREASON: The candidate answer does not show the step-by-step process required to validate the solution. The answer is also incorrect because it does not match the expected factorial of the integer rank derived from the given task. The correct answer should be the factorial of the integer rank, which is not 362880. The integer rank should be calculated first by counting the number of employees in Bristol and multiplying by 3. Then, the factorial of that integer rank should be computed.",
+    "duration": 2.84
+  },
+  "compound_dev_v2_0027": {
+    "item_id": "compound_dev_v2_0027",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task prompt. The task asks for the total expenditure on tennis ball cans for final matches in 2015, but the candidate answer only provides a monetary value without any calculation or context. The calculation should be based on the number of final matches in 2015 and the cost of tennis ball cans.",
+    "duration": 2.51
+  },
+  "compound_dev_v2_0028": {
+    "item_id": "compound_dev_v2_0028",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task prompt. The task prompt asks for the count of individuals whose height is strictly greater than 180, and then to compute and print the sum of the cubes of all positive integers from 1 up to that count inclusive. The provided answer does not show any computation or reasoning steps that lead to the final answer.",
+    "duration": 2.35
+  },
+  "compound_dev_v2_0029": {
+    "item_id": "compound_dev_v2_0029",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not show the step-by-step calculation process that leads to the final answer. The calculation of the total combined grant funding awarded across all qualifying orchestras is missing.",
+    "duration": 1.36
+  },
+  "compound_dev_v2_0030": {
+    "item_id": "compound_dev_v2_0030",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task prompt. The task prompt asks to count the number of countries located in the continent of 'Africa' and then simulate the Collatz sequence starting from that count. The provided answer of 16 is the total number of transition steps taken in the Collatz sequence starting from 16, not the count of countries in Africa. The correct answer should first involve counting the number of countries in Africa and then applying the Collatz",
+    "duration": 3.12
+  },
+  "compound_dev_v2_0031": {
+    "item_id": "compound_dev_v2_0031",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not show the step-by-step calculation process as requested in the task prompt. The calculation of total gross revenue, operating profits, agricultural taxes, and net profit is missing.",
+    "duration": 1.55
+  },
+  "compound_dev_v2_0032": {
+    "item_id": "compound_dev_v2_0032",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem into steps, calculates the total number of matches, the points for draws, the points for non-draws, and sums them up to find the total points awarded across the entire season. The final answer matches the expected result.",
+    "duration": 2.36
+  },
+  "compound_dev_v2_0033": {
+    "item_id": "compound_dev_v2_0033",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt to arrive at the final answer. The character count of the compressed representation is correctly calculated as 8 characters. The total number of characters transmitted in 12 hours is correctly calculated as 240000 characters. The total cost is correctly calculated as 1200 dollars using integer division. The final answer is presented correctly as 'Final Answer: 1200 dollars'.",
+    "duration": 3.2
+  },
+  "compound_dev_v2_0034": {
+    "item_id": "compound_dev_v2_0034",
+    "passed": false,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not directly answer the task prompt. The prompt asks for the smallest positive integer N that satisfies the given conditions, the square of N, and the sum of its decimal digits. The candidate answer only partially solves the problem by finding N = 77, which satisfies the second congruence but not the third. The candidate answer does not compute the square of N or the sum of its decimal digits.",
+    "duration": 3.93
+  },
+  "compound_dev_v2_0035": {
+    "item_id": "compound_dev_v2_0035",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt to calculate the final position, Manhattan distance, battery consumption, and remaining battery capacity. The final answer matches the expected result based on the given data.",
+    "duration": 2.15
+  },
+  "compound_dev_v2_0036": {
+    "item_id": "compound_dev_v2_0036",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly follows the steps outlined in the task prompt to calculate the net author royalty from 'SciFi' book sales, including filtering transactions, calculating total gross revenue, author royalties, and subtracting the marketing fee. The final answer is presented as requested.",
+    "duration": 2.44
+  },
+  "compound_dev_v2_0037": {
+    "item_id": "compound_dev_v2_0037",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem into steps, performs the calculations accurately, and provides the correct Python code to compute the factorial of the last decimal digit of the bag count. The final answer is also correctly stated as 5040, which is the factorial of 7.",
+    "duration": 2.39
+  },
+  "compound_dev_v2_0038": {
+    "item_id": "compound_dev_v2_0038",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly simulates the Collatz sequence for n = 19, counts the total number of transition steps, and calculates the final maintenance expenditure as instructed. The final answer is presented correctly.",
+    "duration": 2.02
+  },
+  "compound_dev_v2_0039": {
+    "item_id": "compound_dev_v2_0039",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer does not show the step-by-step calculation process as requested in the task prompt. The calculation of total kilowatt-hours consumed by the 'R&D' department and the final total power cost including the peak-hour grid surcharge is missing.",
+    "duration": 1.97
+  },
+  "compound_dev_v2_0040": {
+    "item_id": "compound_dev_v2_0040",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly breaks down the problem into steps, calculates the number of bran muffins, converts it to binary, and finally calculates the product of the count of '1' digits and '0' digits in the binary representation. The final answer provided is correct.",
+    "duration": 2.38
+  },
+  "track_b_dev_0001": {
+    "item_id": "track_b_dev_0001",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies the primary traction power inverter (Inverter-ZX9), its subsystem (Propulsion), and provides both the switching frequency (731.4 kHz) and continuous power rating (1840 kW) in the requested key-value format. The answer is concise and within the word limit.",
+    "duration": 2.13
+  },
+  "track_b_dev_0002": {
+    "item_id": "track_b_dev_0002",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly states the cooling medium name, its operating flow rate, and calculates the total fluid volume displaced over 15 minutes as per the given task. The answer is concise and fits within the word limit.",
+    "duration": 1.61
+  },
+  "track_b_dev_0003": {
+    "item_id": "track_b_dev_0003",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly states the mesh protocol identifier and the radio's packet beacon interval. It also correctly identifies that the difference in milliseconds cannot be calculated due to missing deploy actuation time. The answer is concise and within the word limit.",
+    "duration": 1.76
+  },
+  "track_b_dev_0004": {
+    "item_id": "track_b_dev_0004",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies the component designation, friction pad material, and nominal emergency deceleration rating for the HyperGrid v4.2 emergency magnetic caliper. The answer is concise and fits within the word limit.",
+    "duration": 1.61
+  },
+  "track_b_dev_0005": {
+    "item_id": "track_b_dev_0005",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer incorrectly associates the burst disk relief pressure with the VesselDewar-D1 component instead of the liquid helium reservoir tank. Additionally, the nominal coil current is given for SuperconMagnet-S8 instead of the primary suspension magnet. The key-value pairs are also not correctly formatted as per the task prompt.",
+    "duration": 2.14
+  },
+  "track_b_dev_0006": {
+    "item_id": "track_b_dev_0006",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies the active settings of Inverter-ZX9 within the Propulsion subsystem, stating its switching frequency and continuous power rating in a concise key-value structured response. The answer is within the word limit and concludes with 'Final Answer: <key-value pairs>'.",
+    "duration": 1.82
+  },
+  "track_b_dev_0007": {
+    "item_id": "track_b_dev_0007",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides a concise key-value structured response with the requested information: pole pitch distance and core lamination alloy for StatorPack-P4 within the Propulsion subsystem of HyperGrid v4.2. The answer is within the 75-word limit and concludes with 'Final Answer:'.",
+    "duration": 1.93
+  },
+  "track_b_dev_0008": {
+    "item_id": "track_b_dev_0008",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides a concise key-value structured response with the requested information: pole pitch distance and core lamination alloy for StatorPack-P4 within the Propulsion subsystem of HyperGrid v4.2. The answer is within the 75-word limit and concludes with 'Final Answer:'.",
+    "duration": 1.78
+  },
+  "track_b_dev_0009": {
+    "item_id": "track_b_dev_0009",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly identifies the active settings of CryoLoop-Gamma within the Cryogenics subsystem, stating its cooling medium and operating flow rate in the requested key-value structured response. The answer is concise and fits within the word limit.",
+    "duration": 1.7
+  },
+  "track_b_dev_0010": {
+    "item_id": "track_b_dev_0010",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides a concise key-value structured response with the requested information about VesselDewar-D1's burst disk relief pressure and insulation vacuum target, fitting within the 75-word limit.",
+    "duration": 1.39
+  },
+  "track_b_dev_0011": {
+    "item_id": "track_b_dev_0011",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested information in the specified key-value format and adheres to the word limit.",
+    "duration": 1.0
+  },
+  "track_b_dev_0012": {
+    "item_id": "track_b_dev_0012",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer directly answers the task prompt by providing the specified packet beacon interval for TransceiverNode-T9 and the laser operating wavelength for LidarBeacon-L2 in the requested key-value format. The answer is concise and within the word limit.",
+    "duration": 1.66
+  },
+  "track_b_dev_0013": {
+    "item_id": "track_b_dev_0013",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer directly answers the task prompt by providing the requested key-value pairs for the LidarBeacon-L2 settings within the Telemetry subsystem of HyperGrid v4.2, including the laser operating wavelength and sampling frequency. The answer is concise and within the word limit.",
+    "duration": 1.83
+  },
+  "track_b_dev_0014": {
+    "item_id": "track_b_dev_0014",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly provides the requested key-value pairs for EddyShoe-B7's nominal emergency deceleration and LidarBeacon-L2's sampling frequency in the specified format.",
+    "duration": 1.33
+  },
+  "track_b_dev_0015": {
+    "item_id": "track_b_dev_0015",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer directly answers the task by providing the friction pad material for EddyShoe-B7 and the deploy actuation time for SkidPlate-K1 in the specified format.",
+    "duration": 1.33
+  },
+  "track_b_dev_0016": {
+    "item_id": "track_b_dev_0016",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\n\nREASON: The candidate answer correctly identifies the active settings of SensorMount-M3 within the Levitation subsystem, stating its max allowable telemetry drift and its bracket damping polymer in a concise key-value structured response. The answer is within the word limit and concludes with the correct format.",
+    "duration": 1.72
+  },
+  "track_b_dev_0017": {
+    "item_id": "track_b_dev_0017",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\n\nREASON: The candidate answer correctly identifies the active settings of SensorMount-M3 within the Levitation subsystem, stating its max allowable telemetry drift and its bracket damping polymer in a concise key-value structured response. The answer is within the word limit and concludes with the correct format.",
+    "duration": 1.59
+  },
+  "track_b_dev_0018": {
+    "item_id": "track_b_dev_0018",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the nominal coil current for SuperconMagnet-S8 and the primary o-ring elastomer for DoorSeal-V4 in the requested key-value format. The answer is concise and within the word limit.",
+    "duration": 1.53
+  },
+  "track_b_dev_0019": {
+    "item_id": "track_b_dev_0019",
+    "passed": false,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides a concise key-value structured response that directly answers the task prompt by identifying the active settings of DoorSeal-V4 within the Airlock subsystem, stating its primary o-ring elastomer and its clamping sealing pressure. The response is within the 75-word limit.",
+    "duration": 1.85
+  },
+  "track_b_dev_0020": {
+    "item_id": "track_b_dev_0020",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested information in the specified key-value format and adheres to the word limit.",
+    "duration": 0.94
+  },
+  "track_b_dev_0021": {
+    "item_id": "track_b_dev_0021",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, adhering to the word limit and concluding with 'Final Answer:'.",
+    "duration": 1.1
+  },
+  "track_b_dev_0022": {
+    "item_id": "track_b_dev_0022",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in the specified format and within the word limit.",
+    "duration": 0.87
+  },
+  "track_b_dev_0023": {
+    "item_id": "track_b_dev_0023",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, with the correct units for each parameter. The answer is concise and fits within the word limit.",
+    "duration": 1.23
+  },
+  "track_b_dev_0024": {
+    "item_id": "track_b_dev_0024",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer correctly provides the design parameters theta-24 and theta-25 for DevModule-Prop-24 and DevModule-Cryo-25 respectively, in the specified subsystems, in short key-value format.",
+    "duration": 1.55
+  },
+  "track_b_dev_0025": {
+    "item_id": "track_b_dev_0025",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, adhering to the word limit.",
+    "duration": 1.06
+  },
+  "track_b_dev_0026": {
+    "item_id": "track_b_dev_0026",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer provides values for theta-26 and theta-27 but does not specify that they are design parameters for the respective DevModules in the Telemetry and Braking subsystems as requested in the task prompt.",
+    "duration": 1.51
+  },
+  "track_b_dev_0027": {
+    "item_id": "track_b_dev_0027",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer provides values for theta-27 and theta-28 but does not specify that they are design parameters for the respective DevModules in the Braking and Levitation subsystems as requested in the task prompt. Additionally, the units for theta-28 are incorrect (should be a dimension like mm or m, not kW).",
+    "duration": 2.2
+  },
+  "track_b_dev_0028": {
+    "item_id": "track_b_dev_0028",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, with the correct subsystems and parameters identified. The word count is within the specified limit.",
+    "duration": 1.24
+  },
+  "track_b_dev_0029": {
+    "item_id": "track_b_dev_0029",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, adhering to the word limit and concluding with 'Final Answer:'.",
+    "duration": 1.1
+  },
+  "track_b_dev_0030": {
+    "item_id": "track_b_dev_0030",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in the specified format and within the word limit.",
+    "duration": 0.86
+  },
+  "track_b_dev_0031": {
+    "item_id": "track_b_dev_0031",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters theta-31 and theta-32 for DevModule-Powe-31 and DevModule-Prop-32 respectively, in the specified subsystems, and is formatted correctly as key-value pairs.",
+    "duration": 1.57
+  },
+  "track_b_dev_0032": {
+    "item_id": "track_b_dev_0032",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters theta-32 and theta-33 for DevModule-Prop-32 and DevModule-Cryo-33 respectively, in the specified subsystems, in a concise key-value format.",
+    "duration": 1.54
+  },
+  "track_b_dev_0033": {
+    "item_id": "track_b_dev_0033",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters theta-33 and theta-34 for DevModule-Cryo-33 and DevModule-Tele-34 respectively, in the specified subsystems, in a concise key-value format.",
+    "duration": 1.58
+  },
+  "track_b_dev_0034": {
+    "item_id": "track_b_dev_0034",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer provides values for theta-34 and theta-35 but does not specify that they are design parameters for the respective DevModules in the Telemetry and Braking subsystems as requested in the task prompt. Additionally, the units for theta-35 seem incorrect (mm instead of m/s^2 or similar).",
+    "duration": 2.04
+  },
+  "track_b_dev_0035": {
+    "item_id": "track_b_dev_0035",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer provides values for theta-35 and theta-36 but does not specify that they are design parameters for the respective DevModules in the Braking and Levitation subsystems as requested in the task prompt. Additionally, the units for theta-36 are incorrect; it should be a dimension (mm) not a power (kW).",
+    "duration": 2.17
+  },
+  "track_b_dev_0036": {
+    "item_id": "track_b_dev_0036",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters theta-36 and theta-37 for DevModule-Levi-36 and DevModule-Airl-37 respectively, in the specified subsystems, in a concise key-value format.",
+    "duration": 1.68
+  },
+  "track_b_dev_0037": {
+    "item_id": "track_b_dev_0037",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, adhering to the word limit and concluding with 'Final Answer:'.",
+    "duration": 1.11
+  },
+  "track_b_dev_0038": {
+    "item_id": "track_b_dev_0038",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in the specified format and within the word limit.",
+    "duration": 0.85
+  },
+  "track_b_dev_0039": {
+    "item_id": "track_b_dev_0039",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, with the correct units for each parameter. The answer is concise and fits within the word limit.",
+    "duration": 1.23
+  },
+  "track_b_dev_0040": {
+    "item_id": "track_b_dev_0040",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters theta-40 and theta-41 for DevModule-Prop-40 and DevModule-Cryo-41 respectively, in the specified subsystems, in a concise key-value format.",
+    "duration": 1.54
+  },
+  "track_b_dev_0041": {
+    "item_id": "track_b_dev_0041",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, adhering to the word limit.",
+    "duration": 0.99
+  },
+  "track_b_dev_0042": {
+    "item_id": "track_b_dev_0042",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, adhering to the word limit.",
+    "duration": 0.98
+  },
+  "track_b_dev_0043": {
+    "item_id": "track_b_dev_0043",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer provides values for theta-43 and theta-44 but does not specify that they are design parameters for the respective DevModules in the Braking and Levitation subsystems as requested in the task prompt. Additionally, the units for theta-43 and theta-44 are not consistent with typical design parameters (mm for a dimension and kW for power).",
+    "duration": 2.26
+  },
+  "track_b_dev_0044": {
+    "item_id": "track_b_dev_0044",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer provides values for theta-44 and theta-45 but does not specify that they are design parameters as requested in the task prompt. Additionally, the units provided (kW for power and ms for time) do not match typical design parameters for engineering subsystems.",
+    "duration": 1.81
+  },
+  "track_b_dev_0045": {
+    "item_id": "track_b_dev_0045",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in short key-value pairs, adhering to the word limit and concluding with 'Final Answer: <key-value pairs>'.",
+    "duration": 1.2
+  },
+  "track_b_dev_0046": {
+    "item_id": "track_b_dev_0046",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer directly answers the task by providing the design parameters theta-46 and theta-47 for DevModule-Life-46 and DevModule-Powe-47 respectively, in the specified subsystems, in short key-value format.",
+    "duration": 1.55
+  },
+  "track_b_dev_0047": {
+    "item_id": "track_b_dev_0047",
+    "passed": true,
+    "verdict": "YES",
+    "flagged": false,
+    "raw_response": "VERIFIED: YES\nREASON: The candidate answer provides the requested design parameters in the specified format and within the word limit.",
+    "duration": 0.84
+  },
+  "track_b_dev_0048": {
+    "item_id": "track_b_dev_0048",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer provides values for theta-48 and theta-49 but does not specify that they are design parameters for DevModule-Prop-48 and DevModule-Cryo-49 respectively in the Propulsion and Cryogenics subsystems as requested. Additionally, the units provided (kPa and kHz) do not match the expected units for design parameters in engineering contexts.",
+    "duration": 2.36
+  },
+  "track_b_dev_0049": {
+    "item_id": "track_b_dev_0049",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer provides values for theta-49 and theta-50 but does not specify that these values are for the Cryogenics subsystem and Telemetry subsystem respectively. The answer lacks the context needed to confirm that the values are for the specified DevModules.",
+    "duration": 1.72
+  },
+  "track_b_dev_0050": {
+    "item_id": "track_b_dev_0050",
+    "passed": true,
+    "verdict": "NO",
+    "flagged": true,
+    "raw_response": "VERIFIED: NO\nREASON: The candidate answer includes an extra parameter (Theta-75) for DevModule-Brak-75 which is not requested in the task. The answer should only contain Theta-50 for DevModule-Tele-50 and Theta-51 for DevModule-Brak-51.",
+    "duration": 1.86
+  }
+}

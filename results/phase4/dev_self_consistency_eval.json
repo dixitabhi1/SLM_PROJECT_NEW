@@ -1,0 +1,2102 @@
+{
+  "spider_val_0676": {
+    "item_id": "spider_val_0676",
+    "passed_v11": false,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Columns: ['Nationality', 'Count']\\n('Russia', 6)\")",
+    "sample_vals": [
+      "(True, \"Columns: ['Nationality', 'NationalityCount']\\n('Russia', 6)\")",
+      "(True, \"Columns: ['Nationality', 'Nationality_Count']\\n('Russia', 6)\")",
+      "(True, \"Columns: ['Nationality', 'Count']\\n('Russia', 6)\")"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 ((True, \"Columns: ['Nationality', 'NationalityCount']\\n('Russia', 6)\")) != Greedy ((True, \"Columns: ['Nationality', 'Count']\\n('Russia', 6)\"))",
+    "duration": 2.65
+  },
+  "spider_val_0718": {
+    "item_id": "spider_val_0718",
+    "passed_v11": false,
+    "task_type": "sql",
+    "greedy_val": "(False, 'ERROR: no such table: region')",
+    "sample_vals": [
+      "(False, 'ERROR: no such table: region')",
+      "(False, 'ERROR: no such table: region')",
+      "(False, 'ERROR: no such column: c.life_expectancy')"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 2 ((False, 'ERROR: no such column: c.life_expectancy')) != Greedy ((False, 'ERROR: no such table: region'))",
+    "duration": 6.54
+  },
+  "spider_val_0816": {
+    "item_id": "spider_val_0816",
+    "passed_v11": false,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Columns: ['Language']\\n('Papiamento',)\\n('Pashto',)\\n('Ovimbundu',)\\n('English',)\\n('Albaniana',)\\n('Spanish',)\\n('Papiamento',)\\n('Arabic',)\\n('Spanish',)\\n('Armenian',)\\n...[231 more rows]\")",
+    "sample_vals": [
+      "(True, \"Columns: ['Country', 'Language']\\n('Aruba', 'Papiamento')\\n('Afghanistan', 'Pashto')\\n('Angola', 'Ovimbundu')\\n('Anguilla', 'English')\\n('Albania', 'Albaniana')\\n('Andorra', 'Spanish')\\n('Netherlands Antilles', 'Papiamento')\\n('United Arab Emirates', 'Arabic')\\n('Argentina', 'Spanish')\\n('Armenia', 'Armenian')\\n...[231 more rows]\")",
+      "(True, \"Columns: ['Language']\\n('Papiamento',)\\n('Pashto',)\\n('Ovimbundu',)\\n('English',)\\n('Albaniana',)\\n('Spanish',)\\n('Papiamento',)\\n('Arabic',)\\n('Spanish',)\\n('Armenian',)\\n...[231 more rows]\")",
+      "(True, \"Columns: ['Language']\\n('Papiamento',)\\n('Pashto',)\\n('Ovimbundu',)\\n('English',)\\n('Albaniana',)\\n('Spanish',)\\n('Papiamento',)\\n('Arabic',)\\n('Spanish',)\\n('Armenian',)\\n...[231 more rows]\")"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 ((True, \"Columns: ['Country', 'Language']\\n('Aruba', 'Papiamento')\\n('Afghanistan', 'Pashto')\\n('Angola', 'Ovimbundu')\\n('Anguilla', 'English')\\n('Albania', 'Albaniana')\\n('Andorra', 'Spanish')\\n('Netherlands Antilles', 'Papiamento')\\n('United Arab Emirates', 'Arabic')\\n('Argentina', 'Spanish')\\n('Armenia', 'Armenian')\\n...[231 more rows]\")) != Greedy ((True, \"Columns: ['Language']\\n('Papiamento',)\\n('Pashto',)\\n('Ovimbundu',)\\n('English',)\\n('Albaniana',)\\n('Spanish',)\\n('Papiamento',)\\n('Arabic',)\\n('Spanish',)\\n('Armenian',)\\n...[231 more rows]\"))",
+    "duration": 2.68
+  },
+  "spider_val_0180": {
+    "item_id": "spider_val_0180",
+    "passed_v11": true,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Result: USA (raw: [('USA',)])\")",
+    "sample_vals": [
+      "(True, 'Empty result (0 rows returned).')",
+      "(True, \"Result: USA (raw: [('USA',)])\")",
+      "(True, 'Empty result (0 rows returned).')"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 ((True, 'Empty result (0 rows returned).')) != Greedy ((True, \"Result: USA (raw: [('USA',)])\"))",
+    "duration": 1.37
+  },
+  "spider_val_0710": {
+    "item_id": "spider_val_0710",
+    "passed_v11": true,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Result: Southern and Central Asia (raw: [('Southern and Central Asia',)])\")",
+    "sample_vals": [
+      "(True, \"Result: Southern and Central Asia (raw: [('Southern and Central Asia',)])\")",
+      "(True, \"Result: Southern and Central Asia (raw: [('Southern and Central Asia',)])\")",
+      "(True, \"Result: Southern and Central Asia (raw: [('Southern and Central Asia',)])\")"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 3.09
+  },
+  "spider_val_0797": {
+    "item_id": "spider_val_0797",
+    "passed_v11": false,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Columns: ['GovernmentForm', 'TotalPopulation']\\n('Commonwealth of the US', 8206000)\\n('Constitutional Monarchy', 1304874300)\\n('Constitutional Monarchy (Emirate)', 3944000)\\n('Constitutional Monarchy, Federation', 586286000)\\n('Dependent Territory of the UK', 216000)\\n('Emirate Federation', 4882000)\\n('Federal Republic', 4145452600)\\n('Federation', 28641600)\\n('Monarchy', 1198000)\\n('Monarchy (Emirate)', 1234000)\\n...[12 more rows]\")",
+    "sample_vals": [
+      "(True, \"Columns: ['GovernmentForm', 'TotalPopulation']\\n('Constitutional Monarchy', 291502300)\\n('Constitutional Monarchy (Emirate)', 1972000)\\n('Constitutional Monarchy, Federation', 18886000)\\n('Dependent Territory of the UK', 90000)\\n('Nonmetropolitan Territory of The Netherlands', 320000)\\n('Overseas Department of France', 1731000)\\n('Part of Denmark', 99000)\\n('Socialistic Republic', 115072000)\\n('Socialistic State', 5605000)\\n('Special Administrative Region of China', 7255000)\\n...[1 more rows]\")",
+      "(False, 'ERROR: unrecognized token: \":\"')",
+      "(True, \"Columns: ['GovernmentForm', 'TotalPopulation']\\n('Commonwealth of the US', 8206000)\\n('Constitutional Monarchy', 1961477300)\\n('Constitutional Monarchy (Emirate)', 3944000)\\n('Constitutional Monarchy, Federation', 719750000)\\n('Dependent Territory of the UK', 218050)\\n('Emirate Federation', 4882000)\\n('Federation', 28641600)\\n('Monarchy (Emirate)', 1234000)\\n('Monarchy (Sultanate)', 6396000)\\n('Nonmetropolitan Territory of France', 1377000)\\n...[7 more rows]\")"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 ((True, \"Columns: ['GovernmentForm', 'TotalPopulation']\\n('Constitutional Monarchy', 291502300)\\n('Constitutional Monarchy (Emirate)', 1972000)\\n('Constitutional Monarchy, Federation', 18886000)\\n('Dependent Territory of the UK', 90000)\\n('Nonmetropolitan Territory of The Netherlands', 320000)\\n('Overseas Department of France', 1731000)\\n('Part of Denmark', 99000)\\n('Socialistic Republic', 115072000)\\n('Socialistic State', 5605000)\\n('Special Administrative Region of China', 7255000)\\n...[1 more rows]\")) != Greedy ((True, \"Columns: ['GovernmentForm', 'TotalPopulation']\\n('Commonwealth of the US', 8206000)\\n('Constitutional Monarchy', 1304874300)\\n('Constitutional Monarchy (Emirate)', 3944000)\\n('Constitutional Monarchy, Federation', 586286000)\\n('Dependent Territory of the UK', 216000)\\n('Emirate Federation', 4882000)\\n('Federal Republic', 4145452600)\\n('Federation', 28641600)\\n('Monarchy', 1198000)\\n('Monarchy (Emirate)', 1234000)\\n...[12 more rows]\"))",
+    "duration": 3.86
+  },
+  "spider_val_0263": {
+    "item_id": "spider_val_0263",
+    "passed_v11": true,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Columns: ['City', 'Number_of_Employees']\\n('Bath', 3)\\n('Bristol', 3)\\n('Leicester', 1)\\n('Sale', 1)\\n('Wasps', 2)\")",
+    "sample_vals": [
+      "(True, \"Columns: ['City', 'Number_of_Employees']\\n('Bath', 3)\\n('Bristol', 3)\\n('Leicester', 1)\\n('Sale', 1)\\n('Wasps', 2)\")",
+      "(True, \"Columns: ['City', 'Number_of_Employees']\\n('Bath', 3)\\n('Bristol', 3)\\n('Leicester', 1)\\n('Sale', 1)\\n('Wasps', 2)\")",
+      "(True, \"Columns: ['City', 'Num_Employees']\\n('Bath', 3)\\n('Bristol', 3)\\n('Leicester', 1)\\n('Sale', 1)\\n('Wasps', 2)\")"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 2 ((True, \"Columns: ['City', 'Num_Employees']\\n('Bath', 3)\\n('Bristol', 3)\\n('Leicester', 1)\\n('Sale', 1)\\n('Wasps', 2)\")) != Greedy ((True, \"Columns: ['City', 'Number_of_Employees']\\n('Bath', 3)\\n('Bristol', 3)\\n('Leicester', 1)\\n('Sale', 1)\\n('Wasps', 2)\"))",
+    "duration": 1.94
+  },
+  "spider_val_0646": {
+    "item_id": "spider_val_0646",
+    "passed_v11": false,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Columns: ['Package_Option']\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('no ( FTV )',)\\n('Sky Famiglia + Sky HD',)\\n('no ( FTV )',)\\n...[4 more rows]\")",
+    "sample_vals": [
+      "(True, 'Empty result (0 rows returned).')",
+      "(True, 'Empty result (0 rows returned).')",
+      "(True, \"Columns: ['Package_Option']\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('no ( FTV )',)\\n('Sky Famiglia + Sky HD',)\\n('no ( FTV )',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n...[1 more rows]\")"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 ((True, 'Empty result (0 rows returned).')) != Greedy ((True, \"Columns: ['Package_Option']\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('Sky Famiglia',)\\n('no ( FTV )',)\\n('Sky Famiglia + Sky HD',)\\n('no ( FTV )',)\\n...[4 more rows]\"))",
+    "duration": 3.29
+  },
+  "spider_val_0776": {
+    "item_id": "spider_val_0776",
+    "passed_v11": false,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Columns: ['Name']\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('China',)\\n('China',)\\n('China',)\\n...[44 more rows]\")",
+    "sample_vals": [
+      "(True, \"Columns: ['Name']\\n('Bangladesh',)\\n('China',)\\n('Indonesia',)\\n('India',)\\n('Japan',)\\n('Pakistan',)\")",
+      "(True, \"Columns: ['Name']\\n('Bangladesh',)\\n('China',)\\n('Indonesia',)\\n('India',)\\n('Japan',)\\n('Pakistan',)\")",
+      "(True, \"Columns: ['Name']\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('China',)\\n('China',)\\n('China',)\\n...[44 more rows]\")"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 ((True, \"Columns: ['Name']\\n('Bangladesh',)\\n('China',)\\n('Indonesia',)\\n('India',)\\n('Japan',)\\n('Pakistan',)\")) != Greedy ((True, \"Columns: ['Name']\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('Bangladesh',)\\n('China',)\\n('China',)\\n('China',)\\n...[44 more rows]\"))",
+    "duration": 4.24
+  },
+  "spider_val_0242": {
+    "item_id": "spider_val_0242",
+    "passed_v11": true,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Columns: ['Airline']\\n('AirTran Airways',)\\n('Allegiant Air',)\\n('American Airlines',)\\n('Continental Airlines',)\\n('Delta Airlines',)\\n('Frontier Airlines',)\\n('JetBlue Airways',)\\n('Northwest Airlines',)\\n('Southwest Airlines',)\\n('US Airways',)\\n...[2 more rows]\")",
+    "sample_vals": [
+      "(True, \"Columns: ['Airline']\\n('AirTran Airways',)\\n('Allegiant Air',)\\n('American Airlines',)\\n('Continental Airlines',)\\n('Delta Airlines',)\\n('Frontier Airlines',)\\n('JetBlue Airways',)\\n('Northwest Airlines',)\\n('Southwest Airlines',)\\n('US Airways',)\\n...[2 more rows]\")",
+      "(True, \"Columns: ['Airline']\\n('AirTran Airways',)\\n('Allegiant Air',)\\n('American Airlines',)\\n('Continental Airlines',)\\n('Delta Airlines',)\\n('Frontier Airlines',)\\n('JetBlue Airways',)\\n('Northwest Airlines',)\\n('Southwest Airlines',)\\n('US Airways',)\\n...[2 more rows]\")",
+      "(True, 'Empty result (0 rows returned).')"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 2 ((True, 'Empty result (0 rows returned).')) != Greedy ((True, \"Columns: ['Airline']\\n('AirTran Airways',)\\n('Allegiant Air',)\\n('American Airlines',)\\n('Continental Airlines',)\\n('Delta Airlines',)\\n('Frontier Airlines',)\\n('JetBlue Airways',)\\n('Northwest Airlines',)\\n('Southwest Airlines',)\\n('US Airways',)\\n...[2 more rows]\"))",
+    "duration": 3.26
+  },
+  "spider_val_0475": {
+    "item_id": "spider_val_0475",
+    "passed_v11": true,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Result: USA (raw: [('USA',)])\")",
+    "sample_vals": [
+      "(True, \"Result: USA (raw: [('USA',)])\")",
+      "(True, \"Result: USA (raw: [('USA',)])\")",
+      "(True, \"Result: USA (raw: [('USA',)])\")"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 2.48
+  },
+  "spider_val_0042": {
+    "item_id": "spider_val_0042",
+    "passed_v11": false,
+    "task_type": "sql",
+    "greedy_val": "(False, 'ERROR: no such column: sic1.Year')",
+    "sample_vals": [
+      "(True, \"Columns: ['Name', 'Location']\\n('Somerset Park', 'Ayr United')\")",
+      "(False, 'ERROR: no such column: sic2.Year')",
+      "(True, 'Columns: [\\'Name\\', \\'Location\\']\\n(\"Stark\\'s Park\", \\'Raith Rovers\\')\\n(\\'Somerset Park\\', \\'Ayr United\\')\\n(\\'Glebe Park\\', \\'Brechin City\\')\\n(\\'Balmoor\\', \\'Peterhead\\')\\n(\\'Recreation Park\\', \\'Alloa Athletic\\')')"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 ((True, \"Columns: ['Name', 'Location']\\n('Somerset Park', 'Ayr United')\")) != Greedy ((False, 'ERROR: no such column: sic1.Year'))",
+    "duration": 7.66
+  },
+  "spider_val_0936": {
+    "item_id": "spider_val_0936",
+    "passed_v11": true,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Columns: ['owner_id', 'last_name']\\n(14, 'Funk')\")",
+    "sample_vals": [
+      "(True, \"Columns: ['owner_id', 'last_name']\\n(14, 'Funk')\")",
+      "(True, \"Columns: ['owner_id', 'last_name']\\n(14, 'Funk')\")",
+      "(True, \"Columns: ['owner_id', 'last_name']\\n(14, 'Funk')\")"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.99
+  },
+  "spider_val_0705": {
+    "item_id": "spider_val_0705",
+    "passed_v11": true,
+    "task_type": "sql",
+    "greedy_val": "(True, 'Result: 122 (raw: [(122,)])')",
+    "sample_vals": [
+      "(True, 'Result: 122 (raw: [(122,)])')",
+      "(True, 'Result: 122 (raw: [(122,)])')",
+      "(True, 'Result: 122 (raw: [(122,)])')"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 1.14
+  },
+  "spider_val_0009": {
+    "item_id": "spider_val_0009",
+    "passed_v11": false,
+    "task_type": "sql",
+    "greedy_val": "(True, \"Columns: ['Country']\\n('United States',)\\n('France',)\")",
+    "sample_vals": [
+      "(True, \"Columns: ['Country']\\n('Netherlands',)\\n('United States',)\\n('France',)\")",
+      "(True, \"Columns: ['Country']\\n('United States',)\\n('France',)\")",
+      "(True, \"Columns: ['Country']\\n('Netherlands',)\\n('United States',)\\n('France',)\")"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 ((True, \"Columns: ['Country']\\n('Netherlands',)\\n('United States',)\\n('France',)\")) != Greedy ((True, \"Columns: ['Country']\\n('United States',)\\n('France',)\"))",
+    "duration": 1.54
+  },
+  "NYSEDREGENTS_2014_4_22": {
+    "item_id": "NYSEDREGENTS_2014_4_22",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "A",
+    "sample_vals": [
+      "A",
+      "A",
+      "A"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 2.53
+  },
+  "Mercury_7018008": {
+    "item_id": "Mercury_7018008",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "A",
+    "sample_vals": [
+      "A",
+      "A",
+      "A"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 3.62
+  },
+  "Mercury_7081760": {
+    "item_id": "Mercury_7081760",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "B",
+    "sample_vals": [
+      "B",
+      "B",
+      "B"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 2.46
+  },
+  "Mercury_SC_408700": {
+    "item_id": "Mercury_SC_408700",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "C",
+    "sample_vals": [
+      "C",
+      "C",
+      "C"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 1.68
+  },
+  "LEAP_2006_8_10412": {
+    "item_id": "LEAP_2006_8_10412",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "B",
+    "sample_vals": [
+      "B",
+      "B",
+      "B"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 0.94
+  },
+  "Mercury_7099768": {
+    "item_id": "Mercury_7099768",
+    "passed_v11": false,
+    "task_type": "qa",
+    "greedy_val": "A",
+    "sample_vals": [
+      "D",
+      "D",
+      "A"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (D) != Greedy (A)",
+    "duration": 1.1
+  },
+  "TIMSS_2007_4_pg26": {
+    "item_id": "TIMSS_2007_4_pg26",
+    "passed_v11": false,
+    "task_type": "qa",
+    "greedy_val": "D",
+    "sample_vals": [
+      "A",
+      "C",
+      "B"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (A) != Greedy (D)",
+    "duration": 2.31
+  },
+  "Mercury_7205135": {
+    "item_id": "Mercury_7205135",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "C",
+    "sample_vals": [
+      "C",
+      "C",
+      "C"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 5.75
+  },
+  "MEA_2013_5_3": {
+    "item_id": "MEA_2013_5_3",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "D",
+    "sample_vals": [
+      "D",
+      "D",
+      "D"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 0.95
+  },
+  "Mercury_7183733": {
+    "item_id": "Mercury_7183733",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "B",
+    "sample_vals": [
+      "B",
+      "B",
+      "B"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 5.26
+  },
+  "Mercury_7130603": {
+    "item_id": "Mercury_7130603",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "C",
+    "sample_vals": [
+      "A",
+      "B",
+      "D"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (A) != Greedy (C)",
+    "duration": 5.33
+  },
+  "MEAP_2005_5_1": {
+    "item_id": "MEAP_2005_5_1",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "C",
+    "sample_vals": [
+      "C",
+      "C",
+      "C"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 2.3
+  },
+  "Mercury_7236023": {
+    "item_id": "Mercury_7236023",
+    "passed_v11": false,
+    "task_type": "qa",
+    "greedy_val": "D",
+    "sample_vals": [
+      "B",
+      "D",
+      "D"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (B) != Greedy (D)",
+    "duration": 6.25
+  },
+  "Mercury_SC_402104": {
+    "item_id": "Mercury_SC_402104",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "D",
+    "sample_vals": [
+      "D",
+      "D",
+      "D"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.6
+  },
+  "Mercury_7124338": {
+    "item_id": "Mercury_7124338",
+    "passed_v11": true,
+    "task_type": "qa",
+    "greedy_val": "D",
+    "sample_vals": [
+      "D",
+      "D",
+      "D"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 1.97
+  },
+  "HumanEval/2": {
+    "item_id": "HumanEval/2",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.39
+  },
+  "HumanEval/25": {
+    "item_id": "HumanEval/25",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 7.37
+  },
+  "HumanEval/133": {
+    "item_id": "HumanEval/133",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 2.5
+  },
+  "HumanEval/17": {
+    "item_id": "HumanEval/17",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "False",
+      "False"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (False) != Greedy (True)",
+    "duration": 11.6
+  },
+  "HumanEval/144": {
+    "item_id": "HumanEval/144",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "False",
+      "False",
+      "True"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (False) != Greedy (True)",
+    "duration": 7.66
+  },
+  "HumanEval/76": {
+    "item_id": "HumanEval/76",
+    "passed_v11": false,
+    "task_type": "code",
+    "greedy_val": "False",
+    "sample_vals": [
+      "False",
+      "False",
+      "False"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 3.95
+  },
+  "HumanEval/28": {
+    "item_id": "HumanEval/28",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 2.57
+  },
+  "HumanEval/33": {
+    "item_id": "HumanEval/33",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "False",
+      "True"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (False) != Greedy (True)",
+    "duration": 9.57
+  },
+  "HumanEval/73": {
+    "item_id": "HumanEval/73",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 6.96
+  },
+  "HumanEval/36": {
+    "item_id": "HumanEval/36",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 6.68
+  },
+  "HumanEval/35": {
+    "item_id": "HumanEval/35",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 6.34
+  },
+  "HumanEval/46": {
+    "item_id": "HumanEval/46",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 10.81
+  },
+  "HumanEval/48": {
+    "item_id": "HumanEval/48",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 5.04
+  },
+  "HumanEval/127": {
+    "item_id": "HumanEval/127",
+    "passed_v11": false,
+    "task_type": "code",
+    "greedy_val": "False",
+    "sample_vals": [
+      "False",
+      "True",
+      "False"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (True) != Greedy (False)",
+    "duration": 15.89
+  },
+  "HumanEval/147": {
+    "item_id": "HumanEval/147",
+    "passed_v11": true,
+    "task_type": "code",
+    "greedy_val": "True",
+    "sample_vals": [
+      "True",
+      "True",
+      "True"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 10.34
+  },
+  "gsm8k_test_0530": {
+    "item_id": "gsm8k_test_0530",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "36",
+    "sample_vals": [
+      "36",
+      "40",
+      "40"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (40) != Greedy (36)",
+    "duration": 8.92
+  },
+  "gsm8k_test_0625": {
+    "item_id": "gsm8k_test_0625",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "160",
+    "sample_vals": [
+      "160",
+      "160",
+      "160"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 6.7
+  },
+  "gsm8k_test_0987": {
+    "item_id": "gsm8k_test_0987",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "3",
+    "sample_vals": [
+      "3",
+      "3",
+      "3"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 12.28
+  },
+  "gsm8k_test_0003": {
+    "item_id": "gsm8k_test_0003",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "540",
+    "sample_vals": [
+      "540",
+      "540",
+      "540"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.72
+  },
+  "gsm8k_test_0616": {
+    "item_id": "gsm8k_test_0616",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "10",
+    "sample_vals": [
+      "10",
+      "10",
+      "10"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.9
+  },
+  "gsm8k_test_0612": {
+    "item_id": "gsm8k_test_0612",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "30",
+    "sample_vals": [
+      "30",
+      "30",
+      "30"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 6.05
+  },
+  "gsm8k_test_0089": {
+    "item_id": "gsm8k_test_0089",
+    "passed_v11": false,
+    "task_type": "math",
+    "greedy_val": "18",
+    "sample_vals": [
+      "18",
+      "18",
+      "18"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 8.24
+  },
+  "gsm8k_test_0973": {
+    "item_id": "gsm8k_test_0973",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "79",
+    "sample_vals": [
+      "79",
+      "79",
+      "79"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.81
+  },
+  "gsm8k_test_0827": {
+    "item_id": "gsm8k_test_0827",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "11",
+    "sample_vals": [
+      "11",
+      "11",
+      "11"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 6.78
+  },
+  "gsm8k_test_0401": {
+    "item_id": "gsm8k_test_0401",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "14400",
+    "sample_vals": [
+      "14400",
+      "14400",
+      "14400"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 6.46
+  },
+  "gsm8k_test_0727": {
+    "item_id": "gsm8k_test_0727",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "112",
+    "sample_vals": [
+      "112",
+      "112",
+      "112"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 10.64
+  },
+  "gsm8k_test_1064": {
+    "item_id": "gsm8k_test_1064",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "247",
+    "sample_vals": [
+      "247",
+      "247",
+      "247"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 5.85
+  },
+  "gsm8k_test_0174": {
+    "item_id": "gsm8k_test_0174",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "95",
+    "sample_vals": [
+      "95",
+      "1",
+      "95"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (1) != Greedy (95)",
+    "duration": 9.06
+  },
+  "gsm8k_test_1261": {
+    "item_id": "gsm8k_test_1261",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "235",
+    "sample_vals": [
+      "235",
+      "235",
+      "235"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 9.51
+  },
+  "gsm8k_test_0648": {
+    "item_id": "gsm8k_test_0648",
+    "passed_v11": true,
+    "task_type": "math",
+    "greedy_val": "54",
+    "sample_vals": [
+      "54",
+      "54",
+      "54"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 6.75
+  },
+  "compound_dev_v2_0001": {
+    "item_id": "compound_dev_v2_0001",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "185",
+    "sample_vals": [
+      "3",
+      "1",
+      "70"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (3) != Greedy (185)",
+    "duration": 31.74
+  },
+  "compound_dev_v2_0002": {
+    "item_id": "compound_dev_v2_0002",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "15515",
+    "sample_vals": [
+      "26",
+      "2198",
+      "15"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (26) != Greedy (15515)",
+    "duration": 32.19
+  },
+  "compound_dev_v2_0003": {
+    "item_id": "compound_dev_v2_0003",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "228",
+    "sample_vals": [
+      "11561",
+      "1240",
+      "11"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (11561) != Greedy (228)",
+    "duration": 24.93
+  },
+  "compound_dev_v2_0004": {
+    "item_id": "compound_dev_v2_0004",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "16325",
+    "sample_vals": [
+      "39275",
+      "91805",
+      "12925"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (39275) != Greedy (16325)",
+    "duration": 16.93
+  },
+  "compound_dev_v2_0005": {
+    "item_id": "compound_dev_v2_0005",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "50",
+    "sample_vals": [
+      "3",
+      "32",
+      "50"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (3) != Greedy (50)",
+    "duration": 29.84
+  },
+  "compound_dev_v2_0006": {
+    "item_id": "compound_dev_v2_0006",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "122",
+    "sample_vals": [
+      "100",
+      "35",
+      "3"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (100) != Greedy (122)",
+    "duration": 24.27
+  },
+  "compound_dev_v2_0007": {
+    "item_id": "compound_dev_v2_0007",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "231",
+    "sample_vals": [
+      "1",
+      "911",
+      "4"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (1) != Greedy (231)",
+    "duration": 18.04
+  },
+  "compound_dev_v2_0008": {
+    "item_id": "compound_dev_v2_0008",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "12",
+    "sample_vals": [
+      "75",
+      "125",
+      "1"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (75) != Greedy (12)",
+    "duration": 25.25
+  },
+  "compound_dev_v2_0009": {
+    "item_id": "compound_dev_v2_0009",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "114",
+    "sample_vals": [
+      "-72",
+      "-4",
+      "-6"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (-72) != Greedy (114)",
+    "duration": 16.37
+  },
+  "compound_dev_v2_0010": {
+    "item_id": "compound_dev_v2_0010",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "3",
+    "sample_vals": [
+      "96",
+      "3",
+      "48016"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (96) != Greedy (3)",
+    "duration": 25.39
+  },
+  "compound_dev_v2_0011": {
+    "item_id": "compound_dev_v2_0011",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "Let's break down the problem step by step:\n\n1. Query the count of flights with `distance_km` strictl",
+    "sample_vals": [
+      "Let's solve the problem step by step:\n\n1. Count the flights with `distance_km` strictly greater than",
+      "Let's break down the problem step by step.\n\n1. First, we need to filter the flights based on the giv",
+      "Let's break down the problem into smaller steps:\n\n1. Filter flights that have a `distance_km` strict"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (Let's solve the problem step by step:\n\n1. Count the flights with `distance_km` strictly greater than) != Greedy (Let's break down the problem step by step:\n\n1. Query the count of flights with `distance_km` strictl)",
+    "duration": 20.82
+  },
+  "compound_dev_v2_0012": {
+    "item_id": "compound_dev_v2_0012",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "Let's break down the problem step by step:\n\n1. Calculate the number of containers rejected during sa",
+    "sample_vals": [
+      "First, let's break down the steps to calculate the total handling and storage cost for the logistics",
+      "Let's break down the problem step by step:\n\n1. Calculate the number of containers rejected during sa",
+      "Let's break down this problem step by step:\n\n1. Calculate the number of containers rejected during s"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (First, let's break down the steps to calculate the total handling and storage cost for the logistics) != Greedy (Let's break down the problem step by step:\n\n1. Calculate the number of containers rejected during sa)",
+    "duration": 24.4
+  },
+  "compound_dev_v2_0013": {
+    "item_id": "compound_dev_v2_0013",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "Let's solve this step by step:\n\n1. Initialize seed state X_0 = 23.\n\n2. Update successive states acco",
+    "sample_vals": [
+      "Let's compute the value of generated state X_6 step by step.\n\n1. X_0 = 23 (given)\n2. X_1 = (13 * X_0",
+      "Step 1: Compute X_1 to X_6 using the given congruence.\n\nWe are given that X_0 = 23 and X_(n+1) = (13",
+      "Let's solve this step by step.\n\n1. Compute the value of generated state X_6 using the given congruen"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (Let's compute the value of generated state X_6 step by step.\n\n1. X_0 = 23 (given)\n2. X_1 = (13 * X_0) != Greedy (Let's solve this step by step:\n\n1. Initialize seed state X_0 = 23.\n\n2. Update successive states acco)",
+    "duration": 22.21
+  },
+  "compound_dev_v2_0014": {
+    "item_id": "compound_dev_v2_0014",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "755",
+    "sample_vals": [
+      "755",
+      "755",
+      "755"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 12.83
+  },
+  "compound_dev_v2_0015": {
+    "item_id": "compound_dev_v2_0015",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "Let's break down the problem step by step:\n\n1. Calculate the matured fund balance after 4 years with",
+    "sample_vals": [
+      "We will calculate the total matured fund balance first, then identify the correct fee bracket for th",
+      "Let's solve this step by step:\n\n1. First, we need to compute the matured balance of the endowment fu",
+      "To solve this problem, let's break it down into steps:\n\n1. Calculate the matured fund balance after "
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (We will calculate the total matured fund balance first, then identify the correct fee bracket for th) != Greedy (Let's break down the problem step by step:\n\n1. Calculate the matured fund balance after 4 years with)",
+    "duration": 17.53
+  },
+  "compound_dev_v2_0016": {
+    "item_id": "compound_dev_v2_0016",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "Let's break down the problem step by step:\n\n1. Query the count of substations having load_mwh strict",
+    "sample_vals": [
+      "To solve this problem, let's break it down step by step:\n\n1. Identify substations with `load_mwh` st",
+      "First, let's identify the substations that have a `load_mwh` strictly greater than 150 and a status ",
+      "Step 1: Count the number of substations with load_mwh strictly greater than 150 and status in ('WARN"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (To solve this problem, let's break it down step by step:\n\n1. Identify substations with `load_mwh` st) != Greedy (Let's break down the problem step by step:\n\n1. Query the count of substations having load_mwh strict)",
+    "duration": 11.68
+  },
+  "compound_dev_v2_0017": {
+    "item_id": "compound_dev_v2_0017",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "Let's simulate the Collatz transition sequence starting from seed integer n = 31:\n\n1. n = 31 (odd) \u2192",
+    "sample_vals": [
+      "Let's simulate the Collatz transition sequence starting from n = 31 and count the total number of tr",
+      "Let's simulate the Collatz transition sequence starting from seed integer n = 31:\n\n1. 31 (odd) \u2192 3 *",
+      "Let's simulate the Collatz transition sequence starting from n = 31:\n\n1. n = 31 (odd) \u2192 3 * 31 + 1 ="
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (Let's simulate the Collatz transition sequence starting from n = 31 and count the total number of tr) != Greedy (Let's simulate the Collatz transition sequence starting from seed integer n = 31:\n\n1. n = 31 (odd) \u2192)",
+    "duration": 37.91
+  },
+  "compound_dev_v2_0018": {
+    "item_id": "compound_dev_v2_0018",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "Step 1: Calculate the number of micro-sensors discarded during quality control.\nDiscarded sensors = ",
+    "sample_vals": [
+      "Let's break down the problem step by step:\n\n1. Calculate the number of sensors discarded during qual",
+      "Let's break this problem down into smaller steps:\n\n1. Determine the number of sensors discarded duri",
+      "Let's break down the problem step by step:\n\n1. Calculate the number of micro-sensors discarded durin"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (Let's break down the problem step by step:\n\n1. Calculate the number of sensors discarded during qual) != Greedy (Step 1: Calculate the number of micro-sensors discarded during quality control.\nDiscarded sensors = )",
+    "duration": 16.9
+  },
+  "compound_dev_v2_0019": {
+    "item_id": "compound_dev_v2_0019",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "Let's break down the problem step by step:\n\n1. Query the count of bids where amount is strictly grea",
+    "sample_vals": [
+      "Let's follow the steps outlined in the problem statement to solve it:\n\n1. Count the number of verifi",
+      "Let's break down the problem step by step:\n\n1. Count the number of bids with amount > 200 and verifi",
+      "Let's break down the problem step by step:\n\n1. We are given a list of 8 auction offers with three at"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (Let's follow the steps outlined in the problem statement to solve it:\n\n1. Count the number of verifi) != Greedy (Let's break down the problem step by step:\n\n1. Query the count of bids where amount is strictly grea)",
+    "duration": 20.08
+  },
+  "compound_dev_v2_0020": {
+    "item_id": "compound_dev_v2_0020",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "Let's solve this step by step:\n\n1. Calculate the final position of the drone after traversing all ei",
+    "sample_vals": [
+      "To solve this problem step by step, we'll follow these steps:\n\n1. Calculate the final position of th",
+      "Step 1: Compute the final coordinates of the drone.\nWe start at the origin (0, 0) and add the displa",
+      "Let's break down the problem step by step.\n\n1. First, we need to determine the final position of the"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (To solve this problem step by step, we'll follow these steps:\n\n1. Calculate the final position of th) != Greedy (Let's solve this step by step:\n\n1. Calculate the final position of the drone after traversing all ei)",
+    "duration": 16.32
+  },
+  "compound_dev_v2_0021": {
+    "item_id": "compound_dev_v2_0021",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "196350",
+    "sample_vals": [
+      "2",
+      "5895",
+      "660"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (2) != Greedy (196350)",
+    "duration": 17.78
+  },
+  "compound_dev_v2_0022": {
+    "item_id": "compound_dev_v2_0022",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "19",
+    "sample_vals": [
+      "4",
+      "47",
+      "1"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (4) != Greedy (19)",
+    "duration": 35.7
+  },
+  "compound_dev_v2_0023": {
+    "item_id": "compound_dev_v2_0023",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "125",
+    "sample_vals": [
+      "0",
+      "250",
+      "1250"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (0) != Greedy (125)",
+    "duration": 17.4
+  },
+  "compound_dev_v2_0024": {
+    "item_id": "compound_dev_v2_0024",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "45",
+    "sample_vals": [
+      "4",
+      "4",
+      "10"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (4) != Greedy (45)",
+    "duration": 24.63
+  },
+  "compound_dev_v2_0025": {
+    "item_id": "compound_dev_v2_0025",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "3432",
+    "sample_vals": [
+      "5",
+      "5",
+      "11"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (5) != Greedy (3432)",
+    "duration": 27.53
+  },
+  "compound_dev_v2_0026": {
+    "item_id": "compound_dev_v2_0026",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "362880",
+    "sample_vals": [
+      "10",
+      "5",
+      "1"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (10) != Greedy (362880)",
+    "duration": 16.75
+  },
+  "compound_dev_v2_0027": {
+    "item_id": "compound_dev_v2_0027",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "0",
+    "sample_vals": [
+      "16",
+      "16",
+      "2015"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (16) != Greedy (0)",
+    "duration": 19.21
+  },
+  "compound_dev_v2_0028": {
+    "item_id": "compound_dev_v2_0028",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "784",
+    "sample_vals": [
+      "36",
+      "36",
+      "225"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (36) != Greedy (784)",
+    "duration": 11.15
+  },
+  "compound_dev_v2_0029": {
+    "item_id": "compound_dev_v2_0029",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "0",
+    "sample_vals": [
+      "1950",
+      "1950",
+      "10"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (1950) != Greedy (0)",
+    "duration": 17.02
+  },
+  "compound_dev_v2_0030": {
+    "item_id": "compound_dev_v2_0030",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "16",
+    "sample_vals": [
+      "1",
+      "1",
+      "1"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (1) != Greedy (16)",
+    "duration": 22.26
+  },
+  "compound_dev_v2_0031": {
+    "item_id": "compound_dev_v2_0031",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "227",
+    "sample_vals": [
+      "0",
+      "0",
+      "184"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (0) != Greedy (227)",
+    "duration": 17.52
+  },
+  "compound_dev_v2_0032": {
+    "item_id": "compound_dev_v2_0032",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "Let's break down the problem step by step:\n\n1. Determine the total number of matches played in the l",
+    "sample_vals": [
+      "To solve this problem, we need to calculate the total number of matches played in the season and the",
+      "Step 1: Determine the total number of matches in the league.\n\nSince there are 10 teams in the league",
+      "Let's start by calculating the total number of matches that will be played in the season. In a 10-te"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (To solve this problem, we need to calculate the total number of matches played in the season and the) != Greedy (Let's break down the problem step by step:\n\n1. Determine the total number of matches played in the l)",
+    "duration": 17.38
+  },
+  "compound_dev_v2_0033": {
+    "item_id": "compound_dev_v2_0033",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "Let's break down the problem step by step:\n\n1. First, we need to compress the given character sequen",
+    "sample_vals": [
+      "First, let's compress the character sequence 'WWWWXXYYYYYYZZZZZZZZ' using run-length encoding.\n\nThe ",
+      "First, let's compress the character sequence 'WWWWXXYYYYYYZZZZZZZZ' using run-length encoding. We co",
+      "Let's break this problem down step by step.\n\nFirst, we need to compress the given character sequence"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (First, let's compress the character sequence 'WWWWXXYYYYYYZZZZZZZZ' using run-length encoding.\n\nThe ) != Greedy (Let's break down the problem step by step:\n\n1. First, we need to compress the given character sequen)",
+    "duration": 14.57
+  },
+  "compound_dev_v2_0034": {
+    "item_id": "compound_dev_v2_0034",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "Let's solve this step by step using the Chinese Remainder Theorem (CRT).\n\nWe are given three congrue",
+    "sample_vals": [
+      "Step 1: Set up the problem\nWe need to find the smallest positive integer N that satisfies the follow",
+      "Let's solve this step by step.\n\nStep 1: Find the smallest positive integer N that satisfies the give",
+      "Step 1: Set up the given conditions as congruences.\nN \u2261 1 (mod 4)\nN \u2261 3 (mod 7)\nN \u2261 5 (mod 9)\n\nStep "
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (Step 1: Set up the problem\nWe need to find the smallest positive integer N that satisfies the follow) != Greedy (Let's solve this step by step using the Chinese Remainder Theorem (CRT).\n\nWe are given three congrue)",
+    "duration": 33.45
+  },
+  "compound_dev_v2_0035": {
+    "item_id": "compound_dev_v2_0035",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "To solve this problem, we need to follow these steps:\n\n1. Calculate the final position of the vehicl",
+    "sample_vals": [
+      "To find the final Manhattan distance of the vehicle from the origin, we first need to calculate the ",
+      "Step 1: Calculate the final coordinates of the vehicle after executing all the displacement vectors.",
+      "Step 1: Calculate the final coordinates after executing all displacement vectors.\n\nStarting at (0, 0"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (To find the final Manhattan distance of the vehicle from the origin, we first need to calculate the ) != Greedy (To solve this problem, we need to follow these steps:\n\n1. Calculate the final position of the vehicl)",
+    "duration": 15.14
+  },
+  "compound_dev_v2_0036": {
+    "item_id": "compound_dev_v2_0036",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "To solve this problem, we need to follow these steps:\n\n1. Filter the transactions to include only th",
+    "sample_vals": [
+      "To solve this problem, we need to first calculate the total gross revenue generated exclusively from",
+      "To solve this problem, we need to follow these steps:\n\n1. Query the total gross revenue generated ex",
+      "We need to compute the net author royalty for 'SciFi' books from the given table entries.\n\n1. Query "
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (To solve this problem, we need to first calculate the total gross revenue generated exclusively from) != Greedy (To solve this problem, we need to follow these steps:\n\n1. Filter the transactions to include only th)",
+    "duration": 12.42
+  },
+  "compound_dev_v2_0037": {
+    "item_id": "compound_dev_v2_0037",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "Let's break down the problem step by step:\n\n1. Calculate the number of apples discarded due to blemi",
+    "sample_vals": [
+      "Step 1: Calculate the number of apples discarded due to blemishes.\nApples discarded = 10% of 450 = 0",
+      "Step 1: Calculate the number of apples discarded due to blemishes.\nThe orchard discards 10% of 450 a",
+      "Let's solve this step by step:\n\n1. Calculate the number of apples discarded due to blemishes:\n   10%"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (Step 1: Calculate the number of apples discarded due to blemishes.\nApples discarded = 10% of 450 = 0) != Greedy (Let's break down the problem step by step:\n\n1. Calculate the number of apples discarded due to blemi)",
+    "duration": 10.9
+  },
+  "compound_dev_v2_0038": {
+    "item_id": "compound_dev_v2_0038",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "Let's simulate the Collatz sequence for n = 19 step by step:\n\n1. n = 19 (odd) \u2192 3 * 19 + 1 = 58\n2. n",
+    "sample_vals": [
+      "Let's start with n = 19 and follow the Collatz sequence rules:\n\n1. 19 (odd) \u2192 3 * 19 + 1 = 58\n2. 58 ",
+      "To simulate the Collatz sequence starting with seed value n = 19, we'll follow the rules of the sequ",
+      "Let's simulate the Collatz sequence for seed value n = 19 step by step:\n\n1. n = 19 (odd, so 3 * 19 +"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (Let's start with n = 19 and follow the Collatz sequence rules:\n\n1. 19 (odd) \u2192 3 * 19 + 1 = 58\n2. 58 ) != Greedy (Let's simulate the Collatz sequence for n = 19 step by step:\n\n1. n = 19 (odd) \u2192 3 * 19 + 1 = 58\n2. n)",
+    "duration": 20.01
+  },
+  "compound_dev_v2_0039": {
+    "item_id": "compound_dev_v2_0039",
+    "passed_v11": true,
+    "task_type": "compound",
+    "greedy_val": "684",
+    "sample_vals": [
+      "684",
+      "3800",
+      "2700"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (3800) != Greedy (684)",
+    "duration": 12.26
+  },
+  "compound_dev_v2_0040": {
+    "item_id": "compound_dev_v2_0040",
+    "passed_v11": false,
+    "task_type": "compound",
+    "greedy_val": "Let's break down the problem step by step:\n\n1. We know that 50% of the pastries are croissants. Sinc",
+    "sample_vals": [
+      "Let's solve this step by step:\n\n1. Determine the total count of bran muffins baked:\n\nWe know that 50",
+      "First, let's find out the total count of each type of pastry.\n\nTotal pastries: 240\n\nCroissants: 50% ",
+      "Let's solve the problem step by step:\n\n1. We know that there are 240 assorted breakfast pastries.\n2."
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (Let's solve this step by step:\n\n1. Determine the total count of bran muffins baked:\n\nWe know that 50) != Greedy (Let's break down the problem step by step:\n\n1. We know that 50% of the pastries are croissants. Sinc)",
+    "duration": 8.76
+  },
+  "track_b_dev_0001": {
+    "item_id": "track_b_dev_0001",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['9', '731.4', '1840']",
+    "sample_vals": [
+      "['9', '731.4', '1840']",
+      "None",
+      "['9', '731.4', '1840']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 unparseable/None",
+    "duration": 3.91
+  },
+  "track_b_dev_0002": {
+    "item_id": "track_b_dev_0002",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-88', '18.6', '15', '279']",
+    "sample_vals": [
+      "['-88', '18.6', '279']",
+      "['-88', '18.6', '279']",
+      "['-88', '18.6', '279']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-88', '18.6', '279']) != Greedy (['-88', '18.6', '15', '279'])",
+    "duration": 5.95
+  },
+  "track_b_dev_0003": {
+    "item_id": "track_b_dev_0003",
+    "passed_v11": false,
+    "task_type": "track_b",
+    "greedy_val": "['-9', '12.4']",
+    "sample_vals": [
+      "['-9', '12.4']",
+      "['-9', '12.4']",
+      "['-9', '12.4']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 5.66
+  },
+  "track_b_dev_0004": {
+    "item_id": "track_b_dev_0004",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['7', '9', '14.3', '2']",
+    "sample_vals": [
+      "['7', '9', '14.3', '2']",
+      "['7', '9', '14.3', '2']",
+      "['7', '9', '14.3', '2']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.82
+  },
+  "track_b_dev_0005": {
+    "item_id": "track_b_dev_0005",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['1', '8', '864.2', '1', '864.2', '8', '412.5']",
+    "sample_vals": [
+      "['8', '412.5', '1', '864.2']",
+      "['8', '412.5', '1', '864.2']",
+      "['1', '8', '864.2']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['8', '412.5', '1', '864.2']) != Greedy (['1', '8', '864.2', '1', '864.2', '8', '412.5'])",
+    "duration": 4.84
+  },
+  "track_b_dev_0006": {
+    "item_id": "track_b_dev_0006",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['9', '731.4', '1840']",
+    "sample_vals": [
+      "['731.4', '1840']",
+      "['1840', '731.4']",
+      "['731.4', '1840']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['731.4', '1840']) != Greedy (['9', '731.4', '1840'])",
+    "duration": 4.28
+  },
+  "track_b_dev_0007": {
+    "item_id": "track_b_dev_0007",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['4', '142.5', '4', '14']",
+    "sample_vals": [
+      "['142.5', '14']",
+      "['142.5', '14']",
+      "['142.5', '14']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['142.5', '14']) != Greedy (['4', '142.5', '4', '14'])",
+    "duration": 4.9
+  },
+  "track_b_dev_0008": {
+    "item_id": "track_b_dev_0008",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['4', '142.5', '4', '14']",
+    "sample_vals": [
+      "['142.5', '14']",
+      "['142.5', '14']",
+      "['142.5', '14']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['142.5', '14']) != Greedy (['4', '142.5', '4', '14'])",
+    "duration": 2.66
+  },
+  "track_b_dev_0009": {
+    "item_id": "track_b_dev_0009",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-88', '18.6', '-88', '18.6']",
+    "sample_vals": [
+      "['-88', '18.6']",
+      "['-88', '18.6']",
+      "['-88', '18.6']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-88', '18.6']) != Greedy (['-88', '18.6', '-88', '18.6'])",
+    "duration": 4.2
+  },
+  "track_b_dev_0010": {
+    "item_id": "track_b_dev_0010",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['1', '864.2', '1', '0.0034']",
+    "sample_vals": [
+      "['864.2', '0.0034']",
+      "['864.2', '0.0034']",
+      "['1', '864.2', '1', '0.0034']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['864.2', '0.0034']) != Greedy (['1', '864.2', '1', '0.0034'])",
+    "duration": 5.23
+  },
+  "track_b_dev_0011": {
+    "item_id": "track_b_dev_0011",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['1', '0.0034', '9', '-9']",
+    "sample_vals": [
+      "['1', '0.0034', '9', '-9']",
+      "['1', '0.0034', '9', '-9']",
+      "['1', '0.0034', '9', '-9']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.58
+  },
+  "track_b_dev_0012": {
+    "item_id": "track_b_dev_0012",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['9', '12.4', '2', '912.8']",
+    "sample_vals": [
+      "['12.4', '912.8']",
+      "['9', '12.4', '2', '912.8']",
+      "['9', '12.4', '2', '912.8']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['12.4', '912.8']) != Greedy (['9', '12.4', '2', '912.8'])",
+    "duration": 5.03
+  },
+  "track_b_dev_0013": {
+    "item_id": "track_b_dev_0013",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['2', '912.8', '2', '48.2']",
+    "sample_vals": [
+      "['912.8', '48.2']",
+      "['2', '912.8', '48.2']",
+      "['912.8', '48.2']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['912.8', '48.2']) != Greedy (['2', '912.8', '2', '48.2'])",
+    "duration": 4.66
+  },
+  "track_b_dev_0014": {
+    "item_id": "track_b_dev_0014",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['7', '14.3', '2', '2', '48.2']",
+    "sample_vals": [
+      "['2', '48.2', '7', '14.3', '2']",
+      "['7', '4.2', '14.3', '2', '2', '4.2', '48.2']",
+      "['2', '48.2', '7', '14.3', '2']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['2', '48.2', '7', '14.3', '2']) != Greedy (['7', '14.3', '2', '2', '48.2'])",
+    "duration": 5.6
+  },
+  "track_b_dev_0015": {
+    "item_id": "track_b_dev_0015",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['7', '9', '1', '86.5']",
+    "sample_vals": [
+      "['7', '9', '1', '86.5']",
+      "['7', '9', '1', '86.5']",
+      "['7', '9', '1', '86.5']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.46
+  },
+  "track_b_dev_0016": {
+    "item_id": "track_b_dev_0016",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['3', '7', '3', '0.043']",
+    "sample_vals": [
+      "['7', '0.043']",
+      "['7', '0.043']",
+      "['7', '0.043']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['7', '0.043']) != Greedy (['3', '7', '3', '0.043'])",
+    "duration": 4.89
+  },
+  "track_b_dev_0017": {
+    "item_id": "track_b_dev_0017",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['3', '7', '3', '0.043']",
+    "sample_vals": [
+      "['7', '0.043']",
+      "['7', '0.043']",
+      "['7', '0.043']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['7', '0.043']) != Greedy (['3', '7', '3', '0.043'])",
+    "duration": 2.98
+  },
+  "track_b_dev_0018": {
+    "item_id": "track_b_dev_0018",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['8', '412.5', '4', '8']",
+    "sample_vals": [
+      "['8', '412.5', '4', '8']",
+      "['8', '412.5', '4', '8']",
+      "['8', '4.2', '412.5', '4', '4.2', '8']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 2 (['8', '4.2', '412.5', '4', '4.2', '8']) != Greedy (['8', '412.5', '4', '8'])",
+    "duration": 5.72
+  },
+  "track_b_dev_0019": {
+    "item_id": "track_b_dev_0019",
+    "passed_v11": false,
+    "task_type": "track_b",
+    "greedy_val": "['8', '12.8']",
+    "sample_vals": [
+      "['8', '12.8']",
+      "['8', '12.8']",
+      "['8', '12.8']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 3.26
+  },
+  "track_b_dev_0020": {
+    "item_id": "track_b_dev_0020",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['4', '12.8', '-21', '-21', '87.91']",
+    "sample_vals": [
+      "['4', '12.8', '-21', '-21', '87.91']",
+      "['4', '12.8', '-21', '-21', '87.91']",
+      "['4', '12.8', '-21', '-21', '87.91']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 5.21
+  },
+  "track_b_dev_0021": {
+    "item_id": "track_b_dev_0021",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-21', '-21', '87.91', '-22', '-22', '91.62']",
+    "sample_vals": [
+      "['-21', '-21', '87.91', '-22', '-22', '91.62']",
+      "['-21', '-21', '87.91', '-22', '-22', '91.62']",
+      "['-21', '-21', '87.91', '-22', '-22', '91.62']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.38
+  },
+  "track_b_dev_0022": {
+    "item_id": "track_b_dev_0022",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-22', '-22', '91.62', '-23', '-23', '95.33']",
+    "sample_vals": [
+      "['-22', '-22', '91.62', '-23', '-23', '95.33']",
+      "['-22', '-22', '91.62', '-23', '-23', '95.33']",
+      "['-22', '-22', '91.62', '-23', '-23', '95.33']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.24
+  },
+  "track_b_dev_0023": {
+    "item_id": "track_b_dev_0023",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-23', '-23', '95.33', '-24', '-24', '99.04']",
+    "sample_vals": [
+      "['-23', '-23', '95.33', '-24', '-24', '99.04']",
+      "['-23', '-23', '95.33', '-24', '-24', '99.04']",
+      "['-23', '95.33', '-24', '99.04']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 2 (['-23', '95.33', '-24', '99.04']) != Greedy (['-23', '-23', '95.33', '-24', '-24', '99.04'])",
+    "duration": 5.2
+  },
+  "track_b_dev_0024": {
+    "item_id": "track_b_dev_0024",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-25', '-25', '102.75', '-24', '-24', '99.04']",
+    "sample_vals": [
+      "['-24', '-24', '99.04', '-25', '-25', '102.75']",
+      "['-24', '-24', '99.04', '-25', '-25', '102.75']",
+      "['-25', '-25', '102.75', '-24', '-24', '99.04']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-24', '-24', '99.04', '-25', '-25', '102.75']) != Greedy (['-25', '-25', '102.75', '-24', '-24', '99.04'])",
+    "duration": 5.04
+  },
+  "track_b_dev_0025": {
+    "item_id": "track_b_dev_0025",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-25', '-25', '102.75', '-26', '-26', '106.46', '2']",
+    "sample_vals": [
+      "['-25', '-25', '102.75', '-26', '-26', '106.46', '2']",
+      "['-25', '-25', '102.75', '-26', '-26', '106.46', '2']",
+      "['-25', '-25', '102.75', '-26', '-26', '106.46', '2']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.77
+  },
+  "track_b_dev_0026": {
+    "item_id": "track_b_dev_0026",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-26', '-26', '106.46', '2', '-27', '-27', '110.17']",
+    "sample_vals": [
+      "['-26', '-26', '106.46', '2', '-27', '-27', '110.17']",
+      "['-26', '-26', '106.46', '-27', '-27', '110.17']",
+      "['-26', '-26', '106.46', '2', '-27', '-27', '110.17']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (['-26', '-26', '106.46', '-27', '-27', '110.17']) != Greedy (['-26', '-26', '106.46', '2', '-27', '-27', '110.17'])",
+    "duration": 4.46
+  },
+  "track_b_dev_0027": {
+    "item_id": "track_b_dev_0027",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-27', '-27', '110.17', '-28', '-28', '113.88']",
+    "sample_vals": [
+      "['-27', '-27', '110.17', '-28', '-28', '113.88']",
+      "['-27', '-27', '110.17', '-28', '-28', '113.88']",
+      "['-27', '-27', '110.17', '-28', '-28', '113.88']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 5.58
+  },
+  "track_b_dev_0028": {
+    "item_id": "track_b_dev_0028",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-29', '-29', '117.59', '-28', '-28', '113.88']",
+    "sample_vals": [
+      "['-29', '-29', '117.59', '-28', '-28', '113.88']",
+      "['-28', '-28', '113.88', '-29', '-29', '117.59']",
+      "['-29', '-29', '117.59', '-28', '-28', '113.88']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (['-28', '-28', '113.88', '-29', '-29', '117.59']) != Greedy (['-29', '-29', '117.59', '-28', '-28', '113.88'])",
+    "duration": 4.87
+  },
+  "track_b_dev_0029": {
+    "item_id": "track_b_dev_0029",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-29', '-29', '117.59', '-30', '-30', '121.3']",
+    "sample_vals": [
+      "['-29', '117.59', '-30', '121.3']",
+      "['-29', '-29', '117.59', '-30', '-30', '121.3']",
+      "['-29', '117.59', '-30', '121.3']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-29', '117.59', '-30', '121.3']) != Greedy (['-29', '-29', '117.59', '-30', '-30', '121.3'])",
+    "duration": 4.4
+  },
+  "track_b_dev_0030": {
+    "item_id": "track_b_dev_0030",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-30', '-30', '121.3', '-31', '-31', '125.01']",
+    "sample_vals": [
+      "['-30', '-30', '121.3', '-31', '-31', '125.01']",
+      "['-30', '121.3', '-31', '125.01']",
+      "['-30', '-30', '121.3', '-31', '-31', '125.01']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (['-30', '121.3', '-31', '125.01']) != Greedy (['-30', '-30', '121.3', '-31', '-31', '125.01'])",
+    "duration": 4.4
+  },
+  "track_b_dev_0031": {
+    "item_id": "track_b_dev_0031",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-31', '-31', '125.01', '-32', '-32', '128.72']",
+    "sample_vals": [
+      "['-31', '-31', '125.01', '-32', '-32', '128.72']",
+      "['-31', '-31', '125.01', '-32', '-32', '128.72']",
+      "['-31', '-31', '125.01', '-32', '-32', '128.72']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.57
+  },
+  "track_b_dev_0032": {
+    "item_id": "track_b_dev_0032",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-33', '-33', '132.43', '-32', '-32', '128.72']",
+    "sample_vals": [
+      "['-32', '-32', '128.72', '-33', '-33', '132.43']",
+      "['-32', '-32', '128.72', '-33', '-33', '132.43']",
+      "['-33', '132.43', '-32', '128.72']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-32', '-32', '128.72', '-33', '-33', '132.43']) != Greedy (['-33', '-33', '132.43', '-32', '-32', '128.72'])",
+    "duration": 5.56
+  },
+  "track_b_dev_0033": {
+    "item_id": "track_b_dev_0033",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-33', '-33', '132.43', '-34', '-34', '136.14', '2']",
+    "sample_vals": [
+      "['-34', '136.14', '2', '-33', '132.43']",
+      "['-33', '-33', '132.43', '-34', '-34', '136.14', '2']",
+      "['-33', '-33', '132.43', '-34', '-34', '136.14', '2']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-34', '136.14', '2', '-33', '132.43']) != Greedy (['-33', '-33', '132.43', '-34', '-34', '136.14', '2'])",
+    "duration": 4.93
+  },
+  "track_b_dev_0034": {
+    "item_id": "track_b_dev_0034",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-34', '-34', '136.14', '2', '-35', '-35', '139.85']",
+    "sample_vals": [
+      "['-35', '-35', '139.85', '-34', '-34', '136.14', '2']",
+      "['-34', '-34', '136.14', '2', '-35', '-35', '139.85']",
+      "['-34', '136.14', '2', '-35', '139.85']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-35', '-35', '139.85', '-34', '-34', '136.14', '2']) != Greedy (['-34', '-34', '136.14', '2', '-35', '-35', '139.85'])",
+    "duration": 4.33
+  },
+  "track_b_dev_0035": {
+    "item_id": "track_b_dev_0035",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-35', '-35', '139.85', '-36', '-36', '143.56']",
+    "sample_vals": [
+      "['-35', '-35', '139.85', '-36', '-36', '143.56']",
+      "['-35', '139.85', '-36', '143.56']",
+      "['-35', '-35', '139.85', '-36', '-36', '143.56']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 1 (['-35', '139.85', '-36', '143.56']) != Greedy (['-35', '-35', '139.85', '-36', '-36', '143.56'])",
+    "duration": 4.62
+  },
+  "track_b_dev_0036": {
+    "item_id": "track_b_dev_0036",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-37', '-37', '147.27', '-36', '-36', '143.56']",
+    "sample_vals": [
+      "['-36', '-36', '143.56', '-37', '-37', '147.27']",
+      "['-36', '-36', '143.56', '-37', '-37', '147.27']",
+      "['-37', '-37', '147.27', '-36', '-36', '143.56']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-36', '-36', '143.56', '-37', '-37', '147.27']) != Greedy (['-37', '-37', '147.27', '-36', '-36', '143.56'])",
+    "duration": 5.38
+  },
+  "track_b_dev_0037": {
+    "item_id": "track_b_dev_0037",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-37', '-37', '147.27', '-38', '-38', '150.98']",
+    "sample_vals": [
+      "['-37', '147.27', '-38', '150.98']",
+      "['-37', '-37', '147.27', '-38', '-38', '150.98']",
+      "['-37', '-37', '147.27', '-38', '-38', '150.98']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-37', '147.27', '-38', '150.98']) != Greedy (['-37', '-37', '147.27', '-38', '-38', '150.98'])",
+    "duration": 4.31
+  },
+  "track_b_dev_0038": {
+    "item_id": "track_b_dev_0038",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-38', '-38', '150.98', '-39', '-39', '154.69']",
+    "sample_vals": [
+      "['-38', '-38', '150.98', '-39', '-39', '154.69']",
+      "['-38', '-38', '150.98', '-39', '-39', '154.69']",
+      "['-38', '-38', '150.98', '-39', '-39', '154.69']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 4.36
+  },
+  "track_b_dev_0039": {
+    "item_id": "track_b_dev_0039",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-39', '-39', '154.69', '-40', '-40', '158.4']",
+    "sample_vals": [
+      "['-39', '154.69', '-40', '158.4']",
+      "['-39', '-39', '154.69', '-40', '-40', '158.4']",
+      "['-39', '-39', '154.69', '-40', '-40', '158.4']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-39', '154.69', '-40', '158.4']) != Greedy (['-39', '-39', '154.69', '-40', '-40', '158.4'])",
+    "duration": 5.23
+  },
+  "track_b_dev_0040": {
+    "item_id": "track_b_dev_0040",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-41', '-41', '162.11', '-40', '-40', '158.4']",
+    "sample_vals": [
+      "['-41', '162.11', '-40', '158.4']",
+      "['-41', '162.11', '-40', '158.4']",
+      "['-41', '-41', '162.11', '-40', '-40', '158.4']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-41', '162.11', '-40', '158.4']) != Greedy (['-41', '-41', '162.11', '-40', '-40', '158.4'])",
+    "duration": 6.18
+  },
+  "track_b_dev_0041": {
+    "item_id": "track_b_dev_0041",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-41', '-41', '162.11', '-42', '-42', '165.82', '2']",
+    "sample_vals": [
+      "['-41', '162.11', '-42', '165.82', '2']",
+      "['-41', '-41', '162.11', '-42', '-42', '165.82']",
+      "['-41', '-41', '162.11', '-42', '-42', '165.82', '2']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-41', '162.11', '-42', '165.82', '2']) != Greedy (['-41', '-41', '162.11', '-42', '-42', '165.82', '2'])",
+    "duration": 5.14
+  },
+  "track_b_dev_0042": {
+    "item_id": "track_b_dev_0042",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-42', '-42', '165.82', '2', '-43', '-43', '169.53']",
+    "sample_vals": [
+      "['-42', '165.82', '2', '-43', '169.53']",
+      "['-42', '-42', '165.82', '2', '-43', '-43', '169.53']",
+      "['-42', '165.82', '2', '-43', '169.53']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-42', '165.82', '2', '-43', '169.53']) != Greedy (['-42', '-42', '165.82', '2', '-43', '-43', '169.53'])",
+    "duration": 5.72
+  },
+  "track_b_dev_0043": {
+    "item_id": "track_b_dev_0043",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-43', '-43', '169.53', '-44', '-44', '173.24']",
+    "sample_vals": [
+      "['-43', '169.53', '-44', '173.24']",
+      "['-43', '-43', '169.53', '-44', '-44', '173.24']",
+      "['-43', '-43', '169.53', '-44', '-44', '173.24']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-43', '169.53', '-44', '173.24']) != Greedy (['-43', '-43', '169.53', '-44', '-44', '173.24'])",
+    "duration": 4.84
+  },
+  "track_b_dev_0044": {
+    "item_id": "track_b_dev_0044",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-44', '-44', '173.24', '-45', '-45', '176.95']",
+    "sample_vals": [
+      "['-44', '173.24', '-45', '176.95']",
+      "['-44', '-44', '173.24', '-45', '-45', '176.95']",
+      "['-44', '-44', '173.24', '-45', '-45', '176.95']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-44', '173.24', '-45', '176.95']) != Greedy (['-44', '-44', '173.24', '-45', '-45', '176.95'])",
+    "duration": 4.88
+  },
+  "track_b_dev_0045": {
+    "item_id": "track_b_dev_0045",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-45', '-45', '176.95', '-46', '-46', '180.66']",
+    "sample_vals": [
+      "['-45', '-45', '176.95', '-46', '-46', '180.66']",
+      "['-45', '-45', '176.95', '-46', '-46', '180.66']",
+      "['-45', '-45', '176.95', '-46', '-46', '180.66']"
+    ],
+    "flagged": false,
+    "disagreement_reason": "All 3 samples agree with greedy",
+    "duration": 5.19
+  },
+  "track_b_dev_0046": {
+    "item_id": "track_b_dev_0046",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-46', '-46', '180.66', '-47', '-47', '184.37']",
+    "sample_vals": [
+      "['-46', '-46', '180.66', '-47', '-47', '184.37']",
+      "['-46', '-46', '180.66', '-47', '-47', '184.37']",
+      "['-46', '180.66', '-47', '184.37']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 2 (['-46', '180.66', '-47', '184.37']) != Greedy (['-46', '-46', '180.66', '-47', '-47', '184.37'])",
+    "duration": 5.0
+  },
+  "track_b_dev_0047": {
+    "item_id": "track_b_dev_0047",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-47', '-47', '184.37', '-48', '-48', '188.08']",
+    "sample_vals": [
+      "['-47', '184.37', '-48', '188.08']",
+      "['-47', '-47', '184.37', '-48', '-48', '188.08']",
+      "['-47', '-47', '184.37', '-48', '-48', '188.08']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-47', '184.37', '-48', '188.08']) != Greedy (['-47', '-47', '184.37', '-48', '-48', '188.08'])",
+    "duration": 4.68
+  },
+  "track_b_dev_0048": {
+    "item_id": "track_b_dev_0048",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-48', '-48', '188.08', '-49', '-49', '191.79']",
+    "sample_vals": [
+      "['-48', '188.08', '-49', '191.79']",
+      "['-48', '-48', '188.08', '-49', '-49', '191.79']",
+      "['-48', '-48', '188.08', '-49', '-49', '191.79']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-48', '188.08', '-49', '191.79']) != Greedy (['-48', '-48', '188.08', '-49', '-49', '191.79'])",
+    "duration": 6.76
+  },
+  "track_b_dev_0049": {
+    "item_id": "track_b_dev_0049",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-50', '-50', '195.5', '2', '-49', '-49', '191.79']",
+    "sample_vals": [
+      "['-50', '195.5', '2', '-49', '191.79']",
+      "['-50', '-50', '195.5', '2', '-49', '-49', '191.79']",
+      "['-49', '191.79', '-50', '195.5', '2']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-50', '195.5', '2', '-49', '191.79']) != Greedy (['-50', '-50', '195.5', '2', '-49', '-49', '191.79'])",
+    "duration": 5.33
+  },
+  "track_b_dev_0050": {
+    "item_id": "track_b_dev_0050",
+    "passed_v11": true,
+    "task_type": "track_b",
+    "greedy_val": "['-50', '-50', '195.5', '2', '-51', '-51', '199.21', '-75', '-75', '288.25']",
+    "sample_vals": [
+      "['-50', '195.5', '2', '-51', '199.21']",
+      "['-50', '-50', '195.5', '2', '-51', '-51', '199.21']",
+      "['-50', '-50', '195.5', '2', '-51', '-51', '199.21']"
+    ],
+    "flagged": true,
+    "disagreement_reason": "Sample 0 (['-50', '195.5', '2', '-51', '199.21']) != Greedy (['-50', '-50', '195.5', '2', '-51', '-51', '199.21', '-75', '-75', '288.25'])",
+    "duration": 4.94
+  }
+}
