@@ -1,0 +1,1052 @@
+{
+  "spider_val_0676": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "poker_player",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0718": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0816": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0180": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "flight_2",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0710": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0797": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0263": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "employee_hire_evaluation",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0646": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "tvshow",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0776": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0242": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "flight_2",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0475": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "wta_1",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0042": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "concert_singer",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0936": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "dog_kennels",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0705": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "spider_val_0009": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "concert_singer",
+    "asks_for_query": true,
+    "track": "A"
+  },
+  "NYSEDREGENTS_2014_4_22": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_7018008": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_7081760": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_SC_408700": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "LEAP_2006_8_10412": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_7099768": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "TIMSS_2007_4_pg26": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_7205135": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "MEA_2013_5_3": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_7183733": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_7130603": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "MEAP_2005_5_1": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_7236023": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_SC_402104": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "Mercury_7124338": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/2": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/25": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/133": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/17": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/144": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/76": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/28": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/33": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/73": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/36": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/35": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/46": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/48": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/127": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "HumanEval/147": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0530": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0625": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0987": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0003": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0616": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0612": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0089": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0973": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0827": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0401": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0727": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_1064": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0174": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_1261": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "gsm8k_test_0648": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0001": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0002": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0003": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "concert_singer",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0004": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "employee_hire_evaluation",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0005": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "wta_1",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0006": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0007": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "battle",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0008": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "orchestra",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0009": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "poker_player",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0010": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "dog_kennels",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0011": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0012": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0013": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0014": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "supplies",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0015": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0016": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0017": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0018": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0019": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0020": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0021": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "flight_2",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0022": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0023": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "concert_singer",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0024": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "tvshow",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0025": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "dog_kennels",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0026": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "employee_hire_evaluation",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0027": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "wta_1",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0028": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "poker_player",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0029": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "orchestra",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0030": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "world_1",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0031": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "farm_crops",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0032": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0033": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0034": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0035": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0036": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0037": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0038": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0039": {
+    "source": "DATABASE",
+    "needs_outside_data": true,
+    "database_name": "SQLite",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "compound_dev_v2_0040": {
+    "source": "NONE",
+    "needs_outside_data": false,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "A"
+  },
+  "track_b_dev_0001": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0002": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0003": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0004": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0005": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0006": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0007": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0008": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0009": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0010": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0011": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0012": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0013": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0014": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0015": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0016": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0017": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0018": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0019": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0020": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0021": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0022": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0023": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0024": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0025": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0026": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0027": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0028": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0029": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0030": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0031": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0032": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0033": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0034": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0035": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0036": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0037": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0038": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0039": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0040": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0041": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0042": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0043": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0044": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0045": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0046": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0047": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0048": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0049": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  },
+  "track_b_dev_0050": {
+    "source": "CORPUS",
+    "needs_outside_data": true,
+    "database_name": "",
+    "asks_for_query": false,
+    "track": "B"
+  }
+}

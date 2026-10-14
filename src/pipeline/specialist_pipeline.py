@@ -613,6 +613,7 @@ def run_specialist_pipeline(prompt: str) -> Dict[str, Any]:
 
         return {
             "routed_to": "direct_sql",
+            "source": analysis.get("source", "DATABASE"),
             "needs_outside_data": True,
             "clean_execution": all_clean,
             "output": formatted_output,
@@ -647,6 +648,7 @@ def run_specialist_pipeline(prompt: str) -> Dict[str, Any]:
 
         return {
             "routed_to": "direct",
+            "source": analysis.get("source", "NONE"),
             "needs_outside_data": False,
             "clean_execution": bool(direct_resp.strip()),
             "output": direct_resp[:300],
@@ -712,6 +714,7 @@ def run_specialist_pipeline(prompt: str) -> Dict[str, Any]:
 
     return {
         "routed_to": "outside_data",
+        "source": analysis.get("source", ""),
         "needs_outside_data": True,
         "clean_execution": all_clean,
         "output": combined_output[:300],

@@ -35,6 +35,7 @@ V11_PATH = os.path.join(REPO_ROOT, "results", "phase4", "dev_v11_pipeline_record
 T5_PATH = os.path.join(REPO_ROOT, "results", "phase4", "dev_self_check_eval.json")
 T6_PATH = os.path.join(REPO_ROOT, "results", "phase4", "dev_self_consistency_eval.json")
 B1_120B_PATH = os.path.join(REPO_ROOT, "results", "phase4", "dev_b1_gpt120b_records.jsonl")
+ANALYSER_SOURCES_PATH = os.path.join(REPO_ROOT, "results", "phase4", "dev_analyser_sources.json")
 OUT_JSON_PATH = os.path.join(REPO_ROOT, "results", "phase4", "cascade_dev_evaluation.json")
 
 
@@ -51,7 +52,12 @@ def load_data():
     with open(B1_120B_PATH, "r", encoding="utf-8") as f:
         b1_recs = {json.loads(l)["item_id"]: json.loads(l) for l in f if l.strip()}
 
-    return v11_recs, t5_data, t6_data, b1_recs
+    analyser_sources = {}
+    if os.path.exists(ANALYSER_SOURCES_PATH):
+        with open(ANALYSER_SOURCES_PATH, "r", encoding="utf-8") as f:
+            analyser_sources = json.load(f)
+
+    return v11_recs, t5_data, t6_data, b1_recs, analyser_sources
 
 
 def get_triggers(iid: str, v11_rec: Dict[str, Any], t5_data: Dict[str, Any], t6_data: Dict[str, Any]) -> Dict[str, bool]:
@@ -180,8 +186,8 @@ def main():
     print("CASCADE EVALUATION SUITE ON DEV SPLIT (N=150)")
     print("=" * 80)
 
-    v11_recs, t5_data, t6_data, b1_recs = load_data()
-    print(f"Loaded {len(v11_recs)} v1.1 records, {len(t5_data)} T5 records, {len(t6_data)} T6 records, {len(b1_recs)} 120B B1 records.")
+    v11_recs, t5_data, t6_data, b1_recs, analyser_sources = load_data()
+    print(f"Loaded {len(v11_recs)} v1.1 records, {len(t5_data)} T5 records, {len(t6_data)} T6 records, {len(b1_recs)} 120B B1 records, {len(analyser_sources)} analyser records.")
 
     # Precompute trigger flags
     item_triggers = {
@@ -194,7 +200,7 @@ def main():
         ("Tier 1: T1|T4 (Unclean/No Ans)", lambda iid, r: item_triggers[iid]["Tier1"]),
         ("Tier 2: Tier 1 + Analyser/DB Fallback", lambda iid, r: item_triggers[iid]["Tier2"]),
         ("Tier 3: Tier 2 + T5 (Self-Check, All)", lambda iid, r: item_triggers[iid]["Tier3"]),
-        ("Chosen Trigger: Tier 3 (No Corpus Escalation)", lambda iid, r: item_triggers[iid]["Tier3"] and not ("hypergrid" in r["prompt"].lower() or "v4.2" in r["prompt"].lower())),
+        ("Chosen Trigger: Tier 3 (No Corpus Escalation)", lambda iid, r: item_triggers[iid]["Tier3"] and analyser_sources.get(iid, {}).get("source") != "CORPUS"),
         ("Sensitivity: T5 (Self-Check Alone)", lambda iid, r: item_triggers[iid]["T5"]),
         ("Reference: Oracle (Escalate Wrong v1.1)", lambda iid, r: not r.get("passed", False)),
         ("Reference: Escalate Everything (120B Alone)", lambda iid, r: True),

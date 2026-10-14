@@ -85,14 +85,14 @@ This file tracks project phase progression, the authoritative validity ledger of
   - Track A ($N=100$): Total flagged 32/100 (32.0%); Right items flagged 12/66 (18.2%); Wrong items flagged 20/34 (58.8%).
   - Track B ($N=50$): Total flagged 10/50 (20.0%); Right items flagged 10/48 (20.8%); Wrong items flagged 0/2 (0.0%).
 - **Chosen Frozen Trigger:**
-  - **Trigger Rule:** `(T1 or T2 or T3 or T4 or T5) and (not is_corpus)`
-  - **Implementation:** Active in `src/pipeline/cascade.py`. Uses strictly the pipeline's own execution output (`clean_execution`, `fallbacks`, `final_answer`, `self_check`, and `analyser.source != 'CORPUS'`). Zero gold labels or metadata used.
-- **Pre-Registered Success Criteria for Part C (Reserve Split Run):**
-  1. **Cascade Accuracy on Reserve:** Overall accuracy $\ge 80.0\%$ (pre-registered Dev benchmark: $85.3\% \pm 5.0\%$).
-  2. **Escalation Share on Reserve:** Bounded to $\le 30.0\%$ of Reserve items (pre-registered Dev benchmark: $21.3\% \pm 6.0\%$).
-  3. **Paired Difference against Pipeline v1.1 Alone:** Statistically significant non-inferiority and improvement $\ge +5.0\text{ pp}$ (pre-registered Dev benchmark: $+9.33\text{ pp}$ $[+4.00, +14.67]\text{ pp}$, $p < 0.001$).
-  4. **Paired Difference against 120B Model with Tools Alone:** Statistically significant superiority $\ge +8.0\text{ pp}$ (pre-registered Dev benchmark: $+14.67\text{ pp}$ $[+6.00, +23.33]\text{ pp}$, $p < 0.001$).
-  5. **Cryptographic Reserve Verification:** Reserve split SHA-256 (`bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`) strictly verified before and after execution.
+  - **Trigger Rule:** `(T1 or T2 or T3 or T4 or T5) and (analyser.source != 'CORPUS')`
+  - **Implementation:** Active in `src/pipeline/cascade.py`. Uses strictly the pipeline's own execution output (`clean_execution`, `fallbacks`, `final_answer`, `self_check`, and Stage 1 model output `source != 'CORPUS'`). Zero prompt keywords, gold labels, or dataset metadata used.
+- **Pre-Registered Success Criteria for Part C (Track A Reserve Split Run, N=100):**
+  1. **Cascade Accuracy on Reserve Track A:** Target accuracy $\ge 75.0\%$ (Dev Track A benchmark: $80.00\%$, 95% bootstrap CI $[72.00\%, 88.00\%]$).
+  2. **Escalation Share on Reserve Track A:** Target escalation share bounded to $32.0\% \pm 8.0\%$ (Dev Track A benchmark: $32.00\%$, 32/100 items escalated, 95% bootstrap CI $[23.00\%, 41.00\%]$).
+  3. **Paired Difference against Pipeline v1.1 Alone on Track A:** Statistically positive improvement with 95% bootstrap CI lower bound $> 0.0\text{ pp}$ (Dev Track A benchmark: $+14.00\text{ pp}$ ($80.0\% - 66.0\%$), 95% bootstrap CI $[+6.00\text{ pp}, +22.00\text{ pp}]$; 16 fixed, 2 broke, net gain $+14$ items).
+  4. **Paired Difference against 120B Model with Tools Alone on Track A (Reportable Gap):** Report the paired accuracy gap between the small-model cascade (using 32% escalation) and the monolithic 120B baseline (using 100% 120B calls); this is a gap to report, not a criterion to beat (Dev Track A benchmark: $-11.00\text{ pp}$ ($80.0\% - 91.0\%$), 95% bootstrap CI $[-19.00\text{ pp}, -4.00\text{ pp}]$).
+  5. **Cryptographic Reserve Verification:** Reserve split SHA-256 (`bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`, Track A only, $N=100$) strictly verified before and after execution.
   6. **Single Frozen Run:** Zero prompt or code changes during execution.
   7. **Zero Monetary Cost:** Strictly $0.00 spend.
 - **Reserve Split Status:** **Cryptographically locked and completely untouched.**

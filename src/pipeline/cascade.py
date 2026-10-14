@@ -86,9 +86,8 @@ def run_cascade_inference(
     final_ans = str(v11_rec.get("final_answer") or v11_rec.get("output", "")).strip()
     t4 = not bool(final_ans)
 
-    # Analyser corpus check (strictly from pipeline's prompt text analysis)
-    p_lower = prompt.lower()
-    is_corpus = ("hypergrid" in p_lower or "v4.2" in p_lower)
+    # Analyser corpus check (strictly from pipeline Stage 1 analyser model output)
+    is_corpus = (v11_rec.get("source") == "CORPUS")
 
     # Self-check evaluated for non-corpus tasks
     t5 = False
