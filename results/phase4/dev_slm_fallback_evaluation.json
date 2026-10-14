@@ -1,0 +1,73 @@
+{
+  "dataset": "Dev Track A (N=100)",
+  "model": "phi-4-mini (SLM-only)",
+  "fallback_rate_pct": 32.0,
+  "triggered_count": 32,
+  "v11_alone": {
+    "accuracy": 66.0,
+    "correct": 66,
+    "mean_latency_s": 10.43
+  },
+  "fallback_a_voting": {
+    "accuracy": 59.0,
+    "correct": 59,
+    "mean_latency_s": 14.62,
+    "paired_diff_vs_v11": -7.0,
+    "paired_diff_95_ci": [
+      -14.0,
+      0.0
+    ],
+    "fixed_count": 3,
+    "broke_count": 10,
+    "net_gain": -7,
+    "fixed_items": [
+      "spider_val_0718",
+      "spider_val_0042",
+      "compound_dev_v2_0034"
+    ],
+    "broke_items": [
+      "compound_dev_v2_0004",
+      "compound_dev_v2_0006",
+      "compound_dev_v2_0007",
+      "compound_dev_v2_0008",
+      "compound_dev_v2_0021",
+      "compound_dev_v2_0022",
+      "compound_dev_v2_0025",
+      "compound_dev_v2_0026",
+      "compound_dev_v2_0027",
+      "compound_dev_v2_0028"
+    ]
+  },
+  "fallback_b_redecompose": {
+    "accuracy": 59.0,
+    "correct": 59,
+    "mean_latency_s": 13.5,
+    "paired_diff_vs_v11": -7.0,
+    "paired_diff_95_ci": [
+      -15.0,
+      0.0
+    ],
+    "fixed_count": 4,
+    "broke_count": 11,
+    "net_gain": -7,
+    "fixed_items": [
+      "spider_val_0042",
+      "Mercury_7099768",
+      "Mercury_7236023",
+      "compound_dev_v2_0012"
+    ],
+    "broke_items": [
+      "compound_dev_v2_0004",
+      "compound_dev_v2_0006",
+      "compound_dev_v2_0007",
+      "compound_dev_v2_0008",
+      "compound_dev_v2_0014",
+      "compound_dev_v2_0021",
+      "compound_dev_v2_0022",
+      "compound_dev_v2_0025",
+      "compound_dev_v2_0026",
+      "compound_dev_v2_0027",
+      "compound_dev_v2_0028"
+    ]
+  }
+}

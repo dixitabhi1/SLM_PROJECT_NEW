@@ -99,6 +99,22 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 ---
 
+## 1.9 Scope Change (SLM-Only Rebuild) & SLM-Only Fallback Freeze
+
+- **Freeze Tag:** `v1.2-slm-only-frozen`
+- **Scope Change Directive:** Strictly no LLM may appear anywhere in the pipeline execution path. The 120B (`openai/gpt-oss-120b`) and 27B (`qwen/qwen3.8-27b`) models are external comparison baselines only.
+- **Cascade Retirement:** The cascade escalation system is retired as a reported system. Tag `v1.1-cascade-frozen` is retained in git history for audit, but its numbers are excluded from pipeline results.
+- **Strict Answer Provenance:** Every pipeline answer record outputs `answered_by: "phi-4-mini"`. Pipeline inference runs 100% locally on `llama-server` (RTX 3050, Vulkan0, port 8080). Groq API calls during any pipeline run are strictly 0.
+- **Reserve Set Quarantine:** The reserve split (`data/reserve_set_quarantine.json`, SHA-256 `bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`, $N=100$) was aborted and quarantined immediately upon scope change directive. It remains 100% cryptographically verified and untouched.
+- **Dev SLM-Only Fallback Evaluation ($N=100$ Dev Track A, 32 Triggered Items):**
+  - **Pipeline v1.1 Alone:** Accuracy: **66.0% (66/100)**, Mean Latency: **10.43s**, Fallback rate: 0.0%.
+  - **Fallback (a) (3 Parallel Samples @ temp=0.7 + Majority Vote):** Accuracy: **59.0% (59/100)**, Mean Latency: 14.62s (+4.19s), Paired difference vs v1.1: **-7.00 pp** (95% bootstrap CI [-14.00 pp, 0.00 pp]), 3 fixed, 10 broke, net gain -7.
+  - **Fallback (b) (Re-Decomposing Once + Reflection Answering):** Accuracy: **59.0% (59/100)**, Mean Latency: 13.50s (+3.07s), Paired difference vs v1.1: **-7.00 pp** (95% bootstrap CI [-15.00 pp, 0.00 pp]), 4 fixed, 11 broke, net gain -7.
+  - **Architectural Conclusion:** Without an external stronger model, phi-4-mini self-reflection and majority voting break its own correct multi-step compound solutions (10–11 broken vs 3–4 fixed), producing a net negative effect (-7.00 pp). Pipeline v1.1 alone is strictly superior and frozen as the production SLM-only pipeline.
+- **Next Priority:** Kaggle SQL Adapter (E2) fine-tuning per Experiment 2 of the mentor protocol to close the 8-item deficit identified in the per-item model comparison.
+
+---
+
 ## 2. Validity Ledger
 
 Every headline number reported in any publication, brief, or table must appear here with its source file and current verification status (`stands`, `void`, or `superseded`).
