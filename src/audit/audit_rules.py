@@ -114,16 +114,6 @@ def audit_committed_lines_immutability(repo_root: str) -> List[str]:
         if not os.path.exists(full_path):
             errors.append(f"Hard Rule 2 Violation: Git-tracked result file missing on disk: {rel_path}")
             continue
-        # Check if the file exists in HEAD (it might be a newly added file not yet committed)
-        has_head = subprocess.run(
-            ["git", "cat-file", "-e", f"HEAD:{rel_path}"],
-            cwd=repo_root,
-            capture_output=True
-        )
-        if has_head.returncode != 0:
-            # Newly staged file, no previous HEAD version to check against
-            continue
-
         try:
             head_out = subprocess.run(
                 ["git", "show", f"HEAD:{rel_path}"],

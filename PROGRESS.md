@@ -95,7 +95,7 @@ This file tracks project phase progression, the authoritative validity ledger of
   5. **Cryptographic Reserve Verification:** Reserve split SHA-256 (`bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`, Track A only, $N=100$) strictly verified before and after execution.
   6. **Single Frozen Run:** Zero prompt or code changes during execution.
   7. **Zero Monetary Cost:** Strictly $0.00 spend.
-- **Reserve Split Status:** **Cryptographically locked and completely untouched.**
+- **Reserve Split Status:** **Cryptographically locked (SHA-256: `bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`) on disk.** Part C execution was interrupted at item 89 upon owner scope change directive; remaining items 90–100 and all baseline runs never ran.
 
 ---
 
@@ -105,7 +105,7 @@ This file tracks project phase progression, the authoritative validity ledger of
 - **Scope Change Directive:** Strictly no LLM may appear anywhere in the pipeline execution path. The 120B (`openai/gpt-oss-120b`) and 27B (`qwen/qwen3.8-27b`) models are external comparison baselines only.
 - **Cascade Retirement:** The cascade escalation system is retired as a reported system. Tag `v1.1-cascade-frozen` is retained in git history for audit, but its numbers are excluded from pipeline results.
 - **Strict Answer Provenance:** Every pipeline answer record outputs `answered_by: "phi-4-mini"`. Pipeline inference runs 100% locally on `llama-server` (RTX 3050, Vulkan0, port 8080). Groq API calls during any pipeline run are strictly 0.
-- **Reserve Set Quarantine:** The reserve split (`data/reserve_set_quarantine.json`, SHA-256 `bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`, $N=100$) was aborted and quarantined immediately upon scope change directive. It remains 100% cryptographically verified and untouched.
+- **Reserve Set Execution Status & Quarantine:** The reserve split file (`data/reserve_set_quarantine.json`, SHA-256 `bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`, $N=100$) was verified before execution and remains unmodified on disk. An initial Part C trial was aborted mid-run upon owner scope change directive: exactly 89 items of Track A reserve were evaluated under Pipeline v1.1 locally (generating `results/phase4/reserve_v11_pipeline_records.jsonl`, 89 lines); items 90–100 were never executed; exactly 0 items were evaluated under 120B or 27B; no generated reserve answers or scoring distributions were inspected or reported; the aborted trial file was quarantined and registered in `corrections.jsonl` per Hard Rule 2.
 - **Dev SLM-Only Fallback Evaluation ($N=100$ Dev Track A, 32 Triggered Items):**
   - **Pipeline v1.1 Alone:** Accuracy: **66.0% (66/100)**, Mean Latency: **10.43s**, Fallback rate: 0.0%.
   - **Fallback (a) (3 Parallel Samples @ temp=0.7 + Majority Vote):** Accuracy: **59.0% (59/100)**, Mean Latency: 14.62s (+4.19s), Paired difference vs v1.1: **-7.00 pp** (95% bootstrap CI [-14.00 pp, 0.00 pp]), 3 fixed, 10 broke, net gain -7.
