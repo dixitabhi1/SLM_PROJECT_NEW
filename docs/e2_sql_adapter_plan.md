@@ -86,22 +86,57 @@ Per Hard Rule 13, the training incurs strictly zero financial spend ($0.00) usin
 
 ---
 
-## 6. Pre-Registered Success Criteria (Dev Split Only)
+## 6. Extended SQL Dev Set & Baseline Metrics
+
+Per owner directive, an enlarged SQL dev set was constructed to ensure statistical power for Criterion 1:
+- **File:** [`data/sql_dev_extended.json`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/data/sql_dev_extended.json)
+- **Selection Script:** [`scripts/build_sql_dev_extended.py`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/scripts/build_sql_dev_extended.py)
+- **Random Seed:** `42`
+- **Item Count:** 100 items from `data/raw_official/spider_val.json`
+- **Disjointness Constraint:** Strict rejection of any item present in Dev Track A (15 SQL items), Held-Out Track A (15 SQL items), or Reserve Track A (15 SQL items).
+- **Cryptographic SHA-256 Hash:** `1af2bb2a2bc9702c9c2a944069678b4630ce22a73ce6281a7b10f5cb24a287a3`
+- **Pipeline v1.2 Baseline Performance:**
+  - Evaluated on all 100 items via [`scripts/eval_sql_dev_extended_v12.py`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/scripts/eval_sql_dev_extended_v12.py)
+  - Raw records: [`results/phase4/sql_dev_extended_v12_records.jsonl`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/results/phase4/sql_dev_extended_v12_records.jsonl)
+  - Baseline Accuracy: **66.00% (66/100)**
+  - Mean Latency: **2.24s**
+  - Provenance: 100% answered locally by `phi-4-mini` via `direct_sql`; 0 Groq calls.
+
+---
+
+## 7. Pre-Registered Success Criteria (Dev Split Only)
 
 To prevent overfitting or post-hoc threshold adjustment, the following criteria are pre-registered:
 
 1. **SQL Dev Accuracy Increase (Primary Criterion):**
-   - On the 15 Dev Spider SQL items, accuracy must rise relative to v1.1 baseline ($7/15 = 46.7\%$).
-   - The paired bootstrap difference 95% confidence interval lower bound must be strictly $> 0.0\text{ pp}$.
+   - Evaluated on the 100 items of [`data/sql_dev_extended.json`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/data/sql_dev_extended.json).
+   - Paired bootstrap difference (E2 Adapter vs Pipeline v1.2 Base, $B=10{,}000$) 95% confidence interval lower bound must be strictly $> 0.0\text{ percentage points}$.
 2. **Non-Regression on Non-SQL Categories (Safety Criterion):**
-   - Across the 85 non-SQL Dev Track A items (ARC QA, GSM8K Math, HumanEval Code, Compound Solvable, Compound Tool-Required), overall accuracy must not drop by more than **$2.0\text{ percentage points}$** relative to v1.1.
+   - Across the 85 non-SQL Dev Track A items (ARC QA, GSM8K Math, HumanEval Code, Compound Solvable, Compound Tool-Required), overall accuracy must not drop by more than **$2.0\text{ percentage points}$** relative to v1.2.
 3. **Strict Evaluation Boundary:**
-   - Evaluated strictly on Dev Track A ($N=100$).
+   - Evaluated strictly on Dev splits (`data/sql_dev_extended.json` and `data/track_a_dev_split.json`).
    - **The reserve set remains cryptographically locked and completely untouched.**
 
 ---
 
-## 7. Mandatory Owner Checkpoint
+## 8. Dev Compound Solvable Failure Analysis (Diagnostic)
 
-Per Section 3 of `AGENTS.md` (Checkpoints 3 & 6), work will pause after preparation. No fine-tuning execution will begin on Kaggle without explicit owner sign-off.
+Concurrently performed failure analysis on all 10 failed compound items solvable without tools from Dev Track A ($N=20$, 10 failed under v1.2):
+
+| Failure Cause | Count | Share | Example Item IDs | Detailed Mechanism |
+|---|---|---|---|---|
+| **Subtask Answer Error (Knowledge or Reasoning)** | 7 | 70.0% | `compound_dev_v2_0011`<br>`compound_dev_v2_0013`<br>`compound_dev_v2_0016` | **0011**: Flight table filter error (included delay < 30 min flights, missed dist > 800 flight).<br>**0013**: LCG modular arithmetic error ($328 \pmod{128} = 32$ instead of $72$).<br>**0016**: Arithmetic cubing error ($185^3 = 6,336,625$, off by 5,000 from $6,331,625$). |
+| **Wrong Colour or Route** | 2 | 20.0% | `compound_dev_v2_0017`<br>`compound_dev_v2_0034` | **0017**: Collatz sequence (106 steps) routed to `direct` instead of `CODE_EXEC`; hit 1,024-token context cutoff at step 50.<br>**0034**: Chinese Remainder Theorem brute-force search routed to `direct` instead of `CODE_EXEC`; enumerated $k=0\dots 33$ in text until truncated. |
+| **Aggregation Error** | 1 | 10.0% | `compound_dev_v2_0031` | Decomposed into SQL + Reason. Intermediate revenue calculated correctly ($840), but downstream specialist rounded profit to `$227` instead of whole-dollar truncation `$226`. |
+| **Decomposition Error** | 0 | 0.0% | — | Zero decomposition failures. |
+| **Format or Scoring Issue** | 0 | 0.0% | — | Zero format/checker rejections. |
+
+**Key Architectural Insight:** 70% of solvable compound failures stem from base SLM arithmetic and multi-constraint table filtering errors during pure textual reasoning. Routing simulation and search items to `CODE_EXEC` represents a secondary opportunity, but no pipeline changes are made prior to owner authorization.
+
+---
+
+## 9. Mandatory Owner Checkpoint
+
+Per Section 3 of `AGENTS.md` (Checkpoints 3 & 6), work pauses after preparation. No fine-tuning execution will begin on Kaggle without explicit owner sign-off.
+
 

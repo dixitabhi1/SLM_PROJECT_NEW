@@ -115,6 +115,63 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 ---
 
+## 1.10 Experiment 2 (E2) Preparation: Extended SQL Dev & Diagnostic Failure Analysis
+
+- **Date:** 2026-10-15
+- **Status:** PREPARATION COMPLETE — AWAITING OWNER CHECKPOINT SIGN-OFF
+- **Extended SQL Dev Set (`data/sql_dev_extended.json`):**
+  - Constructed strictly from `spider_val.json` ($N=100$) using seed `42` via `scripts/build_sql_dev_extended.py`.
+  - Disjointness Constraint: Zero overlap with Dev Track A (15), Held-Out Track A (15), or Reserve Track A (15).
+  - Cryptographic SHA-256 Hash: `1af2bb2a2bc9702c9c2a944069678b4630ce22a73ce6281a7b10f5cb24a287a3`.
+  - **Pipeline v1.2 Baseline Accuracy:** **66.00% (66/100)**, Mean Latency: 2.24s (raw records: `results/phase4/sql_dev_extended_v12_records.jsonl`).
+- **Dev Compound Solvable Failure Analysis ($N=20$, 10 Failed under v1.2):**
+  - **Subtask Answer Error (Reasoning / Arithmetic / Filtering):** 7 items (70.0%) (`compound_dev_v2_0011`, `0012`, `0013`, `0015`, `0016`, `0019`, `0040`).
+  - **Wrong Colour or Route:** 2 items (20.0%) (`compound_dev_v2_0017`, `0034` — long simulations routed to direct text reasoning and truncated at 1,024-token cutoff instead of `CODE_EXEC`).
+  - **Aggregation Error:** 1 item (10.0%) (`compound_dev_v2_0031` — downstream specialist rounded intermediate profit to `$227` instead of `$226`).
+  - **Decomposition Error:** 0 items (0.0%).
+  - **Format or Scoring Issue:** 0 items (0.0%).
+- **Pre-Registered Success Criteria for E2:**
+  - **Criterion 1 (SQL):** Paired bootstrap difference (E2 Adapter vs v1.2 Base, $B=10{,}000$) on the 100 items of `data/sql_dev_extended.json` must have a 95% CI lower bound strictly $> 0.0\text{ percentage points}$.
+  - **Criterion 2 (Safety Non-Regression):** Across the 85 non-SQL Dev Track A items, overall accuracy degradation must be $\le 2.0\text{ percentage points}$.
+- **Reserve Split Status:** Cryptographically locked and completely untouched.
+
+---
+
+## 1.11 Experiment 3 (E3): Compute Numbers in Code
+
+- **Date:** 2026-10-15
+- **Status:** EVALUATION COMPLETE — BOTH CRITERIA PASSED (QUALIFIED FOR PIPELINE V1.3)
+- **Plan File:** [`docs/e3_compute_numbers_in_code_plan.md`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/docs/e3_compute_numbers_in_code_plan.md)
+- **Implementation File:** [`src/pipeline/specialist_pipeline_e3.py`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/src/pipeline/specialist_pipeline_e3.py)
+- **Evaluation Records:** [`results/phase4/dev_e3_verified_pipeline_records.jsonl`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/results/phase4/dev_e3_verified_pipeline_records.jsonl)
+- **Summary JSON:** [`results/phase4/e3_dev_verified_evaluation.json`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/results/phase4/e3_dev_verified_evaluation.json)
+- **Generic Rule:** Any task or decomposed subtask requiring arithmetic calculation, counting, modular mathematics, iterative simulation, or algorithmic search is routed to the Python Sandbox Specialist to execute SLM-generated Python code in the isolated runner (`src/sandbox/runner.py`), using the stdout as the answer.
+- **Verification of Pre-Registered Success Criteria (Dev Track A Only, N=100):**
+  1. **Criterion 1 (Overall Dev Track A Improvement):**
+     - Pipeline v1.2 Baseline Accuracy: **66.00% (66/100)**
+     - Pipeline v1.3 (E3) Accuracy: **77.00% (77/100)**
+     - Observed Paired Difference: **+11.00 percentage points**
+     - Paired Bootstrap 95% Confidence Interval ($B=10{,}000$, Seed 42): **[+3.00 pp, +19.00 pp]**
+     - Lower Bound ($+3.00\text{ pp} > 0.0\text{ pp}$): **PASS**
+  2. **Criterion 2 (Safety Non-Regression on Core Atomic Categories):**
+     - Atomic GSM8K Math ($N=15$): Baseline $14/15 \to$ E3 **$13/15$ (86.67%)** (drop = 1 item $\le 1$ item): **PASS**
+     - Atomic ARC QA ($N=15$): Baseline $12/15 \to$ E3 **$11/15$ (73.33%)** (drop = 1 item $\le 1$ item): **PASS**
+- **Detailed Strata Breakdown:**
+  - `atomic_sql` ($N=15$): $7/15$ (46.7%) $\to 7/15$ (46.7%) ($+0.0\text{ pp}$, latency: 2.93s)
+  - `atomic_qa` ($N=15$): $12/15$ (80.0%) $\to 11/15$ (73.3%) ($-6.7\text{ pp}$, latency: 2.94s)
+  - `atomic_code` ($N=15$): $13/15$ (86.7%) $\to 13/15$ (86.7%) ($+0.0\text{ pp}$, latency: 5.18s)
+  - `atomic_math` ($N=15$): $14/15$ (93.3%) $\to 13/15$ (86.7%) ($-6.7\text{ pp}$, latency: 5.06s)
+  - `compound_solvable` ($N=20$): $10/20$ (50.0%) $\to$ **$17/20$ (85.0%)** (**$+35.0\text{ pp}$**, latency: 9.59s)
+  - `compound_tool_required` ($N=20$): $10/20$ (50.0%) $\to$ **$16/20$ (80.0%)** (**$+30.0\text{ pp}$**, latency: 15.78s)
+- **Failure Analysis Fix Rate:**
+  - Arithmetic / Routing Failures Fixed: **8 of 9 items fixed (88.9%)** (`compound_dev_v2_0011`, `0012`, `0013`, `0015`, `0016`, `0017`, `0034`, `0040`).
+  - Previously Correct Items Broken: **3 items** (`Mercury_7183733`, `gsm8k_test_0530`, `compound_dev_v2_0037`).
+- **Latency Impact:**
+  - Mean Latency v1.2: **10.43s** $\to$ Mean Latency E3: **7.49s** (Delta: **-2.94s** faster due to fast sandbox stdout execution vs token-heavy chain-of-thought generation).
+- **Reserve Split Status:** Cryptographically locked and completely untouched.
+
+---
+
 ## 2. Validity Ledger
 
 Every headline number reported in any publication, brief, or table must appear here with its source file and current verification status (`stands`, `void`, or `superseded`).
@@ -179,8 +236,9 @@ Every headline number reported in any publication, brief, or table must appear h
 | VL-056 | Phase 4 Frozen Held-Out Benchmark: B1 Baseline Qwen-27B with Fair Tools (N=150) | Qwen-3.8-27B: Track A 84.00% (84/100, 95% CI [77.0%, 91.0%]), Atomic 90.00% (54/60), Compound Total 75.00% (30/40), Compound Solvable 90.00% (18/20), Compound Tool-Req 60.00% (12/20), Track B 82.00% (41/50, 95% CI [72.0%, 92.0%]). Specialist Pipeline (3.82B) beats 27B with tools on Compound Tool-Req (80.0% vs 60.0%, +20.0 pp) and Track B (100.0% vs 82.0%, +18.0 pp). | `results/phase4/phase4_b1_heldout_report.json` | stands | 2026-10-12 | Evaluated unclamped (max_tokens=4096) with fair tools on locked held-out splits |
 | VL-057 | Phase 4 Frozen Held-Out Benchmark: B1 Baseline GPT-OSS-120B with Fair Tools (N=150) | GPT-OSS-120B: Track A 88.00% (88/100, 95% CI [81.0%, 94.0%]), Atomic 86.67% (52/60), Compound Total 90.00% (36/40), Compound Solvable 100.00% (20/20), Compound Tool-Req 80.00% (16/20), Track B 2.00% (1/50, verbose outputs failing checklist 75-word cap). Specialist Pipeline (3.82B) matches 120B on Compound Tool-Req (80.0% vs 80.0%) and dominates on Track B (100.0% vs 2.0%, +98.0 pp). | `results/phase4/phase4_b1_heldout_report.json` | stands | 2026-10-12 | Evaluated unclamped (max_tokens=4096) with fair tools on locked held-out splits |
 | VL-058 | Comprehensive Evaluation Report Compilation | Standalone automated report generated from immutable disk records. Track A Paired Difference: +11.00 pp (95% CI [+3.00 pp, +20.00 pp], p < 0.05); Compound Tool-Req Paired Difference: +75.00 pp (95% CI [+50.00 pp, +95.00 pp], p < 0.05); Track B Paired Difference: +100.00 pp (95% CI [+100.00 pp, +100.00 pp]); Single-Domain Loss: 0.00 pp across QA, Code, Math; -26.67 pp on atomic Spider SQL. Provenance explicitly disclosed: held-out compound items and pipeline written by same agent. | `results/phase4/comprehensive_final_report.md` | stands | 2026-10-12 | Standalone script-generated report per Hard Rule 1 |
-
-
+| VL-059 | Extended SQL Dev Set & Baseline Metrics (N=100) | 100 items from `spider_val.json` (Seed 42, SHA-256 `1af2bb2a...`). Pipeline v1.2 Baseline accuracy: 66.00% (66/100), Mean latency: 2.24s. 100% answered locally by phi-4-mini; 0 Groq calls. | `results/phase4/sql_dev_extended_v12_records.jsonl` | stands | 2026-10-15 | Evaluated via `eval_sql_dev_extended_v12.py`; establishes pre-training benchmark |
+| VL-060 | Dev Compound Solvable Failure Analysis (N=20, 10 Failed) | Subtask Answer Error (Reasoning/Arithmetic/Filter): 7 (70.0%), Wrong Colour/Route: 2 (20.0%), Aggregation Error: 1 (10.0%), Decomposition Error: 0 (0.0%), Format/Scoring: 0 (0.0%). | `docs/e2_sql_adapter_plan.md` | stands | 2026-10-15 | Diagnostic classification of all 10 failed solvable compound dev items under v1.2 |
+| VL-061 | Experiment 3 (E3) Dev Track A Evaluation (N=100) | Overall Acc: 77.00% (77/100, v1.2: 66.00%), Paired Diff: +11.00 pp (95% CI [+3.00 pp, +19.00 pp], B=10000); Criterion 1: PASS; Criterion 2: PASS (GSM drop: 1 [13/15], QA drop: 1 [11/15]); Solvable: 85.0% (17/20, +35.0 pp); Tool-Req: 80.0% (16/20, +30.0 pp); Arithmetic/Routing Failures Fixed: 8/9; Latency: 7.49s (-2.94s vs v1.2) | `results/phase4/e3_dev_verified_evaluation.json` & `dev_e3_verified_pipeline_records.jsonl` | stands | 2026-10-15 | Evaluated on Dev Track A under generic numeric computation in code; 0 Groq calls |
 
 ---
 

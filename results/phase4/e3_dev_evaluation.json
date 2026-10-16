@@ -1,0 +1,100 @@
+{
+  "condition": "pipeline_v1.3_e3",
+  "sample_size": 100,
+  "accuracy_v12": 66.0,
+  "accuracy_e3": 49.0,
+  "paired_difference_pp": -17.0,
+  "ci_95": [
+    -25.0,
+    -10.0
+  ],
+  "criterion_1_passed": false,
+  "criterion_2_passed": false,
+  "gsm8k_drop_count": 3,
+  "qa_drop_count": 0,
+  "arithmetic_routing_failures_evaluated": 9,
+  "arithmetic_routing_failures_fixed": 1,
+  "fixed_ids": [
+    "compound_dev_v2_0012"
+  ],
+  "previously_correct_broken_count": 18,
+  "broken_ids": [
+    "gsm8k_test_0401",
+    "gsm8k_test_0174",
+    "gsm8k_test_1261",
+    "compound_dev_v2_0004",
+    "compound_dev_v2_0006",
+    "compound_dev_v2_0007",
+    "compound_dev_v2_0008",
+    "compound_dev_v2_0014",
+    "compound_dev_v2_0021",
+    "compound_dev_v2_0022",
+    "compound_dev_v2_0025",
+    "compound_dev_v2_0026",
+    "compound_dev_v2_0027",
+    "compound_dev_v2_0028",
+    "compound_dev_v2_0033",
+    "compound_dev_v2_0036",
+    "compound_dev_v2_0037",
+    "compound_dev_v2_0039"
+  ],
+  "mean_latency_v12_s": 10.43,
+  "mean_latency_e3_s": 7.01,
+  "latency_cost_delta_s": -3.41,
+  "strata_results": {
+    "atomic_sql": {
+      "n": 15,
+      "passed_e3": 7,
+      "accuracy_e3": 46.666666666666664,
+      "passed_v12": 7,
+      "accuracy_v12": 46.666666666666664,
+      "delta_pp": 0.0,
+      "mean_latency_s": 3.09
+    },
+    "atomic_qa": {
+      "n": 15,
+      "passed_e3": 12,
+      "accuracy_e3": 80.0,
+      "passed_v12": 12,
+      "accuracy_v12": 80.0,
+      "delta_pp": 0.0,
+      "mean_latency_s": 2.59
+    },
+    "atomic_code": {
+      "n": 15,
+      "passed_e3": 13,
+      "accuracy_e3": 86.66666666666667,
+      "passed_v12": 13,
+      "accuracy_v12": 86.66666666666667,
+      "delta_pp": 0.0,
+      "mean_latency_s": 5.47
+    },
+    "atomic_math": {
+      "n": 15,
+      "passed_e3": 11,
+      "accuracy_e3": 73.33333333333333,
+      "passed_v12": 14,
+      "accuracy_v12": 93.33333333333333,
+      "delta_pp": -20.0,
+      "mean_latency_s": 6.15
+    },
+    "compound_solvable": {
+      "n": 20,
+      "passed_e3": 6,
+      "accuracy_e3": 30.0,
+      "passed_v12": 10,
+      "accuracy_v12": 50.0,
+      "delta_pp": -20.0,
+      "mean_latency_s": 11.09
+    },
+    "compound_tool_required": {
+      "n": 20,
+      "passed_e3": 0,
+      "accuracy_e3": 0.0,
+      "passed_v12": 10,
+      "accuracy_v12": 50.0,
+      "delta_pp": -50.0,
+      "mean_latency_s": 11.01
+    }
+  }
+}

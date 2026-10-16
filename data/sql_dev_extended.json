@@ -1,0 +1,1739 @@
+[
+  {
+    "item_id": "spider_dev_ext_0001",
+    "original_id": "spider_val_0006",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "concert_singer",
+    "question": "Show the name and the release year of the song by the youngest singer.",
+    "gold_query": "SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1",
+    "gold_rows_sample": [
+      "('Love', '2016')"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0002",
+    "original_id": "spider_val_0027",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "concert_singer",
+    "question": "What is the year that had the most concerts?",
+    "gold_query": "SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1",
+    "gold_rows_sample": [
+      "('2015',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0003",
+    "original_id": "spider_val_0029",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "concert_singer",
+    "question": "What are the names of the stadiums without any concerts?",
+    "gold_query": "SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)",
+    "gold_rows_sample": [
+      "('Bayview Stadium',)",
+      "('Hampden Park',)",
+      "('Forthbank Stadium',)",
+      "('Gayfield Park',)"
+    ],
+    "row_count": 4,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0004",
+    "original_id": "spider_val_0032",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "concert_singer",
+    "question": "What are the names of all stadiums that did not have a concert in 2014?",
+    "gold_query": "SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014",
+    "gold_rows_sample": [
+      "('Balmoor',)",
+      "('Bayview Stadium',)",
+      "('Forthbank Stadium',)",
+      "('Gayfield Park',)",
+      "('Hampden Park',)"
+    ],
+    "row_count": 6,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0005",
+    "original_id": "spider_val_0034",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "concert_singer",
+    "question": "What are the names , themes , and number of singers for every concert ?",
+    "gold_query": "select t2.concert_name ,  t2.theme ,  count(*) from singer_in_concert as t1 join concert as t2 on t1.concert_id  =  t2.concert_id group by t2.concert_id",
+    "gold_rows_sample": [
+      "('Auditions', 'Free choice', 3)",
+      "('Super bootcamp', 'Free choice 2', 2)",
+      "('Home Visits', 'Bleeding Love', 1)",
+      "('Week 1', 'Wide Awake', 1)",
+      "('Week 1', 'Happy Tonight', 2)"
+    ],
+    "row_count": 6,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0006",
+    "original_id": "spider_val_0047",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "pets_1",
+    "question": "Find the weight of the youngest dog.",
+    "gold_query": "SELECT weight FROM pets ORDER BY pet_age LIMIT 1",
+    "gold_rows_sample": [
+      "(9.3,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0007",
+    "original_id": "spider_val_0049",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "pets_1",
+    "question": "Find the maximum weight for each type of pet. List the maximum weight and pet type.",
+    "gold_query": "SELECT max(weight) ,  petType FROM pets GROUP BY petType",
+    "gold_rows_sample": [
+      "(12.0, 'cat')",
+      "(13.4, 'dog')"
+    ],
+    "row_count": 2,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0008",
+    "original_id": "spider_val_0060",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "pets_1",
+    "question": "What are the students' first names who have both cats and dogs as pets?",
+    "gold_query": "SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' INTERSECT SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog'",
+    "gold_rows_sample": [],
+    "row_count": 0,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0009",
+    "original_id": "spider_val_0070",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "pets_1",
+    "question": "What is the id and weight of every pet who is older than 1?",
+    "gold_query": "SELECT petid ,  weight FROM pets WHERE pet_age  >  1",
+    "gold_rows_sample": [
+      "(2001, 12.0)",
+      "(2002, 13.4)"
+    ],
+    "row_count": 2,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0010",
+    "original_id": "spider_val_0074",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "pets_1",
+    "question": "What is the average weight for each type of pet?",
+    "gold_query": "SELECT avg(weight) ,  pettype FROM pets GROUP BY pettype",
+    "gold_rows_sample": [
+      "(12.0, 'cat')",
+      "(11.350000000000001, 'dog')"
+    ],
+    "row_count": 2,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0011",
+    "original_id": "spider_val_0076",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "pets_1",
+    "question": "What are the different first names and ages of the students who do have pets?",
+    "gold_query": "SELECT DISTINCT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid",
+    "gold_rows_sample": [
+      "('Linda', 18)",
+      "('Tracy', 19)"
+    ],
+    "row_count": 2,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0012",
+    "original_id": "spider_val_0084",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "pets_1",
+    "question": "What is the last name of the student who has a cat that is 3 years old?",
+    "gold_query": "SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pet_age  =  3 AND T3.pettype  =  'cat'",
+    "gold_rows_sample": [
+      "('Smith',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0013",
+    "original_id": "spider_val_0085",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "pets_1",
+    "question": "Find the average age of students who do not have any pet .",
+    "gold_query": "select avg(age) from student where stuid not in (select stuid from has_pet)",
+    "gold_rows_sample": [
+      "(19.625,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0014",
+    "original_id": "spider_val_0186",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "Give the airport code and airport name corresonding to the city Anthony.",
+    "gold_query": "SELECT AirportCode ,  AirportName FROM AIRPORTS WHERE city  =  \"Anthony\"",
+    "gold_rows_sample": [],
+    "row_count": 0,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0015",
+    "original_id": "spider_val_0191",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "How many flights do we have?",
+    "gold_query": "SELECT count(*) FROM FLIGHTS",
+    "gold_rows_sample": [
+      "(1200,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0016",
+    "original_id": "spider_val_0192",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "Return the number of flights.",
+    "gold_query": "SELECT count(*) FROM FLIGHTS",
+    "gold_rows_sample": [
+      "(1200,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0017",
+    "original_id": "spider_val_0196",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "Return the number of airlines in the USA.",
+    "gold_query": "SELECT count(*) FROM AIRLINES WHERE Country  =  \"USA\"",
+    "gold_rows_sample": [
+      "(12,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0018",
+    "original_id": "spider_val_0200",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "Return the name of the airport with code 'AKO'.",
+    "gold_query": "SELECT AirportName FROM AIRPORTS WHERE AirportCode  =  \"AKO\"",
+    "gold_rows_sample": [
+      "('Colorado Plains Regional Airport ',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0019",
+    "original_id": "spider_val_0201",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "What are airport names at City 'Aberdeen'?",
+    "gold_query": "SELECT AirportName FROM AIRPORTS WHERE City = \"Aberdeen\"",
+    "gold_rows_sample": [],
+    "row_count": 0,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0020",
+    "original_id": "spider_val_0212",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "How many flights fly from Aberdeen to Ashley?",
+    "gold_query": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRPORTS AS T3 ON T1.SourceAirport  =  T3.AirportCode WHERE T2.City  =  \"Ashley\" AND T3.City  =  \"Aberdeen\"",
+    "gold_rows_sample": [
+      "(0,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0021",
+    "original_id": "spider_val_0225",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "What is the code of airport that has the highest number of flights?",
+    "gold_query": "SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) DESC LIMIT 1",
+    "gold_rows_sample": [],
+    "row_count": 0,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0022",
+    "original_id": "spider_val_0240",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "Which airlines have departures from CVO but not from APG airports?",
+    "gold_query": "SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  \"CVO\" EXCEPT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  \"APG\"",
+    "gold_rows_sample": [],
+    "row_count": 0,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0023",
+    "original_id": "spider_val_0258",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "flight_2",
+    "question": "Which airports do not have departing or arriving flights?",
+    "gold_query": "SELECT AirportName FROM Airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights)",
+    "gold_rows_sample": [
+      "('Phillips AAF ',)",
+      "('Municipal ',)",
+      "('Dyess AFB ',)",
+      "('Municipal ',)",
+      "('Virginia Highlands ',)"
+    ],
+    "row_count": 100,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0024",
+    "original_id": "spider_val_0262",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "employee_hire_evaluation",
+    "question": "List the names of employees and sort in ascending order of age.",
+    "gold_query": "SELECT name FROM employee ORDER BY age",
+    "gold_rows_sample": [
+      "('George Chuter',)",
+      "('Andrew Sheridan',)",
+      "('Lee Mears',)",
+      "('Tim Payne',)",
+      "('Matt Stevens',)"
+    ],
+    "row_count": 10,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0025",
+    "original_id": "spider_val_0266",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "employee_hire_evaluation",
+    "question": "Find the cities that have more than one employee under age 30.",
+    "gold_query": "SELECT city FROM employee WHERE age  <  30 GROUP BY city HAVING count(*)  >  1",
+    "gold_rows_sample": [
+      "('Bath',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0026",
+    "original_id": "spider_val_0267",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "employee_hire_evaluation",
+    "question": "Find the number of shops in each location.",
+    "gold_query": "SELECT count(*) ,  LOCATION FROM shop GROUP BY LOCATION",
+    "gold_rows_sample": [
+      "(1, 'Espoo')",
+      "(1, 'Helsinki')",
+      "(1, 'Jakobstad')",
+      "(1, 'Kotka')",
+      "(1, 'Kuopio')"
+    ],
+    "row_count": 9,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0027",
+    "original_id": "spider_val_0275",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "employee_hire_evaluation",
+    "question": "Find the names of stores whose number products is more than the average number of products.",
+    "gold_query": "SELECT name FROM shop WHERE number_products  >  (SELECT avg(number_products) FROM shop)",
+    "gold_rows_sample": [
+      "('HJK',)",
+      "('FC Inter',)",
+      "('FC Lahti',)"
+    ],
+    "row_count": 3,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0028",
+    "original_id": "spider_val_0298",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "Count the number of documents.",
+    "gold_query": "SELECT count(*) FROM Documents",
+    "gold_rows_sample": [
+      "(15,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0029",
+    "original_id": "spider_val_0305",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "How many different templates do all document use?",
+    "gold_query": "SELECT count(DISTINCT template_id) FROM Documents",
+    "gold_rows_sample": [
+      "(12,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0030",
+    "original_id": "spider_val_0316",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What are the ids for templates that are not used in any documents?",
+    "gold_query": "SELECT template_id FROM Templates EXCEPT SELECT template_id FROM Documents",
+    "gold_rows_sample": [
+      "(0,)",
+      "(9,)",
+      "(15,)",
+      "(16,)",
+      "(18,)"
+    ],
+    "row_count": 8,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0031",
+    "original_id": "spider_val_0322",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What are the different template type codes?",
+    "gold_query": "SELECT DISTINCT template_type_code FROM Templates",
+    "gold_rows_sample": [
+      "('PP',)",
+      "('BK',)",
+      "('PPT',)",
+      "('AD',)",
+      "('CV',)"
+    ],
+    "row_count": 5,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0032",
+    "original_id": "spider_val_0325",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "How many templates have template type code CV?",
+    "gold_query": "SELECT count(*) FROM Templates WHERE template_type_code  =  \"CV\"",
+    "gold_rows_sample": [
+      "(2,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0033",
+    "original_id": "spider_val_0326",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "Count the number of templates of the type CV.",
+    "gold_query": "SELECT count(*) FROM Templates WHERE template_type_code  =  \"CV\"",
+    "gold_rows_sample": [
+      "(2,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0034",
+    "original_id": "spider_val_0327",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What is the version number and template type code for the template with version number later than 5?",
+    "gold_query": "SELECT version_number ,  template_type_code FROM Templates WHERE version_number  >  5",
+    "gold_rows_sample": [
+      "(9, 'PP')",
+      "(8, 'PPT')",
+      "(6, 'BK')",
+      "(7, 'AD')",
+      "(9, 'CV')"
+    ],
+    "row_count": 9,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0035",
+    "original_id": "spider_val_0330",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What are the different template type codes, and how many templates correspond to each?",
+    "gold_query": "SELECT template_type_code ,  count(*) FROM Templates GROUP BY template_type_code",
+    "gold_rows_sample": [
+      "('AD', 3)",
+      "('BK', 6)",
+      "('CV', 2)",
+      "('PP', 6)",
+      "('PPT', 3)"
+    ],
+    "row_count": 5,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0036",
+    "original_id": "spider_val_0335",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What the smallest version number and its template type code?",
+    "gold_query": "SELECT min(Version_Number) ,  template_type_code FROM Templates",
+    "gold_rows_sample": [
+      "(0, 'PP')"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0037",
+    "original_id": "spider_val_0336",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "Return the lowest version number, along with its corresponding template type code.",
+    "gold_query": "SELECT min(Version_Number) ,  template_type_code FROM Templates",
+    "gold_rows_sample": [
+      "(0, 'PP')"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0038",
+    "original_id": "spider_val_0340",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What are the names of documents that use templates with the code BK?",
+    "gold_query": "SELECT T2.document_name FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id WHERE T1.template_type_code  =  \"BK\"",
+    "gold_rows_sample": [
+      "('Robbin CV',)",
+      "('Data base',)",
+      "('How to read a book',)",
+      "('Palm reading',)",
+      "('About Korea',)"
+    ],
+    "row_count": 5,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0039",
+    "original_id": "spider_val_0352",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "Return the type code of the template type with the description \"Book\".",
+    "gold_query": "SELECT template_type_code FROM Ref_template_types WHERE template_type_description  =  \"Book\"",
+    "gold_rows_sample": [
+      "('BK',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0040",
+    "original_id": "spider_val_0374",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "Return the id and name of the document with the most paragraphs.",
+    "gold_query": "SELECT T1.document_id ,  T2.document_name FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.document_id  =  T2.document_id GROUP BY T1.document_id ORDER BY count(*) DESC LIMIT 1",
+    "gold_rows_sample": [
+      "(2394, 'Customer reviews')"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0041",
+    "original_id": "spider_val_0377",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What is the document id with 1 to 2 paragraphs?",
+    "gold_query": "SELECT document_id FROM Paragraphs GROUP BY document_id HAVING count(*) BETWEEN 1 AND 2",
+    "gold_rows_sample": [
+      "(3,)",
+      "(80,)",
+      "(3830,)",
+      "(33930,)",
+      "(50123,)"
+    ],
+    "row_count": 9,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0042",
+    "original_id": "spider_val_0378",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "Give the ids of documents that have between one and two paragraphs.",
+    "gold_query": "SELECT document_id FROM Paragraphs GROUP BY document_id HAVING count(*) BETWEEN 1 AND 2",
+    "gold_rows_sample": [
+      "(3,)",
+      "(80,)",
+      "(3830,)",
+      "(33930,)",
+      "(50123,)"
+    ],
+    "row_count": 9,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0043",
+    "original_id": "spider_val_0380",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What are the ids of documents that contain the paragraph text 'Brazil' and 'Ireland'?",
+    "gold_query": "SELECT document_id FROM Paragraphs WHERE paragraph_text  =  'Brazil' INTERSECT SELECT document_id FROM Paragraphs WHERE paragraph_text  =  'Ireland'",
+    "gold_rows_sample": [
+      "(16514113,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0044",
+    "original_id": "spider_val_0433",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "wta_1",
+    "question": "List the first name and birth date of all players from the country with code USA.",
+    "gold_query": "SELECT first_name ,  birth_date FROM players WHERE country_code  =  'USA'",
+    "gold_rows_sample": [
+      "('Jolene', 19680831)",
+      "('Lisa', 19730810)",
+      "('Meilen', 19780117)",
+      "('Serena', 19810926)",
+      "('Chanda', 19760218)"
+    ],
+    "row_count": 2217,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0045",
+    "original_id": "spider_val_0436",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "wta_1",
+    "question": "What are the average ages of losers and winners across matches?",
+    "gold_query": "SELECT avg(loser_age) ,  avg(winner_age) FROM matches",
+    "gold_rows_sample": [
+      "(27.311213862584534, 27.062177773183812)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0046",
+    "original_id": "spider_val_0449",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "wta_1",
+    "question": "List the number of all matches who played in years of 2013 or 2016.",
+    "gold_query": "SELECT count(*) FROM matches WHERE YEAR  =  2013 OR YEAR  =  2016",
+    "gold_rows_sample": [
+      "(170,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0047",
+    "original_id": "spider_val_0453",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "wta_1",
+    "question": "Find the first name and country code of the oldest player.",
+    "gold_query": "SELECT first_name ,  country_code FROM players ORDER BY birth_date LIMIT 1",
+    "gold_rows_sample": [
+      "('Thelma', 'AUS')"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0048",
+    "original_id": "spider_val_0480",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "wta_1",
+    "question": "How many total tours were there for each ranking date?",
+    "gold_query": "SELECT sum(tours) ,  ranking_date FROM rankings GROUP BY ranking_date",
+    "gold_rows_sample": [
+      "(0, 19870119)",
+      "(0, 19870126)",
+      "(0, 19870202)",
+      "(0, 19870209)",
+      "(0, 19870302)"
+    ],
+    "row_count": 1504,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0049",
+    "original_id": "spider_val_0489",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "wta_1",
+    "question": "Find the number of players for each hand type.",
+    "gold_query": "SELECT count(*) ,  hand FROM players GROUP BY hand",
+    "gold_rows_sample": [
+      "(954, '')",
+      "(487, 'L')",
+      "(5028, 'R')",
+      "(14193, 'U')"
+    ],
+    "row_count": 4,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0050",
+    "original_id": "spider_val_0501",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "battle_death",
+    "question": "What are the distinct battle names which are between bulgarian commander 'Kaloyan' and latin commander 'Baldwin I'?",
+    "gold_query": "SELECT name FROM battle WHERE bulgarian_commander  =  'Kaloyan' AND latin_commander  =  'Baldwin I'",
+    "gold_rows_sample": [
+      "('Battle of Adrianople',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0051",
+    "original_id": "spider_val_0505",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "battle_death",
+    "question": "Show names, results and bulgarian commanders of the battles with no ships lost in the 'English Channel'.",
+    "gold_query": "SELECT name ,  RESULT ,  bulgarian_commander FROM battle EXCEPT SELECT T1.name ,  T1.result ,  T1.bulgarian_commander FROM battle AS T1 JOIN ship AS T2 ON T1.id  =  T2.lost_in_battle WHERE T2.location  =  'English Channel'",
+    "gold_rows_sample": [
+      "('Battle of Adrianople', 'Bulgarian victory', 'Kaloyan')",
+      "('Battle of Rusion', 'Bulgarian victory', 'Kaloyan')",
+      "('Battle of Serres', 'Bulgarian victory', 'Kaloyan')"
+    ],
+    "row_count": 3,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0052",
+    "original_id": "spider_val_0509",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "How many courses in total are listed?",
+    "gold_query": "SELECT count(*) FROM Courses",
+    "gold_rows_sample": [
+      "(15,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0053",
+    "original_id": "spider_val_0521",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "How many degrees does the engineering department offer?",
+    "gold_query": "SELECT count(*) FROM Departments AS T1 JOIN Degree_Programs AS T2 ON T1.department_id  =  T2.department_id WHERE T1.department_name  =  'engineer'",
+    "gold_rows_sample": [
+      "(0,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0054",
+    "original_id": "spider_val_0526",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "What are the names and ids of every course with less than 2 sections?",
+    "gold_query": "SELECT T1.course_name ,  T1.course_id FROM Courses AS T1 JOIN Sections AS T2 ON T1.course_id  =  T2.course_id GROUP BY T1.course_id HAVING count(*)  <=  2",
+    "gold_rows_sample": [
+      "('ds', 1)",
+      "('math', 2)",
+      "('en', 4)",
+      "('fr', 5)",
+      "('la', 6)"
+    ],
+    "row_count": 11,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0055",
+    "original_id": "spider_val_0530",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "For each semester, what is the name and id of the one with the most students registered?",
+    "gold_query": "SELECT T1.semester_name ,  T1.semester_id FROM Semesters AS T1 JOIN Student_Enrolment AS T2 ON T1.semester_id  =  T2.semester_id GROUP BY T1.semester_id ORDER BY count(*) DESC LIMIT 1",
+    "gold_rows_sample": [
+      "('summer 2010', 2)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0056",
+    "original_id": "spider_val_0533",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "Who are enrolled in 2 degree programs in one semester? List the first name, middle name and last name and the id.",
+    "gold_query": "SELECT T1.first_name ,  T1.middle_name ,  T1.last_name ,  T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id GROUP BY T1.student_id HAVING count(*)  =  2",
+    "gold_rows_sample": [
+      "('Jarvis', 'Aaliyah', 'Carroll', 4)",
+      "('Reva', 'Golda', 'Osinski', 9)",
+      "('Jordy', 'Osborne', 'Rempel', 14)"
+    ],
+    "row_count": 3,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0057",
+    "original_id": "spider_val_0540",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "What is the program id and the summary of the degree that has the most students enrolled?",
+    "gold_query": "SELECT T1.degree_program_id ,  T1.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id GROUP BY T1.degree_program_id ORDER BY count(*) DESC LIMIT 1",
+    "gold_rows_sample": [
+      "(9, 'Bachelor')"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0058",
+    "original_id": "spider_val_0548",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "What is the name of the course with the most students enrolled?",
+    "gold_query": "SELECT  T1.course_name FROM Courses AS T1 JOIN Student_Enrolment_Courses AS T2 ON T1.course_id  =  T2.course_id GROUP BY T1.course_name ORDER BY count(*) DESC LIMIT 1",
+    "gold_rows_sample": [
+      "('rs',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0059",
+    "original_id": "spider_val_0549",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "Find the last name of the students who currently live in the state of North Carolina but have not registered in any degree program.",
+    "gold_query": "SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id  =  T2.address_id WHERE T2.state_province_county  =  'NorthCarolina' EXCEPT SELECT DISTINCT T3.last_name FROM Students AS T3 JOIN Student_Enrolment AS T4 ON T3.student_id  =  T4.student_id",
+    "gold_rows_sample": [
+      "('Gleichner',)",
+      "('Weimann',)"
+    ],
+    "row_count": 2,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0060",
+    "original_id": "spider_val_0550",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "What are the last name of the students who live in North Carolina but have not registered in any degree programs?",
+    "gold_query": "SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id  =  T2.address_id WHERE T2.state_province_county  =  'NorthCarolina' EXCEPT SELECT DISTINCT T3.last_name FROM Students AS T3 JOIN Student_Enrolment AS T4 ON T3.student_id  =  T4.student_id",
+    "gold_rows_sample": [
+      "('Gleichner',)",
+      "('Weimann',)"
+    ],
+    "row_count": 2,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0061",
+    "original_id": "spider_val_0573",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "student_transcripts_tracking",
+    "question": "Show the date of the transcript which shows the least number of results, also list the id.",
+    "gold_query": "SELECT T2.transcript_date ,  T1.transcript_id FROM Transcript_Contents AS T1 JOIN Transcripts AS T2 ON T1.transcript_id  =  T2.transcript_id GROUP BY T1.transcript_id ORDER BY count(*) ASC LIMIT 1",
+    "gold_rows_sample": [
+      "('1975-10-28 15:16:51', 2)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0062",
+    "original_id": "spider_val_0592",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "tvshow",
+    "question": "What is the name and directors of all the cartoons that are ordered by air date?",
+    "gold_query": "SELECT title ,  Directed_by FROM Cartoon ORDER BY Original_air_date",
+    "gold_rows_sample": [
+      "('Invasion of the Secret Santas!', 'Brandon Vietti')",
+      "('Evil Under the Sea!', 'Michael Chang')",
+      "('Return of the Fearsome Fangs!', 'Brandon Vietti')",
+      "('Deep Cover for Batman!', 'Michael Chang')",
+      "('The Eyes of Despero!', 'Ben Jones')"
+    ],
+    "row_count": 12,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0063",
+    "original_id": "spider_val_0595",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "tvshow",
+    "question": "Which country has the most of TV Channels? List the country and number of TV Channels it has.",
+    "gold_query": "SELECT Country ,  count(*) FROM TV_Channel GROUP BY Country ORDER BY count(*) DESC LIMIT 1;",
+    "gold_rows_sample": [
+      "('Italy', 12)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0064",
+    "original_id": "spider_val_0624",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "tvshow",
+    "question": "What is the name of the series that has the episode \"A Love of a Lifetime\"?",
+    "gold_query": "SELECT T1.series_name FROM TV_Channel AS T1 JOIN TV_series AS T2 ON T1.id = T2.Channel WHERE T2.Episode = \"A Love of a Lifetime\";",
+    "gold_rows_sample": [
+      "('Sky Radio',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0065",
+    "original_id": "spider_val_0629",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "tvshow",
+    "question": "Find the production code and channel of the most recently aired cartoon .",
+    "gold_query": "select production_code ,  channel from cartoon order by original_air_date desc limit 1",
+    "gold_rows_sample": [
+      "(102.0, '701')"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0066",
+    "original_id": "spider_val_0635",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "tvshow",
+    "question": "which countries' tv channels are not playing any cartoon written by Todd Casey?",
+    "gold_query": "SELECT country FROM TV_Channel EXCEPT SELECT T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.written_by  =  'Todd Casey'",
+    "gold_rows_sample": [
+      "('Poland',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0067",
+    "original_id": "spider_val_0638",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "tvshow",
+    "question": "What is the series name and country of all TV channels that are playing cartoons directed by Ben Jones and cartoons directed by Michael Chang?",
+    "gold_query": "SELECT T1.series_name ,  T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by  =  'Michael Chang' INTERSECT SELECT T1.series_name ,  T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by  =  'Ben Jones'",
+    "gold_rows_sample": [
+      "('MTV Dance', 'United Kingdom')"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0068",
+    "original_id": "spider_val_0703",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "Give the names of the nations that were founded after 1950.",
+    "gold_query": "SELECT Name FROM country WHERE IndepYear  >  1950",
+    "gold_rows_sample": [
+      "('Angola',)",
+      "('United Arab Emirates',)",
+      "('Armenia',)",
+      "('Antigua and Barbuda',)",
+      "('Azerbaijan',)"
+    ],
+    "row_count": 110,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0069",
+    "original_id": "spider_val_0735",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "How many different forms of governments are there in Africa?",
+    "gold_query": "SELECT count(DISTINCT GovernmentForm) FROM country WHERE Continent  =  \"Africa\"",
+    "gold_rows_sample": [
+      "(10,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0070",
+    "original_id": "spider_val_0738",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "How many official languages does Afghanistan have?",
+    "gold_query": "SELECT COUNT(*) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.Name  =  \"Afghanistan\" AND IsOfficial  =  \"T\"",
+    "gold_rows_sample": [
+      "(2,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0071",
+    "original_id": "spider_val_0748",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "What are the names of nations where both English and French are official languages?",
+    "gold_query": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"English\" AND T2.IsOfficial  =  \"T\" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"French\" AND T2.IsOfficial  =  \"T\"",
+    "gold_rows_sample": [
+      "('Canada',)",
+      "('Seychelles',)",
+      "('Vanuatu',)"
+    ],
+    "row_count": 3,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0072",
+    "original_id": "spider_val_0755",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "Which countries have either English or Dutch as an official language?",
+    "gold_query": "SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"English\" AND IsOfficial  =  \"T\" UNION SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"Dutch\" AND IsOfficial  =  \"T\"",
+    "gold_rows_sample": [
+      "('ABW', 'Aruba', 'North America', 'Caribbean', 193.0, None, 103000, 78.4, 828.0, 793.0, 'Aruba', 'Nonmetropolitan Territory of The Netherlands', 'Beatrix', 129, 'AW', 'ABW', 'Dutch', 'T', 5.3)",
+      "('AIA', 'Anguilla', 'North America', 'Caribbean', 96.0, None, 8000, 76.1, 63.2, None, 'Anguilla', 'Dependent Territory of the UK', 'Elisabeth II', 62, 'AI', 'AIA', 'English', 'T', 0.0)",
+      "('ANT', 'Netherlands Antilles', 'North America', 'Caribbean', 800.0, None, 217000, 74.7, 1941.0, None, 'Nederlandse Antillen', 'Nonmetropolitan Territory of The Netherlands', 'Beatrix', 33, 'AN', 'ANT', 'Dutch', 'T', 0.0)",
+      "('ASM', 'American Samoa', 'Oceania', 'Polynesia', 199.0, None, 68000, 75.1, 334.0, None, 'Amerika Samoa', 'US Territory', 'George W. Bush', 54, 'AS', 'ASM', 'English', 'T', 3.1)",
+      "('ATG', 'Antigua and Barbuda', 'North America', 'Caribbean', 442.0, 1981, 68000, 70.5, 612.0, 584.0, 'Antigua and Barbuda', 'Constitutional Monarchy', 'Elisabeth II', 63, 'AG', 'ATG', 'English', 'T', 0.0)"
+    ],
+    "row_count": 48,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0073",
+    "original_id": "spider_val_0760",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "Find the city with the largest population that uses English.",
+    "gold_query": "SELECT T1.Name ,  T1.Population FROM city AS T1 JOIN countrylanguage AS T2 ON T1.CountryCode  =  T2.CountryCode WHERE T2.Language  =  \"English\" ORDER BY T1.Population DESC LIMIT 1",
+    "gold_rows_sample": [
+      "('New York', 8008278)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0074",
+    "original_id": "spider_val_0764",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "What is average life expectancy in the countries where English is not the official language?",
+    "gold_query": "SELECT avg(LifeExpectancy) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"English\" AND T2.IsOfficial  =  \"T\")",
+    "gold_rows_sample": [
+      "(65.4827027027027,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0075",
+    "original_id": "spider_val_0783",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "Return the codes of countries that do not speak English and do not have Republics for governments.",
+    "gold_query": "SELECT Code FROM country WHERE GovernmentForm != \"Republic\" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  \"English\"",
+    "gold_rows_sample": [
+      "('AFG',)",
+      "('AND',)",
+      "('ARE',)",
+      "('ARG',)",
+      "('ATA',)"
+    ],
+    "row_count": 69,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0076",
+    "original_id": "spider_val_0795",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "How many cities in each district have a population that is above the average population across all cities?",
+    "gold_query": "SELECT count(*) ,  District FROM city WHERE Population  >  (SELECT avg(Population) FROM city) GROUP BY District",
+    "gold_rows_sample": [
+      "(1, 'Abidjan')",
+      "(1, 'Abu Dhabi')",
+      "(1, 'Adana')",
+      "(1, 'Addis Abeba')",
+      "(1, 'Aden')"
+    ],
+    "row_count": 539,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0077",
+    "original_id": "spider_val_0796",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "Find the government form name and total population for each government form whose average life expectancy is longer than 72.",
+    "gold_query": "SELECT sum(Population) ,  GovernmentForm FROM country GROUP BY GovernmentForm HAVING avg(LifeExpectancy)  >  72",
+    "gold_rows_sample": [
+      "(3947000, 'Commonwealth of the US')",
+      "(1972000, 'Constitutional Monarchy (Emirate)')",
+      "(82516000, 'Constitutional Monarchy, Federation')",
+      "(193050, 'Dependent Territory of the UK')",
+      "(2441000, 'Emirate Federation')"
+    ],
+    "row_count": 17,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0078",
+    "original_id": "spider_val_0811",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "Give the total population and average surface area corresponding to countries in North America that have a surface area greater than 3000 .",
+    "gold_query": "select sum(population) ,  avg(surfacearea) from country where continent  =  \"north america\" and surfacearea  >  3000",
+    "gold_rows_sample": [
+      "(None, None)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0079",
+    "original_id": "spider_val_0813",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "Return the names of cities that have a population between 160000 and 900000 .",
+    "gold_query": "select name from city where population between 160000 and 900000",
+    "gold_rows_sample": [
+      "('Qandahar',)",
+      "('Herat',)",
+      "('Amsterdam',)",
+      "('Rotterdam',)",
+      "('Haag',)"
+    ],
+    "row_count": 1860,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0080",
+    "original_id": "spider_val_0819",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "world_1",
+    "question": "Count the number of countries for which Spanish is the predominantly spoken language.",
+    "gold_query": "SELECT count(*) ,   max(Percentage) FROM countrylanguage WHERE LANGUAGE  =  \"Spanish\" GROUP BY CountryCode",
+    "gold_rows_sample": [
+      "(1, 7.4)",
+      "(1, 44.6)",
+      "(1, 96.8)",
+      "(1, 31.6)",
+      "(1, 87.7)"
+    ],
+    "row_count": 28,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0081",
+    "original_id": "spider_val_0830",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "orchestra",
+    "question": "What is the average attendance of shows?",
+    "gold_query": "SELECT avg(Attendance) FROM SHOW",
+    "gold_rows_sample": [
+      "(1326.4,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0082",
+    "original_id": "spider_val_0840",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "orchestra",
+    "question": "Show the names of conductors and the orchestras they have conducted.",
+    "gold_query": "SELECT T1.Name ,  T2.Orchestra FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID  =  T2.Conductor_ID",
+    "gold_rows_sample": [
+      "('Antal Dor\u00e1ti', 'London Symphony Orchestra')",
+      "('Igor Stravinsky', 'Columbia Symphony Orchestra')",
+      "('Colin Davis', 'Royal Concertgebouw Orchestra')",
+      "('Paul Jorgensen', 'Royal Danish Orchestra')",
+      "('Antal Brown', 'Detroit Symphony Orchestra')"
+    ],
+    "row_count": 12,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0083",
+    "original_id": "spider_val_0848",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "orchestra",
+    "question": "Please show the different record companies and the corresponding number of orchestras.",
+    "gold_query": "SELECT Record_Company ,  COUNT(*) FROM orchestra GROUP BY Record_Company",
+    "gold_rows_sample": [
+      "('Columbia Masterworks', 1)",
+      "('Decca Records', 2)",
+      "('Delos Records', 1)",
+      "('Deutsche Grammophon', 1)",
+      "('EMI', 1)"
+    ],
+    "row_count": 11,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0084",
+    "original_id": "spider_val_0852",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "orchestra",
+    "question": "List the record company shared by the most number of orchestras.",
+    "gold_query": "SELECT Record_Company FROM orchestra GROUP BY Record_Company ORDER BY COUNT(*) DESC LIMIT 1",
+    "gold_rows_sample": [
+      "('Decca Records',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0085",
+    "original_id": "spider_val_0853",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "orchestra",
+    "question": "What is the record company used by the greatest number of orchestras?",
+    "gold_query": "SELECT Record_Company FROM orchestra GROUP BY Record_Company ORDER BY COUNT(*) DESC LIMIT 1",
+    "gold_rows_sample": [
+      "('Decca Records',)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0086",
+    "original_id": "spider_val_0861",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "orchestra",
+    "question": "What are years of founding for orchestras that have had more than a single performance?",
+    "gold_query": "SELECT Year_of_Founded FROM orchestra AS T1 JOIN performance AS T2 ON T1.Orchestra_ID  =  T2.Orchestra_ID GROUP BY T2.Orchestra_ID HAVING COUNT(*)  >  1",
+    "gold_rows_sample": [],
+    "row_count": 0,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0087",
+    "original_id": "spider_val_0919",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "Find the states where both owners and professionals live.",
+    "gold_query": "SELECT state FROM Owners INTERSECT SELECT state FROM Professionals",
+    "gold_rows_sample": [
+      "('Indiana',)",
+      "('Mississippi',)",
+      "('Wisconsin',)"
+    ],
+    "row_count": 3,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0088",
+    "original_id": "spider_val_0928",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "Which professional did not operate any treatment on dogs? List the professional's id, role and email.",
+    "gold_query": "SELECT professional_id ,  role_code ,  email_address FROM Professionals EXCEPT SELECT T1.professional_id ,  T1.role_code ,  T1.email_address FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id",
+    "gold_rows_sample": [
+      "(1, 'Employee', 'deanna.schuster@example.com')",
+      "(2, 'Employee', 'lucile.shanahan@example.org')",
+      "(3, 'Employee', 'uboehm@example.org')",
+      "(11, 'Employee', 'west.eula@example.net')",
+      "(12, 'Veterenarian', 'marquardt.furman@example.org')"
+    ],
+    "row_count": 7,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0089",
+    "original_id": "spider_val_0931",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "Return the owner id, first name and last name of the owner who has the most dogs.",
+    "gold_query": "SELECT T1.owner_id ,  T2.first_name ,  T2.last_name FROM Dogs AS T1 JOIN Owners AS T2 ON T1.owner_id  =  T2.owner_id GROUP BY T1.owner_id ORDER BY count(*) DESC LIMIT 1",
+    "gold_rows_sample": [
+      "(14, 'Rachelle', 'Funk')"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0090",
+    "original_id": "spider_val_0948",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "List the cost of each treatment and the corresponding treatment type description.",
+    "gold_query": "SELECT T1.cost_of_treatment ,  T2.treatment_type_description FROM Treatments AS T1 JOIN treatment_types AS T2 ON T1.treatment_type_code  =  T2.treatment_type_code",
+    "gold_rows_sample": [
+      "(567, 'Take for a Walk')",
+      "(147, 'Vaccination')",
+      "(429, 'Physical examination')",
+      "(266, 'Vaccination')",
+      "(668, 'Vaccination')"
+    ],
+    "row_count": 15,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0091",
+    "original_id": "spider_val_0961",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "Who owns the youngest dog? Give me his or her last name.",
+    "gold_query": "SELECT T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id WHERE T2.age  =  ( SELECT max(age) FROM Dogs )",
+    "gold_rows_sample": [
+      "('Feil',)",
+      "('Fisher',)",
+      "('Rippin',)"
+    ],
+    "row_count": 3,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0092",
+    "original_id": "spider_val_0967",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "Count the number of dogs that went through a treatment.",
+    "gold_query": "SELECT count(DISTINCT dog_id) FROM Treatments",
+    "gold_rows_sample": [
+      "(9,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0093",
+    "original_id": "spider_val_0973",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "Return the first name, last name and email of the owners living in a state whose name contains the substring 'North'.",
+    "gold_query": "SELECT first_name ,  last_name ,  email_address FROM Owners WHERE state LIKE '%North%'",
+    "gold_rows_sample": [
+      "('Johann', 'Fisher', 'zboncak.madonna@example.net')",
+      "('Cindy', 'Schmitt', 'wpfeffer@example.net')"
+    ],
+    "row_count": 2,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0094",
+    "original_id": "spider_val_0976",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "How much does the most recent treatment cost?",
+    "gold_query": "SELECT cost_of_treatment FROM Treatments ORDER BY date_of_treatment DESC LIMIT 1",
+    "gold_rows_sample": [
+      "(407,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0095",
+    "original_id": "spider_val_0986",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "What is the average age of all the dogs?",
+    "gold_query": "SELECT avg(age) FROM Dogs",
+    "gold_rows_sample": [
+      "(5.066666666666666,)"
+    ],
+    "row_count": 1,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0096",
+    "original_id": "spider_val_0990",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "How much does each charge type costs? List both charge type and amount.",
+    "gold_query": "SELECT charge_type ,  charge_amount FROM Charges",
+    "gold_rows_sample": [
+      "('Daily Accommodation', 98)",
+      "('Drugs', 322)",
+      "('Health Check', 640)"
+    ],
+    "row_count": 3,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0097",
+    "original_id": "spider_val_0991",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "List each charge type and its amount.",
+    "gold_query": "SELECT charge_type ,  charge_amount FROM Charges",
+    "gold_rows_sample": [
+      "('Daily Accommodation', 98)",
+      "('Drugs', 322)",
+      "('Health Check', 640)"
+    ],
+    "row_count": 3,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0098",
+    "original_id": "spider_val_0994",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "List the email, cell phone and home phone of all the professionals.",
+    "gold_query": "SELECT email_address ,  cell_number ,  home_phone FROM professionals",
+    "gold_rows_sample": [
+      "('deanna.schuster@example.com', '(275)939-2435x80863', '+71(6)2898266914')",
+      "('lucile.shanahan@example.org', '889-940-2676', '+02(1)0259033559')",
+      "('uboehm@example.org', '(369)908-7311x065', '325-155-0801x7005')",
+      "('lourdes.lowe@example.net', '00230569697', '312.216.3352')",
+      "('mekhi.little@example.org', '011.193.9081x3186', '1-609-566-2752x25197')"
+    ],
+    "row_count": 15,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0099",
+    "original_id": "spider_val_0996",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "What are all the possible breed type and size type combinations?",
+    "gold_query": "SELECT DISTINCT breed_code ,  size_code FROM dogs",
+    "gold_rows_sample": [
+      "('ESK', 'LGE')",
+      "('BUL', 'LGE')",
+      "('BUL', 'MED')",
+      "('HUS', 'MED')",
+      "('ESK', 'SML')"
+    ],
+    "row_count": 7,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  },
+  {
+    "item_id": "spider_dev_ext_0100",
+    "original_id": "spider_val_0999",
+    "task_type": "sql",
+    "stratum": "atomic",
+    "source_benchmark": "Spider",
+    "source_split": "validation",
+    "db_id": "dog_kennels",
+    "question": "What are each professional's first name and description of the treatment they have performed?",
+    "gold_query": "SELECT DISTINCT T1.first_name ,  T3.treatment_type_description FROM professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id JOIN Treatment_types AS T3 ON T2.treatment_type_code  =  T3.treatment_type_code",
+    "gold_rows_sample": [
+      "('Monte', 'Take for a Walk')",
+      "('Domenica', 'Vaccination')",
+      "('Vernice', 'Physical examination')",
+      "('Karley', 'Vaccination')",
+      "('Sigurd', 'Vaccination')"
+    ],
+    "row_count": 12,
+    "download_source": "datasets.load_dataset('xlangai/spider', split='validation')"
+  }
+]
