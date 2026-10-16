@@ -177,3 +177,10 @@ This document provides the exhaustive per-item comparison and categorical outcom
 | `track_b_heldout_v2_0048` | Track B HyperGrid | Final Answer: - FrictionShoeB-H48 Specific Wear Rate Phas... | Specific Wear Rate Phase-4 (FrictionShoeB‑H48): 19.96 um/... | FrictionShoeB-H48 Specific Wear Rate Phase-4: 19.96 um/st... | PASS | PASS | PASS | **Tie** | 13.86s | 1.17s | 0.45s |
 | `track_b_heldout_v2_0049` | Track B HyperGrid | Final Answer: - SuspensionPodA-H49 Air Gap Sensed Clearan... | Air Gap Sensed Clearance Phase-1 (SuspensionPodA-H49): 33... | Final Answer: SuspensionPodA-H49_AirGapClearance_Phase1: ... | PASS | PASS | PASS | **Tie** | 10.42s | 1.00s | 0.33s |
 | `track_b_heldout_v2_0050` | Track B HyperGrid | Final Answer: - DampingPlateC-H50 Secondary Damping Ratio... | Secondary Damping Ratio Phase-2 (DampingPlateC‑H50): 19.2... | Final Answer: DampingPlateC-H50_Secondary_Damping_Ratio_P... | PASS | PASS | PASS | **Tie** | 9.31s | 1.08s | 0.37s |
+
+---
+
+## 3. Note on Attribution & SQL Figures
+
+> [!NOTE]
+> **Attribution and Metric Correction:** An earlier report narrative cited an SLM SQL accuracy figure of 46.7% (7/15). That figure was measured on the **Dev** split under Pipeline v1.1. On the frozen v1.0 held-out split (`results/phase4/heldout_pipeline_records.jsonl`), the exact SLM SQL score is **3/15 (20.0%)** (with passes on items `spider_val_0202`, `spider_val_0802`, and `spider_val_0826`, as detailed in the per-item table above). The corrected baseline figure for held-out SLM SQL prior to v1.1/v1.3 is strictly **3/15 (20.0%)**.

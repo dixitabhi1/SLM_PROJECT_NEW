@@ -8,8 +8,6 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 | Phase | Description | Status | Gate / Owner Checkpoint | Notes |
 |---|---|---|---|---|
-| Phase | Description | Status | Gate / Owner Checkpoint | Notes |
-|---|---|---|---|---|
 | **1. Setup** | Repo initialization, environment audit, candidate proposals, verbatim sources lock | **COMPLETE** | Model, baseline & judge choice by owner | Phi-4-mini locked as Base SLM; Qwen-27B & GPT-OSS-120B locked as Baselines; Family separation verified |
 | **2. Infrastructure** | Serving setup, parallelism benchmark, sandbox, tools, tolerant harness | **COMPLETE** | Smoke test pass & owner config choice | Vulkan GPU serving active; tolerant tool harness & design matrix evaluated across identical spent items |
 | **3. Datasets (Dev)** | Regenerate Dev compound items ONCE (>=50% 3-stage, sensitivity tested, non-guessable) | **COMPLETE** | Owner review Saturday night | 60 atomic + 40 hard compound items; reference programs compute gold values; labeled agent-written |
@@ -172,18 +170,34 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 ---
 
-## 1.10 Experiment 3 Candidate Staging, Dev Full Evaluation, and Secondary Held-Out Check (v2)
-- **Candidate Commit:** `b011c00` (*"docs(e3): pre-register Criterion 3 (Track B non-regression) and fix pipeline with generic CORPUS no-code constraint"*).
-- **Status:** Staged as candidate commit; unfrozen pending E2 completion and combined evaluation.
-- **Generic Fix:** Prohibited any code routing when the Analyser's source is `CORPUS` across all pipeline stages (Stage 4 color override, Stage 6/7 execution guard, Stage 3 self-contained guard). Zero prompt keywords (no "hypergrid" or "v4.2").
-- **Dev Full Evaluation ($N=150: 100\text{ Track A} + 50\text{ Track B}$):**
+## 1.12 Pipeline v1.3 Freeze & Secondary Held-Out Comparison (v1.0 → v1.3)
+- **Freeze Tag:** `v1.3-slm-frozen`
+- **Candidate Commit:** `97ea4f1`
+- **Scope & Architecture:** Pure SLM pipeline (phi-4-mini, 3.82B, local Vulkan0 GPU, 0 Groq calls). Integrates generic numeric computation in code (E3) with generic `CORPUS` no-code guard. E2 Kaggle SQL adapter will be tested on top as v1.4.
+- **Attribution Confirmation:** `results/phase4/heldout_pipeline_records.jsonl` was produced under frozen Pipeline v1.0 (commit `7ad397f` / `ce19624`), prior to the v1.1 direct SQL path. This evaluation represents the end-to-end progression **v1.0 → v1.3**.
+- **Dev Full Verification ($N=150: 100\text{ Track A} + 50\text{ Track B}$):**
   - **Criterion 1 (Track A Improvement):** **77.00% (77/100)** vs v1.2 (66.00%), paired diff: **+11.00 pp** (95% CI: `[+3.00 pp, +19.00 pp]`, lower bound $> 0.0\text{ pp}$) $\to$ **PASS**.
   - **Criterion 2 (Atomic Safety Non-Regression):** GSM8K: **13/15 (86.67%)** ($\le 1$ drop vs 14/15) $\to$ **PASS**; ARC QA: **11/15 (73.33%)** ($\le 1$ drop vs 12/15) $\to$ **PASS**.
   - **Criterion 3 (Track B Non-Regression):** **48/50 (96.00%)** ($\le 1$ drop vs 48/50 baseline, 0 drop) $\to$ **PASS**.
   - **All Three Criteria Passed:** **YES**.
-- **Secondary Evaluation (v2) Label:** `secondary: held-out previously inspected`
+- **Secondary Evaluation Label:** `secondary: held-out previously inspected` (progression: **v1.0 → v1.3**)
 - **Integrity Status:** Evaluated on locked held-out splits ($N=150$: 100 Track A + 50 Track B); 100% answered locally by `phi-4-mini` via port 8080 (`answered_by: "phi-4-mini"`); exactly 0 Groq calls during pipeline execution.
-- **Performance Summary:**
+- **Progression: Held-Out Per-Category Changes ($v1.0 \to v1.3$):**
+
+| Category / Stratum | Sample Size ($n$) | Pipeline v1.0 | Pipeline v1.3 | Delta ($v1.0 \to v1.3$) |
+|---|:---:|:---:|:---:|:---:|
+| `atomic_sql` | 15 | 3/15 (20.0%) | 11/15 (73.3%) | +8 (+53.3 pp) |
+| `atomic_qa` | 15 | 12/15 (80.0%) | 11/15 (73.3%) | -1 (-6.7 pp) |
+| `atomic_code` | 15 | 12/15 (80.0%) | 12/15 (80.0%) | +0 (+0.0 pp) |
+| `atomic_math` | 15 | 14/15 (93.3%) | 13/15 (86.7%) | -1 (-6.7 pp) |
+| `compound_solvable` | 20 | 10/20 (50.0%) | 15/20 (75.0%) | +5 (+25.0 pp) |
+| `compound_tool_required` | 20 | 16/20 (80.0%) | 17/20 (85.0%) | +1 (+5.0 pp) |
+| `track_b_hypergrid` | 50 | 50/50 (100.0%) | 50/50 (100.0%) | +0 (+0.0 pp) |
+| **Track A Total** | **100** | **67/100 (67.0%)** | **79/100 (79.0%)** | **+12 (+12.0 pp)** |
+| **Track B Total** | **50** | **50/50 (100.0%)** | **50/50 (100.0%)** | **+0 (+0.0 pp)** |
+| **Held-Out Total** | **150** | **117/150 (78.0%)** | **129/150 (86.0%)** | **+12 (+8.0 pp)** |
+
+- **Performance Summary (v1.3):**
   - **Track A (N=100):** **79.00% (79/100)**, Mean Latency: 7.59s.
   - **Track B (N=50):** **100.00% (50/50)**, Mean Latency: 10.34s.
   - **Total Held-Out (N=150):** **86.00% (129/150)**, Mean Latency: 8.50s.

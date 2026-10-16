@@ -139,4 +139,9 @@ Concurrently performed failure analysis on all 10 failed compound items solvable
 
 Per Section 3 of `AGENTS.md` (Checkpoints 3 & 6), work pauses after preparation. No fine-tuning execution will begin on Kaggle without explicit owner sign-off.
 
+---
 
+## 10. Note on Attribution & SQL Baseline Score
+
+> [!NOTE]
+> **Attribution Clarification:** Section 1 references an SLM SQL accuracy of 46.7% (7/15), which was measured on the **Dev** split under Pipeline v1.1. On the frozen v1.0 held-out split (`results/phase4/heldout_pipeline_records.jsonl`), the exact SLM SQL score was **3/15 (20.0%)** (and 11/15 under v1.3). The extended SQL dev set (`data/sql_dev_extended.json`, $N=100$) serves as the objective, pre-registered benchmark for Criterion 1.
