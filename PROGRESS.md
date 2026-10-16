@@ -15,7 +15,7 @@ This file tracks project phase progression, the authoritative validity ledger of
 | **5. Held-Out Evaluation** | Lock held-out split (SHA-256); evaluate C0, Pipeline, and Baselines (B0 & B1) | **COMPLETE** | Frozen run complete; all conditions evaluated | Track A: Pipeline 67.0% vs C0 56.0% (+11.0pp); Compound Tool-Req: 80.0% vs 5.0% (+75.0pp); B0 & B1 completed |
 | **6. Final Report** | Automated script-generated comparative report directly from disk records | **COMPLETE (CLOSED)** | Owner sign-off; Tag `v1.0-report` | Standalone script-generated report `docs/heldout_evaluation_report.md` closed and verified by automated tests |
 | **7. Pipeline v1.1 & Cascade** | Generic SQL query-writing path + cascade escalation on Dev (N=150) | **DEV COMPLETE / FROZEN** | Mandatory Stop before Part C (Reserve) | Part A (SQL fix) and Part B (Cascade calibration) complete on Dev; frozen tag v1.1-cascade-frozen; Reserve untouched |
-| **Post-Benchmark** | LoRA adapters (C4) and multi-model fine-tuning (E2–E4) | PENDING | Follow-up phase | Postponed to preserve execution schedule |
+| **Post-Benchmark** | Experiments E2–E4 (Kaggle SQL adapter, code compute, learned router) | **E3 COMPLETE (v1.3); E4 IN PROGRESS** | Owner approved E4 start | E4 Step 0 passed (+10.0pp headroom); Step 1 pool built (N=500, SHA-256 3fe3e521...); pool route eval running |
 
 ---
 
@@ -210,6 +210,48 @@ This file tracks project phase progression, the authoritative validity ledger of
   - **Track B ($N=50$):** SLM Win: 0, Both Right: 50, Both Wrong: 0, 27B Win: 0, Missing: 0.
   - **Compound Tool-Required ($N=20$):** SLM Win: 6, Both Right: 11, Both Wrong: 0, 27B Win: 3 (SLM net positive: +3 wins over 27B).
 - **Reserve Split Status:** Cryptographically locked and completely untouched.
+
+---
+
+## 1.13 Experiment 4 (E4): Learned Router (CoLabTEL Thrust 1) — Step 0 & Step 1 Complete
+
+- **Date:** 2026-10-16
+- **Base Pipeline:** Frozen Pipeline v1.3 (`v1.3-slm-frozen`, commit `acef7a5`)
+- **Pre-Registration Plan:** [`docs/e4_learned_router_plan.md`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/docs/e4_learned_router_plan.md) (committed at `a50f0e9`)
+- **Fixed Hard Rules:**
+  1. Pure SLM execution (`phi-4-mini` 3.82B, local Vulkan0 GPU on port 8080, 0 Groq calls).
+  2. Hard Rule: `CORPUS → no-code` strictly enforced, never learned.
+  3. Reserve set quarantined and untouched.
+  4. Raw records append-only.
+- **Step 0 Headroom Check (Dev Track A, N=100) — PASSED:**
+  - **Pipeline v1.3 Accuracy:** **77/100 (77.00%)**
+  - **Oracle Route Accuracy:** **87/100 (87.00%)**
+  - **Headroom ($\text{Oracle} - v1.3$):** **+10.00 percentage points** (Threshold: $\ge +5.0\text{ pp}$ $\to$ **PASS**).
+  - Single static route accuracies across all 100 dev items:
+    - `direct_reasoner`: 57/100 (57.0%), mean latency 7.74s
+    - `direct_sql`: 18/100 (18.0%), mean latency 5.31s
+    - `code_execution`: 50/100 (50.0%), mean latency 10.11s
+    - `decompose_reasoner`: 44/100 (44.0%), mean latency 20.33s
+    - `decompose_code`: 45/100 (45.0%), mean latency 16.25s
+  - Per-category Oracle vs v1.3 breakdown:
+    - `atomic_code`: 13/15 (86.7%) $\to$ 13/15 (86.7%) (+0, +0.0 pp)
+    - `atomic_math`: 13/15 (86.7%) $\to$ 14/15 (93.3%) (+1, +6.7 pp)
+    - `atomic_qa`: 11/15 (73.3%) $\to$ 15/15 (100.0%) (+4, +26.7 pp)
+    - `atomic_sql`: 7/15 (46.7%) $\to$ 9/15 (60.0%) (+2, +13.3 pp)
+    - `compound_solvable`: 17/20 (85.0%) $\to$ 19/20 (95.0%) (+2, +10.0 pp)
+    - `compound_tool_required`: 16/20 (80.0%) $\to$ 17/20 (85.0%) (+1, +5.0 pp)
+- **Step 1 Training Pool Construction — COMPLETE:**
+  - File: `data/router_train_pool.json` ($N=500$, seed 42)
+  - Cryptographic SHA-256 Hash: `3fe3e5213fcdb7a484e31b3b9f64c544672251b5240d524fd35e5c3abec21a0f`
+  - Zero Overlap Proven: 0 question collisions and 0 ID collisions against all 400 evaluation instances (Dev Track A, Held-Out Track A, Reserve Quarantine, Extended SQL Dev).
+  - Pool composition: 100 Spider train, 100 GSM8K train, 100 ARC Challenge train, 100 MBPP sanitized train, 50 compound solvable, 50 compound tool-required.
+- **Step 1 Overnight Evaluation (Active):**
+  - Script `scripts/eval_train_pool_routes.py` evaluating all 2,500 pairs (500 items $\times$ 5 routes) via `task-17239` with max_workers=3 across Vulkan slots.
+  - Raw records append-only in `results/phase4/router_train_pool_route_records.jsonl`.
+- **Pre-Registered Criteria (Committed in docs/e4_learned_router_plan.md):**
+  1. Dev Track A paired bootstrap 95% CI lower bound $> 0.0\text{ pp}$ over v1.3.
+  2. No Track A category drops $> 1$ item compared with v1.3.
+  3. Dev Track B drops $\le 1$ item compared with v1.3 ($\ge 47/50$, $94.0\%$).
 
 ---
 
