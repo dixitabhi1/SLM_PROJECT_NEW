@@ -31,6 +31,7 @@ htmlcov/
 # Environment & Keys
 .env
 *.local
+.kaggle/
 
 # OS
 .DS_Store

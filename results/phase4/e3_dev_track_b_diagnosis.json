@@ -1,0 +1,1018 @@
+{
+  "v12_passed": 48,
+  "e3_passed": 46,
+  "broken_count": 2,
+  "broken_items": [
+    {
+      "item_id": "track_b_dev_0005",
+      "v12_passed": true,
+      "e3_passed": false,
+      "routed_to": "outside_data_code",
+      "colors": [
+        "CORPUS_RAG",
+        "CODE_EXEC"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the component name and nominal coil current of the primary suspension magnet from the HyperGrid v4.2 suspension architecture documentation or database. Additionally, retrieve the burst disk relief pressure of the associated liquid helium reservoir tank from the same source.",
+        "Combine the retrieved data into a concise answer in key-value pairs format. Ensure the total word count does not exceed 75 words. Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <component name: HyperGrid v4.2 primary suspension magnet, nominal coil current: X Amperes, burst disk relief pressure: Y PSI> (Replace X and Y with the actual values retrieved from the documentation or database.)"
+      ],
+      "duration": 9.81627869606018,
+      "failed_facts": [
+        "Missing token 'SuperconMagnet-S8' (magnet SuperconMagnet-S8)",
+        "Numeric mismatch for 412.5 A +/- 0.5 (nominal coil current 412.5 A)",
+        "Missing token 'VesselDewar-D1' (dewar VesselDewar-D1)"
+      ],
+      "word_count": 3,
+      "final_answer": "Final Answer: 864.2"
+    },
+    {
+      "item_id": "track_b_dev_0010",
+      "v12_passed": true,
+      "e3_passed": false,
+      "routed_to": "outside_data_code",
+      "colors": [
+        "SQL_DATA",
+        "CODE_EXEC"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the active settings for VesselDewar-D1 from the HyperGrid v4.2 specification documentation or database, focusing on the Cryogenics subsystem. Extract the specific values for burst disk relief pressure and insulation vacuum target.",
+        "Format the extracted values into key-value pairs, ensuring the response is concise and within the 75-word limit. Then, conclude with the phrase 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <key-value pairs> (to be filled after completing Subtask 1 and Subtask 2)"
+      ],
+      "duration": 9.604472398757935,
+      "failed_facts": [
+        "Missing token 'VesselDewar-D1' (component VesselDewar-D1)",
+        "Missing phrase '864.2 kpa' (Burst Disk Relief Pressure value)",
+        "Missing phrase '0.0034 pa' (Insulation Vacuum Target value)"
+      ],
+      "word_count": 3,
+      "final_answer": "Final Answer: 0.0034"
+    }
+  ],
+  "all_records": [
+    {
+      "item_id": "track_b_dev_0001",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "CORPUS_RAG"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the HyperGrid v4.2 specification document or database to find the section that lists the propulsion subsystem components, specifically looking for the primary traction power inverter.",
+        "Extract the relevant information from the retrieved data, which includes the name of the primary traction power inverter, its current switching frequency, and its continuous power rating. Format this information into key-value pairs.\n\nFinal Answer: <key-value pairs>"
+      ],
+      "duration": 11.908960819244385,
+      "failed_facts": [],
+      "word_count": 21,
+      "final_answer": "Final Answer: \n- Inverter-ZX9 (Primary Traction Power Inverter, Subsystem: Propulsion)\n- Switching Frequency: 731.4 kHz\n- Continuous Power Rating: 1840 kW"
+    },
+    {
+      "item_id": "track_b_dev_0002",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "CORPUS_RAG",
+        "DIRECT_REASON"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the following information from the HyperGrid v4.2 cryogenics specification document:\n- Name of the cooling medium used in the secondary magnet thermal loop.\n- Operating flow rate of the cooling medium.",
+        "Calculate the total fluid volume displaced by the cooling medium over an operational duration of 15 minutes using the formula:\nTotal volume = Flow rate (in liters per minute) \u00d7 Duration (in minutes).\n\nFinal Answer: <key-value pairs> Cooling Medium: <name>, Flow Rate: <operating flow rate>, Total Volume Displaced: <calculated volume> (liters)"
+      ],
+      "duration": 10.207323789596558,
+      "failed_facts": [],
+      "word_count": 34,
+      "final_answer": "Cooling Medium: CryoGel-88X\nOperating Flow Rate: 18.6 L/min\nTotal Fluid Volume Displaced (15 min): 279 L\n\nFinal Answer: Cooling Medium: CryoGel-88X, Operating Flow Rate: 18.6 L/min, Total Fluid Volume Displaced (15 min): 279 L"
+    },
+    {
+      "item_id": "track_b_dev_0003",
+      "v12_passed": false,
+      "e3_passed": false,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "CORPUS_RAG"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the mesh protocol identifier for the inter-pod guideway radio from the HyperGrid v4.2 baseline documentation or database.",
+        "Retrieve the deploy actuation time of the secondary aerodynamic airfoil brake and the packet beacon interval of the inter-pod guideway radio from the same source. Then: Calculate the difference in milliseconds between the deploy actuation time and the radio's packet beacon interval. Then: Compile the retrieved mesh protocol identifier and the calculated time difference into a concise key-value pair format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: Mesh Protocol Identifier: <value>, Time Difference: <value> milliseconds"
+      ],
+      "duration": 12.645718574523926,
+      "failed_facts": [
+        "Numeric mismatch for 86.5 ms +/- 0.2 (brake actuation time 86.5 ms)",
+        "Numeric mismatch for 74.1 ms +/- 0.2 (time difference 74.1 ms)"
+      ],
+      "word_count": 53,
+      "final_answer": "Mesh Protocol Identifier: VeloSync-9X\nDeploy Actuation Time (Secondary Aerodynamic Airfoil Brake): Not provided\nRadio's Packet Beacon Interval: 12.4 ms\nDifference in milliseconds: Not calculable due to missing deploy actuation time\n\nFinal Answer: Mesh Protocol Identifier: VeloSync-9X, Radio's Packet Beacon Interval: 12.4 ms, Difference in milliseconds: Not calculable due to missing deploy actuation time"
+    },
+    {
+      "item_id": "track_b_dev_0004",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "CORPUS_RAG"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the technical specifications for the HyperGrid v4.2 emergency magnetic caliper from the manufacturer's database or official documentation.",
+        "Extract the component designation, friction pad material, and nominal emergency deceleration rating from the retrieved data.\nFinal Answer: <key-value pairs> (Component designation: X, Friction pad material: Y, Nominal emergency deceleration rating: Z)"
+      ],
+      "duration": 8.018728017807007,
+      "failed_facts": [],
+      "word_count": 17,
+      "final_answer": "Final Answer: \n- Component Designation: EddyShoe-B7\n- Friction Pad Material: CeramoBond-M9\n- Nominal Emergency Deceleration: 14.3 m/s^2"
+    },
+    {
+      "item_id": "track_b_dev_0005",
+      "v12_passed": true,
+      "e3_passed": false,
+      "routed_to": "outside_data_code",
+      "colors": [
+        "CORPUS_RAG",
+        "CODE_EXEC"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the component name and nominal coil current of the primary suspension magnet from the HyperGrid v4.2 suspension architecture documentation or database. Additionally, retrieve the burst disk relief pressure of the associated liquid helium reservoir tank from the same source.",
+        "Combine the retrieved data into a concise answer in key-value pairs format. Ensure the total word count does not exceed 75 words. Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <component name: HyperGrid v4.2 primary suspension magnet, nominal coil current: X Amperes, burst disk relief pressure: Y PSI> (Replace X and Y with the actual values retrieved from the documentation or database.)"
+      ],
+      "duration": 9.81627869606018,
+      "failed_facts": [
+        "Missing token 'SuperconMagnet-S8' (magnet SuperconMagnet-S8)",
+        "Numeric mismatch for 412.5 A +/- 0.5 (nominal coil current 412.5 A)",
+        "Missing token 'VesselDewar-D1' (dewar VesselDewar-D1)"
+      ],
+      "word_count": 3,
+      "final_answer": "Final Answer: 864.2"
+    },
+    {
+      "item_id": "track_b_dev_0006",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "DIRECT_REASON"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the active settings of Inverter-ZX9 within the Propulsion subsystem from the HyperGrid v4.2 specification documentation or database.",
+        "Extract the switching frequency and continuous power rating of Inverter-ZX9 from the retrieved data.\n\nFinal Answer: <switching frequency: X Hz, continuous power rating: Y kW> (Replace X and Y with the actual values from the retrieved data)"
+      ],
+      "duration": 8.007406234741211,
+      "failed_facts": [],
+      "word_count": 17,
+      "final_answer": "Final Answer: \n- Inverter-ZX9 (Subsystem: Propulsion)\n- Switching Frequency: 731.4 kHz\n- Continuous Power Rating: 1840 kW"
+    },
+    {
+      "item_id": "track_b_dev_0007",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "CORPUS_RAG",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the HyperGrid v4.2 specification document or database containing the Propulsion subsystem details, specifically focusing on the StatorPack-P4 settings.",
+        "Extract the pole pitch distance and core lamination alloy information for StatorPack-P4 from the retrieved data.\n\nFinal Answer: <key-value pairs> (Pole Pitch Distance: X mm, Core Lamination Alloy: Y Alloy)"
+      ],
+      "duration": 7.2226996421813965,
+      "failed_facts": [],
+      "word_count": 15,
+      "final_answer": "Final Answer: \n- StatorPack-P4 Pole Pitch Distance: 142.5 mm\n- StatorPack-P4 Core Lamination Alloy: FerrAlloy-Q14"
+    },
+    {
+      "item_id": "track_b_dev_0008",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "CORPUS_RAG",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the HyperGrid v4.2 specification document or database containing the Propulsion subsystem details, specifically focusing on the StatorPack-P4 settings.",
+        "Extract the pole pitch distance and core lamination alloy information for StatorPack-P4 from the retrieved data.\n\nFinal Answer: <key-value pairs> (Pole Pitch Distance: X mm, Core Lamination Alloy: Y Alloy)"
+      ],
+      "duration": 6.382584095001221,
+      "failed_facts": [],
+      "word_count": 15,
+      "final_answer": "Final Answer: \n- StatorPack-P4 Pole Pitch Distance: 142.5 mm\n- StatorPack-P4 Core Lamination Alloy: FerrAlloy-Q14"
+    },
+    {
+      "item_id": "track_b_dev_0009",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "CORPUS_RAG"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the active settings for CryoLoop-Gamma within the Cryogenics subsystem from the HyperGrid v4.2 specification documentation or database.",
+        "Extract the cooling medium and operating flow rate for CryoLoop-Gamma from the retrieved data.\n\nFinal Answer: <cooling medium: liquid helium, operating flow rate: 0.5 liters per second>"
+      ],
+      "duration": 8.461137771606445,
+      "failed_facts": [],
+      "word_count": 26,
+      "final_answer": "Final Answer: \n- CryoLoop-Gamma cooling medium: CryoGel-88X\n- CryoLoop-Gamma operating flow rate: 18.6 L/min\n\nFinal Answer: CryoLoop-Gamma cooling medium: CryoGel-88X, CryoLoop-Gamma operating flow rate: 18.6 L/min"
+    },
+    {
+      "item_id": "track_b_dev_0010",
+      "v12_passed": true,
+      "e3_passed": false,
+      "routed_to": "outside_data_code",
+      "colors": [
+        "SQL_DATA",
+        "CODE_EXEC"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the active settings for VesselDewar-D1 from the HyperGrid v4.2 specification documentation or database, focusing on the Cryogenics subsystem. Extract the specific values for burst disk relief pressure and insulation vacuum target.",
+        "Format the extracted values into key-value pairs, ensuring the response is concise and within the 75-word limit. Then, conclude with the phrase 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <key-value pairs> (to be filled after completing Subtask 1 and Subtask 2)"
+      ],
+      "duration": 9.604472398757935,
+      "failed_facts": [
+        "Missing token 'VesselDewar-D1' (component VesselDewar-D1)",
+        "Missing phrase '864.2 kpa' (Burst Disk Relief Pressure value)",
+        "Missing phrase '0.0034 pa' (Insulation Vacuum Target value)"
+      ],
+      "word_count": 3,
+      "final_answer": "Final Answer: 0.0034"
+    },
+    {
+      "item_id": "track_b_dev_0011",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the insulation vacuum target for VesselDewar-D1 in the Cryogenics subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the mesh protocol identifier for TransceiverNode-T9 in the Telemetry subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Ensure the final answer is within the 75-word limit. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <Insulation vacuum target for VesselDewar-D1: <value>, Mesh protocol identifier for TransceiverNode-T9: <value> (Note: Replace <value> with the actual retrieved data.)>"
+      ],
+      "duration": 10.122828960418701,
+      "failed_facts": [],
+      "word_count": 15,
+      "final_answer": "Final Answer: \n- VesselDewar-D1 Insulation Vacuum Target: `0.0034 Pa`\n- TransceiverNode-T9 Mesh Protocol Identifier: `VeloSync-9X`"
+    },
+    {
+      "item_id": "track_b_dev_0012",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "CORPUS_RAG"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the packet beacon interval for TransceiverNode-T9 in the Telemetry subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the laser operating wavelength for LidarBeacon-L2 in the Telemetry subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Ensure the total word count for the final answer does not exceed 75 words. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <packet beacon interval for TransceiverNode-T9: X Hz, laser operating wavelength for LidarBeacon-L2: Y nm> (X and Y to be replaced with actual values from the retrieved data)"
+      ],
+      "duration": 10.021230697631836,
+      "failed_facts": [],
+      "word_count": 16,
+      "final_answer": "Final Answer: \n- TransceiverNode-T9 Packet Beacon Interval: 12.4 ms\n- LidarBeacon-L2 Laser Operating Wavelength: 912.8 nm"
+    },
+    {
+      "item_id": "track_b_dev_0013",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "CORPUS_RAG",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the HyperGrid v4.2 specification document or database that contains the Telemetry subsystem details, specifically focusing on the LidarBeacon-L2 settings.",
+        "Extract the relevant information from the retrieved data, which includes the active settings of LidarBeacon-L2, its laser operating wavelength, and its sampling frequency. Format this information into key-value pairs.\n\nFinal Answer: <key-value pairs extracted from the retrieved data>"
+      ],
+      "duration": 8.108490467071533,
+      "failed_facts": [],
+      "word_count": 15,
+      "final_answer": "Final Answer: \n- LidarBeacon-L2 Laser Operating Wavelength: 912.8 nm\n- LidarBeacon-L2 Sampling Frequency: 48.2 kHz"
+    },
+    {
+      "item_id": "track_b_dev_0014",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "CORPUS_RAG",
+        "CORPUS_RAG"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the sampling frequency for LidarBeacon-L2 from the Telemetry subsystem documentation or configuration files for HyperGrid v4.2.",
+        "Retrieve the nominal emergency deceleration for EddyShoe-B7 from the Braking subsystem documentation or configuration files for HyperGrid v4.2. Then: Format the retrieved data into key-value pairs. Then: Combine the key-value pairs from Subtask 3 into a concise answer. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <Sampling Frequency for LidarBeacon-L2: <value>, Nominal Emergency Deceleration for EddyShoe-B7: <value> >"
+      ],
+      "duration": 9.898870468139648,
+      "failed_facts": [],
+      "word_count": 15,
+      "final_answer": "Final Answer: \n- EddyShoe-B7 Nominal Emergency Deceleration: 14.3 m/s^2\n- LidarBeacon-L2 Sampling Frequency: 48.2 kHz"
+    },
+    {
+      "item_id": "track_b_dev_0015",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the friction pad material for EddyShoe-B7 in the Braking subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the deploy actuation time for SkidPlate-K1 in the Braking subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Ensure the total word count for the final answer does not exceed 75 words. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <Key-value pairs to be filled after data retrieval and processing>"
+      ],
+      "duration": 9.616482734680176,
+      "failed_facts": [],
+      "word_count": 15,
+      "final_answer": "Final Answer: \n- EddyShoe-B7 Friction Pad Material: CeramoBond-M9\n- SkidPlate-K1 Deploy Actuation Time: 86.5 ms"
+    },
+    {
+      "item_id": "track_b_dev_0016",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "CORPUS_RAG",
+        "DIRECT_REASON"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the HyperGrid v4.2 specification document or database containing the Levitation subsystem details, specifically focusing on the SensorMount-M3 component. Extract the relevant sections that detail the active settings, maximum allowable telemetry drift, and the bracket damping polymer used for SensorMount-M3.",
+        "Analyze the extracted data to identify the active settings of SensorMount-M3 within the Levitation subsystem. Determine the maximum allowable telemetry drift value and the type of bracket damping polymer used. Format this information into a concise key-value structured response, ensuring the total word count does not exceed 75 words. Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <key-value pairs> (to be filled after completing Subtask 1 and Subtask 2)"
+      ],
+      "duration": 10.321879625320435,
+      "failed_facts": [],
+      "word_count": 20,
+      "final_answer": "Final Answer: \n- SensorMount-M3 bracket damping polymer: Viton-Z7\n- SensorMount-M3 max allowable telemetry drift: 0.043 mm\n\nFinal Answer: <key-value pairs>"
+    },
+    {
+      "item_id": "track_b_dev_0017",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "CORPUS_RAG",
+        "DIRECT_REASON"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the HyperGrid v4.2 specification document or database containing the Levitation subsystem details, specifically focusing on the SensorMount-M3 component. Extract the relevant sections that detail the active settings, maximum allowable telemetry drift, and the bracket damping polymer used for SensorMount-M3.",
+        "Analyze the extracted data to identify the active settings of SensorMount-M3. Determine the maximum allowable telemetry drift value and the type of bracket damping polymer used. Format this information into key-value pairs, ensuring the response is concise and within the 75-word limit.\n\nFinal Answer: <key-value pairs>"
+      ],
+      "duration": 7.933398962020874,
+      "failed_facts": [],
+      "word_count": 20,
+      "final_answer": "Final Answer: \n- SensorMount-M3 bracket damping polymer: Viton-Z7\n- SensorMount-M3 max allowable telemetry drift: 0.043 mm\n\nFinal Answer: <key-value pairs>"
+    },
+    {
+      "item_id": "track_b_dev_0018",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the nominal coil current for SuperconMagnet-S8 in the Levitation subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the primary o-ring elastomer for DoorSeal-V4 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Ensure the final answer is within the 75-word limit.\n\nFinal Answer: <key-value pairs> (to be filled after completing Subtasks 1-3)"
+      ],
+      "duration": 8.526573657989502,
+      "failed_facts": [],
+      "word_count": 10,
+      "final_answer": "Final Answer: SuperconMagnet-S8 Coil Current: 412.5 A, DoorSeal-V4 Elastomer: PolyViton-X8."
+    },
+    {
+      "item_id": "track_b_dev_0019",
+      "v12_passed": false,
+      "e3_passed": false,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "DIRECT_REASON"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the active settings of DoorSeal-V4 within the Airlock subsystem from the HyperGrid v4.2 specification documentation or database.",
+        "Identify the primary o-ring elastomer and the clamping sealing pressure for DoorSeal-V4 from the retrieved data.\n\nFinal Answer: <key-value pairs> Primary O-ring Elastomer: [Value], Clamping Sealing Pressure: [Value]"
+      ],
+      "duration": 6.629309177398682,
+      "failed_facts": [
+        "Missing token 'DoorSeal-V4' (component DoorSeal-V4)"
+      ],
+      "word_count": 13,
+      "final_answer": "Final Answer: \n- Primary O-Ring Elastomer: PolyViton-X8\n- Clamping Sealing Pressure: 12.8 bar"
+    },
+    {
+      "item_id": "track_b_dev_0020",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the clamping sealing pressure for DoorSeal-V4 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-21 for DevModule-Airl-21 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Ensure the total word count for the final answer does not exceed 75 words. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <clamping sealing pressure for DoorSeal-V4: <value>, design parameter theta-21 for DevModule-Airl-21: <value> > 75 words limit>"
+      ],
+      "duration": 9.394704818725586,
+      "failed_facts": [],
+      "word_count": 16,
+      "final_answer": "Final Answer: \n- DoorSeal-V4 clamping sealing pressure: 12.8 bar\n- DevModule-Airl-21 design parameter theta-21: 87.91 ms"
+    },
+    {
+      "item_id": "track_b_dev_0021",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-21 for DevModule-Airl-21 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-22 for DevModule-Life-22 in the LifeSupport subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-21 for DevModule-Airl-21: <value>, theta-22 for DevModule-Life-22: <value> Final Answer: {theta-21 for DevModule-Airl-21: <value>, theta-22 for DevModule-Life-22: <value>}"
+      ],
+      "duration": 9.269922971725464,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Airl-21, Theta-21: 87.91 ms\n- DevModule-Life-22, Theta-22: 91.62 L/min"
+    },
+    {
+      "item_id": "track_b_dev_0022",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-22 for DevModule-Life-22 in the LifeSupport subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-23 for DevModule-Powe-23 in the PowerDistribution subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Compile the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <key-value pairs> (to be filled after completing Subtasks 1-3)"
+      ],
+      "duration": 9.300884246826172,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Life-22: Theta-22 = 91.62 L/min\nDevModule-Powe-23: Theta-23 = 95.33 bar"
+    },
+    {
+      "item_id": "track_b_dev_0023",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-23 for DevModule-Powe-23 in the PowerDistribution subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-24 for DevModule-Prop-24 in the Propulsion subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Compile the retrieved data into a concise key-value format, ensuring the total word count does not exceed 75 words. Then: Conclude with the phrase 'Final Answer: <key-value pairs>' followed by the compiled key-value pairs.\n\nFinal Answer: <key-value pairs> (to be filled after completing Subtasks 1-3)"
+      ],
+      "duration": 9.55092167854309,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Powe-23: Theta-23 = 95.33 bar\nDevModule-Prop-24: Theta-24 = 99.04 kPa"
+    },
+    {
+      "item_id": "track_b_dev_0024",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-24 for DevModule-Prop-24 in the Propulsion subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-25 for DevModule-Cryo-25 in the Cryogenics subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-24 for DevModule-Prop-24: <value>, theta-25 for DevModule-Cryo-25: <value> >"
+      ],
+      "duration": 9.500418663024902,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Cryo-25: Theta-25 = 102.75 kHz\nDevModule-Prop-24: Theta-24 = 99.04 kPa"
+    },
+    {
+      "item_id": "track_b_dev_0025",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-25 for DevModule-Cryo-25 from the Cryogenics subsystem documentation or database in the HyperGrid v4.2 engineering release.",
+        "Retrieve the design parameter theta-26 for DevModule-Tele-26 from the Telemetry subsystem documentation or database in the HyperGrid v4.2 engineering release. Then: Compile the retrieved data into a concise key-value format. Then: Combine the key-value pairs from Subtask 3 into a final answer. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <theta-25 for DevModule-Cryo-25: <value>, theta-26 for DevModule-Tele-26: <value> >"
+      ],
+      "duration": 11.424153089523315,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Cryo-25, Theta-25: 102.75 kHz\n- DevModule-Tele-26, Theta-26: 106.46 m/s^2"
+    },
+    {
+      "item_id": "track_b_dev_0026",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "CORPUS_RAG",
+        "CORPUS_RAG"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-26 for DevModule-Tele-26 from the Telemetry subsystem in the HyperGrid v4.2 engineering release.",
+        "Retrieve the design parameter theta-27 for DevModule-Brak-27 from the Braking subsystem in the HyperGrid v4.2 engineering release. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: { \"theta-26\": \"value for DevModule-Tele-26\", \"theta-27\": \"value for DevModule-Brak-27\" }"
+      ],
+      "duration": 9.641790628433228,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Tele-26, Theta-26: 106.46 m/s^2\n- DevModule-Brak-27, Theta-27: 110.17 mm"
+    },
+    {
+      "item_id": "track_b_dev_0027",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-27 for DevModule-Brak-27 in the Braking subsystem from the HyperGrid v4.2 engineering release database or document.",
+        "Retrieve the design parameter theta-28 for DevModule-Levi-28 in the Levitation subsystem from the HyperGrid v4.2 engineering release database or document. Then: Compile the retrieved data into a concise key-value format. Then: Combine the results from Subtask 1 and Subtask 2 into a single response. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-27 for DevModule-Brak-27: <value>, theta-28 for DevModule-Levi-28: <value> Final Answer: {theta-27 for DevModule-Brak-27: <value>, theta-28 for DevModule-Levi-28: <value>}"
+      ],
+      "duration": 11.786703109741211,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Brak-27: Theta-27 = 110.17 mm\nDevModule-Levi-28: Theta-28 = 113.88 kW"
+    },
+    {
+      "item_id": "track_b_dev_0028",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-28 for DevModule-Levi-28 in the Levitation subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-29 for DevModule-Airl-29 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Compile the retrieved data into a concise key-value format. Then: Combine the key-value pairs from Subtask 3 into a final answer. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <theta-28 for DevModule-Levi-28: <value>, theta-29 for DevModule-Airl-29: <value> >"
+      ],
+      "duration": 10.490789413452148,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Airl-29, Theta-29: 117.59 ms\n- DevModule-Levi-28, Theta-28: 113.88 kW"
+    },
+    {
+      "item_id": "track_b_dev_0029",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-29 for DevModule-Airl-29 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-30 for DevModule-Life-30 in the LifeSupport subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-29 for DevModule-Airl-29: <value>, theta-30 for DevModule-Life-30: <value> Final Answer: { \"theta-29\": \"<value>\", \"theta-30\": \"<value>\" }"
+      ],
+      "duration": 9.676730871200562,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Airl-29, Theta-29: 117.59 ms\n- DevModule-Life-30, Theta-30: 121.3 L/min"
+    },
+    {
+      "item_id": "track_b_dev_0030",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-30 for DevModule-Life-30 in the LifeSupport subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-31 for DevModule-Powe-31 in the PowerDistribution subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format, ensuring the total word count does not exceed 75 words. Then: Conclude with the phrase 'Final Answer: <key-value pairs>' followed by the key-value pairs obtained from the previous steps."
+      ],
+      "duration": 8.174165487289429,
+      "failed_facts": [],
+      "word_count": 14,
+      "final_answer": "Final Answer: \n- DevModule-Life-30: Theta-30 = 121.3 L/min\n- DevModule-Powe-31: Theta-31 = 125.01 bar"
+    },
+    {
+      "item_id": "track_b_dev_0031",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-31 for DevModule-Powe-31 in the PowerDistribution subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-32 for DevModule-Prop-32 in the Propulsion subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Compile the retrieved data into a concise key-value format, ensuring the total word count does not exceed 75 words. Then: Conclude with the phrase 'Final Answer: <key-value pairs>' followed by the compiled key-value pairs.\n\nFinal Answer: <key-value pairs> (to be filled after completing Subtasks 1-3)"
+      ],
+      "duration": 9.432756185531616,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Powe-31: theta-31 = 125.01 bar\nDevModule-Prop-32: theta-32 = 128.72 kPa"
+    },
+    {
+      "item_id": "track_b_dev_0032",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-32 for DevModule-Prop-32 in the Propulsion subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-33 for DevModule-Cryo-33 in the Cryogenics subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-32 for DevModule-Prop-32: <value>, theta-33 for DevModule-Cryo-33: <value> >"
+      ],
+      "duration": 9.549407243728638,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Cryo-33: Theta-33 = 132.43 kHz\nDevModule-Prop-32: Theta-32 = 128.72 kPa"
+    },
+    {
+      "item_id": "track_b_dev_0033",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-33 for DevModule-Cryo-33 from the Cryogenics subsystem documentation or database in the HyperGrid v4.2 engineering release.",
+        "Retrieve the design parameter theta-34 for DevModule-Tele-34 from the Telemetry subsystem documentation or database in the HyperGrid v4.2 engineering release. Then: Compile the retrieved data into a concise key-value format. Then: Combine the key-value pairs from Subtask 3 into a final answer. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <theta-33 for DevModule-Cryo-33: <value>, theta-34 for DevModule-Tele-34: <value> >"
+      ],
+      "duration": 10.326279640197754,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Cryo-33 Theta-33: 132.43 kHz\n- DevModule-Tele-34 Theta-34: 136.14 m/s^2"
+    },
+    {
+      "item_id": "track_b_dev_0034",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "CORPUS_RAG",
+        "CORPUS_RAG"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-34 for DevModule-Tele-34 from the Telemetry subsystem in the HyperGrid v4.2 engineering release.",
+        "Retrieve the design parameter theta-35 for DevModule-Brak-35 from the Braking subsystem in the HyperGrid v4.2 engineering release. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: { \"theta-34\": \"value retrieved for DevModule-Tele-34\", \"theta-35\": \"value retrieved for DevModule-Brak-35\" }"
+      ],
+      "duration": 9.76401686668396,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Tele-34, Theta-34: 136.14 m/s^2\n- DevModule-Brak-35, Theta-35: 139.85 mm"
+    },
+    {
+      "item_id": "track_b_dev_0035",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-35 for DevModule-Brak-35 in the Braking subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-36 for DevModule-Levi-36 in the Levitation subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-35 for DevModule-Brak-35: <value>, theta-36 for DevModule-Levi-36: <value> >"
+      ],
+      "duration": 8.91740369796753,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Brak-35: Theta-35 = 139.85 mm\nDevModule-Levi-36: Theta-36 = 143.56 kW"
+    },
+    {
+      "item_id": "track_b_dev_0036",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-36 for DevModule-Levi-36 in the Levitation subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-37 for DevModule-Airl-37 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Compile the retrieved data into a concise key-value format. Then: Combine the key-value pairs from Subtask 3 into a final answer. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <theta-36 for DevModule-Levi-36: <value>, theta-37 for DevModule-Airl-37: <value> >"
+      ],
+      "duration": 10.318415880203247,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Airl-37, Theta-37: 147.27 ms\n- DevModule-Levi-36, Theta-36: 143.56 kW"
+    },
+    {
+      "item_id": "track_b_dev_0037",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-37 for DevModule-Airl-37 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-38 for DevModule-Life-38 in the LifeSupport subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-37 for DevModule-Airl-37: <value>, theta-38 for DevModule-Life-38: <value> Final Answer: { \"theta-37\": \"<value>\", \"theta-38\": \"<value>\" }"
+      ],
+      "duration": 9.258122444152832,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Airl-37, Theta-37: 147.27 ms\n- DevModule-Life-38, Theta-38: 150.98 L/min"
+    },
+    {
+      "item_id": "track_b_dev_0038",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-38 for DevModule-Life-38 in the LifeSupport subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-39 for DevModule-Powe-39 in the PowerDistribution subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-38 for DevModule-Life-38: <value>, theta-39 for DevModule-Powe-39: <value> >"
+      ],
+      "duration": 8.500515460968018,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Life-38: Theta-38 = 150.98 L/min\nDevModule-Powe-39: Theta-39 = 154.69 bar"
+    },
+    {
+      "item_id": "track_b_dev_0039",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-39 for DevModule-Powe-39 in the PowerDistribution subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-40 for DevModule-Prop-40 in the Propulsion subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Compile the retrieved data into a concise key-value format, ensuring the total word count does not exceed 75 words. Then: Conclude with the phrase 'Final Answer: <key-value pairs>' followed by the compiled key-value pairs.\n\nFinal Answer: <key-value pairs> (to be filled after completing Subtasks 1-3)"
+      ],
+      "duration": 9.109885454177856,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Powe-39: Theta-39 = 154.69 bar\nDevModule-Prop-40: Theta-40 = 158.4 kPa"
+    },
+    {
+      "item_id": "track_b_dev_0040",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-40 for DevModule-Prop-40 in the Propulsion subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-41 for DevModule-Cryo-41 in the Cryogenics subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-40 for DevModule-Prop-40: <value>, theta-41 for DevModule-Cryo-41: <value> >"
+      ],
+      "duration": 9.045610666275024,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Cryo-41, Theta-41: 162.11 kHz\n- DevModule-Prop-40, Theta-40: 158.4 kPa"
+    },
+    {
+      "item_id": "track_b_dev_0041",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-41 for DevModule-Cryo-41 from the Cryogenics subsystem documentation or database in the HyperGrid v4.2 engineering release.",
+        "Retrieve the design parameter theta-42 for DevModule-Tele-42 from the Telemetry subsystem documentation or database in the HyperGrid v4.2 engineering release. Then: Compile the retrieved data into a concise key-value format. Then: Ensure the final answer is within the 75-word limit. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <theta-41 for DevModule-Cryo-41: <value>, theta-42 for DevModule-Tele-42: <value> (Note: Replace <value> with the actual retrieved values and ensure the total word count is within 75 words.)>"
+      ],
+      "duration": 10.30391263961792,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Cryo-41, Theta-41: 162.11 kHz\n- DevModule-Tele-42, Theta-42: 165.82 m/s^2"
+    },
+    {
+      "item_id": "track_b_dev_0042",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-42 for DevModule-Tele-42 from the Telemetry subsystem documentation or database in the HyperGrid v4.2 engineering release.",
+        "Retrieve the design parameter theta-43 for DevModule-Brak-43 from the Braking subsystem documentation or database in the HyperGrid v4.2 engineering release. Then: Compile the retrieved data into a concise key-value format. Then: Combine the key-value pairs from Subtask 3 into a final answer. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <theta-42 for DevModule-Tele-42: <value>, theta-43 for DevModule-Brak-43: <value> >"
+      ],
+      "duration": 9.724700927734375,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Tele-42, Theta-42: 165.82 m/s^2\n- DevModule-Brak-43, Theta-43: 169.53 mm"
+    },
+    {
+      "item_id": "track_b_dev_0043",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-43 for DevModule-Brak-43 in the Braking subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-44 for DevModule-Levi-44 in the Levitation subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-43 for DevModule-Brak-43: <value>, theta-44 for DevModule-Levi-44: <value> Final Answer: {theta-43 for DevModule-Brak-43: <value>, theta-44 for DevModule-Levi-44: <value>}"
+      ],
+      "duration": 9.913758516311646,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Brak-43, Theta-43: 169.53 mm\n- DevModule-Levi-44, Theta-44: 173.24 kW"
+    },
+    {
+      "item_id": "track_b_dev_0044",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-44 for DevModule-Levi-44 in the Levitation subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-45 for DevModule-Airl-45 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Compile the retrieved data into a concise key-value format. Then: Combine the key-value pairs from Subtask 3 into a final answer. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <theta-44 for DevModule-Levi-44: <value>, theta-45 for DevModule-Airl-45: <value> >"
+      ],
+      "duration": 9.547157526016235,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Levi-44, Theta-44: 173.24 kW\n- DevModule-Airl-45, Theta-45: 176.95 ms"
+    },
+    {
+      "item_id": "track_b_dev_0045",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-45 for DevModule-Airl-45 in the Airlock subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-46 for DevModule-Life-46 in the LifeSupport subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-45 for DevModule-Airl-45: <value>, theta-46 for DevModule-Life-46: <value> Final Answer: {theta-45 for DevModule-Airl-45: <value>, theta-46 for DevModule-Life-46: <value>}"
+      ],
+      "duration": 9.635920524597168,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \n- DevModule-Airl-45, Theta-45: 176.95 ms\n- DevModule-Life-46, Theta-46: 180.66 L/min"
+    },
+    {
+      "item_id": "track_b_dev_0046",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-46 for DevModule-Life-46 in the LifeSupport subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-47 for DevModule-Powe-47 in the PowerDistribution subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-46 for DevModule-Life-46: <value>, theta-47 for DevModule-Powe-47: <value> Final Answer: {theta-46 for DevModule-Life-46: <value>, theta-47 for DevModule-Powe-47: <value>}"
+      ],
+      "duration": 9.9560546875,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Life-46: Theta-46 = 180.66 L/min\nDevModule-Powe-47: Theta-47 = 184.37 bar"
+    },
+    {
+      "item_id": "track_b_dev_0047",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-47 for DevModule-Powe-47 in the PowerDistribution subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-48 for DevModule-Prop-48 in the Propulsion subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Compile the retrieved data into a concise key-value format, ensuring the total word count does not exceed 75 words. Then: Conclude with the phrase 'Final Answer: <key-value pairs>' followed by the compiled key-value pairs.\n\nFinal Answer: <key-value pairs> (to be filled after completing Subtasks 1-3)"
+      ],
+      "duration": 9.085317134857178,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Powe-47: theta-47 = 184.37 bar\nDevModule-Prop-48: theta-48 = 188.08 kPa"
+    },
+    {
+      "item_id": "track_b_dev_0048",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-48 for DevModule-Prop-48 in the Propulsion subsystem from the HyperGrid v4.2 engineering release documentation or database.",
+        "Retrieve the design parameter theta-49 for DevModule-Cryo-49 in the Cryogenics subsystem from the HyperGrid v4.2 engineering release documentation or database. Then: Combine the retrieved data into a concise key-value format. Then: Conclude with the final answer in the specified format.\n\nFinal Answer: <theta-48 for DevModule-Prop-48: <value>, theta-49 for DevModule-Cryo-49: <value> >"
+      ],
+      "duration": 8.92918848991394,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Prop-48: Theta-48 = 188.08 kPa\nDevModule-Cryo-49: Theta-49 = 191.79 kHz"
+    },
+    {
+      "item_id": "track_b_dev_0049",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-49 for DevModule-Cryo-49 from the Cryogenics subsystem documentation or database in the HyperGrid v4.2 engineering release.",
+        "Retrieve the design parameter theta-50 for DevModule-Tele-50 from the Telemetry subsystem documentation or database in the HyperGrid v4.2 engineering release. Then: Compile the retrieved data into a concise key-value format. Then: Combine the key-value pairs from Subtask 3 into a final answer. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <theta-49 for DevModule-Cryo-49: <value>, theta-50 for DevModule-Tele-50: <value> >"
+      ],
+      "duration": 10.291162490844727,
+      "failed_facts": [],
+      "word_count": 12,
+      "final_answer": "Final Answer: \nDevModule-Tele-50: Theta-50 = 195.5 m/s^2\nDevModule-Cryo-49: Theta-49 = 191.79 kHz"
+    },
+    {
+      "item_id": "track_b_dev_0050",
+      "v12_passed": true,
+      "e3_passed": true,
+      "routed_to": "outside_data",
+      "colors": [
+        "SQL_DATA",
+        "SQL_DATA"
+      ],
+      "source": "CORPUS",
+      "subtasks": [
+        "Retrieve the design parameter theta-50 for DevModule-Tele-50 from the Telemetry subsystem documentation or database in the HyperGrid v4.2 engineering release.",
+        "Retrieve the design parameter theta-51 for DevModule-Brak-51 from the Braking subsystem documentation or database in the HyperGrid v4.2 engineering release. Then: Compile the retrieved data into a concise key-value format. Then: Combine the key-value pairs from Subtask 3 into a final answer. Then: Conclude with 'Final Answer: <key-value pairs>'.\n\nFinal Answer: <theta-50 for DevModule-Tele-50: <value>, theta-51 for DevModule-Brak-51: <value> >"
+      ],
+      "duration": 10.612284660339355,
+      "failed_facts": [],
+      "word_count": 17,
+      "final_answer": "Final Answer: \n- DevModule-Tele-50, Theta-50: 195.5 m/s^2\n- DevModule-Brak-51, Theta-51: 199.21 mm\n- DevModule-Brak-75, Theta-75: 288.25 mm"
+    }
+  ]
+}

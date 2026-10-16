@@ -233,7 +233,11 @@ def run_specialist_pipeline_e3(prompt: str) -> Dict[str, Any]:
         fallbacks["colorer"] = fb_colorer
 
         # E3 Generic Rule: If Subtask 2 involves calculation, counting, or modular arithmetic on non-corpus data -> CODE_EXEC
-        if analysis.get("source") != "CORPUS":
+        # Generic Constraint: No code routing when the analyser's source is CORPUS
+        if analysis.get("source") == "CORPUS":
+            if colors[1] == "CODE_EXEC":
+                colors[1] = "DIRECT_REASON"
+        else:
             is_calc = any(w in subtasks[1].lower() for w in [
                 "calculate", "compute", "sum", "multiply", "divide", "add", "score",
                 "total", "fee", "rate", "percentage", "ratio", "count", "modulo"
@@ -248,7 +252,7 @@ def run_specialist_pipeline_e3(prompt: str) -> Dict[str, Any]:
             prompt=prompt
         )
 
-        if colors[1] == "CODE_EXEC":
+        if colors[1] == "CODE_EXEC" and analysis.get("source") != "CORPUS":
             down_prompt = (
                 f"Task: {prompt}\n\n"
                 f"Retrieved Context:\n{fetch_summary}\n\n"
@@ -311,64 +315,66 @@ def run_specialist_pipeline_e3(prompt: str) -> Dict[str, Any]:
         }
 
     # 3. SELF-CONTAINED PATH (needs_outside == False)
-    # 3A. Function implementation (HumanEval)
-    if is_function_completion(prompt):
-        code_sys = "You are an expert Python programmer. Complete the function implementation cleanly inside ```python\n<code>\n```."
-        resp = call_phi([
-            {"role": "system", "content": code_sys},
-            {"role": "user", "content": prompt}
-        ], temperature=0.0, max_tokens=512)
-        dt = time.time() - t0
-        return {
-            "routed_to": "code_implementation",
-            "answered_by": "phi-4-mini",
-            "source": "NONE",
-            "needs_outside_data": False,
-            "clean_execution": bool(resp.strip()),
-            "output": resp[:300],
-            "full_output": resp,
-            "final_answer": resp,
-            "fallbacks": fallbacks,
-            "duration": dt
-        }
-
-    # 3B. Numeric Computation (E3 Rule: arithmetic, counting, modular maths, iteration, search)
-    if is_numeric_computation_task(prompt):
-        comp_prompt = (
-            f"Problem:\n{prompt}\n\n"
-            "Write a short, self-contained Python program to compute the exact answer to the problem.\n"
-            "Guidelines:\n"
-            "- Implement the arithmetic, counting, modular math, simulation, or search directly in Python.\n"
-            "- When converting floats to integers or using functions requiring int, use int(round(x)).\n"
-            "- Print only the final numeric result to stdout using print().\n"
-            "- Output strictly the Python code block enclosed in ```python\n<code>\n```."
-        )
-        resp = call_phi([
-            {"role": "system", "content": "You are an expert computational assistant. Write a short Python program to compute the exact answer."},
-            {"role": "user", "content": comp_prompt}
-        ], temperature=0.0, max_tokens=512)
-
-        code_m = re.search(r"```python\s*(.*?)\s*```", resp, re.DOTALL | re.IGNORECASE)
-        v = ""
-        if code_m:
-            code = code_m.group(1).strip()
-            clean_exec, out_v, v = execute_computation_code(code, retry_prompt_base=comp_prompt, timeout=5.0)
-
-        if v:
-            clean_ans = f"#### {v}" if "####" in prompt else f"Final Answer: {v}"
+    # Generic Constraint: No code routing when the analyser's source is CORPUS
+    if analysis.get("source") != "CORPUS":
+        # 3A. Function implementation (HumanEval)
+        if is_function_completion(prompt):
+            code_sys = "You are an expert Python programmer. Complete the function implementation cleanly inside ```python\n<code>\n```."
+            resp = call_phi([
+                {"role": "system", "content": code_sys},
+                {"role": "user", "content": prompt}
+            ], temperature=0.0, max_tokens=512)
             dt = time.time() - t0
             return {
-                "routed_to": "code_compute",
+                "routed_to": "code_implementation",
                 "answered_by": "phi-4-mini",
                 "source": "NONE",
                 "needs_outside_data": False,
-                "clean_execution": clean_exec,
-                "output": f"{resp}\n\nExecuted Python Output:\n{out_v}\n\n{clean_ans}",
-                "full_output": f"{resp}\n\nExecuted Python Output:\n{out_v}\n\n{clean_ans}",
-                "final_answer": clean_ans,
+                "clean_execution": bool(resp.strip()),
+                "output": resp[:300],
+                "full_output": resp,
+                "final_answer": resp,
                 "fallbacks": fallbacks,
                 "duration": dt
             }
+
+        # 3B. Numeric Computation (E3 Rule: arithmetic, counting, modular maths, iteration, search)
+        if is_numeric_computation_task(prompt):
+            comp_prompt = (
+                f"Problem:\n{prompt}\n\n"
+                "Write a short, self-contained Python program to compute the exact answer to the problem.\n"
+                "Guidelines:\n"
+                "- Implement the arithmetic, counting, modular math, simulation, or search directly in Python.\n"
+                "- When converting floats to integers or using functions requiring int, use int(round(x)).\n"
+                "- Print only the final numeric result to stdout using print().\n"
+                "- Output strictly the Python code block enclosed in ```python\n<code>\n```."
+            )
+            resp = call_phi([
+                {"role": "system", "content": "You are an expert computational assistant. Write a short Python program to compute the exact answer."},
+                {"role": "user", "content": comp_prompt}
+            ], temperature=0.0, max_tokens=512)
+
+            code_m = re.search(r"```python\s*(.*?)\s*```", resp, re.DOTALL | re.IGNORECASE)
+            v = ""
+            if code_m:
+                code = code_m.group(1).strip()
+                clean_exec, out_v, v = execute_computation_code(code, retry_prompt_base=comp_prompt, timeout=5.0)
+
+            if v:
+                clean_ans = f"#### {v}" if "####" in prompt else f"Final Answer: {v}"
+                dt = time.time() - t0
+                return {
+                    "routed_to": "code_compute",
+                    "answered_by": "phi-4-mini",
+                    "source": "NONE",
+                    "needs_outside_data": False,
+                    "clean_execution": clean_exec,
+                    "output": f"{resp}\n\nExecuted Python Output:\n{out_v}\n\n{clean_ans}",
+                    "full_output": f"{resp}\n\nExecuted Python Output:\n{out_v}\n\n{clean_ans}",
+                    "final_answer": clean_ans,
+                    "fallbacks": fallbacks,
+                    "duration": dt
+                }
 
     # 3C. Conceptual Reasoning (QA, qualitative reasoning)
     direct_resp = call_phi([

@@ -41,8 +41,12 @@ To maintain scientific integrity and prevent post-hoc criterion shifting, the fo
    - **Atomic GSM8K Math ($N=15$):** Accuracy must drop by no more than **1 item** relative to v1.2 baseline ($\ge 13/15 = 86.67\%$, baseline is $14/15 = 93.33\%$).
    - **Atomic ARC QA ($N=15$):** Accuracy must drop by no more than **1 item** relative to v1.2 baseline ($\ge 11/15 = 73.33\%$, baseline is $12/15 = 80.00\%$).
 
-3. **Strict Evaluation Boundary:**
-   - Evaluated strictly on Dev Track A ($N=100$).
+3. **Criterion 3 (Safety Non-Regression on Track B Retrieval):**
+   - Dev Track B accuracy ($N=50$) under Pipeline v1.3 must drop by no more than **1 item** compared with Pipeline v1.2 baseline ($\ge 47/50 = 94.00\%$, v1.2 baseline is $48/50 = 96.00\%$).
+   - Generic constraint: No code routing when the analyser's source is CORPUS.
+
+4. **Strict Evaluation Boundary:**
+   - Evaluated strictly on Dev splits: Dev Track A ($N=100$) and Dev Track B ($N=50$), Total $N=150$.
    - **The reserve set remains cryptographically locked and completely untouched.**
 
 ---
