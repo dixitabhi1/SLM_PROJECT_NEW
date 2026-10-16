@@ -122,19 +122,8 @@ def extract_analyser_features(analyser_dict: Optional[Dict[str, Any]]) -> Dict[s
     if not analyser_dict:
         return feats
 
-    k_tt = "task" + "_type"
-    tt = str(analyser_dict.get(k_tt, "")).lower()
-    if "sql" in tt: feats["task_type_sql"] = 1.0
-    elif "math" in tt: feats["task_type_math"] = 1.0
-    elif "code" in tt: feats["task_type_code"] = 1.0
-    elif "qa" in tt: feats["task_type_qa"] = 1.0
-    elif "compound" in tt or "multi" in tt: feats["task_type_compound"] = 1.0
-
-    k_solv = "solv" + "ability"
-    solv = str(analyser_dict.get(k_solv, "")).lower()
-    if "atomic" in solv: feats["solvability_atomic"] = 1.0
-    elif "tool" in solv: feats["solvability_tool_req"] = 1.0
-    elif "solv" in solv: feats["solvability_solvable"] = 1.0
+    # Pure prompt-only pipeline: model analyser outputs strictly source, db_name, plan, task_asks_for_query
+    # Zero inspection of benchmark metadata fields (task_type, solvability).
 
     src = str(analyser_dict.get("source", "")).upper()
     if "DB" in src: feats["source_db"] = 1.0

@@ -42,6 +42,29 @@ FORBIDDEN_FIELDS = {
 }
 
 
+def _resolve_str_expr(node: ast.AST, var_map: dict) -> str:
+    """Recursively resolves string constants, additions, and variable aliases."""
+    if isinstance(node, ast.Constant) and isinstance(node.value, str):
+        return node.value
+    if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add):
+        left = _resolve_str_expr(node.left, var_map)
+        right = _resolve_str_expr(node.right, var_map)
+        if left is not None and right is not None:
+            return left + right
+    if isinstance(node, ast.Name) and node.id in var_map:
+        return var_map[node.id]
+    if isinstance(node, ast.JoinedStr):
+        parts = []
+        for v in node.values:
+            s = _resolve_str_expr(v, var_map)
+            if s is not None:
+                parts.append(s)
+            else:
+                return None
+        return "".join(parts)
+    return None
+
+
 def audit_pipeline_leakage(pipeline_dir: str) -> List[str]:
     errors = []
     py_files = glob.glob(os.path.join(pipeline_dir, "**", "*.py"), recursive=True)
@@ -56,26 +79,35 @@ def audit_pipeline_leakage(pipeline_dir: str) -> List[str]:
             errors.append(f"AST parse error in {fpath}: {e}")
             continue
 
-        # Check for subscript or get() calls accessing forbidden fields
+        var_map = {}
+        # First pass: map local variable string assignments
         for node in ast.walk(tree):
-            # Check dict.get("field")
+            if isinstance(node, ast.Assign):
+                for target in node.targets:
+                    if isinstance(target, ast.Name):
+                        val_str = _resolve_str_expr(node.value, var_map)
+                        if val_str is not None:
+                            var_map[target.id] = val_str
+
+        # Second pass: check for subscript or get() calls accessing forbidden fields
+        for node in ast.walk(tree):
+            # Check dict.get("field") or dict.get(var)
             if isinstance(node, ast.Call):
                 if isinstance(node.func, ast.Attribute) and node.func.attr == "get":
-                    if node.args and isinstance(node.args[0], ast.Constant):
-                        field_name = str(node.args[0].value)
-                        if field_name in FORBIDDEN_FIELDS:
+                    if node.args:
+                        field_name = _resolve_str_expr(node.args[0], var_map)
+                        if field_name and field_name in FORBIDDEN_FIELDS:
                             errors.append(
                                 f"Leakage Violation in {os.path.basename(fpath)}: line {node.lineno} accesses forbidden metadata field '{field_name}'"
                             )
 
-            # Check dict["field"]
+            # Check dict["field"] or dict[var]
             if isinstance(node, ast.Subscript):
-                if isinstance(node.slice, ast.Constant):
-                    field_name = str(node.slice.value)
-                    if field_name in FORBIDDEN_FIELDS:
-                        errors.append(
-                            f"Leakage Violation in {os.path.basename(fpath)}: line {node.lineno} indexes forbidden metadata field '{field_name}'"
-                        )
+                slice_name = _resolve_str_expr(node.slice, var_map)
+                if slice_name and slice_name in FORBIDDEN_FIELDS:
+                    errors.append(
+                        f"Leakage Violation in {os.path.basename(fpath)}: line {node.lineno} indexes forbidden metadata field '{slice_name}'"
+                    )
 
             # Check function signature of run_specialist_pipeline
             if isinstance(node, ast.FunctionDef) and node.name == "run_specialist_pipeline":
