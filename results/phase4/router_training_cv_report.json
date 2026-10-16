@@ -1,0 +1,126 @@
+{
+  "timestamp": "router_training_cv_report.json",
+  "total_evaluated_items": 500,
+  "feature_count": 28,
+  "cv_accuracy_pct": 69.0,
+  "oracle_accuracy_pct": 80.60000000000001,
+  "route_chosen_counts": {
+    "direct_reasoner": 232,
+    "direct_sql": 97,
+    "code_execution": 144,
+    "decompose_reasoner": 13,
+    "decompose_code": 14
+  },
+  "feature_importances": {
+    "direct_reasoner": [
+      [
+        "has_multiple_choice",
+        1.1503
+      ],
+      [
+        "task_type_math",
+        0.9859
+      ],
+      [
+        "source_none",
+        0.7375
+      ],
+      [
+        "has_hash_box",
+        0.6581
+      ],
+      [
+        "has_code_syntax",
+        0.5167
+      ]
+    ],
+    "direct_sql": [
+      [
+        "task_type_sql",
+        1.2009
+      ],
+      [
+        "task_asks_for_query",
+        1.2009
+      ],
+      [
+        "has_multiple_choice",
+        0.6629
+      ],
+      [
+        "task_type_qa",
+        0.3307
+      ],
+      [
+        "solvability_atomic",
+        0.2969
+      ]
+    ],
+    "code_execution": [
+      [
+        "solvability_tool_req",
+        1.7807
+      ],
+      [
+        "has_math_ops",
+        1.3138
+      ],
+      [
+        "task_type_math",
+        1.0099
+      ],
+      [
+        "has_hash_box",
+        0.9669
+      ],
+      [
+        "has_code_syntax",
+        0.8972
+      ]
+    ],
+    "decompose_reasoner": [
+      [
+        "source_none",
+        0.9634
+      ],
+      [
+        "task_type_math",
+        0.824
+      ],
+      [
+        "has_multiple_choice",
+        0.7832
+      ],
+      [
+        "has_hash_box",
+        0.5543
+      ],
+      [
+        "has_math_ops",
+        0.5156
+      ]
+    ],
+    "decompose_code": [
+      [
+        "solvability_tool_req",
+        1.6258
+      ],
+      [
+        "has_hash_box",
+        1.1654
+      ],
+      [
+        "task_type_math",
+        1.0338
+      ],
+      [
+        "has_multiple_choice",
+        0.6788
+      ],
+      [
+        "task_type_qa",
+        0.5329
+      ]
+    ]
+  }
+}

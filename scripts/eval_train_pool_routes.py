@@ -344,7 +344,23 @@ def main():
             if (pid, route_name) not in existing_records:
                 pending_tasks.append((it, route_name, route_fn))
 
-    print(f"Total pending tasks to run: {len(pending_tasks)} with max_workers=3")
+    # Interleave pending tasks across categories for rapid balanced cross-category coverage
+    tasks_by_cat = {}
+    for t in pending_tasks:
+        cat = t[0]["category"]
+        if cat not in tasks_by_cat:
+            tasks_by_cat[cat] = []
+        tasks_by_cat[cat].append(t)
+
+    interleaved = []
+    max_len = max(len(v) for v in tasks_by_cat.values()) if tasks_by_cat else 0
+    for idx in range(max_len):
+        for cat in sorted(tasks_by_cat.keys()):
+            if idx < len(tasks_by_cat[cat]):
+                interleaved.append(tasks_by_cat[cat][idx])
+    pending_tasks = interleaved
+
+    print(f"Total pending tasks to run: {len(pending_tasks)} with max_workers=3 (interleaved across {len(tasks_by_cat)} categories)")
 
     def process_task(task_info):
         it, route_name, route_fn = task_info
@@ -432,3 +448,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

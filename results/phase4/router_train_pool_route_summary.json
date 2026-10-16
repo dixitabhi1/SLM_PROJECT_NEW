@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-10-16T19:56:35Z",
+  "total_items": 500,
+  "oracle_accuracy_pct": 80.60000000000001,
+  "per_route_accuracy": {
+    "direct_reasoner": 246,
+    "direct_sql": 120,
+    "code_execution": 250,
+    "decompose_reasoner": 186,
+    "decompose_code": 183
+  },
+  "per_route_mean_duration": {
+    "direct_reasoner": 8.27,
+    "direct_sql": 5.12,
+    "code_execution": 6.2,
+    "decompose_reasoner": 15.93,
+    "decompose_code": 13.3
+  }
+}

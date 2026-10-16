@@ -1,0 +1,102 @@
+{
+  "timestamp": "2026-10-16T20:00:42Z",
+  "v13_track_a_accuracy_pct": 77.0,
+  "e4_track_a_accuracy_pct": 76.0,
+  "paired_difference_pp": -1.0,
+  "bootstrap_95_ci": [
+    -6.0,
+    4.0
+  ],
+  "head_to_head": {
+    "e4_wins": 3,
+    "both_right": 73,
+    "both_wrong": 20,
+    "v13_wins": 4
+  },
+  "track_b": {
+    "e4": 48,
+    "v13": 48,
+    "delta": 0
+  },
+  "criteria": {
+    "criterion_1_track_a_ci": {
+      "status": "FAIL",
+      "lower_bound_pp": -6.0
+    },
+    "criterion_2_track_a_safety": {
+      "status": "FAIL"
+    },
+    "criterion_3_track_b_safety": {
+      "status": "PASS",
+      "delta": 0
+    }
+  },
+  "fallback_rate_pct": 18.0,
+  "mean_latency": {
+    "v13": 8.06,
+    "e4": 9.17
+  },
+  "route_chosen_counts": {
+    "direct_reasoner": 78,
+    "direct_sql": 15,
+    "code_execution": 29,
+    "decompose_reasoner": 12,
+    "decompose_code": 16
+  },
+  "category_breakdown": {
+    "atomic_code": {
+      "total": 15,
+      "v13": 13,
+      "e4": 13,
+      "delta": 0,
+      "v13_pct": 86.7,
+      "e4_pct": 86.7,
+      "delta_pp": 0.0
+    },
+    "atomic_math": {
+      "total": 15,
+      "v13": 13,
+      "e4": 14,
+      "delta": 1,
+      "v13_pct": 86.7,
+      "e4_pct": 93.3,
+      "delta_pp": 6.7
+    },
+    "atomic_qa": {
+      "total": 15,
+      "v13": 11,
+      "e4": 12,
+      "delta": 1,
+      "v13_pct": 73.3,
+      "e4_pct": 80.0,
+      "delta_pp": 6.7
+    },
+    "atomic_sql": {
+      "total": 15,
+      "v13": 7,
+      "e4": 7,
+      "delta": 0,
+      "v13_pct": 46.7,
+      "e4_pct": 46.7,
+      "delta_pp": 0.0
+    },
+    "compound_solvable": {
+      "total": 20,
+      "v13": 17,
+      "e4": 16,
+      "delta": -1,
+      "v13_pct": 85.0,
+      "e4_pct": 80.0,
+      "delta_pp": -5.0
+    },
+    "compound_tool_required": {
+      "total": 20,
+      "v13": 16,
+      "e4": 14,
+      "delta": -2,
+      "v13_pct": 80.0,
+      "e4_pct": 70.0,
+      "delta_pp": -10.0
+    }
+  }
+}

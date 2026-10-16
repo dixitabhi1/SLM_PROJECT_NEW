@@ -245,9 +245,29 @@ This file tracks project phase progression, the authoritative validity ledger of
   - Cryptographic SHA-256 Hash: `3fe3e5213fcdb7a484e31b3b9f64c544672251b5240d524fd35e5c3abec21a0f`
   - Zero Overlap Proven: 0 question collisions and 0 ID collisions against all 400 evaluation instances (Dev Track A, Held-Out Track A, Reserve Quarantine, Extended SQL Dev).
   - Pool composition: 100 Spider train, 100 GSM8K train, 100 ARC Challenge train, 100 MBPP sanitized train, 50 compound solvable, 50 compound tool-required.
-- **Step 1 Overnight Evaluation (Active):**
-  - Script `scripts/eval_train_pool_routes.py` evaluating all 2,500 pairs (500 items $\times$ 5 routes) via `task-17239` with max_workers=3 across Vulkan slots.
-  - Raw records append-only in `results/phase4/router_train_pool_route_records.jsonl`.
+- **Step 1 Training Pool Evaluation — COMPLETE (All 2,500 Evaluations):**
+  - Evaluated all 500 pool items across 5 canonical routes via `scripts/eval_train_pool_routes.py` (records: `results/phase4/router_train_pool_route_records.jsonl`).
+  - Pool Oracle Accuracy: **403/500 (80.60%)**.
+  - Route accuracies on pool: `code_execution` 50.0% (250/500), `direct_reasoner` 49.2% (246/500), `decompose_reasoner` 37.2% (186/500), `decompose_code` 36.6% (183/500), `direct_sql` 24.0% (120/500).
+- **Step 2 Classifier Training & 5-Fold Cross-Validation — COMPLETE:**
+  - Trained Logistic Regression models ($L_2$ regularized with latency penalization) on 28 features (surface lexical + Stage 1 analyser outputs).
+  - **Learned Router CV Accuracy on Pool:** **345/500 (69.00%)** (+19.00 pp over best single static route).
+  - Model weights saved to: `artifacts/e4/router_model.json`. CV report: `results/phase4/router_training_cv_report.json`.
+- **Step 3 Pre-Registered Dev Evaluation ($N=150: 100\text{ Track A} + 50\text{ Track B}$) — COMPLETED:**
+  - **Track A Accuracy:** **76/100 (76.00%)** vs Pipeline v1.3 **77/100 (77.00%)** (Delta: **-1.00 pp**).
+  - **Paired Bootstrap 95% Confidence Interval ($B=10{,}000$, Seed 42):** **[-6.00 pp, +4.00 pp]**.
+  - **Head-to-Head vs v1.3:** E4 Wins (Fixed): **3 items**, Both Right: **73 items**, Both Wrong: **20 items**, v1.3 Wins (Regressions): **4 items**. Net difference: **-1 item**.
+  - **Track B Accuracy:** **48/50 (96.00%)** vs v1.3 **48/50 (96.00%)** (Delta: **0 items**).
+  - **Mean Latency:** 9.17s (vs v1.3 8.06s). Router Fallback Rate: 18.0% (27/150).
+  - **Pre-Registered Criteria Verification:**
+    1. **Criterion 1 (Track A Bootstrap Lower Bound > 0 pp):** Lower bound is **-6.00 pp** $\to$ **FAIL**.
+    2. **Criterion 2 (Track A Safety Non-Regression $\le 1$ drop per category):** `compound_tool_required` dropped from $16/20 \to 14/20$ (-2 items) $\to$ **FAIL**.
+    3. **Criterion 3 (Track B Safety Non-Regression $\le 1$ drop):** $48/50 \to 48/50$ (0 drop) $\to$ **PASS**.
+  - **Overall Verdict:** **CRITERIA 1 & 2 FAILED (PIPELINE V1.3 REMAINS THE PRODUCTION FROZEN PIPELINE)**.
+- **Diagnostic Root-Cause Analysis:**
+  - *What the router fixed (3 wins):* E4 correctly routed `Mercury_7183733` [atomic_qa] and `gsm8k_test_0530` [atomic_math] back to `direct_reasoner` (fixing both regressions from E3), and routed `compound_dev_v2_0019` to `decompose_reasoner`.
+  - *What broke (4 losses):* On compound items (`compound_dev_v2_0002` and `0021`), the router selected `code_execution` instead of `decompose_code` because procedural Collatz pool items favored single-stage code due to latency penalties. On real dev 3-stage compound items, single-stage code execution lacks intermediate retrieved data and fails.
+  - *Architectural Conclusion:* While learned adaptive routing demonstrates strong cross-validation on public pool tasks (69.0% vs 50.0%), empirical generalization on multi-stage compound tasks is penalized by single-stage code shortcuts. Per Hard Rule 12 ("Gates are real"), Pipeline v1.3 (`v1.3-slm-frozen`, commit `acef7a5`) stands as the frozen system.
 - **Pre-Registered Criteria (Committed in docs/e4_learned_router_plan.md):**
   1. Dev Track A paired bootstrap 95% CI lower bound $> 0.0\text{ pp}$ over v1.3.
   2. No Track A category drops $> 1$ item compared with v1.3.
