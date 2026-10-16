@@ -1,0 +1,50 @@
+{
+  "condition": "pipeline_v1.3_e3_fix",
+  "total_items": 150,
+  "track_a": {
+    "total": 100,
+    "passed": 77,
+    "accuracy": 77.0,
+    "baseline_v12_acc": 66.0,
+    "paired_diff_pp": 11.0,
+    "ci_95_low_pp": 3.0,
+    "ci_95_high_pp": 19.0
+  },
+  "track_b": {
+    "total": 50,
+    "passed": 48,
+    "accuracy": 96.0,
+    "baseline_v12_passed": 48,
+    "baseline_v12_acc": 96.0,
+    "drop_items": 0
+  },
+  "atomic_checks": {
+    "gsm8k": {
+      "passed": 13,
+      "total": 15,
+      "baseline": 14
+    },
+    "arc_qa": {
+      "passed": 11,
+      "total": 15,
+      "baseline": 12
+    }
+  },
+  "criteria_results": {
+    "criterion_1_track_a_improvement": {
+      "status": "PASS",
+      "diff_ci_low": 3.0
+    },
+    "criterion_2_atomic_non_regression": {
+      "status": "PASS",
+      "gsm": "13/15",
+      "qa": "11/15"
+    },
+    "criterion_3_track_b_non_regression": {
+      "status": "PASS",
+      "passed": "48/50",
+      "min_required": "47/50"
+    },
+    "all_criteria_passed": true
+  }
+}

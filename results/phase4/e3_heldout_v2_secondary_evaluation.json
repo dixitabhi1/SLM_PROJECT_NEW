@@ -1,0 +1,150 @@
+{
+  "label": "secondary: held-out previously inspected",
+  "condition": "pipeline_v1.3_e3_v2",
+  "sample_size_total": 150,
+  "track_a_accuracy": 79.0,
+  "track_b_accuracy": 100.0,
+  "total_accuracy": 86.0,
+  "track_a_counts": {
+    "passed": 79,
+    "total": 100
+  },
+  "track_b_counts": {
+    "passed": 50,
+    "total": 50
+  },
+  "head_to_head_120b": {
+    "track_a": {
+      "slm_win": 5,
+      "both_right": 74,
+      "both_wrong": 7,
+      "llm_win": 14,
+      "missing": 0
+    },
+    "track_b": {
+      "slm_win": 0,
+      "both_right": 50,
+      "both_wrong": 0,
+      "llm_win": 0,
+      "missing": 0
+    },
+    "by_stratum": {
+      "atomic_sql": {
+        "slm_win": 1,
+        "both_right": 10,
+        "both_wrong": 3,
+        "llm_win": 1,
+        "missing": 0
+      },
+      "atomic_qa": {
+        "slm_win": 0,
+        "both_right": 11,
+        "both_wrong": 2,
+        "llm_win": 2,
+        "missing": 0
+      },
+      "atomic_code": {
+        "slm_win": 0,
+        "both_right": 12,
+        "both_wrong": 0,
+        "llm_win": 3,
+        "missing": 0
+      },
+      "atomic_math": {
+        "slm_win": 1,
+        "both_right": 12,
+        "both_wrong": 1,
+        "llm_win": 1,
+        "missing": 0
+      },
+      "compound_tool_required": {
+        "slm_win": 3,
+        "both_right": 14,
+        "both_wrong": 1,
+        "llm_win": 2,
+        "missing": 0
+      },
+      "compound_solvable": {
+        "slm_win": 0,
+        "both_right": 15,
+        "both_wrong": 0,
+        "llm_win": 5,
+        "missing": 0
+      },
+      "track_b_hypergrid": {
+        "slm_win": 0,
+        "both_right": 50,
+        "both_wrong": 0,
+        "llm_win": 0,
+        "missing": 0
+      }
+    }
+  },
+  "head_to_head_27b": {
+    "track_a": {
+      "slm_win": 10,
+      "both_right": 69,
+      "both_wrong": 4,
+      "llm_win": 17,
+      "missing": 0
+    },
+    "track_b": {
+      "slm_win": 0,
+      "both_right": 50,
+      "both_wrong": 0,
+      "llm_win": 0,
+      "missing": 0
+    },
+    "by_stratum": {
+      "atomic_sql": {
+        "slm_win": 1,
+        "both_right": 10,
+        "both_wrong": 3,
+        "llm_win": 1,
+        "missing": 0
+      },
+      "atomic_qa": {
+        "slm_win": 0,
+        "both_right": 11,
+        "both_wrong": 0,
+        "llm_win": 4,
+        "missing": 0
+      },
+      "atomic_code": {
+        "slm_win": 0,
+        "both_right": 12,
+        "both_wrong": 0,
+        "llm_win": 3,
+        "missing": 0
+      },
+      "atomic_math": {
+        "slm_win": 1,
+        "both_right": 12,
+        "both_wrong": 1,
+        "llm_win": 1,
+        "missing": 0
+      },
+      "compound_tool_required": {
+        "slm_win": 6,
+        "both_right": 11,
+        "both_wrong": 0,
+        "llm_win": 3,
+        "missing": 0
+      },
+      "compound_solvable": {
+        "slm_win": 2,
+        "both_right": 13,
+        "both_wrong": 0,
+        "llm_win": 5,
+        "missing": 0
+      },
+      "track_b_hypergrid": {
+        "slm_win": 0,
+        "both_right": 50,
+        "both_wrong": 0,
+        "llm_win": 0,
+        "missing": 0
+      }
+    }
+  }
+}
