@@ -15,7 +15,7 @@ This file tracks project phase progression, the authoritative validity ledger of
 | **5. Held-Out Evaluation** | Lock held-out split (SHA-256); evaluate C0, Pipeline, and Baselines (B0 & B1) | **COMPLETE** | Frozen run complete; all conditions evaluated | Track A: Pipeline 67.0% vs C0 56.0% (+11.0pp); Compound Tool-Req: 80.0% vs 5.0% (+75.0pp); B0 & B1 completed |
 | **6. Final Report** | Automated script-generated comparative report directly from disk records | **COMPLETE (CLOSED)** | Owner sign-off; Tag `v1.0-report` | Standalone script-generated report `docs/heldout_evaluation_report.md` closed and verified by automated tests |
 | **7. Pipeline v1.1 & Cascade** | Generic SQL query-writing path + cascade escalation on Dev (N=150) | **DEV COMPLETE / FROZEN** | Mandatory Stop before Part C (Reserve) | Part A (SQL fix) and Part B (Cascade calibration) complete on Dev; frozen tag v1.1-cascade-frozen; Reserve untouched |
-| **Post-Benchmark** | Experiments E2–E4 (Kaggle SQL adapter, code compute, learned router) | **E3 COMPLETE (v1.3); E4 IN PROGRESS** | Owner approved E4 start | E4 Step 0 passed (+10.0pp headroom); Step 1 pool built (N=500, SHA-256 3fe3e521...); pool route eval running |
+| **Post-Benchmark** | Experiments E2–E4 (Kaggle SQL adapter, code compute, learned router) | **E3 COMPLETE (v1.3); E4 CLOSED (NEGATIVE RESULT)** | Gate failed; v1.3 stands as frozen system | E4 & E4b dev evaluations completed; Criteria 1 & 2 failed; E4 formally closed as negative result per protocol; v1.3 frozen |
 
 ---
 
@@ -275,6 +275,28 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 ---
 
+## 1.14 Experiment 4b (E4b): Retrained Learned Router Dev Gate & Definitive Closure
+
+- **Date:** 2026-10-17
+- **Base Pipeline:** Frozen Pipeline v1.3 (`v1.3-slm-frozen`, commit `acef7a5`)
+- **Plan File:** [`docs/e4b_learned_router_plan.md`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/docs/e4b_learned_router_plan.md) (committed at `24c92e1` before training)
+- **Scope & Constraints:** Dev only ($N=150: 100\text{ Track A} + 50\text{ Track B}$). Strictly zero access to held-out or quarantined reserve sets (`data/reserve_set_quarantine.json`, SHA-256 `bacd6c5ea2443cb...`). Pure SLM execution (`phi-4-mini` 3.82B, local Vulkan0 GPU on port 8080, 0 Groq calls).
+- **Training Pool (`data/router_e4b_train_pool.json`, N=400, SHA-256 `33e11433...`):** Rebuilt 100 compound items with verified sensitivity and dynamic execution; dropped empty-schema SQL; trained with $\lambda = 0.0$ and deterministic v1.3 SQL rule (`task_asks_for_query` $\to$ `direct_sql`). 5-fold cross-validation accuracy on pool: **69.75% (279/400)** vs 80.8% Oracle.
+- **Dev Evaluation Results ($N=150$):**
+  - **Track A Accuracy:** **66/100 (66.00%)** vs Pipeline v1.3 **77/100 (77.00%)** (Delta: **-11.00 pp**).
+  - **Paired Bootstrap 95% Confidence Interval ($B=10{,}000$, Seed 42):** **[-19.00 pp, -3.00 pp]**.
+  - **Head-to-Head vs v1.3:** E4b Wins: **3 items**, Both Right: **63 items**, Both Wrong: **20 items**, v1.3 Wins (Regressions): **14 items**. Net: **-11 items**.
+  - **Track B Accuracy:** **48/50 (96.00%)** vs v1.3 **48/50 (96.00%)** (Delta: **0 items**).
+  - **Mean Latency:** 8.75s (vs v1.3 8.06s). Router Fallback Rate: 17.3% (26/150).
+- **Pre-Registered Criteria Verification:**
+  1. **Criterion 1 (Track A Paired Bootstrap 95% CI Lower Bound > 0.0 pp):** Lower bound is **-19.00 pp** $\to$ **FAIL**.
+  2. **Criterion 2 (Track A Category Safety $\le 1$ drop per category):** `compound_tool_required` dropped from $16/20 \to 5/20$ (-11 items) $\to$ **FAIL**.
+  3. **Criterion 3 (Track B Safety Non-Regression $\le 1$ drop):** $48/50 \to 48/50$ (0 drop) $\to$ **PASS**.
+- **Definitive Gate Action:** Per pre-registered protocol rule ("If any criterion fails, close E4 as a negative result and keep v1.3 as the frozen pipeline. No further routing attempts"), **Experiment 4 is formally closed as a negative result. Pipeline v1.3 stands as the frozen production pipeline.**
+- **Diagnostic Finding:** A linear classifier trained on public single-task datasets defaults to `direct_reasoner` on complex compound tasks due to marginal lexical feature weights, failing to mandate execution tools on multi-stage context dependencies. Deterministic rule-based task routing (Pipeline v1.3) remains strictly superior.
+
+---
+
 ## 2. Validity Ledger
 
 Every headline number reported in any publication, brief, or table must appear here with its source file and current verification status (`stands`, `void`, or `superseded`).
@@ -345,6 +367,8 @@ Every headline number reported in any publication, brief, or table must appear h
 | VL-062 | Experiment 3 (E3) Held-Out Secondary Evaluation (N=150) | Track A: 79.00% (79/100, mean lat 8.00s), Track B: 62.00% (31/50, mean lat 14.70s), Total: 73.33% (110/150). Head-to-Head vs 120B on Track A: SLM Win 5, Both Right 74, Both Wrong 7, 120B Win 14. vs 27B on Track A: SLM Win 10, Both Right 69, Both Wrong 4, 27B Win 17. Compound Tool-Req vs 120B: SLM 3 wins vs 2 losses; vs 27B: SLM 6 wins vs 3 losses. 100% answered locally by phi-4-mini; 0 Groq calls. Label: secondary: held-out previously inspected. | `results/phase4/e3_heldout_secondary_evaluation.json` & `heldout_e3_pipeline_records.jsonl` | superseded | 2026-10-16 | Superseded by v2 with generic CORPUS no-code fix (VL-064) |
 | VL-063 | Experiment 3 (E3 Fix) Dev Full Evaluation (N=150: 100 Track A + 50 Track B) | Track A: 77.00% (77/100, paired diff vs v1.2: +11.00 pp [95% CI: +3.00 pp, +19.00 pp], B=10000, Criterion 1: PASS). Track B: 48/50 (96.00%, 0 drop vs v1.2, Criterion 3: PASS). Atomic GSM8K: 13/15 (drop=1), Atomic ARC QA: 11/15 (drop=1, Criterion 2: PASS). All three criteria passed. 100% answered locally by phi-4-mini; 0 Groq calls. | `results/phase4/dev_e3_v2_evaluation.json` & `dev_e3_v2_pipeline_records.jsonl` | stands | 2026-10-16 | Full dev verification under generic CORPUS no-code fix |
 | VL-064 | Experiment 3 (E3 v2) Held-Out Secondary Evaluation (N=150) | Track A: 79.00% (79/100, mean lat 7.59s), Track B: 100.00% (50/50, mean lat 10.34s), Total: 86.00% (129/150, mean lat 8.50s). Head-to-Head vs 120B on Track A: SLM Win 5, Both Right 74, Both Wrong 7, 120B Win 14; Track B: Both Right 50, 0 LLM Wins. vs 27B on Track A: SLM Win 10, Both Right 69, Both Wrong 4, 27B Win 17; Track B: Both Right 50, 0 LLM Wins. Compound Tool-Req vs 120B: SLM 3 wins vs 2 losses; vs 27B: SLM 6 wins vs 3 losses. 100% answered locally by phi-4-mini; 0 Groq calls. Label: secondary: held-out previously inspected. | `results/phase4/e3_heldout_v2_secondary_evaluation.json` & `heldout_e3_v2_pipeline_records.jsonl` | stands | 2026-10-16 | Secondary evaluation on previously inspected held-out split under generic CORPUS no-code fix |
+| VL-065 | Experiment 4 (E4) Learned Router Dev Evaluation (N=150) | Track A: 76.00% (76/100, paired diff vs v1.3: -1.00 pp [95% CI: -6.00 pp, +4.00 pp], Criterion 1: FAIL). Track B: 48/50 (96.00%, Criterion 3: PASS). Compound Tool-Req: 14/20 (-2 drop, Criterion 2: FAIL). Router Fallback: 18.0%. Latency: 9.17s. Pure SLM; 0 Groq calls. | `results/phase4/dev_e4_evaluation_summary.json` & `dev_e4_pipeline_records.jsonl` | stands | 2026-10-16 | Dev evaluation under initial learned router (lambda=0.005, tau=0.40); Gate failed |
+| VL-066 | Experiment 4b (E4b) Retrained Learned Router Dev Evaluation (N=150) | Track A: 66.00% (66/100, paired diff vs v1.3: -11.00 pp [95% CI: -19.00 pp, -3.00 pp], Criterion 1: FAIL). Track B: 48/50 (96.00%, Criterion 3: PASS). Compound Tool-Req: 5/20 (-11 drop, Criterion 2: FAIL). Router Fallback: 17.3%. Latency: 8.75s. Pure SLM; 0 Groq calls. Gate failed; E4 definitively closed as negative result. | `results/phase4/dev_e4b_evaluation_summary.json` & `dev_e4b_pipeline_records.jsonl` | stands | 2026-10-17 | Dev evaluation under retrained router (lambda=0.0, tau=0.40); E4 permanently closed |
 
 ---
 

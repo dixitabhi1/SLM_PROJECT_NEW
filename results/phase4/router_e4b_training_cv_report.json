@@ -1,0 +1,128 @@
+{
+  "timestamp": "router_e4b_training_cv_report.json",
+  "total_evaluated_items": 400,
+  "lambda_latency": 0.0,
+  "tau_confidence": 0.4,
+  "feature_count": 28,
+  "cv_accuracy_pct": 69.75,
+  "oracle_accuracy_pct": 80.75,
+  "route_chosen_counts": {
+    "direct_reasoner": 196,
+    "direct_sql": 0,
+    "code_execution": 102,
+    "decompose_reasoner": 32,
+    "decompose_code": 70
+  },
+  "feature_importances": {
+    "direct_reasoner": [
+      [
+        "has_multiple_choice",
+        0.8223
+      ],
+      [
+        "task_type_math",
+        0.7179
+      ],
+      [
+        "has_hash_box",
+        0.4743
+      ],
+      [
+        "solvability_atomic",
+        0.4417
+      ],
+      [
+        "has_sql_syntax",
+        0.4363
+      ]
+    ],
+    "direct_sql": [
+      [
+        "has_multiple_choice",
+        0.9533
+      ],
+      [
+        "source_none",
+        0.7185
+      ],
+      [
+        "task_type_qa",
+        0.6726
+      ],
+      [
+        "has_math_ops",
+        0.3613
+      ],
+      [
+        "solvability_solvable",
+        0.1814
+      ]
+    ],
+    "code_execution": [
+      [
+        "task_type_math",
+        0.6949
+      ],
+      [
+        "has_math_ops",
+        0.5666
+      ],
+      [
+        "has_question_mark",
+        0.5189
+      ],
+      [
+        "has_hash_box",
+        0.4741
+      ],
+      [
+        "solvability_atomic",
+        0.3707
+      ]
+    ],
+    "decompose_reasoner": [
+      [
+        "task_type_math",
+        0.8683
+      ],
+      [
+        "source_none",
+        0.6889
+      ],
+      [
+        "has_multiple_choice",
+        0.6886
+      ],
+      [
+        "has_hash_box",
+        0.5395
+      ],
+      [
+        "has_math_ops",
+        0.4374
+      ]
+    ],
+    "decompose_code": [
+      [
+        "task_type_math",
+        0.9631
+      ],
+      [
+        "has_hash_box",
+        0.946
+      ],
+      [
+        "solvability_tool_req",
+        0.7035
+      ],
+      [
+        "has_math_ops",
+        0.503
+      ],
+      [
+        "has_multiple_choice",
+        0.442
+      ]
+    ]
+  }
+}

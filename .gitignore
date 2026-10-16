@@ -42,7 +42,7 @@ Thumbs.db
 *.log
 tools/llama_bin/*.dll
 tools/llama_bin/*.exe
-data/spider/database/
+data/spider/
 *.safetensors
 *.gguf
 *.bin

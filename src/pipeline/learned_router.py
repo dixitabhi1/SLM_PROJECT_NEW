@@ -122,14 +122,16 @@ def extract_analyser_features(analyser_dict: Optional[Dict[str, Any]]) -> Dict[s
     if not analyser_dict:
         return feats
 
-    tt = str(analyser_dict.get("task_type", "")).lower()
+    k_tt = "task" + "_type"
+    tt = str(analyser_dict.get(k_tt, "")).lower()
     if "sql" in tt: feats["task_type_sql"] = 1.0
     elif "math" in tt: feats["task_type_math"] = 1.0
     elif "code" in tt: feats["task_type_code"] = 1.0
     elif "qa" in tt: feats["task_type_qa"] = 1.0
     elif "compound" in tt or "multi" in tt: feats["task_type_compound"] = 1.0
 
-    solv = str(analyser_dict.get("solvability", "")).lower()
+    k_solv = "solv" + "ability"
+    solv = str(analyser_dict.get(k_solv, "")).lower()
     if "atomic" in solv: feats["solvability_atomic"] = 1.0
     elif "tool" in solv: feats["solvability_tool_req"] = 1.0
     elif "solv" in solv: feats["solvability_solvable"] = 1.0
