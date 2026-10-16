@@ -232,13 +232,14 @@ def run_specialist_pipeline_e3(prompt: str) -> Dict[str, Any]:
         colors, fb_colorer = color_subtasks_with_feedback(subtasks, prompt, source=analysis["source"], max_levels=3)
         fallbacks["colorer"] = fb_colorer
 
-        # E3 Generic Rule: If Subtask 2 involves calculation, counting, or modular arithmetic -> CODE_EXEC
-        is_calc = any(w in subtasks[1].lower() for w in [
-            "calculate", "compute", "sum", "multiply", "divide", "add", "score",
-            "total", "fee", "rate", "percentage", "ratio", "count", "modulo"
-        ])
-        if is_calc or colors[1] == "CODE_EXEC":
-            colors[1] = "CODE_EXEC"
+        # E3 Generic Rule: If Subtask 2 involves calculation, counting, or modular arithmetic on non-corpus data -> CODE_EXEC
+        if analysis.get("source") != "CORPUS":
+            is_calc = any(w in subtasks[1].lower() for w in [
+                "calculate", "compute", "sum", "multiply", "divide", "add", "score",
+                "total", "fee", "rate", "percentage", "ratio", "count", "modulo"
+            ])
+            if is_calc or colors[1] == "CODE_EXEC":
+                colors[1] = "CODE_EXEC"
 
         clean_fetch, fetch_summary, fetched_val = execute_data_fetch(
             subtask_1=subtasks[0],

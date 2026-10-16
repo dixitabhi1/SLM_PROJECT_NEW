@@ -172,6 +172,27 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 ---
 
+## 1.10 Experiment 3 Candidate Staging & Secondary Held-Out Evaluation ($N=150$)
+- **Candidate Commit:** `7b1e4c5` (*"feat(pipeline): stage E3 candidate (compute numbers in code, 77.0% on dev Track A, +11.0 pp) and E2 Kaggle training materials"*).
+- **Status:** Staged as candidate commit; unfrozen pending E2 completion and combined evaluation.
+- **Secondary Evaluation Label:** `secondary: held-out previously inspected`
+- **Integrity Status:** Evaluated on locked held-out splits ($N=150$: 100 Track A + 50 Track B); 100% answered locally by `phi-4-mini` via port 8080 (`answered_by: "phi-4-mini"`); exactly 0 Groq calls during pipeline execution.
+- **Performance Summary:**
+  - **Track A (N=100):** **79.00% (79/100)**, Mean Latency: 8.00s.
+  - **Track B (N=50):** **62.00% (31/50)**, Mean Latency: 14.70s.
+  - **Total Held-Out (N=150):** **73.33% (110/150)**, Mean Latency: 10.23s.
+- **Head-to-Head Comparison against GPT-OSS-120B (B1 with Fair Tools):**
+  - **Track A ($N=100$):** SLM Win: 5, Both Right: 74, Both Wrong: 7, 120B Win: 14, Missing: 0.
+  - **Track B ($N=50$):** SLM Win: 0, Both Right: 31, Both Wrong: 0, 120B Win: 19, Missing: 0.
+  - **Compound Tool-Required ($N=20$):** SLM Win: 3, Both Right: 14, Both Wrong: 1, 120B Win: 2 (SLM net positive: +1 win over 120B).
+- **Head-to-Head Comparison against Qwen-3.8-27B (B1 with Fair Tools):**
+  - **Track A ($N=100$):** SLM Win: 10, Both Right: 69, Both Wrong: 4, 27B Win: 17, Missing: 0.
+  - **Track B ($N=50$):** SLM Win: 0, Both Right: 31, Both Wrong: 0, 27B Win: 19, Missing: 0.
+  - **Compound Tool-Required ($N=20$):** SLM Win: 6, Both Right: 11, Both Wrong: 0, 27B Win: 3 (SLM net positive: +3 wins over 27B).
+- **Reserve Split Status:** Cryptographically locked and completely untouched.
+
+---
+
 ## 2. Validity Ledger
 
 Every headline number reported in any publication, brief, or table must appear here with its source file and current verification status (`stands`, `void`, or `superseded`).
@@ -239,6 +260,7 @@ Every headline number reported in any publication, brief, or table must appear h
 | VL-059 | Extended SQL Dev Set & Baseline Metrics (N=100) | 100 items from `spider_val.json` (Seed 42, SHA-256 `1af2bb2a...`). Pipeline v1.2 Baseline accuracy: 66.00% (66/100), Mean latency: 2.24s. 100% answered locally by phi-4-mini; 0 Groq calls. | `results/phase4/sql_dev_extended_v12_records.jsonl` | stands | 2026-10-15 | Evaluated via `eval_sql_dev_extended_v12.py`; establishes pre-training benchmark |
 | VL-060 | Dev Compound Solvable Failure Analysis (N=20, 10 Failed) | Subtask Answer Error (Reasoning/Arithmetic/Filter): 7 (70.0%), Wrong Colour/Route: 2 (20.0%), Aggregation Error: 1 (10.0%), Decomposition Error: 0 (0.0%), Format/Scoring: 0 (0.0%). | `docs/e2_sql_adapter_plan.md` | stands | 2026-10-15 | Diagnostic classification of all 10 failed solvable compound dev items under v1.2 |
 | VL-061 | Experiment 3 (E3) Dev Track A Evaluation (N=100) | Overall Acc: 77.00% (77/100, v1.2: 66.00%), Paired Diff: +11.00 pp (95% CI [+3.00 pp, +19.00 pp], B=10000); Criterion 1: PASS; Criterion 2: PASS (GSM drop: 1 [13/15], QA drop: 1 [11/15]); Solvable: 85.0% (17/20, +35.0 pp); Tool-Req: 80.0% (16/20, +30.0 pp); Arithmetic/Routing Failures Fixed: 8/9; Latency: 7.49s (-2.94s vs v1.2) | `results/phase4/e3_dev_verified_evaluation.json` & `dev_e3_verified_pipeline_records.jsonl` | stands | 2026-10-15 | Evaluated on Dev Track A under generic numeric computation in code; 0 Groq calls |
+| VL-062 | Experiment 3 (E3) Held-Out Secondary Evaluation (N=150) | Track A: 79.00% (79/100, mean lat 8.00s), Track B: 62.00% (31/50, mean lat 14.70s), Total: 73.33% (110/150). Head-to-Head vs 120B on Track A: SLM Win 5, Both Right 74, Both Wrong 7, 120B Win 14. vs 27B on Track A: SLM Win 10, Both Right 69, Both Wrong 4, 27B Win 17. Compound Tool-Req vs 120B: SLM 3 wins vs 2 losses; vs 27B: SLM 6 wins vs 3 losses. 100% answered locally by phi-4-mini; 0 Groq calls. Label: secondary: held-out previously inspected. | `results/phase4/e3_heldout_secondary_evaluation.json` & `heldout_e3_pipeline_records.jsonl` | stands | 2026-10-16 | Secondary evaluation on previously inspected held-out split; confirms compound gains generalize |
 
 ---
 

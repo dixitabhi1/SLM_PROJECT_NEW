@@ -1,4 +1,8 @@
 import json
+import os
+
+with open("kaggle/e2_train_sql_lora.py", "r", encoding="utf-8") as f:
+    code_lines = [line + "\n" for line in f.read().splitlines()]
 
 cells = [
     {
@@ -43,17 +47,34 @@ cells = [
         "execution_count": None,
         "metadata": {},
         "outputs": [],
+        "source": code_lines
+    },
+    {
+        "cell_type": "markdown",
+        "metadata": {},
         "source": [
-            "# Paste or upload e2_train_sql_lora.py and execute\n",
-            "%run e2_train_sql_lora.py\n"
+            "## Zip Adapter Weights for Easy 1-Click Download\n",
+            "Zips `./phi4_sql_adapter_output` into `e2_sql_adapter.zip` for download."
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "!zip -r e2_sql_adapter.zip ./phi4_sql_adapter_output\n",
+            "import hashlib\n",
+            "with open('e2_sql_adapter.zip', 'rb') as f:\n",
+            "    print('e2_sql_adapter.zip SHA-256:', hashlib.sha256(f.read()).hexdigest())\n"
         ]
     },
     {
         "cell_type": "markdown",
         "metadata": {},
         "source": [
-            "## Convert LoRA Adapter to GGUF Format\n",
-            "After training completes, convert the saved adapter to GGUF using llama.cpp:"
+            "## (Optional) Convert LoRA Adapter to GGUF Format on Kaggle\n",
+            "Converts the saved adapter to GGUF using llama.cpp directly on Kaggle:"
         ]
     },
     {
@@ -65,8 +86,10 @@ cells = [
             "!git clone https://github.com/ggerganov/llama.cpp.git\n",
             "!python llama.cpp/convert_lora_to_gguf.py --base-model-id microsoft/Phi-4-mini-instruct ./phi4_sql_adapter_output --outtype f16 --outfile phi4-mini-sql-lora.gguf\n",
             "import hashlib\n",
-            "with open('phi4-mini-sql-lora.gguf', 'rb') as f:\n",
-            "    print('GGUF SHA-256:', hashlib.sha256(f.read()).hexdigest())\n"
+            "import os\n",
+            "if os.path.exists('phi4-mini-sql-lora.gguf'):\n",
+            "    with open('phi4-mini-sql-lora.gguf', 'rb') as f:\n",
+            "        print('GGUF SHA-256:', hashlib.sha256(f.read()).hexdigest())\n"
         ]
     }
 ]
@@ -93,5 +116,4 @@ nb = {
 with open("kaggle/e2_train_sql_lora.ipynb", "w", encoding="utf-8") as f:
     json.dump(nb, f, indent=2)
 
-print("Kaggle notebook generated at kaggle/e2_train_sql_lora.ipynb")
-
+print("Self-contained Kaggle notebook successfully generated at kaggle/e2_train_sql_lora.ipynb")
