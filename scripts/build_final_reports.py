@@ -505,6 +505,14 @@ def compute_all_metrics(split: str = "heldout", with_judge: bool = False) -> Dic
         "with_judge": with_judge,
     }
 
+    judge_data = None
+    if with_judge:
+        judge_path = os.path.join(REPO_ROOT, "results", "judge", "judge_summary_metrics.json")
+        if os.path.exists(judge_path):
+            with open(judge_path, "r", encoding="utf-8") as f:
+                judge_data = json.load(f)
+
+    metrics["judge"] = judge_data
     return metrics
 
 
@@ -677,6 +685,62 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
     cats = metrics["categories"]
     exps = metrics["experiments"]
     hashes = metrics["hashes"]
+
+    # Judge variables
+    has_judge = metrics.get("with_judge") and (metrics.get("judge") is not None)
+    if has_judge:
+        j = metrics["judge"]
+        jm = j.get("judge_model", "gemini-3.8-flash")
+        sec34_html = f"""<h3>3.4 Secondary Evaluation Layer: Blind Pairwise LLM-as-a-Judge</h3>
+<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol executes double-blind pairwise judging with position-swap consistency testing (2 passes per pair, 600 total planned trials) using <code>{jm}</code> ($T=0.0$, zero thinking tokens) via direct REST header authentication. Metrics include holistic score (1–10), four 1–5 criteria (CQS), and Quality Proximity: $QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 9$. Pre-registered validity gates require ≥80% concordance on single-winner items and penalize false-positive high scores on incorrect answers.</p>
+<p><em>Phase 3 Status: Active execution under Google AI Studio free-tier quotas (strict pacing ≤14.3 RPM, 20 RPD daily ceiling; multi-day append-only resumption supported in <code>judge_trials_raw_gemini38.jsonl</code>).</em></p>"""
+
+        c120 = j.get("comparisons", {}).get("openai/gpt-oss-120b", {})
+        c27 = j.get("comparisons", {}).get("qwen/qwen3.8-27b", {})
+        def mentor_row_html(exp, slm_arch, comp, c):
+            if not c or "slm_wins" not in c:
+                return f"<td><strong>{exp}</strong></td><td>{slm_arch}</td><td>{comp}</td><td class='center' colspan='6'><em>Not run</em></td>"
+            return (f"<td><strong>{exp}</strong></td><td>{slm_arch}</td><td>{comp}</td>"
+                    f"<td class='center'>{c['llm_wins']}</td>"
+                    f"<td class='center'>{c['slm_wins']}</td>"
+                    f"<td class='center'>{c['draws']}</td>"
+                    f"<td class='center'>{c['qp']['mean']:.3f} [{c['qp']['ci_low']:.3f}, {c['qp']['ci_high']:.3f}]</td>"
+                    f"<td class='center'>{c['mean_slm_cqs']:.2f}</td>"
+                    f"<td class='center'>{c['mean_llm_cqs']:.2f}</td>")
+
+        mentor_table_html = f"""
+<p class="table-footnote">For detailed per-category breakdowns, item-level disagreements, and win/loss matrices, refer to <code>docs/reports/SLM_vs_LLM_Head_to_Head.pdf</code>. Secondary LLM-as-a-Judge metrics (QP, CQS, Win/Draw/Loss) are reported below in Table 5B.</p>
+
+<h3 style="margin-top: 4pt; margin-bottom: 2pt;">Table 5B: Mentor Protocol Evaluation Matrix (Secondary LLM-as-a-Judge Layer)</h3>
+<table class="table-dense" style="margin-bottom: 3pt; font-size: 7.2pt;">
+  <thead>
+    <tr>
+      <th>Exp</th>
+      <th>SLM Architecture &amp; FT</th>
+      <th>Competitor</th>
+      <th class="center">LLM Win</th>
+      <th class="center">SLM Win</th>
+      <th class="center">Draw</th>
+      <th class="center">Quality Proximity (QP)</th>
+      <th class="center">SLM CQS</th>
+      <th class="center">LLM CQS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>{mentor_row_html("E1", "None (Base Phi-4-mini 3.82B)", "GPT-OSS-120B B1", c120)}</tr>
+    <tr>{mentor_row_html("E1", "None (Base Phi-4-mini 3.82B)", "qwen/qwen3.8-27b B1", c27)}</tr>
+    <tr><td><strong>E2</strong></td><td>Query-dep. LoRA (SQL Specialist)</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run (training pipeline prepared, run pending owner sign-off)</em></td></tr>
+    <tr><td><strong>E3</strong></td><td>All Specialist SLMs Fine-Tuned</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run (mentor multi-model pool not configured; repo E3 was compute-in-code)</em></td></tr>
+    <tr><td><strong>E4-A/B</strong></td><td>Skill-Matching Router (Base / FT)</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run as specified (repo E4 / E4b rejected on dev headroom / regression gates)</em></td></tr>
+  </tbody>
+</table>
+"""
+    else:
+        sec34_html = """<h3>3.4 Secondary Evaluation Layer: Blind Pairwise LLM-as-a-Judge</h3>
+<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol requires blind pairwise judging with position-swap consistency testing, holistic scoring (1–10), four 1–5 criteria (Correctness, Completeness, Reasoning Quality, Formatting), Composite Quality Score (CQS), and Quality Proximity: $QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 9$.</p>
+<p><em>Phase 1 Status: Protocol pre-registered; secondary judge execution is scheduled for Phase 3 following owner checkpoint sign-off.</em></p>"""
+        mentor_table_html = """<p class="table-footnote">For detailed per-category breakdowns, item-level disagreements, and win/loss matrices, refer to <code>docs/reports/SLM_vs_LLM_Head_to_Head.pdf</code>. Secondary LLM-as-a-Judge metrics (QP, CQS, Win/Draw/Loss) are scheduled for Phase 3 integration.</p>"""
+
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -860,9 +924,7 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
   <li><strong>Track B Fact-Checklist Checker (v1.2.0):</strong> Evaluates extracted entity-attribute key-value pairs against pre-registered ground-truth fact checklists with a hard word count ceiling of ≤ 75 words. Truncation or verbosity violations immediately fail.</li>
 </ul>
 
-<h3>3.4 Secondary Evaluation Layer: Blind Pairwise LLM-as-a-Judge</h3>
-<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol requires blind pairwise judging with position-swap consistency testing, holistic scoring (1–10), four 1–5 criteria (Correctness, Completeness, Reasoning Quality, Formatting), Composite Quality Score (CQS), and Quality Proximity: $QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 9$.</p>
-<p><em>Phase 1 Status: Protocol pre-registered; secondary judge execution is scheduled for Phase 3 following owner checkpoint sign-off.</em></p>
+{sec34_html}
 
 <h3>3.5 Statistical Rigour &amp; Integrity Constraints</h3>
 <ul>
@@ -1040,7 +1102,7 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
     </tr>
   </tbody>
 </table>
-<p class="table-footnote">For detailed per-category breakdowns, item-level disagreements, and win/loss matrices, refer to <code>docs/reports/SLM_vs_LLM_Head_to_Head.pdf</code>. Secondary LLM-as-a-Judge metrics (QP, CQS, Win/Draw/Loss) are scheduled for Phase 3 integration.</p>
+{mentor_table_html}
 
 <h2>6. Audit, Reproducibility &amp; Integrity Ledger</h2>
 <ul>
@@ -1077,6 +1139,58 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
     c_h2h = metrics["category_h2h"]
     disagreements = metrics["disagreements_120b"]
     truncs = metrics["truncations"]
+
+    has_judge = metrics.get("with_judge") and (metrics.get("judge") is not None)
+    if has_judge:
+        j = metrics["judge"]
+        jm = j.get("judge_model", "gemini-3.8-flash")
+        c120 = j.get("comparisons", {}).get("openai/gpt-oss-120b", {})
+        c27 = j.get("comparisons", {}).get("qwen/qwen3.8-27b", {})
+
+        def j_row(label, c):
+            if not c or "slm_wins" not in c:
+                return f"<td><strong>{label}</strong></td><td colspan='9' class='center'><em>Not run</em></td>"
+            conc = c.get('check_a_concordance', {})
+            conc_str = f"{conc['concordance_rate']:.1f}% ({conc['concordant_items']}/{conc['total_disagreements']})" if conc.get('total_disagreements', 0) > 0 else "N/A"
+            return (f"<td><strong>{label}</strong></td>"
+                    f"<td class='center'>{c['slm_wins']}</td>"
+                    f"<td class='center'>{c['draws']}</td>"
+                    f"<td class='center'>{c['llm_wins']}</td>"
+                    f"<td class='center'><strong>{c['effective_win_rate']:.1f}%</strong></td>"
+                    f"<td class='center'>{c['qp']['mean']:.3f} [{c['qp']['ci_low']:.3f}, {c['qp']['ci_high']:.3f}]</td>"
+                    f"<td class='center'>{c['delta_q']['mean']:+.3f} [{c['delta_q']['ci_low']:+.3f}, {c['delta_q']['ci_high']:+.3f}]</td>"
+                    f"<td class='center'>{c['mean_slm_cqs']:.2f} vs {c['mean_llm_cqs']:.2f}</td>"
+                    f"<td class='center'>{c['swap_consistency']:.1f}%</td>"
+                    f"<td class='center'>{conc_str}</td>")
+
+        sec7_html = f"""
+<h2>7. Secondary Qualitative Layer: LLM-as-a-Judge Evaluation ({jm})</h2>
+<p>To evaluate qualitative response nuances, depth, and instruction following alongside deterministic answer keys, outputs are evaluated via blind, position-swapped pairwise judging with <code>{jm}</code> ($T=0.0$, zero thinking tokens). All figures are <em>strictly secondary</em>; answer-key correctness remains headline.</p>
+
+<table class="table-dense" style="font-size: 7.2pt; margin-bottom: 3pt;">
+  <thead>
+    <tr>
+      <th>Baseline Competitor</th>
+      <th class="center">SLM Win</th>
+      <th class="center">Draw</th>
+      <th class="center">LLM Win</th>
+      <th class="center">Effective Win%</th>
+      <th class="center">Quality Proximity (QP) [95% CI]</th>
+      <th class="center">Delta Q [95% CI]</th>
+      <th class="center">SLM CQS vs LLM CQS</th>
+      <th class="center">Swap Cons.</th>
+      <th class="center">Concordance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>{j_row("GPT-OSS-120B B1", c120)}</tr>
+    <tr>{j_row("qwen/qwen3.8-27b B1", c27)}</tr>
+  </tbody>
+</table>
+<p class="table-footnote"><em>Note on Quota &amp; Resumption:</em> Executed under Google AI Studio free-tier quotas (strict pacing ≤14.3 RPM, 20 RPD daily limit). Results reflect completed trials from immutable raw records (<code>results/judge/judge_trials_raw_gemini38.jsonl</code>); multi-day automatic resumption executes seamlessly across quota resets. Answer-key correctness remains headline.</p>
+"""
+    else:
+        sec7_html = ""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -1644,6 +1758,8 @@ Note: B0 baselines were evaluated on Track A only and had no Track B condition.<
   <li><strong>Track B Benchmark Ceiling Effect:</strong> Because Track B evaluates factual extraction from a 50-item synthetic corpus, all systems achieved 100.0%. A more challenging multi-hop reasoning corpus is required to differentiate retrieval synthesis capabilities.</li>
   <li><strong>Active Latency and Cost Invariance:</strong> While the SLM pipeline executes locally with zero monetary cost, end-to-end multi-step tool execution took on average 8–18 seconds per compound item, which was not directly latency-matched against high-throughput cloud API streaming.</li>
 </ul>
+
+{sec7_html}
 
 </body>
 </html>"""

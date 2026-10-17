@@ -15,7 +15,7 @@
   <div class="report-subtitle">Symmetric Item-Level Comparison on Held-Out Benchmark Split (100 Track A + 50 Track B Items)</div>
   <div class="metadata-grid">
     <div class="metadata-item"><strong>Evaluation Split:</strong> Held-Out Split (Secondary)</div>
-    <div class="metadata-item"><strong>Pipeline Release:</strong> v1.3-slm-frozen (91770b7)</div>
+    <div class="metadata-item"><strong>Pipeline Release:</strong> v1.3-slm-frozen (97a1640)</div>
     <div class="metadata-item"><strong>Primary Metric:</strong> Answer-Key Correctness (Exact Match)</div>
     <div class="metadata-item"><strong>Statistical Test:</strong> Paired Bootstrap (B=10,000, seed 42)</div>
   </div>
@@ -564,6 +564,33 @@ Note: B0 baselines were evaluated on Track A only and had no Track B condition.<
   <li><strong>Track B Benchmark Ceiling Effect:</strong> Because Track B evaluates factual extraction from a 50-item synthetic corpus, all systems achieved 100.0%. A more challenging multi-hop reasoning corpus is required to differentiate retrieval synthesis capabilities.</li>
   <li><strong>Active Latency and Cost Invariance:</strong> While the SLM pipeline executes locally with zero monetary cost, end-to-end multi-step tool execution took on average 8–18 seconds per compound item, which was not directly latency-matched against high-throughput cloud API streaming.</li>
 </ul>
+
+
+<h2>7. Secondary Qualitative Layer: LLM-as-a-Judge Evaluation (gemini-3.8-flash)</h2>
+<p>To evaluate qualitative response nuances, depth, and instruction following alongside deterministic answer keys, outputs are evaluated via blind, position-swapped pairwise judging with <code>gemini-3.8-flash</code> ($T=0.0$, zero thinking tokens). All figures are <em>strictly secondary</em>; answer-key correctness remains headline.</p>
+
+<table class="table-dense" style="font-size: 7.2pt; margin-bottom: 3pt;">
+  <thead>
+    <tr>
+      <th>Baseline Competitor</th>
+      <th class="center">SLM Win</th>
+      <th class="center">Draw</th>
+      <th class="center">LLM Win</th>
+      <th class="center">Effective Win%</th>
+      <th class="center">Quality Proximity (QP) [95% CI]</th>
+      <th class="center">Delta Q [95% CI]</th>
+      <th class="center">SLM CQS vs LLM CQS</th>
+      <th class="center">Swap Cons.</th>
+      <th class="center">Concordance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>GPT-OSS-120B B1</strong></td><td class='center'>0</td><td class='center'>1</td><td class='center'>1</td><td class='center'><strong>50.0%</strong></td><td class='center'>0.944 [0.889, 1.000]</td><td class='center'>-0.500 [-1.000, +0.000]</td><td class='center'>4.88 vs 5.00</td><td class='center'>100.0%</td><td class='center'>N/A</td></tr>
+    <tr><td><strong>qwen/qwen3.8-27b B1</strong></td><td class='center'>0</td><td class='center'>0</td><td class='center'>1</td><td class='center'><strong>0.0%</strong></td><td class='center'>0.889 [0.889, 0.889]</td><td class='center'>-1.000 [-1.000, -1.000]</td><td class='center'>4.75 vs 5.00</td><td class='center'>100.0%</td><td class='center'>N/A</td></tr>
+  </tbody>
+</table>
+<p class="table-footnote"><em>Note on Quota &amp; Resumption:</em> Executed under Google AI Studio free-tier quotas (strict pacing ≤14.3 RPM, 20 RPD daily limit). Results reflect completed trials from immutable raw records (<code>results/judge/judge_trials_raw_gemini38.jsonl</code>); multi-day automatic resumption executes seamlessly across quota resets. Answer-key correctness remains headline.</p>
+
 
 </body>
 </html>
