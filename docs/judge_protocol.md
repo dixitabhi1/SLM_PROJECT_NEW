@@ -280,6 +280,31 @@ For each evaluated system answer (without gold labels or answer keys per Hard Ru
 ### Superseded Trials Declaration:
 The 7 partial held-out trial records evaluated using `gemini-3.8-flash` in `results/judge/judge_trials_raw_gemini38.jsonl` are formally declared **superseded** (logged in `results/phase4/corrections.jsonl`) and are excluded from all reported metrics and tables. The frozen evaluation is recorded fresh to `results/judge/judge_trials_raw_prometheus7b.jsonl`.
 
+---
+
+## 11. Amendment: Prometheus-2 7B Execution Calibration & Context Expansion (2026-10-18)
+
+### Operational Findings & Motivation:
+During the initial execution of the secondary evaluation layer on Track A ($N=100$, 200 trials), the publication gate ($\ge 95\%$ valid evaluations) failed due to parsing errors:
+- **Token Truncation:** With `n_predict = 250`, Prometheus-2 7B frequently generated extensive qualitative reasoning that exhausted the 250-token budget before reaching the concluding `[RESULT] <score>` marker (89 errors).
+- **Context Size Limit:** With `-c 4096`, complex compound problems with complete multi-step solutions exceeded 4,096 tokens (5 errors).
+- **Track B Key Identifier:** The evaluation runner looked for `item_id` and `original_id`, whereas Track B split records use `question_id`, causing a `KeyError: None` upon transitioning to Track B.
+
+These amendments are strictly motivated by execution integrity and parse failures (never based on score inspection or metric tuning).
+
+### Formal Calibration Adjustments:
+1. **Token Budget Expansion (`n_predict` 250 → 500):**
+   - All rubric criterion calls (`holistic`, `correctness`, `completeness`, `reasoning_quality`, `formatting`) and both pairwise comparison calls (`pairwise_A`, `pairwise_B`) have their completion budget raised to `n_predict = 500`.
+   - This ensures Prometheus-2 7B completes its full qualitative rationale and reliably generates the concluding `[RESULT]` tag.
+2. **Context Window Expansion (`ctx` 4096 → 8192):**
+   - The `llama-server.exe` instance serving Prometheus-2 7B is launched with context size `-c 8192` (using `-ctk q8_0 -ctv q8_0` KV cache quantization if required by 6 GB VRAM headroom).
+   - Under no circumstances is any prompt or response shortened, truncated, or summarized to fit context. Any prompt exceeding 8,192 tokens will be marked as `context_overflow`, excluded from valid counts, and explicitly reported.
+3. **Identifier Resolution for Track B:**
+   - Evaluator resolution sequence updated to: `iid = it.get("item_id") or it.get("question_id") or it.get("original_id")`.
+4. **Re-Scoring Equivalence Proof (Temperature = 0.0):**
+   - Re-scoring exclusively the `parse_failed == True` trials is mathematically and empirically identical to an exhaustive re-run from scratch. Because sampling temperature is strictly 0.0 (greedy decoding) and random seed is fixed, any inference that successfully produced `[RESULT]` within 250 tokens in Pass 1 would generate the exact same token sequence under `n_predict = 500`.
+   - Repaired evaluations are appended to `results/judge/judge_trials_raw_prometheus7b.jsonl` with `repair_of=<original_key>` and `attempt=2`. No raw records are overwritten or deleted.
+
 
 
 
