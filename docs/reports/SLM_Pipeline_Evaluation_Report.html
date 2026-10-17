@@ -15,7 +15,7 @@
   <div class="report-subtitle">Rigorous Empirical Evaluation of Pure 3.82B SLM System Against Multi-Tier Frontier LLMs</div>
   <div class="metadata-grid">
     <div class="metadata-item"><strong>Repository:</strong> dixitabhi1/SLM_PROJECT_NEW</div>
-    <div class="metadata-item"><strong>Release / Tag:</strong> v1.3-slm-frozen (97a1640)</div>
+    <div class="metadata-item"><strong>Release / Tag:</strong> v1.3-slm-frozen (ff7e433)</div>
     <div class="metadata-item"><strong>System Under Test:</strong> Phi-4-mini (3.82B, Vulkan0, 3 slots)</div>
     <div class="metadata-item"><strong>Status &amp; Date:</strong> Frozen v1.3 • 2026-10-17</div>
   </div>
@@ -337,8 +337,8 @@
 </ul>
 
 <h3>3.4 Secondary Evaluation Layer: Blind Pairwise LLM-as-a-Judge</h3>
-<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol executes double-blind pairwise judging with position-swap consistency testing (2 passes per pair, 600 total planned trials) using <code>gemini-3.8-flash</code> ($T=0.0$, zero thinking tokens) via direct REST header authentication. Metrics include holistic score (1–10), four 1–5 criteria (CQS), and Quality Proximity: $QP_i = 1 - |Q_{S,i} - Q_{L,i}| / 9$. Pre-registered validity gates require ≥80% concordance on single-winner items and penalize false-positive high scores on incorrect answers.</p>
-<p><em>Phase 3 Status: Active execution under Google AI Studio free-tier quotas (strict pacing ≤14.3 RPM, 20 RPD daily ceiling; multi-day append-only resumption supported in <code>judge_trials_raw_gemini38.jsonl</code>).</em></p>
+<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol requires blind pairwise judging with position-swap consistency testing, holistic scoring (1–10), four 1–5 criteria (Correctness, Completeness, Reasoning Quality, Formatting), Composite Quality Score (CQS), and Quality Proximity: $QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 9$.</p>
+<p><em>Phase 1 Status: Protocol pre-registered; secondary judge execution is scheduled for Phase 3 following owner checkpoint sign-off.</em></p>
 
 <h3>3.5 Statistical Rigour &amp; Integrity Constraints</h3>
 <ul>
@@ -516,33 +516,7 @@
     </tr>
   </tbody>
 </table>
-
-<p class="table-footnote">For detailed per-category breakdowns, item-level disagreements, and win/loss matrices, refer to <code>docs/reports/SLM_vs_LLM_Head_to_Head.pdf</code>. Secondary LLM-as-a-Judge metrics (QP, CQS, Win/Draw/Loss) are reported below in Table 5B.</p>
-
-<h3 style="margin-top: 4pt; margin-bottom: 2pt;">Table 5B: Mentor Protocol Evaluation Matrix (Secondary LLM-as-a-Judge Layer)</h3>
-<table class="table-dense" style="margin-bottom: 3pt; font-size: 7.2pt;">
-  <thead>
-    <tr>
-      <th>Exp</th>
-      <th>SLM Architecture &amp; FT</th>
-      <th>Competitor</th>
-      <th class="center">LLM Win</th>
-      <th class="center">SLM Win</th>
-      <th class="center">Draw</th>
-      <th class="center">Quality Proximity (QP)</th>
-      <th class="center">SLM CQS</th>
-      <th class="center">LLM CQS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td><strong>E1</strong></td><td>None (Base Phi-4-mini 3.82B)</td><td>GPT-OSS-120B B1</td><td class='center'>1</td><td class='center'>0</td><td class='center'>1</td><td class='center'>0.944 [0.889, 1.000]</td><td class='center'>4.88</td><td class='center'>5.00</td></tr>
-    <tr><td><strong>E1</strong></td><td>None (Base Phi-4-mini 3.82B)</td><td>qwen/qwen3.8-27b B1</td><td class='center'>1</td><td class='center'>0</td><td class='center'>0</td><td class='center'>0.889 [0.889, 0.889]</td><td class='center'>4.75</td><td class='center'>5.00</td></tr>
-    <tr><td><strong>E2</strong></td><td>Query-dep. LoRA (SQL Specialist)</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run (training pipeline prepared, run pending owner sign-off)</em></td></tr>
-    <tr><td><strong>E3</strong></td><td>All Specialist SLMs Fine-Tuned</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run (mentor multi-model pool not configured; repo E3 was compute-in-code)</em></td></tr>
-    <tr><td><strong>E4-A/B</strong></td><td>Skill-Matching Router (Base / FT)</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run as specified (repo E4 / E4b rejected on dev headroom / regression gates)</em></td></tr>
-  </tbody>
-</table>
-
+<p class="table-footnote">For detailed per-category breakdowns, item-level disagreements, and win/loss matrices, refer to <code>docs/reports/SLM_vs_LLM_Head_to_Head.pdf</code>. Secondary LLM-as-a-Judge metrics (QP, CQS, Win/Draw/Loss) are scheduled for Phase 3 integration.</p>
 
 <h2>6. Audit, Reproducibility &amp; Integrity Ledger</h2>
 <ul>

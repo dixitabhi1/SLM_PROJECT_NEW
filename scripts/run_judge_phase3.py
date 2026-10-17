@@ -179,21 +179,55 @@ def parse_judge_output(content_str: str) -> Dict[str, Any]:
     return {"raw": content_str}
 
 
+class JudgeParseError(Exception):
+    pass
+
+
 def extract_trial_metrics(parsed: Dict[str, Any], pass_label: str) -> Dict[str, Any]:
-    ans1_dict = parsed.get("answer_1", {}) if isinstance(parsed.get("answer_1"), dict) else {}
-    ans2_dict = parsed.get("answer_2", {}) if isinstance(parsed.get("answer_2"), dict) else {}
+    if not isinstance(parsed, dict) or "answer_1" not in parsed or "answer_2" not in parsed:
+        raise JudgeParseError("Parsed output is not a valid dictionary or lacks answer_1 / answer_2")
 
-    h1 = float(ans1_dict.get("holistic", 5))
-    h2 = float(ans2_dict.get("holistic", 5))
+    ans1_dict = parsed.get("answer_1")
+    ans2_dict = parsed.get("answer_2")
+    if not isinstance(ans1_dict, dict) or not isinstance(ans2_dict, dict):
+        raise JudgeParseError("answer_1 or answer_2 is not a dictionary")
 
-    def get_cqs(d: dict) -> float:
-        crit = [float(d.get(k, 3)) for k in ("correctness", "completeness", "reasoning_quality", "formatting")]
-        return sum(crit) / len(crit)
+    # Holistic score validation: range [1, 10]
+    if "holistic" not in ans1_dict or "holistic" not in ans2_dict:
+        raise JudgeParseError("Missing holistic score in answer_1 or answer_2")
+    try:
+        h1 = float(ans1_dict["holistic"])
+        h2 = float(ans2_dict["holistic"])
+    except (ValueError, TypeError):
+        raise JudgeParseError("Non-numeric holistic score")
+    if not (1.0 <= h1 <= 10.0 and 1.0 <= h2 <= 10.0):
+        raise JudgeParseError(f"Holistic score out of range [1, 10]: h1={h1}, h2={h2}")
 
-    cqs1 = get_cqs(ans1_dict)
-    cqs2 = get_cqs(ans2_dict)
+    # Criteria validation: each in [1, 5]
+    criteria_keys = ("correctness", "completeness", "reasoning_quality", "formatting")
+    def get_cqs(d: dict, label: str) -> float:
+        vals = []
+        for k in criteria_keys:
+            if k not in d:
+                raise JudgeParseError(f"Missing criteria '{k}' in {label}")
+            try:
+                v = float(d[k])
+            except (ValueError, TypeError):
+                raise JudgeParseError(f"Non-numeric criteria '{k}' in {label}")
+            if not (1.0 <= v <= 5.0):
+                raise JudgeParseError(f"Criteria '{k}' out of range [1, 5] in {label}: {v}")
+            vals.append(v)
+        return sum(vals) / len(vals)
 
-    raw_winner = str(parsed.get("winner", "Draw")).strip().lower()
+    cqs1 = get_cqs(ans1_dict, "answer_1")
+    cqs2 = get_cqs(ans2_dict, "answer_2")
+
+    # Winner validation
+    if "winner" not in parsed:
+        raise JudgeParseError("Missing 'winner' field in parsed output")
+    raw_winner = str(parsed["winner"]).strip().lower()
+    if not any(w in raw_winner for w in ("answer 1", "answer 2", "draw")):
+        raise JudgeParseError(f"Invalid winner value: {parsed['winner']}")
 
     if pass_label == "A":
         slm_h, llm_h = h1, h2
@@ -221,7 +255,8 @@ def extract_trial_metrics(parsed: Dict[str, Any], pass_label: str) -> Dict[str, 
         "slm_cqs": slm_cqs, "llm_cqs": llm_cqs,
         "winner_sys": winner_sys,
         "raw_winner": parsed.get("winner", "Draw"),
-        "explanation": parsed.get("explanation", "")
+        "explanation": parsed.get("explanation", ""),
+        "parse_failed": False,
     }
 
 
@@ -273,14 +308,18 @@ def evaluate_metrics(
 
         cat_data: Dict[str, Dict[str, list]] = {}
 
+        exclusions_count = 0
         for iid, track, cat, it in eval_items:
             rec_A = index_trials.get((iid, b_name, "A"))
             rec_B = index_trials.get((iid, b_name, "B"))
             if not rec_A or not rec_B:
                 continue
 
-            mA = rec_A["trial_metrics"]
-            mB = rec_B["trial_metrics"]
+            mA = rec_A.get("trial_metrics", {})
+            mB = rec_B.get("trial_metrics", {})
+            if mA.get("parse_failed") or mB.get("parse_failed") or ("slm_h" not in mA) or ("slm_h" not in mB):
+                exclusions_count += 1
+                continue
 
             q_s = (mA["slm_h"] + mB["slm_h"]) / 2.0
             q_l = (mA["llm_h"] + mB["llm_h"]) / 2.0
@@ -355,9 +394,13 @@ def evaluate_metrics(
         if disagreements:
             conc_count = sum(1 for d in disagreements if d["concordant"])
             conc_rate = (conc_count / len(disagreements)) * 100.0
+            conc_rate_str = f"{conc_rate:.1f}%"
+            passed_gate = (conc_rate >= 80.0)
         else:
             conc_count = 0
-            conc_rate = 100.0
+            conc_rate = None
+            conc_rate_str = "n/a"
+            passed_gate = "n/a"
 
         if wrong_answers:
             false_high = sum(1 for _, _, q in wrong_answers if q >= 8.0)
@@ -383,6 +426,7 @@ def evaluate_metrics(
             "baseline": b_name,
             "baseline_label": b_label,
             "evaluated_items": evaluated_count,
+            "exclusions_count": exclusions_count,
             "slm_wins": slm_wins,
             "llm_wins": llm_wins,
             "draws": draws,
@@ -395,8 +439,8 @@ def evaluate_metrics(
             "check_a_concordance": {
                 "total_disagreements": len(disagreements),
                 "concordant_items": conc_count,
-                "concordance_rate": conc_rate,
-                "passed_gate": conc_rate >= 80.0
+                "concordance_rate": conc_rate_str,
+                "passed_gate": passed_gate
             },
             "check_b_false_high_score": {
                 "total_wrong_answers": len(wrong_answers),
@@ -408,12 +452,14 @@ def evaluate_metrics(
         summary["comparisons"][b_name] = b_summary
 
         print(f"\n>>> Specialist SLM v1.3 vs {b_label} <<<")
+        print(f"  Evaluated Items: {evaluated_count} (Exclusions: {exclusions_count})")
         print(f"  Outcome: SLM Wins: {slm_wins} ({slm_wins/evaluated_count*100:.1f}%) | Draws: {draws} ({draws/evaluated_count*100:.1f}%) | LLM Wins: {llm_wins} ({llm_wins/evaluated_count*100:.1f}%) | Eff. Win Rate: {eff_win_rate:.1f}%")
         print(f"  Quality Proximity (QP): {qp_mean:.4f} [95% CI: {qp_low:.4f}, {qp_high:.4f}]")
         print(f"  Quality Difference (Delta Q): {dq_mean:+.4f} [95% CI: {dq_low:+.4f}, {dq_high:+.4f}]")
         print(f"  CQS: SLM {mean_cqs_s:.2f} vs LLM {mean_cqs_l:.2f}")
         print(f"  Swap Consistency: {swap_consist_pct:.1f}% ({swap_agreements}/{evaluated_count})")
-        print(f"  Check (a) Concordance: {conc_rate:.1f}% ({conc_count}/{len(disagreements)}) -> {'PASSED (>=80%)' if conc_rate >= 80.0 else 'FAILED (<80%)'}")
+        gate_str = ("PASSED (>=80%)" if passed_gate is True else "FAILED (<80%)") if passed_gate != "n/a" else "n/a (no disagreements)"
+        print(f"  Check (a) Concordance: {conc_rate_str} ({conc_count}/{len(disagreements)}) -> {gate_str}")
         print(f"  Check (b) False High Score (>=8.0 on Wrong): {false_high_rate:.1f}% ({false_high}/{len(wrong_answers)})")
         print("  Per-Category Breakdown (SLM Wins / Draws / LLM Wins | Delta Q [95% CI]):")
         for c, cdata in per_cat_summary.items():
@@ -646,12 +692,37 @@ def main():
                     ans1_text, ans1_sys, ans1_field, ans1_len = b_text, b_label, b_field, len(b_text)
                     ans2_text, ans2_sys, ans2_field, ans2_len = s_text, "Specialist SLM v1.3", s_field, len(s_text)
 
-                t0 = time.time()
-                res_data, dur = call_gemini_judge(prompt_text, ans1_text, ans2_text, gemini_key)
-                model_ver = res_data.get("modelVersion", JUDGE_MODEL)
-                content_str = res_data["candidates"][0]["content"]["parts"][0]["text"]
-                parsed = parse_judge_output(content_str)
-                t_metrics = extract_trial_metrics(parsed, p)
+                attempt = 0
+                max_attempts = 2
+                res_data = {}
+                dur = 0.0
+                content_str = ""
+                parsed = {}
+                t_metrics = {}
+                parse_failed = False
+                tokens = {}
+                model_ver = JUDGE_MODEL
+
+                while attempt < max_attempts:
+                    attempt += 1
+                    t0 = time.time()
+                    try:
+                        res_data, dur = call_gemini_judge(prompt_text, ans1_text, ans2_text, gemini_key)
+                        model_ver = res_data.get("modelVersion", JUDGE_MODEL)
+                        content_str = res_data.get("candidates", [{}])[0].get("content", {}).get("parts", [{}])[0].get("text", "")
+                        parsed = parse_judge_output(content_str)
+                        t_metrics = extract_trial_metrics(parsed, p)
+                        parse_failed = False
+                        break
+                    except (JudgeParseError, Exception) as err:
+                        if attempt >= max_attempts:
+                            parse_failed = True
+                            t_metrics = {
+                                "parse_failed": True,
+                                "error": str(err)
+                            }
+                            break
+                        time.sleep(1.0)
 
                 u_meta = res_data.get("usageMetadata", {})
                 tokens = {

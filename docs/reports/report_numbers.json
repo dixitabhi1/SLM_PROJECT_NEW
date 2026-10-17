@@ -2,8 +2,8 @@
   "git": {
     "repo": "dixitabhi1/SLM_PROJECT_NEW",
     "tag": "v1.3-slm-frozen",
-    "commit_short": "97a1640",
-    "commit_full": "97a1640e563024286cfe0c8c02db363c09f0db9f"
+    "commit_short": "ff7e433",
+    "commit_full": "ff7e4332fcc3fb8355dd664e826f5e7ba52714de"
   },
   "split": "heldout",
   "hashes": {
@@ -533,126 +533,6 @@
       "decision": "Rejected: E4 permanently closed; v1.3 stands frozen"
     }
   },
-  "with_judge": true,
-  "judge": {
-    "title": "Held-Out Secondary Evaluation (N=150)",
-    "judge_model": "gemini-3.8-flash",
-    "n_items": 150,
-    "comparisons": {
-      "openai/gpt-oss-120b": {
-        "baseline": "openai/gpt-oss-120b",
-        "baseline_label": "GPT-OSS-120B B1",
-        "evaluated_items": 2,
-        "slm_wins": 0,
-        "llm_wins": 1,
-        "draws": 1,
-        "effective_win_rate": 50.0,
-        "qp": {
-          "mean": 0.9444444444444444,
-          "ci_low": 0.8888888888888888,
-          "ci_high": 1.0
-        },
-        "delta_q": {
-          "mean": -0.5,
-          "ci_low": -1.0,
-          "ci_high": 0.0
-        },
-        "mean_slm_cqs": 4.875,
-        "mean_llm_cqs": 5.0,
-        "swap_consistency": 100.0,
-        "check_a_concordance": {
-          "total_disagreements": 0,
-          "concordant_items": 0,
-          "concordance_rate": 100.0,
-          "passed_gate": true
-        },
-        "check_b_false_high_score": {
-          "total_wrong_answers": 2,
-          "false_high_scores": 2,
-          "false_high_rate": 100.0
-        },
-        "per_category": {
-          "sql": {
-            "n": 2,
-            "slm_wins": 0,
-            "llm_wins": 1,
-            "draws": 1,
-            "qp": {
-              "mean": 0.9444444444444444,
-              "ci_low": 0.8888888888888888,
-              "ci_high": 1.0
-            },
-            "delta_q": {
-              "mean": -0.5,
-              "ci_low": -1.0,
-              "ci_high": 0.0
-            }
-          }
-        }
-      },
-      "qwen/qwen3.8-27b": {
-        "baseline": "qwen/qwen3.8-27b",
-        "baseline_label": "qwen/qwen3.8-27b B1",
-        "evaluated_items": 1,
-        "slm_wins": 0,
-        "llm_wins": 1,
-        "draws": 0,
-        "effective_win_rate": 0.0,
-        "qp": {
-          "mean": 0.8888888888888888,
-          "ci_low": 0.8888888888888888,
-          "ci_high": 0.8888888888888888
-        },
-        "delta_q": {
-          "mean": -1.0,
-          "ci_low": -1.0,
-          "ci_high": -1.0
-        },
-        "mean_slm_cqs": 4.75,
-        "mean_llm_cqs": 5.0,
-        "swap_consistency": 100.0,
-        "check_a_concordance": {
-          "total_disagreements": 0,
-          "concordant_items": 0,
-          "concordance_rate": 100.0,
-          "passed_gate": true
-        },
-        "check_b_false_high_score": {
-          "total_wrong_answers": 0,
-          "false_high_scores": 0,
-          "false_high_rate": 0.0
-        },
-        "per_category": {
-          "sql": {
-            "n": 1,
-            "slm_wins": 0,
-            "llm_wins": 1,
-            "draws": 0,
-            "qp": {
-              "mean": 0.8888888888888888,
-              "ci_low": 0.8888888888888888,
-              "ci_high": 0.8888888888888888
-            },
-            "delta_q": {
-              "mean": -1.0,
-              "ci_low": -1.0,
-              "ci_high": -1.0
-            }
-          }
-        }
-      }
-    },
-    "lengths_and_correlations": {
-      "mean_response_length_chars": {
-        "Specialist_SLM_v1.3": 176.33333333333334,
-        "GPT-OSS-120B_B1": 164.5,
-        "qwen/qwen3.8-27b_B1": 112.0
-      },
-      "length_score_pearson_r": {
-        "Specialist_SLM_v1.3": 1.0,
-        "GPT-OSS-120B_B1": NaN,
-        "qwen/qwen3.8-27b_B1": 0.0
-      }
-    }
-  }
+  "with_judge": false,
+  "judge": null
 }

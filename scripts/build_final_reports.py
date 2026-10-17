@@ -686,8 +686,16 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
     exps = metrics["experiments"]
     hashes = metrics["hashes"]
 
-    # Judge variables
-    has_judge = metrics.get("with_judge") and (metrics.get("judge") is not None)
+    # Judge variables (Hard Gate: Never publish judge metrics until each baseline has >= 95% of planned items judged)
+    has_judge = False
+    if metrics.get("with_judge") and metrics.get("judge"):
+        j_data = metrics["judge"]
+        j_comps = j_data.get("comparisons", {})
+        c120_eval = j_comps.get("openai/gpt-oss-120b", {}).get("evaluated_items", 0)
+        c27_eval = j_comps.get("qwen/qwen3.8-27b", {}).get("evaluated_items", 0)
+        if c120_eval >= 143 and c27_eval >= 143:
+            has_judge = True
+
     if has_judge:
         j = metrics["judge"]
         jm = j.get("judge_model", "gemini-3.8-flash")
@@ -1140,7 +1148,15 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
     disagreements = metrics["disagreements_120b"]
     truncs = metrics["truncations"]
 
-    has_judge = metrics.get("with_judge") and (metrics.get("judge") is not None)
+    has_judge = False
+    if metrics.get("with_judge") and metrics.get("judge"):
+        j_data = metrics["judge"]
+        j_comps = j_data.get("comparisons", {})
+        c120_eval = j_comps.get("openai/gpt-oss-120b", {}).get("evaluated_items", 0)
+        c27_eval = j_comps.get("qwen/qwen3.8-27b", {}).get("evaluated_items", 0)
+        if c120_eval >= 143 and c27_eval >= 143:
+            has_judge = True
+
     if has_judge:
         j = metrics["judge"]
         jm = j.get("judge_model", "gemini-3.8-flash")

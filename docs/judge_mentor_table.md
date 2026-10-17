@@ -1,13 +1,13 @@
 # Mentor Protocol Table: Secondary Evaluation Layer (LLM-as-a-Judge)
 
-**Judge Model:** `gemini-3.8-flash` (Google DeepMind, Hard Rule 8 satisfied)  
-**Evaluation Scope:** Held-Out Split ($N=150$: Track A $N=100$, Track B $N=50$), position-swap testing ($2 \times 150 = 300$ calls per baseline).  
-**Protocol Invariants:** Temperature 0.0, zero thinking tokens (`thinkingBudget: 0`), strict JSON response schema. Key transmitted exclusively via `x-goog-api-key` header.
+**Judge Evaluation Scope:** Held-Out Split ($N=150$: Track A $N=100$, Track B $N=50$), position-swap testing ($2 \times 150 = 300$ calls per baseline).  
+**Protocol Invariants:** Temperature 0.0, zero thinking tokens (`thinkingBudget: 0`), strict schema validation.  
+**Publication Gate:** In accordance with integrity rules, judge metrics are published only when each baseline achieves $\ge 95\%$ completed items ($N \ge 143/150$). Prior to complete execution, all active cells remain marked *pending*.
 
 | Experiment | SLM Fine-Tuning Configuration | Skill-Matching SLM | LLM Fine-Tuning | LLM Wins | SLM Wins | Draws | Quality Proximity | SLM CQS | LLM CQS |
 | :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| E1 (vs GPT-OSS-120B B1) | None (Base Phi-4-mini 3.82B, prompt/tool-only) | Single-model pool (no router) | None (Frozen API B1) | 1 (50.0%) | 0 (0.0%) | 1 (50.0%) | 0.944 [0.889, 1.000] | 4.88 | 5.00 |
-| E1 (vs qwen/qwen3.8-27b B1) | None (Base Phi-4-mini 3.82B, prompt/tool-only) | Single-model pool (no router) | None (Frozen API B1) | 1 (100.0%) | 0 (0.0%) | 0 (0.0%) | 0.889 [0.889, 0.889] | 4.75 | 5.00 |
+| E1 (vs GPT-OSS-120B B1) | None (Base Phi-4-mini 3.82B, prompt/tool-only) | Single-model pool (no router) | None (Frozen API B1) | pending | pending | pending | pending | pending | pending |
+| E1 (vs qwen/qwen3.8-27b B1) | None (Base Phi-4-mini 3.82B, prompt/tool-only) | Single-model pool (no router) | None (Frozen API B1) | pending | pending | pending | pending | pending | pending |
 | E2 | Query-dependent LoRA adapters (SQL specialist) | Single-model pool | None | — | — | — | Not run (training pipeline prepared, run pending owner sign-off) | — | — |
 | E3 | All specialist SLMs fine-tuned | Multi-SLM pool | None | — | — | — | Not run (mentor multi-model pool not configured; repo E3 was compute-in-code) | — | — |
 | E4-A | None | Skill-matching SLM (router) | None | — | — | — | Not run as specified (repo E4 learned router rejected on dev headroom gate) | — | — |

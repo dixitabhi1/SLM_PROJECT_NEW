@@ -1,16 +1,16 @@
 % Mentor Protocol Table: Secondary Evaluation Layer (LLM-as-a-Judge)
-% Generated from results/judge/judge_trials_raw_gemini38.jsonl (immutable raw records)
+% Pre-registered template; judge metrics published only upon >=95% completed items per baseline.
 \begin{table*}[t]
 \centering
 \small
-\caption{\textbf{Mentor Protocol Evaluation Matrix: LLM-as-a-Judge Secondary Layer} ($N=150$, Held-Out Split). Pairwise comparisons conducted with order-swapped consistency testing ($2 \times 150 = 300$ calls per baseline) using \texttt{gemini-3.8-flash} ($T=0.0$, zero thinking tokens). Quality Proximity is defined as $QP = 1 - |Q_S - Q_L|/9$; brackets denote empirical 95\% bootstrap percentile confidence intervals ($B=10000$). Primary answer-key correctness remains the definitive metric.}
+\caption{\textbf{Mentor Protocol Evaluation Matrix: LLM-as-a-Judge Secondary Layer} ($N=150$, Held-Out Split). Pairwise comparisons conducted with order-swapped consistency testing ($2 \times 150 = 300$ calls per baseline). Quality Proximity is defined as $QP = 1 - |Q_S - Q_L|/9$; brackets denote empirical 95\% bootstrap percentile confidence intervals ($B=10000$). Primary answer-key correctness remains the definitive metric. Cells remain pending until $\ge 95\%$ baseline items are judged.}
 \label{tab:mentor_protocol_results}
 \begin{tabular}{llcccccccc}
 \toprule
 \textbf{Experiment} & \textbf{SLM Fine-Tuning} & \textbf{Skill-Match} & \textbf{LLM FT} & \textbf{LLM Win} & \textbf{SLM Win} & \textbf{Draw} & \textbf{Quality Proximity} & \textbf{SLM CQS} & \textbf{LLM CQS} \\
 \midrule
-E1 (vs 120B B1) & None (Phi-4-mini base) & Single SLM & None & 1 & 0 & 1 & 0.944 $[0.889, 1.000]$ & 4.88 & 5.00 \\
-E1 (vs 27B B1) & None (Phi-4-mini base) & Single SLM & None & 1 & 0 & 0 & 0.889 $[0.889, 0.889]$ & 4.75 & 5.00 \\
+E1 (vs 120B B1) & None (Phi-4-mini base) & Single SLM & None & pending & pending & pending & pending & pending & pending \\
+E1 (vs 27B B1) & None (Phi-4-mini base) & Single SLM & None & pending & pending & pending & pending & pending & pending \\
 E2 & Query-dep. LoRA (SQL) & Single SLM & None & — & — & — & Not run & — & — \\
 E3 & All specialists FT & Multi-SLM & None & — & — & — & Not run & — & — \\
 E4-A & None & Skill-matching & None & — & — & — & Not run & — & — \\
