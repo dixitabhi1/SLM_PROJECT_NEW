@@ -1,0 +1,537 @@
+{
+  "git": {
+    "repo": "dixitabhi1/SLM_PROJECT_NEW",
+    "tag": "v1.3-slm-frozen",
+    "commit_short": "95f8213",
+    "commit_full": "95f821372988250d585030f05153119a09f6f79f"
+  },
+  "split": "heldout",
+  "hashes": {
+    "heldout_track_a": "2314fca186a064ffcface62f42dc346bda9fdc73c5221852e8ecf5b19aafd629",
+    "heldout_track_b": "075bf20d1daafdb89e3eef1e35271113766b9845cfb9d52e88301faa2919c0e1",
+    "reserve_quarantine": "bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db",
+    "dev_track_a": "9cbc743887c02ab73be6040df55737a273f74226957f0b42dcd5e79ed5451d8a",
+    "extended_sql_dev": "1af2bb2a2bc9702c9c2a944069678b4630ce22a73ce6281a7b10f5cb24a287a3"
+  },
+  "sanity": {
+    "heldout_v1.3": 79,
+    "heldout_v1.0": 67,
+    "heldout_c0": 56,
+    "heldout_120b_b1": 88,
+    "heldout_27b_b1": 86,
+    "heldout_120b_b0": 73,
+    "heldout_27b_b0": 75,
+    "dev_v1.2": 66,
+    "dev_v1.3": 77,
+    "dev_e4": 76,
+    "dev_e4b": 66
+  },
+  "summary": {
+    "v1.3_track_a": 79,
+    "v1.3_track_b": 50,
+    "v1.0_track_a": 67,
+    "v1.0_track_b": 50,
+    "C0_track_a": 56,
+    "120B_B1_track_a": 88,
+    "120B_B1_track_b": 50,
+    "27B_B1_track_a": 86,
+    "27B_B1_track_b": 50,
+    "120B_B0_track_a": 73,
+    "27B_B0_track_a": 75,
+    "size_ratio_27b": 7.1,
+    "size_ratio_120b": 31.4
+  },
+  "comparisons": {
+    "120B_B1": {
+      "slm_wins": 5,
+      "both_right": 74,
+      "both_wrong": 7,
+      "other_wins": 14,
+      "slm_not_beaten_pct": 86.0,
+      "diff_pp": -9.0,
+      "ci_low_pp": -17.0,
+      "ci_high_pp": -1.0
+    },
+    "27B_B1": {
+      "slm_wins": 10,
+      "both_right": 69,
+      "both_wrong": 4,
+      "other_wins": 17,
+      "slm_not_beaten_pct": 83.0,
+      "diff_pp": -7.0,
+      "ci_low_pp": -17.0,
+      "ci_high_pp": 3.0
+    },
+    "120B_B0": {
+      "slm_wins": 18,
+      "both_right": 61,
+      "both_wrong": 9,
+      "other_wins": 12,
+      "slm_not_beaten_pct": 88.0,
+      "diff_pp": 6.0,
+      "ci_low_pp": -5.0,
+      "ci_high_pp": 17.0
+    },
+    "27B_B0": {
+      "slm_wins": 17,
+      "both_right": 62,
+      "both_wrong": 8,
+      "other_wins": 13,
+      "slm_not_beaten_pct": 87.0,
+      "diff_pp": 4.0,
+      "ci_low_pp": -7.0,
+      "ci_high_pp": 15.0
+    },
+    "C0": {
+      "slm_wins": 29,
+      "both_right": 50,
+      "both_wrong": 15,
+      "other_wins": 6,
+      "slm_not_beaten_pct": 94.0,
+      "diff_pp": 23.0,
+      "ci_low_pp": 12.0,
+      "ci_high_pp": 34.0
+    },
+    "v1.0": {
+      "slm_wins": 19,
+      "both_right": 60,
+      "both_wrong": 14,
+      "other_wins": 7,
+      "slm_not_beaten_pct": 93.0,
+      "diff_pp": 12.0,
+      "ci_low_pp": 2.0,
+      "ci_high_pp": 21.0
+    }
+  },
+  "categories": {
+    "sql": {
+      "name": "SQL (Atomic, Spider)",
+      "n": 15,
+      "accuracies": {
+        "C0": 46.7,
+        "v1.0": 20.0,
+        "v1.3": 73.3,
+        "27B_B0": 73.3,
+        "120B_B0": 80.0,
+        "27B_B1": 73.3,
+        "120B_B1": 73.3
+      },
+      "counts": {
+        "C0": 7,
+        "v1.0": 3,
+        "v1.3": 11,
+        "27B_B0": 11,
+        "120B_B0": 12,
+        "27B_B1": 11,
+        "120B_B1": 11
+      }
+    },
+    "qa": {
+      "name": "QA / Scientific (Atomic, ARC)",
+      "n": 15,
+      "accuracies": {
+        "C0": 80.0,
+        "v1.0": 80.0,
+        "v1.3": 73.3,
+        "27B_B0": 93.3,
+        "120B_B0": 86.7,
+        "27B_B1": 100.0,
+        "120B_B1": 86.7
+      },
+      "counts": {
+        "C0": 12,
+        "v1.0": 12,
+        "v1.3": 11,
+        "27B_B0": 14,
+        "120B_B0": 13,
+        "27B_B1": 15,
+        "120B_B1": 13
+      }
+    },
+    "code": {
+      "name": "Code Implementation (Atomic, HumanEval)",
+      "n": 15,
+      "accuracies": {
+        "C0": 80.0,
+        "v1.0": 80.0,
+        "v1.3": 80.0,
+        "27B_B0": 100.0,
+        "120B_B0": 93.3,
+        "27B_B1": 100.0,
+        "120B_B1": 100.0
+      },
+      "counts": {
+        "C0": 12,
+        "v1.0": 12,
+        "v1.3": 12,
+        "27B_B0": 15,
+        "120B_B0": 14,
+        "27B_B1": 15,
+        "120B_B1": 15
+      }
+    },
+    "math": {
+      "name": "Maths / Arithmetic (Atomic, GSM8K)",
+      "n": 15,
+      "accuracies": {
+        "C0": 93.3,
+        "v1.0": 93.3,
+        "v1.3": 86.7,
+        "27B_B0": 86.7,
+        "120B_B0": 93.3,
+        "27B_B1": 86.7,
+        "120B_B1": 86.7
+      },
+      "counts": {
+        "C0": 14,
+        "v1.0": 14,
+        "v1.3": 13,
+        "27B_B0": 13,
+        "120B_B0": 14,
+        "27B_B1": 13,
+        "120B_B1": 13
+      }
+    },
+    "compound_solvable_without_tools": {
+      "name": "Compound: Solvable without Tools",
+      "n": 20,
+      "accuracies": {
+        "C0": 50.0,
+        "v1.0": 50.0,
+        "v1.3": 75.0,
+        "27B_B0": 100.0,
+        "120B_B0": 100.0,
+        "27B_B1": 90.0,
+        "120B_B1": 100.0
+      },
+      "counts": {
+        "C0": 10,
+        "v1.0": 10,
+        "v1.3": 15,
+        "27B_B0": 20,
+        "120B_B0": 20,
+        "27B_B1": 18,
+        "120B_B1": 20
+      }
+    },
+    "compound_tool-required": {
+      "name": "Compound: Tool-Required (SQLite / Python)",
+      "n": 20,
+      "accuracies": {
+        "C0": 5.0,
+        "v1.0": 80.0,
+        "v1.3": 85.0,
+        "27B_B0": 10.0,
+        "120B_B0": 0.0,
+        "27B_B1": 70.0,
+        "120B_B1": 80.0
+      },
+      "counts": {
+        "C0": 1,
+        "v1.0": 16,
+        "v1.3": 17,
+        "27B_B0": 2,
+        "120B_B0": 0,
+        "27B_B1": 14,
+        "120B_B1": 16
+      }
+    }
+  },
+  "category_h2h": {
+    "vs_120B_B1": {
+      "sql": {
+        "slm_wins": 1,
+        "llm_wins": 1,
+        "both": 10,
+        "neither": 3
+      },
+      "qa": {
+        "slm_wins": 0,
+        "llm_wins": 2,
+        "both": 11,
+        "neither": 2
+      },
+      "code": {
+        "slm_wins": 0,
+        "llm_wins": 3,
+        "both": 12,
+        "neither": 0
+      },
+      "math": {
+        "slm_wins": 1,
+        "llm_wins": 1,
+        "both": 12,
+        "neither": 1
+      },
+      "compound_solvable_without_tools": {
+        "slm_wins": 0,
+        "llm_wins": 5,
+        "both": 15,
+        "neither": 0
+      },
+      "compound_tool-required": {
+        "slm_wins": 3,
+        "llm_wins": 2,
+        "both": 14,
+        "neither": 1
+      }
+    },
+    "vs_27B_B1": {
+      "sql": {
+        "slm_wins": 1,
+        "llm_wins": 1,
+        "both": 10,
+        "neither": 3
+      },
+      "qa": {
+        "slm_wins": 0,
+        "llm_wins": 4,
+        "both": 11,
+        "neither": 0
+      },
+      "code": {
+        "slm_wins": 0,
+        "llm_wins": 3,
+        "both": 12,
+        "neither": 0
+      },
+      "math": {
+        "slm_wins": 1,
+        "llm_wins": 1,
+        "both": 12,
+        "neither": 1
+      },
+      "compound_solvable_without_tools": {
+        "slm_wins": 2,
+        "llm_wins": 5,
+        "both": 13,
+        "neither": 0
+      },
+      "compound_tool-required": {
+        "slm_wins": 6,
+        "llm_wins": 3,
+        "both": 11,
+        "neither": 0
+      }
+    }
+  },
+  "disagreements_120b": {
+    "slm_only": [
+      {
+        "item_id": "spider_val_0354",
+        "category": "sql",
+        "task": "Return the different descriptions for templates that have been used in a document."
+      },
+      {
+        "item_id": "gsm8k_test_0649",
+        "category": "math",
+        "task": "Fishio posted her selfie on Instagram. She received 2000 likes on the photo after 1 week. Three weeks later, the number of likes was 70 times as many as the initial number of likes. If she received 20000 more new likes recently, how many Instagram likes are there?"
+      },
+      {
+        "item_id": "compound_heldout_v2_0002",
+        "category": "compound_tool-required",
+        "task": "From the tvshow database [Database Schema: CREATE TABLE \"TV_Channel\" ( \"id\" text, \"series_"
+      },
+      {
+        "item_id": "compound_heldout_v2_0021",
+        "category": "compound_tool-required",
+        "task": "Query the flight_2 database [Database Schema: CREATE TABLE 'airlines' ( uid INTEGER PRIMAR"
+      },
+      {
+        "item_id": "compound_heldout_v2_0026",
+        "category": "compound_tool-required",
+        "task": "In the battle_death database [Database Schema: CREATE TABLE \"ship\" ( \"lost_in_battle\" int,"
+      }
+    ],
+    "llm_only": [
+      {
+        "item_id": "spider_val_0013",
+        "category": "sql",
+        "task": "What are all the song names by singers who are older than average?"
+      },
+      {
+        "item_id": "TIMSS_2003_8_pg14",
+        "category": "qa",
+        "task": "Why would male insects be treated to prevent sperm production?"
+      },
+      {
+        "item_id": "Mercury_7006790",
+        "category": "qa",
+        "task": "Which of the following best explains the cause of windows rattling during a thunderstorm?"
+      },
+      {
+        "item_id": "HumanEval/117",
+        "category": "code",
+        "task": "\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tas"
+      },
+      {
+        "item_id": "HumanEval/132",
+        "category": "code",
+        "task": "\ndef is_nested(string):\n    '''\n    Create a function that takes a string as input which c"
+      },
+      {
+        "item_id": "HumanEval/81",
+        "category": "code",
+        "task": "\ndef numerical_letter_grade(grades):\n    \"\"\"It is the last week of the semester and the te"
+      },
+      {
+        "item_id": "gsm8k_test_0637",
+        "category": "math",
+        "task": "Reggie, Lynn, and Paisley ran together. Paisley ran 4 miles. Reggie ran 5 times what Paisley ran and 3 miles farther than Lynn. How many miles did Lynn run?"
+      },
+      {
+        "item_id": "compound_heldout_v2_0009",
+        "category": "compound_tool-required",
+        "task": "From the poker_player database [Database Schema: CREATE TABLE \"poker_player\" ( \"Poker_Play"
+      },
+      {
+        "item_id": "compound_heldout_v2_0012",
+        "category": "compound_solvable_without_tools",
+        "task": "A supply depot receives 1500 crates of electronics, rejecting 20 percent during inspection"
+      },
+      {
+        "item_id": "compound_heldout_v2_0015",
+        "category": "compound_solvable_without_tools",
+        "task": "A financing facility lends 40000 dollars earning simple annual interest at 6 percent per y"
+      },
+      {
+        "item_id": "compound_heldout_v2_0019",
+        "category": "compound_solvable_without_tools",
+        "task": "A retail warehouse ledger store_inventory [CREATE TABLE stock (item_id int, stock int, reo"
+      },
+      {
+        "item_id": "compound_heldout_v2_0024",
+        "category": "compound_tool-required",
+        "task": "Query the real_estate_properties database [Database Schema: CREATE TABLE `Properties` ( `p"
+      },
+      {
+        "item_id": "compound_heldout_v2_0033",
+        "category": "compound_solvable_without_tools",
+        "task": "Consider the character sequence 'AAAAABBBCCCCCCCCDDDDDD' compressed using run-length encod"
+      },
+      {
+        "item_id": "compound_heldout_v2_0040",
+        "category": "compound_solvable_without_tools",
+        "task": "A citrus grower harvests 600 kilograms of oranges, setting aside 15 percent for fresh juic"
+      }
+    ]
+  },
+  "truncations": {
+    "120B_B1": {
+      "truncated_item_ids": [],
+      "count": 0,
+      "slm_wins_on_truncated": [],
+      "slm_wins_count": 0
+    },
+    "27B_B1": {
+      "truncated_item_ids": [
+        "compound_heldout_v2_0005",
+        "compound_heldout_v2_0017",
+        "compound_heldout_v2_0026"
+      ],
+      "count": 3,
+      "slm_wins_on_truncated": [
+        "compound_heldout_v2_0005",
+        "compound_heldout_v2_0017",
+        "compound_heldout_v2_0026"
+      ],
+      "slm_wins_count": 3
+    },
+    "120B_B0": {
+      "truncated_item_ids": [
+        "HumanEval/132",
+        "compound_heldout_v2_0003"
+      ],
+      "count": 2,
+      "slm_wins_on_truncated": [
+        "compound_heldout_v2_0003"
+      ],
+      "slm_wins_count": 1
+    },
+    "27B_B0": {
+      "truncated_item_ids": [
+        "compound_heldout_v2_0003",
+        "compound_heldout_v2_0005",
+        "compound_heldout_v2_0007",
+        "compound_heldout_v2_0009",
+        "compound_heldout_v2_0021",
+        "compound_heldout_v2_0023",
+        "compound_heldout_v2_0026"
+      ],
+      "count": 7,
+      "slm_wins_on_truncated": [
+        "compound_heldout_v2_0003",
+        "compound_heldout_v2_0005",
+        "compound_heldout_v2_0007",
+        "compound_heldout_v2_0021",
+        "compound_heldout_v2_0023",
+        "compound_heldout_v2_0026"
+      ],
+      "slm_wins_count": 6
+    }
+  },
+  "experiments": {
+    "E1": {
+      "title": "Un-fine-tuned Baseline Evolution (v1.0 \u2192 v1.2 Direct SQL)",
+      "dev_acc_before": 58.0,
+      "dev_acc_after": 66.0,
+      "gain_pp": 8.0,
+      "heldout_acc_v10": 67.0,
+      "heldout_acc_v12": 77.0,
+      "decision": "Accepted as foundation for v1.2"
+    },
+    "E1a": {
+      "title": "Cascade Architecture to 120B Ceiling Baseline",
+      "max_overall_acc": 88.0,
+      "decision": "Retired: violated hard constraint of pure small-model system"
+    },
+    "E1b": {
+      "title": "Pure SLM Fallback & Self-Consistency Routing",
+      "dev_acc_before": 66.0,
+      "dev_acc_after": 59.0,
+      "loss_pp": -7.0,
+      "decision": "Rejected: severe accuracy degradation"
+    },
+    "E2": {
+      "title": "Query-Dependent SQL Specialist LoRA Fine-Tuning",
+      "status": "Prepared (notebook committed, awaiting execution)",
+      "extended_sql_eval": "66/100 (66.0%) on v1.2 base model"
+    },
+    "E3": {
+      "title": "Generic Compute-in-Code Execution + CORPUS Guard",
+      "dev_v12": 66.0,
+      "dev_v13": 77.0,
+      "dev_gain_pp": 11.0,
+      "dev_ci_pp": [
+        3.0,
+        19.0
+      ],
+      "heldout_v10": 67.0,
+      "heldout_v13": 79.0,
+      "heldout_gain_pp": 12.0,
+      "track_b_dev_break_fix": "Track B initially broke to 31/50; generic CORPUS guard restored 50/50",
+      "decision": "Accepted & Frozen as v1.3"
+    },
+    "E4": {
+      "title": "Learned Adaptive Router (Initial & Retry E4b)",
+      "headroom_v13": 77.0,
+      "headroom_oracle": 87.0,
+      "headroom_pp": 10.0,
+      "e4_dev_acc": 76.0,
+      "e4_diff_pp": -1.0,
+      "e4_ci_pp": [
+        -6.0,
+        4.0
+      ],
+      "e4b_dev_acc": 66.0,
+      "e4b_diff_pp": -11.0,
+      "e4b_ci_pp": [
+        -19.0,
+        -3.0
+      ],
+      "incident": "INC-017 (Metadata leakage & parser evasion in router); fully resolved & audit extended",
+      "decision": "Rejected: E4 permanently closed; v1.3 stands frozen"
+    }
+  },
+  "with_judge": false
+}
