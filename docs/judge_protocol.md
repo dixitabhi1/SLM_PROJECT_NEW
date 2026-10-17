@@ -214,5 +214,72 @@ To ensure symmetric and fair evaluation semantics across all systems:
 ### Superseded Trials Declaration:
 The 11 partial trial records previously evaluated using `gemini-2.5-flash` in `results/judge/judge_trials_raw.jsonl` are formally declared **superseded** (logged in `results/phase4/corrections.jsonl`) and are excluded from all reported metrics and tables. The frozen evaluation is recorded fresh to `results/judge/judge_trials_raw_gemini38.jsonl`.
 
+---
+
+## 10. Protocol Amendment (2026-10-17): Migration to Local Judge Prometheus-2 7B & Native Rubric Scoring Design
+
+**Amendment Date:** 2026-10-17  
+**Authorization:** Owner Checkpoint (Local Judge Transition & Scoring Design Lock)
+
+### Rationale:
+1. **Cloud Quota Infeasibility:** Google AI Studio free-tier quotas on both `gemini-2.5-flash` and `gemini-3.8-flash` enforce a hard project ceiling of 20 requests per day (`RESOURCE_EXHAUSTED`), rendering cloud APIs incapable of executing 600+ evaluation trials without billing.
+2. **Strict Zero Spend (Hard Rule 13):** To preserve zero monetary spend with zero external quota risk, the evaluation pipeline transitions to a dedicated, high-capability local evaluation model running on host hardware.
+3. **Model Selection:** `prometheus-eval/prometheus-7b-v2.0` (GGUF `Q4_K_M`, Mistral-7B-v0.2 architecture fine-tuned specifically for fine-grained feedback and assessment).
+4. **Family Isolation (Hard Rule 8):** Prometheus / Mistral family. 100% disjoint from Microsoft (`Phi-4-mini`), OpenAI (`gpt-oss-120b`), and Alibaba (`qwen3.8-27b`).
+
+### Pinned Model & Serving Specification:
+- **Judge Model ID:** `prometheus-eval/prometheus-7b-v2.0` (GGUF `Q4_K_M`)
+- **Binary & Backend:** `tools/llama_bin/llama-server.exe` (Vulkan GPU offload, RTX 3050 Laptop GPU, 100% offload, 5,192 MiB VRAM allocated)
+- **Model File SHA-256 Digest:** `5bb7b0fa6b244a8cad8d2bb29d0f96422c43d3497fe1ab9ced7fd1ead03cc976`
+- **Serving Parameters:** Port `8081`, context size `4096`, `1` slot (`-np 1`), `temperature=0.0`.
+- **System Isolation:** Phi-4-mini server on port 8080 stopped during evaluation to guarantee 100% GPU VRAM fit on 6 GB hardware.
+
+### Scoring Design & Metrics Formulation:
+
+#### 1. Reference-Free Absolute Grading (1–5 Rubrics):
+For each evaluated system answer (without gold labels or answer keys per Hard Rule 6):
+- **Holistic Quality ($Q \in [1, 5]$):** One direct assessment call using Prometheus's native 5-point holistic rubric:
+  - 1: Completely incorrect, broken, incomplete, or fails to answer the question.
+  - 2: Partially correct but contains major errors, missing key components, or faulty logic.
+  - 3: Acceptable response, answers the core question with minor errors or formatting issues.
+  - 4: Very good response, correct, complete, logically sound, and well-structured.
+  - 5: Exceptional, flawless, fully accurate, comprehensive, and clearly formatted response.
+- **Comprehensive Quality Score (CQS):** Evaluated via four separate criterion calls (each 1–5):
+  1. `correctness` (1–5)
+  2. `completeness` (1–5)
+  3. `reasoning_quality` (1–5)
+  4. `formatting` (format and instruction following, 1–5)
+  $$\text{CQS} = \frac{\text{correctness} + \text{completeness} + \text{reasoning\_quality} + \text{formatting}}{4}$$
+
+#### 2. Primary Comparative Outcomes (Derived from Holistic Scores):
+- **Win / Draw / Loss:**
+  - $Q_S > Q_L \implies \text{SLM Win}$
+  - $Q_S = Q_L \implies \text{Draw}$
+  - $Q_S < Q_L \implies \text{LLM Win}$
+- **Effective Win Rate:**
+  $$\text{Effective Win Rate} = \frac{\text{SLM Wins} + \text{Draws}}{N} \times 100\%$$
+- **Quality Proximity ($QP$ on Native 1–5 Scale):**
+  On a 1–5 integer rubric, the maximum possible quality difference is $5 - 1 = 4$. Per mentor protocol:
+  $$QP_i = 1 - \frac{|Q_S - Q_L|}{4}$$
+  (No $\times 2$ rescaling; native scale $QP \in [0.0, 1.0]$).
+- **Quality Difference ($\Delta Q$):**
+  $$\Delta Q_i = Q_S - Q_L \quad (\Delta Q \in [-4.0, +4.0])$$
+  Reported with empirical 95% bootstrap percentile confidence intervals ($B=10,000$).
+
+#### 3. Secondary Comparative Signal: Pairwise Verdicts & Swap Consistency:
+- Pairwise evaluations executed in both presentation orders:
+  - Pass A: Answer 1 = SLM, Answer 2 = LLM
+  - Pass B: Answer 1 = LLM, Answer 2 = SLM
+- **Swap Consistency:** Reported as the percentage of items where Pass A and Pass B yield mutually consistent winners. Pairwise win rates reported separately alongside primary holistic score win rates.
+
+#### 4. Execution Optimization:
+- SLM absolute scores (holistic + 4 criteria) are evaluated **once** per held-out item ($N=150$) and reused for comparisons against both baselines (120B and 27B), eliminating duplicate SLM inferences.
+- Baseline LLM absolute scores evaluated once per baseline per item ($150 \times 2 = 300$).
+- Pairwise evaluations run for both baselines in both presentation orders ($150 \times 2 \times 2 = 600$).
+
+### Superseded Trials Declaration:
+The 7 partial held-out trial records evaluated using `gemini-3.8-flash` in `results/judge/judge_trials_raw_gemini38.jsonl` are formally declared **superseded** (logged in `results/phase4/corrections.jsonl`) and are excluded from all reported metrics and tables. The frozen evaluation is recorded fresh to `results/judge/judge_trials_raw_prometheus7b.jsonl`.
+
+
 
 
