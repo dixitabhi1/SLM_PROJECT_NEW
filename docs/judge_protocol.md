@@ -174,4 +174,45 @@ In contrast, `gemini-2.5-flash` adhered 100% to the JSON schema, scored broken o
   - `response_mime_type`: `"application/json"` (strict JSON response type)
 - **Model Version Logging:** The exact `modelVersion` string returned in each API response payload is recorded in every raw trial record in `results/judge/judge_trials_raw.jsonl`.
 
+---
+
+## 9. Protocol Amendment (2026-10-17): Judge Model Migration to gemini-3.8-flash & Input Standardization
+
+**Amendment Date:** 2026-10-17  
+**Authorization:** Owner Checkpoint (Phase 3 Pre-Execution)
+
+### Rationale:
+1. **Quota Ceiling on gemini-2.5-flash:** During the initial trial run of Phase 3, Google Generative Language API hard-capped `gemini-2.5-flash` at a free-tier limit of 20 requests per day (`RESOURCE_EXHAUSTED` with 429 quota failure).
+2. **Groq Catalog Audit:** An exhaustive audit of GroqCloud endpoints confirmed that candidate models (`meta-llama/llama-4-maverick-*`, `meta-llama/llama-4-scout-*`, `moonshotai/kimi-k2-*`) are not deployed on Groq (HTTP 404), legacy models are decommissioned (HTTP 400), and `allam-2-7b` was previously disqualified for schema failures and score inversions. No eligible non-competitor instruction model exists on Groq.
+3. **Selection of gemini-3.8-flash:** `gemini-3.8-flash` operates on the standard free tier (15 RPM, 1,500 RPD, 1,000,000 TPM), achieved 100% schema adherence on the 5-item dev check, demonstrated 100% internal consistency, and penalized broken answers ($\le 3/10$) while maintaining zero monetary spend.
+
+### Pinned Configuration:
+- **Judge Model ID:** `gemini-3.8-flash`
+- **Family Separation (Hard Rule 8):** Google DeepMind family. Completely disjoint from Microsoft (`Phi-4-mini`), OpenAI (`gpt-oss-120b`), and Alibaba (`qwen3.8-27b`).
+- **Endpoint:** `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent`
+- **Security & Key Handling:** The API key is sent strictly via the `x-goog-api-key` HTTP header, never in the request URL string or logged to disk/records.
+- **Generation Settings:** `temperature=0.0`, `thinkingBudget=0`, strict JSON response type (`response_mime_type: "application/json"`).
+- **Model Version Recording:** The exact `modelVersion` string returned in every API response payload is recorded in each raw trial record.
+
+### Standardized Judge Input Definition (`get_user_facing_response`):
+To ensure symmetric and fair evaluation semantics across all systems:
+- **Baseline LLMs (GPT-OSS-120B and qwen/qwen3.8-27b):** Provide `full_output` (contains full step-by-step reasoning trace).
+- **Specialist SLM v1.3:** If `final_answer` is an extracted short target string ($< 50$ chars) and `output` contains the generated execution code or reasoning steps, provide `output + final_answer` (or `output` if already included). If `final_answer` is a complete full response ($\ge \text{output}$), provide `final_answer`.
+
+#### Per-Category Field Usage Breakdown ($N=150$ Held-Out Items):
+| Task Category / Stratum | Items | `final_answer` Used | `output + final_answer` Used |
+| :--- | :---: | :---: | :---: |
+| Atomic SQL (`spider`) | 15 | 15 (100.0%) | 0 (0.0%) |
+| Atomic QA (`arc_challenge`) | 15 | 12 (80.0%) | 3 (20.0%) |
+| Atomic Code (`humaneval`) | 15 | 15 (100.0%) | 0 (0.0%) |
+| Atomic Math (`gsm8k`) | 15 | 0 (0.0%) | 15 (100.0%) |
+| Compound Solvable without Tools | 20 | 0 (0.0%) | 20 (100.0%) |
+| Compound Tool-Required | 20 | 1 (5.0%) | 19 (95.0%) |
+| Track B Fact-Checklist (`hypergrid`) | 50 | 50 (100.0%) | 0 (0.0%) |
+| **Total Split** | **150** | **93 (62.0%)** | **57 (38.0%)** |
+
+### Superseded Trials Declaration:
+The 11 partial trial records previously evaluated using `gemini-2.5-flash` in `results/judge/judge_trials_raw.jsonl` are formally declared **superseded** (logged in `results/phase4/corrections.jsonl`) and are excluded from all reported metrics and tables. The frozen evaluation is recorded fresh to `results/judge/judge_trials_raw_gemini38.jsonl`.
+
+
 
