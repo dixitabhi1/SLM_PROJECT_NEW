@@ -147,3 +147,31 @@ Before any LLM-as-a-judge score can be accepted, the judge must pass two empiric
   - `b1_qwen27b_heldout_records.jsonl`
 - **Zero New Model Inferences:** Evaluates frozen outputs already logged on disk.
 - **Append-Only Output:** All trial records append to `results/judge/judge_trials_raw.jsonl`.
+
+---
+
+## 8. Protocol Amendment (2026-10-17): Judge Model Migration to gemini-2.5-flash
+
+**Amendment Date:** 2026-10-17  
+**Authorization:** Owner Checkpoint (Phase 2 Review)
+
+### Rationale:
+During the Phase 2 limit check across 5 development items (`spider_val_0676`, `NYSEDREGENTS_2014_4_22`, `HumanEval/2`, `gsm8k_test_0530`, `compound_dev_v2_0001`), the candidate judge `allam-2-7b` demonstrated multiple critical evaluation failures:
+1. **Schema Violations:** Broke criteria range constraints, scoring criteria as high as 10/10 despite explicit instructions for a 1–5 range.
+2. **Internal Scoring Contradictions:** On `HumanEval/2`, assigned Answer 1 a holistic score of 8/10 and Answer 2 a 9/10, but declared "Winner: Answer 1" (inverting its own score).
+3. **Severe Over-Scoring of Incomplete/Broken Answers:** Assigned 8/10 and 9/10 to answers that cut off mid-sentence or failed to execute, failing baseline qualitative discrimination.
+
+In contrast, `gemini-2.5-flash` adhered 100% to the JSON schema, scored broken outputs appropriately low (1/10 and 2/10), and accurately declared draws on mutual non-completions.
+
+### Updated Judge Specification:
+- **Judge Model ID:** `gemini-2.5-flash`
+- **Family Separation (Hard Rule 8):** Google DeepMind family. Completely distinct and non-overlapping from Microsoft/Phi-4-mini, OpenAI/GPT-OSS-120B, and Alibaba/qwen3.8-27b.
+- **Provider & Authentication:** Google Cloud / Generative Language API (`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`).
+- **Security & Key Handling:** API key is transmitted strictly via the `x-goog-api-key` HTTP request header, NEVER in the query URL string or logged to disk/records.
+- **Pinned Hyperparameters & Generation Configuration:**
+  - `temperature`: `0.0` (deterministic greedy evaluation)
+  - `thinkingBudget`: `0` (disables extended thinking tokens, enforcing direct structured judgment, ~2.2s latency, and zero thinking token overhead)
+  - `response_mime_type`: `"application/json"` (strict JSON response type)
+- **Model Version Logging:** The exact `modelVersion` string returned in each API response payload is recorded in every raw trial record in `results/judge/judge_trials_raw.jsonl`.
+
+
