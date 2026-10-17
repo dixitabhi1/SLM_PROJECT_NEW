@@ -15,7 +15,7 @@
   <div class="report-subtitle">Symmetric Item-Level Comparison on Held-Out Benchmark Split (100 Track A + 50 Track B Items)</div>
   <div class="metadata-grid">
     <div class="metadata-item"><strong>Evaluation Split:</strong> Held-Out Split (Secondary)</div>
-    <div class="metadata-item"><strong>Pipeline Release:</strong> v1.3-slm-frozen (95f8213)</div>
+    <div class="metadata-item"><strong>Pipeline Release:</strong> v1.3-slm-frozen (91770b7)</div>
     <div class="metadata-item"><strong>Primary Metric:</strong> Answer-Key Correctness (Exact Match)</div>
     <div class="metadata-item"><strong>Statistical Test:</strong> Paired Bootstrap (B=10,000, seed 42)</div>
   </div>
@@ -68,7 +68,7 @@
       <td class="center">-9.0 pp [-17.0, -1.0]</td>
     </tr>
     <tr>
-      <td>Baseline B1 Qwen-2.5-27B*</td>
+      <td>Baseline B1 qwen/qwen3.8-27b*</td>
       <td>27B</td>
       <td>SQLite, Sandbox, BM25</td>
       <td class="center">86.0%</td>
@@ -81,7 +81,7 @@
       <td class="center">-7.0 pp [-17.0, +3.0]</td>
     </tr>
     <tr>
-      <td>Baseline B0 Qwen-2.5-27B*</td>
+      <td>Baseline B0 qwen/qwen3.8-27b*</td>
       <td>27B</td>
       <td>None (Direct Prompt)</td>
       <td class="center">75.0%</td>
@@ -248,7 +248,7 @@ Note: B0 baselines were evaluated on Track A only and had no Track B condition.<
     </tr>
   </tbody>
 </table>
-<p class="table-footnote"><strong>*Key Empirical Insight:</strong> On Compound Tool-Required tasks ($N=20$), Specialist SLM v1.3 achieves 85.0%, outperforming GPT-OSS-120B B1 (80.0%) and Qwen-2.5-27B B1 (70.0%), and matching both LLMs on Atomic SQL (73.3% each) and Atomic Math (86.7% each).</p>
+<p class="table-footnote"><strong>*Key Empirical Insight:</strong> On Compound Tool-Required tasks ($N=20$), Specialist SLM v1.3 achieves 85.0%, outperforming GPT-OSS-120B B1 (80.0%) and qwen/qwen3.8-27b B1 (70.0%), and matching both LLMs on Atomic SQL (73.3% each) and Atomic Math (86.7% each).</p>
 
 <div class="page-break"></div>
 
@@ -326,7 +326,7 @@ Note: B0 baselines were evaluated on Track A only and had no Track B condition.<
   </div>
 
   <div style="flex: 1;">
-    <h3 style="text-align:center;">Table 3B: SLM v1.3 vs Qwen-2.5-27B B1</h3>
+    <h3 style="text-align:center;">Table 3B: SLM v1.3 vs qwen/qwen3.8-27b B1</h3>
     <table>
       <thead>
         <tr>
@@ -549,8 +549,8 @@ Note: B0 baselines were evaluated on Track A only and had no Track B condition.<
 
 <h2>5. Factual Findings Derived Directly from the Data</h2>
 <ul>
-  <li><strong>Parity on Specialized Atomic Tasks:</strong> On both Atomic SQL (11/15, 73.3%) and Atomic Maths (13/15, 86.7%), the 3.82B SLM pipeline achieves <em>exact empirical parity</em> with GPT-OSS-120B B1 (73.3% and 86.7%) and Qwen-2.5-27B B1 (73.3% and 86.7%). Parametric scaling provides zero accuracy advantage over specialized tool execution on these domains.</li>
-  <li><strong>Dominance in Tool-Required Composition:</strong> On Compound Tool-Required tasks, the SLM pipeline scores <strong>85.0% (17/20)</strong>, beating GPT-OSS-120B B1 (80.0%, 16/20) and Qwen-2.5-27B B1 (70.0%, 14/20). In head-to-head item comparisons, 3 of the 5 SLM wins against 120B occur on tool-required compound problems.</li>
+  <li><strong>Parity on Specialized Atomic Tasks:</strong> On both Atomic SQL (11/15, 73.3%) and Atomic Maths (13/15, 86.7%), the 3.82B SLM pipeline achieves <em>exact empirical parity</em> with GPT-OSS-120B B1 (73.3% and 86.7%) and qwen/qwen3.8-27b B1 (73.3% and 86.7%). Parametric scaling provides zero accuracy advantage over specialized tool execution on these domains.</li>
+  <li><strong>Dominance in Tool-Required Composition:</strong> On Compound Tool-Required tasks, the SLM pipeline scores <strong>85.0% (17/20)</strong>, beating GPT-OSS-120B B1 (80.0%, 16/20) and qwen/qwen3.8-27b B1 (70.0%, 14/20). In head-to-head item comparisons, 3 of the 5 SLM wins against 120B occur on tool-required compound problems.</li>
   <li><strong>The "Reasoning Gap" Lies in Pure In-Context Composition:</strong> The primary performance deficit between the 3.82B SLM and the 120B LLM is localized almost entirely within <em>Compound Solvable without Tools</em> (15/20 for SLM vs 20/20 for 120B B1). Of the 14 items where 120B beat the SLM, 5 are pure symbolic compound problems requiring extensive multi-step in-context state tracking.</li>
   <li><strong>Collapsing Baselines Without Tools:</strong> When frontier LLMs are deprived of tools (B0), their performance collapses on composite tasks (120B B0 achieved 0/20 on tool-required items, and 27B B0 achieved 2/20). Across the total Track A split, Specialist SLM v1.3 outperforms both 120B B0 (79.0% vs 73.0%) and 27B B0 (79.0% vs 75.0%).</li>
   <li><strong>Complete Ceiling Saturation on Track B:</strong> On the synthetic HyperGrid retrieval corpus, all tool-equipped models (SLM v1.0, SLM v1.3, 27B B1, 120B B1) achieved <strong>50/50 (100.0%)</strong> pass rates. The BM25 top-5 retrieval harness combined with strict ≤ 75-word key-value generation completely saturates the Track B benchmark.</li>

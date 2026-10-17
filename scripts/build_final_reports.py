@@ -542,7 +542,7 @@ def generate_architecture_svg() -> str:
   <g transform="translate(15, 42)">
     <rect x="0" y="0" width="225" height="38" rx="3" fill="#fafafa" stroke="#95a5a6" stroke-width="1" stroke-dasharray="4,3"/>
     <text x="8" y="15" font-size="8" font-weight="bold" fill="#566573">LLM BASELINES (Comparison Only)</text>
-    <text x="8" y="28" font-size="7.2" fill="#7f8c8d">• GPT-OSS-120B &amp; Qwen-2.5-27B (B0 Direct, B1 Tools)</text>
+    <text x="8" y="28" font-size="7.2" fill="#7f8c8d">• GPT-OSS-120B &amp; qwen/qwen3.8-27b (B0 Direct, B1 Tools)</text>
   </g>
 
   <!-- External Side Box: Evaluation -->
@@ -590,7 +590,7 @@ def generate_architecture_svg() -> str:
   <!-- Routing Lines to 3 Execution Branches -->
   <path d="M 425 145 L 450 145 L 450 105 L 468 105" fill="none" stroke="#333333" stroke-width="1.1" marker-end="url(#arrow)"/>
   <path d="M 425 165 L 468 165" fill="none" stroke="#333333" stroke-width="1.1" marker-end="url(#arrow)"/>
-  <path d="M 425 185 L 450 185 L 450 225 L 468 225" fill="none" stroke="#333333" stroke-width="1.1" marker-end="url(#arrow)"/>
+  <path d="M 425 185 L 440 185 L 440 225 L 456 225" fill="none" stroke="#333333" stroke-width="1.1" marker-end="url(#arrow)"/>
 
   <!-- Path 1: Direct SQL Path -->
   <g transform="translate(470, 88)">
@@ -606,19 +606,20 @@ def generate_architecture_svg() -> str:
     <text x="60" y="26" font-size="6.8" text-anchor="middle" fill="#5499c7">Short Python Script Gen</text>
   </g>
 
-  <!-- Path 3: Decomposer + Colorer -->
-  <g transform="translate(470, 208)">
-    <rect x="0" y="0" width="120" height="34" rx="3" fill="#ebf5fb" stroke="#2980b9" stroke-width="1"/>
-    <text x="60" y="13" font-size="7.3" font-weight="bold" text-anchor="middle" fill="#1b4f72">DECOMPOSER + COLORER</text>
-    <text x="60" y="25" font-size="6.8" text-anchor="middle" fill="#5499c7">Subtask DAG (≤3 Levels)</text>
+  <!-- Path 3: Decomposer (2 subtasks) -> Colorer (<=3 feedback rounds) -> Matcher -->
+  <g transform="translate(458, 206)">
+    <rect x="0" y="0" width="138" height="38" rx="3" fill="#ebf5fb" stroke="#2980b9" stroke-width="1"/>
+    <text x="69" y="13" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#1b4f72">Decomposer (2 subtasks)</text>
+    <text x="69" y="23" font-size="6.2" text-anchor="middle" fill="#5499c7">Colorer (≤3 feedback rounds)</text>
+    <text x="69" y="33" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#1b4f72">→ Matcher</text>
   </g>
 
   <!-- Connections from Paths to Specialists Box -->
   <path d="M 590 105 L 610 105 L 610 125 L 618 125" fill="none" stroke="#333333" stroke-width="1.1" marker-end="url(#arrow)"/>
   <path d="M 590 165 L 618 165" fill="none" stroke="#333333" stroke-width="1.1" marker-end="url(#arrow)"/>
-  <path d="M 590 225 L 610 225 L 610 205 L 618 205" fill="none" stroke="#333333" stroke-width="1.1" marker-end="url(#arrow)"/>
+  <path d="M 596 225 L 610 225 L 610 205 L 618 205" fill="none" stroke="#333333" stroke-width="1.1" marker-end="url(#arrow)"/>
 
-  <!-- SPECIALIST AGENTS BOX -->
+  <!-- SPECIALIST ENGINES BOX -->
   <g transform="translate(620, 95)">
     <rect x="0" y="0" width="155" height="152" rx="4" fill="#fcfcfc" stroke="#2c3e50" stroke-width="1.3" stroke-dasharray="5,2" filter="url(#shadow)"/>
     <text x="77.5" y="14" font-size="8" font-weight="bold" text-anchor="middle" fill="#2c3e50">SPECIALIST ENGINES</text>
@@ -640,7 +641,7 @@ def generate_architecture_svg() -> str:
     
     <!-- Reasoner SLM -->
     <rect x="8" y="114" width="139" height="30" rx="2" fill="#ebf5fb" stroke="#2980b9" stroke-width="0.9"/>
-    <text x="14" y="126" font-size="7.5" font-weight="bold" fill="#1b4f72">Phi-4-mini (Vulkan0)</text>
+    <text x="14" y="126" font-size="7.3" font-weight="bold" fill="#1b4f72">Reasoner (Phi-4-mini, base model)</text>
     <text x="14" y="136" font-size="6.5" fill="#2471a3">3 parallel slots, prompt caching</text>
   </g>
 
@@ -662,7 +663,7 @@ def generate_architecture_svg() -> str:
     <rect x="0" y="0" width="850" height="24" rx="2" fill="#f8f9fa" stroke="#e5e7eb" stroke-width="0.7"/>
     <text x="10" y="16" font-size="7.2" fill="#4b5563">
       <tspan font-weight="bold">Invariants Verified in Code:</tspan> 
-      Zero external API calls on SLM path • Strict prompt-only entry (<tspan font-family="monospace">run_specialist_pipeline_e3(prompt)</tspan>) • Max 3 decomposition levels • 100% parameter accounting: 3.82B active weights. Base model active in v1.3; LoRA adapter dynamic switching prepared for v1.4 (E2).
+      Zero external API calls on SLM path • Strict prompt-only entry (<tspan font-family="monospace">run_specialist_pipeline_e3(prompt)</tspan>) • Decomposer (2 subtasks) → Colorer (≤3 feedback rounds) → Matcher • 100% parameter accounting: 3.82B active base weights. Base model active in v1.3 (no adapters).
     </text>
   </g>
 </svg>"""
@@ -702,12 +703,12 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
 
 <h2>1. Executive Summary</h2>
 <ul>
-  <li><strong>Core Finding &amp; Competitiveness:</strong> The frozen Specialist SLM Pipeline (v1.3, 3.82B parameters, zero external LLM calls) achieves <strong>{s['v1.3_track_a']}.0% accuracy ({s['v1.3_track_a']}/100)</strong> on the held-out evaluation set, trailing the 120B parameter frontier baseline (GPT-OSS-120B B1, 88.0%) by only 9.0 percentage points and the 27B parameter peer tier (Qwen-2.5-27B B1, 86.0%) by only 7.0 percentage points.</li>
+  <li><strong>Core Finding &amp; Competitiveness:</strong> The frozen Specialist SLM Pipeline (v1.3, 3.82B parameters, zero external LLM calls) achieves <strong>{s['v1.3_track_a']}.0% accuracy ({s['v1.3_track_a']}/100)</strong> on the held-out evaluation set, trailing the 120B parameter frontier baseline (GPT-OSS-120B B1, 88.0%) by only 9.0 percentage points and the 27B parameter peer tier (qwen/qwen3.8-27b B1, 86.0%) by only 7.0 percentage points.</li>
   <li><strong>Substantial Gain Over Direct SLM:</strong> Pipeline engineering, deterministic rule-based tool routing, and programmatic execution yield a <strong>+{comps['C0']['diff_pp']} pp gain [95% bootstrap CI: +{comps['C0']['ci_low_pp']}, +{comps['C0']['ci_high_pp']}]</strong> over direct prompt execution on the unassisted base SLM (C0 at {s['C0_track_a']}.0%).</li>
   <li><strong>Head-to-Head Robustness ("SLM Not Beaten"):</strong> In pairwise symmetric comparisons, the 3.82B SLM pipeline is <strong>not beaten on {comps['120B_B1']['slm_not_beaten_pct']}% of items vs 120B B1</strong> ({comps['120B_B1']['slm_wins']} wins, {comps['120B_B1']['both_right']} ties, {comps['120B_B1']['both_wrong']} both wrong, {comps['120B_B1']['other_wins']} losses) and <strong>{comps['27B_B1']['slm_not_beaten_pct']}% of items vs 27B B1</strong> ({comps['27B_B1']['slm_wins']} wins, {comps['27B_B1']['both_right']} ties, {comps['27B_B1']['both_wrong']} both wrong, {comps['27B_B1']['other_wins']} losses).</li>
   <li><strong>Decisive Tool-Required Superiority:</strong> On Compound Tool-Required tasks ($N=20$), the small system achieves <strong>{cats['compound_tool-required']['accuracies']['v1.3']}% ({cats['compound_tool-required']['counts']['v1.3']}/20)</strong>, surpassing both tool-equipped LLM baselines (120B B1 at {cats['compound_tool-required']['accuracies']['120B_B1']}%, 27B B1 at {cats['compound_tool-required']['accuracies']['27B_B1']}%), while unassisted direct LLMs completely collapse (120B B0 at 0.0%, 27B B0 at 10.0%).</li>
   <li><strong>Outperforming Direct Frontier LLMs:</strong> The 3.82B SLM pipeline outperforms unassisted direct reasoning of both frontier models ({s['v1.3_track_a']}.0% vs {s['120B_B0_track_a']}.0% for 120B B0, and {s['27B_B0_track_a']}.0% for 27B B0), demonstrating that localized specialized compute beats brute-force parametric scaling.</li>
-  <li><strong>Parameter Efficiency &amp; Size Ratios:</strong> The pipeline operates with 7.1× fewer parameters than Qwen-2.5-27B and 31.4× fewer parameters than GPT-OSS-120B, achieving near-frontier parity under zero monetary spend.</li>
+  <li><strong>Parameter Efficiency &amp; Size Ratios:</strong> The pipeline operates with 7.1× fewer parameters than qwen/qwen3.8-27b and 31.4× fewer parameters than GPT-OSS-120B, achieving near-frontier parity under zero monetary spend.</li>
   <li><strong>Rigorous Experimental Outcomes:</strong> E1 (direct SQL path) accepted (+10 pp); E1a (cascade) retired; E1b (fallbacks) rejected (-7 pp); E2 (SQL LoRA) notebook prepared; E3 (compute-in-code + generic CORPUS guard) accepted and frozen as v1.3 (+12 pp on held-out); E4/E4b (learned router) definitively rejected (-11 pp dev regression; INC-017 disclosed).</li>
 </ul>
 
@@ -816,7 +817,7 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
       <td>None (direct prompt)</td>
     </tr>
     <tr>
-      <td><strong>Qwen-2.5-27B (B0)</strong></td>
+      <td><strong>qwen/qwen3.8-27b (B0)</strong></td>
       <td>27B</td>
       <td>Qwen</td>
       <td>Groq Cloud API</td>
@@ -832,7 +833,7 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
       <td>None (direct prompt)</td>
     </tr>
     <tr>
-      <td><strong>Qwen-2.5-27B (B1)</strong></td>
+      <td><strong>qwen/qwen3.8-27b (B1)</strong></td>
       <td>27B</td>
       <td>Qwen</td>
       <td>Groq Cloud API</td>
@@ -993,7 +994,7 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
       <td class="center"><strong>{comps['120B_B1']['slm_not_beaten_pct']}%</strong></td>
     </tr>
     <tr>
-      <td>Baseline B1 Qwen-2.5-27B</td>
+      <td>Baseline B1 qwen/qwen3.8-27b</td>
       <td>27B</td>
       <td>SQLite, Sandbox, BM25</td>
       <td class="center">{s['27B_B1_track_a']}.0% ({s['27B_B1_track_a']}/100)</td>
@@ -1002,7 +1003,7 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
       <td class="center"><strong>{comps['27B_B1']['slm_not_beaten_pct']}%</strong></td>
     </tr>
     <tr>
-      <td>Baseline B0 Qwen-2.5-27B</td>
+      <td>Baseline B0 qwen/qwen3.8-27b</td>
       <td>27B</td>
       <td>None (Direct Prompt)</td>
       <td class="center">{s['27B_B0_track_a']}.0% ({s['27B_B0_track_a']}/100)</td>
@@ -1055,8 +1056,9 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
 <h2>7. Limitations &amp; Next Steps</h2>
 <ul>
   <li><strong>Mandatory Reserve Benchmark Run:</strong> Execution of the frozen v1.3 pipeline and both B1 baselines on the cryptographically pristine 100-item reserve split, followed by secondary LLM judge evaluation.</li>
-  <li><strong>Fine-Tuning Integration (E2):</strong> Completion of the Kaggle QLoRA training on Spider SQL and evaluating the resulting adapter as pipeline v1.4.</li>
+  <li><strong>Fine-Tuning Integration (E2):</strong> Completion of the Kaggle QLoRA training on Spider SQL and evaluating the resulting adapter as pipeline v1.4. Adapter switching benchmarked (≈1.8 ms) but not used in v1.3; first adapter = E2.</li>
   <li><strong>Mid-Tier 70B Baseline:</strong> Pre-registering and evaluating an intermediate 70B open-weights baseline (Llama-3.3-70B-Instruct) under identical B0 and B1 conditions.</li>
+  <li><strong>Architectural Limitations:</strong> Recursive multi-level decomposition and a multi-SLM pool are not implemented in v1.3.</li>
   <li><strong>Challenging Track B Benchmark:</strong> Developing an extended multi-hop Track B corpus, as the current 50-item set reached ceiling saturation (50/50, 100%) across all tool-equipped systems.</li>
   <li><strong>CoLabTEL Thrust 4 Research:</strong> Transitioning from heuristic routing to offline reinforcement learning and trajectory distillation from execution rollouts.</li>
 </ul>
@@ -1146,7 +1148,7 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
       <td class="center">{comps['120B_B1']['diff_pp']:+.1f} pp [{comps['120B_B1']['ci_low_pp']:+.1f}, {comps['120B_B1']['ci_high_pp']:+.1f}]</td>
     </tr>
     <tr>
-      <td>Baseline B1 Qwen-2.5-27B*</td>
+      <td>Baseline B1 qwen/qwen3.8-27b*</td>
       <td>27B</td>
       <td>SQLite, Sandbox, BM25</td>
       <td class="center">{s['27B_B1_track_a']}.0%</td>
@@ -1159,7 +1161,7 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
       <td class="center">{comps['27B_B1']['diff_pp']:+.1f} pp [{comps['27B_B1']['ci_low_pp']:+.1f}, {comps['27B_B1']['ci_high_pp']:+.1f}]</td>
     </tr>
     <tr>
-      <td>Baseline B0 Qwen-2.5-27B*</td>
+      <td>Baseline B0 qwen/qwen3.8-27b*</td>
       <td>27B</td>
       <td>None (Direct Prompt)</td>
       <td class="center">{s['27B_B0_track_a']}.0%</td>
@@ -1326,7 +1328,7 @@ Note: B0 baselines were evaluated on Track A only and had no Track B condition.<
     </tr>
   </tbody>
 </table>
-<p class="table-footnote"><strong>*Key Empirical Insight:</strong> On Compound Tool-Required tasks ($N=20$), Specialist SLM v1.3 achieves 85.0%, outperforming GPT-OSS-120B B1 (80.0%) and Qwen-2.5-27B B1 (70.0%), and matching both LLMs on Atomic SQL (73.3% each) and Atomic Math (86.7% each).</p>
+<p class="table-footnote"><strong>*Key Empirical Insight:</strong> On Compound Tool-Required tasks ($N=20$), Specialist SLM v1.3 achieves 85.0%, outperforming GPT-OSS-120B B1 (80.0%) and qwen/qwen3.8-27b B1 (70.0%), and matching both LLMs on Atomic SQL (73.3% each) and Atomic Math (86.7% each).</p>
 
 <div class="page-break"></div>
 
@@ -1404,7 +1406,7 @@ Note: B0 baselines were evaluated on Track A only and had no Track B condition.<
   </div>
 
   <div style="flex: 1;">
-    <h3 style="text-align:center;">Table 3B: SLM v1.3 vs Qwen-2.5-27B B1</h3>
+    <h3 style="text-align:center;">Table 3B: SLM v1.3 vs qwen/qwen3.8-27b B1</h3>
     <table>
       <thead>
         <tr>
@@ -1627,8 +1629,8 @@ Note: B0 baselines were evaluated on Track A only and had no Track B condition.<
 
 <h2>5. Factual Findings Derived Directly from the Data</h2>
 <ul>
-  <li><strong>Parity on Specialized Atomic Tasks:</strong> On both Atomic SQL (11/15, 73.3%) and Atomic Maths (13/15, 86.7%), the 3.82B SLM pipeline achieves <em>exact empirical parity</em> with GPT-OSS-120B B1 (73.3% and 86.7%) and Qwen-2.5-27B B1 (73.3% and 86.7%). Parametric scaling provides zero accuracy advantage over specialized tool execution on these domains.</li>
-  <li><strong>Dominance in Tool-Required Composition:</strong> On Compound Tool-Required tasks, the SLM pipeline scores <strong>85.0% (17/20)</strong>, beating GPT-OSS-120B B1 (80.0%, 16/20) and Qwen-2.5-27B B1 (70.0%, 14/20). In head-to-head item comparisons, 3 of the 5 SLM wins against 120B occur on tool-required compound problems.</li>
+  <li><strong>Parity on Specialized Atomic Tasks:</strong> On both Atomic SQL (11/15, 73.3%) and Atomic Maths (13/15, 86.7%), the 3.82B SLM pipeline achieves <em>exact empirical parity</em> with GPT-OSS-120B B1 (73.3% and 86.7%) and qwen/qwen3.8-27b B1 (73.3% and 86.7%). Parametric scaling provides zero accuracy advantage over specialized tool execution on these domains.</li>
+  <li><strong>Dominance in Tool-Required Composition:</strong> On Compound Tool-Required tasks, the SLM pipeline scores <strong>85.0% (17/20)</strong>, beating GPT-OSS-120B B1 (80.0%, 16/20) and qwen/qwen3.8-27b B1 (70.0%, 14/20). In head-to-head item comparisons, 3 of the 5 SLM wins against 120B occur on tool-required compound problems.</li>
   <li><strong>The "Reasoning Gap" Lies in Pure In-Context Composition:</strong> The primary performance deficit between the 3.82B SLM and the 120B LLM is localized almost entirely within <em>Compound Solvable without Tools</em> (15/20 for SLM vs 20/20 for 120B B1). Of the 14 items where 120B beat the SLM, 5 are pure symbolic compound problems requiring extensive multi-step in-context state tracking.</li>
   <li><strong>Collapsing Baselines Without Tools:</strong> When frontier LLMs are deprived of tools (B0), their performance collapses on composite tasks (120B B0 achieved 0/20 on tool-required items, and 27B B0 achieved 2/20). Across the total Track A split, Specialist SLM v1.3 outperforms both 120B B0 (79.0% vs 73.0%) and 27B B0 (79.0% vs 75.0%).</li>
   <li><strong>Complete Ceiling Saturation on Track B:</strong> On the synthetic HyperGrid retrieval corpus, all tool-equipped models (SLM v1.0, SLM v1.3, 27B B1, 120B B1) achieved <strong>50/50 (100.0%)</strong> pass rates. The BM25 top-5 retrieval harness combined with strict ≤ 75-word key-value generation completely saturates the Track B benchmark.</li>
