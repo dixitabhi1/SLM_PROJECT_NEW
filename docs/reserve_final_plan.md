@@ -146,3 +146,35 @@ The automated evaluation generates [`docs/reserve_final_evaluation_report.md`](f
 ## 6. Execution Checkpoint
 
 Per Mandatory Owner Checkpoints (AGENTS.md Section 3, Checkpoint 6), **the execution of `scripts/run_reserve_final.py` is strictly stopped**. Execution requires explicit owner sign-off.
+
+---
+
+## 7. Protocol Amendment: Condition B1+code (2026-10-18)
+
+- **Amendment Date:** 2026-10-18
+- **Motivation:** In the initial reserve run (`B1`), while the baseline LLMs were prompted that they "may write Python", no sandbox executed their code, whereas the Specialist SLM (v1.3) autonomously executes Python code via its Python Sandbox Specialist (`specialist_pipeline_e3.py`). To guarantee true tool fairness and prevent tool asymmetry on compound tasks, this amendment pre-registers condition **B1+code**.
+- **Scope:** Evaluated on the 40 reserve compound tasks (20 `compound_solvable` and 20 `compound_tool_required`).
+- **Protocol & Execution Flow:**
+  1. For database-linked compound tasks, the model first queries SQLite (with 1 retry if needed) exactly as in B1.
+  2. For the calculation, logic, or processing stage, the LLM is instructed: "You may write a single Python code block enclosed in ```python ... ``` to perform calculations or data processing."
+  3. If a ```python ... ``` block is emitted by the LLM, the code is extracted and executed in the project's standard sandbox (`src/sandbox/runner.py`) under identical constraints: 10.0-second timeout, zero external network access.
+  4. The stdout (or error traceback) is returned to the LLM in a second conversation turn:
+     ```
+     [Code Execution Result]:
+     <stdout>
+
+     Using the execution result above, state your final answer. Conclude with 'Final Answer: <answer>' or '#### <answer>'.
+     ```
+  5. The LLM produces its final answer following code execution feedback.
+  6. If no Python block is emitted, the LLM's initial response is scored directly.
+  7. Identical protocol applies to both `openai/gpt-oss-120b` and `qwen/qwen3.8-27b`.
+- **API Response & Truncation Integrity:**
+  - The exact, actual `finish_reason` returned by the Groq API (e.g., `"stop"`, `"length"`) is recorded for every call.
+  - Any completion truncated by token limits (`finish_reason == "length"`) is treated as truncated and scored as 0 per Hard Rule 3.
+  - No hardcoded `"stop"` finish reasons are permitted.
+- **Append-Only Immutability:**
+  - B1+code records are written to dedicated new append-only files:
+    - `results/phase4/reserve_final_b1_plus_code_gpt120b_records.jsonl`
+    - `results/phase4/reserve_final_b1_plus_code_qwen27b_records.jsonl`
+  - The original B1 results are preserved; both B1 and B1+code are reported side by side.
+
