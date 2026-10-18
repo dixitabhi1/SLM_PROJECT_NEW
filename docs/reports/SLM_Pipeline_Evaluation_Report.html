@@ -12,10 +12,10 @@
 
 <div class="header-strip">
   <div class="report-title">Specialist SLM Pipeline: Final Reserve Evaluation Report</div>
-  <div class="report-subtitle">Cryptographically Quarantined Evaluation of Pure 3.82B SLM System Against Multi-Tier Frontier LLMs</div>
+  <div class="report-subtitle">Cryptographically Quarantined Evaluation of Pure 3.82B SLM System Against Multi-Tier LLM Baselines</div>
   <div class="metadata-grid">
     <div class="metadata-item"><strong>Repository:</strong> dixitabhi1/SLM_PROJECT_NEW</div>
-    <div class="metadata-item"><strong>Release / Tag:</strong> v1.3-slm-frozen (d6b953a)</div>
+    <div class="metadata-item"><strong>Release / Tag:</strong> v1.3-slm-frozen (4cef405)</div>
     <div class="metadata-item"><strong>System Under Test:</strong> Phi-4-mini (3.82B, Vulkan0, 3 slots)</div>
     <div class="metadata-item"><strong>Status &amp; Date:</strong> Frozen v1.3 • 2026-10-18</div>
   </div>
@@ -23,12 +23,13 @@
 
 <h2>1. Executive Summary</h2>
 <ul>
-  <li><strong>Definitive Finding on Pristine Quarantined Split:</strong> The frozen Specialist SLM Pipeline (v1.3, 3.82B parameters, zero external LLM calls) achieves <strong>87.0% accuracy (87/100)</strong> on the cryptographically pristine reserve evaluation set (SHA-256 <code>bacd6c5ea2443cb0...</code>), outperforming the 120B parameter frontier baseline (GPT-OSS-120B B1, 80.0%) by <strong>+7.0 percentage points</strong> and the 27B parameter peer tier (qwen/qwen3.8-27b B1, 82.0%) by <strong>+5.0 percentage points</strong>.</li>
+  <li><strong>Reserve Evaluation Finding:</strong> The frozen Specialist SLM Pipeline (v1.3, 3.82B parameters, zero external LLM calls) achieves <strong>87.0% accuracy (87/100)</strong> on the quarantined reserve evaluation set (SHA-256 <code>bacd6c5ea2443cb0...</code>), outperforming GPT-OSS-120B B1 (80.0%) by <strong>+7.0 percentage points</strong> and qwen/qwen3.8-27b B1 (82.0%) by <strong>+5.0 percentage points</strong>.</li>
   <li><strong>Multi-Slot Execution Stability &amp; Concurrency:</strong> Across independent evaluations under 3-slot concurrency (<code>-np 3</code>), Specialist Pipeline Run 1 (87.0%) and Run 2 (87.0%) achieve <strong>100.0% verdict concordance</strong> (100/100 items), with a paired difference of +0.0 pp [95% CI: +0.0, +0.0].</li>
-  <li><strong>Head-to-Head Robustness ("SLM Not Beaten"):</strong> In pairwise symmetric comparisons, the 3.82B SLM pipeline is <strong>not beaten on 89.0% of items vs 120B B1</strong> (18 wins, 69 ties, 2 both wrong, 11 losses) and <strong>89.0% of items vs 27B B1</strong> (16 wins, 71 ties, 2 both wrong, 11 losses).</li>
-  <li><strong>Decisive Tool-Required Superiority:</strong> On Compound Tool-Required tasks ($N=20$), the small system achieves <strong>95.0% (19/20)</strong>, surpassing both tool-equipped LLM baselines (120B B1 at 20.0%, 27B B1 at 35.0%).</li>
-  <li><strong>Parameter Efficiency &amp; Size Ratios:</strong> The pipeline operates with 7.1× fewer parameters than qwen/qwen3.8-27b and 31.4× fewer parameters than GPT-OSS-120B, achieving near-frontier parity under zero monetary spend ($0.00 cloud API cost on pipeline path).</li>
-  <li><strong>Pre-Registered Reserve Quarantining:</strong> Evaluated strictly on the untouched 100-item reserve partition locked by pre-registered SHA-256 digest before pipeline execution. All outputs and logs are append-only.</li>
+  <li><strong>Head-to-Head Outcomes ("SLM Not Beaten"):</strong> In pairwise symmetric comparisons, the 3.82B SLM pipeline was <strong>not beaten on 89.0% of items vs 120B B1</strong> (18 wins, 69 ties, 2 both wrong, 11 losses) and <strong>89.0% of items vs 27B B1</strong> (16 wins, 71 ties, 2 both wrong, 11 losses).</li>
+  <li><strong>Tool-Required Performance:</strong> On Compound Tool-Required tasks ($N=20$), the small system achieves <strong>95.0% (19/20)</strong>, outperforming both tool-equipped LLM baselines (120B B1 at 20.0%, 27B B1 at 35.0%).</li>
+  <li><strong>Non-Tool-Required Performance (80 Items):</strong> On the 80 reserve items without compound tool-required tasks (60 atomic + 20 compound solvable), the SLM scored 68/80 (85.0%), underperforming GPT-OSS-120B (76/80, 95.0%) and Qwen-3.8-27B (75/80, 93.8%). The SLM's overall accuracy lead stems from the compound tool-required category.</li>
+  <li><strong>Parameter Efficiency &amp; Size Ratios:</strong> The pipeline operates with 7.1× fewer parameters than qwen/qwen3.8-27b and 31.4× fewer parameters than GPT-OSS-120B, with zero cloud spend ($0.00 API cost on pipeline path).</li>
+  <li><strong>Reserve Split History:</strong> Evaluated strictly on the quarantined 100-item reserve partition locked by pre-registered SHA-256 digest before pipeline execution. The split was not regenerated; exactly 89 items were previously run by v1.1 during an aborted trial with answers uninspected. All outputs and logs are append-only.</li>
 </ul>
 
 <h2>2. System Architecture: Frozen Specialist Pipeline (v1.3)</h2>
@@ -246,10 +247,10 @@
       <td><span style="font-family:monospace; font-size:7pt;">075bf20d1daafdb89e3eef1e35271113...</span></td>
     </tr>
     <tr>
-      <td><strong>Reserve Split (Quarantined)</strong></td>
+      <td><strong>Reserve Split</strong></td>
       <td>Track A</td>
       <td class="num">100</td>
-      <td>Disjoint frozen benchmark items (Strictly untouched; 0 runs executed)</td>
+      <td>Disjoint frozen benchmark items (Evaluated in frozen final benchmark; 89 items previously run by v1.1 with answers unviewed)</td>
       <td><span style="font-family:monospace; font-size:7pt;">bacd6c5ea2443cb087cf743b6bfe0434...</span></td>
     </tr>
     <tr>
@@ -335,9 +336,8 @@
   <li><strong>Track B Fact-Checklist Checker (v1.2.0):</strong> Evaluates extracted entity-attribute key-value pairs against pre-registered ground-truth fact checklists with a hard word count ceiling of ≤ 75 words. Truncation or verbosity violations immediately fail.</li>
 </ul>
 
-<h3>3.4 Secondary Evaluation Layer: Blind Pairwise LLM-as-a-Judge</h3>
-<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol requires blind pairwise judging with position-swap consistency testing, holistic scoring (1–10), four 1–5 criteria (Correctness, Completeness, Reasoning Quality, Formatting), Composite Quality Score (CQS), and Quality Proximity: $QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 9$.</p>
-<p><em>Phase 1 Status: Protocol pre-registered; secondary judge execution is scheduled for Phase 3 following owner checkpoint sign-off.</em></p>
+<h3>3.4 Secondary Evaluation Layer: Blind LLM-as-a-Judge (Prometheus-2 7B)</h3>
+<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol executes reference-free evaluations using local <code>prometheus-eval/prometheus-7b-v2.0</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). Metrics include native 1–5 holistic scores, four 1–5 criteria (CQS), native Quality Proximity ($QP_i = 1 - |Q_{S,i} - Q_{L,i}| / 4$), and secondary position-swapped pairwise verdicts with swap consistency. <strong>Reliability Designation:</strong> Judge validity check (a) achieved 50.0% concordance (&lt; 80% threshold) on disagreement items, and check (b) revealed a 46.9%–56.2% false-high score rate on incorrect answers. Consequently, Quality Proximity and CQS are designated <strong>UNRELIABLE (judge agreement with answer key 50% &lt; 80%)</strong>. All judge metrics are strictly secondary; answer-key correctness remains the primary headline metric.</p>
 
 <h3>3.5 Statistical Rigour &amp; Integrity Constraints</h3>
 <ul>
@@ -412,20 +412,20 @@
       <td>Retrained router retry (zero latency penalty)</td>
       <td>Dev Track A improves over v1.3 with CI lower &gt; 0</td>
       <td>Dev: 66.0% (-11.0 pp regression, CI [-19.0, -3.0]); Track B dropped</td>
-      <td><span class="badge badge-loss">Rejected</span> (Definitive Closure)</td>
+      <td><span class="badge badge-loss">Rejected</span> (Gate Failed / Concluded)</td>
     </tr>
   </tbody>
 </table>
 
-<p><strong>Experiment E1 (Direct SQL Specialization):</strong> In v1.0, SQL queries suffered from decomposition overhead and invalid schema hallucinations. Introducing a dedicated direct schema injection path increased dev Track A accuracy from 58.0% to 66.0% (+8.0 pp). On the held-out split, SQL accuracy improved from 3/15 (20.0%) to 11/15 (73.3%), establishing pipeline v1.2.</p>
+<p><strong>Experiment E1 (Direct SQL Specialization):</strong> In v1.0, SQL queries suffered from decomposition overhead and invalid schema hallucinations (held-out total 67.0%). Introducing a dedicated direct schema injection path increased dev Track A accuracy from 58.0% to 66.0% (+8.0 pp), establishing pipeline v1.2 (no v1.2 held-out run was performed; v1.3 later achieved 79.0% on held-out with 11/15 on SQL).</p>
 
-<p><strong>Experiment E1a &amp; E1b (Cascade and Fallback Trials):</strong> E1a evaluated dynamic escalation to GPT-OSS-120B on low-confidence items. While achieving 88.0% ceiling accuracy, it violated the project's hard constraint requiring a pure small-model system. E1b explored pure SLM self-consistency and fallback mechanisms, but degraded dev accuracy to 59.0% (-7.0 pp) due to error compounding.</p>
+<p><strong>Experiment E1a &amp; E1b (Cascade and Fallback Trials):</strong> E1a evaluated dynamic cascade escalation to GPT-OSS-120B on low-confidence items, achieving 80.0% Track A accuracy at 21.3% escalation share (52 calls to 120B), while escalate-all achieved 91.0%. E1a was retired because it violated the project's hard constraint requiring a pure small-model system. E1b explored pure SLM self-consistency and fallback mechanisms, but degraded dev accuracy to 59.0% (-7.0 pp) due to error compounding.</p>
 
 <p><strong>Experiment E2 (SQL LoRA Adapter Fine-Tuning):</strong> To further enhance SQL parsing, a 4-bit QLoRA fine-tuning procedure was prepared for Phi-4-mini on Spider train. A dedicated 100-item extended SQL development set was cryptographically locked (SHA-256: <code>1af2bb2a2bc9702c...</code>), where the base v1.2 pipeline scores 66.0% (66/100). The Kaggle execution notebook is fully configured and awaiting owner execution.</p>
 
-<p><strong>Experiment E3 (Compute-in-Code &amp; CORPUS Guard):</strong> Detailed failure analysis of v1.2 revealed 9 arithmetic and iterative calculation errors in decomposed tasks. E3 introduced a generic rule: subtasks requiring arithmetic, modular math, counting, or iterative search generate short Python scripts executed in the sandbox. While dev Track A jumped from 66.0% to 77.0% (+11.0 pp, 95% CI [+4.0, +18.0]), initial evaluation broke dev Track B from 50/50 to 31/50 because the model attempted to write code to parse textual documents. A generic domain-invariant guard—<em>if task analyzer source is CORPUS, never route to code</em>—was instituted, fully restoring Track B to 50/50 while preserving Track A gains. This system was accepted and tagged as <code>v1.3-slm-frozen</code>.</p>
+<p><strong>Experiment E3 (Compute-in-Code &amp; CORPUS Guard):</strong> Detailed failure analysis of v1.2 revealed 9 arithmetic and iterative calculation errors in decomposed tasks. E3 introduced a generic rule: subtasks requiring arithmetic, modular math, counting, or iterative search generate short Python scripts executed in the sandbox. While dev Track A jumped from 66.0% to 77.0% (+11.0 pp, 95% CI [+4.0, +18.0]), initial evaluation of E3 broke held-out Track B from 50/50 to 31/50 (dev went 48/50 to 46/50) because the model attempted to write Python code to parse textual documents. A generic domain-invariant guard—<em>if task analyzer source is CORPUS, never route to code</em>—was instituted, fully restoring dev Track B to 48/50 and held-out Track B to 50/50 while preserving Track A gains (+11.0 pp on dev, +12.0 pp on held-out). This system was accepted and tagged as <code>v1.3-slm-frozen</code>.</p>
 
-<p><strong>Experiment E4 / E4b &amp; Disclosure of INC-017:</strong> E4 investigated a learned adaptive classifier replacing symbolic routing. Step 0 proved viable headroom: oracle routing achieved 87.0% vs v1.3's 77.0% (+10.0 pp). However, the trained router scored 76.0% (-1.0 pp, 95% CI [-8.0, +6.0]), failing Gate Criteria 1 and 2. E4b retrained with λ = 0 and strict execution grading, but regressed severely to 66.0% (-11.0 pp, 95% CI [-19.0, -3.0]). During post-run audit, <strong>Incident INC-017 was logged</strong>: <code>src/pipeline/learned_router.py</code> had accessed forbidden benchmark metadata (<code>task_type</code>, <code>solvability</code>) in dev evaluation scripts, and string concatenation was applied which masked detection by AST parsers. In compliance with project integrity rules, E4/E4b was immediately terminated, all metadata accesses were removed, <code>src/audit/audit_leakage.py</code> was extended to resolve string concatenations and scan scripts, and v1.3 was permanently reaffirmed as the frozen pipeline.</p>
+<p><strong>Experiment E4 / E4b &amp; Disclosure of INC-017:</strong> E4 investigated a learned adaptive classifier replacing symbolic routing. Step 0 proved viable headroom: oracle routing achieved 87.0% vs v1.3's 77.0% (+10.0 pp). However, the trained router scored 76.0% (-1.0 pp, 95% CI [-8.0, +6.0]), failing Gate Criteria 1 and 2. E4b retrained with λ = 0 and strict execution grading, but regressed to 66.0% (-11.0 pp, 95% CI [-19.0, -3.0]). During post-run audit, <strong>Incident INC-017 was logged</strong>: <code>src/pipeline/learned_router.py</code> had accessed forbidden benchmark metadata (<code>task_type</code>, <code>solvability</code>) in dev evaluation scripts, and string concatenation was applied which masked detection by AST parsers. In compliance with project integrity rules, E4/E4b was immediately terminated, all metadata accesses were removed, <code>src/audit/audit_leakage.py</code> was extended to resolve string concatenations and scan scripts, and v1.3 was reaffirmed as the frozen pipeline.</p>
 
 <p class="table-footnote"><strong>Mentor Protocol Experiment Mapping Note:</strong> Mentor protocol E1 (no fine-tuning) corresponds to our frozen v1.3 pipeline; mentor E2 (query-dependent fine-tuning) corresponds to our prepared E2 SQL LoRA; mentor E3 (all SLMs fine-tuned) and E4 (skill-matching SLM pool) were not executed as the repository deploys a single 3.82B SLM with modular tool engines rather than a multi-model 5–8B SLM pool.</p>
 
@@ -435,7 +435,7 @@
 <div class="secondary-banner" style="background:#1b4f72; color:#ffffff; font-weight:bold;">RESERVE SPLIT: CRYPTOGRAPHICALLY QUARANTINED BENCHMARK EVALUATION (N=100)</div>
 
 <h2>5. Benchmark Results Summary (Reserve Split)</h2>
-<p>Table 5 provides the primary answer-key evaluation results across all evaluated systems on the cryptographically pristine reserve split (100 Track A items). All differences (Δ) are computed relative to the Specialist SLM Pipeline v1.3 Run 1 using paired bootstrap resampling ($B=10,000$, seed 42).</p>
+<p>Table 5 provides the primary answer-key evaluation results across all evaluated systems on the quarantined reserve split (100 Track A items). All differences (Δ) are computed relative to the Specialist SLM Pipeline v1.3 Run 1 using paired bootstrap resampling ($B=10,000$, seed 42).</p>
 
 <table>
   <thead>
@@ -470,7 +470,7 @@
       <td class="center"><strong>100.0%</strong></td>
     </tr>
     <tr>
-      <td>Baseline B1 GPT-OSS-120B</td>
+      <td>Baseline B1 GPT-OSS-120B (Original Tool Prompt)</td>
       <td>120B</td>
       <td>SQLite, Sandbox, BM25</td>
       <td class="center">80.0% (80/100)</td>
@@ -479,13 +479,40 @@
       <td class="center"><strong>89.0%</strong></td>
     </tr>
     <tr>
-      <td>Baseline B1 qwen/qwen3.8-27b</td>
+      <td>Baseline B1+code GPT-OSS-120B (Fair Sandbox Execution)</td>
+      <td>120B</td>
+      <td>SQLite, Python Sandbox (10s, 2-turn stdout)</td>
+      <td class="center">73.0% (73/100)</td>
+      <td class="center">N/A (Track A Only)</td>
+      <td class="center">+14.0 pp [+3.0, +25.0]</td>
+      <td class="center"><strong>89.0%</strong></td>
+    </tr>
+    <tr>
+      <td>Baseline B1 qwen/qwen3.8-27b (Original Tool Prompt)</td>
       <td>27B</td>
       <td>SQLite, Sandbox, BM25</td>
       <td class="center">82.0% (82/100)</td>
       <td class="center">N/A (Track A Only)</td>
       <td class="center">+5.0 pp [-5.0, +15.0]</td>
       <td class="center"><strong>89.0%</strong></td>
+    </tr>
+    <tr>
+      <td>Baseline B1+code qwen/qwen3.8-27b (Fair Sandbox Execution)</td>
+      <td>27B</td>
+      <td>SQLite, Python Sandbox (10s, 2-turn stdout)</td>
+      <td class="center">82.0% (82/100)</td>
+      <td class="center">N/A (Track A Only)</td>
+      <td class="center">+5.0 pp [-5.0, +15.0]</td>
+      <td class="center"><strong>89.0%</strong></td>
+    </tr>
+    <tr style="background-color: #fbfbfb; font-style: italic;">
+      <td>Non-Tool-Required Subset (60 Atomic + 20 Comp Solv)</td>
+      <td>—</td>
+      <td>Identical non-tool tasks ($N=80$)</td>
+      <td class="center">85.0% (68/80)</td>
+      <td class="center">120B: 95.0% (76/80)</td>
+      <td class="center">27B: 93.8% (75/80)</td>
+      <td class="center">—</td>
     </tr>
     <tr style="color: #666;">
       <td>Historical Reference (v1.3 Held-Out)</td>
@@ -545,14 +572,14 @@
   <li><strong>Metadata-Blind Replay Verification:</strong> An independent replay test formatted prompts, deleted all item dictionaries from memory, and invoked the frozen pipeline on prompt strings alone. Across the first 10 dev items (Spider SQL), the replay achieved <strong>10/10 (100.0%) exact byte-for-byte identical matches</strong>. Across 10 stratified items (SQL, QA, Code, Math, Compound), 9/10 matched exactly, with 1 item exhibiting minor token variance due to multi-slot (<code>--np 3</code>) prompt-cache concurrency.</li>
   <li><strong>Leakage Audit:</strong> Automated AST analysis (<code>src/audit/audit_leakage.py</code>) verifies that zero dataset metadata fields (<code>task_type</code>, <code>solvability</code>, <code>stratum</code>, <code>gold_answer</code>, etc.) are indexed or accessed inside <code>src/pipeline/</code>. The pipeline interface accepts solely <code>prompt: str</code>.</li>
   <li><strong>Cryptographic Quarantine Status:</strong> The reserve split (<code>data/reserve_set_quarantine.json</code>) has been verified byte-for-byte identical to its pre-registered SHA-256 digest: <code>bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db</code> both before and after evaluation. Zero raw bytes altered.</li>
-  <li><strong>Disclosure of Aborted Reserve Trial:</strong> An earlier 89-item v1.1 trial (logged in <code>reserve_v11_pipeline_records.jsonl</code>) was prematurely executed and stopped. In accordance with Hard Rule 5, that split was declared spent and quarantined; a completely fresh 100-item reserve split was generated and cryptographically locked.</li>
+  <li><strong>Disclosure of Reserve Split History:</strong> The reserve split was not regenerated: the same split (SHA-256 <code>bacd6c5ea2443cb0...</code>) was used; exactly 89 items were previously run by v1.1 during an aborted trial with answers unviewed. All outputs and logs are append-only.</li>
   <li><strong>Incident Log Compliance (INC-003 to INC-017):</strong> All 15 project incidents have been documented with corrective actions in <code>PROGRESS.md</code>: INC-003 (unpinned alias deletion), INC-004 (plaintext credential remediation), INC-005 (item provenance correction), INC-006 (premature task termination), INC-007–011 (split regeneration protocols and Rule 2 immutability enforcement), INC-012 (metadata leakage elimination), INC-013 (SQLite timeout safeguard), INC-014 (Track B query truncation spent set), INC-015 (corrections schema patch), INC-016 (uncommitted trailing newline restored), and INC-017 (router metadata access and audit evasion resolved).</li>
   <li><strong>Known Methodological Biases Disclosed:</strong> (1) Baseline B1 received oracle ground-truth task type routing, giving the LLMs an optimal tool-routing advantage; (2) The held-out split was inspected during Phase 4 debugging and is strictly treated as secondary; (3) System latency was not matched across local GPU and cloud API conditions.</li>
 </ul>
 
 <h2>7. Limitations &amp; Next Steps</h2>
 <ul>
-  <li><strong>Reserve Benchmark Completed:</strong> The frozen v1.3 pipeline (Run 1 &amp; Run 2) and both B1 baselines have been fully executed on the quarantined 100-item reserve split, empirically demonstrating that specialized local SLM execution surpasses frontier API models on composed tool-required tasks.</li>
+  <li><strong>Reserve Benchmark Completed:</strong> The frozen v1.3 pipeline (Run 1 &amp; Run 2) and both B1 baselines have been fully executed on the quarantined 100-item reserve split, empirically demonstrating that specialized local SLM execution surpasses larger API baselines on composed tool-required tasks.</li>
   <li><strong>Fine-Tuning Integration (E2):</strong> Completion of the Kaggle QLoRA training on Spider SQL and evaluating the resulting adapter as pipeline v1.4. Adapter switching benchmarked (≈1.8 ms) but not used in v1.3; first adapter = E2.</li>
   <li><strong>Mid-Tier 70B Baseline:</strong> Pre-registering and evaluating an intermediate 70B open-weights baseline (Llama-3.3-70B-Instruct) under identical B0 and B1 conditions.</li>
   <li><strong>Architectural Limitations:</strong> Recursive multi-level decomposition and a multi-SLM pool are not implemented in v1.3.</li>

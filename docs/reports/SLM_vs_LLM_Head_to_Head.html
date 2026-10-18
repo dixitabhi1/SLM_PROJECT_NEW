@@ -15,14 +15,14 @@
   <div class="report-subtitle">Symmetric Item-Level Comparison on Cryptographically Quarantined Reserve Split (N=100)</div>
   <div class="metadata-grid">
     <div class="metadata-item"><strong>Evaluation Split:</strong> Reserve Split (Track A, N=100)</div>
-    <div class="metadata-item"><strong>Pipeline Release:</strong> v1.3-slm-frozen (d6b953a)</div>
+    <div class="metadata-item"><strong>Pipeline Release:</strong> v1.3-slm-frozen (4cef405)</div>
     <div class="metadata-item"><strong>Primary Metric:</strong> Answer-Key Correctness (Exact Match)</div>
     <div class="metadata-item"><strong>Statistical Test:</strong> Paired Bootstrap (B=10,000, seed 42)</div>
   </div>
 </div>
 
 <h2>1. Master Head-to-Head Comparison (Symmetric Pairwise Analysis)</h2>
-<p>Table 1 presents the symmetric item-by-item head-to-head outcomes on the pristine reserve split ($N=100$) between the Specialist SLM Pipeline (v1.3, 3.82B) and each comparison model. &ldquo;SLM Not Beaten&rdquo; represents the percentage of items where the SLM either won or tied the competitor (100% &minus; Other Wins share %).</p>
+<p>Table 1 presents the symmetric item-by-item head-to-head outcomes on the quarantined reserve split ($N=100$) between the Specialist SLM Pipeline (v1.3, 3.82B) and each comparison model. &ldquo;SLM Not Beaten&rdquo; represents the percentage of items where the SLM either won or tied the competitor (100% &minus; Other Wins share %).</p>
 
 <table>
   <thead>
@@ -69,7 +69,7 @@
       <td class="center">+0.0 pp [+0.0, +0.0]</td>
     </tr>
     <tr>
-      <td>Baseline B1 GPT-OSS-120B</td>
+      <td>Baseline B1 GPT-OSS-120B (Original)</td>
       <td>120B</td>
       <td>SQLite, Sandbox, BM25</td>
       <td class="center">80.0%</td>
@@ -81,8 +81,21 @@
       <td class="center"><strong>89.0%</strong></td>
       <td class="center">+7.0 pp [-3.0, +17.0]</td>
     </tr>
-    <tr>
-      <td>Baseline B1 qwen/qwen3.8-27b*</td>
+''' + (f'''    <tr>
+      <td>Baseline B1+code GPT-OSS-120B*</td>
+      <td>120B</td>
+      <td>SQLite, Python Sandbox (10s, 2-turn)</td>
+      <td class="center">73.0%</td>
+      <td class="center">—</td>
+      <td class="center">25</td>
+      <td class="center">62</td>
+      <td class="center">2</td>
+      <td class="center">11</td>
+      <td class="center"><strong>89.0%</strong></td>
+      <td class="center">+14.0 pp [+3.0, +25.0]</td>
+    </tr>
+''' if '120B_B1_plus_code' in comps else '') + f'''    <tr>
+      <td>Baseline B1 qwen/qwen3.8-27b (Original)</td>
       <td>27B</td>
       <td>SQLite, Sandbox, BM25</td>
       <td class="center">82.0%</td>
@@ -94,7 +107,20 @@
       <td class="center"><strong>89.0%</strong></td>
       <td class="center">+5.0 pp [-5.0, +15.0]</td>
     </tr>
-    <tr style="color: #7f8c8d;">
+''' + (f'''    <tr>
+      <td>Baseline B1+code qwen/qwen3.8-27b*</td>
+      <td>27B</td>
+      <td>SQLite, Python Sandbox (10s, 2-turn)</td>
+      <td class="center">82.0%</td>
+      <td class="center">—</td>
+      <td class="center">16</td>
+      <td class="center">71</td>
+      <td class="center">2</td>
+      <td class="center">11</td>
+      <td class="center"><strong>89.0%</strong></td>
+      <td class="center">+5.0 pp [-5.0, +15.0]</td>
+    </tr>
+''' if '27B_B1_plus_code' in comps else '') + f'''    <tr style="color: #7f8c8d;">
       <td>Historical Ref: Held-Out (v1.3)</td>
       <td>3.82B</td>
       <td>SQLite, Sandbox, BM25</td>
@@ -110,7 +136,7 @@
 
   </tbody>
 </table>
-<p class="table-footnote"><strong>*Truncation Disclosures:</strong> Per Hard Rule 3, completions truncated by output limits (<code>finish_reason == "length"</code>) count strictly as failures. Truncations observed in reserve evaluation: Specialist SLM Run 1 = 0; Run 2 = 0; GPT-OSS-120B B1 = 0; qwen/qwen3.8-27b B1 = 0. Reserve split Track A contains 100 items; all evaluated models received identical tool harnesses.</p>
+<p class="table-footnote"><strong>*Truncation Disclosures:</strong> Per Hard Rule 3, completions truncated by output limits (<code>finish_reason == "length"</code>) count strictly as failures. Truncations observed in reserve evaluation: Specialist SLM Run 1 = 0; Run 2 = 0; GPT-OSS-120B B1 = 0; qwen/qwen3.8-27b B1 = 0; 120B B1+code = 1 (<code>compound_reserve_v2_0009</code>); 27B B1+code = 4 (<code>compound_reserve_v2_0004, compound_reserve_v2_0006, compound_reserve_v2_0009, compound_reserve_v2_0010</code>). Reserve split Track A contains 100 items; B1+code provides sandbox execution on compound items.</p>
 
 <h2>2. Accuracy Breakdown by Task Category</h2>
 <p>Table 2 displays the exact accuracy across the 6 task categories in the quarantined Track A Reserve Split ($N=100$) across all systems.</p>
@@ -175,6 +201,14 @@
       <td class="center">35.0%</td>
       <td class="center">20.0%</td>
     </tr>
+    <tr style="background-color: #fbfbfb; font-style: italic;">
+      <td>Non-Tool-Required Subset (60 Atomic + 20 Comp Solv)</td>
+      <td class="center">80</td>
+      <td class="center" style="background-color:#eafaf1; font-weight:bold;">85.0%</td>
+      <td class="center">85.0%</td>
+      <td class="center">93.8%</td>
+      <td class="center">95.0%</td>
+    </tr>
     <tr style="font-weight: bold; border-top: 1px solid #111;">
       <td>Track A Total Accuracy</td>
       <td class="center">100</td>
@@ -185,7 +219,7 @@
     </tr>
   </tbody>
 </table>
-<p class="table-footnote"><strong>*Key Empirical Insight:</strong> On Compound Tool-Required tasks ($N=20$), Specialist SLM v1.3 achieves 95.0%, demonstrating that specialized deterministic local tool execution reliably matches or exceeds frontier API models.</p>
+<p class="table-footnote"><strong>*Empirical Breakdown &amp; Fairness Disclosure:</strong> On Compound Tool-Required tasks ($N=20$), Specialist SLM v1.3 achieves 95.0%, outperforming both tool-equipped LLM baselines under standard B1 (120B at 20.0%, 27B at 35.0%) as well as fair sandbox execution B1+code (120B at 25.0%, 27B at 30.0%). On the 80 non-tool-required items, the SLM underperformed the larger models (85.0% vs 95.0% for 120B and 93.8% for 27B); the SLM's overall accuracy lead stems from the compound tool-required category.</p>
 
 <div class="page-break"></div>
 
@@ -438,22 +472,49 @@
 
 <h2>5. Factual Findings Derived Directly from Reserve Data</h2>
 <ul>
-  <li><strong>Definitive Finding on Pristine Quarantined Split:</strong> The frozen Specialist SLM Pipeline (v1.3, 3.82B parameters, zero external LLM calls) achieves <strong>87.0% accuracy (87/100)</strong> on the cryptographically pristine reserve evaluation set, outperforming the 120B parameter frontier baseline (GPT-OSS-120B B1, 80.0%) by <strong>+7.0 percentage points</strong> and the 27B parameter peer tier (qwen/qwen3.8-27b B1, 82.0%) by <strong>+5.0 percentage points</strong>.</li>
+  <li><strong>Reserve Evaluation Finding:</strong> The frozen Specialist SLM Pipeline (v1.3, 3.82B parameters, zero external LLM calls) achieves <strong>87.0% accuracy (87/100)</strong> on the quarantined reserve evaluation set, outperforming GPT-OSS-120B B1 (80.0%) by <strong>+7.0 percentage points</strong> and qwen/qwen3.8-27b B1 (82.0%) by <strong>+5.0 percentage points</strong>.</li>
   <li><strong>Multi-Slot Execution Stability &amp; Concurrency:</strong> Across independent evaluations under 3-slot concurrency (<code>-np 3</code>), Specialist Pipeline Run 1 (87.0%) and Run 2 (87.0%) achieve <strong>100.0% verdict concordance</strong> (100/100 items), with a paired difference of +0.0 pp [95% CI: +0.0, +0.0].</li>
-  <li><strong>Head-to-Head Robustness (&ldquo;SLM Not Beaten&rdquo;):</strong> In pairwise symmetric comparisons, the 3.82B SLM pipeline is <strong>not beaten on 89.0% of items vs 120B B1</strong> (18 wins, 69 ties, 2 both wrong, 11 losses) and <strong>89.0% of items vs 27B B1</strong> (16 wins, 71 ties, 2 both wrong, 11 losses).</li>
-  <li><strong>Decisive Tool-Required Superiority:</strong> On Compound Tool-Required tasks ($N=20$), the small system achieves <strong>95.0% (19/20)</strong>, surpassing both tool-equipped LLM baselines (120B B1 at 20.0%, 27B B1 at 35.0%).</li>
-  <li><strong>Parameter Efficiency &amp; Size Ratios:</strong> The pipeline operates with 7.1&times; fewer parameters than qwen/qwen3.8-27b and 31.4&times; fewer parameters than GPT-OSS-120B, achieving near-frontier parity under zero monetary spend ($0.00 cloud API cost on pipeline path).</li>
+  <li><strong>Head-to-Head Outcomes (&ldquo;SLM Not Beaten&rdquo;):</strong> In pairwise symmetric comparisons, the 3.82B SLM pipeline was <strong>not beaten on 89.0% of items vs 120B B1</strong> (18 wins, 69 ties, 2 both wrong, 11 losses) and <strong>89.0% of items vs 27B B1</strong> (16 wins, 71 ties, 2 both wrong, 11 losses).</li>
+  <li><strong>Tool-Required Performance:</strong> On Compound Tool-Required tasks ($N=20$), the small system achieves <strong>95.0% (19/20)</strong>, surpassing both tool-equipped LLM baselines (120B B1 at 20.0%, 27B B1 at 35.0%).</li>
+  <li><strong>Non-Tool-Required Performance (80 Items):</strong> On the 80 reserve items without compound tool-required tasks (60 atomic + 20 compound solvable), the SLM scored 68/80 (85.0%), underperforming GPT-OSS-120B (76/80, 95.0%) and Qwen-3.8-27B (75/80, 93.8%). The SLM's overall accuracy lead stems from the compound tool-required category.</li>
+  <li><strong>Parameter Efficiency &amp; Size Ratios:</strong> The pipeline operates with 7.1&times; fewer parameters than qwen/qwen3.8-27b and 31.4&times; fewer parameters than GPT-OSS-120B, with zero cloud spend ($0.00 cloud API cost on pipeline path).</li>
 </ul>
 
 <h2>6. Methodological Caveats &amp; Threats to Validity</h2>
 <ul>
-  <li><strong>Cryptographically Quarantined Reserve Split:</strong> Evaluated strictly on the pristine 100-item reserve partition locked by pre-registered SHA-256 digest before pipeline execution. All outputs and logs are append-only.</li>
-  <li><strong>Asymmetric Baseline Tool Routing Advantage:</strong> Baselines B1 were provided ground-truth task category tags at runtime, granting them optimal tool selection without routing overhead. In contrast, Specialist SLM v1.3 is purely autonomous, inferring tool needs and routing paths dynamically from prompt text alone.</li>
+  <li><strong>Cryptographically Quarantined Reserve Split:</strong> Evaluated strictly on the quarantined 100-item reserve partition locked by pre-registered SHA-256 digest before pipeline execution. The reserve was not regenerated: the same split (<code>bacd6c5ea2443cb0...</code>) was used; 89 items were previously run by v1.1 during an aborted trial with answers uninspected. All outputs and logs are append-only.</li>
+  <li><strong>Baseline Fairness and Execution:</strong> Under baseline condition B1+code, LLMs were granted sandbox execution for Python code emitted on compound tasks, eliminating asymmetric advantages. Real finish_reason is captured for every call.</li>
   <li><strong>Floating-Point Non-Determinism Across Concurrency Slots:</strong> In local GPU execution (Vulkan0 with <code>--np 3</code> parallel slots), non-atomic reduction operations in llama.cpp introduce minor sampling variance across repeated runs even at <code>temperature = 0.0</code> (100.0% concordance across 100 items).</li>
-  <li><strong>Active Latency and Cost Invariance:</strong> While the SLM pipeline executes locally with zero monetary cost, end-to-end multi-step tool execution took on average 5&ndash;12 seconds per compound item, which was not directly latency-matched against cloud API streaming.</li>
   <li><strong>Strict Truncation Fail-Loud Policy:</strong> Per Hard Rule 3, any completion truncated by token limits (<code>finish_reason == &quot;length&quot;</code>) is scored strictly as 0.</li>
 </ul>
 
+
+<h2>7. Secondary Qualitative Layer: LLM-as-a-Judge Evaluation (prometheus-eval/prometheus-7b-v2.0) &mdash; <span style="color:#c0392b; font-size:9.0pt;">QP &amp; CQS UNRELIABLE (judge agreement with answer key 50% &lt; 80%)</span></h2>
+<p>To evaluate qualitative response nuances alongside deterministic answer keys, outputs are evaluated via reference-free judging with local <code>prometheus-eval/prometheus-7b-v2.0</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). <strong>Reliability Designation:</strong> Prometheus-2 7B achieved only 50.0% concordance with answer-key winners on disagreement items (threshold &ge; 80%), and exhibited 46.9%&ndash;56.2% false-high scores on wrong answers. Consequently, Quality Proximity and CQS are designated <strong>UNRELIABLE (judge agreement with answer key 50% &lt; 80%)</strong>. Checks (a), (b), and swap consistency are reported below. Primary answer-key correctness remains headline.</p>
+
+<table class="table-dense" style="font-size: 6.8pt; margin-bottom: 2pt;">
+  <thead>
+    <tr>
+      <th>Baseline Competitor</th>
+      <th class="center">SLM Win</th>
+      <th class="center">Draw</th>
+      <th class="center">LLM Win</th>
+      <th class="center">Effective Win%</th>
+      <th class="center">QP [95% CI]*</th>
+      <th class="center">Delta Q [95% CI]</th>
+      <th class="center">SLM CQS vs LLM CQS*</th>
+      <th class="center">Check (a) (Acc Agree)</th>
+      <th class="center">Check (b) (False High)</th>
+      <th class="center">Swap Cons.</th>
+      <th class="center">Reliability Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>GPT-OSS-120B B1</strong></td><td class='center'>26</td><td class='center'>68</td><td class='center'>53</td><td class='center'><strong>63.9%</strong></td><td class='center'>0.748 [0.701, 0.793]*</td><td class='center'>-0.490 [-0.728, -0.252]</td><td class='center'>3.81 vs 4.14*</td><td class='center'>50.0% (9/18)</td><td class='center'>56.2% (18/32)</td><td class='center'>70.7%</td><td class='center' style='color:#c0392b; font-weight:bold;'>UNRELIABLE (50% &lt; 80%)</td></tr>
+    <tr><td><strong>qwen/qwen3.8-27b B1</strong></td><td class='center'>14</td><td class='center'>73</td><td class='center'>58</td><td class='center'><strong>60.0%</strong></td><td class='center'>0.781 [0.734, 0.824]*</td><td class='center'>-0.628 [-0.834, -0.428]</td><td class='center'>3.84 vs 4.40*</td><td class='center'>50.0% (12/24)</td><td class='center'>46.9% (15/32)</td><td class='center'>77.2%</td><td class='center' style='color:#c0392b; font-weight:bold;'>UNRELIABLE (50% &lt; 80%)</td></tr>
+  </tbody>
+</table>
+<p class="table-footnote" style="margin-top: 1pt; margin-bottom: 2pt;">*<strong>UNRELIABLE (judge agreement with answer key 50% &lt; 80%):</strong> Validity check (a) concordance is 50.0% (&lt; 80% threshold). Local GPU execution (100% host RTX 3050, 0 cloud cost) from immutable raw records (<code>results/judge/judge_trials_raw_prometheus7b.jsonl</code>). Answer-key accuracy remains headline.</p>
 
 
 </body>

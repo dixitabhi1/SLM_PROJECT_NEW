@@ -25,6 +25,9 @@ sys.path.insert(0, REPO_ROOT)
 from src.sandbox.runner import execute_python_code
 from src.eval.fact_checklist_scorer import score_fact_checklist, normalize_unicode_text
 
+if hasattr(sys, "set_int_max_str_digits"):
+    sys.set_int_max_str_digits(0)
+
 SCORER_VERSION = "1.1.0"
 
 
@@ -125,29 +128,42 @@ def check_math_subtask(subtask_id: str, output: str, gold: str) -> Tuple[bool, s
     # 1. Look for '#### <number>' standard GSM8K delimiter
     hash_match = re.search(r"####\s*(-?\d+)", output)
     if hash_match:
-        pred_num = int(hash_match.group(1))
-        if pred_num == gold_num:
-            return True, checker_name, f"Matched #### {gold_num}"
-        return False, checker_name, f"Extracted #### {pred_num} != gold {gold_num}"
+        try:
+            pred_num = int(hash_match.group(1))
+            if pred_num == gold_num:
+                return True, checker_name, f"Matched #### {gold_num}"
+            return False, checker_name, f"Extracted #### {pred_num} != gold {gold_num}"
+        except (ValueError, OverflowError):
+            pass
 
     # 2. Look for final sentence number or boxed number
     boxed_match = re.search(r"\\boxed\{(-?\d+)\}", output)
     if boxed_match:
-        pred_num = int(boxed_match.group(1))
-        if pred_num == gold_num:
-            return True, checker_name, f"Matched \\boxed{{{gold_num}}}"
-        return False, checker_name, f"Extracted boxed {pred_num} != gold {gold_num}"
+        try:
+            pred_num = int(boxed_match.group(1))
+            if pred_num == gold_num:
+                return True, checker_name, f"Matched \\boxed{{{gold_num}}}"
+            return False, checker_name, f"Extracted boxed {pred_num} != gold {gold_num}"
+        except (ValueError, OverflowError):
+            pass
 
     # 3. Look for explicit answer declaration: 'answer is 72' or '= 72'
     decl_match = re.findall(r"(?:answer\s+is\s+|total\s+is\s+|equal\s+to\s+|=\s*)(-?\d+)", output, re.IGNORECASE)
     if decl_match:
-        if int(decl_match[-1]) == gold_num:
-            return True, checker_name, f"Matched declared {gold_num}"
+        try:
+            if int(decl_match[-1]) == gold_num:
+                return True, checker_name, f"Matched declared {gold_num}"
+        except (ValueError, OverflowError):
+            pass
 
     # 4. Fallback: extract last standalone integer in output
     all_nums = re.findall(r"\b(-?\d+)\b", output)
-    if all_nums and int(all_nums[-1]) == gold_num:
-        return True, checker_name, f"Last integer matched gold {gold_num}"
+    if all_nums:
+        try:
+            if int(all_nums[-1]) == gold_num:
+                return True, checker_name, f"Last integer matched gold {gold_num}"
+        except (ValueError, OverflowError):
+            pass
 
     return False, checker_name, f"Did not find gold number {gold_num} in output"
 

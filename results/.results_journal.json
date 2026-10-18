@@ -3,265 +3,265 @@
     "sha256": "299D3DBAD9CF770DD3EF6941C4C5C01BA9D3EEE9EA8509C5852565FB218D0B76",
     "size_bytes": 1025,
     "line_count": 2,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/calibration_compound_10_results.json": {
     "sha256": "2F62B355917A1AC79C9ADC85FA7ED5E41A50553D8729159E9DFBECCFD74FD137",
     "size_bytes": 21762,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/calib_llama_server.log": {
     "sha256": "D7043452A6ECEA147E39924D4FE4EE9EEF96A6F601A26C1689162BF4C2094548",
     "size_bytes": 12460,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/dual_adapter_switching_benchmark.json": {
     "sha256": "F4E6EC02386553BB82C10A0CC5DB3958967E544EA40B092905AD9C025D8F01D7",
     "size_bytes": 4147,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/llama_server_c4096_np3.log": {
     "sha256": "1DA79F1DC9E8553C99AA8FFEC59222CF7FA39AE1D346D2D36A621B8E178C95FE",
     "size_bytes": 49465,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/llama_server_c4096_np3_50.json": {
     "sha256": "B485C81C9B733119E311C21497579C4B0DD7B1A32B819D4E15EB73EC201881EA",
     "size_bytes": 56675,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/llama_server_c6144_np2.log": {
     "sha256": "DE67C15741739F2ACFB2E311091DF440606A5251F060AF00DF61F4F53F9099E8",
     "size_bytes": 48120,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/llama_server_c6144_np2_50.json": {
     "sha256": "9B2AACA78159D9D015298C2D93097044928633EAB13A180BE46346ECC4D0FBCB",
     "size_bytes": 58480,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/llama_server_switching_benchmark.json": {
     "sha256": "804ADC9BA4E0BF25BEFBF5EB052EDC6E4F04B1C28133052FBB89D37B606FA963",
     "size_bytes": 2790,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/model_swap_benchmarks.json": {
     "sha256": "0870903CA989F672DE1C1B4F7702DC369147F6BCECB254C14AC26FC551CA6C0A",
     "size_bytes": 355,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/parallelism_benchmark.json": {
     "sha256": "6FC9163062DCEF9A076332D9D39C90AF2B9ACCD25472A4F96C09D4951CD8F02A",
     "size_bytes": 87101,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/parallelism_benchmark_50.json": {
     "sha256": "E3C05276BE78A5264B2F7E517666CA0B400485342EED3C83542E080506370955",
     "size_bytes": 116604,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/phi4_mini_50.json": {
     "sha256": "CA144F194EAAF68FE346CA1E777FF2F38DC9B01962A65B1A793BD70A7782E278",
     "size_bytes": 33432,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/phi4_mini_adapter_ollama_verification.json": {
     "sha256": "FBA89ABF23143BC4BC342C5875A50C55A4628DA74075AD1A074C9048F231F0BE",
     "size_bytes": 703,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/phi4_mini_qlora_dryrun.json": {
     "sha256": "2BF5C08FBF84519E43D1A639F537A245FE0337ABC6404C3B499BCDEEE09F00F1",
     "size_bytes": 4341,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/phi4_mini_qlora_seqlen1024.json": {
     "sha256": "D280294950DE5C849A543777FB4AA7AC6D333E8CE49F8E41C9C8F2D610EDD946",
     "size_bytes": 1918,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/phi4_mini_serial_50.json": {
     "sha256": "A563DB815076AAE333245AFE4649C8307AF45D93EF23009BE0EE9D83FD406809",
     "size_bytes": 33636,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/phi4_mini_w3_50.json": {
     "sha256": "18D7CE0A4778E706D89002B68F47B93C7C2C44D409C96BEE043C41481B909E4B",
     "size_bytes": 33866,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/qlora_seqlen_half_precision_exploration.json": {
     "sha256": "3E90186A65512C52A87AFDEDB1F5C857E1E57B4DBC94091732EA3D8ECE3F3DC0",
     "size_bytes": 601,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/qwen3_4b_thinking_off_50.json": {
     "sha256": "140881DCA61EF065ACBA1D001096B4236A561E8471180A95235B5814A16CEFEC",
     "size_bytes": 36018,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/qwen3_4b_thinking_on_50.json": {
     "sha256": "409B916271AB4C81789E2CE349DC5FB1217902B0FD371F889F62AB8065B37353",
     "size_bytes": 34055,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/benchmarks/smollm3_3b_50.json": {
     "sha256": "7A1C9444AD536F33F31A20F8DF7563EADF2EBBAA98211FCE28E211517525C874",
     "size_bytes": 33710,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/b0_qwen27b_dev_records.jsonl": {
     "sha256": "8FF91F5021B9A0152CDF08149AFBD6F0FCAB9DD56402178FAEACF45901142606",
     "size_bytes": 649141,
     "line_count": 221,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/c0_phi4_mini_dev_records.jsonl": {
     "sha256": "AFD4841D0D86C92ED05EA7CC2382DF510C03B35EB1062B13C8C1268C72F2DF5A",
     "size_bytes": 667743,
     "line_count": 340,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/b0_gpt120b_dev_records.jsonl": {
     "sha256": "33A460BD96D2A076CBFA4CF02AE5503E2F74FE1B1E0B8078A5088369ED0BC65C",
     "size_bytes": 317662,
     "line_count": 171,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/phase4_dev_c0_b0_report.json": {
     "sha256": "C29D95141C789176D89B582E3E1293F36C367B5B3B16B5FA70DF51E61B7F0760",
     "size_bytes": 15814,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/corrections.jsonl": {
     "sha256": "0531F2542C911AD577437F1FC5B7B29F96012F1DF4FF24D794B5A4969D414323",
     "size_bytes": 109206,
     "line_count": 242,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/phase4_dev_complete_report.json": {
     "sha256": "DD826551260F245DE17E56650EBA09A9C24B7544ECA4030669ACAB134CFFCF0B",
     "size_bytes": 13305,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/sql_failure_audit.json": {
     "sha256": "4D170CC8E3CB6D2BC92C4E6EBAE6F6E2783BF18CC9F53EAB9D4B62D906B5A4D9",
     "size_bytes": 168468,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/calibration_c0_c1_eval.json": {
     "sha256": "9BE89E07152EDD098A78E7AF4FC28DB05FF652D2B09BA19C62496AEB6A1080D6",
     "size_bytes": 55242,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/calibration_gpt_b0_b1_eval.json": {
     "sha256": "6DB3E3CD4D2789FA496946E2D8D1FE697245DCF9F7A824904A8DF216ED983914",
     "size_bytes": 24973,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/versioned_rescore_report.json": {
     "sha256": "9198C9B1421AE3D12CF8FA7FB99D57CA1EA6EAAE51556653C54F30BC6441CE40",
     "size_bytes": 98170,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/c1_diagnosis_detailed.json": {
     "sha256": "8F18BACC367FF34CCB6141C253D15CA9FD25562E8A0529A927AFA13A0672191B",
     "size_bytes": 134508,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/calibration_qwen_b0_eval.json": {
     "sha256": "80C329A6E213634F77321A0884C7A0874B2968308A48134159622DBBBF13073C",
     "size_bytes": 16222,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_c0_records.jsonl": {
     "sha256": "ABFDCC5AB96B8C59FC8D28DB7F634C60DAD964A93FD28DC13E027A9E6AC8C42C",
     "size_bytes": 156249,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_pipeline_eval.json": {
     "sha256": "656A1AA54E8772E6ECF5DC0DAA623E6FC231AD09AB3E9F9FF04E5F90A517B87B",
     "size_bytes": 3761,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_pipeline_records.jsonl": {
     "sha256": "42928FA10A22FFE53EBFF3F97D8B8AA8B30939B04E25AC9990800F437C010CEF",
     "size_bytes": 296491,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/full_matrix_eval.json": {
     "sha256": "76B33DF5BBE911162A8545098129D9C200D64A4FF3B34895088F75995CB1D1D1",
     "size_bytes": 923147,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/harness_acceptance_phi4-mini.json": {
     "sha256": "46DF5D1A24A127A78B4AB9AD2CC5025F39BDBFD1A6C7B98926C8A4A721AE5FE7",
     "size_bytes": 422553,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/harness_controlled_eval.json": {
     "sha256": "7B033865CE4D149971C5D9B6C73C61E7FBEAD337221CF472FAFC18BD6416C5FC",
     "size_bytes": 123742,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/qwen7b_local_eval.json": {
     "sha256": "8AB5B0EEE40A4AC7D5122F9379941F17B28670ED76AD6C40A40A104BFE208482",
     "size_bytes": 274522,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/records_version_index.json": {
     "sha256": "CF2E8C952B9EE0754BCBE4C6FE071037975A9C217C028B335B179E320B676BD1",
     "size_bytes": 52063,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/rerun_dev_c0_records.jsonl": {
     "sha256": "4C858E729C993D00459241D940673AECD28F6D5681C2AE4263664ECF2713CF99",
     "size_bytes": 308396,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/rerun_dev_pipeline_records.jsonl": {
     "sha256": "874A8941B95397CE52E7A3E0D6B8993F1BCD93DE664671B7EE0DBE000167501D",
     "size_bytes": 786069,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/phase4_dev_rerun_report.json": {
     "sha256": "0E5521ABF4E3FA90025D59FD45FEA74CC86B90330E40CC5B02437E5F42854410",
@@ -273,91 +273,91 @@
     "sha256": "649A3E492E7F6701F1E0E241F5AECB08A846F9513D7B42E2FC51DA91EEE8CCBC",
     "size_bytes": 308050,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_rerun_clean_pipeline_records.jsonl": {
     "sha256": "7BC97DC9EFC713E59419723E9D7409A8CB6817F4A662D975CDE7043E9FF3B3B7",
     "size_bytes": 794746,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/b0_gpt120b_heldout_records.jsonl": {
     "sha256": "97A1F6E0638838277E5A8B5D1BDC6F3B8B96AE8A3A457EEC262ED8527540EEEE",
     "size_bytes": 390875,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/b0_qwen27b_heldout_records.jsonl": {
     "sha256": "6338D5C7031BFF072AE092B168F3E049480B4C1B1C802E8A5CA7CAB63E419F7D",
     "size_bytes": 801382,
     "line_count": 175,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/b1_qwen27b_heldout_records.jsonl": {
     "sha256": "1AEBAAD330D517F04D3321995F8E4837018B1D3236D4636F8B3132F4DD7D7ECF",
     "size_bytes": 643898,
     "line_count": 276,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/comprehensive_final_report.md": {
     "sha256": "57E7AB7273E50440DFA882181F10338FD4EED06D2D0C467FDC0387068D5E65B2",
     "size_bytes": 14509,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/heldout_c0_records.jsonl": {
     "sha256": "873ADFD409318E114E8B070BF0F388BBC67DAAE01FA5D62F6B7D56A3D3E609C9",
     "size_bytes": 437554,
     "line_count": 200,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/heldout_pipeline_records.jsonl": {
     "sha256": "F202FA21A90D22A85E3BB89CF14195AEEB4CB7E6E6F6ADB8637C33046139256C",
     "size_bytes": 1041837,
     "line_count": 250,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/phase4_b0_heldout_report.json": {
     "sha256": "63100C30717F23706FBA83F6D87696CB2FDA46CD4900F659920F54AEE3AAA271",
     "size_bytes": 3901,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/phase4_heldout_report.json": {
     "sha256": "800659CC27A66BCE024C6C0050D95A497A3F4699DF08BCDE2EFDA4C845808451",
     "size_bytes": 4156,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/track_b_dev_fix_report.json": {
     "sha256": "C1A2CE93690EED0D055C6BC35F780B8AD94C09D3BD5E344573AE182648D03D7A",
     "size_bytes": 9534,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/b1_gpt120b_heldout_records.jsonl": {
     "sha256": "DF4586EFBDA5DAEDABA81CD281BC9615447339B102637B47083F0084557F7332",
     "size_bytes": 371250,
     "line_count": 282,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/phase4_b1_heldout_report.json": {
     "sha256": "60F195A96D582CC1DAEE6F63E8B87E9431488C0730703084FCB93F0A6BBEA4F2",
     "size_bytes": 3923,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_v11_pipeline_records.jsonl": {
     "sha256": "EB51D2581E03B14192C63E9AA348EE4BD7B9A4DEA3B32BC999256160BE8CC318",
     "size_bytes": 613182,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_v11_strata_summary.json": {
     "sha256": "7E3D8093A2026B652ECEC90FE943B9D20E24B6A0B58063D49B66B56E3131223A",
     "size_bytes": 120,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/cascade_dev_evaluation.json": {
     "sha256": "5F4F00CF50E4F082733EE6BF1EBDE459A999A8A674096FDBA9E6F850EB262D94",
@@ -369,246 +369,258 @@
     "sha256": "4FAE5DEB34E93A4FC1925D72DE01D0490816B3E2C8F3043AAF259F47557D95E8",
     "size_bytes": 168934,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_self_check_eval.json": {
     "sha256": "10F8577BF4F5007F94FFC0AF03014E7A22AC61083FDE01E024EE1B7AF4C03763",
     "size_bytes": 68993,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_self_consistency_eval.json": {
     "sha256": "38EB18BEA01F04056639549F4FF812328678A0D52F961212AC651D3A0F6F48D3",
     "size_bytes": 78382,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_analyser_sources.json": {
     "sha256": "AC84A9499E5EB7592BBDC3C2C6F9686FAB0C568A235516512D2DF9EEA9B783C1",
     "size_bytes": 24886,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_slm_fallback_evaluation.json": {
     "sha256": "720469AB55257FC8027CE01E57B0872342E8B8F3B5FBF123BD1BEE5A4E8B7F8C",
     "size_bytes": 1724,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/reserve_v11_pipeline_records.jsonl": {
     "sha256": "106EB79ED4CE18056AAB6BC791E5698EFF077D4FBFDC0EE88C074FC8541F6C05",
     "size_bytes": 324058,
     "line_count": 89,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/sql_dev_extended_v12_records.jsonl": {
     "sha256": "A130AD3B28358338C62BAECCF84D9144ED2F61C49621BD66176EB0A77E910ABD",
     "size_bytes": 312594,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_e3_pipeline_records.jsonl": {
     "sha256": "F8CD1B39F9D22F110C4379AE6064395B9F432F8747D794ED75C6B94CB6181AFC",
     "size_bytes": 106209,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/e3_dev_evaluation.json": {
     "sha256": "5A0772663B64B449C1FE9F7547F054875E35515D19EC0909E46A3189CA3F5A29",
     "size_bytes": 2473,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_e3_clean_pipeline_records.jsonl": {
     "sha256": "97519A975D650B562906B4F2BE7EF82A459D889F947C7D83102AAA0E7E895F8A",
     "size_bytes": 121974,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_e3_verified_pipeline_records.jsonl": {
     "sha256": "48E0BD444CC8FA05508FC6D1D9B393850979E16FBD7EAA0C520F2A476146663B",
     "size_bytes": 103561,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/e3_dev_verified_evaluation.json": {
     "sha256": "49FD1CBF25154B144AFB084DCFD39C0DDA23AA06F4D865EBD923959DA7C52A8E",
     "size_bytes": 2280,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/e3_heldout_secondary_evaluation.json": {
     "sha256": "B72E22BD9D01B09D0D2D485EE89D408A73E91A765FB1B7012999C2FE08C84715",
     "size_bytes": 3235,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/heldout_e3_pipeline_records.jsonl": {
     "sha256": "70DD870B18A82B224595F24E84B3EA41AD3459AE70026C6AA1E542F4D534D797",
     "size_bytes": 255858,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_e3_v2_evaluation.json": {
     "sha256": "1DFAE1FCFDECC4B8970E8B9CCD70ABC338A5B4E6662C3847BA4634A124A57CB8",
     "size_bytes": 1051,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_e3_v2_pipeline_records.jsonl": {
     "sha256": "9B6B96EAC206A9364696D14A8034DD9222D10C477F975FCC0922F24AF7422569",
     "size_bytes": 158330,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/e3_dev_track_b_diagnosis.json": {
     "sha256": "6E680307907451654909F5E26ECFAC3A21F873286387AF613A859035F8E63433",
     "size_bytes": 58481,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/e3_heldout_v2_secondary_evaluation.json": {
     "sha256": "E3253183E0B0FE9CECDE5D2116ABB7A8DA3C2C98CC3C58B3B38EE569E3FCBB7D",
     "size_bytes": 3222,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/heldout_e3_v2_pipeline_records.jsonl": {
     "sha256": "81954D64D66E1521638EB6D720C571F933608FB66D3AEBD50837DF78CCD5ADD6",
     "size_bytes": 252977,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_e4b_evaluation_summary.json": {
     "sha256": "DD3605D9379D9E64BD0374FAD2104BF8CDDB5F2679A69FFFE55324EC218EDB20",
     "size_bytes": 3991,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_e4b_pipeline_records.jsonl": {
     "sha256": "C55F637C22DEFD095BF8B4DD5D6B55E4EDC5AB49B962FE642888F927B9D4515B",
     "size_bytes": 68827,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_e4_evaluation_summary.json": {
     "sha256": "D8642B2D70CCE384162896845185F2A36D3236F6126ABC7C75EE38ECCF909D45",
     "size_bytes": 2007,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_e4_pipeline_records.jsonl": {
     "sha256": "6CA259F8AE691C64088EAC844E07EA4DEAEE574DE09F7D04E9593AFD11D06793",
     "size_bytes": 65089,
     "line_count": 150,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_route_headroom_records.jsonl": {
     "sha256": "DAE59F639D1FD08CACE53C56F09503C5A79E6A83CFFAEB03A07B2ED63CBC3383",
     "size_bytes": 165129,
     "line_count": 500,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/dev_route_headroom_summary.json": {
     "sha256": "DF6B55A6053B32A35EEADA6A658965F73976C15C32A24BEC8AF953D2B03C8CB2",
     "size_bytes": 5360,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/router_e4b_complete_route_records.jsonl": {
     "sha256": "A35DB2F20ED54964BE269C6ACE6EB59283747FF0AF72F426784CAAFDE4768818",
     "size_bytes": 968048,
     "line_count": 2000,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/router_e4b_pool_route_records.jsonl": {
     "sha256": "3DF8C0CA6E20D69B276C45455612712057C3F61BE79B3201D25444095155F2C0",
     "size_bytes": 377492,
     "line_count": 500,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/router_e4b_training_cv_report.json": {
     "sha256": "61A0566A6718F6C98549F17C315576C8D2102394FD8F84F5D350F9CB7FA41611",
     "size_bytes": 2158,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/router_training_cv_report.json": {
     "sha256": "78A48C53A19BFDF204CEAC3CA9C99D708FB303B07AD91D226E6AA07D2B2C6764",
     "size_bytes": 2117,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/router_train_pool_route_records.jsonl": {
     "sha256": "989C11BBC9D339DB0B8CB0A07B092047F19EBF1AF6CBEB67941059C75193DF5B",
     "size_bytes": 975644,
     "line_count": 2500,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/router_train_pool_route_summary.json": {
     "sha256": "621E52D61CC39F6ECCFDF701F62DF2E15208C0D629FD20355F668BE3E3EBFF1B",
     "size_bytes": 467,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/judge/dev_limit_check_records.jsonl": {
     "sha256": "D76AD89144367AB2A4C9117240C43E755A4218AB92A348C92C49458132EA0F2D",
     "size_bytes": 15776,
     "line_count": 10,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/judge/judge_summary_metrics.json": {
     "sha256": "562C98D93FAD39E746283AD3419017AEA2A259CBF5707BD68F9A6F320F23E50B",
     "size_bytes": 8999,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/judge/judge_trials_raw.jsonl": {
     "sha256": "CFC06817E029CFC97B91FC24F12352F7F0575351F6ED5FE22AB47DF8FFFE932C",
     "size_bytes": 21572,
     "line_count": 11,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/judge/judge_trials_raw_gemini38.jsonl": {
     "sha256": "4354843A019328B05878CF3CF402717B5CF72957A2A244BC7EC5C90ABC0214B5",
     "size_bytes": 13363,
     "line_count": 7,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/judge/judge_trials_raw_prometheus7b.jsonl": {
     "sha256": "F503D0DD21777748FB8BDDD3AC17C23009C7088184A4377A77DC5849AD69B34E",
     "size_bytes": 4436138,
     "line_count": 453,
-    "last_checked": "2026-10-18 18:33:37"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/reserve_final_pipeline_records.jsonl": {
     "sha256": "E43DE54C5ADBCBCE79A421DD8398AE8DC4137AA9E9960721112B8E7714CEE62D",
     "size_bytes": 146063,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/reserve_final_pipeline_run2_records.jsonl": {
     "sha256": "FC0CCE0341414B9F748B749C292F34AD7143C384E97BA285504CD8E888C2BA9C",
     "size_bytes": 147598,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/reserve_final_b1_gpt120b_records.jsonl": {
     "sha256": "400F4213AC4558CD9E5B5991B225B013871D190AC503CE8B929C0B92D51EADCF",
     "size_bytes": 146369,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/reserve_final_b1_qwen27b_records.jsonl": {
     "sha256": "37C1EC820A1C02C0D365E002165CDCCA3840030D6059F2B07498E58F37530191",
     "size_bytes": 497545,
     "line_count": 100,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
   },
   "results/phase4/reserve_final_evaluation_summary.json": {
-    "sha256": "235D979915582A902E3C3EAECDB5CD9947D34EDDB73220C33244B6018BAE78FA",
-    "size_bytes": 2797,
+    "sha256": "6896253B61202498D6E31FCCC743F4D2071ABD6711D87BFA1D8B086DA7A00320",
+    "size_bytes": 4615,
     "line_count": 0,
-    "last_checked": "2026-10-18 18:33:38"
+    "last_checked": "2026-10-18 20:42:55"
+  },
+  "results/phase4/reserve_final_b1_plus_code_gpt120b_records.jsonl": {
+    "sha256": "99383CFFFA8437B500F4375F5E769A9CA0A8AD629967D933F82F33873D12DC2C",
+    "size_bytes": 27228,
+    "line_count": 40,
+    "last_checked": "2026-10-18 20:42:55"
+  },
+  "results/phase4/reserve_final_b1_plus_code_qwen27b_records.jsonl": {
+    "sha256": "EA43BC02E6087E569A197E77FBB85CD45283EB0432B53C01FFA892BDD510DFFF",
+    "size_bytes": 212319,
+    "line_count": 40,
+    "last_checked": "2026-10-18 20:42:55"
   }
 }

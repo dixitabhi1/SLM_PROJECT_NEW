@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-18T12:53:41Z",
+  "timestamp": "2026-10-18T15:10:17Z",
   "reserve_hash": "bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db",
   "total_items": 100,
   "overall_accuracy": {
@@ -22,6 +22,49 @@
       "correct": 82,
       "total": 100,
       "pct": 82.0
+    },
+    "b1_plus_code_gpt120b": {
+      "correct": 73,
+      "total": 100,
+      "pct": 73.0
+    },
+    "b1_plus_code_qwen27b": {
+      "correct": 82,
+      "total": 100,
+      "pct": 82.0
+    }
+  },
+  "non_tool_required_80_items": {
+    "total": 80,
+    "slm_run1": {
+      "correct": 68,
+      "total": 80,
+      "pct": 85.0
+    },
+    "slm_run2": {
+      "correct": 68,
+      "total": 80,
+      "pct": 85.0
+    },
+    "b1_gpt120b": {
+      "correct": 76,
+      "total": 80,
+      "pct": 95.0
+    },
+    "b1_qwen27b": {
+      "correct": 75,
+      "total": 80,
+      "pct": 93.8
+    },
+    "b1_plus_code_gpt120b": {
+      "correct": 68,
+      "total": 80,
+      "pct": 85.0
+    },
+    "b1_plus_code_qwen27b": {
+      "correct": 76,
+      "total": 80,
+      "pct": 95.0
     }
   },
   "slm_run_agreement": {
@@ -63,55 +106,97 @@
       13.4
     ]
   },
+  "head_to_head_vs_120b_plus_code": {
+    "contingency": {
+      "slm_win": 12,
+      "both_right": 62,
+      "both_wrong": 1,
+      "llm_win": 11,
+      "missing": 14
+    },
+    "paired_difference_pp": 1.16,
+    "bootstrap_95_ci": [
+      -9.3,
+      11.63
+    ]
+  },
+  "head_to_head_vs_27b_plus_code": {
+    "contingency": {
+      "slm_win": 11,
+      "both_right": 71,
+      "both_wrong": 1,
+      "llm_win": 11,
+      "missing": 6
+    },
+    "paired_difference_pp": 0.0,
+    "bootstrap_95_ci": [
+      -9.57,
+      9.57
+    ]
+  },
   "category_breakdown": {
     "atomic_sql": {
       "total": 15,
       "slm_run1": 11,
       "slm_run2": 11,
       "gpt120b": 14,
-      "qwen27b": 14
+      "qwen27b": 14,
+      "gpt120b_plus_code": 14,
+      "qwen27b_plus_code": 14
     },
     "atomic_qa": {
       "total": 15,
       "slm_run1": 14,
       "slm_run2": 14,
       "gpt120b": 15,
-      "qwen27b": 15
+      "qwen27b": 15,
+      "gpt120b_plus_code": 15,
+      "qwen27b_plus_code": 15
     },
     "atomic_code": {
       "total": 15,
       "slm_run1": 11,
       "slm_run2": 11,
       "gpt120b": 15,
-      "qwen27b": 14
+      "qwen27b": 14,
+      "gpt120b_plus_code": 15,
+      "qwen27b_plus_code": 14
     },
     "atomic_math": {
       "total": 15,
       "slm_run1": 14,
       "slm_run2": 14,
       "gpt120b": 15,
-      "qwen27b": 15
+      "qwen27b": 15,
+      "gpt120b_plus_code": 15,
+      "qwen27b_plus_code": 15
     },
     "compound_solvable": {
       "total": 20,
       "slm_run1": 18,
       "slm_run2": 18,
       "gpt120b": 17,
-      "qwen27b": 17
+      "qwen27b": 17,
+      "gpt120b_plus_code": 9,
+      "qwen27b_plus_code": 18
     },
     "compound_tool_required": {
       "total": 20,
       "slm_run1": 19,
       "slm_run2": 19,
       "gpt120b": 4,
-      "qwen27b": 7
+      "qwen27b": 7,
+      "gpt120b_plus_code": 5,
+      "qwen27b_plus_code": 6
     }
   },
   "truncations": {
     "slm_run1": 0,
     "slm_run2": 0,
     "gpt120b": 0,
-    "qwen27b": 0
+    "qwen27b": 0,
+    "gpt120b_plus_code": 1,
+    "qwen27b_plus_code": 4
   },
   "latency_seconds": {
     "slm_run1": {

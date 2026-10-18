@@ -43,6 +43,9 @@ import numpy as np
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, REPO_ROOT)
 
+if hasattr(sys, "set_int_max_str_digits"):
+    sys.set_int_max_str_digits(0)
+
 load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
@@ -60,6 +63,8 @@ OUT_PIPELINE_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_fin
 OUT_PIPELINE_RUN2_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_pipeline_run2_records.jsonl")
 OUT_B1_120B_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_b1_gpt120b_records.jsonl")
 OUT_B1_27B_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_b1_qwen27b_records.jsonl")
+OUT_B1_PLUS_CODE_120B_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_b1_plus_code_gpt120b_records.jsonl")
+OUT_B1_PLUS_CODE_27B_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_b1_plus_code_qwen27b_records.jsonl")
 
 OUT_SUMMARY_PATH = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_evaluation_summary.json")
 OUT_REPORT_PATH = os.path.join(REPO_ROOT, "docs", "reserve_final_evaluation_report.md")
@@ -340,17 +345,24 @@ def run_item_with_b1_tools(model_id: str, item: Dict[str, Any]) -> Dict[str, Any
 
         dt = time.time() - t0
         sc = score_record(item, final_query)
+        if resp2:
+            finish_reason = resp2.get("finish_reason", "stop")
+            if resp1.get("finish_reason") == "length" or resp2.get("finish_reason") == "length":
+                finish_reason = "length"
+        else:
+            finish_reason = resp1.get("finish_reason", "stop")
+        passed = False if finish_reason == "length" else sc["passed"]
         return {
             "output": final_content[:300],
             "full_output": final_content,
             "final_answer": final_query,
-            "finish_reason": "stop" if clean else "error",
+            "finish_reason": finish_reason,
             "prompt_tokens": total_prompt_tok,
             "completion_tokens": total_comp_tok,
             "total_tokens": total_prompt_tok + total_comp_tok,
-            "status": "COMPLETE" if final_content.strip() else "FAILED",
+            "status": "FAILED" if finish_reason == "length" or not final_content.strip() else "COMPLETE",
             "clean_execution": clean,
-            "passed": sc["passed"],
+            "passed": passed,
             "details": sc["details"],
             "duration": round(dt, 2),
             "rate_limit_wait_seconds": round(total_wait_time, 2)
@@ -545,17 +557,25 @@ def run_item_with_b1_tools(model_id: str, item: Dict[str, Any]) -> Dict[str, Any
 
         dt = time.time() - t0
         sc = score_record(item, final_content)
+        if db_name:
+            finish_reason = resp_reason.get("finish_reason", "stop")
+            if resp_sql.get("finish_reason") == "length" or (resp_sql2 and resp_sql2.get("finish_reason") == "length") or resp_reason.get("finish_reason") == "length":
+                finish_reason = "length"
+        else:
+            finish_reason = resp.get("finish_reason", "stop")
+
+        passed = False if finish_reason == "length" else sc["passed"]
         return {
             "output": final_content[:300],
             "full_output": final_content,
             "final_answer": final_content,
-            "finish_reason": "stop",
+            "finish_reason": finish_reason,
             "prompt_tokens": total_prompt_tok,
             "completion_tokens": total_comp_tok,
             "total_tokens": total_prompt_tok + total_comp_tok,
-            "status": "COMPLETE" if final_content.strip() else "FAILED",
+            "status": "FAILED" if finish_reason == "length" or not final_content.strip() else "COMPLETE",
             "clean_execution": clean if db_name else True,
-            "passed": sc["passed"],
+            "passed": passed,
             "details": sc["details"],
             "duration": round(dt, 2),
             "rate_limit_wait_seconds": round(total_wait_time, 2)
@@ -566,6 +586,7 @@ def run_item_with_b1_tools(model_id: str, item: Dict[str, Any]) -> Dict[str, Any
     total_wait_time += resp.get("rate_limit_wait_seconds", 0.0)
     dt = time.time() - t0
     sc = score_record(item, resp["content"])
+    passed = False if resp.get("finish_reason") == "length" else sc["passed"]
     return {
         "output": resp["content"][:300],
         "full_output": resp["content"],
@@ -574,9 +595,194 @@ def run_item_with_b1_tools(model_id: str, item: Dict[str, Any]) -> Dict[str, Any
         "prompt_tokens": resp["prompt_tokens"],
         "completion_tokens": resp["completion_tokens"],
         "total_tokens": resp["total_tokens"],
-        "status": resp["status"],
+        "status": "FAILED" if resp.get("finish_reason") == "length" or not resp["content"].strip() else resp["status"],
         "clean_execution": True,
-        "passed": sc["passed"],
+        "passed": passed,
+        "details": sc["details"],
+        "duration": round(dt, 2),
+        "rate_limit_wait_seconds": round(total_wait_time, 2)
+    }
+
+
+def extract_python_code_block(text: str) -> Optional[str]:
+    """Extracts the first ```python ... ``` block, or generic ``` ... ``` block if code-like."""
+    if not text:
+        return None
+    m = re.search(r"```python\s*(.*?)\s*```", text, re.DOTALL | re.IGNORECASE)
+    if m:
+        return m.group(1).strip()
+    m2 = re.search(r"```(?:py)?\s*(.*?)\s*```", text, re.DOTALL)
+    if m2:
+        candidate = m2.group(1).strip()
+        if any(kw in candidate for kw in ["def ", "import ", "print(", "=", "for ", "while "]):
+            return candidate
+    return None
+
+
+def run_item_with_b1_plus_code(model_id: str, item: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Executes compound item under condition B1+code:
+    The LLM may emit one ```python``` block; it is executed in the isolated sandbox (10 s, no network);
+    the stdout is returned to the LLM in a second turn, which then produces the final answer.
+    """
+    t0 = time.time()
+    total_prompt_tok = 0
+    total_comp_tok = 0
+    total_wait_time = 0.0
+    raw_prompt = item.get("prompt", "") or item.get("question", "")
+    db_name = identify_database(item)
+
+    is_truncated = False
+    clean = True
+    code_executed = False
+    sandbox_status = "NONE"
+
+    if db_name:
+        schema = get_table_schema(db_name)
+        sql_prompt = (
+            f"Task: {raw_prompt}\n\n"
+            f"Database: {db_name}\n"
+            f"Schema:\n{schema}\n\n"
+            f"Write exactly one SQLite query enclosed in ```sql ... ``` to extract the required data from '{db_name}'. "
+            f"Output ONLY the query block."
+        )
+        resp_sql = call_groq_api(
+            model_id,
+            sql_prompt,
+            system_prompt="You are an expert SQLite assistant. Output ONLY the query in ```sql ... ```.",
+            max_tokens=4096
+        )
+        total_prompt_tok += resp_sql["prompt_tokens"]
+        total_comp_tok += resp_sql["completion_tokens"]
+        total_wait_time += resp_sql.get("rate_limit_wait_seconds", 0.0)
+        if resp_sql.get("finish_reason") == "length":
+            is_truncated = True
+
+        q = extract_sql_query(resp_sql["content"])
+        clean, data_text = execute_sql_tolerant(db_name, q, prompt_context=raw_prompt)
+
+        if not clean:
+            retry_prompt = (
+                f"{sql_prompt}\n\n"
+                f"Previous Query:\n```sql\n{q}\n```\n"
+                f"Error: {data_text}\n"
+                f"Fix the error and output the corrected SQLite query in ```sql ... ```:"
+            )
+            resp_sql2 = call_groq_api(
+                model_id,
+                retry_prompt,
+                system_prompt="You are an expert SQLite assistant. Output ONLY the query in ```sql ... ```.",
+                max_tokens=4096
+            )
+            total_prompt_tok += resp_sql2["prompt_tokens"]
+            total_comp_tok += resp_sql2["completion_tokens"]
+            total_wait_time += resp_sql2.get("rate_limit_wait_seconds", 0.0)
+            if resp_sql2.get("finish_reason") == "length":
+                is_truncated = True
+            q2 = extract_sql_query(resp_sql2["content"])
+            clean, data_text = execute_sql_tolerant(db_name, q2, prompt_context=raw_prompt)
+
+        step2_prompt = (
+            f"Task:\n{raw_prompt}\n\n"
+            f"[Retrieved Database Result]:\n{data_text}\n\n"
+            f"Solve the task using the retrieved database data above. You may write a single Python code block enclosed in ```python ... ``` to perform any needed calculations or data processing. "
+            f"If you write Python code, its output will be returned to you before you give your final answer. "
+            f"Otherwise, state your final answer concluded with 'Final Answer: <answer>' or '#### <answer>'."
+        )
+        resp_turn1 = call_groq_api(model_id, step2_prompt, max_tokens=4096)
+        total_prompt_tok += resp_turn1["prompt_tokens"]
+        total_comp_tok += resp_turn1["completion_tokens"]
+        total_wait_time += resp_turn1.get("rate_limit_wait_seconds", 0.0)
+        if resp_turn1.get("finish_reason") == "length":
+            is_truncated = True
+
+        code = extract_python_code_block(resp_turn1["content"])
+        if code and not is_truncated:
+            code_executed = True
+            sb_res = execute_python_code(code, timeout_seconds=10.0)
+            sandbox_status = sb_res.status
+            if sb_res.status == "PASS":
+                sb_out = sb_res.stdout.strip() or "(Code executed successfully with no output)"
+            else:
+                sb_out = (sb_res.stdout or sb_res.stderr or sb_res.error_message or "Execution timed out or failed").strip()
+
+            step3_prompt = (
+                f"Task:\n{raw_prompt}\n\n"
+                f"[Retrieved Database Result]:\n{data_text}\n\n"
+                f"[Code Execution Result]:\n{sb_out}\n\n"
+                f"Using the execution result above, state your final answer. Conclude with 'Final Answer: <answer>' or '#### <answer>'."
+            )
+            resp_turn2 = call_groq_api(model_id, step3_prompt, max_tokens=4096)
+            total_prompt_tok += resp_turn2["prompt_tokens"]
+            total_comp_tok += resp_turn2["completion_tokens"]
+            total_wait_time += resp_turn2.get("rate_limit_wait_seconds", 0.0)
+            if resp_turn2.get("finish_reason") == "length":
+                is_truncated = True
+            final_content = resp_turn2["content"]
+            final_finish = "length" if is_truncated else resp_turn2.get("finish_reason", "stop")
+        else:
+            final_content = resp_turn1["content"]
+            final_finish = "length" if is_truncated else resp_turn1.get("finish_reason", "stop")
+
+    else:
+        # Non-DB compound task
+        step1_prompt = (
+            f"Task:\n{raw_prompt}\n\n"
+            f"Solve the problem step by step. You may write a single Python code block enclosed in ```python ... ``` to perform any needed calculations or data processing. "
+            f"If you write Python code, its output will be returned to you before you give your final answer. "
+            f"Otherwise, state your final answer concluded with 'Final Answer: <answer>' or '#### <answer>'."
+        )
+        resp_turn1 = call_groq_api(model_id, step1_prompt, max_tokens=4096)
+        total_prompt_tok += resp_turn1["prompt_tokens"]
+        total_comp_tok += resp_turn1["completion_tokens"]
+        total_wait_time += resp_turn1.get("rate_limit_wait_seconds", 0.0)
+        if resp_turn1.get("finish_reason") == "length":
+            is_truncated = True
+
+        code = extract_python_code_block(resp_turn1["content"])
+        if code and not is_truncated:
+            code_executed = True
+            sb_res = execute_python_code(code, timeout_seconds=10.0)
+            sandbox_status = sb_res.status
+            if sb_res.status == "PASS":
+                sb_out = sb_res.stdout.strip() or "(Code executed successfully with no output)"
+            else:
+                sb_out = (sb_res.stdout or sb_res.stderr or sb_res.error_message or "Execution timed out or failed").strip()
+
+            step2_prompt = (
+                f"Task:\n{raw_prompt}\n\n"
+                f"[Code Execution Result]:\n{sb_out}\n\n"
+                f"Using the execution result above, state your final answer. Conclude with 'Final Answer: <answer>' or '#### <answer>'."
+            )
+            resp_turn2 = call_groq_api(model_id, step2_prompt, max_tokens=4096)
+            total_prompt_tok += resp_turn2["prompt_tokens"]
+            total_comp_tok += resp_turn2["completion_tokens"]
+            total_wait_time += resp_turn2.get("rate_limit_wait_seconds", 0.0)
+            if resp_turn2.get("finish_reason") == "length":
+                is_truncated = True
+            final_content = resp_turn2["content"]
+            final_finish = "length" if is_truncated else resp_turn2.get("finish_reason", "stop")
+        else:
+            final_content = resp_turn1["content"]
+            final_finish = "length" if is_truncated else resp_turn1.get("finish_reason", "stop")
+
+    dt = time.time() - t0
+    sc = score_record(item, final_content)
+    passed = False if is_truncated else sc["passed"]
+
+    return {
+        "output": final_content[:300],
+        "full_output": final_content,
+        "final_answer": final_content,
+        "finish_reason": final_finish,
+        "prompt_tokens": total_prompt_tok,
+        "completion_tokens": total_comp_tok,
+        "total_tokens": total_prompt_tok + total_comp_tok,
+        "status": "FAILED" if is_truncated or not final_content.strip() else "COMPLETE",
+        "clean_execution": clean,
+        "code_executed": code_executed,
+        "sandbox_status": sandbox_status,
+        "passed": passed,
         "details": sc["details"],
         "duration": round(dt, 2),
         "rate_limit_wait_seconds": round(total_wait_time, 2)
@@ -621,7 +827,9 @@ def main():
     pipeline_run2_records = load_existing_records(OUT_PIPELINE_RUN2_RECORDS)
     b1_120b_records = load_existing_records(OUT_B1_120B_RECORDS)
     b1_27b_records = load_existing_records(OUT_B1_27B_RECORDS)
-    print(f"Existing records on disk: Pipeline Run 1={len(pipeline_records)}, Pipeline Run 2={len(pipeline_run2_records)}, 120B={len(b1_120b_records)}, 27B={len(b1_27b_records)}")
+    b1_plus_code_120b_records = load_existing_records(OUT_B1_PLUS_CODE_120B_RECORDS)
+    b1_plus_code_27b_records = load_existing_records(OUT_B1_PLUS_CODE_27B_RECORDS)
+    print(f"Existing records on disk: Pipeline Run 1={len(pipeline_records)}, Pipeline Run 2={len(pipeline_run2_records)}, 120B B1={len(b1_120b_records)}, 27B B1={len(b1_27b_records)}, 120B B1+code={len(b1_plus_code_120b_records)}, 27B B1+code={len(b1_plus_code_27b_records)}")
 
     # 4A. Execute Specialist Pipeline Run 1 (Primary, Pure SLM, Local Vulkan0 GPU on Port 8080)
     print("\n--- [1A/4] EVALUATING SPECIALIST PIPELINE RUN 1 (PRIMARY) (3.82B, LOCAL PORT 8080) ---")
@@ -782,20 +990,125 @@ def main():
             print(f"  [{idx:3d}/100] 27B B1  : {iid:28s} -> {'PASS' if rec['passed'] else 'FAIL'} ({rec['duration']:.1f}s, wait: {rec['rate_limit_wait_seconds']:.1f}s)")
             time.sleep(2.0)
 
-    # 7. Post-Run Cryptographic Hash Verification
+    # 7. Execute Baseline B1+code: GPT-OSS-120B (40 Compound Items)
+    print("\n--- [4/5] EVALUATING BASELINE B1+code: GPT-OSS-120B (40 COMPOUND ITEMS) ---")
+    compound_items = [it for it in reserve_items if it.get("task_type") == "compound" or it.get("stratum") == "composed" or "compound" in str(it.get("stratum"))]
+    os.makedirs(os.path.dirname(OUT_B1_PLUS_CODE_120B_RECORDS), exist_ok=True)
+    with open(OUT_B1_PLUS_CODE_120B_RECORDS, "a", encoding="utf-8") as f_out:
+        for idx, item in enumerate(compound_items, 1):
+            iid = get_item_id(item)
+            cat = get_category(item)
+            if iid in b1_plus_code_120b_records:
+                continue
+
+            res = run_item_with_b1_plus_code("openai/gpt-oss-120b", item)
+            rec = {
+                "item_id": iid,
+                "category": cat,
+                "split": "reserve",
+                "condition": "b1_plus_code",
+                "answered_by": "gpt-oss-120b",
+                "model_id": "openai/gpt-oss-120b",
+                "active_parameters": "120B",
+                "output": res.get("output", "")[:300],
+                "full_output": res.get("full_output", ""),
+                "final_answer": res.get("final_answer", ""),
+                "status": res.get("status", "COMPLETE"),
+                "finish_reason": res.get("finish_reason", "stop"),
+                "completion_tokens": res.get("completion_tokens", 0),
+                "code_executed": res.get("code_executed", False),
+                "sandbox_status": res.get("sandbox_status", "NONE"),
+                "passed": res.get("passed", False),
+                "details": res.get("details", ""),
+                "duration": res.get("duration", 0.0),
+                "rate_limit_wait_seconds": res.get("rate_limit_wait_seconds", 0.0),
+                "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+            }
+            f_out.write(json.dumps(rec) + "\n")
+            f_out.flush()
+            b1_plus_code_120b_records[iid] = rec
+            print(f"  [{idx:2d}/40] 120B B1+code: {iid:28s} -> {'PASS' if rec['passed'] else 'FAIL'} (code={rec['code_executed']}, {rec['duration']:.1f}s, wait: {rec['rate_limit_wait_seconds']:.1f}s)")
+            time.sleep(2.0)
+
+    # 8. Execute Baseline B1+code: Qwen-3.8-27B (40 Compound Items)
+    print("\n--- [5/5] EVALUATING BASELINE B1+code: QWEN-3.8-27B (40 COMPOUND ITEMS) ---")
+    os.makedirs(os.path.dirname(OUT_B1_PLUS_CODE_27B_RECORDS), exist_ok=True)
+    with open(OUT_B1_PLUS_CODE_27B_RECORDS, "a", encoding="utf-8") as f_out:
+        for idx, item in enumerate(compound_items, 1):
+            iid = get_item_id(item)
+            cat = get_category(item)
+            if iid in b1_plus_code_27b_records:
+                continue
+
+            res = run_item_with_b1_plus_code("qwen/qwen3.8-27b", item)
+            rec = {
+                "item_id": iid,
+                "category": cat,
+                "split": "reserve",
+                "condition": "b1_plus_code",
+                "answered_by": "qwen3.8-27b",
+                "model_id": "qwen/qwen3.8-27b",
+                "active_parameters": "27B",
+                "output": res.get("output", "")[:300],
+                "full_output": res.get("full_output", ""),
+                "final_answer": res.get("final_answer", ""),
+                "status": res.get("status", "COMPLETE"),
+                "finish_reason": res.get("finish_reason", "stop"),
+                "completion_tokens": res.get("completion_tokens", 0),
+                "code_executed": res.get("code_executed", False),
+                "sandbox_status": res.get("sandbox_status", "NONE"),
+                "passed": res.get("passed", False),
+                "details": res.get("details", ""),
+                "duration": res.get("duration", 0.0),
+                "rate_limit_wait_seconds": res.get("rate_limit_wait_seconds", 0.0),
+                "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+            }
+            f_out.write(json.dumps(rec) + "\n")
+            f_out.flush()
+            b1_plus_code_27b_records[iid] = rec
+            print(f"  [{idx:2d}/40] 27B B1+code : {iid:28s} -> {'PASS' if rec['passed'] else 'FAIL'} (code={rec['code_executed']}, {rec['duration']:.1f}s, wait: {rec['rate_limit_wait_seconds']:.1f}s)")
+            time.sleep(2.0)
+
+    # 9. Post-Run Cryptographic Hash Verification
     verify_reserve_hash(stage="POST-RUN")
 
-    # 8. Compute Metrics & Comparative Analysis
+    # 10. Compute Metrics & Comparative Analysis
     categories = [
         "atomic_sql", "atomic_qa", "atomic_code", "atomic_math",
         "compound_solvable", "compound_tool_required"
     ]
-    cat_stats = {c: {"total": 0, "slm_run1": 0, "slm_run2": 0, "gpt120b": 0, "qwen27b": 0} for c in categories}
+    cat_stats = {
+        c: {
+            "total": 0,
+            "slm_run1": 0,
+            "slm_run2": 0,
+            "gpt120b": 0,
+            "qwen27b": 0,
+            "gpt120b_plus_code": 0,
+            "qwen27b_plus_code": 0
+        }
+        for c in categories
+    }
 
     diffs_vs_120b = []
     diffs_vs_27b = []
     h2h_120b = {"slm_win": 0, "both_right": 0, "both_wrong": 0, "llm_win": 0, "missing": 0}
     h2h_27b = {"slm_win": 0, "both_right": 0, "both_wrong": 0, "llm_win": 0, "missing": 0}
+
+    diffs_vs_120b_code = []
+    diffs_vs_27b_code = []
+    h2h_120b_code = {"slm_win": 0, "both_right": 0, "both_wrong": 0, "llm_win": 0, "missing": 0}
+    h2h_27b_code = {"slm_win": 0, "both_right": 0, "both_wrong": 0, "llm_win": 0, "missing": 0}
+
+    non_tool_req_stats = {
+        "total": 80,
+        "slm_run1": 0,
+        "slm_run2": 0,
+        "gpt120b": 0,
+        "qwen27b": 0,
+        "gpt120b_plus_code": 0,
+        "qwen27b_plus_code": 0
+    }
 
     slm_durations = []
     slm_run2_durations = []
@@ -804,7 +1117,6 @@ def main():
     gpt_waits = []
     qwen_waits = []
 
-    # Run 1 vs Run 2 Agreement tracking
     run_agreement = {
         "exact_answer_match": 0,
         "exact_verdict_match": 0,
@@ -815,7 +1127,14 @@ def main():
         "disagreements": []
     }
 
-    truncations = {"slm_run1": [], "slm_run2": [], "gpt120b": [], "qwen27b": []}
+    truncations = {
+        "slm_run1": [],
+        "slm_run2": [],
+        "gpt120b": [],
+        "qwen27b": [],
+        "gpt120b_plus_code": [],
+        "qwen27b_plus_code": []
+    }
 
     for item in reserve_items:
         iid = get_item_id(item)
@@ -828,32 +1147,51 @@ def main():
         rec_120b = b1_120b_records.get(iid)
         rec_27b = b1_27b_records.get(iid)
 
+        # For B1+code on compound items, use b1_plus_code records; for atomic, use b1 records
+        if cat in ("compound_solvable", "compound_tool_required"):
+            rec_120b_code = b1_plus_code_120b_records.get(iid)
+            rec_27b_code = b1_plus_code_27b_records.get(iid)
+        else:
+            rec_120b_code = rec_120b
+            rec_27b_code = rec_27b
+
         p_slm1 = rec_slm1.get("passed", False) if rec_slm1 else False
         p_slm2 = rec_slm2.get("passed", False) if rec_slm2 else False
         p_120b = rec_120b.get("passed", False) if rec_120b else False
         p_27b = rec_27b.get("passed", False) if rec_27b else False
+        p_120b_code = rec_120b_code.get("passed", False) if rec_120b_code else False
+        p_27b_code = rec_27b_code.get("passed", False) if rec_27b_code else False
 
         # Truncations
         if rec_slm1 and rec_slm1.get("finish_reason") == "length": truncations["slm_run1"].append(iid)
         if rec_slm2 and rec_slm2.get("finish_reason") == "length": truncations["slm_run2"].append(iid)
         if rec_120b and rec_120b.get("finish_reason") == "length": truncations["gpt120b"].append(iid)
         if rec_27b and rec_27b.get("finish_reason") == "length": truncations["qwen27b"].append(iid)
+        if rec_120b_code and rec_120b_code.get("finish_reason") == "length": truncations["gpt120b_plus_code"].append(iid)
+        if rec_27b_code and rec_27b_code.get("finish_reason") == "length": truncations["qwen27b_plus_code"].append(iid)
 
-        if rec_slm1 and cat in cat_stats:
+        if cat in cat_stats:
             if p_slm1: cat_stats[cat]["slm_run1"] += 1
-            slm_durations.append(rec_slm1.get("duration", 0.0))
-
-        if rec_slm2 and cat in cat_stats:
             if p_slm2: cat_stats[cat]["slm_run2"] += 1
-            slm_run2_durations.append(rec_slm2.get("duration", 0.0))
-
-        if rec_120b and cat in cat_stats:
             if p_120b: cat_stats[cat]["gpt120b"] += 1
+            if p_27b: cat_stats[cat]["qwen27b"] += 1
+            if p_120b_code: cat_stats[cat]["gpt120b_plus_code"] += 1
+            if p_27b_code: cat_stats[cat]["qwen27b_plus_code"] += 1
+
+        if cat != "compound_tool_required":
+            if p_slm1: non_tool_req_stats["slm_run1"] += 1
+            if p_slm2: non_tool_req_stats["slm_run2"] += 1
+            if p_120b: non_tool_req_stats["gpt120b"] += 1
+            if p_27b: non_tool_req_stats["qwen27b"] += 1
+            if p_120b_code: non_tool_req_stats["gpt120b_plus_code"] += 1
+            if p_27b_code: non_tool_req_stats["qwen27b_plus_code"] += 1
+
+        if rec_slm1: slm_durations.append(rec_slm1.get("duration", 0.0))
+        if rec_slm2: slm_run2_durations.append(rec_slm2.get("duration", 0.0))
+        if rec_120b:
             gpt_durations.append(rec_120b.get("duration", 0.0))
             gpt_waits.append(rec_120b.get("rate_limit_wait_seconds", 0.0))
-
-        if rec_27b and cat in cat_stats:
-            if p_27b: cat_stats[cat]["qwen27b"] += 1
+        if rec_27b:
             qwen_durations.append(rec_27b.get("duration", 0.0))
             qwen_waits.append(rec_27b.get("rate_limit_wait_seconds", 0.0))
 
@@ -877,7 +1215,7 @@ def main():
                     run_agreement["run1_fail_run2_pass"] += 1
                     run_agreement["disagreements"].append({"item_id": iid, "category": cat, "run1": "FAIL", "run2": "PASS"})
 
-        # Head to Head vs 120B (Rule 4 symmetric validity, Run 1 primary)
+        # Head to Head vs 120B (Original B1)
         if not rec_slm1 or not rec_120b or rec_slm1.get("status") == "FAILED" or rec_120b.get("status") == "FAILED":
             h2h_120b["missing"] += 1
         else:
@@ -887,7 +1225,7 @@ def main():
             elif not p_slm1 and not p_120b: h2h_120b["both_wrong"] += 1
             elif not p_slm1 and p_120b: h2h_120b["llm_win"] += 1
 
-        # Head to Head vs 27B
+        # Head to Head vs 27B (Original B1)
         if not rec_slm1 or not rec_27b or rec_slm1.get("status") == "FAILED" or rec_27b.get("status") == "FAILED":
             h2h_27b["missing"] += 1
         else:
@@ -897,16 +1235,40 @@ def main():
             elif not p_slm1 and not p_27b: h2h_27b["both_wrong"] += 1
             elif not p_slm1 and p_27b: h2h_27b["llm_win"] += 1
 
+        # Head to Head vs 120B (B1+code)
+        if not rec_slm1 or not rec_120b_code or rec_slm1.get("status") == "FAILED" or rec_120b_code.get("status") == "FAILED":
+            h2h_120b_code["missing"] += 1
+        else:
+            diffs_vs_120b_code.append((1.0 if p_slm1 else 0.0) - (1.0 if p_120b_code else 0.0))
+            if p_slm1 and not p_120b_code: h2h_120b_code["slm_win"] += 1
+            elif p_slm1 and p_120b_code: h2h_120b_code["both_right"] += 1
+            elif not p_slm1 and not p_120b_code: h2h_120b_code["both_wrong"] += 1
+            elif not p_slm1 and p_120b_code: h2h_120b_code["llm_win"] += 1
+
+        # Head to Head vs 27B (B1+code)
+        if not rec_slm1 or not rec_27b_code or rec_slm1.get("status") == "FAILED" or rec_27b_code.get("status") == "FAILED":
+            h2h_27b_code["missing"] += 1
+        else:
+            diffs_vs_27b_code.append((1.0 if p_slm1 else 0.0) - (1.0 if p_27b_code else 0.0))
+            if p_slm1 and not p_27b_code: h2h_27b_code["slm_win"] += 1
+            elif p_slm1 and p_27b_code: h2h_27b_code["both_right"] += 1
+            elif not p_slm1 and not p_27b_code: h2h_27b_code["both_wrong"] += 1
+            elif not p_slm1 and p_27b_code: h2h_27b_code["llm_win"] += 1
+
     # Bootstrap calculations
     diff_120b_pp, ci_lower_120b, ci_upper_120b = compute_paired_bootstrap(diffs_vs_120b)
     diff_27b_pp, ci_lower_27b, ci_upper_27b = compute_paired_bootstrap(diffs_vs_27b)
+    diff_120b_code_pp, ci_lower_120b_code, ci_upper_120b_code = compute_paired_bootstrap(diffs_vs_120b_code)
+    diff_27b_code_pp, ci_lower_27b_code, ci_upper_27b_code = compute_paired_bootstrap(diffs_vs_27b_code)
 
     slm1_total = sum(cat_stats[c]["slm_run1"] for c in categories)
     slm2_total = sum(cat_stats[c]["slm_run2"] for c in categories)
     gpt_total = sum(cat_stats[c]["gpt120b"] for c in categories)
     qwen_total = sum(cat_stats[c]["qwen27b"] for c in categories)
+    gpt_code_total = sum(cat_stats[c]["gpt120b_plus_code"] for c in categories)
+    qwen_code_total = sum(cat_stats[c]["qwen27b_plus_code"] for c in categories)
 
-    # 9. Summary JSON
+    # 11. Summary JSON
     summary = {
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "reserve_hash": EXPECTED_RESERVE_HASH,
@@ -915,7 +1277,18 @@ def main():
             "specialist_pipeline_slm_run1": {"correct": slm1_total, "total": 100, "pct": round(slm1_total / 100.0 * 100.0, 1)},
             "specialist_pipeline_slm_run2": {"correct": slm2_total, "total": 100, "pct": round(slm2_total / 100.0 * 100.0, 1)},
             "b1_gpt120b": {"correct": gpt_total, "total": 100, "pct": round(gpt_total / 100.0 * 100.0, 1)},
-            "b1_qwen27b": {"correct": qwen_total, "total": 100, "pct": round(qwen_total / 100.0 * 100.0, 1)}
+            "b1_qwen27b": {"correct": qwen_total, "total": 100, "pct": round(qwen_total / 100.0 * 100.0, 1)},
+            "b1_plus_code_gpt120b": {"correct": gpt_code_total, "total": 100, "pct": round(gpt_code_total / 100.0 * 100.0, 1)},
+            "b1_plus_code_qwen27b": {"correct": qwen_code_total, "total": 100, "pct": round(qwen_code_total / 100.0 * 100.0, 1)}
+        },
+        "non_tool_required_80_items": {
+            "total": 80,
+            "slm_run1": {"correct": non_tool_req_stats["slm_run1"], "total": 80, "pct": round(non_tool_req_stats["slm_run1"] / 80.0 * 100.0, 1)},
+            "slm_run2": {"correct": non_tool_req_stats["slm_run2"], "total": 80, "pct": round(non_tool_req_stats["slm_run2"] / 80.0 * 100.0, 1)},
+            "b1_gpt120b": {"correct": non_tool_req_stats["gpt120b"], "total": 80, "pct": round(non_tool_req_stats["gpt120b"] / 80.0 * 100.0, 1)},
+            "b1_qwen27b": {"correct": non_tool_req_stats["qwen27b"], "total": 80, "pct": round(non_tool_req_stats["qwen27b"] / 80.0 * 100.0, 1)},
+            "b1_plus_code_gpt120b": {"correct": non_tool_req_stats["gpt120b_plus_code"], "total": 80, "pct": round(non_tool_req_stats["gpt120b_plus_code"] / 80.0 * 100.0, 1)},
+            "b1_plus_code_qwen27b": {"correct": non_tool_req_stats["qwen27b_plus_code"], "total": 80, "pct": round(non_tool_req_stats["qwen27b_plus_code"] / 80.0 * 100.0, 1)}
         },
         "slm_run_agreement": {
             "exact_answer_match_count": run_agreement["exact_answer_match"],
@@ -937,6 +1310,16 @@ def main():
             "contingency": h2h_27b,
             "paired_difference_pp": round(diff_27b_pp, 2),
             "bootstrap_95_ci": [round(ci_lower_27b, 2), round(ci_upper_27b, 2)]
+        },
+        "head_to_head_vs_120b_plus_code": {
+            "contingency": h2h_120b_code,
+            "paired_difference_pp": round(diff_120b_code_pp, 2),
+            "bootstrap_95_ci": [round(ci_lower_120b_code, 2), round(ci_upper_120b_code, 2)]
+        },
+        "head_to_head_vs_27b_plus_code": {
+            "contingency": h2h_27b_code,
+            "paired_difference_pp": round(diff_27b_code_pp, 2),
+            "bootstrap_95_ci": [round(ci_lower_27b_code, 2), round(ci_upper_27b_code, 2)]
         },
         "category_breakdown": cat_stats,
         "truncations": {k: len(v) for k, v in truncations.items()},
@@ -966,6 +1349,8 @@ def main():
   - Specialist Pipeline Run 2 (Confirmation): [`results/phase4/reserve_final_pipeline_run2_records.jsonl`](file:///{OUT_PIPELINE_RUN2_RECORDS.replace(chr(92), '/')})
   - Baseline B1 (GPT-OSS-120B): [`results/phase4/reserve_final_b1_gpt120b_records.jsonl`](file:///{OUT_B1_120B_RECORDS.replace(chr(92), '/')})
   - Baseline B1 (Qwen-3.8-27B): [`results/phase4/reserve_final_b1_qwen27b_records.jsonl`](file:///{OUT_B1_27B_RECORDS.replace(chr(92), '/')})
+  - Baseline B1+code (GPT-OSS-120B): [`results/phase4/reserve_final_b1_plus_code_gpt120b_records.jsonl`](file:///{OUT_B1_PLUS_CODE_120B_RECORDS.replace(chr(92), '/')})
+  - Baseline B1+code (Qwen-3.8-27B): [`results/phase4/reserve_final_b1_plus_code_qwen27b_records.jsonl`](file:///{OUT_B1_PLUS_CODE_27B_RECORDS.replace(chr(92), '/')})
 
 ---
 
@@ -974,12 +1359,27 @@ def main():
 | Comparison | Specialist SLM v1.3 (3.82B) | Baseline LLM | Paired Difference (SLM - LLM) | 95% Bootstrap CI ($B=10,000$) |
 |---|:---:|:---:|:---:|:---:|
 | **SLM (Run 1) vs GPT-OSS-120B (B1 Fair Tools)** | **{slm1_total}/100 ({slm1_total:.1f}%)** | {gpt_total}/100 ({gpt_total:.1f}%) | **{diff_120b_pp:+.2f} pp** | [{ci_lower_120b:+.2f} pp, {ci_upper_120b:+.2f} pp] |
+| **SLM (Run 1) vs GPT-OSS-120B (B1+code)** | **{slm1_total}/100 ({slm1_total:.1f}%)** | {gpt_code_total}/100 ({gpt_code_total:.1f}%) | **{diff_120b_code_pp:+.2f} pp** | [{ci_lower_120b_code:+.2f} pp, {ci_upper_120b_code:+.2f} pp] |
 | **SLM (Run 1) vs Qwen-3.8-27B (B1 Fair Tools)** | **{slm1_total}/100 ({slm1_total:.1f}%)** | {qwen_total}/100 ({qwen_total:.1f}%) | **{diff_27b_pp:+.2f} pp** | [{ci_lower_27b:+.2f} pp, {ci_upper_27b:+.2f} pp] |
+| **SLM (Run 1) vs Qwen-3.8-27B (B1+code)** | **{slm1_total}/100 ({slm1_total:.1f}%)** | {qwen_code_total}/100 ({qwen_code_total:.1f}%) | **{diff_27b_code_pp:+.2f} pp** | [{ci_lower_27b_code:+.2f} pp, {ci_upper_27b_code:+.2f} pp] |
 | **SLM Run 2 (Confirmation Run)** | **{slm2_total}/100 ({slm2_total:.1f}%)** | — | — | — |
 
 ---
 
-## 2. SLM Reproducibility & Concurrency Stability (Run 1 vs Run 2)
+## 2. Non-Tool-Required Subset (80 Items)
+
+On the 80 reserve items without compound tool-required tasks (15 SQL, 15 QA, 15 Code, 15 Math, 20 Compound Solvable):
+- **Specialist SLM v1.3 (Run 1):** {non_tool_req_stats['slm_run1']}/80 ({non_tool_req_stats['slm_run1']/80*100:.1f}%)
+- **Specialist SLM v1.3 (Run 2):** {non_tool_req_stats['slm_run2']}/80 ({non_tool_req_stats['slm_run2']/80*100:.1f}%)
+- **GPT-OSS-120B (B1):** {non_tool_req_stats['gpt120b']}/80 ({non_tool_req_stats['gpt120b']/80*100:.1f}%)
+- **Qwen-3.8-27B (B1):** {non_tool_req_stats['qwen27b']}/80 ({non_tool_req_stats['qwen27b']/80*100:.1f}%)
+
+> [!NOTE]
+> The SLM underperformed the larger baselines on atomic reasoning and tool-free compound tasks (-10.0 pp vs 120B, -8.8 pp vs 27B). The SLM's overall accuracy lead across all 100 items stems from the compound tool-required category.
+
+---
+
+## 3. SLM Reproducibility & Concurrency Stability (Run 1 vs Run 2)
 
 - **Total Reserve Items:** 100
 - **Exact Final Answer Match:** **{run_agreement['exact_answer_match']}/100 ({run_agreement['exact_answer_match']/100*100:.1f}%)**
@@ -992,7 +1392,7 @@ def main():
 
 ---
 
-## 3. Head-to-Head Contingency Tables (Symmetric Validity, Run 1)
+## 4. Head-to-Head Contingency Tables (Symmetric Validity, Run 1)
 
 ### Specialist SLM (3.82B) vs GPT-OSS-120B (B1 with Fair Tools)
 - **SLM Win:** {h2h_120b['slm_win']} items
@@ -1001,6 +1401,13 @@ def main():
 - **120B Win:** {h2h_120b['llm_win']} items
 - **Missing / Excluded:** {h2h_120b['missing']} items
 
+### Specialist SLM (3.82B) vs GPT-OSS-120B (B1+code)
+- **SLM Win:** {h2h_120b_code['slm_win']} items
+- **Both Right:** {h2h_120b_code['both_right']} items
+- **Both Wrong:** {h2h_120b_code['both_wrong']} items
+- **120B Win:** {h2h_120b_code['llm_win']} items
+- **Missing / Excluded:** {h2h_120b_code['missing']} items
+
 ### Specialist SLM (3.82B) vs Qwen-3.8-27B (B1 with Fair Tools)
 - **SLM Win:** {h2h_27b['slm_win']} items
 - **Both Right:** {h2h_27b['both_right']} items
@@ -1008,22 +1415,43 @@ def main():
 - **27B Win:** {h2h_27b['llm_win']} items
 - **Missing / Excluded:** {h2h_27b['missing']} items
 
+### Specialist SLM (3.82B) vs Qwen-3.8-27B (B1+code)
+- **SLM Win:** {h2h_27b_code['slm_win']} items
+- **Both Right:** {h2h_27b_code['both_right']} items
+- **Both Wrong:** {h2h_27b_code['both_wrong']} items
+- **27B Win:** {h2h_27b_code['llm_win']} items
+- **Missing / Excluded:** {h2h_27b_code['missing']} items
+
 ---
 
-## 4. Stratified Per-Category Breakdown
+## 5. Stratified Per-Category Breakdown
 
-| Category / Stratum | Sample Size ($n$) | SLM Run 1 (3.82B) | SLM Run 2 (3.82B) | GPT-OSS-120B (B1) | Qwen-3.8-27B (B1) |
-|---|:---:|:---:|:---:|:---:|:---:|
+| Category / Stratum | Sample Size ($n$) | SLM Run 1 (3.82B) | SLM Run 2 (3.82B) | GPT-120B (B1) | GPT-120B (B1+code) | Qwen-27B (B1) | Qwen-27B (B1+code) |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 """
     for c in categories:
         st = cat_stats[c]
-        report += f"| `{c}` | {st['total']} | {st['slm_run1']}/{st['total']} ({st['slm_run1']/st['total']*100:.1f}%) | {st['slm_run2']}/{st['total']} ({st['slm_run2']/st['total']*100:.1f}%) | {st['gpt120b']}/{st['total']} ({st['gpt120b']/st['total']*100:.1f}%) | {st['qwen27b']}/{st['total']} ({st['qwen27b']/st['total']*100:.1f}%) |\n"
+        report += f"| `{c}` | {st['total']} | {st['slm_run1']}/{st['total']} ({st['slm_run1']/st['total']*100:.1f}%) | {st['slm_run2']}/{st['total']} ({st['slm_run2']/st['total']*100:.1f}%) | {st['gpt120b']}/{st['total']} ({st['gpt120b']/st['total']*100:.1f}%) | {st['gpt120b_plus_code']}/{st['total']} ({st['gpt120b_plus_code']/st['total']*100:.1f}%) | {st['qwen27b']}/{st['total']} ({st['qwen27b']/st['total']*100:.1f}%) | {st['qwen27b_plus_code']}/{st['total']} ({st['qwen27b_plus_code']/st['total']*100:.1f}%) |\n"
 
-    report += f"""| **Track A Total** | **100** | **{slm1_total}/100 ({slm1_total:.1f}%)** | **{slm2_total}/100 ({slm2_total:.1f}%)** | **{gpt_total}/100 ({gpt_total:.1f}%)** | **{qwen_total}/100 ({qwen_total:.1f}%)** |
+    report += f"""| **Non-Tool-Required (80)** | **80** | **{non_tool_req_stats['slm_run1']}/80 ({non_tool_req_stats['slm_run1']/80*100:.1f}%)** | **{non_tool_req_stats['slm_run2']}/80 ({non_tool_req_stats['slm_run2']/80*100:.1f}%)** | **{non_tool_req_stats['gpt120b']}/80 ({non_tool_req_stats['gpt120b']/80*100:.1f}%)** | **{non_tool_req_stats['gpt120b_plus_code']}/80 ({non_tool_req_stats['gpt120b_plus_code']/80*100:.1f}%)** | **{non_tool_req_stats['qwen27b']}/80 ({non_tool_req_stats['qwen27b']/80*100:.1f}%)** | **{non_tool_req_stats['qwen27b_plus_code']}/80 ({non_tool_req_stats['qwen27b_plus_code']/80*100:.1f}%)** |
+| **Track A Total** | **100** | **{slm1_total}/100 ({slm1_total:.1f}%)** | **{slm2_total}/100 ({slm2_total:.1f}%)** | **{gpt_total}/100 ({gpt_total:.1f}%)** | **{gpt_code_total}/100 ({gpt_code_total:.1f}%)** | **{qwen_total}/100 ({qwen_total:.1f}%)** | **{qwen_code_total}/100 ({qwen_code_total:.1f}%)** |
 
 ---
 
-## 5. Latency & Provenance Accounting
+## 6. Truncations & Exclusions
+
+| System | Truncations (`finish_reason == "length"`) | Excluded Items |
+|---|:---:|:---:|
+| Specialist SLM Run 1 | {len(truncations['slm_run1'])} | 0 |
+| Specialist SLM Run 2 | {len(truncations['slm_run2'])} | 0 |
+| GPT-OSS-120B (B1) | {len(truncations['gpt120b'])} | 0 |
+| Qwen-3.8-27B (B1) | {len(truncations['qwen27b'])} | 0 |
+| GPT-OSS-120B (B1+code) | {len(truncations['gpt120b_plus_code'])} | 0 |
+| Qwen-3.8-27B (B1+code) | {len(truncations['qwen27b_plus_code'])} | 0 |
+
+---
+
+## 7. Latency & Provenance Accounting
 
 | System | Mean Latency (s) | Median Latency (s) | API Rate-Limit Wait Time (s) | Answered By | Monetary Cost |
 |---|:---:|:---:|:---:|---|:---:|
@@ -1034,12 +1462,13 @@ def main():
 
 ---
 
-## 6. Cryptographic Reserve Immutability Proof
+## 8. Cryptographic Reserve Immutability Proof
 
 - Reserve Quarantine File: `data/reserve_set_quarantine.json`
 - Pre-Evaluation SHA-256: `{EXPECTED_RESERVE_HASH}`
 - Post-Evaluation SHA-256: `{EXPECTED_RESERVE_HASH}`
 - Cryptographic Proof: **100% BYTE-FOR-BYTE IDENTICAL AND UNTOUCHED**.
+
 """
 
     with open(OUT_REPORT_PATH, "w", encoding="utf-8") as f:
