@@ -2,22 +2,23 @@
 \begin{table*}[t]
 \centering
 \small
-\caption{\textbf{Mentor Protocol Evaluation Matrix: LLM-as-a-Judge Secondary Layer} ($N=150$, Held-Out Split). Evaluated using local Prometheus-2 7B (GGUF Q4\_K\_M, temperature 0.0) with native 1–5 rubrics. Quality Proximity is defined as $QP = 1 - |Q_S - Q_L|/4$; brackets denote empirical 95\% bootstrap percentile confidence intervals ($B=10000$). Primary answer-key correctness remains the definitive metric.}
+\caption{\textbf{Mentor Protocol Evaluation Matrix: LLM-as-a-Judge Secondary Layer} ($N=150$, Held-Out Split). Evaluated using local Prometheus-2 7B (GGUF Q4\_K\_M, temperature 0.0) with native 1–5 rubrics. \textbf{Status: Quality Proximity and CQS are UNRELIABLE (judge agreement with answer key 50\% < 80\%)}. Validity Check (a) concordance is 50.0\% ($< 80\%$), Check (b) false-high rate is 46.9\%--56.2\%, and Swap Consistency is 70.7\%--77.2\%. Primary answer-key correctness remains the headline metric.}
 \label{tab:mentor_protocol_results}
-\begin{tabular}{llcccccccc}
+\begin{tabular}{llcccccccccc}
 \toprule
-\textbf{Experiment} & \textbf{SLM Fine-Tuning} & \textbf{Skill-Match} & \textbf{LLM FT} & \textbf{LLM Win} & \textbf{SLM Win} & \textbf{Draw} & \textbf{Quality Proximity} & \textbf{SLM CQS} & \textbf{LLM CQS} \\
+\textbf{Exp} & \textbf{Competitor} & \textbf{LLM Win} & \textbf{SLM Win} & \textbf{Draw} & \textbf{QP [95\% CI]$^\dagger$} & \textbf{SLM CQS$^\dagger$} & \textbf{LLM CQS$^\dagger$} & \textbf{Check (a)} & \textbf{Check (b)} & \textbf{Swap Cons.} & \textbf{Status} \\
 \midrule
-E1 (vs 120B B1) & None (Phi-4-mini base) & Single SLM & None & 53 (36.1\%) & 26 (17.7\%) & 68 (46.3\%) & 0.7483 [0.7007, 0.7925] & 3.81 & 4.14 \\
-E1 (vs 27B B1) & None (Phi-4-mini base) & Single SLM & None & 58 (40.0\%) & 14 (9.7\%) & 73 (50.3\%) & 0.7810 [0.7345, 0.8241] & 3.84 & 4.40 \\
-E2 & Query-dep. LoRA (SQL) & Single SLM & None & — & — & — & Not run & — & — \\
-E3 & All specialists FT & Multi-SLM & None & — & — & — & Not run & — & — \\
-E4-A & None & Skill-matching & None & — & — & — & Not run & — & — \\
-E4-B & FT skill matcher & FT router & None & — & — & — & Not run & — & — \\
+E1 & GPT-OSS-120B B1 & 53 (36.1\%) & 26 (17.7\%) & 68 (46.3\%) & 0.7483 [0.7007, 0.7925]$^\dagger$ & 3.81$^\dagger$ & 4.14$^\dagger$ & 50.0\% (9/18) & 56.2\% & 70.7\% & UNRELIABLE (50\% < 80\%) \\
+E1 & qwen/qwen3.8-27b B1 & 58 (40.0\%) & 14 (9.7\%) & 73 (50.3\%) & 0.7810 [0.7345, 0.8241]$^\dagger$ & 3.84$^\dagger$ & 4.40$^\dagger$ & 50.0\% (12/24) & 46.9\% & 77.2\% & UNRELIABLE (50\% < 80\%) \\
+E2 & Multi-Tier & — & — & — & Not run & — & — & — & — & — & Not run \\
+E3 & Multi-Tier & — & — & — & Not run & — & — & — & — & — & Not run \\
+E4-A & Multi-Tier & — & — & — & Not run & — & — & — & — & — & Not run \\
+E4-B & Multi-Tier & — & — & — & Not run & — & — & — & — & — & Not run \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
 \small
-\item \textbf{Note on Experiment Mapping:} Frozen pipeline v1.3 corresponds to mentor E1 (no fine-tuning, autonomous tool execution). Repo E3 designates compute-in-code routing (accepted into v1.3), not all-SLM fine-tuning. Repo E4 designates learned router experiments (rejected at dev gates). The specialist pool is a single 3.82B model with tools, not a 5–8B multi-model pool.
+\item $^\dagger$\textbf{UNRELIABLE (judge agreement with answer key 50\% < 80\%):} Validity check (a) requires $\ge 80\%$ concordance with deterministic answer keys on disagreement items. Because Prometheus-2 7B scored exactly 50.0\%, Quality Proximity and CQS are designated UNRELIABLE.
+\item \textbf{Note on Experiment Mapping:} Frozen pipeline v1.3 corresponds to mentor E1 (no fine-tuning, autonomous tool execution). Repo E3 designates compute-in-code routing (accepted into v1.3), not all-SLM fine-tuning. Repo E4 designates learned router experiments (rejected at dev gates). The specialist pool is a single 3.82B model with tools, not a 5–8B multi-model pool. Primary answer-key accuracy remains the headline metric.
 \end{tablenotes}
 \end{table*}

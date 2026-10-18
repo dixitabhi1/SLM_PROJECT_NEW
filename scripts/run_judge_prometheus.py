@@ -496,15 +496,22 @@ def write_mentor_tables(summary: Dict[str, Any]):
 
     def format_row_md(exp, slm_ft, skill_m, llm_ft, c):
         if not c or "slm_wins" not in c:
-            return f"| {exp} | {slm_ft} | {skill_m} | {llm_ft} | — | — | — | Not run | — | — |\n"
+            return f"| {exp} | {slm_ft} | {skill_m} | {llm_ft} | — | — | — | Not run | — | — | — | — | — | Not run |\n"
         n = c["evaluated_items"]
         lw = f"{c['llm_wins']} ({c['llm_wins']/n*100:.1f}%)"
         sw = f"{c['slm_wins']} ({c['slm_wins']/n*100:.1f}%)"
         dr = f"{c['draws']} ({c['draws']/n*100:.1f}%)"
-        qp = f"{c['qp']['mean']:.4f} [{c['qp']['ci_low']:.4f}, {c['qp']['ci_high']:.4f}]"
-        scqs = f"{c['mean_slm_cqs']:.2f}"
-        lcqs = f"{c['mean_llm_cqs']:.2f}"
-        return f"| {exp} | {slm_ft} | {skill_m} | {llm_ft} | {lw} | {sw} | {dr} | {qp} | {scqs} | {lcqs} |\n"
+        qp = f"{c['qp']['mean']:.4f} [{c['qp']['ci_low']:.4f}, {c['qp']['ci_high']:.4f}]*"
+        scqs = f"{c['mean_slm_cqs']:.2f}*"
+        lcqs = f"{c['mean_llm_cqs']:.2f}*"
+        ca = c.get("check_a_concordance", {})
+        ca_rate = str(ca.get('concordance_rate', 'n/a')).replace('%', r'\%')
+        ca_str = f"{ca_rate} ({ca.get('concordant_items', 0)}/{ca.get('total_disagreements', 0)})"
+        cb = c.get("check_b_false_high_score", {})
+        cb_str = f"{cb.get('false_high_rate', 0.0):.1f}% ({cb.get('false_high_scores', 0)}/{cb.get('total_wrong_answers', 0)})"
+        swap_str = f"{c.get('pairwise_outcomes', {}).get('swap_consistency', 0.0):.1f}%"
+        status = "**UNRELIABLE (judge agreement with answer key 50% < 80%)**"
+        return f"| {exp} | {slm_ft} | {skill_m} | {llm_ft} | {lw} | {sw} | {dr} | {qp} | {scqs} | {lcqs} | {ca_str} | {cb_str} | {swap_str} | {status} |\n"
 
     md_content = """# Mentor Protocol Table: Secondary Evaluation Layer (LLM-as-a-Judge)
 
@@ -512,15 +519,21 @@ def write_mentor_tables(summary: Dict[str, Any]):
 **Judge Model:** `prometheus-eval/prometheus-7b-v2.0` (GGUF Q4_K_M, SHA-256 `5bb7b0fa...`, local execution on port 8081).  
 **Protocol Invariants:** Temperature 0.0, reference-free (no answer key), native 1–5 rubrics. Quality Proximity computed on native scale ($QP = 1 - |Q_S - Q_L|/4$).  
 
-| Experiment | SLM Fine-Tuning Configuration | Skill-Matching SLM | LLM Fine-Tuning | LLM Wins | SLM Wins | Draws | Quality Proximity | SLM CQS | LLM CQS |
-| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+> [!WARNING]
+> **RELIABILITY STATUS: UNRELIABLE (judge agreement with answer key 50% < 80%)**  
+> Prometheus-2 7B failed Validity Check (a) with only 50.0% concordance with answer-key winners on disagreement items (threshold $\\ge 80\\%$), and exhibited 46.9%–56.2% false-high scores ($\\ge 4/5$) on objectively wrong answers (Check b). Consequently, all Quality Proximity (QP) and CQS metrics are designated **UNRELIABLE (judge agreement with answer key 50% < 80%)**. Primary answer-key accuracy (Exact Match) remains the headline and authoritative evaluation metric.
+
+| Experiment | SLM Fine-Tuning | Skill-Matching SLM | LLM Fine-Tuning | LLM Win | SLM Win | Draw | Quality Proximity [95% CI]* | SLM CQS* | LLM CQS* | Check (a) Concordance | Check (b) False High | Swap Cons. | Reliability Status |
+| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 """
     md_content += format_row_md("E1 (vs GPT-OSS-120B B1)", "None (Base Phi-4-mini 3.82B, prompt/tool-only)", "Single-model pool (no router)", "None (Frozen API B1)", c_120)
     md_content += format_row_md("E1 (vs qwen/qwen3.8-27b B1)", "None (Base Phi-4-mini 3.82B, prompt/tool-only)", "Single-model pool (no router)", "None (Frozen API B1)", c_27)
-    md_content += """| E2 | Query-dependent LoRA adapters (SQL specialist) | Single-model pool | None | — | — | — | Not run (training pipeline prepared, run pending owner sign-off) | — | — |
-| E3 | All specialist SLMs fine-tuned | Multi-SLM pool | None | — | — | — | Not run (mentor multi-model pool not configured; repo E3 was compute-in-code) | — | — |
-| E4-A | None | Skill-matching SLM (router) | None | — | — | — | Not run as specified (repo E4 learned router rejected on dev headroom gate) | — | — |
-| E4-B | Fine-tuned skill matcher | Fine-tuned router | None | — | — | — | Not run (repo E4b retry failed dev regression gate) | — | — |
+    md_content += """| E2 | Query-dependent LoRA adapters (SQL specialist) | Single-model pool | None | — | — | — | Not run | — | — | — | — | — | Not run (training pipeline prepared, run pending owner sign-off) |
+| E3 | All specialist SLMs fine-tuned | Multi-SLM pool | None | — | — | — | Not run | — | — | — | — | — | Not run (mentor multi-model pool not configured; repo E3 was compute-in-code) |
+| E4-A | None | Skill-matching SLM (router) | None | — | — | — | Not run | — | — | — | — | — | Not run as specified (repo E4 learned router rejected on dev headroom gate) |
+| E4-B | Fine-tuned skill matcher | Fine-tuned router | None | — | — | — | Not run | — | — | — | — | — | Not run (repo E4b retry failed dev regression gate) |
+
+* **UNRELIABLE (judge agreement with answer key 50% < 80%):** Designated UNRELIABLE because judge validity check (a) agreement with answer key is 50.0% (< 80%).
 
 **Footnote:** Mapping to repo experiments: Our frozen pipeline v1.3 corresponds to mentor E1 (no fine-tuning, autonomous tool execution). Our repo "E3" designates compute-in-code routing (accepted into v1.3), not all-SLM fine-tuning. Our repo "E4" designates learned router experiments (E4 and E4b, both rejected at dev gates). The active specialist pool is a single 3.82B parameter model (Phi-4-mini) with specialized execution tools, not a 5–8B multi-model pool.
 """
@@ -530,9 +543,9 @@ def write_mentor_tables(summary: Dict[str, Any]):
     with open(os.path.join(REPO_ROOT, "docs", "judge_mentor_table.md"), "w", encoding="utf-8") as f:
         f.write(md_content)
 
-    def format_row_tex(exp, slm_ft, skill_m, llm_ft, c):
+    def format_row_tex(exp, comp, c):
         if not c or "slm_wins" not in c:
-            return f"{exp} & {slm_ft} & {skill_m} & {llm_ft} & — & — & — & Not run & — & — \\\\\n"
+            return f"{exp} & {comp} & — & — & — & Not run & — & — & — & — & — & Not run " + r"\\" + "\n"
         n = c["evaluated_items"]
         lw = f"{c['llm_wins']} ({c['llm_wins']/n*100:.1f}\\%)"
         sw = f"{c['slm_wins']} ({c['slm_wins']/n*100:.1f}\\%)"
@@ -540,30 +553,38 @@ def write_mentor_tables(summary: Dict[str, Any]):
         qp = f"{c['qp']['mean']:.4f} [{c['qp']['ci_low']:.4f}, {c['qp']['ci_high']:.4f}]"
         scqs = f"{c['mean_slm_cqs']:.2f}"
         lcqs = f"{c['mean_llm_cqs']:.2f}"
-        return f"{exp} & {slm_ft} & {skill_m} & {llm_ft} & {lw} & {sw} & {dr} & {qp} & {scqs} & {lcqs} \\\\\n"
+        ca = c.get("check_a_concordance", {})
+        ca_rate = str(ca.get('concordance_rate', 'n/a')).replace('%', r'\%')
+        ca_str = f"{ca_rate} ({ca.get('concordant_items', 0)}/{ca.get('total_disagreements', 0)})"
+        cb = c.get("check_b_false_high_score", {})
+        cb_str = f"{cb.get('false_high_rate', 0.0):.1f}\\%"
+        swap_str = f"{c.get('pairwise_outcomes', {}).get('swap_consistency', 0.0):.1f}\\%"
+        status = "UNRELIABLE (50\\% < 80\\%)"
+        return f"{exp} & {comp} & {lw} & {sw} & {dr} & {qp}$^\\dagger$ & {scqs}$^\\dagger$ & {lcqs}$^\\dagger$ & {ca_str} & {cb_str} & {swap_str} & {status} " + r"\\" + "\n" 
 
     tex_content = """% Mentor Protocol Table: Secondary Evaluation Layer (LLM-as-a-Judge)
 \\begin{table*}[t]
 \\centering
 \\small
-\\caption{\\textbf{Mentor Protocol Evaluation Matrix: LLM-as-a-Judge Secondary Layer} ($N=150$, Held-Out Split). Evaluated using local Prometheus-2 7B (GGUF Q4\\_K\\_M, temperature 0.0) with native 1–5 rubrics. Quality Proximity is defined as $QP = 1 - |Q_S - Q_L|/4$; brackets denote empirical 95\\% bootstrap percentile confidence intervals ($B=10000$). Primary answer-key correctness remains the definitive metric.}
+\\caption{\\textbf{Mentor Protocol Evaluation Matrix: LLM-as-a-Judge Secondary Layer} ($N=150$, Held-Out Split). Evaluated using local Prometheus-2 7B (GGUF Q4\\_K\\_M, temperature 0.0) with native 1–5 rubrics. \\textbf{Status: Quality Proximity and CQS are UNRELIABLE (judge agreement with answer key 50\\% < 80\\%)}. Validity Check (a) concordance is 50.0\\% ($< 80\\%$), Check (b) false-high rate is 46.9\\%--56.2\\%, and Swap Consistency is 70.7\\%--77.2\\%. Primary answer-key correctness remains the headline metric.}
 \\label{tab:mentor_protocol_results}
-\\begin{tabular}{llcccccccc}
+\\begin{tabular}{llcccccccccc}
 \\toprule
-\\textbf{Experiment} & \\textbf{SLM Fine-Tuning} & \\textbf{Skill-Match} & \\textbf{LLM FT} & \\textbf{LLM Win} & \\textbf{SLM Win} & \\textbf{Draw} & \\textbf{Quality Proximity} & \\textbf{SLM CQS} & \\textbf{LLM CQS} \\\\
+\\textbf{Exp} & \\textbf{Competitor} & \\textbf{LLM Win} & \\textbf{SLM Win} & \\textbf{Draw} & \\textbf{QP [95\\% CI]$^\\dagger$} & \\textbf{SLM CQS$^\\dagger$} & \\textbf{LLM CQS$^\\dagger$} & \\textbf{Check (a)} & \\textbf{Check (b)} & \\textbf{Swap Cons.} & \\textbf{Status} \\\\
 \\midrule
 """
-    tex_content += format_row_tex("E1 (vs 120B B1)", "None (Phi-4-mini base)", "Single SLM", "None", c_120)
-    tex_content += format_row_tex("E1 (vs 27B B1)", "None (Phi-4-mini base)", "Single SLM", "None", c_27)
-    tex_content += """E2 & Query-dep. LoRA (SQL) & Single SLM & None & — & — & — & Not run & — & — \\\\
-E3 & All specialists FT & Multi-SLM & None & — & — & — & Not run & — & — \\\\
-E4-A & None & Skill-matching & None & — & — & — & Not run & — & — \\\\
-E4-B & FT skill matcher & FT router & None & — & — & — & Not run & — & — \\\\
+    tex_content += format_row_tex("E1", "GPT-OSS-120B B1", c_120)
+    tex_content += format_row_tex("E1", "qwen/qwen3.8-27b B1", c_27)
+    tex_content += """E2 & Multi-Tier & — & — & — & Not run & — & — & — & — & — & Not run \\\\
+E3 & Multi-Tier & — & — & — & Not run & — & — & — & — & — & Not run \\\\
+E4-A & Multi-Tier & — & — & — & Not run & — & — & — & — & — & Not run \\\\
+E4-B & Multi-Tier & — & — & — & Not run & — & — & — & — & — & Not run \\\\
 \\bottomrule
 \\end{tabular}
 \\begin{tablenotes}
 \\small
-\\item \\textbf{Note on Experiment Mapping:} Frozen pipeline v1.3 corresponds to mentor E1 (no fine-tuning, autonomous tool execution). Repo E3 designates compute-in-code routing (accepted into v1.3), not all-SLM fine-tuning. Repo E4 designates learned router experiments (rejected at dev gates). The specialist pool is a single 3.82B model with tools, not a 5–8B multi-model pool.
+\\item $^\\dagger$\\textbf{UNRELIABLE (judge agreement with answer key 50\\% < 80\\%):} Validity check (a) requires $\\ge 80\\%$ concordance with deterministic answer keys on disagreement items. Because Prometheus-2 7B scored exactly 50.0\\%, Quality Proximity and CQS are designated UNRELIABLE.
+\\item \\textbf{Note on Experiment Mapping:} Frozen pipeline v1.3 corresponds to mentor E1 (no fine-tuning, autonomous tool execution). Repo E3 designates compute-in-code routing (accepted into v1.3), not all-SLM fine-tuning. Repo E4 designates learned router experiments (rejected at dev gates). The specialist pool is a single 3.82B model with tools, not a 5–8B multi-model pool. Primary answer-key accuracy remains the headline metric.
 \\end{tablenotes}
 \\end{table*}
 """
@@ -575,7 +596,6 @@ E4-B & FT skill matcher & FT router & None & — & — & — & Not run & — & �
     print(f"\n[SAVED] Mentor protocol tables written to:")
     print(f"  - docs/reports/mentor_protocol_table.md & .tex")
     print(f"  - docs/judge_mentor_table.md & .tex")
-
 
 def main():
     print("=" * 80)

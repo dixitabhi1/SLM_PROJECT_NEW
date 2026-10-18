@@ -15,7 +15,7 @@
   <div class="report-subtitle">Rigorous Empirical Evaluation of Pure 3.82B SLM System Against Multi-Tier Frontier LLMs</div>
   <div class="metadata-grid">
     <div class="metadata-item"><strong>Repository:</strong> dixitabhi1/SLM_PROJECT_NEW</div>
-    <div class="metadata-item"><strong>Release / Tag:</strong> v1.3-slm-frozen (57f9066)</div>
+    <div class="metadata-item"><strong>Release / Tag:</strong> v1.3-slm-frozen (a3e39a6)</div>
     <div class="metadata-item"><strong>System Under Test:</strong> Phi-4-mini (3.82B, Vulkan0, 3 slots)</div>
     <div class="metadata-item"><strong>Status &amp; Date:</strong> Frozen v1.3 • 2026-10-17</div>
   </div>
@@ -337,7 +337,7 @@
 </ul>
 
 <h3>3.4 Secondary Evaluation Layer: Blind LLM-as-a-Judge (Prometheus-2 7B)</h3>
-<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol executes reference-free evaluations using local <code>prometheus-eval/prometheus-7b-v2.0</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). Metrics include native 1–5 holistic scores, four 1–5 criteria (CQS), native Quality Proximity ($QP_i = 1 - |Q_{S,i} - Q_{L,i}| / 4$), and secondary position-swapped pairwise verdicts with swap consistency. All judge metrics are strictly secondary; answer-key correctness remains headline.</p>
+<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol executes reference-free evaluations using local <code>prometheus-eval/prometheus-7b-v2.0</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). Metrics include native 1–5 holistic scores, four 1–5 criteria (CQS), native Quality Proximity ($QP_i = 1 - |Q_{S,i} - Q_{L,i}| / 4$), and secondary position-swapped pairwise verdicts with swap consistency. <strong>Reliability Designation:</strong> Judge validity check (a) achieved 50.0% concordance (&lt; 80% threshold) on disagreement items, and check (b) revealed a 46.9%–56.2% false-high score rate on incorrect answers. Consequently, Quality Proximity and CQS are designated <strong>UNRELIABLE (judge agreement with answer key 50% &lt; 80%)</strong>. All judge metrics are strictly secondary; answer-key correctness remains the primary headline metric.</p>
 
 <h3>3.5 Statistical Rigour &amp; Integrity Constraints</h3>
 <ul>
@@ -516,31 +516,34 @@
   </tbody>
 </table>
 
-<p class="table-footnote">For detailed per-category breakdowns, item-level disagreements, and win/loss matrices, refer to <code>docs/reports/SLM_vs_LLM_Head_to_Head.pdf</code>. Secondary LLM-as-a-Judge metrics (QP, CQS, Win/Draw/Loss) are reported below in Table 5B.</p>
-
-<h3 style="margin-top: 4pt; margin-bottom: 2pt;">Table 5B: Mentor Protocol Evaluation Matrix (Secondary LLM-as-a-Judge Layer)</h3>
-<table class="table-dense" style="margin-bottom: 3pt; font-size: 7.2pt;">
+<h3 style="margin-top: 3pt; margin-bottom: 1pt;">Table 5B: Mentor Protocol Evaluation Matrix (Secondary LLM-as-a-Judge Layer) &mdash; <span style="color:#c0392b; font-size:7.0pt;">QP &amp; CQS UNRELIABLE (judge agreement with answer key 50% &lt; 80%)</span></h3>
+<table class="table-dense" style="margin-bottom: 1pt; font-size: 6.7pt;">
   <thead>
     <tr>
       <th>Exp</th>
-      <th>SLM Architecture &amp; FT</th>
+      <th>SLM Arch. &amp; FT</th>
       <th>Competitor</th>
       <th class="center">LLM Win</th>
       <th class="center">SLM Win</th>
       <th class="center">Draw</th>
-      <th class="center">Quality Proximity (QP)</th>
-      <th class="center">SLM CQS</th>
-      <th class="center">LLM CQS</th>
+      <th class="center">QP [95% CI]*</th>
+      <th class="center">SLM CQS*</th>
+      <th class="center">LLM CQS*</th>
+      <th class="center">Check (a)</th>
+      <th class="center">Check (b)</th>
+      <th class="center">Swap Cons.</th>
+      <th class="center">Reliability Status</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td><strong>E1</strong></td><td>None (Base Phi-4-mini 3.82B)</td><td>GPT-OSS-120B B1</td><td class='center'>53</td><td class='center'>26</td><td class='center'>68</td><td class='center'>0.748 [0.701, 0.793]</td><td class='center'>3.81</td><td class='center'>4.14</td></tr>
-    <tr><td><strong>E1</strong></td><td>None (Base Phi-4-mini 3.82B)</td><td>qwen/qwen3.8-27b B1</td><td class='center'>58</td><td class='center'>14</td><td class='center'>73</td><td class='center'>0.781 [0.734, 0.824]</td><td class='center'>3.84</td><td class='center'>4.40</td></tr>
-    <tr><td><strong>E2</strong></td><td>Query-dep. LoRA (SQL Specialist)</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run (training pipeline prepared, run pending owner sign-off)</em></td></tr>
-    <tr><td><strong>E3</strong></td><td>All Specialist SLMs Fine-Tuned</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run (mentor multi-model pool not configured; repo E3 was compute-in-code)</em></td></tr>
-    <tr><td><strong>E4-A/B</strong></td><td>Skill-Matching Router (Base / FT)</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run as specified (repo E4 / E4b rejected on dev headroom / regression gates)</em></td></tr>
+    <tr><td><strong>E1</strong></td><td>None (Base Phi-4-mini 3.82B)</td><td>GPT-OSS-120B B1</td><td class='center'>53</td><td class='center'>26</td><td class='center'>68</td><td class='center'>0.748 [0.701, 0.793]*</td><td class='center'>3.81*</td><td class='center'>4.14*</td><td class='center'>50.0% (9/18)</td><td class='center'>56.2% (18/32)</td><td class='center'>70.7%</td><td class='center' style='color:#c0392b; font-weight:bold;'>UNRELIABLE (50% &lt; 80%)</td></tr>
+    <tr><td><strong>E1</strong></td><td>None (Base Phi-4-mini 3.82B)</td><td>qwen/qwen3.8-27b B1</td><td class='center'>58</td><td class='center'>14</td><td class='center'>73</td><td class='center'>0.781 [0.734, 0.824]*</td><td class='center'>3.84*</td><td class='center'>4.40*</td><td class='center'>50.0% (12/24)</td><td class='center'>46.9% (15/32)</td><td class='center'>77.2%</td><td class='center' style='color:#c0392b; font-weight:bold;'>UNRELIABLE (50% &lt; 80%)</td></tr>
+    <tr><td><strong>E2</strong></td><td>Query-dep. LoRA (SQL)</td><td>Multi-Tier</td><td class='center' colspan='10'><em>Not run (training pipeline prepared, run pending owner sign-off)</em></td></tr>
+    <tr><td><strong>E3</strong></td><td>All Specialists FT</td><td>Multi-Tier</td><td class='center' colspan='10'><em>Not run (mentor multi-model pool not configured; repo E3 was compute-in-code)</em></td></tr>
+    <tr><td><strong>E4-A/B</strong></td><td>Skill-Matching Router</td><td>Multi-Tier</td><td class='center' colspan='10'><em>Not run as specified (repo E4 / E4b rejected on dev headroom / regression gates)</em></td></tr>
   </tbody>
 </table>
+<p class="table-footnote" style="margin-top: 1pt; margin-bottom: 2pt;">*<strong>UNRELIABLE (judge agreement with answer key 50% &lt; 80%):</strong> Validity check (a) concordance is 50.0% (&lt; 80% threshold); check (b) false-high rate is 46.9%&ndash;56.2%. Quality Proximity and CQS are designated UNRELIABLE. Detailed breakdown in <code>docs/reports/SLM_vs_LLM_Head_to_Head.pdf</code>. Answer-key accuracy remains headline.</p>
 
 
 <h2>6. Audit, Reproducibility &amp; Integrity Ledger</h2>

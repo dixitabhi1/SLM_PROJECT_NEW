@@ -700,47 +700,59 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
         j = metrics["judge"]
         jm = j.get("judge_model", "prometheus-eval/prometheus-7b-v2.0")
         sec34_html = f"""<h3>3.4 Secondary Evaluation Layer: Blind LLM-as-a-Judge (Prometheus-2 7B)</h3>
-<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol executes reference-free evaluations using local <code>{jm}</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). Metrics include native 1–5 holistic scores, four 1–5 criteria (CQS), native Quality Proximity ($QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 4$), and secondary position-swapped pairwise verdicts with swap consistency. All judge metrics are strictly secondary; answer-key correctness remains headline.</p>"""
+<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol executes reference-free evaluations using local <code>{jm}</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). Metrics include native 1–5 holistic scores, four 1–5 criteria (CQS), native Quality Proximity ($QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 4$), and secondary position-swapped pairwise verdicts with swap consistency. <strong>Reliability Designation:</strong> Judge validity check (a) achieved 50.0% concordance (&lt; 80% threshold) on disagreement items, and check (b) revealed a 46.9%–56.2% false-high score rate on incorrect answers. Consequently, Quality Proximity and CQS are designated <strong>UNRELIABLE (judge agreement with answer key 50% &lt; 80%)</strong>. All judge metrics are strictly secondary; answer-key correctness remains the primary headline metric.</p>"""
 
         c120 = j.get("comparisons", {}).get("openai/gpt-oss-120b", {})
         c27 = j.get("comparisons", {}).get("qwen/qwen3.8-27b", {})
         def mentor_row_html(exp, slm_arch, comp, c):
             if not c or "slm_wins" not in c:
-                return f"<td><strong>{exp}</strong></td><td>{slm_arch}</td><td>{comp}</td><td class='center' colspan='6'><em>Not run</em></td>"
+                return f"<td><strong>{exp}</strong></td><td>{slm_arch}</td><td>{comp}</td><td class='center' colspan='10'><em>Not run</em></td>"
+            ca = c.get("check_a_concordance", {})
+            ca_str = f"{ca.get('concordance_rate', 'n/a')} ({ca.get('concordant_items', 0)}/{ca.get('total_disagreements', 0)})"
+            cb = c.get("check_b_false_high_score", {})
+            cb_str = f"{cb.get('false_high_rate', 0.0):.1f}% ({cb.get('false_high_scores', 0)}/{cb.get('total_wrong_answers', 0)})"
+            swap_str = f"{c.get('pairwise_outcomes', {}).get('swap_consistency', 0.0):.1f}%"
             return (f"<td><strong>{exp}</strong></td><td>{slm_arch}</td><td>{comp}</td>"
                     f"<td class='center'>{c['llm_wins']}</td>"
                     f"<td class='center'>{c['slm_wins']}</td>"
                     f"<td class='center'>{c['draws']}</td>"
-                    f"<td class='center'>{c['qp']['mean']:.3f} [{c['qp']['ci_low']:.3f}, {c['qp']['ci_high']:.3f}]</td>"
-                    f"<td class='center'>{c['mean_slm_cqs']:.2f}</td>"
-                    f"<td class='center'>{c['mean_llm_cqs']:.2f}</td>")
+                    f"<td class='center'>{c['qp']['mean']:.3f} [{c['qp']['ci_low']:.3f}, {c['qp']['ci_high']:.3f}]*</td>"
+                    f"<td class='center'>{c['mean_slm_cqs']:.2f}*</td>"
+                    f"<td class='center'>{c['mean_llm_cqs']:.2f}*</td>"
+                    f"<td class='center'>{ca_str}</td>"
+                    f"<td class='center'>{cb_str}</td>"
+                    f"<td class='center'>{swap_str}</td>"
+                    f"<td class='center' style='color:#c0392b; font-weight:bold;'>UNRELIABLE (50% &lt; 80%)</td>")
 
         mentor_table_html = f"""
-<p class="table-footnote">For detailed per-category breakdowns, item-level disagreements, and win/loss matrices, refer to <code>docs/reports/SLM_vs_LLM_Head_to_Head.pdf</code>. Secondary LLM-as-a-Judge metrics (QP, CQS, Win/Draw/Loss) are reported below in Table 5B.</p>
-
-<h3 style="margin-top: 4pt; margin-bottom: 2pt;">Table 5B: Mentor Protocol Evaluation Matrix (Secondary LLM-as-a-Judge Layer)</h3>
-<table class="table-dense" style="margin-bottom: 3pt; font-size: 7.2pt;">
+<h3 style="margin-top: 3pt; margin-bottom: 1pt;">Table 5B: Mentor Protocol Evaluation Matrix (Secondary LLM-as-a-Judge Layer) &mdash; <span style="color:#c0392b; font-size:7.0pt;">QP &amp; CQS UNRELIABLE (judge agreement with answer key 50% &lt; 80%)</span></h3>
+<table class="table-dense" style="margin-bottom: 1pt; font-size: 6.7pt;">
   <thead>
     <tr>
       <th>Exp</th>
-      <th>SLM Architecture &amp; FT</th>
+      <th>SLM Arch. &amp; FT</th>
       <th>Competitor</th>
       <th class="center">LLM Win</th>
       <th class="center">SLM Win</th>
       <th class="center">Draw</th>
-      <th class="center">Quality Proximity (QP)</th>
-      <th class="center">SLM CQS</th>
-      <th class="center">LLM CQS</th>
+      <th class="center">QP [95% CI]*</th>
+      <th class="center">SLM CQS*</th>
+      <th class="center">LLM CQS*</th>
+      <th class="center">Check (a)</th>
+      <th class="center">Check (b)</th>
+      <th class="center">Swap Cons.</th>
+      <th class="center">Reliability Status</th>
     </tr>
   </thead>
   <tbody>
     <tr>{mentor_row_html("E1", "None (Base Phi-4-mini 3.82B)", "GPT-OSS-120B B1", c120)}</tr>
     <tr>{mentor_row_html("E1", "None (Base Phi-4-mini 3.82B)", "qwen/qwen3.8-27b B1", c27)}</tr>
-    <tr><td><strong>E2</strong></td><td>Query-dep. LoRA (SQL Specialist)</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run (training pipeline prepared, run pending owner sign-off)</em></td></tr>
-    <tr><td><strong>E3</strong></td><td>All Specialist SLMs Fine-Tuned</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run (mentor multi-model pool not configured; repo E3 was compute-in-code)</em></td></tr>
-    <tr><td><strong>E4-A/B</strong></td><td>Skill-Matching Router (Base / FT)</td><td>Multi-Tier</td><td class='center' colspan='6'><em>Not run as specified (repo E4 / E4b rejected on dev headroom / regression gates)</em></td></tr>
+    <tr><td><strong>E2</strong></td><td>Query-dep. LoRA (SQL)</td><td>Multi-Tier</td><td class='center' colspan='10'><em>Not run (training pipeline prepared, run pending owner sign-off)</em></td></tr>
+    <tr><td><strong>E3</strong></td><td>All Specialists FT</td><td>Multi-Tier</td><td class='center' colspan='10'><em>Not run (mentor multi-model pool not configured; repo E3 was compute-in-code)</em></td></tr>
+    <tr><td><strong>E4-A/B</strong></td><td>Skill-Matching Router</td><td>Multi-Tier</td><td class='center' colspan='10'><em>Not run as specified (repo E4 / E4b rejected on dev headroom / regression gates)</em></td></tr>
   </tbody>
 </table>
+<p class="table-footnote" style="margin-top: 1pt; margin-bottom: 2pt;">*<strong>UNRELIABLE (judge agreement with answer key 50% &lt; 80%):</strong> Validity check (a) concordance is 50.0% (&lt; 80% threshold); check (b) false-high rate is 46.9%&ndash;56.2%. Quality Proximity and CQS are designated UNRELIABLE. Detailed breakdown in <code>docs/reports/SLM_vs_LLM_Head_to_Head.pdf</code>. Answer-key accuracy remains headline.</p>
 """
     else:
         sec34_html = """<h3>3.4 Secondary Evaluation Layer: Blind Pairwise LLM-as-a-Judge</h3>
@@ -1164,7 +1176,7 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
 
         def j_row(label, c):
             if not c or "slm_wins" not in c:
-                return f"<td><strong>{label}</strong></td><td colspan='9' class='center'><em>Not run</em></td>"
+                return f"<td><strong>{label}</strong></td><td colspan='11' class='center'><em>Not run</em></td>"
             conc = c.get('check_a_concordance', {})
             c_rate = conc.get('concordance_rate')
             if isinstance(c_rate, (int, float)):
@@ -1172,22 +1184,27 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
             else:
                 c_str = str(c_rate) if c_rate else "n/a"
             conc_str = f"{c_str} ({conc.get('concordant_items', 0)}/{conc.get('total_disagreements', 0)})" if conc.get('total_disagreements', 0) > 0 else "n/a"
+            cb = c.get("check_b_false_high_score", {})
+            cb_str = f"{cb.get('false_high_rate', 0.0):.1f}% ({cb.get('false_high_scores', 0)}/{cb.get('total_wrong_answers', 0)})"
+            swap_str = f"{c.get('pairwise_outcomes', {}).get('swap_consistency', 0.0):.1f}%"
             return (f"<td><strong>{label}</strong></td>"
                     f"<td class='center'>{c['slm_wins']}</td>"
                     f"<td class='center'>{c['draws']}</td>"
                     f"<td class='center'>{c['llm_wins']}</td>"
                     f"<td class='center'><strong>{c['effective_win_rate']:.1f}%</strong></td>"
-                    f"<td class='center'>{c['qp']['mean']:.3f} [{c['qp']['ci_low']:.3f}, {c['qp']['ci_high']:.3f}]</td>"
+                    f"<td class='center'>{c['qp']['mean']:.3f} [{c['qp']['ci_low']:.3f}, {c['qp']['ci_high']:.3f}]*</td>"
                     f"<td class='center'>{c['delta_q']['mean']:+.3f} [{c['delta_q']['ci_low']:+.3f}, {c['delta_q']['ci_high']:+.3f}]</td>"
-                    f"<td class='center'>{c['mean_slm_cqs']:.2f} vs {c['mean_llm_cqs']:.2f}</td>"
-                    f"<td class='center'>{c.get('pairwise_outcomes', {}).get('swap_consistency', c.get('swap_consistency', 0.0)):.1f}%</td>"
-                    f"<td class='center'>{conc_str}</td>")
+                    f"<td class='center'>{c['mean_slm_cqs']:.2f} vs {c['mean_llm_cqs']:.2f}*</td>"
+                    f"<td class='center'>{conc_str}</td>"
+                    f"<td class='center'>{cb_str}</td>"
+                    f"<td class='center'>{swap_str}</td>"
+                    f"<td class='center' style='color:#c0392b; font-weight:bold;'>UNRELIABLE (50% &lt; 80%)</td>")
 
         sec7_html = f"""
-<h2>7. Secondary Qualitative Layer: LLM-as-a-Judge Evaluation ({jm})</h2>
-<p>To evaluate qualitative response nuances, depth, and instruction following alongside deterministic answer keys, outputs are evaluated via reference-free judging with local <code>{jm}</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). Quality Proximity is calculated on the native 1–5 scale ($QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 4$). All figures are <em>strictly secondary</em>; answer-key correctness remains headline.</p>
+<h2>7. Secondary Qualitative Layer: LLM-as-a-Judge Evaluation ({jm}) &mdash; <span style="color:#c0392b; font-size:9.0pt;">QP &amp; CQS UNRELIABLE (judge agreement with answer key 50% &lt; 80%)</span></h2>
+<p>To evaluate qualitative response nuances alongside deterministic answer keys, outputs are evaluated via reference-free judging with local <code>{jm}</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). <strong>Reliability Designation:</strong> Prometheus-2 7B achieved only 50.0% concordance with answer-key winners on disagreement items (threshold &ge; 80%), and exhibited 46.9%&ndash;56.2% false-high scores on wrong answers. Consequently, Quality Proximity and CQS are designated <strong>UNRELIABLE (judge agreement with answer key 50% &lt; 80%)</strong>. Checks (a), (b), and swap consistency are reported below. Primary answer-key correctness remains headline.</p>
 
-<table class="table-dense" style="font-size: 7.2pt; margin-bottom: 3pt;">
+<table class="table-dense" style="font-size: 6.8pt; margin-bottom: 2pt;">
   <thead>
     <tr>
       <th>Baseline Competitor</th>
@@ -1195,11 +1212,13 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
       <th class="center">Draw</th>
       <th class="center">LLM Win</th>
       <th class="center">Effective Win%</th>
-      <th class="center">Quality Proximity (QP) [95% CI]</th>
+      <th class="center">QP [95% CI]*</th>
       <th class="center">Delta Q [95% CI]</th>
-      <th class="center">SLM CQS vs LLM CQS</th>
+      <th class="center">SLM CQS vs LLM CQS*</th>
+      <th class="center">Check (a) (Acc Agree)</th>
+      <th class="center">Check (b) (False High)</th>
       <th class="center">Swap Cons.</th>
-      <th class="center">Concordance</th>
+      <th class="center">Reliability Status</th>
     </tr>
   </thead>
   <tbody>
@@ -1207,7 +1226,7 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
     <tr>{j_row("qwen/qwen3.8-27b B1", c27)}</tr>
   </tbody>
 </table>
-<p class="table-footnote"><em>Note on Serving &amp; Independence:</em> Executed 100% locally on the host RTX 3050 Laptop GPU with zero external network calls or cloud costs. Results reflect completed trials from immutable raw records (<code>results/judge/judge_trials_raw_prometheus7b.jsonl</code>). Answer-key correctness remains headline.</p>
+<p class="table-footnote" style="margin-top: 1pt; margin-bottom: 2pt;">*<strong>UNRELIABLE (judge agreement with answer key 50% &lt; 80%):</strong> Validity check (a) concordance is 50.0% (&lt; 80% threshold). Local GPU execution (100% host RTX 3050, 0 cloud cost) from immutable raw records (<code>results/judge/judge_trials_raw_prometheus7b.jsonl</code>). Answer-key accuracy remains headline.</p>
 """
     else:
         sec7_html = ""
