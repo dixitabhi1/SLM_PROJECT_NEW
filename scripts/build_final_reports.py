@@ -698,10 +698,9 @@ def build_report1_html(metrics: Dict[str, Any]) -> str:
 
     if has_judge:
         j = metrics["judge"]
-        jm = j.get("judge_model", "gemini-3.8-flash")
-        sec34_html = f"""<h3>3.4 Secondary Evaluation Layer: Blind Pairwise LLM-as-a-Judge</h3>
-<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol executes double-blind pairwise judging with position-swap consistency testing (2 passes per pair, 600 total planned trials) using <code>{jm}</code> ($T=0.0$, zero thinking tokens) via direct REST header authentication. Metrics include holistic score (1–10), four 1–5 criteria (CQS), and Quality Proximity: $QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 9$. Pre-registered validity gates require ≥80% concordance on single-winner items and penalize false-positive high scores on incorrect answers.</p>
-<p><em>Phase 3 Status: Active execution under Google AI Studio free-tier quotas (strict pacing ≤14.3 RPM, 20 RPD daily ceiling; multi-day append-only resumption supported in <code>judge_trials_raw_gemini38.jsonl</code>).</em></p>"""
+        jm = j.get("judge_model", "prometheus-eval/prometheus-7b-v2.0")
+        sec34_html = f"""<h3>3.4 Secondary Evaluation Layer: Blind LLM-as-a-Judge (Prometheus-2 7B)</h3>
+<p>To measure qualitative response nuances, reasoning depth, and instruction adherence alongside primary answer-key correctness, the mentor protocol defines an LLM-as-a-Judge secondary layer. The protocol executes reference-free evaluations using local <code>{jm}</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). Metrics include native 1–5 holistic scores, four 1–5 criteria (CQS), native Quality Proximity ($QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 4$), and secondary position-swapped pairwise verdicts with swap consistency. All judge metrics are strictly secondary; answer-key correctness remains headline.</p>"""
 
         c120 = j.get("comparisons", {}).get("openai/gpt-oss-120b", {})
         c27 = j.get("comparisons", {}).get("qwen/qwen3.8-27b", {})
@@ -1159,7 +1158,7 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
 
     if has_judge:
         j = metrics["judge"]
-        jm = j.get("judge_model", "gemini-3.8-flash")
+        jm = j.get("judge_model", "prometheus-eval/prometheus-7b-v2.0")
         c120 = j.get("comparisons", {}).get("openai/gpt-oss-120b", {})
         c27 = j.get("comparisons", {}).get("qwen/qwen3.8-27b", {})
 
@@ -1167,7 +1166,12 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
             if not c or "slm_wins" not in c:
                 return f"<td><strong>{label}</strong></td><td colspan='9' class='center'><em>Not run</em></td>"
             conc = c.get('check_a_concordance', {})
-            conc_str = f"{conc['concordance_rate']:.1f}% ({conc['concordant_items']}/{conc['total_disagreements']})" if conc.get('total_disagreements', 0) > 0 else "N/A"
+            c_rate = conc.get('concordance_rate')
+            if isinstance(c_rate, (int, float)):
+                c_str = f"{c_rate:.1f}%"
+            else:
+                c_str = str(c_rate) if c_rate else "n/a"
+            conc_str = f"{c_str} ({conc.get('concordant_items', 0)}/{conc.get('total_disagreements', 0)})" if conc.get('total_disagreements', 0) > 0 else "n/a"
             return (f"<td><strong>{label}</strong></td>"
                     f"<td class='center'>{c['slm_wins']}</td>"
                     f"<td class='center'>{c['draws']}</td>"
@@ -1176,12 +1180,12 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
                     f"<td class='center'>{c['qp']['mean']:.3f} [{c['qp']['ci_low']:.3f}, {c['qp']['ci_high']:.3f}]</td>"
                     f"<td class='center'>{c['delta_q']['mean']:+.3f} [{c['delta_q']['ci_low']:+.3f}, {c['delta_q']['ci_high']:+.3f}]</td>"
                     f"<td class='center'>{c['mean_slm_cqs']:.2f} vs {c['mean_llm_cqs']:.2f}</td>"
-                    f"<td class='center'>{c['swap_consistency']:.1f}%</td>"
+                    f"<td class='center'>{c.get('pairwise_outcomes', {}).get('swap_consistency', c.get('swap_consistency', 0.0)):.1f}%</td>"
                     f"<td class='center'>{conc_str}</td>")
 
         sec7_html = f"""
 <h2>7. Secondary Qualitative Layer: LLM-as-a-Judge Evaluation ({jm})</h2>
-<p>To evaluate qualitative response nuances, depth, and instruction following alongside deterministic answer keys, outputs are evaluated via blind, position-swapped pairwise judging with <code>{jm}</code> ($T=0.0$, zero thinking tokens). All figures are <em>strictly secondary</em>; answer-key correctness remains headline.</p>
+<p>To evaluate qualitative response nuances, depth, and instruction following alongside deterministic answer keys, outputs are evaluated via reference-free judging with local <code>{jm}</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). Quality Proximity is calculated on the native 1–5 scale ($QP_i = 1 - |Q_{{S,i}} - Q_{{L,i}}| / 4$). All figures are <em>strictly secondary</em>; answer-key correctness remains headline.</p>
 
 <table class="table-dense" style="font-size: 7.2pt; margin-bottom: 3pt;">
   <thead>
@@ -1203,7 +1207,7 @@ def build_report2_html(metrics: Dict[str, Any]) -> str:
     <tr>{j_row("qwen/qwen3.8-27b B1", c27)}</tr>
   </tbody>
 </table>
-<p class="table-footnote"><em>Note on Quota &amp; Resumption:</em> Executed under Google AI Studio free-tier quotas (strict pacing ≤14.3 RPM, 20 RPD daily limit). Results reflect completed trials from immutable raw records (<code>results/judge/judge_trials_raw_gemini38.jsonl</code>); multi-day automatic resumption executes seamlessly across quota resets. Answer-key correctness remains headline.</p>
+<p class="table-footnote"><em>Note on Serving &amp; Independence:</em> Executed 100% locally on the host RTX 3050 Laptop GPU with zero external network calls or cloud costs. Results reflect completed trials from immutable raw records (<code>results/judge/judge_trials_raw_prometheus7b.jsonl</code>). Answer-key correctness remains headline.</p>
 """
     else:
         sec7_html = ""

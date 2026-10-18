@@ -2,8 +2,8 @@
   "git": {
     "repo": "dixitabhi1/SLM_PROJECT_NEW",
     "tag": "v1.3-slm-frozen",
-    "commit_short": "ff7e433",
-    "commit_full": "ff7e4332fcc3fb8355dd664e826f5e7ba52714de"
+    "commit_short": "57f9066",
+    "commit_full": "57f9066855e7cb37e667a3d18aa01046ad548257"
   },
   "split": "heldout",
   "hashes": {
@@ -533,6 +533,323 @@
       "decision": "Rejected: E4 permanently closed; v1.3 stands frozen"
     }
   },
-  "with_judge": false,
-  "judge": null
+  "with_judge": true,
+  "judge": {
+    "title": "Prometheus-2 7B Held-Out Evaluation Summary",
+    "judge_model": "prometheus-eval/prometheus-7b-v2.0",
+    "gguf_sha256": "5bb7b0fa6b244a8cad8d2bb29d0f96422c43d3497fe1ab9ced7fd1ead03cc976",
+    "n_items": 150,
+    "comparisons": {
+      "openai/gpt-oss-120b": {
+        "baseline": "openai/gpt-oss-120b",
+        "baseline_label": "GPT-OSS-120B B1",
+        "evaluated_items": 147,
+        "exclusions_count": 3,
+        "slm_wins": 26,
+        "llm_wins": 53,
+        "draws": 68,
+        "effective_win_rate": 63.94557823129252,
+        "qp": {
+          "mean": 0.7482993197278912,
+          "ci_low": 0.7006802721088435,
+          "ci_high": 0.7925170068027211
+        },
+        "delta_q": {
+          "mean": -0.4897959183673469,
+          "ci_low": -0.7278911564625851,
+          "ci_high": -0.25170068027210885
+        },
+        "mean_slm_cqs": 3.807823129251701,
+        "mean_llm_cqs": 4.136054421768708,
+        "pairwise_outcomes": {
+          "slm_wins": 36,
+          "llm_wins": 68,
+          "draws": 43,
+          "swap_consistency": 70.74829931972789
+        },
+        "check_a_concordance": {
+          "total_disagreements": 18,
+          "concordant_items": 9,
+          "concordance_rate": "50.0%",
+          "passed_gate": false
+        },
+        "check_b_false_high_score": {
+          "total_wrong_answers": 32,
+          "false_high_scores": 18,
+          "false_high_rate": 56.25
+        },
+        "per_category": {
+          "sql": {
+            "n": 15,
+            "slm_wins": 4,
+            "llm_wins": 2,
+            "draws": 9,
+            "qp": {
+              "mean": 0.8666666666666667,
+              "ci_low": 0.75,
+              "ci_high": 0.95
+            },
+            "delta_q": {
+              "mean": 0.26666666666666666,
+              "ci_low": -0.13333333333333333,
+              "ci_high": 0.8
+            },
+            "slm_cqs": 4.216666666666667,
+            "llm_cqs": 4.183333333333334
+          },
+          "qa": {
+            "n": 14,
+            "slm_wins": 5,
+            "llm_wins": 5,
+            "draws": 4,
+            "qp": {
+              "mean": 0.6607142857142857,
+              "ci_low": 0.5,
+              "ci_high": 0.8035714285714286
+            },
+            "delta_q": {
+              "mean": 0.5,
+              "ci_low": -0.35714285714285715,
+              "ci_high": 1.4285714285714286
+            },
+            "slm_cqs": 3.767857142857143,
+            "llm_cqs": 3.0357142857142856
+          },
+          "code": {
+            "n": 15,
+            "slm_wins": 5,
+            "llm_wins": 6,
+            "draws": 4,
+            "qp": {
+              "mean": 0.7666666666666667,
+              "ci_low": 0.6666666666666666,
+              "ci_high": 0.85
+            },
+            "delta_q": {
+              "mean": -0.26666666666666666,
+              "ci_low": -0.8666666666666667,
+              "ci_high": 0.3333333333333333
+            },
+            "slm_cqs": 4.2,
+            "llm_cqs": 4.483333333333333
+          },
+          "math": {
+            "n": 15,
+            "slm_wins": 0,
+            "llm_wins": 12,
+            "draws": 3,
+            "qp": {
+              "mean": 0.5333333333333333,
+              "ci_low": 0.38333333333333336,
+              "ci_high": 0.6833333333333333
+            },
+            "delta_q": {
+              "mean": -1.8666666666666667,
+              "ci_low": -2.466666666666667,
+              "ci_high": -1.2666666666666666
+            },
+            "slm_cqs": 3.1,
+            "llm_cqs": 4.716666666666667
+          },
+          "compound": {
+            "n": 38,
+            "slm_wins": 11,
+            "llm_wins": 23,
+            "draws": 4,
+            "qp": {
+              "mean": 0.5197368421052632,
+              "ci_low": 0.4342105263157895,
+              "ci_high": 0.6118421052631579
+            },
+            "delta_q": {
+              "mean": -1.236842105263158,
+              "ci_low": -1.8157894736842106,
+              "ci_high": -0.6578947368421053
+            },
+            "slm_cqs": 2.3092105263157894,
+            "llm_cqs": 3.210526315789474
+          },
+          "track_b_fact_checklist": {
+            "n": 50,
+            "slm_wins": 1,
+            "llm_wins": 5,
+            "draws": 44,
+            "qp": {
+              "mean": 0.97,
+              "ci_low": 0.945,
+              "ci_high": 0.99
+            },
+            "delta_q": {
+              "mean": -0.08,
+              "ci_low": -0.18,
+              "ci_high": 0.0
+            },
+            "slm_cqs": 4.93,
+            "llm_cqs": 4.855
+          }
+        }
+      },
+      "qwen/qwen3.8-27b": {
+        "baseline": "qwen/qwen3.8-27b",
+        "baseline_label": "qwen/qwen3.8-27b B1",
+        "evaluated_items": 145,
+        "exclusions_count": 5,
+        "slm_wins": 14,
+        "llm_wins": 58,
+        "draws": 73,
+        "effective_win_rate": 60.0,
+        "qp": {
+          "mean": 0.7810344827586206,
+          "ci_low": 0.7344827586206897,
+          "ci_high": 0.8241379310344827
+        },
+        "delta_q": {
+          "mean": -0.6275862068965518,
+          "ci_low": -0.8344827586206897,
+          "ci_high": -0.42758620689655175
+        },
+        "mean_slm_cqs": 3.839655172413793,
+        "mean_llm_cqs": 4.396551724137931,
+        "pairwise_outcomes": {
+          "slm_wins": 46,
+          "llm_wins": 66,
+          "draws": 33,
+          "swap_consistency": 77.24137931034483
+        },
+        "check_a_concordance": {
+          "total_disagreements": 24,
+          "concordant_items": 12,
+          "concordance_rate": "50.0%",
+          "passed_gate": false
+        },
+        "check_b_false_high_score": {
+          "total_wrong_answers": 32,
+          "false_high_scores": 15,
+          "false_high_rate": 46.875
+        },
+        "per_category": {
+          "sql": {
+            "n": 15,
+            "slm_wins": 3,
+            "llm_wins": 4,
+            "draws": 8,
+            "qp": {
+              "mean": 0.8833333333333333,
+              "ci_low": 0.8166666666666667,
+              "ci_high": 0.95
+            },
+            "delta_q": {
+              "mean": -0.06666666666666667,
+              "ci_low": -0.4,
+              "ci_high": 0.26666666666666666
+            },
+            "slm_cqs": 4.216666666666667,
+            "llm_cqs": 4.266666666666667
+          },
+          "qa": {
+            "n": 15,
+            "slm_wins": 2,
+            "llm_wins": 6,
+            "draws": 7,
+            "qp": {
+              "mean": 0.7833333333333333,
+              "ci_low": 0.65,
+              "ci_high": 0.9
+            },
+            "delta_q": {
+              "mean": -0.4666666666666667,
+              "ci_low": -1.0666666666666667,
+              "ci_high": 0.13333333333333333
+            },
+            "slm_cqs": 3.816666666666667,
+            "llm_cqs": 4.433333333333334
+          },
+          "code": {
+            "n": 15,
+            "slm_wins": 2,
+            "llm_wins": 4,
+            "draws": 9,
+            "qp": {
+              "mean": 0.8666666666666667,
+              "ci_low": 0.75,
+              "ci_high": 0.95
+            },
+            "delta_q": {
+              "mean": -0.26666666666666666,
+              "ci_low": -0.8,
+              "ci_high": 0.13333333333333333
+            },
+            "slm_cqs": 4.2,
+            "llm_cqs": 4.066666666666666
+          },
+          "math": {
+            "n": 15,
+            "slm_wins": 2,
+            "llm_wins": 12,
+            "draws": 1,
+            "qp": {
+              "mean": 0.55,
+              "ci_low": 0.43333333333333335,
+              "ci_high": 0.6666666666666666
+            },
+            "delta_q": {
+              "mean": -1.2666666666666666,
+              "ci_low": -2.0,
+              "ci_high": -0.4
+            },
+            "slm_cqs": 3.1,
+            "llm_cqs": 4.416666666666667
+          },
+          "compound": {
+            "n": 35,
+            "slm_wins": 3,
+            "llm_wins": 28,
+            "draws": 4,
+            "qp": {
+              "mean": 0.5285714285714286,
+              "ci_low": 0.42857142857142855,
+              "ci_high": 0.6216071428571402
+            },
+            "delta_q": {
+              "mean": -1.6571428571428573,
+              "ci_low": -2.142857142857143,
+              "ci_high": -1.1428571428571428
+            },
+            "slm_cqs": 2.2928571428571427,
+            "llm_cqs": 3.7857142857142856
+          },
+          "track_b_fact_checklist": {
+            "n": 50,
+            "slm_wins": 2,
+            "llm_wins": 4,
+            "draws": 44,
+            "qp": {
+              "mean": 0.97,
+              "ci_low": 0.945,
+              "ci_high": 0.99
+            },
+            "delta_q": {
+              "mean": -0.04,
+              "ci_low": -0.14,
+              "ci_high": 0.06
+            },
+            "slm_cqs": 4.93,
+            "llm_cqs": 4.945
+          }
+        }
+      }
+    },
+    "lengths_and_correlations": {
+      "mean_response_length_chars": {
+        "Specialist_SLM_v1.3": 288.3904109589041,
+        "GPT-OSS-120B_B1": 386.83673469387753,
+        "qwen/qwen3.8-27b_B1": 1157.0344827586207
+      },
+      "length_score_pearson_r": {
+        "Specialist_SLM_v1.3": -0.14100480745105634,
+        "GPT-OSS-120B_B1": 0.2844625392218097,
+        "qwen/qwen3.8-27b_B1": -0.644959524175079
+      }
+    }
+  }
 }

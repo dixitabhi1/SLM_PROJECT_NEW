@@ -1,16 +1,15 @@
 % Mentor Protocol Table: Secondary Evaluation Layer (LLM-as-a-Judge)
-% Pre-registered template; judge metrics published only upon >=95% completed items per baseline.
 \begin{table*}[t]
 \centering
 \small
-\caption{\textbf{Mentor Protocol Evaluation Matrix: LLM-as-a-Judge Secondary Layer} ($N=150$, Held-Out Split). Pairwise comparisons conducted with order-swapped consistency testing ($2 \times 150 = 300$ calls per baseline). Quality Proximity is defined as $QP = 1 - |Q_S - Q_L|/9$; brackets denote empirical 95\% bootstrap percentile confidence intervals ($B=10000$). Primary answer-key correctness remains the definitive metric. Cells remain pending until $\ge 95\%$ baseline items are judged.}
+\caption{\textbf{Mentor Protocol Evaluation Matrix: LLM-as-a-Judge Secondary Layer} ($N=150$, Held-Out Split). Evaluated using local Prometheus-2 7B (GGUF Q4\_K\_M, temperature 0.0) with native 1–5 rubrics. Quality Proximity is defined as $QP = 1 - |Q_S - Q_L|/4$; brackets denote empirical 95\% bootstrap percentile confidence intervals ($B=10000$). Primary answer-key correctness remains the definitive metric.}
 \label{tab:mentor_protocol_results}
 \begin{tabular}{llcccccccc}
 \toprule
 \textbf{Experiment} & \textbf{SLM Fine-Tuning} & \textbf{Skill-Match} & \textbf{LLM FT} & \textbf{LLM Win} & \textbf{SLM Win} & \textbf{Draw} & \textbf{Quality Proximity} & \textbf{SLM CQS} & \textbf{LLM CQS} \\
 \midrule
-E1 (vs 120B B1) & None (Phi-4-mini base) & Single SLM & None & pending & pending & pending & pending & pending & pending \\
-E1 (vs 27B B1) & None (Phi-4-mini base) & Single SLM & None & pending & pending & pending & pending & pending & pending \\
+E1 (vs 120B B1) & None (Phi-4-mini base) & Single SLM & None & 53 (36.1\%) & 26 (17.7\%) & 68 (46.3\%) & 0.7483 [0.7007, 0.7925] & 3.81 & 4.14 \\
+E1 (vs 27B B1) & None (Phi-4-mini base) & Single SLM & None & 58 (40.0\%) & 14 (9.7\%) & 73 (50.3\%) & 0.7810 [0.7345, 0.8241] & 3.84 & 4.40 \\
 E2 & Query-dep. LoRA (SQL) & Single SLM & None & — & — & — & Not run & — & — \\
 E3 & All specialists FT & Multi-SLM & None & — & — & — & Not run & — & — \\
 E4-A & None & Skill-matching & None & — & — & — & Not run & — & — \\

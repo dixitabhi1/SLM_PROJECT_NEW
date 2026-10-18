@@ -15,7 +15,7 @@
   <div class="report-subtitle">Symmetric Item-Level Comparison on Held-Out Benchmark Split (100 Track A + 50 Track B Items)</div>
   <div class="metadata-grid">
     <div class="metadata-item"><strong>Evaluation Split:</strong> Held-Out Split (Secondary)</div>
-    <div class="metadata-item"><strong>Pipeline Release:</strong> v1.3-slm-frozen (ff7e433)</div>
+    <div class="metadata-item"><strong>Pipeline Release:</strong> v1.3-slm-frozen (57f9066)</div>
     <div class="metadata-item"><strong>Primary Metric:</strong> Answer-Key Correctness (Exact Match)</div>
     <div class="metadata-item"><strong>Statistical Test:</strong> Paired Bootstrap (B=10,000, seed 42)</div>
   </div>
@@ -565,6 +565,31 @@ Note: B0 baselines were evaluated on Track A only and had no Track B condition.<
   <li><strong>Active Latency and Cost Invariance:</strong> While the SLM pipeline executes locally with zero monetary cost, end-to-end multi-step tool execution took on average 8–18 seconds per compound item, which was not directly latency-matched against high-throughput cloud API streaming.</li>
 </ul>
 
+
+<h2>7. Secondary Qualitative Layer: LLM-as-a-Judge Evaluation (prometheus-eval/prometheus-7b-v2.0)</h2>
+<p>To evaluate qualitative response nuances, depth, and instruction following alongside deterministic answer keys, outputs are evaluated via reference-free judging with local <code>prometheus-eval/prometheus-7b-v2.0</code> (GGUF Q4_K_M, SHA-256 <code>5bb7b0fa...</code>, $T=0.0$, context 8192 on port 8081). Quality Proximity is calculated on the native 1–5 scale ($QP_i = 1 - |Q_{S,i} - Q_{L,i}| / 4$). All figures are <em>strictly secondary</em>; answer-key correctness remains headline.</p>
+
+<table class="table-dense" style="font-size: 7.2pt; margin-bottom: 3pt;">
+  <thead>
+    <tr>
+      <th>Baseline Competitor</th>
+      <th class="center">SLM Win</th>
+      <th class="center">Draw</th>
+      <th class="center">LLM Win</th>
+      <th class="center">Effective Win%</th>
+      <th class="center">Quality Proximity (QP) [95% CI]</th>
+      <th class="center">Delta Q [95% CI]</th>
+      <th class="center">SLM CQS vs LLM CQS</th>
+      <th class="center">Swap Cons.</th>
+      <th class="center">Concordance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>GPT-OSS-120B B1</strong></td><td class='center'>26</td><td class='center'>68</td><td class='center'>53</td><td class='center'><strong>63.9%</strong></td><td class='center'>0.748 [0.701, 0.793]</td><td class='center'>-0.490 [-0.728, -0.252]</td><td class='center'>3.81 vs 4.14</td><td class='center'>70.7%</td><td class='center'>50.0% (9/18)</td></tr>
+    <tr><td><strong>qwen/qwen3.8-27b B1</strong></td><td class='center'>14</td><td class='center'>73</td><td class='center'>58</td><td class='center'><strong>60.0%</strong></td><td class='center'>0.781 [0.734, 0.824]</td><td class='center'>-0.628 [-0.834, -0.428]</td><td class='center'>3.84 vs 4.40</td><td class='center'>77.2%</td><td class='center'>50.0% (12/24)</td></tr>
+  </tbody>
+</table>
+<p class="table-footnote"><em>Note on Serving &amp; Independence:</em> Executed 100% locally on the host RTX 3050 Laptop GPU with zero external network calls or cloud costs. Results reflect completed trials from immutable raw records (<code>results/judge/judge_trials_raw_prometheus7b.jsonl</code>). Answer-key correctness remains headline.</p>
 
 
 </body>
