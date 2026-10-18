@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-10-18T12:53:41Z",
+  "reserve_hash": "bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db",
+  "total_items": 100,
+  "overall_accuracy": {
+    "specialist_pipeline_slm_run1": {
+      "correct": 87,
+      "total": 100,
+      "pct": 87.0
+    },
+    "specialist_pipeline_slm_run2": {
+      "correct": 87,
+      "total": 100,
+      "pct": 87.0
+    },
+    "b1_gpt120b": {
+      "correct": 80,
+      "total": 100,
+      "pct": 80.0
+    },
+    "b1_qwen27b": {
+      "correct": 82,
+      "total": 100,
+      "pct": 82.0
+    }
+  },
+  "slm_run_agreement": {
+    "exact_answer_match_count": 97,
+    "exact_answer_match_pct": 97.0,
+    "verdict_match_count": 100,
+    "verdict_match_pct": 100.0,
+    "both_passed": 87,
+    "both_failed": 13,
+    "run1_pass_run2_fail": 0,
+    "run1_fail_run2_pass": 0,
+    "disagreements": []
+  },
+  "head_to_head_vs_120b": {
+    "contingency": {
+      "slm_win": 17,
+      "both_right": 69,
+      "both_wrong": 1,
+      "llm_win": 11,
+      "missing": 2
+    },
+    "paired_difference_pp": 6.12,
+    "bootstrap_95_ci": [
+      -4.08,
+      16.33
+    ]
+  },
+  "head_to_head_vs_27b": {
+    "contingency": {
+      "slm_win": 14,
+      "both_right": 71,
+      "both_wrong": 1,
+      "llm_win": 11,
+      "missing": 3
+    },
+    "paired_difference_pp": 3.09,
+    "bootstrap_95_ci": [
+      -7.22,
+      13.4
+    ]
+  },
+  "category_breakdown": {
+    "atomic_sql": {
+      "total": 15,
+      "slm_run1": 11,
+      "slm_run2": 11,
+      "gpt120b": 14,
+      "qwen27b": 14
+    },
+    "atomic_qa": {
+      "total": 15,
+      "slm_run1": 14,
+      "slm_run2": 14,
+      "gpt120b": 15,
+      "qwen27b": 15
+    },
+    "atomic_code": {
+      "total": 15,
+      "slm_run1": 11,
+      "slm_run2": 11,
+      "gpt120b": 15,
+      "qwen27b": 14
+    },
+    "atomic_math": {
+      "total": 15,
+      "slm_run1": 14,
+      "slm_run2": 14,
+      "gpt120b": 15,
+      "qwen27b": 15
+    },
+    "compound_solvable": {
+      "total": 20,
+      "slm_run1": 18,
+      "slm_run2": 18,
+      "gpt120b": 17,
+      "qwen27b": 17
+    },
+    "compound_tool_required": {
+      "total": 20,
+      "slm_run1": 19,
+      "slm_run2": 19,
+      "gpt120b": 4,
+      "qwen27b": 7
+    }
+  },
+  "truncations": {
+    "slm_run1": 0,
+    "slm_run2": 0,
+    "gpt120b": 0,
+    "qwen27b": 0
+  },
+  "latency_seconds": {
+    "slm_run1": {
+      "mean": 7.27,
+      "median": 5.53
+    },
+    "slm_run2": {
+      "mean": 7.46,
+      "median": 5.69
+    },
+    "gpt120b": {
+      "mean": 4.82,
+      "median": 1.52,
+      "rate_limit_wait_mean": 2.9
+    },
+    "qwen27b": {
+      "mean": 42.49,
+      "median": 22.19,
+      "rate_limit_wait_mean": 39.1
+    }
+  }
+}

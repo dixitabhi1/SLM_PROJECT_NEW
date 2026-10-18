@@ -2,10 +2,10 @@
   "git": {
     "repo": "dixitabhi1/SLM_PROJECT_NEW",
     "tag": "v1.3-slm-frozen",
-    "commit_short": "a3e39a6",
-    "commit_full": "a3e39a69810bd14fbc555de09a0ca3a4d5a3bccb"
+    "commit_short": "d6b953a",
+    "commit_full": "d6b953ae911cb8b67e4849cf2ceda3b35c234fc5"
   },
-  "split": "heldout",
+  "split": "reserve",
   "hashes": {
     "heldout_track_a": "2314fca186a064ffcface62f42dc346bda9fdc73c5221852e8ecf5b19aafd629",
     "heldout_track_b": "075bf20d1daafdb89e3eef1e35271113766b9845cfb9d52e88301faa2919c0e1",
@@ -14,93 +14,68 @@
     "extended_sql_dev": "1af2bb2a2bc9702c9c2a944069678b4630ce22a73ce6281a7b10f5cb24a287a3"
   },
   "sanity": {
-    "heldout_v1.3": 79,
-    "heldout_v1.0": 67,
-    "heldout_c0": 56,
-    "heldout_120b_b1": 88,
-    "heldout_27b_b1": 86,
-    "heldout_120b_b0": 73,
-    "heldout_27b_b0": 75,
-    "dev_v1.2": 66,
-    "dev_v1.3": 77,
-    "dev_e4": 76,
-    "dev_e4b": 66
+    "reserve_v1.3": 87,
+    "reserve_v1.3_run2": 87,
+    "reserve_120b_b1": 80,
+    "reserve_27b_b1": 82
   },
   "summary": {
-    "v1.3_track_a": 79,
-    "v1.3_track_b": 50,
+    "v1.3_track_a": 87,
+    "v1.3_track_b": 0,
+    "v1.3_run2_track_a": 87,
     "v1.0_track_a": 67,
-    "v1.0_track_b": 50,
+    "v1.0_track_b": 0,
     "C0_track_a": 56,
-    "120B_B1_track_a": 88,
-    "120B_B1_track_b": 50,
-    "27B_B1_track_a": 86,
-    "27B_B1_track_b": 50,
+    "120B_B1_track_a": 80,
+    "120B_B1_track_b": 0,
+    "27B_B1_track_a": 82,
+    "27B_B1_track_b": 0,
     "120B_B0_track_a": 73,
     "27B_B0_track_a": 75,
     "size_ratio_27b": 7.1,
     "size_ratio_120b": 31.4
   },
+  "run_agreement": {
+    "exact_answer_match": 97,
+    "exact_verdict_match": 100,
+    "both_passed": 87,
+    "both_failed": 13,
+    "run1_pass_run2_fail": 0,
+    "run1_fail_run2_pass": 0,
+    "exact_answer_match_pct": 97.0,
+    "verdict_match_pct": 100.0,
+    "disagreements": []
+  },
   "comparisons": {
     "120B_B1": {
-      "slm_wins": 5,
-      "both_right": 74,
-      "both_wrong": 7,
-      "other_wins": 14,
-      "slm_not_beaten_pct": 86.0,
-      "diff_pp": -9.0,
-      "ci_low_pp": -17.0,
-      "ci_high_pp": -1.0
-    },
-    "27B_B1": {
-      "slm_wins": 10,
-      "both_right": 69,
-      "both_wrong": 4,
-      "other_wins": 17,
-      "slm_not_beaten_pct": 83.0,
-      "diff_pp": -7.0,
-      "ci_low_pp": -17.0,
-      "ci_high_pp": 3.0
-    },
-    "120B_B0": {
       "slm_wins": 18,
-      "both_right": 61,
-      "both_wrong": 9,
-      "other_wins": 12,
-      "slm_not_beaten_pct": 88.0,
-      "diff_pp": 6.0,
-      "ci_low_pp": -5.0,
+      "both_right": 69,
+      "both_wrong": 2,
+      "other_wins": 11,
+      "slm_not_beaten_pct": 89.0,
+      "diff_pp": 7.0,
+      "ci_low_pp": -3.0,
       "ci_high_pp": 17.0
     },
-    "27B_B0": {
-      "slm_wins": 17,
-      "both_right": 62,
-      "both_wrong": 8,
-      "other_wins": 13,
-      "slm_not_beaten_pct": 87.0,
-      "diff_pp": 4.0,
-      "ci_low_pp": -7.0,
+    "27B_B1": {
+      "slm_wins": 16,
+      "both_right": 71,
+      "both_wrong": 2,
+      "other_wins": 11,
+      "slm_not_beaten_pct": 89.0,
+      "diff_pp": 5.0,
+      "ci_low_pp": -5.0,
       "ci_high_pp": 15.0
     },
-    "C0": {
-      "slm_wins": 29,
-      "both_right": 50,
-      "both_wrong": 15,
-      "other_wins": 6,
-      "slm_not_beaten_pct": 94.0,
-      "diff_pp": 23.0,
-      "ci_low_pp": 12.0,
-      "ci_high_pp": 34.0
-    },
-    "v1.0": {
-      "slm_wins": 19,
-      "both_right": 60,
-      "both_wrong": 14,
-      "other_wins": 7,
-      "slm_not_beaten_pct": 93.0,
-      "diff_pp": 12.0,
-      "ci_low_pp": 2.0,
-      "ci_high_pp": 21.0
+    "v1.3_run2": {
+      "slm_wins": 0,
+      "both_right": 87,
+      "both_wrong": 13,
+      "other_wins": 0,
+      "slm_not_beaten_pct": 100.0,
+      "diff_pp": 0.0,
+      "ci_low_pp": 0.0,
+      "ci_high_pp": 0.0
     }
   },
   "categories": {
@@ -108,65 +83,47 @@
       "name": "SQL (Atomic, Spider)",
       "n": 15,
       "accuracies": {
-        "C0": 46.7,
-        "v1.0": 20.0,
         "v1.3": 73.3,
-        "27B_B0": 73.3,
-        "120B_B0": 80.0,
-        "27B_B1": 73.3,
-        "120B_B1": 73.3
+        "v1.3_run2": 73.3,
+        "27B_B1": 93.3,
+        "120B_B1": 93.3
       },
       "counts": {
-        "C0": 7,
-        "v1.0": 3,
         "v1.3": 11,
-        "27B_B0": 11,
-        "120B_B0": 12,
-        "27B_B1": 11,
-        "120B_B1": 11
+        "v1.3_run2": 11,
+        "27B_B1": 14,
+        "120B_B1": 14
       }
     },
     "qa": {
       "name": "QA / Scientific (Atomic, ARC)",
       "n": 15,
       "accuracies": {
-        "C0": 80.0,
-        "v1.0": 80.0,
-        "v1.3": 73.3,
-        "27B_B0": 93.3,
-        "120B_B0": 86.7,
+        "v1.3": 93.3,
+        "v1.3_run2": 93.3,
         "27B_B1": 100.0,
-        "120B_B1": 86.7
+        "120B_B1": 100.0
       },
       "counts": {
-        "C0": 12,
-        "v1.0": 12,
-        "v1.3": 11,
-        "27B_B0": 14,
-        "120B_B0": 13,
+        "v1.3": 14,
+        "v1.3_run2": 14,
         "27B_B1": 15,
-        "120B_B1": 13
+        "120B_B1": 15
       }
     },
     "code": {
       "name": "Code Implementation (Atomic, HumanEval)",
       "n": 15,
       "accuracies": {
-        "C0": 80.0,
-        "v1.0": 80.0,
-        "v1.3": 80.0,
-        "27B_B0": 100.0,
-        "120B_B0": 93.3,
-        "27B_B1": 100.0,
+        "v1.3": 73.3,
+        "v1.3_run2": 73.3,
+        "27B_B1": 93.3,
         "120B_B1": 100.0
       },
       "counts": {
-        "C0": 12,
-        "v1.0": 12,
-        "v1.3": 12,
-        "27B_B0": 15,
-        "120B_B0": 14,
-        "27B_B1": 15,
+        "v1.3": 11,
+        "v1.3_run2": 11,
+        "27B_B1": 14,
         "120B_B1": 15
       }
     },
@@ -174,143 +131,125 @@
       "name": "Maths / Arithmetic (Atomic, GSM8K)",
       "n": 15,
       "accuracies": {
-        "C0": 93.3,
-        "v1.0": 93.3,
-        "v1.3": 86.7,
-        "27B_B0": 86.7,
-        "120B_B0": 93.3,
-        "27B_B1": 86.7,
-        "120B_B1": 86.7
+        "v1.3": 93.3,
+        "v1.3_run2": 93.3,
+        "27B_B1": 100.0,
+        "120B_B1": 100.0
       },
       "counts": {
-        "C0": 14,
-        "v1.0": 14,
-        "v1.3": 13,
-        "27B_B0": 13,
-        "120B_B0": 14,
-        "27B_B1": 13,
-        "120B_B1": 13
+        "v1.3": 14,
+        "v1.3_run2": 14,
+        "27B_B1": 15,
+        "120B_B1": 15
       }
     },
     "compound_solvable_without_tools": {
       "name": "Compound: Solvable without Tools",
       "n": 20,
       "accuracies": {
-        "C0": 50.0,
-        "v1.0": 50.0,
-        "v1.3": 75.0,
-        "27B_B0": 100.0,
-        "120B_B0": 100.0,
-        "27B_B1": 90.0,
-        "120B_B1": 100.0
+        "v1.3": 90.0,
+        "v1.3_run2": 90.0,
+        "27B_B1": 85.0,
+        "120B_B1": 85.0
       },
       "counts": {
-        "C0": 10,
-        "v1.0": 10,
-        "v1.3": 15,
-        "27B_B0": 20,
-        "120B_B0": 20,
-        "27B_B1": 18,
-        "120B_B1": 20
+        "v1.3": 18,
+        "v1.3_run2": 18,
+        "27B_B1": 17,
+        "120B_B1": 17
       }
     },
     "compound_tool-required": {
       "name": "Compound: Tool-Required (SQLite / Python)",
       "n": 20,
       "accuracies": {
-        "C0": 5.0,
-        "v1.0": 80.0,
-        "v1.3": 85.0,
-        "27B_B0": 10.0,
-        "120B_B0": 0.0,
-        "27B_B1": 70.0,
-        "120B_B1": 80.0
+        "v1.3": 95.0,
+        "v1.3_run2": 95.0,
+        "27B_B1": 35.0,
+        "120B_B1": 20.0
       },
       "counts": {
-        "C0": 1,
-        "v1.0": 16,
-        "v1.3": 17,
-        "27B_B0": 2,
-        "120B_B0": 0,
-        "27B_B1": 14,
-        "120B_B1": 16
+        "v1.3": 19,
+        "v1.3_run2": 19,
+        "27B_B1": 7,
+        "120B_B1": 4
       }
     }
   },
   "category_h2h": {
     "vs_120B_B1": {
       "sql": {
-        "slm_wins": 1,
-        "llm_wins": 1,
-        "both": 10,
-        "neither": 3
-      },
-      "qa": {
-        "slm_wins": 0,
-        "llm_wins": 2,
-        "both": 11,
-        "neither": 2
-      },
-      "code": {
         "slm_wins": 0,
         "llm_wins": 3,
-        "both": 12,
-        "neither": 0
-      },
-      "math": {
-        "slm_wins": 1,
-        "llm_wins": 1,
-        "both": 12,
+        "both": 11,
         "neither": 1
-      },
-      "compound_solvable_without_tools": {
-        "slm_wins": 0,
-        "llm_wins": 5,
-        "both": 15,
-        "neither": 0
-      },
-      "compound_tool-required": {
-        "slm_wins": 3,
-        "llm_wins": 2,
-        "both": 14,
-        "neither": 1
-      }
-    },
-    "vs_27B_B1": {
-      "sql": {
-        "slm_wins": 1,
-        "llm_wins": 1,
-        "both": 10,
-        "neither": 3
       },
       "qa": {
+        "slm_wins": 0,
+        "llm_wins": 1,
+        "both": 14,
+        "neither": 0
+      },
+      "code": {
         "slm_wins": 0,
         "llm_wins": 4,
         "both": 11,
         "neither": 0
       },
-      "code": {
-        "slm_wins": 0,
-        "llm_wins": 3,
-        "both": 12,
-        "neither": 0
-      },
       "math": {
-        "slm_wins": 1,
+        "slm_wins": 0,
         "llm_wins": 1,
-        "both": 12,
-        "neither": 1
+        "both": 14,
+        "neither": 0
       },
       "compound_solvable_without_tools": {
         "slm_wins": 2,
-        "llm_wins": 5,
-        "both": 13,
-        "neither": 0
+        "llm_wins": 1,
+        "both": 16,
+        "neither": 1
       },
       "compound_tool-required": {
-        "slm_wins": 6,
+        "slm_wins": 16,
+        "llm_wins": 1,
+        "both": 3,
+        "neither": 0
+      }
+    },
+    "vs_27B_B1": {
+      "sql": {
+        "slm_wins": 0,
         "llm_wins": 3,
         "both": 11,
+        "neither": 1
+      },
+      "qa": {
+        "slm_wins": 0,
+        "llm_wins": 1,
+        "both": 14,
+        "neither": 0
+      },
+      "code": {
+        "slm_wins": 1,
+        "llm_wins": 4,
+        "both": 10,
+        "neither": 0
+      },
+      "math": {
+        "slm_wins": 0,
+        "llm_wins": 1,
+        "both": 14,
+        "neither": 0
+      },
+      "compound_solvable_without_tools": {
+        "slm_wins": 2,
+        "llm_wins": 1,
+        "both": 16,
+        "neither": 1
+      },
+      "compound_tool-required": {
+        "slm_wins": 13,
+        "llm_wins": 1,
+        "both": 6,
         "neither": 0
       }
     }
@@ -318,105 +257,167 @@
   "disagreements_120b": {
     "slm_only": [
       {
-        "item_id": "spider_val_0354",
-        "category": "sql",
-        "task": "Return the different descriptions for templates that have been used in a document."
-      },
-      {
-        "item_id": "gsm8k_test_0649",
-        "category": "math",
-        "task": "Fishio posted her selfie on Instagram. She received 2000 likes on the photo after 1 week. Three weeks later, the number of likes was 70 times as many as the initial number of likes. If she received 20000 more new likes recently, how many Instagram likes are there?"
-      },
-      {
-        "item_id": "compound_heldout_v2_0002",
+        "item_id": "compound_reserve_v2_0001",
         "category": "compound_tool-required",
-        "task": "From the tvshow database [Database Schema: CREATE TABLE \"TV_Channel\" ( \"id\" text, \"series_"
+        "task": "Query the concert_singer database [Database Schema: CREATE TABLE \"stadium\" ( \"Stadium_ID\" "
       },
       {
-        "item_id": "compound_heldout_v2_0021",
+        "item_id": "compound_reserve_v2_0002",
+        "category": "compound_tool-required",
+        "task": "In the tvshow database [Database Schema: CREATE TABLE \"TV_Channel\" ( \"id\" text, \"series_na"
+      },
+      {
+        "item_id": "compound_reserve_v2_0003",
+        "category": "compound_tool-required",
+        "task": "From the world_1 database [Database Schema: CREATE TABLE `city` ( `ID` integer NOT NULL PR"
+      },
+      {
+        "item_id": "compound_reserve_v2_0004",
+        "category": "compound_tool-required",
+        "task": "Query the battle_death database [Database Schema: CREATE TABLE \"ship\" ( \"lost_in_battle\" i"
+      },
+      {
+        "item_id": "compound_reserve_v2_0005",
+        "category": "compound_tool-required",
+        "task": "In the pets_1 database [Database Schema: CREATE TABLE Student ( StuID INTEGER PRIMARY KEY,"
+      },
+      {
+        "item_id": "compound_reserve_v2_0006",
+        "category": "compound_tool-required",
+        "task": "Query the dog_kennels database [Database Schema: CREATE TABLE `Charges` ( `charge_id` INTE"
+      },
+      {
+        "item_id": "compound_reserve_v2_0007",
+        "category": "compound_tool-required",
+        "task": "From the flight_2 database [Database Schema: CREATE TABLE 'airlines' ( uid INTEGER PRIMARY"
+      },
+      {
+        "item_id": "compound_reserve_v2_0008",
+        "category": "compound_tool-required",
+        "task": "In the real_estate_properties database [Database Schema: CREATE TABLE `Properties` ( `prop"
+      },
+      {
+        "item_id": "compound_reserve_v2_0009",
+        "category": "compound_tool-required",
+        "task": "Query the orchestra database [Database Schema: CREATE TABLE \"conductor\" ( \"Conductor_ID\" i"
+      },
+      {
+        "item_id": "compound_reserve_v2_0010",
+        "category": "compound_tool-required",
+        "task": "From the employee_hire_evaluation database [Database Schema: CREATE TABLE \"employee\" ( \"Em"
+      },
+      {
+        "item_id": "compound_reserve_v2_0021",
         "category": "compound_tool-required",
         "task": "Query the flight_2 database [Database Schema: CREATE TABLE 'airlines' ( uid INTEGER PRIMAR"
       },
       {
-        "item_id": "compound_heldout_v2_0026",
-        "category": "compound_tool-required",
-        "task": "In the battle_death database [Database Schema: CREATE TABLE \"ship\" ( \"lost_in_battle\" int,"
-      }
-    ],
-    "llm_only": [
-      {
-        "item_id": "spider_val_0013",
-        "category": "sql",
-        "task": "What are all the song names by singers who are older than average?"
-      },
-      {
-        "item_id": "TIMSS_2003_8_pg14",
-        "category": "qa",
-        "task": "Why would male insects be treated to prevent sperm production?"
-      },
-      {
-        "item_id": "Mercury_7006790",
-        "category": "qa",
-        "task": "Which of the following best explains the cause of windows rattling during a thunderstorm?"
-      },
-      {
-        "item_id": "HumanEval/117",
-        "category": "code",
-        "task": "\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tas"
-      },
-      {
-        "item_id": "HumanEval/132",
-        "category": "code",
-        "task": "\ndef is_nested(string):\n    '''\n    Create a function that takes a string as input which c"
-      },
-      {
-        "item_id": "HumanEval/81",
-        "category": "code",
-        "task": "\ndef numerical_letter_grade(grades):\n    \"\"\"It is the last week of the semester and the te"
-      },
-      {
-        "item_id": "gsm8k_test_0637",
-        "category": "math",
-        "task": "Reggie, Lynn, and Paisley ran together. Paisley ran 4 miles. Reggie ran 5 times what Paisley ran and 3 miles farther than Lynn. How many miles did Lynn run?"
-      },
-      {
-        "item_id": "compound_heldout_v2_0009",
-        "category": "compound_tool-required",
-        "task": "From the poker_player database [Database Schema: CREATE TABLE \"poker_player\" ( \"Poker_Play"
-      },
-      {
-        "item_id": "compound_heldout_v2_0012",
-        "category": "compound_solvable_without_tools",
-        "task": "A supply depot receives 1500 crates of electronics, rejecting 20 percent during inspection"
-      },
-      {
-        "item_id": "compound_heldout_v2_0015",
-        "category": "compound_solvable_without_tools",
-        "task": "A financing facility lends 40000 dollars earning simple annual interest at 6 percent per y"
-      },
-      {
-        "item_id": "compound_heldout_v2_0019",
-        "category": "compound_solvable_without_tools",
-        "task": "A retail warehouse ledger store_inventory [CREATE TABLE stock (item_id int, stock int, reo"
-      },
-      {
-        "item_id": "compound_heldout_v2_0024",
+        "item_id": "compound_reserve_v2_0024",
         "category": "compound_tool-required",
         "task": "Query the real_estate_properties database [Database Schema: CREATE TABLE `Properties` ( `p"
       },
       {
-        "item_id": "compound_heldout_v2_0033",
-        "category": "compound_solvable_without_tools",
-        "task": "Consider the character sequence 'AAAAABBBCCCCCCCCDDDDDD' compressed using run-length encod"
+        "item_id": "compound_reserve_v2_0027",
+        "category": "compound_tool-required",
+        "task": "From the concert_singer database [Database Schema: CREATE TABLE \"stadium\" ( \"Stadium_ID\" i"
       },
       {
-        "item_id": "compound_heldout_v2_0040",
+        "item_id": "compound_reserve_v2_0028",
+        "category": "compound_tool-required",
+        "task": "In the pets_1 database [Database Schema: CREATE TABLE Student ( StuID INTEGER PRIMARY KEY,"
+      },
+      {
+        "item_id": "compound_reserve_v2_0029",
+        "category": "compound_tool-required",
+        "task": "Query the poker_player database [Database Schema: CREATE TABLE \"poker_player\" ( \"Poker_Pla"
+      },
+      {
+        "item_id": "compound_reserve_v2_0030",
+        "category": "compound_tool-required",
+        "task": "From the dog_kennels database [Database Schema: CREATE TABLE `Charges` ( `charge_id` INTEG"
+      },
+      {
+        "item_id": "compound_reserve_v2_0034",
         "category": "compound_solvable_without_tools",
-        "task": "A citrus grower harvests 600 kilograms of oranges, setting aside 15 percent for fresh juic"
+        "task": "Find the smallest positive integer N that leaves a remainder of 3 when divided by 4, a rem"
+      },
+      {
+        "item_id": "compound_reserve_v2_0039",
+        "category": "compound_solvable_without_tools",
+        "task": "A cloud compute cluster monitoring table cluster_nodes [CREATE TABLE nodes (node_id int, z"
+      }
+    ],
+    "llm_only": [
+      {
+        "item_id": "spider_val_0643",
+        "category": "sql",
+        "task": "find the id of tv channels that do not play any cartoon directed by Ben Jones."
+      },
+      {
+        "item_id": "spider_val_0292",
+        "category": "sql",
+        "task": "What is all the information about hiring?"
+      },
+      {
+        "item_id": "spider_val_0535",
+        "category": "sql",
+        "task": "Who is enrolled in a Bachelor degree program? List the first name, middle name, last name."
+      },
+      {
+        "item_id": "NAEP_2005_8_S11+14",
+        "category": "qa",
+        "task": "A human CANNOT survive the loss of which of the following?"
+      },
+      {
+        "item_id": "HumanEval/134",
+        "category": "code",
+        "task": "\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True "
+      },
+      {
+        "item_id": "HumanEval/91",
+        "category": "code",
+        "task": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count"
+      },
+      {
+        "item_id": "HumanEval/159",
+        "category": "code",
+        "task": "\ndef eat(number, need, remaining):\n    \"\"\"\n    You're a hungry rabbit, and you already hav"
+      },
+      {
+        "item_id": "HumanEval/120",
+        "category": "code",
+        "task": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k,"
+      },
+      {
+        "item_id": "gsm8k_test_1012",
+        "category": "math",
+        "task": "Maria was charging her power bank before going to the park when she disconnected it and noticed the power bank wasn\u2019t fully charged yet. Once at the park, her friends asked her if they could charge their phones. While charging her friends\u2019 phones, she noticed that her power bank was losing 9% of the total capacity each hour. 5 hours later the battery started to lose instead 7% of the total capacity each hour for about 3 hours. In the end, the charge remaining was 28%. What was the charge of the power bank when Maria went out to the park?"
+      },
+      {
+        "item_id": "compound_reserve_v2_0022",
+        "category": "compound_tool-required",
+        "task": "From the tvshow database [Database Schema: CREATE TABLE \"TV_Channel\" ( \"id\" text, \"series_"
+      },
+      {
+        "item_id": "compound_reserve_v2_0040",
+        "category": "compound_solvable_without_tools",
+        "task": "An apple orchard harvests 750 kilograms of heirloom apples, setting aside 20 percent for c"
       }
     ]
   },
   "truncations": {
+    "v1.3": {
+      "truncated_item_ids": [],
+      "count": 0,
+      "slm_wins_on_truncated": [],
+      "slm_wins_count": 0
+    },
+    "v1.3_run2": {
+      "truncated_item_ids": [],
+      "count": 0,
+      "slm_wins_on_truncated": [],
+      "slm_wins_count": 0
+    },
     "120B_B1": {
       "truncated_item_ids": [],
       "count": 0,
@@ -424,50 +425,10 @@
       "slm_wins_count": 0
     },
     "27B_B1": {
-      "truncated_item_ids": [
-        "compound_heldout_v2_0005",
-        "compound_heldout_v2_0017",
-        "compound_heldout_v2_0026"
-      ],
-      "count": 3,
-      "slm_wins_on_truncated": [
-        "compound_heldout_v2_0005",
-        "compound_heldout_v2_0017",
-        "compound_heldout_v2_0026"
-      ],
-      "slm_wins_count": 3
-    },
-    "120B_B0": {
-      "truncated_item_ids": [
-        "HumanEval/132",
-        "compound_heldout_v2_0003"
-      ],
-      "count": 2,
-      "slm_wins_on_truncated": [
-        "compound_heldout_v2_0003"
-      ],
-      "slm_wins_count": 1
-    },
-    "27B_B0": {
-      "truncated_item_ids": [
-        "compound_heldout_v2_0003",
-        "compound_heldout_v2_0005",
-        "compound_heldout_v2_0007",
-        "compound_heldout_v2_0009",
-        "compound_heldout_v2_0021",
-        "compound_heldout_v2_0023",
-        "compound_heldout_v2_0026"
-      ],
-      "count": 7,
-      "slm_wins_on_truncated": [
-        "compound_heldout_v2_0003",
-        "compound_heldout_v2_0005",
-        "compound_heldout_v2_0007",
-        "compound_heldout_v2_0021",
-        "compound_heldout_v2_0023",
-        "compound_heldout_v2_0026"
-      ],
-      "slm_wins_count": 6
+      "truncated_item_ids": [],
+      "count": 0,
+      "slm_wins_on_truncated": [],
+      "slm_wins_count": 0
     }
   },
   "experiments": {
@@ -533,323 +494,6 @@
       "decision": "Rejected: E4 permanently closed; v1.3 stands frozen"
     }
   },
-  "with_judge": true,
-  "judge": {
-    "title": "Prometheus-2 7B Held-Out Evaluation Summary",
-    "judge_model": "prometheus-eval/prometheus-7b-v2.0",
-    "gguf_sha256": "5bb7b0fa6b244a8cad8d2bb29d0f96422c43d3497fe1ab9ced7fd1ead03cc976",
-    "n_items": 150,
-    "comparisons": {
-      "openai/gpt-oss-120b": {
-        "baseline": "openai/gpt-oss-120b",
-        "baseline_label": "GPT-OSS-120B B1",
-        "evaluated_items": 147,
-        "exclusions_count": 3,
-        "slm_wins": 26,
-        "llm_wins": 53,
-        "draws": 68,
-        "effective_win_rate": 63.94557823129252,
-        "qp": {
-          "mean": 0.7482993197278912,
-          "ci_low": 0.7006802721088435,
-          "ci_high": 0.7925170068027211
-        },
-        "delta_q": {
-          "mean": -0.4897959183673469,
-          "ci_low": -0.7278911564625851,
-          "ci_high": -0.25170068027210885
-        },
-        "mean_slm_cqs": 3.807823129251701,
-        "mean_llm_cqs": 4.136054421768708,
-        "pairwise_outcomes": {
-          "slm_wins": 36,
-          "llm_wins": 68,
-          "draws": 43,
-          "swap_consistency": 70.74829931972789
-        },
-        "check_a_concordance": {
-          "total_disagreements": 18,
-          "concordant_items": 9,
-          "concordance_rate": "50.0%",
-          "passed_gate": false
-        },
-        "check_b_false_high_score": {
-          "total_wrong_answers": 32,
-          "false_high_scores": 18,
-          "false_high_rate": 56.25
-        },
-        "per_category": {
-          "sql": {
-            "n": 15,
-            "slm_wins": 4,
-            "llm_wins": 2,
-            "draws": 9,
-            "qp": {
-              "mean": 0.8666666666666667,
-              "ci_low": 0.75,
-              "ci_high": 0.95
-            },
-            "delta_q": {
-              "mean": 0.26666666666666666,
-              "ci_low": -0.13333333333333333,
-              "ci_high": 0.8
-            },
-            "slm_cqs": 4.216666666666667,
-            "llm_cqs": 4.183333333333334
-          },
-          "qa": {
-            "n": 14,
-            "slm_wins": 5,
-            "llm_wins": 5,
-            "draws": 4,
-            "qp": {
-              "mean": 0.6607142857142857,
-              "ci_low": 0.5,
-              "ci_high": 0.8035714285714286
-            },
-            "delta_q": {
-              "mean": 0.5,
-              "ci_low": -0.35714285714285715,
-              "ci_high": 1.4285714285714286
-            },
-            "slm_cqs": 3.767857142857143,
-            "llm_cqs": 3.0357142857142856
-          },
-          "code": {
-            "n": 15,
-            "slm_wins": 5,
-            "llm_wins": 6,
-            "draws": 4,
-            "qp": {
-              "mean": 0.7666666666666667,
-              "ci_low": 0.6666666666666666,
-              "ci_high": 0.85
-            },
-            "delta_q": {
-              "mean": -0.26666666666666666,
-              "ci_low": -0.8666666666666667,
-              "ci_high": 0.3333333333333333
-            },
-            "slm_cqs": 4.2,
-            "llm_cqs": 4.483333333333333
-          },
-          "math": {
-            "n": 15,
-            "slm_wins": 0,
-            "llm_wins": 12,
-            "draws": 3,
-            "qp": {
-              "mean": 0.5333333333333333,
-              "ci_low": 0.38333333333333336,
-              "ci_high": 0.6833333333333333
-            },
-            "delta_q": {
-              "mean": -1.8666666666666667,
-              "ci_low": -2.466666666666667,
-              "ci_high": -1.2666666666666666
-            },
-            "slm_cqs": 3.1,
-            "llm_cqs": 4.716666666666667
-          },
-          "compound": {
-            "n": 38,
-            "slm_wins": 11,
-            "llm_wins": 23,
-            "draws": 4,
-            "qp": {
-              "mean": 0.5197368421052632,
-              "ci_low": 0.4342105263157895,
-              "ci_high": 0.6118421052631579
-            },
-            "delta_q": {
-              "mean": -1.236842105263158,
-              "ci_low": -1.8157894736842106,
-              "ci_high": -0.6578947368421053
-            },
-            "slm_cqs": 2.3092105263157894,
-            "llm_cqs": 3.210526315789474
-          },
-          "track_b_fact_checklist": {
-            "n": 50,
-            "slm_wins": 1,
-            "llm_wins": 5,
-            "draws": 44,
-            "qp": {
-              "mean": 0.97,
-              "ci_low": 0.945,
-              "ci_high": 0.99
-            },
-            "delta_q": {
-              "mean": -0.08,
-              "ci_low": -0.18,
-              "ci_high": 0.0
-            },
-            "slm_cqs": 4.93,
-            "llm_cqs": 4.855
-          }
-        }
-      },
-      "qwen/qwen3.8-27b": {
-        "baseline": "qwen/qwen3.8-27b",
-        "baseline_label": "qwen/qwen3.8-27b B1",
-        "evaluated_items": 145,
-        "exclusions_count": 5,
-        "slm_wins": 14,
-        "llm_wins": 58,
-        "draws": 73,
-        "effective_win_rate": 60.0,
-        "qp": {
-          "mean": 0.7810344827586206,
-          "ci_low": 0.7344827586206897,
-          "ci_high": 0.8241379310344827
-        },
-        "delta_q": {
-          "mean": -0.6275862068965518,
-          "ci_low": -0.8344827586206897,
-          "ci_high": -0.42758620689655175
-        },
-        "mean_slm_cqs": 3.839655172413793,
-        "mean_llm_cqs": 4.396551724137931,
-        "pairwise_outcomes": {
-          "slm_wins": 46,
-          "llm_wins": 66,
-          "draws": 33,
-          "swap_consistency": 77.24137931034483
-        },
-        "check_a_concordance": {
-          "total_disagreements": 24,
-          "concordant_items": 12,
-          "concordance_rate": "50.0%",
-          "passed_gate": false
-        },
-        "check_b_false_high_score": {
-          "total_wrong_answers": 32,
-          "false_high_scores": 15,
-          "false_high_rate": 46.875
-        },
-        "per_category": {
-          "sql": {
-            "n": 15,
-            "slm_wins": 3,
-            "llm_wins": 4,
-            "draws": 8,
-            "qp": {
-              "mean": 0.8833333333333333,
-              "ci_low": 0.8166666666666667,
-              "ci_high": 0.95
-            },
-            "delta_q": {
-              "mean": -0.06666666666666667,
-              "ci_low": -0.4,
-              "ci_high": 0.26666666666666666
-            },
-            "slm_cqs": 4.216666666666667,
-            "llm_cqs": 4.266666666666667
-          },
-          "qa": {
-            "n": 15,
-            "slm_wins": 2,
-            "llm_wins": 6,
-            "draws": 7,
-            "qp": {
-              "mean": 0.7833333333333333,
-              "ci_low": 0.65,
-              "ci_high": 0.9
-            },
-            "delta_q": {
-              "mean": -0.4666666666666667,
-              "ci_low": -1.0666666666666667,
-              "ci_high": 0.13333333333333333
-            },
-            "slm_cqs": 3.816666666666667,
-            "llm_cqs": 4.433333333333334
-          },
-          "code": {
-            "n": 15,
-            "slm_wins": 2,
-            "llm_wins": 4,
-            "draws": 9,
-            "qp": {
-              "mean": 0.8666666666666667,
-              "ci_low": 0.75,
-              "ci_high": 0.95
-            },
-            "delta_q": {
-              "mean": -0.26666666666666666,
-              "ci_low": -0.8,
-              "ci_high": 0.13333333333333333
-            },
-            "slm_cqs": 4.2,
-            "llm_cqs": 4.066666666666666
-          },
-          "math": {
-            "n": 15,
-            "slm_wins": 2,
-            "llm_wins": 12,
-            "draws": 1,
-            "qp": {
-              "mean": 0.55,
-              "ci_low": 0.43333333333333335,
-              "ci_high": 0.6666666666666666
-            },
-            "delta_q": {
-              "mean": -1.2666666666666666,
-              "ci_low": -2.0,
-              "ci_high": -0.4
-            },
-            "slm_cqs": 3.1,
-            "llm_cqs": 4.416666666666667
-          },
-          "compound": {
-            "n": 35,
-            "slm_wins": 3,
-            "llm_wins": 28,
-            "draws": 4,
-            "qp": {
-              "mean": 0.5285714285714286,
-              "ci_low": 0.42857142857142855,
-              "ci_high": 0.6216071428571402
-            },
-            "delta_q": {
-              "mean": -1.6571428571428573,
-              "ci_low": -2.142857142857143,
-              "ci_high": -1.1428571428571428
-            },
-            "slm_cqs": 2.2928571428571427,
-            "llm_cqs": 3.7857142857142856
-          },
-          "track_b_fact_checklist": {
-            "n": 50,
-            "slm_wins": 2,
-            "llm_wins": 4,
-            "draws": 44,
-            "qp": {
-              "mean": 0.97,
-              "ci_low": 0.945,
-              "ci_high": 0.99
-            },
-            "delta_q": {
-              "mean": -0.04,
-              "ci_low": -0.14,
-              "ci_high": 0.06
-            },
-            "slm_cqs": 4.93,
-            "llm_cqs": 4.945
-          }
-        }
-      }
-    },
-    "lengths_and_correlations": {
-      "mean_response_length_chars": {
-        "Specialist_SLM_v1.3": 288.3904109589041,
-        "GPT-OSS-120B_B1": 386.83673469387753,
-        "qwen/qwen3.8-27b_B1": 1157.0344827586207
-      },
-      "length_score_pearson_r": {
-        "Specialist_SLM_v1.3": -0.14100480745105634,
-        "GPT-OSS-120B_B1": 0.2844625392218097,
-        "qwen/qwen3.8-27b_B1": -0.644959524175079
-      }
-    }
-  }
+  "with_judge": false,
+  "judge": null
 }

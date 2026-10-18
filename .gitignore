@@ -53,5 +53,9 @@ data/reserve_set_quarantine.json
 data/track_b/track_b_heldout_candidate.json
 data/track_b/master_fact_pool.json
 
+# Scratch Directory
+scratch/
+
+
 
 

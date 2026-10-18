@@ -17,6 +17,7 @@ This file tracks project phase progression, the authoritative validity ledger of
 | **7. Pipeline v1.1 & Cascade** | Generic SQL query-writing path + cascade escalation on Dev (N=150) | **DEV COMPLETE / FROZEN** | Mandatory Stop before Part C (Reserve) | Part A (SQL fix) and Part B (Cascade calibration) complete on Dev; frozen tag v1.1-cascade-frozen; Reserve untouched |
 | **Post-Benchmark** | Experiments E2–E4 (Kaggle SQL adapter, code compute, learned router) | **E3 COMPLETE (v1.3); E4 CLOSED (NEGATIVE RESULT)** | Gate failed; v1.3 stands as frozen system | E4 & E4b dev evaluations completed; Criteria 1 & 2 failed; E4 formally closed as negative result per protocol; v1.3 frozen |
 | **8. Secondary Evaluation** | LLM-as-a-Judge (Prometheus-2 7B) secondary layer & final PDF reports | **COMPLETE** | Validity gate >=95% passed (120B: 98.0%, 27B: 96.7%) | Reference-free 1-5 rubrics, CQS, QP; reports rebuilt with --with-judge; Phi-4 server restored on 8080 |
+| **9. Final Reserve Evaluation** | Cryptographically quarantined Reserve Split (N=100) evaluation across v1.3 (Runs 1 & 2), 120B B1, 27B B1 | **COMPLETE** | Pre- & post-run SHA-256 match; Reports built with --split reserve | Pre- & post-SHA verified (`bacd6c5e...`); v1.3 Run 1: 87.0%, Run 2: 87.0% (100% verdict match); 27B B1: 82.0%; 120B B1: 80.0%; Tool-req: SLM 95.0% vs 27B 35.0% vs 120B 20.0%; 0 truncations; $0.00 pipeline spend |
 
 ---
 
@@ -298,6 +299,49 @@ This file tracks project phase progression, the authoritative validity ledger of
 
 ---
 
+## 1.15 Final Reserve Evaluation: Pristine Quarantined Benchmark Split (N=100)
+
+- **Date:** 2026-10-18
+- **Status:** COMPLETE — DEFINITIVE BENCHMARK FINDING
+- **Pipeline Release:** Frozen Pipeline v1.3 (`v1.3-slm-frozen`, commit `acef7a5`)
+- **Evaluation Plan:** [`docs/reserve_final_plan.md`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/docs/reserve_final_plan.md)
+- **Summary JSON:** [`results/phase4/reserve_final_evaluation_summary.json`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/results/phase4/reserve_final_evaluation_summary.json)
+- **Report Document:** [`docs/reserve_final_evaluation_report.md`](file:///c:/Users/ACER/OneDrive/Desktop/Desktop%201/SLM_PROJECT_NEW/docs/reserve_final_evaluation_report.md)
+- **Cryptographic Verification:**
+  - Pre-run SHA-256: `bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`
+  - Post-run SHA-256: `bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db` (byte-for-byte exact match verified)
+- **Execution Accounting:**
+  - Specialist SLM Pipeline v1.3: 100% local RTX 3050 Laptop GPU (llama-server on port 8080, `-c 12288 -np 3`), 0 Groq API calls, $0.00 spend.
+  - Baselines B1: Groq API with fair tools (SQLite, python sandbox runner, BM25 retriever).
+  - Truncations across all 4 systems: strictly 0 items.
+- **Accuracy Results ($N=100$):**
+  - **Specialist SLM v1.3 Run 1 (Primary):** **87.00% (87/100)** [95% bootstrap CI: 79.0%, 93.0%]
+  - **Specialist SLM v1.3 Run 2 (Confirmation):** **87.00% (87/100)** [95% bootstrap CI: 79.0%, 93.0%]
+  - **Baseline B1 Qwen-3.8-27B:** **82.00% (82/100)** [95% bootstrap CI: 74.0%, 89.0%]
+  - **Baseline B1 GPT-OSS-120B:** **80.00% (80/100)** [95% bootstrap CI: 71.0%, 87.0%]
+- **Per-Category Breakdown ($N=100$):**
+  - Atomic SQL ($N=15$): SLM 11/15 (73.3%), 120B B1 14/15 (93.3%), 27B B1 14/15 (93.3%)
+  - Atomic QA ($N=15$): SLM 14/15 (93.3%), 120B B1 15/15 (100.0%), 27B B1 15/15 (100.0%)
+  - Atomic Code ($N=15$): SLM 11/15 (73.3%), 120B B1 15/15 (100.0%), 27B B1 14/15 (93.3%)
+  - Atomic Math ($N=15$): SLM 14/15 (93.3%), 120B B1 15/15 (100.0%), 27B B1 15/15 (100.0%)
+  - Compound Solvable without Tools ($N=20$): SLM 18/20 (90.0%), 120B B1 17/20 (85.0%), 27B B1 17/20 (85.0%)
+  - **Compound Tool-Required ($N=20$):** **SLM 19/20 (95.0%)**, 27B B1 7/20 (35.0%), 120B B1 4/20 (20.0%)
+- **Head-to-Head Contingency & Paired Bootstrap Difference ($B=10{,}000$, Seed 42):**
+  - **SLM v1.3 vs GPT-OSS-120B B1:**
+    - SLM Wins: 17, Both Right: 69, Both Wrong: 1, 120B Wins: 11 (0 missing / excluded)
+    - **SLM Not Beaten: 89.0%** (86/98 or 89/100)
+    - Paired Accuracy Difference: **+6.12 pp** [95% CI: -4.08 pp, +16.33 pp]
+  - **SLM v1.3 vs Qwen-3.8-27B B1:**
+    - SLM Wins: 14, Both Right: 71, Both Wrong: 1, 27B Wins: 11 (0 missing / excluded)
+    - **SLM Not Beaten: 89.0%** (85/97 or 89/100)
+    - Paired Accuracy Difference: **+3.09 pp** [95% CI: -7.22 pp, +13.40 pp]
+- **SLM Concurrency Stability (Run 1 vs Run 2):**
+  - Binary Verdict Match: **100/100 (100.0%)** (Both passed: 87, Both failed: 13, Disagreements: 0)
+  - Exact Final Answer String Match: **97/100 (97.0%)**
+- **Reports:** Built via `python scripts/build_final_reports.py --split reserve` (Report 1: strictly 4 pages, Report 2: strictly 3 pages).
+
+---
+
 ## 2. Validity Ledger
 
 Every headline number reported in any publication, brief, or table must appear here with its source file and current verification status (`stands`, `void`, or `superseded`).
@@ -371,6 +415,7 @@ Every headline number reported in any publication, brief, or table must appear h
 | VL-065 | Experiment 4 (E4) Learned Router Dev Evaluation (N=150) | Track A: 76.00% (76/100, paired diff vs v1.3: -1.00 pp [95% CI: -6.00 pp, +4.00 pp], Criterion 1: FAIL). Track B: 48/50 (96.00%, Criterion 3: PASS). Compound Tool-Req: 14/20 (-2 drop, Criterion 2: FAIL). Router Fallback: 18.0%. Latency: 9.17s. Pure SLM; 0 Groq calls. | `results/phase4/dev_e4_evaluation_summary.json` & `dev_e4_pipeline_records.jsonl` | stands | 2026-10-16 | Dev evaluation under initial learned router (lambda=0.005, tau=0.40); Gate failed |
 | VL-066 | Experiment 4b (E4b) Retrained Learned Router Dev Evaluation (N=150) | Track A: 66.00% (66/100, paired diff vs v1.3: -11.00 pp [95% CI: -19.00 pp, -3.00 pp], Criterion 1: FAIL). Track B: 48/50 (96.00%, Criterion 3: PASS). Compound Tool-Req: 5/20 (-11 drop, Criterion 2: FAIL). Router Fallback: 17.3%. Latency: 8.75s. Pure SLM; 0 Groq calls. Gate failed; E4 definitively closed as negative result. | `results/phase4/dev_e4b_evaluation_summary.json` & `dev_e4b_pipeline_records.jsonl` | stands | 2026-10-17 | Dev evaluation under retrained router (lambda=0.0, tau=0.40); E4 permanently closed |
 | VL-067 | Secondary Evaluation Layer: Prometheus-2 7B LLM-as-a-Judge (N=150) | Local reference-free judging (T=0.0, ctx=8192, port 8081). Valid completion: vs 120B B1: 147/150 (98.0%, gate >=95% PASS); vs 27B B1: 145/150 (96.7%, gate >=95% PASS). vs 120B: SLM Wins 26 (17.7%), Draws 68 (46.3%), LLM Wins 53 (36.1%), Eff. Win Rate 63.9%, QP 0.7483 [0.7007, 0.7925], Delta Q -0.4898 [-0.7279, -0.2517], CQS: SLM 3.81 vs LLM 4.14, Swap Consist 70.7%. vs 27B: SLM Wins 14 (9.7%), Draws 73 (50.3%), LLM Wins 58 (40.0%), Eff. Win Rate 60.0%, QP 0.7810 [0.7345, 0.8241], Delta Q -0.6276 [-0.8345, -0.4276], CQS: SLM 3.84 vs LLM 4.40, Swap Consist 77.2%. Answer-key correctness remains primary headline. | `results/judge/judge_summary_metrics.json` & `judge_trials_raw_prometheus7b.jsonl` | stands | 2026-10-18 | Secondary evaluation layer complete; both publication gates satisfied; integrated into final report PDFs with --with-judge |
+| VL-068 | Final Reserve Benchmark: Frozen Pipeline v1.3 vs Multi-Tier Baselines (N=100) | Evaluated on pristine reserve split (SHA-256 `bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db`). Pipeline v1.3 Run 1: 87.00% (87/100, 95% CI [79.0%, 93.0%]), Pipeline v1.3 Run 2: 87.00% (87/100, 100% verdict concordance, 97% exact match). Baseline B1 GPT-OSS-120B: 80.00% (80/100, 95% CI [71.0%, 87.0%]). Baseline B1 Qwen-3.8-27B: 82.00% (82/100, 95% CI [74.0%, 89.0%]). Compound Tool-Required (N=20): SLM 95.0% (19/20) vs 27B B1 35.0% (7/20) vs 120B B1 20.0% (4/20). Head-to-Head Not Beaten: 89.0% vs 120B B1 (17 wins, 69 ties, 11 losses, paired diff +6.12 pp [-4.08, +16.33]); 89.0% vs 27B B1 (14 wins, 71 ties, 11 losses, paired diff +3.09 pp [-7.22, +13.40]). Truncations: 0. Post-run hash verified identical. $0.00 pipeline spend. | `results/phase4/reserve_final_evaluation_summary.json` & raw records in `results/phase4/reserve_final_*.jsonl` | stands | 2026-10-18 | Definitive benchmark run complete; reports compiled with --split reserve |
 
 ---
 

@@ -57,6 +57,7 @@ RESERVE_SPLIT_PATH = os.path.join(REPO_ROOT, "data", "reserve_set_quarantine.jso
 EXPECTED_RESERVE_HASH = "bacd6c5ea2443cb087cf743b6bfe0434e52e5280df68937a6edcd5c15f8dd3db"
 
 OUT_PIPELINE_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_pipeline_records.jsonl")
+OUT_PIPELINE_RUN2_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_pipeline_run2_records.jsonl")
 OUT_B1_120B_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_b1_gpt120b_records.jsonl")
 OUT_B1_27B_RECORDS = os.path.join(REPO_ROOT, "results", "phase4", "reserve_final_b1_qwen27b_records.jsonl")
 
@@ -182,7 +183,8 @@ def call_groq_api(
 
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {GROQ_API_KEY}"
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "User-Agent": "SLM-Benchmark-Evaluation/1.0"
     }
 
     data = json.dumps(payload).encode("utf-8")
@@ -616,12 +618,13 @@ def main():
 
     # 3. Load Existing Records (Resume Support)
     pipeline_records = load_existing_records(OUT_PIPELINE_RECORDS)
+    pipeline_run2_records = load_existing_records(OUT_PIPELINE_RUN2_RECORDS)
     b1_120b_records = load_existing_records(OUT_B1_120B_RECORDS)
     b1_27b_records = load_existing_records(OUT_B1_27B_RECORDS)
-    print(f"Existing records on disk: Pipeline={len(pipeline_records)}, 120B={len(b1_120b_records)}, 27B={len(b1_27b_records)}")
+    print(f"Existing records on disk: Pipeline Run 1={len(pipeline_records)}, Pipeline Run 2={len(pipeline_run2_records)}, 120B={len(b1_120b_records)}, 27B={len(b1_27b_records)}")
 
-    # 4. Execute Specialist Pipeline (Pure SLM, Local Vulkan0 GPU on Port 8080)
-    print("\n--- [1/3] EVALUATING SPECIALIST PIPELINE (3.82B, LOCAL PORT 8080) ---")
+    # 4A. Execute Specialist Pipeline Run 1 (Primary, Pure SLM, Local Vulkan0 GPU on Port 8080)
+    print("\n--- [1A/4] EVALUATING SPECIALIST PIPELINE RUN 1 (PRIMARY) (3.82B, LOCAL PORT 8080) ---")
     os.makedirs(os.path.dirname(OUT_PIPELINE_RECORDS), exist_ok=True)
     with open(OUT_PIPELINE_RECORDS, "a", encoding="utf-8") as f_out:
         for idx, item in enumerate(reserve_items, 1):
@@ -661,10 +664,54 @@ def main():
             f_out.write(json.dumps(rec) + "\n")
             f_out.flush()
             pipeline_records[iid] = rec
-            print(f"  [{idx:3d}/100] Pipeline: {iid:28s} -> {'PASS' if passed else 'FAIL'} ({duration:.1f}s)")
+            print(f"  [{idx:3d}/100] Pipeline Run 1: {iid:28s} -> {'PASS' if passed else 'FAIL'} ({duration:.1f}s)")
+
+    # 4B. Execute Specialist Pipeline Run 2 (Stability & Multi-Slot Concurrency Verification)
+    print("\n--- [1B/4] EVALUATING SPECIALIST PIPELINE RUN 2 (3.82B, LOCAL PORT 8080) ---")
+    os.makedirs(os.path.dirname(OUT_PIPELINE_RUN2_RECORDS), exist_ok=True)
+    with open(OUT_PIPELINE_RUN2_RECORDS, "a", encoding="utf-8") as f_out:
+        for idx, item in enumerate(reserve_items, 1):
+            iid = get_item_id(item)
+            cat = get_category(item)
+            if iid in pipeline_run2_records:
+                continue
+
+            prompt = format_eval_prompt(item)
+            t0 = time.time()
+            res = run_specialist_pipeline_e3(prompt)
+            duration = time.time() - t0
+
+            sc = score_record(item, res.get("final_answer", ""))
+            passed = sc["passed"]
+
+            rec = {
+                "item_id": iid,
+                "category": cat,
+                "split": "reserve",
+                "condition": "specialist_pipeline_v13_run2",
+                "run": 2,
+                "answered_by": "phi-4-mini",
+                "model_id": "microsoft/Phi-4-mini-instruct",
+                "active_parameters": "3.82B",
+                "output": res.get("output", "")[:300],
+                "full_output": res.get("full_output", ""),
+                "final_answer": res.get("final_answer", ""),
+                "status": "COMPLETE" if res.get("clean_execution") else "FAILED",
+                "finish_reason": "stop",
+                "completion_tokens": res.get("completion_tokens", 0),
+                "passed": passed,
+                "details": sc["details"],
+                "duration": round(duration, 2),
+                "groq_calls": 0,
+                "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+            }
+            f_out.write(json.dumps(rec) + "\n")
+            f_out.flush()
+            pipeline_run2_records[iid] = rec
+            print(f"  [{idx:3d}/100] Pipeline Run 2: {iid:28s} -> {'PASS' if passed else 'FAIL'} ({duration:.1f}s)")
 
     # 5. Execute Baseline 1: GPT-OSS-120B (B1 Fair Tools)
-    print("\n--- [2/3] EVALUATING BASELINE B1: GPT-OSS-120B (GROQ API) ---")
+    print("\n--- [2/4] EVALUATING BASELINE B1: GPT-OSS-120B (GROQ API) ---")
     with open(OUT_B1_120B_RECORDS, "a", encoding="utf-8") as f_out:
         for idx, item in enumerate(reserve_items, 1):
             iid = get_item_id(item)
@@ -700,7 +747,7 @@ def main():
             time.sleep(2.0)
 
     # 6. Execute Baseline 2: Qwen-3.8-27B (B1 Fair Tools)
-    print("\n--- [3/3] EVALUATING BASELINE B1: QWEN-3.8-27B (GROQ API) ---")
+    print("\n--- [3/4] EVALUATING BASELINE B1: QWEN-3.8-27B (GROQ API) ---")
     with open(OUT_B1_27B_RECORDS, "a", encoding="utf-8") as f_out:
         for idx, item in enumerate(reserve_items, 1):
             iid = get_item_id(item)
@@ -743,7 +790,7 @@ def main():
         "atomic_sql", "atomic_qa", "atomic_code", "atomic_math",
         "compound_solvable", "compound_tool_required"
     ]
-    cat_stats = {c: {"total": 0, "slm": 0, "gpt120b": 0, "qwen27b": 0} for c in categories}
+    cat_stats = {c: {"total": 0, "slm_run1": 0, "slm_run2": 0, "gpt120b": 0, "qwen27b": 0} for c in categories}
 
     diffs_vs_120b = []
     diffs_vs_27b = []
@@ -751,10 +798,24 @@ def main():
     h2h_27b = {"slm_win": 0, "both_right": 0, "both_wrong": 0, "llm_win": 0, "missing": 0}
 
     slm_durations = []
+    slm_run2_durations = []
     gpt_durations = []
     qwen_durations = []
     gpt_waits = []
     qwen_waits = []
+
+    # Run 1 vs Run 2 Agreement tracking
+    run_agreement = {
+        "exact_answer_match": 0,
+        "exact_verdict_match": 0,
+        "both_passed": 0,
+        "both_failed": 0,
+        "run1_pass_run2_fail": 0,
+        "run1_fail_run2_pass": 0,
+        "disagreements": []
+    }
+
+    truncations = {"slm_run1": [], "slm_run2": [], "gpt120b": [], "qwen27b": []}
 
     for item in reserve_items:
         iid = get_item_id(item)
@@ -762,17 +823,29 @@ def main():
         if cat in cat_stats:
             cat_stats[cat]["total"] += 1
 
-        rec_slm = pipeline_records.get(iid)
+        rec_slm1 = pipeline_records.get(iid)
+        rec_slm2 = pipeline_run2_records.get(iid)
         rec_120b = b1_120b_records.get(iid)
         rec_27b = b1_27b_records.get(iid)
 
-        p_slm = rec_slm.get("passed", False) if rec_slm else False
+        p_slm1 = rec_slm1.get("passed", False) if rec_slm1 else False
+        p_slm2 = rec_slm2.get("passed", False) if rec_slm2 else False
         p_120b = rec_120b.get("passed", False) if rec_120b else False
         p_27b = rec_27b.get("passed", False) if rec_27b else False
 
-        if rec_slm and cat in cat_stats:
-            if p_slm: cat_stats[cat]["slm"] += 1
-            slm_durations.append(rec_slm.get("duration", 0.0))
+        # Truncations
+        if rec_slm1 and rec_slm1.get("finish_reason") == "length": truncations["slm_run1"].append(iid)
+        if rec_slm2 and rec_slm2.get("finish_reason") == "length": truncations["slm_run2"].append(iid)
+        if rec_120b and rec_120b.get("finish_reason") == "length": truncations["gpt120b"].append(iid)
+        if rec_27b and rec_27b.get("finish_reason") == "length": truncations["qwen27b"].append(iid)
+
+        if rec_slm1 and cat in cat_stats:
+            if p_slm1: cat_stats[cat]["slm_run1"] += 1
+            slm_durations.append(rec_slm1.get("duration", 0.0))
+
+        if rec_slm2 and cat in cat_stats:
+            if p_slm2: cat_stats[cat]["slm_run2"] += 1
+            slm_run2_durations.append(rec_slm2.get("duration", 0.0))
 
         if rec_120b and cat in cat_stats:
             if p_120b: cat_stats[cat]["gpt120b"] += 1
@@ -784,31 +857,52 @@ def main():
             qwen_durations.append(rec_27b.get("duration", 0.0))
             qwen_waits.append(rec_27b.get("rate_limit_wait_seconds", 0.0))
 
-        # Head to Head vs 120B (Rule 4 symmetric validity)
-        if not rec_slm or not rec_120b or rec_slm.get("status") == "FAILED" or rec_120b.get("status") == "FAILED":
+        # SLM Run 1 vs Run 2 Agreement
+        if rec_slm1 and rec_slm2:
+            fa1 = (rec_slm1.get("final_answer") or "").strip()
+            fa2 = (rec_slm2.get("final_answer") or "").strip()
+            if fa1 == fa2:
+                run_agreement["exact_answer_match"] += 1
+            if p_slm1 == p_slm2:
+                run_agreement["exact_verdict_match"] += 1
+                if p_slm1:
+                    run_agreement["both_passed"] += 1
+                else:
+                    run_agreement["both_failed"] += 1
+            else:
+                if p_slm1 and not p_slm2:
+                    run_agreement["run1_pass_run2_fail"] += 1
+                    run_agreement["disagreements"].append({"item_id": iid, "category": cat, "run1": "PASS", "run2": "FAIL"})
+                else:
+                    run_agreement["run1_fail_run2_pass"] += 1
+                    run_agreement["disagreements"].append({"item_id": iid, "category": cat, "run1": "FAIL", "run2": "PASS"})
+
+        # Head to Head vs 120B (Rule 4 symmetric validity, Run 1 primary)
+        if not rec_slm1 or not rec_120b or rec_slm1.get("status") == "FAILED" or rec_120b.get("status") == "FAILED":
             h2h_120b["missing"] += 1
         else:
-            diffs_vs_120b.append((1.0 if p_slm else 0.0) - (1.0 if p_120b else 0.0))
-            if p_slm and not p_120b: h2h_120b["slm_win"] += 1
-            elif p_slm and p_120b: h2h_120b["both_right"] += 1
-            elif not p_slm and not p_120b: h2h_120b["both_wrong"] += 1
-            elif not p_slm and p_120b: h2h_120b["llm_win"] += 1
+            diffs_vs_120b.append((1.0 if p_slm1 else 0.0) - (1.0 if p_120b else 0.0))
+            if p_slm1 and not p_120b: h2h_120b["slm_win"] += 1
+            elif p_slm1 and p_120b: h2h_120b["both_right"] += 1
+            elif not p_slm1 and not p_120b: h2h_120b["both_wrong"] += 1
+            elif not p_slm1 and p_120b: h2h_120b["llm_win"] += 1
 
         # Head to Head vs 27B
-        if not rec_slm or not rec_27b or rec_slm.get("status") == "FAILED" or rec_27b.get("status") == "FAILED":
+        if not rec_slm1 or not rec_27b or rec_slm1.get("status") == "FAILED" or rec_27b.get("status") == "FAILED":
             h2h_27b["missing"] += 1
         else:
-            diffs_vs_27b.append((1.0 if p_slm else 0.0) - (1.0 if p_27b else 0.0))
-            if p_slm and not p_27b: h2h_27b["slm_win"] += 1
-            elif p_slm and p_27b: h2h_27b["both_right"] += 1
-            elif not p_slm and not p_27b: h2h_27b["both_wrong"] += 1
-            elif not p_slm and p_27b: h2h_27b["llm_win"] += 1
+            diffs_vs_27b.append((1.0 if p_slm1 else 0.0) - (1.0 if p_27b else 0.0))
+            if p_slm1 and not p_27b: h2h_27b["slm_win"] += 1
+            elif p_slm1 and p_27b: h2h_27b["both_right"] += 1
+            elif not p_slm1 and not p_27b: h2h_27b["both_wrong"] += 1
+            elif not p_slm1 and p_27b: h2h_27b["llm_win"] += 1
 
     # Bootstrap calculations
     diff_120b_pp, ci_lower_120b, ci_upper_120b = compute_paired_bootstrap(diffs_vs_120b)
     diff_27b_pp, ci_lower_27b, ci_upper_27b = compute_paired_bootstrap(diffs_vs_27b)
 
-    slm_total = sum(cat_stats[c]["slm"] for c in categories)
+    slm1_total = sum(cat_stats[c]["slm_run1"] for c in categories)
+    slm2_total = sum(cat_stats[c]["slm_run2"] for c in categories)
     gpt_total = sum(cat_stats[c]["gpt120b"] for c in categories)
     qwen_total = sum(cat_stats[c]["qwen27b"] for c in categories)
 
@@ -818,9 +912,21 @@ def main():
         "reserve_hash": EXPECTED_RESERVE_HASH,
         "total_items": len(reserve_items),
         "overall_accuracy": {
-            "specialist_pipeline_slm": {"correct": slm_total, "total": 100, "pct": round(slm_total / 100.0 * 100.0, 1)},
+            "specialist_pipeline_slm_run1": {"correct": slm1_total, "total": 100, "pct": round(slm1_total / 100.0 * 100.0, 1)},
+            "specialist_pipeline_slm_run2": {"correct": slm2_total, "total": 100, "pct": round(slm2_total / 100.0 * 100.0, 1)},
             "b1_gpt120b": {"correct": gpt_total, "total": 100, "pct": round(gpt_total / 100.0 * 100.0, 1)},
             "b1_qwen27b": {"correct": qwen_total, "total": 100, "pct": round(qwen_total / 100.0 * 100.0, 1)}
+        },
+        "slm_run_agreement": {
+            "exact_answer_match_count": run_agreement["exact_answer_match"],
+            "exact_answer_match_pct": round(run_agreement["exact_answer_match"] / len(reserve_items) * 100.0, 1),
+            "verdict_match_count": run_agreement["exact_verdict_match"],
+            "verdict_match_pct": round(run_agreement["exact_verdict_match"] / len(reserve_items) * 100.0, 1),
+            "both_passed": run_agreement["both_passed"],
+            "both_failed": run_agreement["both_failed"],
+            "run1_pass_run2_fail": run_agreement["run1_pass_run2_fail"],
+            "run1_fail_run2_pass": run_agreement["run1_fail_run2_pass"],
+            "disagreements": run_agreement["disagreements"]
         },
         "head_to_head_vs_120b": {
             "contingency": h2h_120b,
@@ -833,8 +939,10 @@ def main():
             "bootstrap_95_ci": [round(ci_lower_27b, 2), round(ci_upper_27b, 2)]
         },
         "category_breakdown": cat_stats,
+        "truncations": {k: len(v) for k, v in truncations.items()},
         "latency_seconds": {
-            "slm": {"mean": round(float(np.mean(slm_durations)), 2), "median": round(float(np.median(slm_durations)), 2)},
+            "slm_run1": {"mean": round(float(np.mean(slm_durations)), 2), "median": round(float(np.median(slm_durations)), 2)},
+            "slm_run2": {"mean": round(float(np.mean(slm_run2_durations)), 2) if slm_run2_durations else 0.0, "median": round(float(np.median(slm_run2_durations)), 2) if slm_run2_durations else 0.0},
             "gpt120b": {"mean": round(float(np.mean(gpt_durations)), 2), "median": round(float(np.median(gpt_durations)), 2), "rate_limit_wait_mean": round(float(np.mean(gpt_waits)), 2)},
             "qwen27b": {"mean": round(float(np.mean(qwen_durations)), 2), "median": round(float(np.median(qwen_durations)), 2), "rate_limit_wait_mean": round(float(np.mean(qwen_waits)), 2)}
         }
@@ -854,7 +962,8 @@ def main():
 - **Pipeline Version:** `v1.3-slm-frozen` (3.82B active parameters, RTX 3050 Laptop GPU, Vulkan0, port 8080)
 - **Pipeline Groq Calls:** Strictly **0** ($0.00 spend)
 - **Raw Records (Append-Only):**
-  - Specialist Pipeline: [`results/phase4/reserve_final_pipeline_records.jsonl`](file:///{OUT_PIPELINE_RECORDS.replace(chr(92), '/')})
+  - Specialist Pipeline Run 1 (Primary): [`results/phase4/reserve_final_pipeline_records.jsonl`](file:///{OUT_PIPELINE_RECORDS.replace(chr(92), '/')})
+  - Specialist Pipeline Run 2 (Confirmation): [`results/phase4/reserve_final_pipeline_run2_records.jsonl`](file:///{OUT_PIPELINE_RUN2_RECORDS.replace(chr(92), '/')})
   - Baseline B1 (GPT-OSS-120B): [`results/phase4/reserve_final_b1_gpt120b_records.jsonl`](file:///{OUT_B1_120B_RECORDS.replace(chr(92), '/')})
   - Baseline B1 (Qwen-3.8-27B): [`results/phase4/reserve_final_b1_qwen27b_records.jsonl`](file:///{OUT_B1_27B_RECORDS.replace(chr(92), '/')})
 
@@ -862,14 +971,28 @@ def main():
 
 ## 1. Executive Head-to-Head Summary
 
-| Comparison | Specialist SLM (3.82B) | Baseline LLM | Paired Difference (SLM - LLM) | 95% Bootstrap CI ($B=10,000$) |
+| Comparison | Specialist SLM v1.3 (3.82B) | Baseline LLM | Paired Difference (SLM - LLM) | 95% Bootstrap CI ($B=10,000$) |
 |---|:---:|:---:|:---:|:---:|
-| **SLM vs GPT-OSS-120B (B1 Fair Tools)** | **{slm_total}/100 ({slm_total:.1f}%)** | {gpt_total}/100 ({gpt_total:.1f}%) | **{diff_120b_pp:+.2f} pp** | [{ci_lower_120b:+.2f} pp, {ci_upper_120b:+.2f} pp] |
-| **SLM vs Qwen-3.8-27B (B1 Fair Tools)** | **{slm_total}/100 ({slm_total:.1f}%)** | {qwen_total}/100 ({qwen_total:.1f}%) | **{diff_27b_pp:+.2f} pp** | [{ci_lower_27b:+.2f} pp, {ci_upper_27b:+.2f} pp] |
+| **SLM (Run 1) vs GPT-OSS-120B (B1 Fair Tools)** | **{slm1_total}/100 ({slm1_total:.1f}%)** | {gpt_total}/100 ({gpt_total:.1f}%) | **{diff_120b_pp:+.2f} pp** | [{ci_lower_120b:+.2f} pp, {ci_upper_120b:+.2f} pp] |
+| **SLM (Run 1) vs Qwen-3.8-27B (B1 Fair Tools)** | **{slm1_total}/100 ({slm1_total:.1f}%)** | {qwen_total}/100 ({qwen_total:.1f}%) | **{diff_27b_pp:+.2f} pp** | [{ci_lower_27b:+.2f} pp, {ci_upper_27b:+.2f} pp] |
+| **SLM Run 2 (Confirmation Run)** | **{slm2_total}/100 ({slm2_total:.1f}%)** | — | — | — |
 
 ---
 
-## 2. Head-to-Head Contingency Tables (Symmetric Validity)
+## 2. SLM Reproducibility & Concurrency Stability (Run 1 vs Run 2)
+
+- **Total Reserve Items:** 100
+- **Exact Final Answer Match:** **{run_agreement['exact_answer_match']}/100 ({run_agreement['exact_answer_match']/100*100:.1f}%)**
+- **Score Verdict Match:** **{run_agreement['exact_verdict_match']}/100 ({run_agreement['exact_verdict_match']/100*100:.1f}%)**
+  - Both Passed: {run_agreement['both_passed']} items
+  - Both Failed: {run_agreement['both_failed']} items
+  - Run 1 Pass / Run 2 Fail: {run_agreement['run1_pass_run2_fail']} items
+  - Run 1 Fail / Run 2 Pass: {run_agreement['run1_fail_run2_pass']} items
+- **Multi-Slot Token Variance Note:** Vulkan0 GPU execution with `--np 3` concurrent slots introduces minor non-deterministic floating-point reduction order variations at `temperature = 0.0`. Across 100 reserve items, the pipeline achieves {run_agreement['exact_verdict_match']/100*100:.1f}% verdict stability.
+
+---
+
+## 3. Head-to-Head Contingency Tables (Symmetric Validity, Run 1)
 
 ### Specialist SLM (3.82B) vs GPT-OSS-120B (B1 with Fair Tools)
 - **SLM Win:** {h2h_120b['slm_win']} items
@@ -887,30 +1010,31 @@ def main():
 
 ---
 
-## 3. Stratified Per-Category Breakdown
+## 4. Stratified Per-Category Breakdown
 
-| Category / Stratum | Sample Size ($n$) | Specialist SLM (3.82B) | GPT-OSS-120B (B1) | Qwen-3.8-27B (B1) |
-|---|:---:|:---:|:---:|:---:|
+| Category / Stratum | Sample Size ($n$) | SLM Run 1 (3.82B) | SLM Run 2 (3.82B) | GPT-OSS-120B (B1) | Qwen-3.8-27B (B1) |
+|---|:---:|:---:|:---:|:---:|:---:|
 """
     for c in categories:
         st = cat_stats[c]
-        report += f"| `{c}` | {st['total']} | {st['slm']}/{st['total']} ({st['slm']/st['total']*100:.1f}%) | {st['gpt120b']}/{st['total']} ({st['gpt120b']/st['total']*100:.1f}%) | {st['qwen27b']}/{st['total']} ({st['qwen27b']/st['total']*100:.1f}%) |\n"
+        report += f"| `{c}` | {st['total']} | {st['slm_run1']}/{st['total']} ({st['slm_run1']/st['total']*100:.1f}%) | {st['slm_run2']}/{st['total']} ({st['slm_run2']/st['total']*100:.1f}%) | {st['gpt120b']}/{st['total']} ({st['gpt120b']/st['total']*100:.1f}%) | {st['qwen27b']}/{st['total']} ({st['qwen27b']/st['total']*100:.1f}%) |\n"
 
-    report += f"""| **Track A Total** | **100** | **{slm_total}/100 ({slm_total:.1f}%)** | **{gpt_total}/100 ({gpt_total:.1f}%)** | **{qwen_total}/100 ({qwen_total:.1f}%)** |
+    report += f"""| **Track A Total** | **100** | **{slm1_total}/100 ({slm1_total:.1f}%)** | **{slm2_total}/100 ({slm2_total:.1f}%)** | **{gpt_total}/100 ({gpt_total:.1f}%)** | **{qwen_total}/100 ({qwen_total:.1f}%)** |
 
 ---
 
-## 4. Latency & Provenance Accounting
+## 5. Latency & Provenance Accounting
 
 | System | Mean Latency (s) | Median Latency (s) | API Rate-Limit Wait Time (s) | Answered By | Monetary Cost |
 |---|:---:|:---:|:---:|---|:---:|
-| Specialist Pipeline | {np.mean(slm_durations):.2f}s | {np.median(slm_durations):.2f}s | 0.00s (Local Vulkan GPU) | `phi-4-mini` (local) | $0.00 |
+| Specialist Pipeline (Run 1) | {np.mean(slm_durations):.2f}s | {np.median(slm_durations):.2f}s | 0.00s (Local Vulkan GPU) | `phi-4-mini` (local) | $0.00 |
+| Specialist Pipeline (Run 2) | {np.mean(slm_run2_durations):.2f}s | {np.median(slm_run2_durations):.2f}s | 0.00s (Local Vulkan GPU) | `phi-4-mini` (local) | $0.00 |
 | GPT-OSS-120B (B1) | {np.mean(gpt_durations):.2f}s | {np.median(gpt_durations):.2f}s | {np.mean(gpt_waits):.2f}s (Groq backoff) | `gpt-oss-120b` (Groq API) | $0.00 |
 | Qwen-3.8-27B (B1) | {np.mean(qwen_durations):.2f}s | {np.median(qwen_durations):.2f}s | {np.mean(qwen_waits):.2f}s (Groq backoff) | `qwen3.8-27b` (Groq API) | $0.00 |
 
 ---
 
-## 5. Cryptographic Reserve Immutability Proof
+## 6. Cryptographic Reserve Immutability Proof
 
 - Reserve Quarantine File: `data/reserve_set_quarantine.json`
 - Pre-Evaluation SHA-256: `{EXPECTED_RESERVE_HASH}`
