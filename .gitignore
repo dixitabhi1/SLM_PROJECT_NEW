@@ -56,6 +56,5 @@ data/track_b/master_fact_pool.json
 # Scratch Directory
 scratch/
 
-
-
-
+# Raw Public Benchmark Data (Licenses restrict redistribution; commit IDs and hashes only)
+data/public/raw/
